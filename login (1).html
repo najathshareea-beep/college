@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Noorussalam Madrasa — Login</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+  <style>
+    :root{
+      --accent:#0b5ea8;
+      --accent2:#0bb89f;
+      --error:#ef4444;
+      --success:#22c55e;
+      --bg:#0d1b2a;
+      --light-bg:#f8fafc;
+      --text:#e2e8f0;
+      --text-dark:#334155;
+    }
+    *{box-sizing:border-box;transition:.3s all ease;}
+
+    body{
+      margin:0;
+      font-family:Poppins, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      overflow:hidden;
+    }
+
+    /* BG ANIMATION */
+    .bg-dots{
+      position:fixed;
+      inset:0;
+      background:url('https://i.imgur.com/jxWqIBf.png');
+      opacity:.22;
+      z-index:-2;
+    }
+    .circle{
+      position:fixed;
+      width:420px;
+      height:420px;
+      background:radial-gradient(circle at 30% 30%, var(--accent), transparent);
+      top:-120px;
+      left:-120px;
+      filter:blur(80px);
+      z-index:-1;
+      animation:float 6s ease-in-out infinite;
+      opacity:.7;
+    }
+    .circle2{
+      position:fixed;
+      width:380px;
+      height:380px;
+      background:radial-gradient(circle at 70% 70%, var(--accent2), transparent);
+      bottom:-120px;
+      right:-120px;
+      filter:blur(90px);
+      z-index:-1;
+      animation:float2 7s ease-in-out infinite;
+      opacity:.7;
+    }
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-26px)}
+    }
+    @keyframes float2{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(30px)}
+    }
+
+    /* LOGIN CARD */
+    .card{
+      width:100%;
+      max-width:430px;
+      padding:32px;
+      border-radius:22px;
+      backdrop-filter:blur(16px);
+      background:rgba(255,255,255,0.05);
+      box-shadow:0 12px 40px rgba(0,0,0,0.45);
+      border:1px solid rgba(255,255,255,0.1);
+      position:relative;
+    }
+
+    /* GLOWING BORDER */
+    .card:before{
+      content:'';
+      position:absolute;
+      inset:-2px;
+      border-radius:24px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      z-index:-1;
+      filter:blur(16px);
+      opacity:.35;
+    }
+
+    .logo{
+      text-align:center;
+      margin-bottom:18px;
+    }
+    .logo .icon{
+      width:62px;height:62px;
+      margin:auto;
+      border-radius:14px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-weight:700;
+      font-size:22px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.35);
+      animation:pop 0.7s ease;
+    }
+    @keyframes pop{
+      0%{transform:scale(0.5);opacity:0}
+      100%{transform:scale(1);opacity:1}
+    }
+
+    h1{text-align:center;font-size:22px;margin:10px 0 4px;}
+    p{text-align:center;font-size:13px;opacity:.8;margin-bottom:22px;}
+
+    .field{position:relative;margin-bottom:18px;}
+    input{
+      width:100%;
+      padding:14px 44px 14px 14px;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.15);
+      border-radius:12px;
+      font-size:14px;
+      color:var(--text);
+      outline:none;
+    }
+    input:focus{
+      border-color:var(--accent2);
+      background:rgba(255,255,255,0.12);
+    }
+
+    label{
+      position:absolute;
+      left:14px;
+      top:12px;
+      font-size:13px;
+      color:#cbd5e1;
+      pointer-events:none;
+      transition:.2s;
+    }
+    input:focus + label,
+    input:not(:placeholder-shown)+label{
+      top:-8px;
+      font-size:11px;
+      background:rgba(0,0,0,0.4);
+      padding:0 6px;
+      border-radius:8px;
+      color:#fff;
+    }
+
+    .icon{
+      position:absolute;
+      right:14px;
+      top:50%;
+      transform:translateY(-50%);
+      font-size:18px;
+      opacity:.8;
+      cursor:pointer;
+    }
+
+    /* BUTTON */
+    button{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:white;
+      font-weight:600;
+      cursor:pointer;
+      font-size:15px;
+      margin-top:4px;
+    }
+
+    .alt{
+      margin-top:18px;
+      text-align:center;
+      font-size:13px;
+    }
+    .alt a{color:#38bdf8;text-decoration:none;font-weight:600;}
+
+    .home-btn{
+      margin-top:16px;
+      padding:12px;
+      display:block;
+      background:linear-gradient(135deg,var(--accent2),var(--accent));
+      color:white;
+      text-align:center;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    /* Light Mode */
+    body.light{background:var(--light-bg);color:var(--text-dark);}
+    body.light .card{background:rgba(0,0,0,0.06);border-color:rgba(0,0,0,0.1);}
+    body.light input{background:rgba(0,0,0,0.04);color:var(--text-dark);}
+  </style>
+</head>
+
+<body>
+  <div class="bg-dots"></div>
+  <div class="circle"></div>
+  <div class="circle2"></div>
+
+  <div class="card">
+    <button id="toggleMode" style="position:absolute;top:14px;right:14px;background:none;border:none;color:white;font-size:20px;cursor:pointer;">
+      <i class='bx bx-sun'></i>
+    </button>
+
+    <div class="logo">
+      <div class="icon">NS</div>
+      <h1>Noorussalam Madrasa</h1>
+      <p>Student Portal Login</p>
+    </div>
+
+    <form id="loginForm">
+      <div class="field">
+        <input type="text" id="user" placeholder=" " required>
+        <label>Madrasa ID or Email</label>
+        <i class='bx bx-user icon'></i>
+      </div>
+
+      <div class="field">
+        <input type="password" id="password" placeholder=" " required>
+        <label>Password</label>
+        <i class='bx bx-hide icon' id="togglePwd"></i>
+      </div>
+
+      <button type="submit" id="loginBtn"><i class='bx bxs-lock-alt'></i> Sign In</button>
+
+      <div class="alt">Don't have an account?
+        <a href="register.html">Register</a>
+      </div>
+
+      <a href="index.html" class="home-btn"><i class='bx bx-home'></i> Back to Home</a>
+    </form>
+  </div>
+
+  <script>
+    const yr = new Date().getFullYear();
+
+    // Toggle password visibility
+    const pwd = document.getElementById('password');
+    const togglePwd = document.getElementById('togglePwd');
+
+    togglePwd.onclick = () => {
+      pwd.type = (pwd.type === "password") ? "text" : "password";
+      togglePwd.className = (pwd.type === "password") ? "bx bx-hide icon" : "bx bx-show icon";
+    };
+
+    // Light/Dark mode
+    const toggleMode = document.getElementById('toggleMode');
+    toggleMode.onclick = () => {
+      document.body.classList.toggle("light");
+      toggleMode.innerHTML =
+        document.body.classList.contains("light")
+        ? "<i class='bx bx-moon'></i>"
+        : "<i class='bx bx-sun'></i>";
+    };
+
+    // LOGIN HANDLER
+    const scriptURL = "YOUR_GOOGLE_APP_SCRIPT_URL"; // REPLACE
+    const form = document.getElementById('loginForm');
+    const btn = document.getElementById('loginBtn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.innerHTML = "<i class='bx bx-loader-circle bx-spin'></i> Checking...";
+
+      const user = document.getElementById("user").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      try {
+        const res = await fetch(scriptURL, {
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify({
+            action: "login",
+            username: user,
+            password: password
+          })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          btn.innerHTML = "<i class='bx bxs-check-circle'></i> Success!";
+          btn.style.background = "linear-gradient(135deg,#22c55e,#06b6d4)";
+
+          localStorage.setItem("username", data.username);
+          localStorage.setItem("role", data.role);
+
+          setTimeout(() => {
+            if(data.role === "admin") window.location.href = "admin-dashboard.html";
+            else window.location.href = "student-dashboard.html";
+          }, 900);
+
+        } else {
+          btn.disabled = false;
+          btn.innerHTML = "<i class='bx bx-error-circle'></i> Invalid Login";
+          btn.style.background = "linear-gradient(135deg,#ef4444,#dc2626)";
+          setTimeout(() => {
+            btn.style.background = "linear-gradient(135deg,var(--accent),var(--accent2))";
+            btn.innerHTML = "<i class='bx bxs-lock-alt'></i> Sign In";
+          }, 1500);
+        }
+
+      } catch (err) {
+        btn.disabled = false;
+        btn.innerHTML = "<i class='bx bx-error'></i> Error";
+        setTimeout(() => {
+          btn.innerHTML = "<i class='bx bxs-lock-alt'></i> Sign In";
+        }, 1500);
+      }
+    });
+  </script>
+</body>
+</html>
