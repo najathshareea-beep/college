@@ -266,6 +266,7 @@
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      text-decoration: none;
     }
 
     .social-icons a::before {
@@ -420,18 +421,6 @@
         font-size: 1.1rem;
       }
     }
-
-    /* Loading animation for images */
-    @keyframes shimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
-    }
-
-    .profile-img {
-      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.5s infinite;
-    }
   </style>
 </head>
 <body>
@@ -503,20 +492,6 @@
     const facultyData = [
       {
         id: 1,
-        name: "ABDUL AZEEZ FAIZEE",
-        designation: "PRINCIPAL",
-        phone: "9744247124",
-        img: "https://i.ibb.co/S77QvZ07/Whats-App-Image-2025-10-25-at-8-38-50-AM.jpg",
-        bio: "Visionary leader committed to academic excellence and holistic student development.",
-        social: {
-          whatsapp: "https://wa.me/919744247124",
-          email: "mailto:principal@darunnajath.edu",
-          instagram: "https://www.instagram.com/suhail_kerala_?igsh=YmdibmltNmVnYXQ4&utm_source=qr",
-          facebook: "https://www.facebook.com/share/19e17MCsuB/?mibextid=wwXIfr"
-        }
-      },
-      {
-        id: 2,
         name: "ABDUL HAQUE HAITHAMI MP",
         designation: "VICE PRINCIPAL",
         phone: "9495563866",
@@ -528,7 +503,7 @@
         }
       },
       {
-        id: 3,
+        id: 2,
         name: "ABDULLA DARIMI K",
         designation: "TEACHER",
         phone: "7994174910",
@@ -539,7 +514,7 @@
         }
       },
       {
-        id: 4,
+        id: 3,
         name: "MUHAMMED RAFI WAFI P",
         designation: "TEACHER",
         phone: "9048020243",
@@ -551,7 +526,7 @@
         }
       },
       {
-        id: 5,
+        id: 4,
         name: "MOIDEENKUTTY HUDAWI IK",
         designation: "TEACHER",
         phone: "9847488515",
@@ -562,7 +537,7 @@
         }
       },
       {
-        id: 6,
+        id: 5,
         name: "SUHAIL MASTER CP",
         designation: "TEACHER",
         phone: "9048445593",
@@ -574,7 +549,7 @@
         }
       },
       {
-        id: 7,
+        id: 6,
         name: "SHIHABUDHEEN WAFI K",
         designation: "TEACHER",
         phone: "9746701124",
@@ -585,7 +560,7 @@
         }
       },
       {
-        id: 8,
+        id: 7,
         name: "MUHAMMED SAEED FAIZEE V",
         designation: "TEACHER",
         phone: "9496480098",
@@ -596,7 +571,7 @@
         }
       },
       {
-        id: 9,
+        id: 8,
         name: "SHOUKATHALI FAIZEE OP",
         designation: "TEACHER",
         phone: "9495138882",
@@ -607,7 +582,7 @@
         }
       },
       {
-        id: 10,
+        id: 9,
         name: "JUBAIR FAIZEE TK",
         designation: "TEACHER",
         phone: "8589861025",
@@ -618,7 +593,7 @@
         }
       },
       {
-        id: 11,
+        id: 10,
         name: "MUHAMMED SHABEEN MASTER V",
         designation: "TEACHER",
         phone: "8113917591",
@@ -629,7 +604,7 @@
         }
       },
       {
-        id: 12,
+        id: 11,
         name: "MUHAMMED IQBAL BUSTHANI TA",
         designation: "TEACHER",
         phone: "8547591123",
@@ -640,7 +615,7 @@
         }
       },
       {
-        id: 13,
+        id: 12,
         name: "HASHIM MUNEEB MASTER T",
         designation: "TEACHER",
         phone: "9496365330",
@@ -649,8 +624,21 @@
         social: {
           whatsapp: "https://wa.me/919496365330"
         }
+      },
+      {
+        id: 13,
+        name: "ABDUL AZEEZ FAIZEE",
+        designation: "PRINCIPAL",
+        phone: "9744247124",
+        img: "https://i.ibb.co/S77QvZ07/Whats-App-Image-2025-10-25-at-8-38-50-AM.jpg",
+        bio: "Visionary leader committed to academic excellence and holistic student development.",
+        social: {
+          whatsapp: "https://wa.me/919744247124",
+          email: "mailto:principal@darunnajath.edu",
+          instagram: "https://www.instagram.com/suhail_kerala_",
+          facebook: "https://www.facebook.com/darunnajath"
+        }
       }
-      
     ];
 
     // DOM Elements
@@ -690,7 +678,7 @@
       });
     }
 
-    // Show teacher popup
+    // Show teacher popup - FIXED: Removed target="_blank"
     function showTeacherPopup(teacher) {
       const template = document.getElementById('popupTemplate');
       const popup = template.cloneNode(true);
@@ -707,13 +695,13 @@
       popup.querySelector('.popup-phone').textContent = `📞 ${teacher.phone}`;
       popup.querySelector('.bio').textContent = teacher.bio;
       
-      // Add social icons
+      // Add social icons - NO target="_blank"
       const socialIcons = popup.querySelector('.social-icons');
       socialIcons.innerHTML = '';
       
       if (teacher.social.whatsapp) {
         socialIcons.innerHTML += `
-          <a href="${teacher.social.whatsapp}" class="whatsapp" target="_blank">
+          <a href="${teacher.social.whatsapp}" class="whatsapp">
             <i class="bi bi-whatsapp"></i>
           </a>
         `;
@@ -729,7 +717,7 @@
       
       if (teacher.social.instagram) {
         socialIcons.innerHTML += `
-          <a href="${teacher.social.instagram}" class="instagram" target="_blank">
+          <a href="${teacher.social.instagram}" class="instagram">
             <i class="bi bi-instagram"></i>
           </a>
         `;
@@ -737,7 +725,7 @@
       
       if (teacher.social.facebook) {
         socialIcons.innerHTML += `
-          <a href="${teacher.social.facebook}" class="facebook" target="_blank">
+          <a href="${teacher.social.facebook}" class="facebook">
             <i class="bi bi-facebook"></i>
           </a>
         `;
@@ -746,7 +734,7 @@
       // Add X/Twitter if available
       if (teacher.social.x) {
         socialIcons.innerHTML += `
-          <a href="${teacher.social.x}" class="x" target="_blank">
+          <a href="${teacher.social.x}" class="x">
             <i class="bi bi-twitter-x"></i>
           </a>
         `;
@@ -755,7 +743,7 @@
       // Add Telegram if available
       if (teacher.social.telegram) {
         socialIcons.innerHTML += `
-          <a href="${teacher.social.telegram}" class="telegram" target="_blank">
+          <a href="${teacher.social.telegram}" class="telegram">
             <i class="bi bi-telegram"></i>
           </a>
         `;
