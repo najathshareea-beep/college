@@ -10,232 +10,166 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
-  <!-- Particle Background -->
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
 
   <style>
     :root {
       --primary: #0a194f;
       --secondary: #122f7a;
       --accent: #f3c13a;
-      --accent-light: #ffda5c;
       --light: #f8f9fa;
-      --dark: #071034;
-      --gradient-primary: linear-gradient(135deg, #0a194f, #1a3a8f);
-      --gradient-accent: linear-gradient(135deg, #f3c13a, #ffda5c);
-      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
-      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
-      --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.16);
-      --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      --gold-glow: rgba(243, 193, 58, 0.5);
+      --blue-glow: rgba(10, 25, 79, 0.3);
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--dark);
+      font-family: 'Poppins', 'Rubik', sans-serif;
+      background-color: var(--primary);
       color: var(--light);
-      overflow-x: hidden;
       scroll-behavior: smooth;
+      overflow-x: hidden;
+      animation: fadeInBody 1.5s ease;
     }
 
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 10px;
+    @keyframes fadeInBody {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    ::-webkit-scrollbar-track {
-      background: var(--dark);
+    /* Animated Background Elements */
+    .floating-element {
+      position: fixed;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      animation: float 20s infinite ease-in-out;
+      z-index: -1;
+      pointer-events: none;
     }
 
-    ::-webkit-scrollbar-thumb {
-      background: var(--accent);
-      border-radius: 5px;
+    .floating-element:nth-child(1) {
+      width: 300px;
+      height: 300px;
+      top: 10%;
+      left: 5%;
+      animation-delay: 0s;
+      background: radial-gradient(circle, rgba(243,193,58,0.1) 0%, transparent 70%);
     }
 
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--accent-light);
+    .floating-element:nth-child(2) {
+      width: 200px;
+      height: 200px;
+      bottom: 20%;
+      right: 5%;
+      animation-delay: 5s;
+      background: radial-gradient(circle, rgba(18,47,122,0.1) 0%, transparent 70%);
     }
 
-    /* Navbar */
+    .floating-element:nth-child(3) {
+      width: 150px;
+      height: 150px;
+      top: 60%;
+      left: 80%;
+      animation-delay: 10s;
+      background: radial-gradient(circle, rgba(10,25,79,0.1) 0%, transparent 70%);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+      33% { transform: translate(30px, -50px) rotate(120deg) scale(1.1); }
+      66% { transform: translate(-20px, 40px) rotate(240deg) scale(0.9); }
+    }
+
+    /* Enhanced Navbar with Glass Effect */
     .navbar {
-      background: rgba(10, 25, 79, 0.95);
-      backdrop-filter: blur(10px);
+      background: linear-gradient(90deg, rgba(10, 25, 79, 0.95), rgba(18, 47, 122, 0.95));
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       padding: 1rem 0;
-      transition: var(--transition-smooth);
-      border-bottom: 2px solid rgba(243, 193, 58, 0.1);
+      z-index: 1000;
     }
 
     .navbar.scrolled {
-      padding: 0.5rem 0;
       background: rgba(10, 25, 79, 0.98);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .navbar-brand {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      padding: 0.5rem 0;
     }
 
     .navbar-brand img {
-      width: 60px;
-      height: 60px;
       border-radius: 12px;
-      border: 3px solid var(--accent);
-      padding: 5px;
-      transition: var(--transition-smooth);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+      border: 2px solid rgba(243, 193, 58, 0.3);
     }
 
     .navbar-brand:hover img {
-      transform: rotate(5deg) scale(1.1);
-      box-shadow: 0 0 20px rgba(243, 193, 58, 0.4);
+      transform: scale(1.1) rotate(5deg);
+      filter: drop-shadow(0 6px 12px var(--gold-glow));
+      border-color: var(--accent);
     }
 
-    .nav-link {
+    .navbar-nav .nav-link {
+      color: #f8f9fa !important;
+      font-weight: 500;
       position: relative;
-      margin: 0 0.5rem;
-      padding: 0.5rem 1rem !important;
+      padding: 0.5rem 1rem;
+      transition: all 0.3s ease;
+      margin: 0 0.2rem;
       border-radius: 8px;
-      transition: var(--transition-smooth);
     }
 
-    .nav-link::before {
+    .navbar-nav .nav-link::before {
       content: '';
       position: absolute;
       bottom: 0;
       left: 50%;
       width: 0;
       height: 2px;
-      background: var(--accent);
-      transition: var(--transition-smooth);
+      background: linear-gradient(90deg, var(--accent), #ffda5c);
+      transition: all 0.3s ease;
       transform: translateX(-50%);
     }
 
-    .nav-link:hover::before,
-    .nav-link.active::before {
-      width: 80%;
-    }
-
-    .nav-link:hover {
+    .navbar-nav .nav-link:hover {
+      color: var(--accent) !important;
       background: rgba(243, 193, 58, 0.1);
       transform: translateY(-2px);
     }
 
-    /* Hero Section */
-    .hero-section {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      background: var(--gradient-primary);
-      overflow: hidden;
+    .navbar-nav .nav-link:hover::before {
+      width: 80%;
     }
 
-    #particles-js {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
+    .navbar-nav .nav-link.active {
+      color: var(--accent) !important;
+      background: rgba(243, 193, 58, 0.15);
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 4rem 0;
+    .navbar-toggler {
+      border: 2px solid rgba(243, 193, 58, 0.3);
+      transition: all 0.3s ease;
     }
 
-    .hero-title {
-      font-size: 4rem;
-      font-weight: 800;
-      background: linear-gradient(45deg, var(--accent), #ffda5c, #ffed99);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: shimmer 3s infinite;
-    }
-
-    @keyframes shimmer {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    .hero-subtitle {
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    /* Floating Elements */
-    .floating-element {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(243, 193, 58, 0.1);
-      animation: float 6s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(180deg); }
-    }
-
-    .floating-1 { width: 100px; height: 100px; top: 10%; left: 5%; animation-delay: 0s; }
-    .floating-2 { width: 150px; height: 150px; bottom: 20%; right: 10%; animation-delay: 2s; }
-    .floating-3 { width: 80px; height: 80px; top: 40%; right: 15%; animation-delay: 4s; }
-
-    /* Cards */
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: var(--transition-smooth);
-    }
-
-    .card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: var(--shadow-lg);
+    .navbar-toggler:hover {
       border-color: var(--accent);
-    }
-
-    .card-img-top {
-      height: 200px;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .card:hover .card-img-top {
       transform: scale(1.1);
     }
 
-    /* Buttons */
     .btn-primary {
-      background: var(--gradient-accent);
+      background: linear-gradient(135deg, var(--accent), #ffda5c);
       border: none;
       color: var(--primary);
+      border-radius: 12px;
       font-weight: 600;
       padding: 0.75rem 2rem;
-      border-radius: 50px;
-      transition: var(--transition-smooth);
+      box-shadow: 0 8px 25px rgba(243,193,58,0.4);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
     }
@@ -247,170 +181,60 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
       transition: 0.5s;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #ffda5c, var(--accent));
+      box-shadow: 0 12px 35px rgba(243,193,58,0.7);
+      transform: translateY(-4px) scale(1.05);
     }
 
     .btn-primary:hover::before {
       left: 100%;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(243, 193, 58, 0.4);
-    }
-
-    /* Sections */
-    section {
-      padding: 6rem 0;
+    .btn-outline-secondary {
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      background: transparent;
+      border-radius: 12px;
+      font-weight: 600;
+      padding: 0.75rem 2rem;
+      transition: all 0.4s ease;
       position: relative;
+      overflow: hidden;
     }
 
-    .section-title {
-      font-size: 3rem;
-      font-weight: 800;
-      margin-bottom: 3rem;
-      text-align: center;
-      position: relative;
-      display: inline-block;
-    }
-
-    .section-title::after {
+    .btn-outline-secondary::before {
       content: '';
       position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 4px;
-      background: var(--gradient-accent);
-      border-radius: 2px;
-    }
-
-    /* News Ticker */
-    .news-ticker {
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      padding: 1rem;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .ticker-content {
-      display: flex;
-      animation: ticker 30s linear infinite;
-    }
-
-    @keyframes ticker {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-
-    /* Gallery Hover Effect */
-    .gallery-item {
-      position: relative;
-      overflow: hidden;
-      border-radius: 15px;
-      cursor: pointer;
-    }
-
-    .gallery-item img {
-      transition: transform 0.5s ease;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.1);
-    }
-
-    .gallery-overlay {
-      position: absolute;
       top: 0;
-      left: 0;
+      left: -100%;
       width: 100%;
       height: 100%;
-      background: rgba(10, 25, 79, 0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      background: linear-gradient(90deg, transparent, rgba(243,193,58,0.2), transparent);
+      transition: 0.5s;
     }
 
-    .gallery-item:hover .gallery-overlay {
-      opacity: 1;
+    .btn-outline-secondary:hover {
+      background: var(--accent);
+      color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(243,193,58,0.3);
     }
 
-    /* Footer */
-    footer {
-      background: linear-gradient(135deg, var(--primary), var(--dark));
-      padding: 4rem 0 2rem;
-      position: relative;
+    .btn-outline-secondary:hover::before {
+      left: 100%;
     }
 
-    .footer-waves {
-      position: absolute;
-      top: -100px;
-      left: 0;
-      width: 100%;
-      height: 100px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%230a194f' fill-opacity='1' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-      background-size: cover;
+    /* Hero Section Enhancements */
+    .hero-premium {
+      animation: heroEntrance 1s ease-out;
     }
 
-    /* Loading Animation */
-    .loading {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      transition: opacity 0.5s ease;
-    }
-
-    .loader {
-      width: 80px;
-      height: 80px;
-      border: 5px solid rgba(243, 193, 58, 0.3);
-      border-radius: 50%;
-      border-top-color: var(--accent);
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .hero-title {
-        font-size: 2.5rem;
-      }
-      
-      .section-title {
-        font-size: 2rem;
-      }
-      
-      .navbar-nav {
-        text-align: center;
-        padding: 1rem 0;
-      }
-      
-      .nav-link {
-        margin: 0.5rem 0;
-      }
-    }
-
-    /* Malayalam Text */
-    .malayalam {
-      font-family: 'Anek Malayalam', sans-serif;
-    }
-
-    /* Custom Animations */
-    @keyframes fadeInUp {
+    @keyframes heroEntrance {
       from {
         opacity: 0;
         transform: translateY(30px);
@@ -421,568 +245,1855 @@
       }
     }
 
-    .animate-fadeInUp {
-      animation: fadeInUp 0.8s ease forwards;
+    .hero-content {
+      animation: contentFloat 3s ease-in-out infinite alternate;
     }
 
-    /* Glass Morphism */
-    .glass {
-      background: rgba(255, 255, 255, 0.1);
+    @keyframes contentFloat {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
+
+    /* About Section Enhancement */
+    #about {
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      color: #333;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+      animation: gradientShift 3s infinite linear;
+      background-size: 200% 100%;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    #about h2 {
+      color: var(--secondary);
+      position: relative;
+      display: inline-block;
+      padding-bottom: 15px;
+      animation: titleGlow 2s infinite alternate;
+    }
+
+    @keyframes titleGlow {
+      from { text-shadow: 0 0 10px rgba(10, 25, 79, 0.3); }
+      to { text-shadow: 0 0 20px rgba(243, 193, 58, 0.5); }
+    }
+
+    #about h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
+      animation: widthPulse 2s infinite;
+    }
+
+    @keyframes widthPulse {
+      0%, 100% { width: 100px; opacity: 1; }
+      50% { width: 150px; opacity: 0.8; }
+    }
+
+    #about img {
+      border-radius: 20px;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      filter: brightness(1) saturate(1);
+      animation: imageGlow 3s infinite alternate;
+    }
+
+    @keyframes imageGlow {
+      from { box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2); }
+      to { box-shadow: 0 20px 60px rgba(10, 25, 79, 0.3); }
+    }
+
+    #about img:hover {
+      transform: scale(1.05) rotate(2deg);
+      box-shadow: 0 30px 80px rgba(10, 25, 79, 0.4);
+      filter: brightness(1.1) saturate(1.2);
+    }
+
+    /* News Section Enhancement */
+    #news {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #news::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(243,193,58,0.1) 0%, transparent 50%);
+      animation: newsBgFloat 10s infinite alternate;
+    }
+
+    @keyframes newsBgFloat {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(50px, 50px) scale(1.1); }
+    }
+
+    #news .card {
+      border: none;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.1);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    #news .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+
+    #news .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+      background: rgba(255,255,255,0.15);
+      border-color: rgba(243,193,58,0.3);
+    }
+
+    #news .card:hover::before {
+      transform: translateX(0);
+    }
+
+    #news .card-title {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.25rem;
+      transition: all 0.3s ease;
+    }
+
+    #news .card:hover .card-title {
+      color: #ffda5c;
+      transform: translateX(5px);
+    }
+
+    /* Carousel Enhancement */
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+      margin: 0 20px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(243,193,58,0.3);
+    }
+
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover {
+      background: rgba(243, 193, 58, 0.3);
+      transform: translateY(-50%) scale(1.1);
+      border-color: var(--accent);
+    }
+
+    /* Notifications Enhancement */
+    #notifications {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      color: #333;
+      position: relative;
+    }
+
+    #notifications .list-group-item {
+      border-left: 5px solid var(--accent);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-bottom: 10px;
+      border-radius: 12px !important;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid transparent;
+    }
+
+    #notifications .list-group-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(243, 193, 58, 0.1), transparent);
+      transition: 0.5s;
+    }
+
+    #notifications .list-group-item:hover {
+      background-color: #fff5d6;
+      transform: translateX(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border-color: rgba(243, 193, 58, 0.2);
+    }
+
+    #notifications .list-group-item:hover::before {
+      left: 100%;
+    }
+
+    .badge {
+      animation: pulse 2s infinite;
+      transition: all 0.3s ease;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(25, 135, 84, 0.7); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(25, 135, 84, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(25, 135, 84, 0); }
+    }
+
+    /* Highlights Section */
+    #highlights .card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    #highlights .card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    #highlights .card img {
+      transition: transform 0.5s ease;
+    }
+
+    #highlights .card:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Footer Enhancement */
+    footer {
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+    }
+
+    footer::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    }
+
+    .social-icon {
+      color: white;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 20px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      border: 2px solid transparent;
+    }
+
+    .social-icon::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: 0.5s;
+    }
+
+    .social-icon:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .social-icon:hover::before {
+      left: 100%;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--primary);
+      border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--accent), #ffda5c);
+      border-radius: 6px;
+      border: 2px solid var(--primary);
+      transition: all 0.3s ease;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #ffda5c, var(--accent));
+      box-shadow: 0 0 10px var(--gold-glow);
+    }
+
+    /* Text Animation */
+    .text-reveal {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .text-reveal::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--primary);
+      animation: textReveal 1.5s ease forwards;
+      transform-origin: left;
+    }
+
+    @keyframes textReveal {
+      0% { transform: scaleX(1); }
+      100% { transform: scaleX(0); }
+    }
+
+    /* Card Hover Effects */
+    .hover-lift {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    /* Glow Effects */
+    .glow {
+      animation: glowPulse 2s infinite alternate;
+    }
+
+    @keyframes glowPulse {
+      from { 
+        box-shadow: 0 0 20px var(--gold-glow);
+        filter: brightness(1);
+      }
+      to { 
+        box-shadow: 0 0 40px var(--gold-glow);
+        filter: brightness(1.2);
+      }
+    }
+
+    /* Loading Animation */
+    .loading-dots {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .loading-dots span {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: loading 1.4s infinite ease-in-out;
+    }
+
+    .loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+    .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+    @keyframes loading {
+      0%, 80%, 100% { transform: scale(0); opacity: 0; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Ripple Effect */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      transform: scale(0);
+      animation: ripple-animation 0.6s linear;
+      pointer-events: none;
+    }
+
+    @keyframes ripple-animation {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* Section Entrance Animation */
+    .section-entrance {
+      animation: sectionEntrance 0.8s ease-out;
+    }
+
+    @keyframes sectionEntrance {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Typing Animation */
+    .typing-text {
+      overflow: hidden;
+      border-right: 3px solid var(--accent);
+      white-space: nowrap;
+      animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: var(--accent) }
+    }
+
+    /* Wave Animation */
+    .wave {
+      animation: wave 2s infinite;
+      display: inline-block;
+    }
+
+    @keyframes wave {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(10deg); }
+      75% { transform: rotate(-10deg); }
+    }
+
+    /* Sparkle Effect */
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      animation: sparkle 1s infinite;
+      opacity: 0;
+    }
+
+    @keyframes sparkle {
+      0% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0); }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .btn-lg {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+      }
+      .navbar-nav .nav-link {
+        padding: 0.5rem;
+        margin: 0.1rem 0;
+      }
+      .floating-element {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Loading Screen -->
-  <div class="loading" id="loading">
-    <div class="loader"></div>
+
+<!-- Animated Background Elements -->
+<div class="floating-element" data-speed="0.3"></div>
+<div class="floating-element" data-speed="0.5"></div>
+<div class="floating-element" data-speed="0.7"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+      <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="DSAC Logo" width="50">
+      <div>
+        <div class="fw-bold text-uppercase text-white">Darunnajath Shareeath & Arts College</div>
+        <small class="text-light">Punnakkad, Karuvarakundu</small>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="faculties.html" target="_blank">Staff</a></li>
+        <li class="nav-item"><a class="nav-link" href="pta.html" target="_blank">PTA</a></li>
+        <li class="nav-item"><a class="nav-link" href="result.html" target="_blank">Result</a></li>
+        <li class="nav-item"><a class="nav-link" href="idcard.html" target="_blank">ID Card</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://samastha.info/">Samastha</a></li>
+        <li class="nav-item"><a class="nav-link" href="downloads.html" target="_blank">Downloads</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html" target="_blank">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="login.html" target="_blank">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="library.html" target="_blank">Library</a></li>
+        <li class="nav-item"><a class="nav-link active" href="alumni.html">Alumni</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html" target="_blank">Contact</a></li>
+      </ul>
+      <a href="student-zone.html" class="btn btn-primary ms-lg-3">Student Zone</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== PREMIUM ISLAMIC HERO ===== -->
+<section id="hero-premium" aria-label="Darunnajath Shareeath & Arts College hero" class="hero-premium">
+  <!-- geometric pattern (SVG) -->
+  <svg class="pattern" aria-hidden="true" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <pattern id="geom" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+        <rect width="80" height="80" fill="rgba(255,255,255,0.02)"></rect>
+        <path d="M40 0 L80 20 L40 40 L0 20 Z" fill="rgba(255,255,255,0.03)"></path>
+      </pattern>
+      <linearGradient id="heroGrad" x1="0" x2="1">
+        <stop offset="0" stop-color="#022a66"/>
+        <stop offset="0.5" stop-color="#003a88"/>
+        <stop offset="1" stop-color="#001f4f"/>
+      </linearGradient>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#heroGrad)"></rect>
+    <rect width="100%" height="100%" fill="url(#geom)" opacity="0.7"></rect>
+  </svg>
+
+  <!-- golden halo glow (behind content) -->
+  <div class="halo" aria-hidden="true"></div>
+
+  <!-- Arabic calligraphy watermark (Bismillah) -->
+  <svg class="calligraphy" viewBox="0 0 800 200" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="serif"
+          font-size="48" fill="rgba(255, 204, 0, 0.08)">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</text>
+  </svg>
+
+  <!-- animated crescent + star cluster -->
+  <div class="moon-wrap" aria-hidden="true">
+    <svg class="crescent" viewBox="0 0 200 200" width="220" height="220" role="img" aria-hidden="true">
+      <!-- outer glow -->
+      <defs>
+        <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="18" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <g filter="url(#softGlow)">
+        <path d="M136 20c-40-5-78 18-96 52 14-6 30-8 46-4 34 10 59 45 56 80 32-32 38-88-6-128z"
+              fill="#ffd24d" opacity="0.95"/>
+      </g>
+      <circle cx="160" cy="40" r="3.5" fill="#fff2c4" />
+    </svg>
   </div>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="DSAC Logo">
-        <div>
-          <div class="fw-bold text-uppercase text-white">Darunnajath Shareeath & Arts College</div>
-          <small class="text-light">Punnakkad, Karuvarakundu</small>
-        </div>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#academics">Academics</a></li>
-          <li class="nav-item"><a class="nav-link" href="#facilities">Facilities</a></li>
-          <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-          <li class="nav-item"><a class="nav-link btn btn-primary ms-2" href="#admission">Admission</a></li>
-        </ul>
+  <!-- star field - many span elements for twinkle -->
+  <div class="stars" aria-hidden="true">
+    <!-- generate a bunch of stars; each .star uses different CSS variables to vary position/size/speed -->
+    <span class="star" style="--x:5%; --y:12%; --s:1.6; --d:0s;"></span>
+    <span class="star" style="--x:12%; --y:20%; --s:0.9; --d:0.6s;"></span>
+    <span class="star" style="--x:18%; --y:6%; --s:1.1; --d:1.1s;"></span>
+    <span class="star" style="--x:28%; --y:28%; --s:0.45; --d:1.9s;"></span>
+    <span class="star" style="--x:36%; --y:8%; --s:0.8; --d:2.3s;"></span>
+    <span class="star" style="--x:44%; --y:18%; --s:0.6; --d:0.9s;"></span>
+    <span class="star" style="--x:53%; --y:9%; --s:1.4; --d:0.2s;"></span>
+    <span class="star" style="--x:64%; --y:26%; --s:0.7; --d:1.4s;"></span>
+    <span class="star" style="--x:72%; --y:12%; --s:1.2; --d:0.8s;"></span>
+    <span class="star" style="--x:82%; --y:24%; --s:0.5; --d:2.0s;"></span>
+    <span class="star" style="--x:88%; --y:6%; --s:0.95; --d:1.8s;"></span>
+
+    <!-- some lower stars -->
+    <span class="star" style="--x:10%; --y:50%; --s:0.55; --d:2.5s;"></span>
+    <span class="star" style="--x:22%; --y:46%; --s:0.7; --d:1.2s;"></span>
+    <span class="star" style="--x:37%; --y:48%; --s:0.6; --d:0.6s;"></span>
+    <span class="star" style="--x:50%; --y:56%; --s:0.9; --d:1.7s;"></span>
+    <span class="star" style="--x:68%; --y:46%; --s:0.5; --d:2.2s;"></span>
+    <span class="star" style="--x:80%; --y:52%; --s:0.8; --d:0.4s;"></span>
+    <span class="star" style="--x:92%; --y:40%; --s:0.6; --d:1.3s;"></span>
+  </div>
+
+  <!-- main textual content -->
+  <div class="hero-content" role="region" aria-label="Hero content">
+    <div class="brand">
+      <svg width="46" height="46" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path fill="#ffd24d" d="M12 2L3 6v6c0 5 4 9 9 9s9-4 9-9V6l-9-4z"></path>
+      </svg>
+      <div>
+        <div class="brand-title">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div>
+        <div class="brand-sub">PUNNAKKAD, KARUVARAKUNDU</div>
+        <div class="brand-sub">Under DARUNNAJATH ISLAMIC CENTRE</div>
+        <div class="brand-sub">Affiliated to JAMIA NOORIYYA ARABIYYA, PATTIKAKD</div>
       </div>
     </div>
-  </nav>
 
-  <!-- Hero Section -->
-  <section id="home" class="hero-section">
-    <div id="particles-js"></div>
+    <h2 class="hero-heading">
+      DSAC - Knowledge, Character & Service
+    </h2>
+
+    <p class="hero-lead">
+      Integrating traditional Islamic studies with modern arts and sciences — preparing students for academic excellence and spiritual growth.
+    </p>
+
+    <div class="hero-ctas">
+      <a href="forms.html" class="btn primary">Join Admissions</a>
+      <a href="#about" class="btn outline">Learn More</a>
+      <a href="result.html" class="btn outline">Results</a>
+    </div>
+  </div>
+
+  <!-- decorative mosque silhouette SVG at bottom -->
+  <svg class="mosque-silhouette" viewBox="0 0 1200 160" preserveAspectRatio="none" role="img" aria-hidden="true">
+    <defs>
+      <linearGradient id="mosqueGrad" x1="0" x2="1">
+        <stop offset="0" stop-color="#ffd24d" stop-opacity="0.12"/>
+        <stop offset="1" stop-color="#ffd24d" stop-opacity="0.06"/>
+      </linearGradient>
+    </defs>
+    <!-- stylized ornamental border silhouette -->
+    <path d="M0 40 C40 10, 120 10, 160 40 C200 70, 280 70, 320 40 C360 10, 440 10, 480 40 C520 70, 600 70, 640 40
+             C680 10, 760 10, 800 40 C840 70, 920 70, 960 40 C1000 10, 1080 10, 1120 40 C1160 70, 1200 70, 1200 120
+             L1200 160 L0 160 Z"
+          fill="url(#mosqueGrad)"></path>
+
+    <!-- ornate mosque elements -->
+    <g transform="translate(60,8)" fill="#ffd24d" opacity="0.95">
+      <path d="M80 60 C80 30 120 10 160 30 C160 30 160 30 160 30 L160 100 L80 100 Z"></path>
+      <path d="M320 40 L340 20 L360 40 L360 100 L320 100 Z"></path>
+      <path d="M520 50 C520 30 560 20 600 40 C640 60 680 40 680 40 L680 100 L520 100 Z"></path>
+      <path d="M880 40 L900 24 L920 40 L920 100 L880 100 Z"></path>
+    </g>
+  </svg>
+
+</section>
+
+<!-- ====================== Styles ====================== -->
+<style>
+  :root{
+    --blue-1:#022a66;
+    --blue-2:#003a88;
+    --blue-3:#001f4f;
+    --gold:#ffd24d;
+    --muted-white: rgba(255,255,255,0.92);
+  }
+
+  .hero-premium{
+    position: relative;
+    overflow: hidden;
+    color: white;
+    min-height: 76vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 22px 0;
+    box-sizing: border-box;
+    background: linear-gradient(180deg,var(--blue-1), var(--blue-2) 45%, var(--blue-3) 100%);
+    font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  }
+
+  /* SVG background pattern sized and positioned */
+  .hero-premium .pattern{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:0;
+    mix-blend-mode: overlay;
+  }
+
+  /* halo behind content */
+  .hero-premium .halo{
+    position:absolute;
+    width:680px;
+    height:680px;
+    left:50%;
+    top:28%;
+    transform:translateX(-50%);
+    background: radial-gradient(circle at 40% 35%, rgba(255,210,77,0.20), rgba(255,210,77,0.06) 30%, transparent 60%);
+    border-radius:50%;
+    filter: blur(46px);
+    z-index:1;
+    animation: haloPulse 6s ease-in-out infinite;
+    pointer-events:none;
+  }
+
+  @keyframes haloPulse{
+    0% { transform: translateX(-50%) scale(1); opacity:0.7;}
+    50%{ transform: translateX(-50%) scale(1.08); opacity:1;}
+    100%{ transform: translateX(-50%) scale(1); opacity:0.7;}
+  }
+
+  /* calligraphy watermark */
+  .hero-premium .calligraphy{
+    position:absolute;
+    width:80%;
+    left:10%;
+    top:10%;
+    z-index:1;
+    pointer-events:none;
+    transform: translateY(-10px);
+  }
+
+  /* moon */
+  .hero-premium .moon-wrap{
+    position:absolute;
+    right:8%;
+    top:6%;
+    z-index:2;
+    transform-origin:center;
+    animation: moonFloat 8s ease-in-out infinite;
+    pointer-events:none;
+  }
+
+  @keyframes moonFloat{
+    0%{ transform: translateY(0) rotate(0);}
+    50%{ transform: translateY(-12px) rotate(-2deg);}
+    100%{ transform: translateY(0) rotate(0);}
+  }
+
+  .hero-premium .crescent path{
+    stroke: none;
+    transform-origin:center;
+    animation: crescentShine 3.8s linear infinite;
+  }
+  @keyframes crescentShine{
+    0%{ filter: drop-shadow(0 0 6px rgba(255,210,77,0.55)); }
+    50%{ filter: drop-shadow(0 0 16px rgba(255,210,77,0.9)); }
+    100%{ filter: drop-shadow(0 0 6px rgba(255,210,77,0.55)); }
+  }
+
+  /* Stars */
+  .hero-premium .stars{ position:absolute; inset:0; z-index:2; pointer-events:none; }
+  .hero-premium .star{
+    position:absolute;
+    left:var(--x);
+    top:var(--y);
+    width:calc(4px * var(--s));
+    height:calc(4px * var(--s));
+    background: radial-gradient(circle at 35% 35%, #fff, rgba(255,255,255,0.85));
+    border-radius:50%;
+    opacity:0;
+    box-shadow: 0 0 calc(6px * var(--s)) rgba(255,240,200,0.35);
+    transform: translateY(0);
+    animation: starTwinkle calc(3.6s * var(--s)) ease-in-out infinite;
+    animation-delay: var(--d);
+  }
+  @keyframes starTwinkle{
+    0% { opacity:0; transform:translateY(6px) scale(0.85); filter: blur(0); }
+    35% { opacity:1; transform:translateY(-2px) scale(1); filter: blur(0.6px); }
+    70% { opacity:0.6; transform:translateY(-6px) scale(0.95); filter: blur(0.3px);}
+    100% { opacity:0; transform:translateY(6px) scale(0.9); }
+  }
+
+  /* content block */
+  .hero-premium .hero-content{
+    position:relative;
+    z-index:3;
+    text-align:center;
+    max-width:1100px;
+    margin: 24px auto 48px;
+    padding: 24px 28px;
+    box-sizing:border-box;
+  }
+
+  .hero-premium .brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    justify-content:center;
+    margin-bottom: 22px;
+  }
+  .brand-title{
+    font-weight:800;
+    letter-spacing:0.6px;
+    color:var(--gold);
+    font-size:0.95rem;
+  }
+  .brand-sub{
+    color:rgba(255,255,255,0.8);
+    font-size:0.82rem;
+    margin-top:2px;
+  }
+
+  .hero-heading{
+    font-size:clamp(1.6rem, 3.6vw, 3.2rem);
+    line-height:1.08;
+    font-weight:800;
+    color:var(--gold);
+    margin:6px 0 14px;
+    text-wrap:balance;
+  }
+
+  .hero-lead{
+    color: rgba(235,245,255,0.9);
+    max-width:760px;
+    margin: 0 auto;
+    font-size:clamp(0.95rem, 1.2vw, 1.15rem);
+    font-weight:500;
+    letter-spacing:0.1px;
+  }
+
+  .hero-ctas{
+    margin-top:22px;
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+
+  .btn{
+    display:inline-block;
+    padding:12px 26px;
+    border-radius:28px;
+    text-decoration:none;
+    font-weight:700;
+    transition: transform .22s cubic-bezier(.2,.9,.2,1), box-shadow .22s;
+    box-shadow: none;
+  }
+
+  .btn.primary{
+    background:linear-gradient(180deg, #ffd24d, #f4bd2a);
+    color:#04224b;
+    box-shadow: 0 8px 30px rgba(255, 195, 50, 0.18);
+  }
+  .btn.primary:hover{ transform:translateY(-4px); box-shadow:0 14px 48px rgba(255,195,50,0.22); }
+
+  .btn.outline{
+    border:2px solid rgba(255,210,77,0.95);
+    color:var(--gold);
+    background: transparent;
+  }
+  .btn.outline:hover{ background: rgba(255,210,77,0.06); transform:translateY(-3px); }
+
+  /* mosque silhouette */
+  .hero-premium .mosque-silhouette{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:140px;
+    z-index:4;
+    pointer-events:none;
+    transform:translateY(12px);
+  }
+
+  /* responsive tweaks */
+  @media (max-width: 900px){
+    .hero-premium .moon-wrap{ right:4%; top:4%; transform:scale(0.9); }
+    .hero-premium .halo{ width:520px; height:520px; top:20%; }
+  }
+
+  @media (max-width: 640px){
+    .hero-premium{ padding-top:36px; min-height:70vh; }
+    .hero-premium .moon-wrap{ display:none; }
+    .hero-premium .calligraphy{ display:none; }
+    .hero-premium .brand{ gap:10px; margin-bottom:12px; }
+    .hero-heading{ font-size:1.6rem; }
+    .hero-lead{ font-size:0.95rem; max-width:88%; }
+    .hero-premium .mosque-silhouette{ height:120px; transform:translateY(6px); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero-premium .halo,
+    .hero-premium .moon-wrap,
+    .hero-premium .crescent path,
+    .hero-premium .star { animation: none; }
+  }
+</style>
+
+<!-- 🔥 FLASH MESSAGE (BLINK EFFECT) -->
+<div style="
+  background:linear-gradient(90deg, #dc3545, #c82333);
+  color:white;
+  padding:12px;
+  text-align:center;
+  font-size:18px;
+  font-weight:600;
+  animation: blinkMsg 1.5s infinite;
+  font-family:'Poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 2px solid rgba(255,255,255,0.2);">
+  ⚠ Important Notice: Admission started! Apply now.
+  <div style="position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); animation: shimmer 2s infinite;"></div>
+</div>
+
+<style>
+@keyframes blinkMsg {
+  0% { opacity:1; transform: translateY(0); }
+  50% { opacity:0.8; transform: translateY(-2px); }
+  100% { opacity:1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+</style>
+
+<!-- News Ticker START -->
+<style>
+  :root{
+    --ticker-duration: 30s;
+    --badge-flash-duration: 1.2s;
+    --ticker-height: 56px;
+    --bg-gradient: linear-gradient(90deg,#0f172a,#0b1220 40%,#081226 100%);
+    --text-color: #fff;
+    --muted-color: rgba(255,255,255,0.75);
+    --gap: 3rem;
+  }
+
+  /* Container */
+  .news-ticker {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: var(--ticker-height);
+    display: flex;
+    align-items: center;
+    padding: 0.4rem 1rem;
+    gap: 0.75rem;
+    background: var(--bg-gradient);
+    color: var(--text-color);
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    position: relative;
+    border: 1px solid rgba(243,193,58,0.2);
+  }
+
+  /* Breaking badge */
+  .news-ticker__badge {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    color: white;
+    box-shadow: 0 2px 8px rgba(255, 64, 64, 0.4);
+    will-change: opacity;
+    animation: flashBadge var(--badge-flash-duration) linear infinite;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @keyframes flashBadge{
+    0%, 60% { opacity: 1; transform: scale(1); }
+    30% { opacity: 0.8; transform: scale(.98); }
+  }
+
+  /* Scroll area */
+  .news-ticker__viewport{
+    position: relative;
+    overflow: hidden;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .news-ticker__track{
+    display: inline-block;
+    white-space: nowrap;
+    will-change: transform;
+    animation: tick-move var(--ticker-duration) linear infinite;
+    font-weight: 500;
+  }
+
+  /* duplicate wrapper to make seamless loop */
+  .news-ticker__group{
+    display: inline-flex;
+    align-items: center;
+    gap: 2rem;
+    padding-right: var(--gap);
+  }
+
+  @keyframes tick-move{
+    from { transform: translateX(0%); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* Each news item */
+  .news-item{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.2rem 0;
+    font-size: clamp(14px, 2.2vw, 16px);
+    line-height: 1;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+  }
+  .news-item:hover {
+    transform: translateY(-2px);
+  }
+  .news-item time { font-size: 12px; color: var(--muted-color); margin-right: .25rem; }
+
+  .news-ticker__viewport:focus-within .news-ticker__track,
+  .news-ticker__viewport:hover .news-ticker__track {
+    animation-play-state: paused;
+  }
+
+  @media (max-width: 420px){
+    :root { --ticker-height: 48px; }
+    .news-ticker { padding: 0.3rem 0.6rem; border-radius: 6px; }
+    .news-ticker__badge { padding: 0.28rem 0.5rem; font-size: 13px; }
+    .news-item { gap: 0.45rem; font-size: 13px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .news-ticker__track { animation: none !important; transform: none !important; }
+    .news-ticker__badge { animation: none !important; }
+  }
+
+  /* small visual polish */
+  .news-ticker__icon {
+    display:inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.95);
+    animation: iconPulse 2s infinite;
+  }
+
+  @keyframes iconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+</style>
+
+<div class="news-ticker" role="region" aria-label="Latest news ticker" style="font-family: 'Anek Malayalam', sans-serif;">
+  <div class="news-ticker__badge" aria-hidden="true">BREAKING</div>
+
+  <div class="news-ticker__viewport" tabindex="0" aria-live="polite">
+    <div class="news-ticker__track">
+      <!-- MAIN GROUP -->
+      <div class="news-ticker__group">
+        <div class="news-item">
+          <span class="news-ticker__icon">•</span>
+          <time datetime="2025-11-27">Nov 27</time>
+          <span>
+            2025-26 വര്‍ഷത്തിലെ വാര്‍ഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1, 2, 10, 11, 12 തിയ്യതികളില്‍.
+          </span>
+        </div>
+
+        <div class="news-item">
+          <span class="news-ticker__icon">•</span>
+          <time datetime="2025-11-27">Nov 27</time>
+          <span>
+            സമസ്ത നൂറാം വാര്‍ഷികം 2026 ഫെബ്രുവരി 4, 5, 6, 7, 8 തിയ്യതികളില്‍ കാസര്‍ഗോഡ് കുണിയയില്‍ നടക്കും.
+          </span>
+        </div>
+
+        <div class="news-item">
+          <span class="news-ticker__icon">•</span>
+          <time datetime="2025-11-27">Nov 27</time>
+          <span>
+            പുതുമകളോടെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജ് വെബ്‌സൈറ്റ് സോഫ്റ്റ് ലോഞ്ച് ചെയ്തു.
+          </span>
+        </div>
+      </div>
+
+      <!-- DUPLICATE FOR LOOP -->
+      <div class="news-ticker__group" aria-hidden="true">
+        <div class="news-item">
+          <span class="news-ticker__icon">•</span>
+          <time datetime="2025-11-27">Nov 27</time>
+          <span>
+            2025-26 വര്‍ഷത്തിലെ വാര്‍ഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1, 2, 10, 11, 12 തിയ്യതികളില്‍.
+          </span>
+        </div>
+
+        <div class="news-item">
+          <span class="news-ticker__icon">•</span>
+          <time datetime="2025-11-27">Nov 27</time>
+          <span>
+            സമസ്ത നൂറാം വാര്‍ഷികം 2026 ഫെബ്രുവരി 4, 5, 6, 7, 8 തിയ്യതികളില്‍ കാസര്‍ഗോഡ് കുണിയയില്‍ നടക്കും.
+          </span>
+        </div>
+
+        <div class="news-item">
+          <span class="news-ticker__icon">•</span>
+          <time datetime="2025-11-27">Nov 27</time>
+          <span>
+            പുതുമകളോടെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജ് വെബ്‌സൈറ്റ് റെയ്ഞ്ച് സെക്രട്ടറി സഫീര്‍ അന്‍സ്വരി സോഫ്റ്റ് ലോഞ്ച് ചെയ്തു.
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function setTickerSpeed(seconds) {
+    if (!seconds || isNaN(seconds) || seconds <= 0) return;
+    document.documentElement.style.setProperty('--ticker-duration', seconds + 's');
+  }
+
+  (function(){
+    const viewport = document.querySelector('.news-ticker__viewport');
+    if (!viewport) return;
+    viewport.addEventListener('touchstart', ()=> {
+      const track = viewport.querySelector('.news-ticker__track');
+      if (track) track.style.animationPlayState = 'paused';
+    }, {passive:true});
+    viewport.addEventListener('touchend', ()=> {
+      const track = viewport.querySelector('.news-ticker__track');
+      if (track) track.style.animationPlayState = '';
+    }, {passive:true});
+  })();
+</script>
+<!-- News Ticker END -->
+
+<!-- 🌟 Class Toppers Section – Premium 3.0 (Dynamic 3D Tilt) -->
+<section id="class-toppers" style="padding:90px 0; background:linear-gradient(145deg,#e8f1ff,#ffffff,#f5f9ff); font-family:'Poppins',sans-serif; overflow:hidden; position:relative;">
+
+  <!-- ✨ Enhanced Star Background -->
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <!-- ✨ Soft Spotlight -->
+  <div style="position:absolute; top:-80px; left:50%; width:600px; height:600px; transform:translateX(-50%); background:radial-gradient(circle, rgba(255,255,255,0.7), transparent 70%); filter:blur(40px); z-index:0;"></div>
+
+  <div style="max-width:1300px; margin:auto; text-align:center; position:relative; z-index:2;">
     
-    <div class="floating-element floating-1"></div>
-    <div class="floating-element floating-2"></div>
-    <div class="floating-element floating-3"></div>
-    
-    <div class="container hero-content">
-      <div class="row align-items-center">
-        <div class="col-lg-6" data-aos="fade-right">
-          <h1 class="hero-title">DARUNNAJATH SHAREEATH & ARTS COLLEGE</h1>
-          <p class="hero-subtitle malayalam">പട്ടിക്കാട് ജാമിഅ നൂരിയ്യ അറബിയ്യയുടെ കീഴിലുള്ള എ പ്ലസ് ഗ്രേഡ് ജൂനിയർ കോളേജ്</p>
-          <p class="lead mb-4">Integrating traditional Islamic studies with modern arts and sciences — preparing students for academic excellence and spiritual growth.</p>
-          <div class="d-flex gap-3">
-            <a href="#admission" class="btn btn-primary">Admission 2025</a>
-            <a href="#about" class="btn btn-outline-light">Explore More</a>
-          </div>
-        </div>
-        <div class="col-lg-6" data-aos="fade-left">
-          <div class="text-center">
-            <div class="position-relative d-inline-block">
-              <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                   alt="Campus View" 
-                   class="img-fluid rounded-4 shadow-lg"
-                   style="border: 5px solid var(--accent);">
-              <div class="position-absolute top-0 start-0 w-100 h-100 border border-3 border-white rounded-4" 
-                   style="transform: rotate(5deg); z-index: -1;"></div>
-            </div>
-          </div>
-        </div>
+    <!-- 🔥 TITLE BAR -->
+    <h3 style="font-size:2.2rem; font-weight:700; color:#004aad; margin-bottom:25px; position:relative;">
+      Class Toppers – First Semester Examination 2025–26
+    </h3>
+
+    <div style="width:180px; height:6px; margin:0 auto 50px; background:linear-gradient(90deg,#004aad,#0099ff,#66ccff,#004aad); border-radius:50px; animation:shineBar 4s infinite linear;"></div>
+
+    <!-- 🔥 Infinite Scroll -->
+    <div class="topper-scroll">
+      <div class="scroll-track">
+
+        <!-- ⭐ TOPPER CARDS -->
+        <div class="topper-card" data-class="1" data-name="Azim Faizan" data-mark="100%"></div>
+        <div class="topper-card" data-class="2" data-name="Hina Mehrin TK" data-mark="97%"></div>
+        <div class="topper-card" data-class="3" data-name="Naba Fathima V" data-mark="94%"></div>
+        <div class="topper-card" data-class="4" data-name="Isha Mehrin AK" data-mark="99%"></div>
+        <div class="topper-card" data-class="5" data-name="Emin Yash" data-mark="88%"></div>
+        <div class="topper-card" data-class="6" data-name="Sanha M" data-mark="93%"></div>
+        <div class="topper-card" data-class="8" data-name="Nidha Fathima KP" data-mark="82%"></div>
+
+        <!-- Duplicate for seamless scroll -->
+        <div class="topper-card" data-class="1" data-name="Azim Faizan" data-mark="100%"></div>
+        <div class="topper-card" data-class="2" data-name="Hina Mehrin TK" data-mark="97%"></div>
+        <div class="topper-card" data-class="3" data-name="Naba Fathima V" data-mark="94%"></div>
+        <div class="topper-card" data-class="4" data-name="Isha Mehrin AK" data-mark="99%"></div>
+        <div class="topper-card" data-class="5" data-name="Emin Yash" data-mark="88%"></div>
+        <div class="topper-card" data-class="6" data-name="Sanha M" data-mark="93%"></div>
+        <div class="topper-card" data-class="8" data-name="Nidha Fathima KP" data-mark="82%"></div>
       </div>
     </div>
-  </section>
 
-  <!-- About Section -->
-  <section id="about" class="py-5">
-    <div class="container">
-      <h2 class="section-title mb-5" data-aos="fade-up">About Our College</h2>
-      <div class="row g-4">
-        <div class="col-lg-6" data-aos="fade-right">
-          <div class="card h-100">
-            <div class="card-body p-4">
-              <h3 class="card-title text-accent mb-4">Our Mission</h3>
-              <p class="malayalam card-text" style="font-size: 1.1rem; line-height: 1.8;">
-                ദാറുന്നജാത്ത് ശാരീഅത്ത് & ആർട്സ് കോളേജ്: വിജ്ഞാനത്തിന്റെ സമഗ്ര പാത, വിദ്യാഭ്യാസ മികവിൽ പ്രത്യേക പ്രാധാന്യം. 
-                സമസ്തയുടെ മാർഗ്ഗദർശനത്തിൽ പാരമ്പര്യ ഇസ്ലാമിക വിദ്യാഭ്യാസവും ആധുനിക അക്കാദമിക പ്രോഗ്രാമുകളും ഇവിടെ സമന്വയിപ്പിക്കുന്നു.
-              </p>
-              <div class="mt-4">
-                <div class="d-flex align-items-center mb-3">
-                  <i class="fas fa-graduation-cap text-accent me-3 fs-4"></i>
-                  <div>
-                    <h5 class="mb-0">Academic Excellence</h5>
-                    <small>Ranked A+ Grade College</small>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center mb-3">
-                  <i class="fas fa-mosque text-accent me-3 fs-4"></i>
-                  <div>
-                    <h5 class="mb-0">Islamic Values</h5>
-                    <small>Integrated Spiritual Education</small>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center">
-                  <i class="fas fa-users text-accent me-3 fs-4"></i>
-                  <div>
-                    <h5 class="mb-0">Holistic Development</h5>
-                    <small>Character Building & Leadership</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6" data-aos="fade-left">
-          <div class="card h-100">
-            <div class="card-body p-4">
-              <h3 class="card-title text-accent mb-4">Academic Programs</h3>
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <div class="program-card p-3 rounded-3" style="background: rgba(243, 193, 58, 0.1);">
-                    <i class="fas fa-book-open text-accent mb-3 fs-3"></i>
-                    <h5>School Education</h5>
-                    <small class="text-muted">Classes 8-12</small>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="program-card p-3 rounded-3" style="background: rgba(243, 193, 58, 0.1);">
-                    <i class="fas fa-university text-accent mb-3 fs-3"></i>
-                    <h5>Degree Programs</h5>
-                    <small class="text-muted">Graduate Studies</small>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="program-card p-3 rounded-3" style="background: rgba(243, 193, 58, 0.1);">
-                    <i class="fas fa-quran text-accent mb-3 fs-3"></i>
-                    <h5>Islamic Studies</h5>
-                    <small class="text-muted">Nazwi Program</small>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="program-card p-3 rounded-3" style="background: rgba(243, 193, 58, 0.1);">
-                    <i class="fas fa-memory text-accent mb-3 fs-3"></i>
-                    <h5>Hifz Program</h5>
-                    <small class="text-muted">Quran Memorization</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
 
-  <!-- News Section -->
-  <section id="news" class="py-5" style="background: linear-gradient(135deg, var(--secondary), var(--primary));">
-    <div class="container">
-      <h2 class="section-title text-white mb-5" data-aos="fade-up">Latest News & Updates</h2>
-      
-      <!-- News Ticker -->
-      <div class="news-ticker mb-5 rounded-3">
-        <div class="ticker-content">
-          <div class="ticker-item px-4 py-2">
-            <span class="badge bg-accent me-3">NEW</span>
-            <span class="malayalam">2025-26 വർഷത്തിലെ വാർഷിക പരീക്ഷ തീയതികൾ പ്രഖ്യാപിച്ചു</span>
-          </div>
-          <div class="ticker-item px-4 py-2">
-            <span class="badge bg-accent me-3">HOT</span>
-            <span class="malayalam">സമസ്ത നൂറാം വാർഷികം 2026 ഫെബ്രുവരി 4-8 കാസർഗോഡ് കുണിയയിൽ</span>
-          </div>
-          <div class="ticker-item px-4 py-2">
-            <span class="badge bg-accent me-3">UPDATE</span>
-            <span>Admissions Open for 2025-26 Academic Year</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- News Cards -->
-      <div class="row g-4">
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="card h-100">
-            <div class="card-img-wrapper">
-              <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                   class="card-img-top" alt="Exam Schedule">
-            </div>
-            <div class="card-body">
-              <span class="badge bg-primary mb-2">Examination</span>
-              <h5 class="card-title">Annual Exam Schedule</h5>
-              <p class="card-text">2025-26 വർഷത്തിലെ വാർഷിക പരീക്ഷ തീയതികൾ പ്രഖ്യാപിച്ചു.</p>
-              <a href="#" class="btn btn-sm btn-primary">Read More</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="card h-100">
-            <div class="card-img-wrapper">
-              <img src="https://images.unsplash.com/photo-1515169067868-5387ec356754?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                   class="card-img-top" alt="Centenary Celebration">
-            </div>
-            <div class="card-body">
-              <span class="badge bg-success mb-2">Event</span>
-              <h5 class="card-title">Samastha Centenary</h5>
-              <p class="card-text">സമസ്ത നൂറാം വാർഷികം 2026 ഫെബ്രുവരി 4-8 കാസർഗോഡ് കുണിയയിൽ.</p>
-              <a href="#" class="btn btn-sm btn-primary">Read More</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-          <div class="card h-100">
-            <div class="card-img-wrapper">
-              <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                   class="card-img-top" alt="Admission Open">
-            </div>
-            <div class="card-body">
-              <span class="badge bg-warning mb-2">Admission</span>
-              <h5 class="card-title">Admissions 2025-26</h5>
-              <p class="card-text">New academic year admissions are now open. Apply online!</p>
-              <a href="#admission" class="btn btn-sm btn-primary">Apply Now</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Gallery Section -->
-  <section id="gallery" class="py-5">
-    <div class="container">
-      <h2 class="section-title mb-5" data-aos="fade-up">Gallery</h2>
-      <div class="row g-3">
-        <div class="col-md-3" data-aos="zoom-in">
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                 class="img-fluid rounded-3" alt="Campus">
-            <div class="gallery-overlay rounded-3">
-              <i class="fas fa-search-plus text-white fs-3"></i>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1515169067868-5387ec356754?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                 class="img-fluid rounded-3" alt="Events">
-            <div class="gallery-overlay rounded-3">
-              <i class="fas fa-search-plus text-white fs-3"></i>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                 class="img-fluid rounded-3" alt="Classroom">
-            <div class="gallery-overlay rounded-3">
-              <i class="fas fa-search-plus text-white fs-3"></i>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                 class="img-fluid rounded-3" alt="Activities">
-            <div class="gallery-overlay rounded-3">
-              <i class="fas fa-search-plus text-white fs-3"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-5">
-    <div class="container">
-      <h2 class="section-title mb-5" data-aos="fade-up">Contact Us</h2>
-      <div class="row g-4">
-        <div class="col-md-6" data-aos="fade-right">
-          <div class="card h-100">
-            <div class="card-body p-4">
-              <h3 class="card-title mb-4">Get in Touch</h3>
-              <div class="mb-4">
-                <div class="d-flex align-items-center mb-3">
-                  <i class="fas fa-map-marker-alt text-accent me-3 fs-4"></i>
-                  <div>
-                    <h5 class="mb-0">Address</h5>
-                    <p class="mb-0">Punnakkad, Karuvarakundu<br>Malappuram District, Kerala</p>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center mb-3">
-                  <i class="fas fa-phone text-accent me-3 fs-4"></i>
-                  <div>
-                    <h5 class="mb-0">Phone</h5>
-                    <p class="mb-0">+91 98765 43210</p>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center">
-                  <i class="fas fa-envelope text-accent me-3 fs-4"></i>
-                  <div>
-                    <h5 class="mb-0">Email</h5>
-                    <p class="mb-0">info@darunnajathcollege.edu.in</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6" data-aos="fade-left">
-          <div class="card h-100">
-            <div class="card-body p-4">
-              <h3 class="card-title mb-4">Quick Contact</h3>
-              <form>
-                <div class="mb-3">
-                  <input type="text" class="form-control" placeholder="Your Name" required>
-                </div>
-                <div class="mb-3">
-                  <input type="email" class="form-control" placeholder="Your Email" required>
-                </div>
-                <div class="mb-3">
-                  <textarea class="form-control" rows="4" placeholder="Your Message" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Send Message</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-waves"></div>
-    <div class="container">
-      <div class="row g-4">
-        <div class="col-md-4" data-aos="fade-up">
-          <h5 class="text-white mb-4">Darunnajath Shareeath & Arts College</h5>
-          <p class="text-light">An institution dedicated to academic excellence and spiritual growth, preparing students for a meaningful future.</p>
-        </div>
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-          <h5 class="text-white mb-4">Quick Links</h5>
-          <ul class="list-unstyled">
-            <li><a href="#home" class="text-light text-decoration-none mb-2 d-block">Home</a></li>
-            <li><a href="#about" class="text-light text-decoration-none mb-2 d-block">About Us</a></li>
-            <li><a href="#academics" class="text-light text-decoration-none mb-2 d-block">Academics</a></li>
-            <li><a href="#gallery" class="text-light text-decoration-none mb-2 d-block">Gallery</a></li>
-          </ul>
-        </div>
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-          <h5 class="text-white mb-4">Connect With Us</h5>
-          <div class="d-flex gap-3">
-            <a href="#" class="text-light fs-4"><i class="fab fa-facebook"></i></a>
-            <a href="#" class="text-light fs-4"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="text-light fs-4"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="text-light fs-4"><i class="fab fa-youtube"></i></a>
-          </div>
-        </div>
-      </div>
-      <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
-      <div class="text-center">
-        <p class="mb-0 text-light">© 2025 Darunnajath Shareeath & Arts College. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- WhatsApp Button -->
-  <a href="https://wa.me/917034678818" 
-     class="whatsapp-float" 
-     target="_blank"
-     data-aos="zoom-in"
-     data-aos-delay="1000">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-
+  <!-- ================= CSS ================ -->
   <style>
-    .whatsapp-float {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 60px;
-      height: 60px;
-      background: #25D366;
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      box-shadow: var(--shadow-lg);
-      z-index: 1000;
-      transition: var(--transition-smooth);
-      text-decoration: none;
-    }
+  /* 🌠 STAR BACKGROUND */
+  .stars, .stars2, .stars3 { position:absolute; top:0; left:0; width:100%; height:100%; background-repeat:repeat; z-index:0; opacity:0.8; }
+  .stars { background-image: radial-gradient(2px 2px at 20px 30px, #fff 60%, transparent 60%); background-size:200px 200px; animation: moveStars 60s linear infinite; }
+  .stars2 { background-image: radial-gradient(2px 2px at 70px 90px, #b7ddff 60%, transparent 60%); background-size:260px 260px; animation: moveStars 120s linear infinite; }
+  .stars3 { background-image: radial-gradient(1px 1px at 120px 160px, #9ac7ff 60%, transparent 60%); background-size:330px 330px; animation: moveStars 180s linear infinite; }
+  @keyframes moveStars { from {background-position:0 0;} to {background-position:-10000px 5000px;} }
 
-    .whatsapp-float:hover {
-      transform: scale(1.1) rotate(10deg);
-      color: white;
-    }
+  /* 🔥 Infinite Scroll Track (slightly slower) */
+  .topper-scroll { overflow:hidden; padding: 10px 0; }
+  .scroll-track { display:flex; gap:30px; animation:scrollLeft 28s linear infinite; width:max-content; perspective:1200px; }
+  .topper-scroll:hover .scroll-track { animation-play-state:paused; }
+  @keyframes scrollLeft { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+
+  /* ⭐ PREMIUM TOPPER CARD */
+  .topper-card {
+    width:260px; min-width:260px; padding:30px 22px; text-align:center; border-radius:20px;
+    background:rgba(255,255,255,0.9); backdrop-filter:blur(12px); box-shadow:0 10px 40px rgba(0,74,173,0.25);
+    position:relative; overflow:hidden; transform-style: preserve-3d; transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: float 4s ease-in-out infinite;
+    cursor: pointer;
+  }
+
+  /* Float animation */
+  @keyframes float { 0%,100% {transform:translateY(0);} 50% {transform:translateY(-10px);} }
+
+  /* Neon Glow Border */
+  .topper-card::before { content:""; position:absolute; inset:0; border-radius:20px; padding:2px; background:linear-gradient(140deg,#007bff,#00d0ff,#0066ff,#33ddff);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation:borderGlow 4s linear infinite; }
+  @keyframes borderGlow { 0% {filter:hue-rotate(0deg);} 100% {filter:hue-rotate(360deg);} }
+
+  /* Crown */
+  .topper-card::after { content:"👑"; position:absolute; top:-30px; left:50%; transform:translateX(-50%); font-size:32px; opacity:0; transition:0.5s; }
+  .topper-card:hover::after { top:-10px; opacity:1; }
+
+  /* Content */
+  .topper-card h3 { font-size:1.4rem; font-weight:700; color:#004aad; margin-bottom:6px; }
+  .topper-card p { margin:0; font-size:1.05rem; color:#222; font-weight:500; }
+  .topper-card span { display:block; font-size:1.2rem; font-weight:700; margin-top:10px; background:linear-gradient(90deg,#0099ff,#33ccff,#00aaff,#0099ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:shineText 4s infinite linear; background-size:300%; }
+  @keyframes shineText { 0%{background-position:0%;} 100%{background-position:100%;} }
+
+  /* Title Bar Animation */
+  @keyframes shineBar { 0% { filter:brightness(1); } 50% { filter:brightness(1.6);} 100% { filter:brightness(1); } }
+
   </style>
 
-  <!-- Back to Top Button -->
-  <button id="backToTop" class="btn btn-primary rounded-circle position-fixed" 
-          style="bottom: 100px; right: 30px; width: 50px; height: 50px; z-index: 1000;">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
+  <!-- 🧩 Auto Fill Card Content + Dynamic 3D Tilt -->
   <script>
-    // Initialize AOS
-    AOS.init({
-      duration: 1000,
-      once: true,
-      offset: 100
-    });
+  // Auto-fill card content
+  document.querySelectorAll(".topper-card").forEach(card=>{
+    card.innerHTML = `
+      <h3>Class ${card.dataset.class}</h3>
+      <p>${card.dataset.name}</p>
+      <span>${card.dataset.mark}</span>
+    `;
+  });
 
-    // Loading screen
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.getElementById('loading').style.opacity = '0';
-        setTimeout(function() {
-          document.getElementById('loading').style.display = 'none';
-        }, 500);
-      }, 1000);
+  // Dynamic 3D tilt
+  document.querySelectorAll('.topper-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const cx = rect.width/2;
+      const cy = rect.height/2;
+      const dx = (x - cx) / cx;
+      const dy = (y - cy) / cy;
+      card.style.transform = `perspective(1000px) rotateY(${dx*10}deg) rotateX(${-dy*10}deg) translateZ(10px)`;
+      card.style.boxShadow = `${-dx*15}px ${dy*15}px 40px rgba(0,74,173,0.4)`;
     });
-
-    // Navbar scroll effect
-    window.addEventListener('scroll', function() {
-      const navbar = document.querySelector('.navbar');
-      if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateZ(0)';
+      card.style.boxShadow = '0 10px 40px rgba(0,74,173,0.25)';
     });
+  });
+  </script>
 
-    // Back to top button
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 300) {
-        backToTop.style.display = 'block';
-        setTimeout(() => backToTop.style.opacity = '1', 10);
-      } else {
-        backToTop.style.opacity = '0';
-        setTimeout(() => backToTop.style.display = 'none', 300);
-      }
-    });
+</section>
 
-    backToTop.addEventListener('click', function() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
+<!-- ABOUT SECTION -->
+<section id="about" class="about-section py-5 section-entrance">
 
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if(targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if(targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 80,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
+  <!-- Floating Bubbles -->
+  <div class="bubble-container">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
 
-    // Particle Background
-    particlesJS("particles-js", {
-      particles: {
-        number: { value: 80, density: { enable: true, value_area: 800 } },
-        color: { value: "#f3c13a" },
-        shape: { type: "circle" },
-        opacity: { value: 0.5, random: true },
-        size: { value: 3, random: true },
-        line_linked: {
-          enable: true,
-          distance: 150,
-          color: "#f3c13a",
-          opacity: 0.2,
-          width: 1
-        },
-        move: {
-          enable: true,
-          speed: 2,
-          direction: "none",
-          random: true,
-          straight: false,
-          out_mode: "out",
-          bounce: false
-        }
-      },
-      interactivity: {
-        detect_on: "canvas",
-        events: {
-          onhover: { enable: true, mode: "repulse" },
-          onclick: { enable: true, mode: "push" }
-        }
-      }
-    });
+  <div class="container">
+    <div class="row gy-4 align-items-center">
 
-    // Gallery modal functionality
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      item.addEventListener('click', function() {
-        const imgSrc = this.querySelector('img').src;
-        const modal = document.createElement('div');
-        modal.className = 'modal fade';
-        modal.innerHTML = `
-          <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content bg-transparent border-0">
-              <div class="modal-body p-0">
-                <img src="${imgSrc}" class="img-fluid rounded-3" style="width: 100%;">
+      <!-- LEFT TEXT -->
+      <div class="col-md-6" data-aos="fade-right">
+
+        <!-- Decorative Title -->
+        <div class="decorated-title mb-3">
+          <span class="line"></span>
+          <h2 class="fw-bold malayalam mx-3">About Darunnajath Shareeath & Arts College</h2>
+          <span class="line"></span>
+        </div>
+
+        <p class="malayalam about-text">
+          ദാറുന്നജാത്ത് ശാരീഅത്ത് & ആർട്സ് കോളേജ്: വിജ്ഞാനത്തിന്റെ സമഗ്ര പാത, വിദ്യാഭ്യാസ മികവിൽ പ്രത്യേക പ്രാധാന്യം, പട്ടിക്കാട് ജാമിഅ നൂരിയ്യ അറബിയ്യയുടെ കീഴിലുള്ള എ പ്ലസ് ഗ്രേഡ് ജൂനിയർ കോളേജാണ് ദാറുന്നജാത്ത്. വിവേകശാലിയായ ശൈഖുന കെ.ടി. മാനു മുസ്ലിയാർ സ്ഥാപിച്ച ഈ കോളേജ്, ഏഴാം ക്ലാസിന് ശേഷമുള്ള സമഗ്രവും സമന്വയിപ്പിച്ചതുമായ വിദ്യാഭ്യാസ പാത വഴി വിദ്യാർത്ഥികളെ വികസിപ്പിക്കുന്നു. സമസ്തയുടെ മാർഗ്ഗദർശനത്തിൽ പാരമ്പര്യ ഇസ്ലാമിക വിദ്യാഭ്യാസവും ആധുനിക അക്കാദമിക പ്രോഗ്രാമുകളും ഇവിടെ സമന്വയിപ്പിക്കുന്നു. സ്കൂൾ വിദ്യാഭ്യാസത്തെ ഉന്നത മതപഠനങ്ങളുമായി ബന്ധിപ്പിക്കുന്ന ഈ സമ്പൂർണ്ണ പഠന വ്യവസ്ഥ, വിദ്യാർത്ഥികളുടെ അക്കാദമിക മികവും ആത്മീയ വളർച്ചയും ഒരേ സമയം പ്രോത്സാഹിപ്പിക്കുന്നു.
+          നമ്മുടെ സമഗ്ര വിദ്യാഭ്യാസ പാത ഏഴാം ക്ലാസിന് ശേഷം: മികച്ച ഹോസ്റ്റൽ സൌകര്യത്തോടെ സാധാരണ സ്കൂൾ വിദ്യാഭ്യാസം. എസ്.എസ്.എൽ.സി.ക്ക് ശേഷം: ആറ് വർഷം നീണ്ട സമഗ്രമായ നജവി ബിരുദ പ്രോഗ്രാമിലേക്ക് നേരിട്ടുള്ള പ്രവേശനം, സമസ്തയുടെ മാർഗ്ഗനിർദ്ദേശപ്രകാരമുള്ള പാരമ്പര്യ ഇസ്ലാമിക വിദ്യാഭ്യാസ പാഠ്യപദ്ധതി, സാധാരണ വിദ്യാഭ്യാസത്തിൽ എസ്.എസ്.എൽ.സി., പ്ലസ്ടു, ബിരുദം, പി.ജി. എന്നിവയിലുള്ള സമ്പൂർണ്ണ കോഴ്സുകൾ, ഹാഫിസ് വിദ്യാർത്ഥികൾക്കായി പ്രത്യേകം ദൗറ പ്രോഗ്രാമുകൾ
+          ദാറുന്നജാത്തിലെ വിദ്യാഭ്യാസ പാത, പുതിയ തലമുറയ്ക്ക് വിജ്ഞാനത്തിന്റെ ഉജ്ജ്വലമായ ഭാവി നിർമ്മിക്കുന്നതിൽ നിശ്ചിതമായി സഹായിക്കുന്നു.
+        </p>
+
+      </div>
+
+      <!-- RIGHT IMAGE -->
+      <div class="col-md-6 text-center" data-aos="fade-left">
+        <div class="image-wrapper">
+          <img src="https://i.ibb.co/bMLmpL7d/unnamed.jpg" 
+               alt="students" 
+               class="img-fluid about-img shadow-lg">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION CSS -->
+<style>
+/* Malayalam Font */
+.malayalam {
+  font-family: 'Anek Malayalam', sans-serif !important;
+}
+
+/* Soft Background Pattern */
+.about-section {
+  background: #f7f9fc;
+  background-image: radial-gradient(#dcdcdc 1px, transparent 1px);
+  background-size: 18px 18px;
+  padding: 60px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative Title */
+.decorated-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.decorated-title .line {
+  flex: 1;
+  height: 3px;
+  background: linear-gradient(90deg, #007bff, #00c6ff);
+  animation: glow 2s infinite alternate;
+  border-radius: 10px;
+}
+.decorated-title h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #004aad;
+}
+
+/* Glow Animation */
+@keyframes glow {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+/* Malayalam Paragraph */
+.about-text {
+  text-align: justify;
+  font-size: 17px;
+  line-height: 1.78;
+  color: #333;
+}
+
+/* Image Hover Effect */
+.image-wrapper {
+  display: inline-block;
+  border-radius: 12px;
+  transition: 0.35s;
+  position: relative;
+  overflow: hidden;
+}
+.image-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(0,123,255,0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+.image-wrapper:hover::before {
+  transform: translateX(100%);
+}
+.image-wrapper:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 35px rgba(0, 128, 255, 0.35);
+}
+.about-img {
+  border-radius: 12px;
+}
+
+/* Floating Bubbles */
+.bubble-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -120px;
+  width: 20px;
+  height: 20px;
+  background: rgba(0, 123, 255, 0.15);
+  border-radius: 50%;
+  animation: floatBubble 10s infinite ease-in;
+}
+
+/* Random bubble sizes + speeds */
+.bubble:nth-child(1) { left: 10%; width: 25px; height: 25px; animation-duration: 12s; }
+.bubble:nth-child(2) { left: 25%; width: 18px; height: 18px; animation-duration: 9s; }
+.bubble:nth-child(3) { left: 40%; width: 30px; height: 30px; animation-duration: 14s; }
+.bubble:nth-child(4) { left: 55%; width: 20px; height: 20px; animation-duration: 10s; }
+.bubble:nth-child(5) { left: 70%; width: 22px; height: 22px; animation-duration: 11s; }
+.bubble:nth-child(6) { left: 85%; width: 15px; height: 15px; animation-duration: 8s; }
+.bubble:nth-child(7) { left: 50%; width: 40px; height: 40px; animation-duration: 16s; }
+.bubble:nth-child(8) { left: 30%; width: 12px; height: 12px; animation-duration: 7s; }
+.bubble:nth-child(9) { left: 90%; width: 28px; height: 28px; animation-duration: 13s; }
+
+/* Bubble Animation */
+@keyframes floatBubble {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-900px) scale(1.3);
+    opacity: 0;
+  }
+}
+</style>
+
+<!-- HIGHLIGHTS SECTION -->
+<section id="highlights" class="py-5 bg-light section-entrance">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-primary">Highlights</h2>
+      <p class="text-muted">Recent events and activities at Darunnajath Shareeath & Arts College</p>
+    </div>
+
+    <div class="row gy-4">
+      <!-- Video 1 -->
+      <div class="col-md-4">
+        <div class="card shadow-sm border-0 hover-lift">
+          <div class="ratio ratio-16x9">
+            <iframe
+              src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID_1"
+              title="Meelad u nabi Highlights"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="card-body text-center">
+            <h6 class="text-primary mb-0">Meelad u nabi Highlights</h6>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video 2 -->
+      <div class="col-md-4">
+        <div class="card shadow-sm border-0 hover-lift">
+          <div class="ratio ratio-16x9">
+            <iframe
+              src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID_2"
+              title="Parents Programme"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="card-body text-center">
+            <h6 class="text-primary mb-0">Parents Programme</h6>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video 3 -->
+      <div class="col-md-4">
+        <div class="card shadow-sm border-0 hover-lift">
+          <div class="ratio ratio-16x9">
+            <iframe
+              src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID_3"
+              title="Students' Achievements"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="card-body text-center">
+            <h6 class="text-primary mb-0">Students' Achievements</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="youtube.html" class="btn btn-primary px-4 rounded-pill">
+        View More on YouTube →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news" class="py-5 text-center section-entrance">
+  <div class="container">
+    <h3 class="fw-bold mb-4 text-light" data-aos="zoom-in">Latest News</h3>
+    <p class="text-light mb-5">Stay updated with the latest announcements and events</p>
+
+    <div id="singleNewsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+      <div class="carousel-inner">
+
+        <!-- News 1 -->
+        <div class="carousel-item active">
+          <div class="d-flex justify-content-center">
+            <div class="card shadow-lg border-0" style="width: 22rem; background-color: rgba(255,255,255,0.1);">
+              <img src="https://i.ibb.co/XrX5fh5M/study-tips-for-final-exams.webp" class="card-img-top rounded-top" alt="Admission Open">
+              <div class="card-body">
+                <h5 class="card-title text-warning">വാര്‍ഷിക പരീക്ഷ</h5>
+                <p class="card-text text-light small">2025-26 വര്‍ഷത്തിലെ വാര്‍ഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1,2,10,11,12 തിയ്യതികളില്‍.</p>
+                <a href="#" class="btn btn-outline-light btn-sm">Read More</a>
               </div>
             </div>
           </div>
-        `;
-        document.body.appendChild(modal);
-        const bsModal = new bootstrap.Modal(modal);
-        bsModal.show();
-        modal.addEventListener('hidden.bs.modal', function() {
-          document.body.removeChild(modal);
-        });
-      });
-    });
+        </div>
 
-    // Form submission
-    document.querySelector('form')?.addEventListener('submit', function(e) {
-      e.preventDefault();
-      // Add your form submission logic here
-      alert('Thank you for your message! We will get back to you soon.');
-      this.reset();
-    });
+        <!-- News 2 -->
+        <div class="carousel-item">
+          <div class="d-flex justify-content-center">
+            <div class="card shadow-lg border-0" style="width: 22rem; background-color: rgba(255,255,255,0.1);">
+              <img src="https://i.ibb.co/LDJxRX0j/freelancer-pricing-04.png" class="card-img-top rounded-top" alt="Parents meet">
+              <div class="card-body">
+                <h5 class="card-title text-warning">Parents Meeting</h5>
+                <p class="card-text text-light small">Parents meeting will be held on 16th November 2025.</p>
+                <a href="#" class="btn btn-outline-light btn-sm">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    // Add typing effect to hero title
-    const heroTitle = document.querySelector('.hero-title');
-    const originalText = heroTitle.textContent;
-    heroTitle.textContent = '';
-    let i = 0;
+        <!-- News 3 -->
+        <div class="carousel-item">
+          <div class="d-flex justify-content-center">
+            <div class="card shadow-lg border-0" style="width: 22rem; background-color: rgba(255,255,255,0.1);">
+              <img src="https://i.ibb.co/Q3CbpwJF/seo.png" class="card-img-top rounded-top" alt="Results Announced">
+              <div class="card-body">
+                <h5 class="card-title text-warning">Results Announced</h5>
+                <p class="card-text text-light small">Check out the 2024–25 academic results — congratulations to all!</p>
+                <a href="result.html" class="btn btn-outline-light btn-sm">View Results</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- News 4 -->
+        <div class="carousel-item">
+          <div class="d-flex justify-content-center">
+            <div class="card shadow-lg border-0" style="width: 22rem; background-color: rgba(255,255,255,0.1);">
+              <img src="https://i.ibb.co/sJpPN6TV/Whats-App-Image-2025-11-07-at-3-36-56-PM.jpg" class="card-img-top rounded-top" alt="samastha">
+              <div class="card-body">
+                <h5 class="card-title text-warning">സമസ്ത നൂറാം വാര്‍ഷികം</h5>
+                <p class="card-text text-light small">സമസ്ത നൂറാം വാര്‍ഷികം 2026 ഫെബ്രുവരി 4,5,6,7,8 തിയ്യതികളില്‍ കാസര്‍ഗോഡ് കുണിയയില്‍ നടക്കും.</p>
+                <a href="#" class="btn btn-outline-light btn-sm">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#singleNewsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#singleNewsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- NOTIFICATIONS -->
+<section id="notifications" class="py-5 section-entrance" data-aos="fade-up">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3 class="fw-bold">Notifications</h3>
+      <small class="text-muted">Latest updates</small>
+    </div>
+
+    <div class="list-group shadow-sm">
+      <a href="forms.html" class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
+        <div>
+          <div class="fw-bold text-primary">Admission Open for 2025</div>
+          <small class="text-muted">Apply now.</small>
+        </div>
+        <span class="badge bg-success rounded-pill">NEW</span>
+      </a>
+      <a href="#" class="list-group-item list-group-item-action">
+        <div class="fw-bold text-primary">Meelad Day Celebration</div>
+        <small class="text-muted">December 20, 2025 — All parents and guardians are invited.</small>
+      </a>
+      <a href="#" class="list-group-item list-group-item-action">
+        <div class="fw-bold text-primary">Holiday Notice</div>
+        <small class="text-muted">Closed after yearly examination.</small>
+      </a>
+      <a href="result.html" target="_blank" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <div>
+          <div class="fw-bold text-primary">Result Published</div>
+          <small class="text-muted">Click below to check your results online.</small>
+        </div>
+        <span class="btn btn-outline-success btn-sm">View Result</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer" class="py-4 text-center" style="background: linear-gradient(135deg, #0d47a1, #1976d2); color: #ffffff; font-size: 0.9rem; opacity: 0; transform: translateY(20px); transition: all 1s ease;">
+  <div class="container">
+    <strong class="text-uppercase d-block fs-6" style="letter-spacing: 1px; color: #eaf1fb;">
+      Darunnajath Shareeath & Arts College
+    </strong>
+    <small class="d-block" style="font-size: 0.8rem; color: #d0e3ff;">
+      © <span id="year"></span> All rights reserved.
+    </small>
+
+    <!-- Social Icons -->
+    <div class="mt-3 d-flex justify-content-center gap-3">
+      <!-- Facebook -->
+      <a href="https://facebook.com/" target="_blank" class="social-icon" style="background:#1877f2;">
+        <i class="bi bi-facebook"></i>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://instagram.com/" target="_blank" class="social-icon" style="background:#e4405f;">
+        <i class="bi bi-instagram"></i>
+      </a>
+
+      <!-- X (Twitter) -->
+      <a href="https://x.com/" target="_blank" class="social-icon" style="background:#1da1f2;">
+        <i class="bi bi-twitter-x"></i>
+      </a>
+    </div>
+
+    <!-- Credits -->
+    <div class="mt-3" style="font-size: 0.85rem; color: #d0e3ff;">
+      Hosted by <strong style="font-weight: 600; color: #ffffff;">Rafi Wafi</strong> • 
+      <a href="mailto:najathshareea@gmail.com" style="color: #bbdefb; text-decoration: none;">
+        najathshareea@gmail.com
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Chat Button -->
+<a href="https://wa.me/917034678818?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!" 
+   class="whatsapp-float" target="_blank" 
+   title="Chat with us on WhatsApp">
+  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp" />
+</a>
+
+<!-- WhatsApp Floating Button Style -->
+<style>
+  .whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 28px;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: whatsappFloat 3s ease-in-out infinite;
+  }
+
+  .whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+  }
+
+  .whatsapp-float img {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1);
+  }
+
+  @keyframes whatsappFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+</style>
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  // Initialize AOS
+  AOS.init({
+    duration: 1000,
+    once: true,
+    mirror: false,
+    offset: 100
+  });
+
+  // Update year in footer
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
     
-    function typeWriter() {
-      if (i < originalText.length) {
-        heroTitle.textContent += originalText.charAt(i);
-        i++;
-        setTimeout(typeWriter, 50);
-      }
+    // Parallax effect for floating elements
+    const floatingElements = document.querySelectorAll('.floating-element');
+    floatingElements.forEach(element => {
+      const speed = element.dataset.speed || 0.5;
+      const yPos = -(window.pageYOffset * speed);
+      element.style.transform = `translateY(${yPos}px)`;
+    });
+
+    // Footer animation
+    const footer = document.getElementById('footer');
+    const footerPosition = footer.getBoundingClientRect().top;
+    const screenPosition = window.innerHeight;
+
+    if (footerPosition < screenPosition - 50) {
+      footer.style.opacity = '1';
+      footer.style.transform = 'translateY(0)';
     }
+  });
+
+  // Add hover-lift class to all cards
+  document.querySelectorAll('.card').forEach(card => {
+    card.classList.add('hover-lift');
+  });
+
+  // Add ripple effect to all buttons
+  document.querySelectorAll('.btn').forEach(button => {
+    button.addEventListener('click', function(e) {
+      const ripple = document.createElement('span');
+      const rect = button.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = e.clientX - rect.left - size/2;
+      const y = e.clientY - rect.top - size/2;
+      
+      ripple.className = 'ripple';
+      ripple.style.cssText = `
+        width: ${size}px;
+        height: ${size}px;
+        top: ${y}px;
+        left: ${x}px;
+      `;
+      
+      button.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 600);
+    });
+  });
+
+  // Add sparkle effects randomly
+  function createSparkle() {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    sparkle.style.left = Math.random() * 100 + '%';
+    sparkle.style.top = Math.random() * 100 + '%';
+    sparkle.style.animationDelay = Math.random() * 2 + 's';
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 1000);
+  }
+
+  // Create random sparkles
+  setInterval(createSparkle, 500);
+
+  // Add typing animation to headings
+  const typingHeadings = document.querySelectorAll('.hero-heading, #about h2, #highlights h2');
+  typingHeadings.forEach(heading => {
+    const text = heading.textContent;
+    heading.textContent = '';
+    heading.classList.add('typing-text');
+    heading.style.width = '0';
+    heading.style.animation = `typing 3.5s steps(${text.length}, end), blink-caret 0.75s step-end infinite`;
     
-    // Start typing effect after loading
-    setTimeout(typeWriter, 1500);
-  </script>
+    setTimeout(() => {
+      heading.textContent = text;
+      heading.classList.remove('typing-text');
+      heading.style.width = 'auto';
+      heading.style.animation = '';
+    }, 3500);
+  });
+
+  // Add wave animation to emojis
+  document.querySelectorAll('h1, h2, h3').forEach(heading => {
+    const text = heading.innerHTML;
+    heading.innerHTML = text.replace(/👑|🌟|✨|⚡|🎓/g, '<span class="wave">$&</span>');
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // Add loading animation on page load
+  window.addEventListener('load', function() {
+    document.body.classList.add('loaded');
+  });
+</script>
+
 </body>
 </html>
