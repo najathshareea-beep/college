@@ -11,57 +11,94 @@
 
   <style>
     :root {
-      --primary: #0b1d3a;
-      --secondary: #10264d;
-      --accent: #ffd700;
-      --accent-light: rgba(255, 215, 0, 0.3);
+      --primary: #0a194f;
+      --secondary: #122f7a;
+      --accent: #f3c13a;
+      --light: #f8f9fa;
     }
 
     body {
       background-color: var(--primary);
-      color: #f8f9fa;
+      color: var(--light);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       min-height: 100vh;
-      padding-bottom: 60px;
     }
 
     header {
-      background: linear-gradient(135deg, #0d47a1, #1976d2);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       text-align: center;
-      padding: 25px 15px;
+      padding: 30px 15px;
       margin-bottom: 30px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
 
     header h1 {
-      font-size: 1.8rem;
+      font-size: 2.2rem;
       font-weight: 700;
       margin: 0;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      color: var(--accent);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    header .subtitle {
+      color: rgba(255,255,255,0.9);
+      font-size: 1rem;
+      margin-top: 10px;
     }
 
     .container {
       max-width: 1200px;
+      padding-bottom: 60px;
+    }
+
+    /* Search Box */
+    .search-box {
+      background: rgba(255,255,255,0.1);
+      border: 2px solid var(--accent);
+      border-radius: 50px;
+      padding: 12px 25px;
+      margin: 20px auto 30px;
+      max-width: 500px;
+      transition: all 0.3s ease;
+    }
+
+    .search-box:focus-within {
+      background: rgba(255,255,255,0.15);
+      box-shadow: 0 0 20px rgba(243,193,58,0.3);
+    }
+
+    .search-box input {
+      background: transparent;
+      border: none;
+      color: white;
+      width: 100%;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .search-box input::placeholder {
+      color: rgba(255,255,255,0.6);
     }
 
     /* Teacher Grid */
     .teacher-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
       margin: 30px 0;
     }
 
     .teacher-card {
-      background: var(--secondary);
+      background: rgba(255,255,255,0.05);
       border-radius: 15px;
-      padding: 20px;
+      padding: 25px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       border: 2px solid transparent;
       text-align: center;
       position: relative;
       overflow: hidden;
+      backdrop-filter: blur(10px);
     }
 
     .teacher-card::before {
@@ -71,36 +108,75 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, var(--accent-light), transparent);
-      transition: 0.5s;
+      background: linear-gradient(90deg, transparent, rgba(243,193,58,0.1), transparent);
+      transition: 0.6s;
     }
 
     .teacher-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px var(--accent-light);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(243,193,58,0.2);
       border-color: var(--accent);
+      background: rgba(255,255,255,0.08);
     }
 
     .teacher-card:hover::before {
       left: 100%;
     }
 
+    .teacher-card .serial {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--accent);
+      color: var(--primary);
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .teacher-card .profile-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      margin: 0 auto 15px;
+      padding: 3px;
+      background: rgba(255,255,255,0.1);
+    }
+
     .teacher-card h4 {
       color: var(--accent);
       margin-bottom: 5px;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
 
-    .teacher-card p {
-      color: #ddd;
+    .teacher-card .designation {
+      color: #4dabf7;
+      font-weight: 600;
       margin-bottom: 10px;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
     }
 
     .teacher-card .phone {
-      color: #4dabf7;
+      color: #fff;
+      background: rgba(77, 171, 247, 0.2);
+      padding: 8px 15px;
+      border-radius: 20px;
+      display: inline-block;
       font-weight: 500;
-      font-size: 0.95rem;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .teacher-card:hover .phone {
+      background: rgba(77, 171, 247, 0.3);
+      transform: scale(1.05);
     }
 
     /* Profile Popup */
@@ -111,13 +187,13 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 90%;
-      max-width: 400px;
+      max-width: 450px;
       background: white;
       color: #333;
       border-radius: 20px;
-      padding: 25px;
+      padding: 30px;
       z-index: 1001;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
       animation: popupShow 0.4s ease-out;
     }
 
@@ -127,35 +203,39 @@
     }
 
     .profile-popup img {
-      width: 130px;
-      height: 130px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       object-fit: cover;
       border: 4px solid var(--accent);
       display: block;
       margin: 0 auto 20px;
-      animation: imagePop 0.6s ease-out;
-    }
-
-    @keyframes imagePop {
-      0% { transform: scale(0.8); opacity: 0; }
-      70% { transform: scale(1.1); }
-      100% { transform: scale(1); opacity: 1; }
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 
     .profile-popup h3 {
-      color: #0d47a1;
+      color: var(--secondary);
       text-align: center;
       margin-bottom: 5px;
       font-weight: 700;
     }
 
-    .profile-popup .designation {
-      color: #ff9800;
+    .profile-popup .popup-designation {
+      color: var(--accent);
       text-align: center;
       font-weight: 600;
       margin-bottom: 15px;
       display: block;
+      font-size: 1.1rem;
+    }
+
+    .profile-popup .popup-phone {
+      color: var(--secondary);
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: block;
+      font-size: 1.1rem;
     }
 
     .profile-popup .bio {
@@ -164,13 +244,14 @@
       line-height: 1.6;
       margin-bottom: 25px;
       font-size: 0.95rem;
+      padding: 0 10px;
     }
 
     /* Social Icons */
     .social-icons {
       display: flex;
       justify-content: center;
-      gap: 15px;
+      gap: 12px;
       margin-top: 20px;
     }
 
@@ -203,8 +284,8 @@
     }
 
     .social-icons a:hover {
-      transform: translateY(-5px) scale(1.1);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transform: translateY(-5px) scale(1.15);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
 
     .whatsapp { background: #25D366; color: white; }
@@ -219,16 +300,17 @@
       position: absolute;
       top: 15px;
       right: 20px;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       cursor: pointer;
       color: #666;
       transition: 0.3s;
-      width: 35px;
-      height: 35px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      line-height: 1;
     }
 
     .close-btn:hover {
@@ -245,8 +327,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(4px);
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(5px);
       z-index: 1000;
       animation: fadeIn 0.3s ease;
     }
@@ -260,49 +342,75 @@
     .back-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, var(--accent), #ffed4e);
-      color: #0b1d3a;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--accent), #ffda5c);
+      color: var(--primary);
       text-decoration: none;
-      padding: 12px 25px;
+      padding: 12px 30px;
       border-radius: 30px;
       font-weight: 600;
-      margin: 30px auto;
+      margin: 40px auto;
       transition: all 0.3s ease;
       border: none;
-      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+      box-shadow: 0 5px 20px rgba(243,193,58,0.4);
     }
 
     .back-btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
-      color: #0b1d3a;
+      box-shadow: 0 10px 25px rgba(243,193,58,0.6);
+      color: var(--primary);
     }
 
     /* Footer */
     footer {
-      background: #06142c;
-      color: #aaa;
+      background: var(--secondary);
+      color: rgba(255,255,255,0.8);
       text-align: center;
-      padding: 20px;
+      padding: 25px;
       margin-top: 40px;
       font-size: 0.9rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
 
     /* Responsive */
+    @media (max-width: 992px) {
+      .teacher-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+      }
+    }
+
     @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+      
       .teacher-grid {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 15px;
       }
       
-      header h1 {
-        font-size: 1.5rem;
+      .profile-popup {
+        width: 95%;
+        padding: 25px;
+      }
+      
+      .search-box {
+        margin: 15px auto 25px;
+        max-width: 90%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .teacher-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .teacher-card {
+        padding: 20px;
       }
       
       .profile-popup {
-        width: 95%;
         padding: 20px;
       }
       
@@ -313,14 +421,16 @@
       }
     }
 
-    @media (max-width: 480px) {
-      .teacher-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .teacher-card {
-        padding: 15px;
-      }
+    /* Loading animation for images */
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    .profile-img {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
     }
   </style>
 </head>
@@ -330,45 +440,30 @@
   <header>
     <div class="container">
       <h1>Our Faculties</h1>
-      <p class="mb-0" style="color: rgba(255,255,255,0.9); font-size: 0.95rem;">Meet our dedicated teaching staff</p>
+      <p class="subtitle">Meet our dedicated teaching staff - 13 experienced educators</p>
     </div>
   </header>
 
   <!-- MAIN CONTENT -->
   <main class="container">
+    <!-- Search Box -->
+    <div class="search-box">
+      <div class="d-flex align-items-center">
+        <i class="bi bi-search me-3" style="color: var(--accent);"></i>
+        <input type="text" id="searchInput" placeholder="Search faculty by name or designation...">
+      </div>
+    </div>
+
     <!-- Teacher Grid -->
-    <div class="teacher-grid">
-      <!-- Teacher 1 -->
-      <div class="teacher-card" data-target="t1">
-        <h4>ABDUL AZEEZ FAIZEE</h4>
-        <p>PRINCIPAL</p>
-        <div class="phone">📞 7034678818</div>
-        <small style="color: #aaa;">Tap to view profile</small>
-      </div>
+    <div class="teacher-grid" id="teacherGrid">
+      <!-- Teacher cards will be inserted by JavaScript -->
+    </div>
 
-      <!-- Teacher 2 -->
-      <div class="teacher-card" data-target="t2">
-        <h4>ABDUL HAQ HAITHAMI</h4>
-        <p>TEACHER</p>
-        <div class="phone">📞 9526134854</div>
-        <small style="color: #aaa;">Tap to view profile</small>
-      </div>
-
-      <!-- Teacher 3 -->
-      <div class="teacher-card" data-target="t3">
-        <h4>DARIMI USTHAD</h4>
-        <p>TEACHER</p>
-        <div class="phone">📞 8078055520</div>
-        <small style="color: #aaa;">Tap to view profile</small>
-      </div>
-
-      <!-- Teacher 4 -->
-      <div class="teacher-card" data-target="t4">
-        <h4>FAIROOSUDHEEN ASLAMI</h4>
-        <p>TEACHER</p>
-        <div class="phone">📞 9497349254</div>
-        <small style="color: #aaa;">Tap to view profile</small>
-      </div>
+    <!-- No Results Message -->
+    <div id="noResults" class="text-center py-5" style="display: none;">
+      <i class="bi bi-search display-4 mb-3" style="color: var(--accent);"></i>
+      <h4 style="color: var(--accent);">No Faculty Found</h4>
+      <p class="text-light">Try searching with different keywords</p>
     </div>
 
     <!-- Back Button -->
@@ -379,69 +474,15 @@
     </div>
   </main>
 
-  <!-- PROFILE POPUPS -->
-  <div class="profile-popup" id="t1">
+  <!-- PROFILE POPUP TEMPLATE -->
+  <div class="profile-popup" id="popupTemplate" style="display: none;">
     <span class="close-btn">&times;</span>
-    <img src="https://i.ibb.co/S77QvZ07/Whats-App-Image-2025-10-25-at-8-38-50-AM.jpg" alt="ABDUL AZEEZ FAIZEE">
-    <h3>ABDUL AZEEZ FAIZEE</h3>
-    <span class="designation">PRINCIPAL | 📞 7034678818</span>
-    <p class="bio">A passionate educator known for guiding students with care and commitment to moral and academic excellence.</p>
-    <div class="social-icons">
-      <a href="https://wa.me/7034678818" class="whatsapp" target="_blank"><i class="bi bi-whatsapp"></i></a>
-      <a href="https://www.instagram.com/suhail_kerala_?igsh=YmdibmltNmVnYXQ4&utm_source=qr" class="instagram" target="_blank"><i class="bi bi-instagram"></i></a>
-      <a href="https://www.facebook.com/share/19e17MCsuB/?mibextid=wwXIfr" class="facebook" target="_blank"><i class="bi bi-facebook"></i></a>
-      <a href="#" class="x"><i class="bi bi-twitter-x"></i></a>
-      <a href="#" class="telegram"><i class="bi bi-telegram"></i></a>
-      <a href="mailto:suhailp067@gmail.com" class="email"><i class="bi bi-envelope-fill"></i></a>
-    </div>
-  </div>
-
-  <div class="profile-popup" id="t2">
-    <span class="close-btn">&times;</span>
-    <img src="https://i.ibb.co/3mXsbSdg/Whats-App-Image-2025-10-25-at-8-37-28-AM.jpg" alt="Firos">
-    <h3>ABDUL HAQ HAITHAMI</h3>
-    <span class="designation">TEACHER | 📞 9526134854</span>
-    <p class="bio">Dedicated to fostering a love for learning and nurturing discipline through compassionate teaching.</p>
-    <div class="social-icons">
-      <a href="https://wa.me/9526134854" class="whatsapp" target="_blank"><i class="bi bi-whatsapp"></i></a>
-      <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-      <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-      <a href="#" class="x"><i class="bi bi-twitter-x"></i></a>
-      <a href="#" class="telegram"><i class="bi bi-telegram"></i></a>
-      <a href="mailto:example2@email.com" class="email"><i class="bi bi-envelope-fill"></i></a>
-    </div>
-  </div>
-
-  <div class="profile-popup" id="t3">
-    <span class="close-btn">&times;</span>
-    <img src="https://i.ibb.co/kWR6Z5B/AMEER.jpg" alt="Darimi">
-    <h3>DARIMI USTHAD</h3>
-    <span class="designation">TEACHER | 📞 8078055520</span>
-    <p class="bio">An experienced teacher with deep knowledge of Islamic studies and a calm, inspiring teaching style.</p>
-    <div class="social-icons">
-      <a href="https://wa.me/8078055520" class="whatsapp" target="_blank"><i class="bi bi-whatsapp"></i></a>
-      <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-      <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-      <a href="#" class="x"><i class="bi bi-twitter-x"></i></a>
-      <a href="#" class="telegram"><i class="bi bi-telegram"></i></a>
-      <a href="mailto:example3@email.com" class="email"><i class="bi bi-envelope-fill"></i></a>
-    </div>
-  </div>
-
-  <div class="profile-popup" id="t4">
-    <span class="close-btn">&times;</span>
-    <img src="https://i.ibb.co/pvnbMsDr/FAIROOS.jpg" alt="Fairoos">
-    <h3>FAIROOSUDHEEN ASLAMI</h3>
-    <span class="designation">TEACHER | 📞 9497349254</span>
-    <p class="bio">Brings enthusiasm and innovation into the classroom, inspiring students to excel in academics and values.</p>
-    <div class="social-icons">
-      <a href="https://wa.me/9497349254" class="whatsapp" target="_blank"><i class="bi bi-whatsapp"></i></a>
-      <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-      <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-      <a href="#" class="x"><i class="bi bi-twitter-x"></i></a>
-      <a href="#" class="telegram"><i class="bi bi-telegram"></i></a>
-      <a href="mailto:example4@email.com" class="email"><i class="bi bi-envelope-fill"></i></a>
-    </div>
+    <img src="" alt="Faculty Photo" class="popup-img">
+    <h3 class="popup-name"></h3>
+    <span class="popup-designation"></span>
+    <span class="popup-phone"></span>
+    <p class="bio"></p>
+    <div class="social-icons"></div>
   </div>
 
   <!-- OVERLAY -->
@@ -451,73 +492,337 @@
   <footer>
     <div class="container">
       <p style="margin: 0;">© 2025 All rights reserved. | DARUNNAJATH SHAREEATH AND ARTS COLLEGE</p>
+      <p style="margin: 5px 0 0; color: rgba(255,255,255,0.6); font-size: 0.85rem;">
+        Total Faculty Members: <strong>13</strong>
+      </p>
     </div>
   </footer>
 
   <script>
+    // Faculty Data
+    const facultyData = [
+      {
+        id: 1,
+        name: "ABDUL AZEEZ FAIZEE",
+        designation: "PRINCIPAL",
+        phone: "9744247124",
+        img: "https://i.ibb.co/S77QvZ07/Whats-App-Image-2025-10-25-at-8-38-50-AM.jpg",
+        bio: "Visionary leader committed to academic excellence and holistic student development.",
+        social: {
+          whatsapp: "https://wa.me/919744247124",
+          email: "mailto:principal@darunnajath.edu",
+          instagram: "https://www.instagram.com/suhail_kerala_?igsh=YmdibmltNmVnYXQ4&utm_source=qr",
+          facebook: "https://www.facebook.com/share/19e17MCsuB/?mibextid=wwXIfr"
+        }
+      },
+      {
+        id: 2,
+        name: "ABDUL HAQUE HAITHAMI MP",
+        designation: "VICE PRINCIPAL",
+        phone: "9495563866",
+        img: "https://i.ibb.co/3mXsbSdg/Whats-App-Image-2025-10-25-at-8-37-28-AM.jpg",
+        bio: "Experienced administrator with a passion for academic excellence and student development.",
+        social: {
+          whatsapp: "https://wa.me/919495563866",
+          email: "mailto:viceprincipal@darunnajath.edu"
+        }
+      },
+      {
+        id: 3,
+        name: "ABDULLA DARIMI K",
+        designation: "TEACHER",
+        phone: "7994174910",
+        img: "https://i.ibb.co/kWR6Z5B/AMEER.jpg",
+        bio: "Dedicated educator with expertise in Islamic studies and character building.",
+        social: {
+          whatsapp: "https://wa.me/917994174910"
+        }
+      },
+      {
+        id: 4,
+        name: "MUHAMMED RAFI WAFI P",
+        designation: "TEACHER",
+        phone: "9048020243",
+        img: "https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png",
+        bio: "Innovative teacher focusing on modern teaching methodologies and student engagement.",
+        social: {
+          whatsapp: "https://wa.me/919048020243",
+          email: "mailto:rafi@darunnajath.edu"
+        }
+      },
+      {
+        id: 5,
+        name: "MOIDEENKUTTY HUDAWI IK",
+        designation: "TEACHER",
+        phone: "9847488515",
+        img: "https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png",
+        bio: "Expert in Arabic language and Islamic jurisprudence with years of teaching experience.",
+        social: {
+          whatsapp: "https://wa.me/919847488515"
+        }
+      },
+      {
+        id: 6,
+        name: "SUHAIL MASTER CP",
+        designation: "TEACHER",
+        phone: "9048445593",
+        img: "https://i.ibb.co/S77QvZ07/Whats-App-Image-2025-10-25-at-8-38-50-AM.jpg",
+        bio: "Passionate about integrating technology in education and modern teaching techniques.",
+        social: {
+          whatsapp: "https://wa.me/919048445593",
+          email: "mailto:suhail@darunnajath.edu"
+        }
+      },
+      {
+        id: 7,
+        name: "SHIHABUDHEEN WAFI K",
+        designation: "TEACHER",
+        phone: "9746701124",
+        img: "https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png",
+        bio: "Specializes in Quranic studies and moral education with a student-centered approach.",
+        social: {
+          whatsapp: "https://wa.me/919746701124"
+        }
+      },
+      {
+        id: 8,
+        name: "MUHAMMED SAEED FAIZEE V",
+        designation: "TEACHER",
+        phone: "9496480098",
+        img: "https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png",
+        bio: "Focuses on academic excellence and holistic development of students.",
+        social: {
+          whatsapp: "https://wa.me/919496480098"
+        }
+      },
+      {
+        id: 9,
+        name: "SHOUKATHALI FAIZEE OP",
+        designation: "TEACHER",
+        phone: "9495138882",
+        img: "https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png",
+        bio: "Experienced educator with a strong background in Islamic sciences.",
+        social: {
+          whatsapp: "https://wa.me/919495138882"
+        }
+      },
+      {
+        id: 10,
+        name: "JUBAIR FAIZEE TK",
+        designation: "TEACHER",
+        phone: "8589861025",
+        img: "https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png",
+        bio: "Young and energetic teacher bringing fresh perspectives to traditional education.",
+        social: {
+          whatsapp: "https://wa.me/918589861025"
+        }
+      },
+      {
+        id: 11,
+        name: "MUHAMMED SHABEEN MASTER V",
+        designation: "TEACHER",
+        phone: "8113917591",
+        img: "https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png",
+        bio: "Specializes in Arabic literature and linguistic studies.",
+        social: {
+          whatsapp: "https://wa.me/918113917591"
+        }
+      },
+      {
+        id: 12,
+        name: "MUHAMMED IQBAL BUSTHANI TA",
+        designation: "TEACHER",
+        phone: "8547591123",
+        img: "https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png",
+        bio: "Expert in Hadith studies and Islamic history.",
+        social: {
+          whatsapp: "https://wa.me/918547591123"
+        }
+      },
+      {
+        id: 13,
+        name: "HASHIM MUNEEB MASTER T",
+        designation: "TEACHER",
+        phone: "9496365330",
+        img: "https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png",
+        bio: "Focuses on character building and moral education alongside academics.",
+        social: {
+          whatsapp: "https://wa.me/919496365330"
+        }
+      }
+      
+    ];
+
     // DOM Elements
-    const teacherCards = document.querySelectorAll('.teacher-card');
-    const popups = document.querySelectorAll('.profile-popup');
+    const teacherGrid = document.getElementById('teacherGrid');
+    const searchInput = document.getElementById('searchInput');
+    const noResults = document.getElementById('noResults');
     const overlay = document.querySelector('.overlay');
-    const closeBtns = document.querySelectorAll('.close-btn');
 
-    // Show popup function
-    function showPopup(targetId) {
-      const popup = document.getElementById(targetId);
-      if (popup) {
-        popup.style.display = 'block';
-        overlay.style.display = 'block';
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    // Render teacher cards
+    function renderTeachers(teachers = facultyData) {
+      teacherGrid.innerHTML = '';
+      noResults.style.display = 'none';
+      
+      if (teachers.length === 0) {
+        noResults.style.display = 'block';
+        return;
       }
+      
+      teachers.forEach(teacher => {
+        const card = document.createElement('div');
+        card.className = 'teacher-card';
+        card.dataset.id = teacher.id;
+        
+        card.innerHTML = `
+          <div class="serial">${teacher.id}</div>
+          <img src="${teacher.img}" alt="${teacher.name}" class="profile-img" onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
+          <h4>${teacher.name}</h4>
+          <div class="designation">${teacher.designation}</div>
+          <div class="phone">📞 ${teacher.phone}</div>
+          <small style="color: rgba(255,255,255,0.6); display: block; margin-top: 15px;">
+            <i class="bi bi-hand-index"></i> Click to view profile
+          </small>
+        `;
+        
+        card.addEventListener('click', () => showTeacherPopup(teacher));
+        teacherGrid.appendChild(card);
+      });
     }
 
-    // Hide all popups
-    function hideAllPopups() {
-      popups.forEach(popup => {
-        popup.style.display = 'none';
+    // Show teacher popup
+    function showTeacherPopup(teacher) {
+      const template = document.getElementById('popupTemplate');
+      const popup = template.cloneNode(true);
+      popup.id = `popup-${teacher.id}`;
+      popup.style.display = 'block';
+      
+      // Fill popup data
+      popup.querySelector('.popup-img').src = teacher.img;
+      popup.querySelector('.popup-img').onerror = function() {
+        this.src = 'https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png';
+      };
+      popup.querySelector('.popup-name').textContent = teacher.name;
+      popup.querySelector('.popup-designation').textContent = teacher.designation;
+      popup.querySelector('.popup-phone').textContent = `📞 ${teacher.phone}`;
+      popup.querySelector('.bio').textContent = teacher.bio;
+      
+      // Add social icons
+      const socialIcons = popup.querySelector('.social-icons');
+      socialIcons.innerHTML = '';
+      
+      if (teacher.social.whatsapp) {
+        socialIcons.innerHTML += `
+          <a href="${teacher.social.whatsapp}" class="whatsapp" target="_blank">
+            <i class="bi bi-whatsapp"></i>
+          </a>
+        `;
+      }
+      
+      if (teacher.social.email) {
+        socialIcons.innerHTML += `
+          <a href="${teacher.social.email}" class="email">
+            <i class="bi bi-envelope-fill"></i>
+          </a>
+        `;
+      }
+      
+      if (teacher.social.instagram) {
+        socialIcons.innerHTML += `
+          <a href="${teacher.social.instagram}" class="instagram" target="_blank">
+            <i class="bi bi-instagram"></i>
+          </a>
+        `;
+      }
+      
+      if (teacher.social.facebook) {
+        socialIcons.innerHTML += `
+          <a href="${teacher.social.facebook}" class="facebook" target="_blank">
+            <i class="bi bi-facebook"></i>
+          </a>
+        `;
+      }
+      
+      // Add X/Twitter if available
+      if (teacher.social.x) {
+        socialIcons.innerHTML += `
+          <a href="${teacher.social.x}" class="x" target="_blank">
+            <i class="bi bi-twitter-x"></i>
+          </a>
+        `;
+      }
+      
+      // Add Telegram if available
+      if (teacher.social.telegram) {
+        socialIcons.innerHTML += `
+          <a href="${teacher.social.telegram}" class="telegram" target="_blank">
+            <i class="bi bi-telegram"></i>
+          </a>
+        `;
+      }
+      
+      // Add close button functionality
+      const closeBtn = popup.querySelector('.close-btn');
+      closeBtn.addEventListener('click', hidePopup);
+      
+      // Add to DOM
+      document.body.appendChild(popup);
+      overlay.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+      
+      // Close on overlay click
+      overlay.onclick = hidePopup;
+      
+      // Close with Escape key
+      document.addEventListener('keydown', function closeOnEscape(e) {
+        if (e.key === 'Escape') hidePopup();
+        document.removeEventListener('keydown', closeOnEscape);
       });
+    }
+
+    // Hide popup
+    function hidePopup() {
+      const popup = document.querySelector('.profile-popup[id^="popup-"]');
+      if (popup) popup.remove();
       overlay.style.display = 'none';
-      document.body.style.overflow = 'auto'; // Enable scrolling
+      document.body.style.overflow = 'auto';
+      overlay.onclick = null;
     }
 
-    // Add click events to teacher cards
-    teacherCards.forEach(card => {
-      card.addEventListener('click', function() {
-        const target = this.getAttribute('data-target');
-        showPopup(target);
-      });
-    });
-
-    // Add click events to close buttons
-    closeBtns.forEach(btn => {
-      btn.addEventListener('click', hideAllPopups);
-    });
-
-    // Close popup when clicking overlay
-    overlay.addEventListener('click', hideAllPopups);
-
-    // Close popup with Escape key
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        hideAllPopups();
+    // Search functionality
+    searchInput.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase().trim();
+      
+      if (searchTerm === '') {
+        renderTeachers();
+        return;
       }
+      
+      const filteredTeachers = facultyData.filter(teacher => 
+        teacher.name.toLowerCase().includes(searchTerm) ||
+        teacher.designation.toLowerCase().includes(searchTerm) ||
+        teacher.phone.includes(searchTerm)
+      );
+      
+      renderTeachers(filteredTeachers);
     });
 
-    // Add click animation to teacher cards
-    teacherCards.forEach(card => {
-      card.addEventListener('click', function() {
-        this.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-          this.style.transform = '';
-        }, 150);
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      renderTeachers();
+      
+      // Add animation to cards
+      const cards = document.querySelectorAll('.teacher-card');
+      cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
       });
     });
 
-    // Prevent event bubbling from popup
-    popups.forEach(popup => {
-      popup.addEventListener('click', function(event) {
-        event.stopPropagation();
-      });
+    // Prevent event bubbling
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('.profile-popup')) {
+        e.stopPropagation();
+      }
     });
   </script>
 </body>
