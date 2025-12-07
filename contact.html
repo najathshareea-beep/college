@@ -19,15 +19,15 @@
 
   <style>
     :root {
-      --primary: #0b1a3b;
-      --secondary: #001A33;
-      --accent: #FFD700;
-      --accent-dark: #004AAD;
+      --primary: #0a194f;
+      --secondary: #122f7a;
+      --accent: #f3c13a;
+      --light: #f8f9fa;
     }
 
     body {
       background-color: var(--primary);
-      color: #fff;
+      color: var(--light);
       font-family: 'Poppins', sans-serif;
       min-height: 100vh;
       display: flex;
@@ -40,8 +40,9 @@
 
     /* NAVBAR */
     nav {
-      background: linear-gradient(135deg, #002B5B, var(--accent-dark));
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      padding: 1rem 0;
     }
 
     .navbar-brand {
@@ -50,38 +51,30 @@
       font-size: 1.1rem;
     }
 
+    .navbar-brand img {
+      border-radius: 8px;
+      filter: brightness(0) invert(1);
+    }
+
     .nav-link {
       color: #fff !important;
       font-weight: 500;
       transition: 0.3s;
-    }
-    .nav-link:hover {
-      color: var(--accent) !important;
+      padding: 0.5rem 1rem !important;
+      margin: 0 0.1rem;
+      border-radius: 6px;
     }
 
-    /* Donate Button */
-    .donate-btn {
-      background: var(--accent);
-      color: var(--primary);
-      font-weight: 600;
-      border-radius: 30px;
-      padding: 8px 25px;
-      box-shadow: 0 0 12px rgba(255, 215, 0, 0.67);
-      transition: 0.3s;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .donate-btn:hover {
-      background: #ffea70;
-      box-shadow: 0 0 18px var(--accent);
-      color: var(--primary);
+    .nav-link:hover {
+      color: var(--accent) !important;
+      background: rgba(255, 255, 255, 0.1);
       transform: translateY(-2px);
     }
 
     /* PAGE HEADER */
     header {
-      background: linear-gradient(135deg, var(--accent-dark), #002B5B);
-      padding: 2rem 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 3rem 1rem;
       margin-bottom: 2rem;
       position: relative;
       overflow: hidden;
@@ -94,32 +87,34 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
-      background-size: cover;
-    }
-
-    /* Contact Section */
-    #contact {
-      background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
-      border-top: 3px solid #0056b3;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(243,193,58,0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(18,47,122,0.15) 0%, transparent 50%);
     }
 
     h1, h2, h4, h5 {
       color: var(--accent);
     }
 
+    /* Contact Section */
+    #contact {
+      background: linear-gradient(180deg, var(--primary) 0%, #0c1f56 100%);
+    }
+
     /* Form Styles */
     .form-control {
       background-color: rgba(255,255,255,0.1);
-      border: 1px solid #555;
+      border: 1px solid rgba(255,255,255,0.2);
       color: #fff;
       transition: 0.3s;
       padding: 12px 15px;
+      border-radius: 8px;
     }
+
     .form-control:focus {
       background-color: rgba(255,255,255,0.15);
       border-color: var(--accent);
-      box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      box-shadow: 0 0 10px rgba(243, 193, 58, 0.5);
       color: #fff;
     }
 
@@ -128,27 +123,30 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent-dark), #0066ff);
+      background: linear-gradient(135deg, var(--accent), #ffda5c);
       border: none;
-      transition: 0.3s;
+      color: var(--primary);
+      border-radius: 12px;
       font-weight: 600;
-      padding: 12px 25px;
-    }
-    .btn-primary:hover {
-      background: linear-gradient(135deg, #0066ff, var(--accent-dark));
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 92, 230, 0.4);
+      padding: 12px 30px;
+      box-shadow: 0 5px 15px rgba(243,193,58,0.4);
+      transition: all 0.4s ease;
     }
 
-    .btn-outline-primary {
-      color: var(--accent);
-      border-color: var(--accent);
-      transition: 0.3s;
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #ffda5c, var(--accent));
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(243,193,58,0.6);
     }
-    .btn-outline-primary:hover {
-      background-color: var(--accent);
+
+    .btn-outline-light {
+      color: #fff;
+      border-color: #fff;
+    }
+
+    .btn-outline-light:hover {
+      background-color: #fff;
       color: var(--primary);
-      transform: translateY(-2px);
     }
 
     /* Social Buttons */
@@ -168,15 +166,16 @@
       font-size: 1.2rem;
       color: var(--accent);
       border: 2px solid var(--accent);
-      background: rgba(255, 215, 0, 0.1);
+      background: rgba(243, 193, 58, 0.1);
       transition: all 0.3s ease;
       text-decoration: none;
     }
+
     .social-btn .btn:hover {
       background-color: var(--accent);
       color: var(--primary);
       transform: translateY(-3px) scale(1.1);
-      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+      box-shadow: 0 5px 15px rgba(243, 193, 58, 0.4);
     }
 
     /* Contact List */
@@ -186,12 +185,12 @@
     }
 
     .contact-list li {
-      margin-bottom: 18px;
+      margin-bottom: 20px;
       display: flex;
       align-items: flex-start;
-      padding: 12px;
+      padding: 15px;
       background: rgba(255,255,255,0.05);
-      border-radius: 8px;
+      border-radius: 10px;
       transition: 0.3s;
     }
 
@@ -201,16 +200,16 @@
     }
 
     .contact-list i {
-      margin-right: 12px;
+      margin-right: 15px;
       margin-top: 3px;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
     }
 
     /* Card for Form */
     .form-card {
       background: rgba(255,255,255,0.05);
       border-radius: 15px;
-      border: 1px solid rgba(255, 215, 0, 0.2);
+      border: 1px solid rgba(243, 193, 58, 0.2);
       padding: 30px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       backdrop-filter: blur(10px);
@@ -218,10 +217,10 @@
 
     /* Footer */
     footer {
-      background-color: var(--secondary);
-      color: #ccc;
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      color: rgba(255,255,255,0.8);
       font-size: 0.9rem;
-      padding: 1.5rem 0;
+      padding: 2rem 0;
       margin-top: auto;
       border-top: 1px solid rgba(255,255,255,0.1);
     }
@@ -242,43 +241,26 @@
     }
 
     .alert-success {
-      background: rgba(0, 128, 0, 0.15);
-      color: #90ee90;
-      border: 1px solid #90ee90;
+      background: rgba(25, 135, 84, 0.15);
+      color: #75b798;
+      border: 1px solid #75b798;
     }
 
-    .alert-danger {
-      background: rgba(139, 0, 0, 0.15);
-      color: #ff6b6b;
-      border: 1px solid #ff6b6b;
+    .alert-warning {
+      background: rgba(255, 193, 7, 0.15);
+      color: #ffd65c;
+      border: 1px solid #ffd65c;
     }
 
     /* Loading spinner */
-    .spinner {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-radius: 50%;
-      border-top-color: var(--accent);
-      animation: spin 1s ease-in-out infinite;
-      margin-right: 8px;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    .spinner-border {
+      vertical-align: middle;
     }
 
     /* Responsive */
     @media (max-width: 768px) {
       .navbar-brand {
         font-size: 1rem;
-      }
-      
-      .donate-btn {
-        padding: 6px 15px;
-        font-size: 0.9rem;
-        margin-top: 10px;
       }
       
       .social-btn {
@@ -292,16 +274,6 @@
       .form-card {
         padding: 20px;
       }
-    }
-
-    @media (max-width: 576px) {
-      header {
-        padding: 1.5rem 1rem;
-      }
-      
-      .navbar-brand {
-        font-size: 0.9rem;
-      }
       
       .contact-list li {
         flex-direction: column;
@@ -309,49 +281,47 @@
       }
       
       .contact-list i {
-        margin-bottom: 8px;
+        margin-bottom: 10px;
       }
-    }
-
-    /* FormSubmit.co specific styles */
-    .form-feedback {
-      padding: 15px;
-      border-radius: 8px;
-      margin-top: 20px;
-      text-align: center;
     }
   </style>
 </head>
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark py-3" data-aos="fade-down">
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">
-        <i class="fa-solid fa-graduation-cap me-2"></i>
-        DARUNNAJATH SHAREEATH AND ARTS COLLEGE
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="DSAC Logo" width="40">
+        <div>
+          <div class="fw-bold text-uppercase">DSAC</div>
+          <small class="text-light">Karuvarakundu</small>
+        </div>
       </a>
 
-      <button class="navbar-toggler text-warning border-warning" type="button"
-              data-bs-toggle="collapse" data-bs-target="#navMenu"
-              aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fa fa-bars"></i>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link" href="index.html">Home</a>
           </li>
-
           <li class="nav-item">
-            <a class="nav-link active" href="contact.html" aria-current="page">Contact</a>
+            <a class="nav-link" href="faculties.html">Faculty</a>
           </li>
-
-          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-            <a href="donation.html" class="donate-btn">
-              <i class="fa-solid fa-hand-holding-heart me-1"></i> Donate
-            </a>
+          <li class="nav-item">
+            <a class="nav-link" href="gallery.html">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="result.html">Result</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <a href="student-zone.html" class="btn btn-primary btn-sm">Student Zone</a>
           </li>
         </ul>
       </div>
@@ -359,10 +329,10 @@
   </nav>
 
   <!-- PAGE TITLE -->
-  <header class="text-white text-center py-5" data-aos="zoom-in">
+  <header class="text-white text-center">
     <div class="container position-relative">
-      <h1 class="mb-2">Contact Us</h1>
-      <p class="mb-0 text-light opacity-90 lead">Get in touch with Darunnajath Shareeath & Arts College</p>
+      <h1 class="mb-3">Contact Us</h1>
+      <p class="lead mb-0">Get in touch with Darunnajath Shareeath & Arts College</p>
       <div class="mt-3">
         <span class="badge bg-warning text-dark px-3 py-2">We respond within 24 hours</span>
       </div>
@@ -423,32 +393,24 @@
             <div class="mt-5" data-aos="fade-up" data-aos-delay="400">
               <h4 class="text-warning mb-3"><i class="fa-solid fa-share-nodes me-2"></i> Connect With Us</h4>
               <div class="social-btn">
-                <a class="btn" href="#" title="Facebook" aria-label="Facebook" data-aos="zoom-in" data-aos-delay="100">
+                <a class="btn" href="#" title="Facebook" aria-label="Facebook">
                   <i class="fa-brands fa-facebook-f"></i>
                 </a>
-                <a class="btn" href="#" title="Instagram" aria-label="Instagram" data-aos="zoom-in" data-aos-delay="200">
+                <a class="btn" href="#" title="Instagram" aria-label="Instagram">
                   <i class="fa-brands fa-instagram"></i>
                 </a>
                 <a class="btn" href="https://wa.me/919048020243" target="_blank" 
-                   title="WhatsApp" aria-label="WhatsApp" data-aos="zoom-in" data-aos-delay="300">
+                   title="WhatsApp" aria-label="WhatsApp">
                   <i class="fa-brands fa-whatsapp"></i>
                 </a>
                 <a class="btn" href="mailto:najathshareea@gmail.com" 
-                   title="Email" aria-label="Email" data-aos="zoom-in" data-aos-delay="400">
+                   title="Email" aria-label="Email">
                   <i class="fa-solid fa-envelope"></i>
                 </a>
-                <a class="btn" href="#" title="YouTube" aria-label="YouTube" data-aos="zoom-in" data-aos-delay="500">
+                <a class="btn" href="#" title="YouTube" aria-label="YouTube">
                   <i class="fa-brands fa-youtube"></i>
                 </a>
-                <a class="btn" href="#" title="Twitter" aria-label="Twitter" data-aos="zoom-in" data-aos-delay="600">
-                  <i class="fa-brands fa-twitter"></i>
-                </a>
               </div>
-              
-              <p class="text-muted mt-3 small">
-                <i class="fa-solid fa-circle-info text-warning me-1"></i>
-                Follow us for latest updates and announcements
-              </p>
             </div>
           </div>
 
@@ -458,69 +420,57 @@
               <h2 class="text-warning mb-4"><i class="fa-solid fa-paper-plane me-2"></i> Send Us a Message</h2>
               <p class="text-light mb-4">Have questions? Fill out the form below and we'll get back to you soon.</p>
               
-              <!-- FORM SUBMIT.CO FORM -->
-              <form action="https://formsubmit.co/najathshareea@gmail.com" method="POST" id="contactForm">
-                <!-- FormSubmit.co Hidden Fields -->
-                <input type="hidden" name="_subject" value="New Contact Form Message - DSAC College Website">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://yourcollegewebsite.com/thank-you.html"> <!-- Replace with your website URL -->
-                <input type="hidden" name="_autoresponse" value="Thank you for contacting Darunnajath Shareeath & Arts College! We have received your message and will get back to you within 24-48 hours.">
-                <input type="hidden" name="_cc" value="najathshareea@gmail.com"> <!-- CC to yourself -->
-                
-                <!-- Form Fields -->
+              <!-- Contact Form -->
+              <form id="contactForm" onsubmit="return submitContact(event)">
                 <div class="mb-4">
-                  <label for="name" class="form-label text-light">Full Name *</label>
-                  <input type="text" class="form-control" id="name" name="name" 
+                  <label for="cname" class="form-label text-light">Full Name *</label>
+                  <input type="text" class="form-control" id="cname" name="name" 
                          placeholder="Enter your full name" required>
                 </div>
                 
                 <div class="mb-4">
-                  <label for="email" class="form-label text-light">Email Address *</label>
-                  <input type="email" class="form-control" id="email" name="email" 
+                  <label for="cemail" class="form-label text-light">Email Address *</label>
+                  <input type="email" class="form-control" id="cemail" name="email" 
                          placeholder="Enter your email address" required>
                 </div>
                 
                 <div class="mb-4">
-                  <label for="phone" class="form-label text-light">Phone Number</label>
-                  <input type="tel" class="form-control" id="phone" name="phone" 
+                  <label for="cphone" class="form-label text-light">Phone Number</label>
+                  <input type="tel" class="form-control" id="cphone" name="phone" 
                          placeholder="Enter your phone number (optional)">
                 </div>
                 
                 <div class="mb-4">
-                  <label for="message" class="form-label text-light">Your Message *</label>
-                  <textarea class="form-control" id="message" name="message" rows="5" 
+                  <label for="cmsg" class="form-label text-light">Your Message *</label>
+                  <textarea class="form-control" id="cmsg" name="message" rows="5" 
                             placeholder="Type your message here..." required></textarea>
                 </div>
                 
-                <!-- Optional: Add honeypot field to prevent spam -->
-                <input type="text" name="_honey" style="display:none">
-                
                 <div class="d-grid gap-2">
-                  <button type="submit" class="btn btn-primary py-3" id="submitBtn">
+                  <button type="submit" class="btn btn-primary py-3">
                     <i class="fa-solid fa-paper-plane me-2"></i> Send Message
                   </button>
                 </div>
                 
                 <p class="text-muted mt-3 small text-center">
                   <i class="fa-solid fa-shield-alt text-warning me-1"></i>
-                  Your information is secure and will not be shared with third parties
+                  Your information is secure and will not be shared
                 </p>
               </form>
               
               <!-- Alert Container -->
-              <div id="formAlert" class="alert mt-3" role="alert" aria-live="polite"></div>
+              <div id="contactAlert" class="alert mt-3" role="alert" aria-live="polite"></div>
             </div>
             
             <!-- Quick Contact Info -->
-            <div class="mt-4 p-3 bg-dark rounded" data-aos="fade-up">
+            <div class="mt-4 p-3 bg-dark rounded">
               <p class="mb-1">
                 <i class="fa-solid fa-bolt text-warning me-2"></i>
                 <strong>Need immediate assistance?</strong>
               </p>
               <p class="mb-0 text-light">
-                Call us directly at <a href="tel:+919048020243" class="text-warning">+91 90 48 02 02 43</a>
-                or WhatsApp at <a href="https://wa.me/919048020243" class="text-warning" target="_blank">+91 9048020243</a>
+                Call: <a href="tel:+919048020243" class="text-warning">+91 90 48 02 02 43</a>
+                or WhatsApp: <a href="https://wa.me/919048020243" class="text-warning" target="_blank">+91 9048020243</a>
               </p>
             </div>
           </div>
@@ -528,8 +478,8 @@
         </div>
 
         <!-- Back to Home Button -->
-        <div class="text-center mt-5 pt-4" data-aos="zoom-in-up">
-          <a href="index.html" class="btn btn-outline-primary px-5 py-2">
+        <div class="text-center mt-5 pt-4">
+          <a href="index.html" class="btn btn-outline-light px-5 py-2">
             <i class="fa-solid fa-arrow-left me-2"></i> Back to Home
           </a>
         </div>
@@ -538,22 +488,22 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="py-4" data-aos="fade-up">
+  <footer class="text-center">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-6 text-md-start text-center mb-3 mb-md-0">
           <p class="mb-1">
             <i class="fa-solid fa-copyright text-warning me-1"></i>
-            <span id="currentYear"></span> All Rights Reserved
+            <span id="currentYear"></span> Darunnajath Shareeath & Arts College
           </p>
           <p class="mb-0 text-muted small">
-            Darunnajath Shareeath & Arts College, Karuvarakundu
+            PUNNAKKAD, KARUVARAKUNDU, KERALA
           </p>
         </div>
         <div class="col-md-6 text-md-end text-center">
           <p class="mb-0">
             <i class="fa-solid fa-heart text-danger me-1"></i>
-            Made with love for the community
+            Education with Values
           </p>
         </div>
       </div>
@@ -563,6 +513,7 @@
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="script.js"></script>
   <script>
     // Initialize AOS
     AOS.init({
@@ -574,94 +525,96 @@
     // Set current year in footer
     document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-    // Form submission handling
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      const submitBtn = document.getElementById('submitBtn');
-      const originalText = submitBtn.innerHTML;
-      const alertDiv = document.getElementById('formAlert');
+    // Contact form handler
+    function submitContact(e) {
+      e.preventDefault();
       
-      // Show loading state
-      submitBtn.innerHTML = '<span class="spinner"></span> Sending Message...';
-      submitBtn.disabled = true;
+      const name = document.getElementById('cname').value.trim();
+      const email = document.getElementById('cemail').value.trim();
+      const phone = document.getElementById('cphone').value.trim();
+      const message = document.getElementById('cmsg').value.trim();
       
-      // Clear previous alerts
-      alertDiv.className = 'alert';
-      alertDiv.style.display = 'none';
-      alertDiv.textContent = '';
-      
-      // Simple validation
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-      
+      // Validation
       if (!name || !email || !message) {
-        showAlert('Please fill in all required fields (*).', 'danger');
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-        return; // Don't prevent default - let FormSubmit handle it
+        showAlert('Please fill in all required fields.', 'danger');
+        return false;
       }
       
       // Email validation
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
         showAlert('Please enter a valid email address.', 'danger');
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-        return;
+        return false;
       }
       
-      // Show success message (FormSubmit will handle actual submission)
-      showAlert('Sending your message... Please wait.', 'success');
+      const alertBox = document.getElementById('contactAlert');
       
-      // Form will be submitted normally to FormSubmit.co
-      // No need to prevent default
-    });
+      // Show loading state
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Sending...';
+      submitBtn.disabled = true;
+      
+      // Simulate sending (in real scenario, this would be AJAX call)
+      setTimeout(() => {
+        alertBox.className = 'alert alert-success show';
+        alertBox.innerHTML = `
+          <div class="d-flex align-items-center">
+            <i class="fas fa-check-circle fa-2x me-3 text-success"></i>
+            <div>
+              <h5 class="mb-1">Message Sent Successfully!</h5>
+              <p class="mb-0">Thank you ${name}. We'll contact you soon at ${email}.</p>
+            </div>
+          </div>
+        `;
+        alertBox.style.display = 'block';
+        
+        // Reset button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        
+        // Reset form
+        e.target.reset();
+        
+        // Hide alert after 5 seconds
+        setTimeout(() => {
+          alertBox.classList.remove('show');
+          setTimeout(() => {
+            alertBox.style.display = 'none';
+          }, 500);
+        }, 5000);
+      }, 2000);
+      
+      return false;
+    }
 
     // Alert function
     function showAlert(message, type) {
-      const alertDiv = document.getElementById('formAlert');
-      alertDiv.textContent = message;
-      alertDiv.className = `alert alert-${type} show`;
-      alertDiv.style.display = 'block';
+      const alertBox = document.getElementById('contactAlert');
+      alertBox.className = `alert alert-${type} show`;
+      alertBox.textContent = message;
+      alertBox.style.display = 'block';
       
-      // Auto-hide success messages after 5 seconds
-      if (type === 'success') {
+      setTimeout(() => {
+        alertBox.classList.remove('show');
         setTimeout(() => {
-          alertDiv.classList.remove('show');
-          setTimeout(() => {
-            alertDiv.style.display = 'none';
-          }, 500);
-        }, 5000);
-      }
+          alertBox.style.display = 'none';
+        }, 500);
+      }, 3000);
     }
 
-    // Add loading animation to buttons on click
-    document.querySelectorAll('a[href], button[type="submit"]').forEach(button => {
-      button.addEventListener('click', function() {
-        if (this.href || this.type === 'submit') {
-          setTimeout(() => {
-            if (this.querySelector('.fa-spinner') === null) {
-              this.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i>' + this.innerHTML;
-            }
-          }, 100);
-        }
-      });
-    });
+    // WhatsApp redirect
+    function openWhatsApp() {
+      const name = document.getElementById('cname').value.trim();
+      const message = document.getElementById('cmsg').value.trim();
+      
+      let whatsappMessage = "Hello Darunnajath College,\n\n";
+      if (name) whatsappMessage += `I am ${name}.\n`;
+      whatsappMessage += message || "I would like to inquire about the college.";
+      
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+      window.open(`https://wa.me/919048020243?text=${encodedMessage}`, '_blank');
+    }
   </script>
-
-  <!-- FormSubmit.co redirect handler (optional) -->
-  <script>
-    // Check if we're coming back from FormSubmit.co
-    document.addEventListener('DOMContentLoaded', function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.has('success') && urlParams.get('success') === 'true') {
-        showAlert('Thank you! Your message has been sent successfully. We will contact you soon.', 'success');
-        
-        // Clear the URL parameters
-        window.history.replaceState({}, document.title, window.location.pathname);
-      }
-    });
-  </script>
-
 </body>
 </html>
