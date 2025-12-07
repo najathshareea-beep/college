@@ -230,14 +230,7 @@
       border-radius: 8px;
       padding: 15px;
       margin-top: 15px;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-      display: none;
-    }
-
-    .alert.show {
-      opacity: 1;
-      display: block;
+      animation: fadeIn 0.5s ease;
     }
 
     .alert-success {
@@ -246,10 +239,21 @@
       border: 1px solid #75b798;
     }
 
-    .alert-warning {
-      background: rgba(255, 193, 7, 0.15);
-      color: #ffd65c;
-      border: 1px solid #ffd65c;
+    .alert-danger {
+      background: rgba(220, 53, 69, 0.15);
+      color: #e6a2a9;
+      border: 1px solid #e6a2a9;
+    }
+
+    .alert-info {
+      background: rgba(13, 202, 240, 0.15);
+      color: #8dd3e6;
+      border: 1px solid #8dd3e6;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* Loading spinner */
@@ -420,34 +424,45 @@
               <h2 class="text-warning mb-4"><i class="fa-solid fa-paper-plane me-2"></i> Send Us a Message</h2>
               <p class="text-light mb-4">Have questions? Fill out the form below and we'll get back to you soon.</p>
               
-              <!-- Contact Form -->
-              <form id="contactForm" onsubmit="return submitContact(event)">
+              <!-- FORM SUBMIT.CO FORM - WORKING VERSION -->
+              <form action="https://formsubmit.co/najathshareea@gmail.com" method="POST" id="contactForm">
+                <!-- FormSubmit.co Hidden Fields -->
+                <input type="hidden" name="_subject" value="New Message from DSAC College Website">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html"> <!-- Change to your website -->
+                <input type="hidden" name="_autoresponse" value="Thank you for contacting Darunnajath Shareeath & Arts College! We have received your message and will get back to you within 24-48 hours.">
+                
+                <!-- Honeypot spam prevention -->
+                <input type="text" name="_honey" style="display:none">
+                
+                <!-- Form Fields with correct names -->
                 <div class="mb-4">
-                  <label for="cname" class="form-label text-light">Full Name *</label>
-                  <input type="text" class="form-control" id="cname" name="name" 
+                  <label class="form-label text-light">Full Name *</label>
+                  <input type="text" class="form-control" name="name" 
                          placeholder="Enter your full name" required>
                 </div>
                 
                 <div class="mb-4">
-                  <label for="cemail" class="form-label text-light">Email Address *</label>
-                  <input type="email" class="form-control" id="cemail" name="email" 
+                  <label class="form-label text-light">Email Address *</label>
+                  <input type="email" class="form-control" name="email" 
                          placeholder="Enter your email address" required>
                 </div>
                 
                 <div class="mb-4">
-                  <label for="cphone" class="form-label text-light">Phone Number</label>
-                  <input type="tel" class="form-control" id="cphone" name="phone" 
+                  <label class="form-label text-light">Phone Number</label>
+                  <input type="tel" class="form-control" name="phone" 
                          placeholder="Enter your phone number (optional)">
                 </div>
                 
                 <div class="mb-4">
-                  <label for="cmsg" class="form-label text-light">Your Message *</label>
-                  <textarea class="form-control" id="cmsg" name="message" rows="5" 
+                  <label class="form-label text-light">Your Message *</label>
+                  <textarea class="form-control" name="message" rows="5" 
                             placeholder="Type your message here..." required></textarea>
                 </div>
                 
                 <div class="d-grid gap-2">
-                  <button type="submit" class="btn btn-primary py-3">
+                  <button type="submit" class="btn btn-primary py-3" id="submitBtn">
                     <i class="fa-solid fa-paper-plane me-2"></i> Send Message
                   </button>
                 </div>
@@ -459,7 +474,15 @@
               </form>
               
               <!-- Alert Container -->
-              <div id="contactAlert" class="alert mt-3" role="alert" aria-live="polite"></div>
+              <div id="formAlert" class="alert mt-3 d-none" role="alert" aria-live="polite"></div>
+              
+              <!-- WhatsApp Alternative -->
+              <div class="mt-3 text-center">
+                <p class="text-light small mb-2">Prefer WhatsApp?</p>
+                <a href="https://wa.me/919048020243" class="btn btn-success btn-sm" target="_blank">
+                  <i class="fa-brands fa-whatsapp me-1"></i> Chat on WhatsApp
+                </a>
+              </div>
             </div>
             
             <!-- Quick Contact Info -->
@@ -513,7 +536,6 @@
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script src="script.js"></script>
   <script>
     // Initialize AOS
     AOS.init({
@@ -525,88 +547,77 @@
     // Set current year in footer
     document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-    // Contact form handler
-    function submitContact(e) {
-      e.preventDefault();
+    // Form submission handling
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      // Show loading state
+      const submitBtn = document.getElementById('submitBtn');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Sending...';
+      submitBtn.disabled = true;
       
-      const name = document.getElementById('cname').value.trim();
-      const email = document.getElementById('cemail').value.trim();
-      const phone = document.getElementById('cphone').value.trim();
-      const message = document.getElementById('cmsg').value.trim();
+      // Clear previous alerts
+      const alertDiv = document.getElementById('formAlert');
+      alertDiv.className = 'alert d-none';
+      alertDiv.textContent = '';
+      
+      // Get form values for validation
+      const formData = new FormData(this);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const message = formData.get('message');
       
       // Validation
       if (!name || !email || !message) {
-        showAlert('Please fill in all required fields.', 'danger');
-        return false;
+        e.preventDefault(); // Prevent form submission
+        alertDiv.className = 'alert alert-danger';
+        alertDiv.textContent = 'Please fill in all required fields (*).';
+        alertDiv.classList.remove('d-none');
+        
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        return;
       }
       
       // Email validation
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
-        showAlert('Please enter a valid email address.', 'danger');
-        return false;
-      }
-      
-      const alertBox = document.getElementById('contactAlert');
-      
-      // Show loading state
-      const submitBtn = e.target.querySelector('button[type="submit"]');
-      const originalText = submitBtn.innerHTML;
-      submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Sending...';
-      submitBtn.disabled = true;
-      
-      // Simulate sending (in real scenario, this would be AJAX call)
-      setTimeout(() => {
-        alertBox.className = 'alert alert-success show';
-        alertBox.innerHTML = `
-          <div class="d-flex align-items-center">
-            <i class="fas fa-check-circle fa-2x me-3 text-success"></i>
-            <div>
-              <h5 class="mb-1">Message Sent Successfully!</h5>
-              <p class="mb-0">Thank you ${name}. We'll contact you soon at ${email}.</p>
-            </div>
-          </div>
-        `;
-        alertBox.style.display = 'block';
+        e.preventDefault(); // Prevent form submission
+        alertDiv.className = 'alert alert-danger';
+        alertDiv.textContent = 'Please enter a valid email address.';
+        alertDiv.classList.remove('d-none');
         
-        // Reset button
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
-        
-        // Reset form
-        e.target.reset();
-        
-        // Hide alert after 5 seconds
-        setTimeout(() => {
-          alertBox.classList.remove('show');
-          setTimeout(() => {
-            alertBox.style.display = 'none';
-          }, 500);
-        }, 5000);
-      }, 2000);
+        return;
+      }
       
-      return false;
-    }
-
-    // Alert function
-    function showAlert(message, type) {
-      const alertBox = document.getElementById('contactAlert');
-      alertBox.className = `alert alert-${type} show`;
-      alertBox.textContent = message;
-      alertBox.style.display = 'block';
+      // Show success message (form will submit to FormSubmit.co)
+      alertDiv.className = 'alert alert-info';
+      alertDiv.textContent = 'Sending your message... Please wait.';
+      alertDiv.classList.remove('d-none');
       
-      setTimeout(() => {
-        alertBox.classList.remove('show');
-        setTimeout(() => {
-          alertBox.style.display = 'none';
-        }, 500);
-      }, 3000);
-    }
+      // Form will submit to FormSubmit.co
+      // No need to prevent default
+    });
 
-    // WhatsApp redirect
-    function openWhatsApp() {
-      const name = document.getElementById('cname').value.trim();
-      const message = document.getElementById('cmsg').value.trim();
+    // Handle form submission response (optional)
+    window.addEventListener('load', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('success') && urlParams.get('success') === 'true') {
+        const alertDiv = document.getElementById('formAlert');
+        alertDiv.className = 'alert alert-success';
+        alertDiv.textContent = 'Message sent successfully! We will contact you soon.';
+        alertDiv.classList.remove('d-none');
+        
+        // Clear URL parameters
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    });
+
+    // Quick WhatsApp function
+    function sendWhatsApp() {
+      const name = document.querySelector('input[name="name"]').value;
+      const message = document.querySelector('textarea[name="message"]').value;
       
       let whatsappMessage = "Hello Darunnajath College,\n\n";
       if (name) whatsappMessage += `I am ${name}.\n`;
