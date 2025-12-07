@@ -1,51 +1,64 @@
-// script.js – Complete
-AOS.init({ duration: 1000, once: true });
+// Year auto-update
+document.getElementById("year").textContent = new Date().getFullYear();
 
-// Year Update
-document.querySelectorAll('#currentYear, #year').forEach(el => {
-  if (el) el.textContent = new Date().getFullYear();
-});
+// Admission Form
+function submitAdmission(e){
+  e.preventDefault();
+  const alertBox = document.getElementById('admissionAlert');
+  alertBox.className = 'alert alert-success';
+  alertBox.textContent = 'Application submitted successfully!';
+  alertBox.style.display = 'block';
+  e.target.reset();
+  setTimeout(()=> alertBox.style.display='none', 4000);
+  return false;
+}
 
-// Navbar Scroll
-window.addEventListener('scroll', () => {
-  document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
-});
+// Contact Form
+function submitContact(e){
+  e.preventDefault();
+  const alertBox = document.getElementById('contactAlert');
+  alertBox.className = 'alert alert-success';
+  alertBox.textContent = 'Message sent successfully!';
+  alertBox.style.display = 'block';
+  e.target.reset();
+  setTimeout(()=> alertBox.style.display='none', 4000);
+  return false;
+}
 
-// Smooth Scroll
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) window.scrollTo({ top: target.offsetTop - 100, behavior: 'smooth' });
-  });
-});
-
-// Ripple Effect
-document.querySelectorAll('.btn, .social-icon').forEach(btn => {
-  btn.addEventListener('click', function(e) {
-    let ripple = document.createElement('span');
-    let rect = this.getBoundingClientRect();
-    let size = Math.max(rect.width, rect.height);
-    let x = e.clientX - rect.left - size/2;
-    let y = e.clientY - rect.top - size/2;
-    ripple.style.cssText = `position:absolute;border-radius:50%;background:rgba(255,255,255,0.6);width:${size}px;height:${size}px;top:${y}px;left:${x}px;transform:scale(0);animation:ripple 0.6s linear;`;
-    this.appendChild(ripple);
-    setTimeout(() => ripple.remove(), 600);
-  });
-});
-const style = document.createElement('style');
-style.textContent = `@keyframes ripple { to { transform: scale(4); opacity: 0; } }`;
-document.head.appendChild(style);
-
-// Login/Register Toggle (for login.html)
-const container = document.querySelector('.container');
-if (container) {
-  document.querySelector('.register-btn')?.addEventListener('click', () => container.classList.add('active'));
-  document.querySelector('.login-btn')?.addEventListener('click', () => container.classList.remove('active'));
+// Result Checker
+function showResult(e){
+  e.preventDefault();
+  const roll = document.getElementById('roll').value.trim();
+  const resultBox = document.getElementById('resultOutput');
+  
+  if(roll === '12345'){
+    resultBox.className = 'alert alert-success';
+    resultBox.textContent = '🎉 Congratulations! You passed with distinction.';
+  } else {
+    resultBox.className = 'alert alert-warning';
+    resultBox.textContent = 'No result found for Roll Number: ' + roll;
+  }
+  resultBox.style.display = 'block';
+  setTimeout(()=> resultBox.style.display='none', 5000);
+  e.target.reset();
+  return false;
 }
 
 // Gallery Modal
-function openModal(src) {
-  document.getElementById('modalImg').src = src;
-  new bootstrap.Modal(document.getElementById('imgModal')).show();
+function openModal(src){
+  const modalImg = document.getElementById('modalImg');
+  modalImg.src = src;
+  const modal = new bootstrap.Modal(document.getElementById('imgModal'));
+  modal.show();
 }
+const container = document.querySelector('.container');
+const registerBtn = document.querySelector('.register-btn');
+const loginBtn = document.querySelector('.login-btn');
+
+registerBtn.addEventListener('click', () => {
+    container.classList.add('active');
+})
+
+loginBtn.addEventListener('click', () => {
+    container.classList.remove('active');
+})
