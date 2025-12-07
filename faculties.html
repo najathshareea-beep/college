@@ -92,13 +92,15 @@
       background: rgba(255,255,255,0.05);
       border-radius: 15px;
       padding: 25px;
-      cursor: pointer;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       border: 2px solid transparent;
       text-align: center;
       position: relative;
       overflow: hidden;
       backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      min-height: 380px;
     }
 
     .teacher-card::before {
@@ -154,6 +156,7 @@
       color: var(--accent);
       margin-bottom: 5px;
       font-size: 1.3rem;
+      line-height: 1.3;
     }
 
     .teacher-card .designation {
@@ -170,7 +173,7 @@
       border-radius: 20px;
       display: inline-block;
       font-weight: 500;
-      margin-top: 10px;
+      margin: 10px 0 15px 0;
       transition: all 0.3s ease;
     }
 
@@ -179,97 +182,31 @@
       transform: scale(1.05);
     }
 
-    /* Profile Popup */
-    .profile-popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 90%;
-      max-width: 450px;
-      background: white;
-      color: #333;
-      border-radius: 20px;
-      padding: 30px;
-      z-index: 1001;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
-      animation: popupShow 0.4s ease-out;
-    }
-
-    @keyframes popupShow {
-      from { opacity: 0; transform: translate(-50%, -45%) scale(0.9); }
-      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    }
-
-    .profile-popup img {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--accent);
-      display: block;
-      margin: 0 auto 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-
-    .profile-popup h3 {
-      color: var(--secondary);
-      text-align: center;
-      margin-bottom: 5px;
-      font-weight: 700;
-    }
-
-    .profile-popup .popup-designation {
-      color: var(--accent);
-      text-align: center;
-      font-weight: 600;
-      margin-bottom: 15px;
-      display: block;
-      font-size: 1.1rem;
-    }
-
-    .profile-popup .popup-phone {
-      color: var(--secondary);
-      text-align: center;
-      font-weight: 600;
-      margin-bottom: 20px;
-      display: block;
-      font-size: 1.1rem;
-    }
-
-    .profile-popup .bio {
-      color: #555;
-      text-align: center;
-      line-height: 1.6;
-      margin-bottom: 25px;
-      font-size: 0.95rem;
-      padding: 0 10px;
-    }
-
-    /* Social Icons */
-    .social-icons {
+    /* Social Icons - Front of card */
+    .social-icons-front {
       display: flex;
       justify-content: center;
-      gap: 12px;
-      margin-top: 20px;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
 
-    .social-icons a {
-      width: 45px;
-      height: 45px;
+    .social-icons-front a {
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
       text-decoration: none;
     }
 
-    .social-icons a::before {
+    .social-icons-front a::before {
       content: '';
       position: absolute;
       top: 0;
@@ -280,11 +217,11 @@
       transition: 0.5s;
     }
 
-    .social-icons a:hover::before {
+    .social-icons-front a:hover::before {
       left: 100%;
     }
 
-    .social-icons a:hover {
+    .social-icons-front a:hover {
       transform: translateY(-5px) scale(1.15);
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
@@ -296,47 +233,26 @@
     .telegram { background: #0088cc; color: white; }
     .email { background: #ff9800; color: white; }
 
-    /* Close Button */
-    .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: #666;
-      transition: 0.3s;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
+    /* Contact Info Section */
+    .contact-info {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .contact-info a {
+      color: #4dabf7;
+      text-decoration: none;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      line-height: 1;
+      gap: 5px;
+      margin: 0 5px;
+      transition: all 0.3s ease;
     }
 
-    .close-btn:hover {
-      background: #f1f1f1;
-      color: #000;
-      transform: rotate(90deg);
-    }
-
-    /* Overlay */
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(5px);
-      z-index: 1000;
-      animation: fadeIn 0.3s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .contact-info a:hover {
+      color: var(--accent);
+      transform: translateY(-2px);
     }
 
     /* Back Button */
@@ -391,14 +307,14 @@
         gap: 15px;
       }
       
-      .profile-popup {
-        width: 95%;
-        padding: 25px;
-      }
-      
       .search-box {
         margin: 15px auto 25px;
         max-width: 90%;
+      }
+      
+      .teacher-card {
+        min-height: 350px;
+        padding: 20px;
       }
     }
 
@@ -409,16 +325,13 @@
       
       .teacher-card {
         padding: 20px;
+        min-height: 320px;
       }
       
-      .profile-popup {
-        padding: 20px;
-      }
-      
-      .social-icons a {
-        width: 40px;
-        height: 40px;
-        font-size: 1.1rem;
+      .social-icons-front a {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
       }
     }
   </style>
@@ -463,20 +376,6 @@
     </div>
   </main>
 
-  <!-- PROFILE POPUP TEMPLATE -->
-  <div class="profile-popup" id="popupTemplate" style="display: none;">
-    <span class="close-btn">&times;</span>
-    <img src="" alt="Faculty Photo" class="popup-img">
-    <h3 class="popup-name"></h3>
-    <span class="popup-designation"></span>
-    <span class="popup-phone"></span>
-    <p class="bio"></p>
-    <div class="social-icons"></div>
-  </div>
-
-  <!-- OVERLAY -->
-  <div class="overlay"></div>
-
   <!-- FOOTER -->
   <footer>
     <div class="container">
@@ -488,7 +387,7 @@
   </footer>
 
   <script>
-    // Faculty Data
+    // Faculty Data (Removed bio field)
     const facultyData = [
       {
         id: 1,
@@ -496,7 +395,6 @@
         designation: "PRINCIPAL",
         phone: "9744247124",
         img: "https://i.ibb.co/S77QvZ07/Whats-App-Image-2025-10-25-at-8-38-50-AM.jpg",
-        bio: "Visionary leader committed to academic excellence and holistic student development.",
         social: {
           whatsapp: "https://wa.me/919744247124",
           email: "mailto:principal@darunnajath.edu",
@@ -510,7 +408,6 @@
         designation: "VICE PRINCIPAL",
         phone: "9495563866",
         img: "https://i.ibb.co/3mXsbSdg/Whats-App-Image-2025-10-25-at-8-37-28-AM.jpg",
-        bio: "Experienced administrator with a passion for academic excellence and student development.",
         social: {
           whatsapp: "https://wa.me/919495563866",
           email: "mailto:viceprincipal@darunnajath.edu"
@@ -522,7 +419,6 @@
         designation: "TEACHER",
         phone: "7994174910",
         img: "https://i.ibb.co/kWR6Z5B/AMEER.jpg",
-        bio: "Dedicated educator with expertise in Islamic studies and character building.",
         social: {
           whatsapp: "https://wa.me/917994174910"
         }
@@ -533,7 +429,6 @@
         designation: "TEACHER",
         phone: "9048020243",
         img: "https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png",
-        bio: "Innovative teacher focusing on modern teaching methodologies and student engagement.",
         social: {
           whatsapp: "https://wa.me/919048020243",
           email: "mailto:rafi@darunnajath.edu"
@@ -545,7 +440,6 @@
         designation: "TEACHER",
         phone: "9847488515",
         img: "https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png",
-        bio: "Expert in Arabic language and Islamic jurisprudence with years of teaching experience.",
         social: {
           whatsapp: "https://wa.me/919847488515"
         }
@@ -556,7 +450,6 @@
         designation: "TEACHER",
         phone: "9048445593",
         img: "https://i.ibb.co/S77QvZ07/Whats-App-Image-2025-10-25-at-8-38-50-AM.jpg",
-        bio: "Passionate about integrating technology in education and modern teaching techniques.",
         social: {
           whatsapp: "https://wa.me/919048445593",
           email: "mailto:suhail@darunnajath.edu"
@@ -568,7 +461,6 @@
         designation: "TEACHER",
         phone: "9746701124",
         img: "https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png",
-        bio: "Specializes in Quranic studies and moral education with a student-centered approach.",
         social: {
           whatsapp: "https://wa.me/919746701124"
         }
@@ -579,7 +471,6 @@
         designation: "TEACHER",
         phone: "9496480098",
         img: "https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png",
-        bio: "Focuses on academic excellence and holistic development of students.",
         social: {
           whatsapp: "https://wa.me/919496480098"
         }
@@ -590,7 +481,6 @@
         designation: "TEACHER",
         phone: "9495138882",
         img: "https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png",
-        bio: "Experienced educator with a strong background in Islamic sciences.",
         social: {
           whatsapp: "https://wa.me/919495138882"
         }
@@ -601,7 +491,6 @@
         designation: "TEACHER",
         phone: "8589861025",
         img: "https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png",
-        bio: "Young and energetic teacher bringing fresh perspectives to traditional education.",
         social: {
           whatsapp: "https://wa.me/918589861025"
         }
@@ -612,7 +501,6 @@
         designation: "TEACHER",
         phone: "8113917591",
         img: "https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png",
-        bio: "Specializes in Arabic literature and linguistic studies.",
         social: {
           whatsapp: "https://wa.me/918113917591"
         }
@@ -623,7 +511,6 @@
         designation: "TEACHER",
         phone: "8547591123",
         img: "https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png",
-        bio: "Expert in Hadith studies and Islamic history.",
         social: {
           whatsapp: "https://wa.me/918547591123"
         }
@@ -634,7 +521,6 @@
         designation: "TEACHER",
         phone: "9496365330",
         img: "https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png",
-        bio: "Focuses on character building and moral education alongside academics.",
         social: {
           whatsapp: "https://wa.me/919496365330"
         }
@@ -645,9 +531,8 @@
     const teacherGrid = document.getElementById('teacherGrid');
     const searchInput = document.getElementById('searchInput');
     const noResults = document.getElementById('noResults');
-    const overlay = document.querySelector('.overlay');
 
-    // Render teacher cards
+    // Render teacher cards with social media links
     function renderTeachers(teachers = facultyData) {
       teacherGrid.innerHTML = '';
       noResults.style.display = 'none';
@@ -662,119 +547,84 @@
         card.className = 'teacher-card';
         card.dataset.id = teacher.id;
         
+        // Generate social icons HTML
+        let socialIconsHTML = '';
+        
+        if (teacher.social.whatsapp) {
+          socialIconsHTML += `
+            <a href="${teacher.social.whatsapp}" class="whatsapp" target="_blank">
+              <i class="bi bi-whatsapp"></i>
+            </a>
+          `;
+        }
+        
+        if (teacher.social.email) {
+          socialIconsHTML += `
+            <a href="${teacher.social.email}" class="email" target="_blank">
+              <i class="bi bi-envelope-fill"></i>
+            </a>
+          `;
+        }
+        
+        if (teacher.social.instagram) {
+          socialIconsHTML += `
+            <a href="${teacher.social.instagram}" class="instagram" target="_blank">
+              <i class="bi bi-instagram"></i>
+            </a>
+          `;
+        }
+        
+        if (teacher.social.facebook) {
+          socialIconsHTML += `
+            <a href="${teacher.social.facebook}" class="facebook" target="_blank">
+              <i class="bi bi-facebook"></i>
+            </a>
+          `;
+        }
+        
+        if (teacher.social.x) {
+          socialIconsHTML += `
+            <a href="${teacher.social.x}" class="x" target="_blank">
+              <i class="bi bi-twitter-x"></i>
+            </a>
+          `;
+        }
+        
+        if (teacher.social.telegram) {
+          socialIconsHTML += `
+            <a href="${teacher.social.telegram}" class="telegram" target="_blank">
+              <i class="bi bi-telegram"></i>
+            </a>
+          `;
+        }
+        
         card.innerHTML = `
           <div class="serial">${teacher.id}</div>
           <img src="${teacher.img}" alt="${teacher.name}" class="profile-img" onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
           <h4>${teacher.name}</h4>
           <div class="designation">${teacher.designation}</div>
           <div class="phone">📞 ${teacher.phone}</div>
-          <small style="color: rgba(255,255,255,0.6); display: block; margin-top: 15px;">
-            <i class="bi bi-hand-index"></i> Click to view profile
-          </small>
+          
+          ${socialIconsHTML ? `
+            <div class="social-icons-front">
+              ${socialIconsHTML}
+            </div>
+          ` : ''}
+          
+          <div class="contact-info">
+            <a href="tel:${teacher.phone}" class="phone-link">
+              <i class="bi bi-telephone"></i> Call
+            </a>
+            ${teacher.social.whatsapp ? `
+              <a href="${teacher.social.whatsapp}" class="whatsapp-link" target="_blank">
+                <i class="bi bi-whatsapp"></i> WhatsApp
+              </a>
+            ` : ''}
+          </div>
         `;
         
-        card.addEventListener('click', () => showTeacherPopup(teacher));
         teacherGrid.appendChild(card);
       });
-    }
-
-    // Show teacher popup - FIXED: Removed target="_blank"
-    function showTeacherPopup(teacher) {
-      const template = document.getElementById('popupTemplate');
-      const popup = template.cloneNode(true);
-      popup.id = `popup-${teacher.id}`;
-      popup.style.display = 'block';
-      
-      // Fill popup data
-      popup.querySelector('.popup-img').src = teacher.img;
-      popup.querySelector('.popup-img').onerror = function() {
-        this.src = 'https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png';
-      };
-      popup.querySelector('.popup-name').textContent = teacher.name;
-      popup.querySelector('.popup-designation').textContent = teacher.designation;
-      popup.querySelector('.popup-phone').textContent = `📞 ${teacher.phone}`;
-      popup.querySelector('.bio').textContent = teacher.bio;
-      
-      // Add social icons - NO target="_blank"
-      const socialIcons = popup.querySelector('.social-icons');
-      socialIcons.innerHTML = '';
-      
-      if (teacher.social.whatsapp) {
-        socialIcons.innerHTML += `
-          <a href="${teacher.social.whatsapp}" class="whatsapp">
-            <i class="bi bi-whatsapp"></i>
-          </a>
-        `;
-      }
-      
-      if (teacher.social.email) {
-        socialIcons.innerHTML += `
-          <a href="${teacher.social.email}" class="email">
-            <i class="bi bi-envelope-fill"></i>
-          </a>
-        `;
-      }
-      
-      if (teacher.social.instagram) {
-        socialIcons.innerHTML += `
-          <a href="${teacher.social.instagram}" class="instagram">
-            <i class="bi bi-instagram"></i>
-          </a>
-        `;
-      }
-      
-      if (teacher.social.facebook) {
-        socialIcons.innerHTML += `
-          <a href="${teacher.social.facebook}" class="facebook">
-            <i class="bi bi-facebook"></i>
-          </a>
-        `;
-      }
-      
-      // Add X/Twitter if available
-      if (teacher.social.x) {
-        socialIcons.innerHTML += `
-          <a href="${teacher.social.x}" class="x">
-            <i class="bi bi-twitter-x"></i>
-          </a>
-        `;
-      }
-      
-      // Add Telegram if available
-      if (teacher.social.telegram) {
-        socialIcons.innerHTML += `
-          <a href="${teacher.social.telegram}" class="telegram">
-            <i class="bi bi-telegram"></i>
-          </a>
-        `;
-      }
-      
-      // Add close button functionality
-      const closeBtn = popup.querySelector('.close-btn');
-      closeBtn.addEventListener('click', hidePopup);
-      
-      // Add to DOM
-      document.body.appendChild(popup);
-      overlay.style.display = 'block';
-      document.body.style.overflow = 'hidden';
-      
-      // Close on overlay click
-      overlay.onclick = hidePopup;
-      
-      // Close with Escape key
-      document.addEventListener('keydown', function closeOnEscape(e) {
-        if (e.key === 'Escape') hidePopup();
-        document.removeEventListener('keydown', closeOnEscape);
-      });
-    }
-
-    // Hide popup
-    function hidePopup() {
-      const popup = document.querySelector('.profile-popup[id^="popup-"]');
-      if (popup) popup.remove();
-      overlay.style.display = 'none';
-      document.body.style.overflow = 'auto';
-      overlay.onclick = null;
     }
 
     // Search functionality
@@ -805,14 +655,6 @@
         card.style.animationDelay = `${index * 0.1}s`;
       });
     });
-
-    // Prevent event bubbling
-    document.addEventListener('click', function(e) {
-      if (e.target.closest('.profile-popup')) {
-        e.stopPropagation();
-      }
-    });
   </script>
 </body>
 </html>
-
