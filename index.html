@@ -1,1342 +1,350 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Darunnajath Shareeath & Arts College | Karuvarakundu</title>
-
-  <!-- Bootstrap & Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- AOS Animation -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
-  <style>
-    /* ===== CORE STYLES ===== */
-    :root {
-      --primary: #0a194f;
-      --secondary: #122f7a;
-      --accent: #f3c13a;
-      --light: #f8f9fa;
-      --gold-glow: rgba(243, 193, 58, 0.5);
-      --blue-glow: rgba(10, 25, 79, 0.3);
-    }
-
-    body {
-      font-family: 'Poppins', 'Rubik', sans-serif;
-      background-color: var(--primary);
-      color: var(--light);
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-      font-size: 16px;
-    }
-
-    /* ===== NEW ANIMATIONS ===== */
-    @keyframes subtleMove {
-      0%, 100% { transform: translate(0, 0); }
-      25% { transform: translate(3px, 3px); }
-      50% { transform: translate(-3px, 5px); }
-      75% { transform: translate(5px, -3px); }
-    }
-
-    @keyframes shine {
-      0% { transform: translateX(-100%) translateY(-100%) rotate(30deg); }
-      100% { transform: translateX(100%) translateY(100%) rotate(30deg); }
-    }
-
-    @keyframes floatingShapes {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      25% { transform: translate(100px, 50px) rotate(90deg); }
-      50% { transform: translate(50px, 100px) rotate(180deg); }
-      75% { transform: translate(-50px, 50px) rotate(270deg); }
-      100% { transform: translate(0, 0) rotate(360deg); }
-    }
-
-    @keyframes wave {
-      0%, 100% { transform: translateX(0) translateY(0); }
-      25% { transform: translateX(-10px) translateY(5px); }
-      50% { transform: translateX(5px) translateY(-10px); }
-      75% { transform: translateX(10px) translateY(5px); }
-    }
-
-    @keyframes glowPulse {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.7; }
-    }
-
-    @keyframes orbit {
-      0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
-      100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
-    }
-
-    @keyframes pulseSoft {
-      0%, 100% { transform: scale(1); opacity: 0.3; }
-      50% { transform: scale(1.2); opacity: 0.6; }
-    }
-
-    @keyframes fadeIn {
-      from { 
-        opacity: 0; 
-        transform: translateY(30px) scale(0.95); 
-      }
-      to { 
-        opacity: 1; 
-        transform: translateY(0) scale(1); 
-      }
-    }
-
-    @keyframes borderFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes shimmer {
-      0% { background-position: -1000px 0; }
-      100% { background-position: 1000px 0; }
-    }
-
-    @keyframes scrollLeft {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { 
-        transform: scale(1); 
-        box-shadow: 0 0 20px rgba(243,193,58,0.4);
-      }
-      50% { 
-        transform: scale(1.05); 
-        box-shadow: 0 0 30px rgba(243,193,58,0.8);
-      }
-    }
-
-    @keyframes glow {
-      0%, 100% { 
-        opacity: 0.4; 
-        box-shadow: 0 0 20px var(--accent);
-      }
-      50% { 
-        opacity: 1; 
-        box-shadow: 0 0 40px var(--accent);
-      }
-    }
-
-    /* ===== NAVBAR ===== */
-    .navbar {
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 1rem 0;
-      animation: fadeIn 0.8s ease-out;
-    }
-
-    .navbar.scrolled {
-      background: rgba(10, 25, 79, 0.98);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-      padding: 0.5rem 0;
-    }
-
-    .navbar-brand img {
-      border-radius: 8px;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      filter: brightness(0) invert(1);
-      animation: pulseSoft 3s infinite;
-    }
-
-    .navbar-brand:hover img {
-      transform: scale(1.1) rotate(5deg);
-      filter: brightness(0) invert(1) drop-shadow(0 0 12px rgba(255,255,255,0.8));
-    }
-
-    .navbar-nav .nav-link {
-      color: #f8f9fa !important;
-      font-weight: 500;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      position: relative;
-      padding: 0.5rem 1rem !important;
-      margin: 0 0.2rem;
-      border-radius: 6px;
-    }
-
-    .navbar-nav .nav-link::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent), #ffda5c);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      transform: translateX(-50%);
-      border-radius: 2px;
-    }
-
-    .navbar-nav .nav-link:hover {
-      color: var(--accent) !important;
-      background: rgba(255, 255, 255, 0.1);
-      transform: translateY(-2px);
-    }
-
-    .navbar-nav .nav-link:hover::before {
-      width: 80%;
-      box-shadow: 0 0 15px var(--accent);
-    }
-
-    /* ===== BUTTONS ===== */
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), #ffda5c);
-      border: none;
-      color: var(--primary);
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 0.75rem 2rem;
-      box-shadow: 0 5px 15px rgba(243,193,58,0.4);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: 0.6s;
-      z-index: -1;
-    }
-
-    .btn-primary:hover {
-      background: linear-gradient(135deg, #ffda5c, var(--accent));
-      box-shadow: 0 8px 25px rgba(243,193,58,0.6);
-      transform: translateY(-3px) scale(1.05);
-      color: var(--primary);
-    }
-
-    .btn-primary:hover::before {
-      left: 100%;
-    }
-
-    .btn-primary:active {
-      transform: translateY(-1px) scale(1.02);
-    }
-
-    /* ===== HERO SECTION WITH BACKGROUND ANIMATIONS ===== */
-    .hero-premium {
-      animation: fadeIn 1s ease-out 0.3s both;
-      min-height: 85vh;
-      position: relative;
-      background: 
-        linear-gradient(135deg, #0a194f 0%, #122f7a 50%, #0a194f 100%);
-      background-size: 400% 400%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      padding: 4rem 0;
-      animation: borderFlow 15s ease infinite, fadeIn 1s ease-out 0.3s both;
-    }
-
-    .hero-premium::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 80%, rgba(243,193,58,0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(18,47,122,0.15) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(10,25,79,0.1) 0%, transparent 70%);
-      animation: wave 20s ease-in-out infinite;
-    }
-
-    .hero-premium::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        45deg,
-        transparent 30%,
-        rgba(243,193,58,0.05) 50%,
-        transparent 70%
-      );
-      animation: shine 8s infinite linear;
-    }
-
-    /* Floating elements in background */
-    .floating-elements {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .floating-element {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(243,193,58,0.1) 0%, transparent 70%);
-      animation: subtleMove 15s infinite ease-in-out;
-      box-shadow: 0 0 30px rgba(243,193,58,0.1);
-    }
-
-    .floating-element:nth-child(odd) {
-      background: radial-gradient(circle, rgba(18,47,122,0.1) 0%, transparent 70%);
-      animation-duration: 20s;
-    }
-
-    .floating-element:nth-child(1) {
-      top: 20%;
-      left: 10%;
-      width: 40px;
-      height: 40px;
-      animation-delay: 0s;
-    }
-
-    .floating-element:nth-child(2) {
-      top: 60%;
-      right: 15%;
-      width: 60px;
-      height: 60px;
-      animation-delay: 2s;
-    }
-
-    .floating-element:nth-child(3) {
-      bottom: 30%;
-      left: 20%;
-      width: 50px;
-      height: 50px;
-      animation-delay: 4s;
-    }
-
-    .floating-element:nth-child(4) {
-      top: 40%;
-      right: 25%;
-      width: 30px;
-      height: 30px;
-      animation-delay: 6s;
-    }
-
-    /* Hero content - NO MOVEMENT ANIMATION */
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-content h3 {
-      color: var(--accent);
-      font-size: 1.8rem;
-      font-weight: 600;
-      margin-bottom: 0.8rem;
-      text-shadow: 0 2px 10px rgba(243,193,58,0.3);
-      animation: fadeIn 1s ease-out 0.5s both;
-    }
-
-    .hero-content h2 {
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      background: linear-gradient(45deg, #ffffff, #f8f9fa, #e9ecef);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: fadeIn 1s ease-out 0.7s both;
-    }
-
-    .hero-content p {
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-      opacity: 0.9;
-      animation: fadeIn 1s ease-out 0.9s both;
-    }
-
-    /* ===== PARTICLE BACKGROUND ===== */
-    .particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      animation: floatingShapes 20s infinite ease-in-out;
-    }
-
-    .particle:nth-child(1) {
-      top: 10%;
-      left: 5%;
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, rgba(243,193,58,0.1) 0%, transparent 70%);
-      animation-delay: 0s;
-      animation-duration: 25s;
-    }
-
-    .particle:nth-child(2) {
-      top: 20%;
-      right: 10%;
-      width: 150px;
-      height: 150px;
-      background: radial-gradient(circle, rgba(18,47,122,0.1) 0%, transparent 70%);
-      animation-delay: 3s;
-      animation-duration: 30s;
-    }
-
-    .particle:nth-child(3) {
-      bottom: 30%;
-      left: 15%;
-      width: 180px;
-      height: 180px;
-      background: radial-gradient(circle, rgba(243,193,58,0.08) 0%, transparent 70%);
-      animation-delay: 6s;
-      animation-duration: 28s;
-    }
-
-    .particle:nth-child(4) {
-      bottom: 15%;
-      right: 20%;
-      width: 120px;
-      height: 120px;
-      background: radial-gradient(circle, rgba(18,47,122,0.12) 0%, transparent 70%);
-      animation-delay: 9s;
-      animation-duration: 32s;
-    }
-
-    .particle:nth-child(5) {
-      top: 50%;
-      left: 50%;
-      width: 100px;
-      height: 100px;
-      background: radial-gradient(circle, rgba(243,193,58,0.05) 0%, transparent 70%);
-      animation-delay: 12s;
-      animation-duration: 35s;
-    }
-
-    /* ===== FLASH MESSAGE ===== */
-    .flash-message {
-      background: linear-gradient(90deg, #dc3545, #c82333, #dc3545);
-      background-size: 200% 100%;
-      animation: shimmer 2s infinite linear;
-      color: white;
-      padding: 1rem 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .flash-message strong {
-      font-size: 1.1rem;
-      animation: pulse 1.5s infinite;
-    }
-
-    /* ===== NEWS TICKER ===== */
-    .news-ticker {
-      background: linear-gradient(90deg,#0f172a,#0b1220);
-      border: 2px solid;
-      border-image: linear-gradient(90deg, var(--accent), var(--secondary)) 1;
-      animation: borderFlow 3s linear infinite;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .news-ticker::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      animation: shimmer 2s infinite;
-    }
-
-    /* ===== CLASS TOPPERS ===== */
-    #class-toppers {
-      background: linear-gradient(145deg,#e8f1ff,#ffffff);
-      position: relative;
-      overflow: hidden;
-    }
-
-    #class-toppers::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
-      animation: borderFlow 3s linear infinite;
-    }
-
-    #class-toppers .card {
-      border: 2px solid transparent;
-      background: linear-gradient(white, white) padding-box,
-                  linear-gradient(135deg, var(--primary), var(--accent)) border-box;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-    }
-
-    #class-toppers .card:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 20px 40px rgba(10,25,79,0.15);
-    }
-
-    #class-toppers .badge {
-      animation: pulse 2s infinite;
-      font-size: 0.9rem;
-      padding: 0.5rem 1rem;
-    }
-
-    /* ===== ABOUT SECTION ===== */
-    #about {
-      background: linear-gradient(to bottom, #ffffff, #f8f9fa);
-      color: #333;
-      position: relative;
-    }
-
-    #about h2 {
-      color: var(--secondary);
-      position: relative;
-      display: inline-block;
-      padding-bottom: 15px;
-      font-size: 2.5rem;
-      font-weight: 700;
-    }
-
-    #about h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      border-radius: 2px;
-      animation: glow 2s infinite;
-    }
-
-    #about p {
-      font-size: 1.1rem;
-      line-height: 1.9;
-      margin-bottom: 1.5rem;
-    }
-
-    #about img {
-      border-radius: 20px;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-      animation: fadeIn 2s ease-out;
-    }
-
-    #about img:hover {
-      transform: scale(1.05) rotate(1deg);
-      box-shadow: 0 30px 60px rgba(10,25,79,0.3);
-    }
-
-    /* ===== NEWS SECTION ===== */
-    #news {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      position: relative;
-    }
-
-    #news::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.02)"/></svg>');
-      background-size: cover;
-    }
-
-    #news .card {
-      border: none;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      overflow: hidden;
-    }
-
-    #news .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-      transition: 0.6s;
-    }
-
-    #news .card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-      background: rgba(255,255,255,0.15);
-    }
-
-    #news .card:hover::before {
-      left: 100%;
-    }
-
-    #news .card-img-top {
-      height: 250px;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    #news .card:hover .card-img-top {
-      transform: scale(1.1);
-    }
-
-    /* ===== NOTIFICATIONS ===== */
-    #notifications {
-      background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
-      color: #333;
-      position: relative;
-    }
-
-    #notifications h3 {
-      color: var(--secondary);
-      font-size: 2rem;
-      font-weight: 700;
-      position: relative;
-      display: inline-block;
-    }
-
-    #notifications h3::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background: var(--accent);
-      animation: borderFlow 2s linear infinite;
-    }
-
-    #notifications .list-group-item {
-      border-left: 5px solid;
-      border-image: linear-gradient(to bottom, var(--accent), var(--secondary)) 1;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      margin-bottom: 10px;
-      border-radius: 10px !important;
-    }
-
-    #notifications .list-group-item:hover {
-      background-color: #fff5d6;
-      transform: translateX(10px) scale(1.02);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    /* ===== HIGHLIGHTS ===== */
-    #highlights .card {
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      border: none;
-      overflow: hidden;
-      position: relative;
-    }
-
-    #highlights .card::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
-      background-size: 200% 100%;
-      animation: borderFlow 3s linear infinite;
-    }
-
-    #highlights .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-    }
-
-    #highlights .card-title {
-      color: var(--secondary);
-      font-size: 1.3rem;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-
-    #highlights .card:hover .card-title {
-      color: var(--primary);
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background: linear-gradient(135deg, var(--secondary), var(--primary));
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-    }
-
-    footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      animation: shimmer 3s infinite;
-    }
-
-    .social-icon {
-      color: white;
-      width: 45px;
-      height: 45px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      text-decoration: none;
-      font-size: 1.2rem;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .social-icon::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: 0.5s;
-    }
-
-    .social-icon:hover {
-      transform: translateY(-5px) scale(1.1);
-      box-shadow: 0 10px 20px rgba(255,255,255,0.2);
-    }
-
-    .social-icon:hover::before {
-      left: 100%;
-    }
-
-    /* ===== WHATSAPP BUTTON ===== */
-    .whatsapp-float {
-      position: fixed;
-      width: 65px;
-      height: 65px;
-      bottom: 40px;
-      right: 40px;
-      background: linear-gradient(135deg, #25d366, #128c7e);
-      color: #fff;
-      border-radius: 50%;
-      text-align: center;
-      font-size: 30px;
-      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      animation: subtleMove 3s infinite ease-in-out;
-      text-decoration: none;
-    }
-
-    .whatsapp-float::before {
-      content: '';
-      position: absolute;
-      top: -5px;
-      left: -5px;
-      right: -5px;
-      bottom: -5px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #25d366, #128c7e);
-      z-index: -1;
-      opacity: 0.4;
-      animation: pulse 2s infinite;
-    }
-
-    .whatsapp-float:hover {
-      transform: scale(1.15) rotate(15deg);
-      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.7);
-    }
-
-    .whatsapp-float img {
-      width: 32px;
-      height: 32px;
-      filter: brightness(0) invert(1);
-      transition: transform 0.3s ease;
-    }
-
-    .whatsapp-float:hover img {
-      transform: scale(1.2);
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      body {
-        font-size: 15px;
-      }
-      
-      .hero-premium {
-        min-height: 70vh;
-        padding: 3rem 0;
-      }
-      
-      .hero-content h2 {
-        font-size: 1.8rem;
-      }
-      
-      .hero-content h3 {
-        font-size: 1.4rem;
-      }
-      
-      .hero-content p {
-        font-size: 0.9rem;
-      }
-      
-      .navbar-nav .nav-link {
-        padding: 0.75rem !important;
-        margin: 0.25rem 0;
-      }
-      
-      .btn-lg {
-        font-size: 0.95rem;
-        padding: 0.7rem 1.5rem;
-      }
-      
-      #about h2 {
-        font-size: 2rem;
-      }
-      
-      .whatsapp-float {
-        width: 55px;
-        height: 55px;
-        bottom: 25px;
-        right: 25px;
-      }
-    }
-
-    /* ===== CUSTOM SCROLLBAR ===== */
-    ::-webkit-scrollbar {
-      width: 12px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--primary);
-      border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, var(--accent), #ffda5c);
-      border-radius: 10px;
-      border: 3px solid var(--primary);
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(180deg, #ffda5c, var(--accent));
-      box-shadow: inset 0 0 10px rgba(255,255,255,0.2);
-    }
-
-    /* ===== SECTION HEADERS ===== */
-    .section-header {
-      position: relative;
-      margin-bottom: 3rem;
-    }
-
-    .section-header::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
-      border-radius: 2px;
-      animation: borderFlow 3s linear infinite;
-    }
-
-    /* ===== CARD HOVER EFFECTS ===== */
-    .hover-lift {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .hover-lift:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
-    }
-
-    /* ===== TEXT GRADIENT ===== */
-    .text-gradient {
-      background: linear-gradient(45deg, var(--accent), #ffda5c, var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      background-size: 200% auto;
-      animation: shimmer 3s linear infinite;
-    }
-  </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Darunnajath Shareeath & Arts College | Karuvarakundu</title>
+
+    <!-- Bootstrap & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <!-- Animated Background -->
 <div class="particles">
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
 </div>
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark shadow-sm sticky-top">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-      <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="DSAC Logo" width="50">
-      <div>
-        <div class="fw-bold text-uppercase text-white" style="font-size: 1.2rem;">DSAC</div>
-        <small class="text-light" style="font-size: 0.8rem;">Karuvarakundu</small>
-      </div>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="faculties.html">Faculty</a></li>
-        <li class="nav-item"><a class="nav-link" href="pta.html">PTA</a></li>
-        <li class="nav-item"><a class="nav-link" href="result.html">Result</a></li>
-        <li class="nav-item"><a class="nav-link" href="idcard.html">ID Card</a></li>
-        <li class="nav-item"><a class="nav-link" href="https://jamianooriya.in/">Jamia</a></li>
-        <li class="nav-item"><a class="nav-link" href="downloads.html">Downloads</a></li>
-        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-        <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-        <li class="nav-item"><a class="nav-link" href="library.html">Library</a></li>
-        <li class="nav-item"><a class="nav-link active" href="alumni.html">Alumni</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-      </ul>
-      <a href="student-zone.html" class="btn btn-primary ms-lg-3">Student Zone</a>
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+            <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="DSAC Logo" width="50">
+            <div>
+                <div class="fw-bold text-uppercase text-white" style="font-size: 1.2rem;">DSAC</div>
+                <small class="text-light" style="font-size: 0.8rem;">Karuvarakundu</small>
+            </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="faculties.html">Faculty</a></li>
+                <li class="nav-item"><a class="nav-link" href="pta.html">PTA</a></li>
+                <li class="nav-item"><a class="nav-link" href="result.html">Result</a></li>
+                <li class="nav-item"><a class="nav-link" href="idcard.html">ID Card</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://jamianooriya.in/">Jamia</a></li>
+                <li class="nav-item"><a class="nav-link" href="downloads.html">Downloads</a></li>
+                <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="library.html">Library</a></li>
+                <li class="nav-item"><a class="nav-link active" href="alumni.html">Alumni</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+            <a href="student-zone.html" class="btn btn-primary ms-lg-3">Student Zone</a>
+        </div>
     </div>
-  </div>
 </nav>
 
 <!-- HERO SECTION WITH ANIMATED BACKGROUND -->
 <section class="hero-premium d-flex align-items-center text-center text-white">
-  <!-- Floating elements for background animation -->
-  <div class="floating-elements">
-    <div class="floating-element"></div>
-    <div class="floating-element"></div>
-    <div class="floating-element"></div>
-    <div class="floating-element"></div>
-  </div>
-  
-  <div class="container hero-content" data-aos="fade-up" data-aos-duration="1000">
-    <h3 class="h1 mb-4">DSAC - Knowledge, Character & Service</h3>
-    <h2 class="display-4 fw-bold mb-4">DARUNNAJATH SHAREEATH & ARTS COLLEGE</h2>
-    <p class="lead mb-5">PUNNAKKAD, KARUVARAKUNDU<br>Under DARUNNAJATH ISLAMIC CENTRE<br>Affiliated to JAMIA NOORIYYA ARABIYYA, PATTIKKAD</p>
-    <div class="d-flex justify-content-center gap-3 flex-wrap">
-      <a href="forms.html" class="btn btn-primary btn-lg">Join Admissions</a>
-      <a href="#about" class="btn btn-outline-light btn-lg">Learn More</a>
-      <a href="result.html" class="btn btn-outline-light btn-lg">Results</a>
+    <!-- Floating elements for background animation -->
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
     </div>
-  </div>
+    
+    <div class="container hero-content" data-aos="fade-up" data-aos-duration="1000">
+        <h3 class="h1 mb-4">DSAC - Knowledge, Character & Service</h3>
+        <h2 class="display-4 fw-bold mb-4">DARUNNAJATH SHAREEATH & ARTS COLLEGE</h2>
+        <p class="lead mb-5">PUNNAKKAD, KARUVARAKUNDU<br>Under DARUNNAJATH ISLAMIC CENTRE<br>Affiliated to JAMIA NOORIYYA ARABIYYA, PATTIKKAD</p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="forms.html" class="btn btn-primary btn-lg">Join Admissions</a>
+            <a href="#about" class="btn btn-outline-light btn-lg">Learn More</a>
+            <a href="result.html" class="btn btn-outline-light btn-lg">Results</a>
+        </div>
+    </div>
 </section>
 
 <!-- FLASH MESSAGE -->
 <div class="flash-message text-center py-3">
-  <div class="container">
-    <strong>⚠ Important Notice: Admission started! Apply now.</strong>
-  </div>
+    <div class="container">
+        <strong>⚠ Important Notice: Admission started! Apply now.</strong>
+    </div>
 </div>
 
 <!-- NEWS TICKER -->
 <div class="container mt-4" data-aos="fade-up" data-aos-delay="200">
-  <div class="news-ticker p-3 rounded">
-    <div class="d-flex align-items-center">
-      <span class="badge bg-danger me-3" style="animation: pulse 1.5s infinite;">BREAKING</span>
-      <div class="overflow-hidden" style="flex:1;">
-        <div class="d-flex" style="animation: scrollLeft 30s linear infinite;">
-          <span class="me-5">2025-26 വര്‍ഷത്തിലെ വാര്‍ഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1, 2, 10, 11, 12 തിയ്യതികളില്‍.</span>
-          <span class="me-5">സമസ്ത നൂറാം വാര്‍ഷികം 2026 ഫെബ്രുവരി 4-8 തിയ്യതികളില്‍ കാസര്‍ഗോഡ് കുണിയയില്‍ നടക്കും.</span>
-          <span>പുതുമകളോടെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജ് വെബ്‌സൈറ്റ് ലോഞ്ച് ചെയ്തു.</span>
+    <div class="news-ticker p-3 rounded">
+        <div class="d-flex align-items-center">
+            <span class="badge bg-danger me-3" style="animation: pulse 1.5s infinite;">BREAKING</span>
+            <div class="overflow-hidden" style="flex:1;">
+                <div class="d-flex" style="animation: scrollLeft 30s linear infinite;">
+                    <span class="me-5">2025-26 വര്‍ഷത്തിലെ വാര്‍ഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1, 2, 10, 11, 12 തിയ്യതികളില്‍.</span>
+                    <span class="me-5">സമസ്ത നൂറാം വാര്‍ഷികം 2026 ഫെബ്രുവരി 4-8 തിയ്യതികളില്‍ കാസര്‍ഗോഡ് കുണിയയില്‍ നടക്കും.</span>
+                    <span>പുതുമകളോടെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജ് വെബ്‌സൈറ്റ് ലോഞ്ച് ചെയ്തു.</span>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 
 <!-- CLASS TOPPERS -->
 <section id="class-toppers" class="py-5">
-  <div class="container">
-    <h2 class="text-center mb-5 section-header" style="color:#004aad;">Class Toppers – First Semester Examination 2025–26</h2>
-    
-    <div class="row g-4 justify-content-center">
-      <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
-        <div class="card text-center border-0 shadow-sm h-100 hover-lift">
-          <div class="card-body">
-            <h5 class="card-title" style="color:#004aad;">Class 1</h5>
-            <p class="card-text fw-bold">MUHAMMED FASIL ALI</p>
-            <span class="badge bg-warning text-dark">76.28%</span>
-          </div>
+    <div class="container">
+        <h2 class="text-center mb-5 section-header" style="color:#004aad;">Class Toppers – First Semester Examination 2025–26</h2>
+        
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="card text-center border-0 shadow-sm h-100 hover-lift">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:#004aad;">Class 1</h5>
+                        <p class="card-text fw-bold">MUHAMMED FASIL ALI</p>
+                        <span class="badge bg-warning text-dark">76.28%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="card text-center border-0 shadow-sm h-100 hover-lift">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:#004aad;">Class 2</h5>
+                        <p class="card-text fw-bold">MUHAMMED SALIH K</p>
+                        <span class="badge bg-warning text-dark">58.71%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="card text-center border-0 shadow-sm h-100 hover-lift">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:#004aad;">Class 3</h5>
+                        <p class="card-text fw-bold">ANSHIF P</p>
+                        <span class="badge bg-warning text-dark">67.42%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="card text-center border-0 shadow-sm h-100 hover-lift">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:#004aad;">Class 4</h5>
+                        <p class="card-text fw-bold">MUHAMMED SAFWAN NP</p>
+                        <span class="badge bg-warning text-dark">42.12%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="500">
+                <div class="card text-center border-0 shadow-sm h-100 hover-lift">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:#004aad;">Class 5</h5>
+                        <p class="card-text fw-bold">MUHAMMED SWALIH CP</p>
+                        <span class="badge bg-warning text-dark">54.39%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="600">
+                <div class="card text-center border-0 shadow-sm h-100 hover-lift">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:#004aad;">Class 6</h5>
+                        <p class="card-text fw-bold">MUHAMMED LABEEB TV</p>
+                        <span class="badge bg-warning text-dark">61.05%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="700">
+                <div class="card text-center border-0 shadow-sm h-100 hover-lift">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:#004aad;">Class 8</h5>
+                        <p class="card-text fw-bold">MUHAMMED AFTHAB</p>
+                        <span class="badge bg-warning text-dark">86.57%</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="200">
-        <div class="card text-center border-0 shadow-sm h-100 hover-lift">
-          <div class="card-body">
-            <h5 class="card-title" style="color:#004aad;">Class 2</h5>
-            <p class="card-text fw-bold">MUHAMMED SALIH K</p>
-            <span class="badge bg-warning text-dark">58.71%</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="300">
-        <div class="card text-center border-0 shadow-sm h-100 hover-lift">
-          <div class="card-body">
-            <h5 class="card-title" style="color:#004aad;">Class 3</h5>
-            <p class="card-text fw-bold">ANSHIF P</p>
-            <span class="badge bg-warning text-dark">67.42%</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="400">
-        <div class="card text-center border-0 shadow-sm h-100 hover-lift">
-          <div class="card-body">
-            <h5 class="card-title" style="color:#004aad;">Class 4</h5>
-            <p class="card-text fw-bold">MUHAMMED SAFWAN NP</p>
-            <span class="badge bg-warning text-dark">42.12%</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="500">
-        <div class="card text-center border-0 shadow-sm h-100 hover-lift">
-          <div class="card-body">
-            <h5 class="card-title" style="color:#004aad;">Class 5</h5>
-            <p class="card-text fw-bold">MUHAMMED SWALIH CP</p>
-            <span class="badge bg-warning text-dark">54.39%</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="600">
-        <div class="card text-center border-0 shadow-sm h-100 hover-lift">
-          <div class="card-body">
-            <h5 class="card-title" style="color:#004aad;">Class 6</h5>
-            <p class="card-text fw-bold">MUHAMMED LABEEB TV</p>
-            <span class="badge bg-warning text-dark">61.05%</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="700">
-        <div class="card text-center border-0 shadow-sm h-100 hover-lift">
-          <div class="card-body">
-            <h5 class="card-title" style="color:#004aad;">Class 8</h5>
-            <p class="card-text fw-bold">MUHAMMED AFTHAB</p>
-            <span class="badge bg-warning text-dark">86.57%</span>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </section>
 
 <!-- ABOUT SECTION -->
 <section id="about" class="py-5" data-aos="fade-up">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-6 mb-4 mb-lg-0">
-        <h2 class="mb-4">About Darunnajath Shareeath & Arts College</h2>
-        <p class="text-justify" style="font-family:'Anek Malayalam', sans-serif; line-height:1.8; font-size: 1.1rem;">
-          ദാറുന്നജാത്ത് ശാരീഅത്ത് & ആർട്സ് കോളേജ്: വിജ്ഞാനത്തിന്റെ സമഗ്ര പാത, വിദ്യാഭ്യാസ മികവിൽ പ്രത്യേക പ്രാധാന്യം, പട്ടിക്കാട് ജാമിഅ നൂരിയ്യ അറബിയ്യയുടെ കീഴിലുള്ള എ പ്ലസ് ഗ്രേഡ് ജൂനിയർ കോളേജാണ് ദാറുന്നജാത്ത്. വിവേകശാലിയായ ശൈഖുന കെ.ടി. മാനു മുസ്ലിയാർ സ്ഥാപിച്ച ഈ കോളേജ്, ഏഴാം ക്ലാസിന് ശേഷമുള്ള സമഗ്രവും സമന്വയിപ്പിച്ചതുമായ വിദ്യാഭ്യാസ പാത വഴി വിദ്യാർത്ഥികളെ വികസിപ്പിക്കുന്നു.
-        </p>
-      </div>
-      <div class="col-lg-6 text-center">
-        <img src="https://i.ibb.co/bMLmpL7d/unnamed.jpg" alt="College" class="img-fluid rounded shadow" style="max-height:400px;">
-      </div>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="mb-4">About Darunnajath Shareeath & Arts College</h2>
+                <p class="text-justify" style="font-family:'Anek Malayalam', sans-serif; line-height:1.8; font-size: 1.1rem;">
+                    ദാറുന്നജാത്ത് ശാരീഅത്ത് & ആർട്സ് കോളേജ്: വിജ്ഞാനത്തിന്റെ സമഗ്ര പാത, വിദ്യാഭ്യാസ മികവിൽ പ്രത്യേക പ്രാധാന്യം, പട്ടിക്കാട് ജാമിഅ നൂരിയ്യ അറബിയ്യയുടെ കീഴിലുള്ള എ പ്ലസ് ഗ്രേഡ് ജൂനിയർ കോളേജാണ് ദാറുന്നജാത്ത്. വിവേകശാലിയായ ശൈഖുന കെ.ടി. മാനു മുസ്ലിയാർ സ്ഥാപിച്ച ഈ കോളേജ്, ഏഴാം ക്ലാസിന് ശേഷമുള്ള സമഗ്രവും സമന്വയിപ്പിച്ചതുമായ വിദ്യാഭ്യാസ പാത വഴി വിദ്യാർത്ഥികളെ വികസിപ്പിക്കുന്നു.
+                </p>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="https://i.ibb.co/bMLmpL7/unnamed.jpg" alt="College" class="img-fluid rounded shadow" style="max-height:400px;">
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
 <!-- HIGHLIGHTS -->
 <section id="highlights" class="py-5 bg-light">
-  <div class="container">
-    <h2 class="text-center mb-5 section-header" style="color:var(--secondary);">Highlights</h2>
-    <div class="row g-4">
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-        <div class="card h-100 border-0 shadow-sm hover-lift">
-          <div class="ratio ratio-16x9">
-            <iframe src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID_1" title="Meelad u nabi" allowfullscreen></iframe>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title" style="color:var(--secondary);">Meelad u nabi Highlights</h5>
-          </div>
+    <div class="container">
+        <h2 class="text-center mb-5 section-header" style="color:var(--secondary);">Highlights</h2>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="card h-100 border-0 shadow-sm hover-lift">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID_1" title="Meelad u nabi" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:var(--secondary);">Meelad u nabi Highlights</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="card h-100 border-0 shadow-sm hover-lift">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID_2" title="Parents Programme" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:var(--secondary);">Parents Programme</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="card h-100 border-0 shadow-sm hover-lift">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID_3" title="Students Achievements" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:var(--secondary);">Students' Achievements</h5>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-        <div class="card h-100 border-0 shadow-sm hover-lift">
-          <div class="ratio ratio-16x9">
-            <iframe src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID_2" title="Parents Programme" allowfullscreen></iframe>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title" style="color:var(--secondary);">Parents Programme</h5>
-          </div>
+        <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="400">
+            <a href="youtube.html" class="btn btn-primary btn-lg">View More on YouTube →</a>
         </div>
-      </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-        <div class="card h-100 border-0 shadow-sm hover-lift">
-          <div class="ratio ratio-16x9">
-            <iframe src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID_3" title="Students Achievements" allowfullscreen></iframe>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title" style="color:var(--secondary);">Students' Achievements</h5>
-          </div>
-        </div>
-      </div>
     </div>
-    <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="400">
-      <a href="youtube.html" class="btn btn-primary btn-lg">View More on YouTube →</a>
-    </div>
-  </div>
 </section>
 
 <!-- NEWS -->
 <section id="news" class="py-5">
-  <div class="container">
-    <h2 class="text-center mb-5 section-header text-white">Latest News</h2>
-    <div class="row justify-content-center">
-      <div class="col-lg-8" data-aos="fade-up">
-        <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="card border-0 hover-lift">
-                <img src="https://i.ibb.co/XrX5fh5M/study-tips-for-final-exams.webp" class="card-img-top" alt="News 1">
-                <div class="card-body">
-                  <h5 class="card-title text-warning">വാര്‍ഷിക പരീക്ഷ</h5>
-                  <p class="card-text text-light">2025-26 വര്‍ഷത്തിലെ വാര്‍ഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1,2,10,11,12 തിയ്യതികളില്‍.</p>
-                  <a href="#" class="btn btn-outline-light btn-sm">Read More</a>
+    <div class="container">
+        <h2 class="text-center mb-5 section-header text-white">Latest News</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8" data-aos="fade-up">
+                <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="card border-0 hover-lift">
+                                <img src="https://i.ibb.co/XrX5fh5/study-tips-for-final-exams.webp" class="card-img-top" alt="News 1">
+                                <div class="card-body">
+                                    <h5 class="card-title text-warning">വാര്‍ഷിക പരീക്ഷ</h5>
+                                    <p class="card-text text-light">2025-26 വര്‍ഷത്തിലെ വാര്‍ഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1,2,10,11,12 തിയ്യതികളില്‍.</p>
+                                    <a href="#" class="btn btn-outline-light btn-sm">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card border-0 hover-lift">
+                                <img src="https://i.ibb.co/LDJxRX0/freelancer-pricing-04.png" class="card-img-top" alt="News 2">
+                                <div class="card-body">
+                                    <h5 class="card-title text-warning">Parents Meeting</h5>
+                                    <p class="card-text text-light">Parents meeting will be held on 16th November 2025.</p>
+                                    <a href="#" class="btn btn-outline-light btn-sm">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
                 </div>
-              </div>
             </div>
-            <div class="carousel-item">
-              <div class="card border-0 hover-lift">
-                <img src="https://i.ibb.co/LDJxRX0j/freelancer-pricing-04.png" class="card-img-top" alt="News 2">
-                <div class="card-body">
-                  <h5 class="card-title text-warning">Parents Meeting</h5>
-                  <p class="card-text text-light">Parents meeting will be held on 16th November 2025.</p>
-                  <a href="#" class="btn btn-outline-light btn-sm">Read More</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-          </button>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
 <!-- NOTIFICATIONS -->
 <section id="notifications" class="py-5">
-  <div class="container">
-    <h3 class="mb-4" style="color:var(--secondary);">Notifications</h3>
-    <div class="list-group">
-      <a href="forms.html" class="list-group-item list-group-item-action d-flex justify-content-between align-items-start hover-lift">
-        <div>
-          <div class="fw-bold" style="color:var(--primary);">Admission Open for 2025</div>
-          <small class="text-muted">Apply now.</small>
+    <div class="container">
+        <h3 class="mb-4" style="color:var(--secondary);">Notifications</h3>
+        <div class="list-group">
+            <a href="forms.html" class="list-group-item list-group-item-action d-flex justify-content-between align-items-start hover-lift">
+                <div>
+                    <div class="fw-bold" style="color:var(--primary);">Admission Open for 2025</div>
+                    <small class="text-muted">Apply now.</small>
+                </div>
+                <span class="badge bg-success" style="animation: pulse 1.5s infinite;">NEW</span>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action hover-lift">
+                <div class="fw-bold" style="color:var(--primary);">Meelad Day Celebration</div>
+                <small class="text-muted">December 20, 2025 — All parents and guardians are invited.</small>
+            </a>
+            <a href="result.html" target="_blank" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center hover-lift">
+                <div>
+                    <div class="fw-bold" style="color:var(--primary);">Result Published</div>
+                    <small class="text-muted">Click below to check your results online.</small>
+                </div>
+                <span class="btn btn-success btn-sm">View Result</span>
+            </a>
         </div>
-        <span class="badge bg-success" style="animation: pulse 1.5s infinite;">NEW</span>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action hover-lift">
-        <div class="fw-bold" style="color:var(--primary);">Meelad Day Celebration</div>
-        <small class="text-muted">December 20, 2025 — All parents and guardians are invited.</small>
-      </a>
-      <a href="result.html" target="_blank" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center hover-lift">
-        <div>
-          <div class="fw-bold" style="color:var(--primary);">Result Published</div>
-          <small class="text-muted">Click below to check your results online.</small>
-        </div>
-        <span class="btn btn-success btn-sm">View Result</span>
-      </a>
     </div>
-  </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="py-5">
-  <div class="container text-center">
-    <strong class="d-block mb-3" style="font-size: 1.3rem;">Darunnajath Shareeath & Arts College</strong>
-    <small class="d-block mb-4">© <span id="currentYear"></span> All rights reserved.</small>
-    
-    <div class="d-flex justify-content-center gap-3 mb-4">
-      <a href="https://facebook.com/" target="_blank" class="social-icon" style="background:#1877f2;">
-        <i class="bi bi-facebook"></i>
-      </a>
-      <a href="https://instagram.com/" target="_blank" class="social-icon" style="background:#e4405f;">
-        <i class="bi bi-instagram"></i>
-      </a>
-      <a href="https://x.com/" target="_blank" class="social-icon" style="background:#1da1f2;">
-        <i class="bi bi-twitter-x"></i>
-      </a>
+    <div class="container text-center">
+        <strong class="d-block mb-3" style="font-size: 1.3rem;">Darunnajath Shareeath & Arts College</strong>
+        <small class="d-block mb-4">© <span id="currentYear"></span> All rights reserved.</small>
+        
+        <div class="d-flex justify-content-center gap-3 mb-4">
+            <a href="https://facebook.com/" target="_blank" class="social-icon" style="background:#1877f2;">
+                <i class="bi bi-facebook"></i>
+            </a>
+            <a href="https://instagram.com/" target="_blank" class="social-icon" style="background:#e4405f;">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://x.com/" target="_blank" class="social-icon" style="background:#1da1f2;">
+                <i class="bi bi-twitter-x"></i>
+            </a>
+        </div>
+        
+        <div class="small">
+            Hosted by <strong class="text-gradient">Rafi Wafi</strong> • 
+            <a href="mailto:najathshareea@gmail.com" style="color:#bbdefb;">najathshareea@gmail.com</a>
+        </div>
     </div>
-    
-    <div class="small">
-      Hosted by <strong class="text-gradient">Rafi Wafi</strong> • 
-      <a href="mailto:najathshareea@gmail.com" style="color:#bbdefb;">najathshareea@gmail.com</a>
-    </div>
-  </div>
 </footer>
 
 <!-- WhatsApp Button -->
 <a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!" 
    class="whatsapp-float" target="_blank" 
    title="Chat with us on WhatsApp">
-  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp" />
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp" />
 </a>
 
 <!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>
-  // Initialize AOS
-  AOS.init({
-    duration: 1000,
-    once: true,
-    offset: 100
-  });
-
-  // Update current year
-  document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-  // Navbar scroll effect
-  window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
-  });
-
-  // Enhanced card hover effects
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateY(-10px)';
-      this.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
-    });
-    card.addEventListener('mouseleave', function() {
-      this.style.transform = 'translateY(0)';
-      this.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
-    });
-  });
-
-  // Smooth scroll with offset
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if(target) {
-        window.scrollTo({
-          top: target.offsetTop - 100,
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
-
-  // Add ripple effect to buttons
-  document.querySelectorAll('.btn-primary, .social-icon').forEach(button => {
-    button.addEventListener('click', function(e) {
-      const ripple = document.createElement('span');
-      const rect = this.getBoundingClientRect();
-      const size = Math.max(rect.width, rect.height);
-      const x = e.clientX - rect.left - size / 2;
-      const y = e.clientY - rect.top - size / 2;
-      
-      ripple.style.cssText = `
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.7);
-        transform: scale(0);
-        animation: ripple 0.6s linear;
-        width: ${size}px;
-        height: ${size}px;
-        top: ${y}px;
-        left: ${x}px;
-      `;
-      
-      this.appendChild(ripple);
-      setTimeout(() => ripple.remove(), 600);
-    });
-  });
-
-  // Add ripple animation
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes ripple {
-      to {
-        transform: scale(4);
-        opacity: 0;
-      }
-    }
-  `;
-  document.head.appendChild(style);
-
-  // Parallax effect for particles
-  window.addEventListener('scroll', function() {
-    const scrolled = window.pageYOffset;
-    const particles = document.querySelector('.particles');
-    if (particles) {
-      particles.style.transform = `translateY(${scrolled * 0.3}px)`;
-    }
-  });
-
-  // Initialize carousel
-  const newsCarousel = document.querySelector('#newsCarousel');
-  if (newsCarousel) {
-    new bootstrap.Carousel(newsCarousel, {
-      interval: 5000,
-      wrap: true
-    });
-  }
-
-  // Add floating elements parallax
-  window.addEventListener('scroll', function() {
-    const scrolled = window.pageYOffset;
-    const floatingElements = document.querySelectorAll('.floating-element');
-    floatingElements.forEach((el, index) => {
-      const speed = 0.1 + (index * 0.05);
-      el.style.transform = `translateY(${scrolled * speed}px)`;
-    });
-  });
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
-
