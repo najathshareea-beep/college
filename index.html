@@ -157,16 +157,21 @@
       transform: scale(1.1) rotate(5deg);
       filter: brightness(0) invert(1) drop-shadow(0 0 12px rgba(255,255,255,0.8));
     }
+    
+    .navbar-nav {
+      gap: 0.05rem !important;
+    }
 
     .navbar-nav .nav-link {
       color: #f8f9fa !important;
       font-weight: 500;
-      font-size: 1rem;
+      font-size: 0.9rem;
       transition: all 0.3s ease;
       position: relative;
-      padding: 0.5rem 1rem !important;
-      margin: 0 0.2rem;
+      padding: 0.5rem 0.6rem !important;
+      margin: 0 !important;
       border-radius: 6px;
+      
     }
 
     .navbar-nav .nav-link::before {
@@ -197,11 +202,12 @@
     .btn-primary {
       background: linear-gradient(135deg, var(--accent), #ffda5c);
       border: none;
+      margin-left: 0.3rem;
       color: var(--primary);
       border-radius: 12px;
       font-weight: 600;
-      font-size: 1rem;
-      padding: 0.75rem 2rem;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem !important;
       box-shadow: 0 5px 15px rgba(243,193,58,0.4);
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
@@ -1347,6 +1353,7 @@
 
 </body>
 </html>
+
 
 
 
