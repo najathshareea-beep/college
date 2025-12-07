@@ -1,4 +1,11 @@
-/* ===== CORE STYLES ===== */
+/* ============================================= */
+/*           COMPLETE styles.css                 */
+/*   Darunnajath Shareeath & Arts College       */
+/*   Fully Merged + Enhanced + Cleaned           */
+/* ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Anek+Malayalam:wght@400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap');
+
 :root {
   --primary: #0a194f;
   --secondary: #122f7a;
@@ -14,10 +21,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Poppins', 'Rubik', sans-serif;
+  text-decoration: none;
+  list-style: none;
 }
 
 body {
-  font-family: 'Poppins', 'Rubik', sans-serif;
   background-color: var(--primary);
   color: var(--light);
   scroll-behavior: smooth;
@@ -26,47 +35,99 @@ body {
   line-height: 1.6;
 }
 
-/* Import Malayalam Font */
-@import url('https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;500;600;700&display=swap');
-
 /* ===== ANIMATIONS ===== */
-@keyframes subtleMove { 0%,100%{transform:translate(0,0)} 25%{transform:translate(3px,3px)} 50%{transform:translate(-3px,5px)} 75%{transform:translate(5px,-3px)} }
-@keyframes shine { 0%{transform:translateX(-100%) translateY(-100%) rotate(30deg)} 100%{transform:translateX(100%) translateY(100%) rotate(30deg)} }
-@keyframes floatingShapes { 0%{transform:translate(0,0) rotate(0deg)} 100%{transform:translate(0,0) rotate(360deg)} }
-@keyframes wave { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-10px) translateY(5px)} 50%{transform:translateX(5px) translateY(-10px)} 75%{transform:translateX(10px) translateY(5px)} }
-@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
-@keyframes glow { 0%,100%{opacity:0.4} 50%{opacity:1} }
-@keyframes borderFlow { 0%{background-position:0% 50%} 100%{background-position:200% 50%} }
-@keyframes shimmer { 0%{background-position:-1000px 0} 100%{background-position:1000px 0} }
-@keyframes scrollLeft { 0%{transform:translateX(100%)} 100%{transform:translateX(-100%)} }
-@keyframes fadeIn { from{opacity:0; transform:translateY(30px)} to{opacity:1; transform:translateY(0)} }
-@keyframes ripple { to{transform:scale(4); opacity:0} }
-@keyframes toppersFade { from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:translateY(0)} }
-@keyframes glowBorder { from{border-color:#0066cc} to{border-color:#33ccff} }
+@keyframes subtleMove {
+  0%,100% { transform: translate(0,0); }
+  25% { transform: translate(3px,3px); }
+  50% { transform: translate(-3px,5px); }
+  75% { transform: translate(5px,-3px); }
+}
+@keyframes shine {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(30deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(30deg); }
+}
+@keyframes floatingShapes {
+  0% { transform: translate(0,0) rotate(0deg); }
+  25% { transform: translate(100px,50px) rotate(90deg); }
+  50% { transform: translate(50px,100px) rotate(180deg); }
+  75% { transform: translate(-50px,50px) rotate(270deg); }
+  100% { transform: translate(0,0) rotate(360deg); }
+}
+@keyframes wave {
+  0%,100% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(-10px) translateY(5px); }
+  50% { transform: translateX(5px) translateY(-10px); }
+  75% { transform: translateX(10px) translateY(5px); }
+}
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+@keyframes glow {
+  0%,100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+@keyframes borderFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+@keyframes scrollLeft {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes ripple {
+  to { transform: scale(4); opacity: 0; }
+}
+@keyframes toppersFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes glowBorder {
+  from { border-color: #0066cc; }
+  to { border-color: #33ccff; }
+}
 
 /* ===== NAVBAR ===== */
 .navbar {
   background: linear-gradient(90deg, var(--primary), var(--secondary));
-  transition: all 0.4s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255,255,255,0.1);
   padding: 1rem 0;
 }
 .navbar.scrolled {
   background: rgba(10,25,79,0.98);
-  padding: 0.5rem 0;
   box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  padding: 0.5rem 0;
 }
-.navbar .nav-link {
-  font-weight: 500;
+.navbar-brand img {
+  border-radius: 8px;
+  transition: all 0.4s;
+  filter: brightness(0) invert(1);
+}
+.navbar-brand:hover img {
+  transform: scale(1.1) rotate(5deg);
+}
+.navbar-nav .nav-link {
   color: #f8f9fa !important;
-  transition: all 0.3s ease;
+  font-weight: 500;
+  position: relative;
+  padding: 0.5rem 1rem !important;
+  border-radius: 6px;
 }
-.navbar .nav-link:hover,
-.navbar .nav-link.active {
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
   color: var(--accent) !important;
 }
-.navbar .nav-link::before {
+.navbar-nav .nav-link::before {
   content: '';
   position: absolute;
   bottom: 0;
@@ -77,20 +138,21 @@ body {
   transition: width 0.4s ease;
   transform: translateX(-50%);
 }
-.navbar .nav-link:hover::before {
+.navbar-nav .nav-link:hover::before {
   width: 80%;
 }
 
-/* ===== HERO ===== */
+/* ===== HERO SECTION ===== */
 .hero-premium,
 .hero {
   min-height: 85vh;
+  position: relative;
   background: linear-gradient(135deg, #0a194f 0%, #122f7a 50%, #0a194f 100%),
               url('https://i.ibb.co/6Czmgm4/Role-of-Islamic-Schools-1024x683.jpg') center/cover no-repeat;
   display: flex;
   align-items: center;
-  position: relative;
   overflow: hidden;
+  animation: fadeIn 1s ease-out 0.3s both;
 }
 .hero-premium::before {
   content: '';
@@ -98,8 +160,17 @@ body {
   inset: 0;
   background: radial-gradient(circle at 20% 80%, rgba(243,193,58,0.15), transparent 50%),
               radial-gradient(circle at 80% 20%, rgba(18,47,122,0.15), transparent 50%);
-  animation: wave 20s ease infinite;
+  animation: wave 20s ease-in-out infinite;
 }
+.floating-elements { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.floating-element {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(243,193,58,0.1), transparent 70%);
+  animation: subtleMove 15s infinite ease-in-out;
+}
+.hero-content h1 { color: var(--accent); font-size: 3.5rem; font-weight: 700; }
+.hero-content h3 { color: #fff; }
 
 /* ===== BUTTONS ===== */
 .btn-primary,
@@ -112,6 +183,8 @@ body {
   padding: 0.75rem 2rem;
   box-shadow: 0 5px 15px rgba(243,193,58,0.4);
   transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
 }
 .btn-primary:hover,
 .btn-success:hover {
@@ -120,56 +193,17 @@ body {
   box-shadow: 0 10px 25px rgba(243,193,58,0.6);
 }
 
-/* ===== CARDS & FEATURES ===== */
-.card,
-.card-course,
-.mp-card,
-.topper-card,
-.news-card {
-  border: none;
-  border-radius: 16px;
-  overflow: hidden;
-  transition: all 0.4s ease;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+/* ===== FLASH & TICKER ===== */
+.flash-message {
+  background: linear-gradient(90deg, #dc3545, #c82333);
+  animation: shimmer 2s infinite linear;
+  color: white;
 }
-.card:hover,
-.card-course:hover,
-.mp-card:hover,
-.topper-card:hover,
-.news-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-}
-.feature-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 12px;
-  background: #fff;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-}
-
-/* ===== MALAYALAM TEXT ===== */
-.malayalam {
-  font-family: 'Anek Malayalam', sans-serif !important;
-  font-weight: 500;
-  line-height: 1.8;
-  letter-spacing: 0.3px;
-  color: #222;
-}
-
-/* ===== GALLERY ===== */
-.gallery-img,
-.gallery-item img {
-  height: 180px;
-  object-fit: cover;
-  border-radius: 12px;
-  transition: all 0.4s ease;
-}
-.gallery-item:hover img {
-  transform: scale(1.08);
-  filter: brightness(0.9);
+.news-ticker {
+  background: linear-gradient(90deg, #0f172a, #0b1220);
+  border: 2px solid;
+  border-image: linear-gradient(90deg, var(--accent), var(--secondary)) 1;
+  animation: borderFlow 3s linear infinite;
 }
 
 /* ===== TOPPERS SECTION ===== */
@@ -184,12 +218,22 @@ body {
   border: 1px solid rgba(11,94,215,0.1);
   animation: toppersFade 0.8s ease both;
 }
+.toppers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
 .topper-card {
   background: #fff;
   padding: 16px;
   border-radius: 14px;
   text-align: center;
   border: 1px solid rgba(11,94,215,0.08);
+  transition: all 0.3s ease;
+}
+.topper-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 14px 30px rgba(11,94,215,0.15);
 }
 .topper-photo {
   width: 90px;
@@ -204,8 +248,8 @@ body {
   color: white;
   padding: 4px 12px;
   border-radius: 20px;
-  font-size: 0.8rem;
   font-weight: bold;
+  font-size: 0.8rem;
 }
 .topper-stat {
   background: rgba(11,94,215,0.08);
@@ -213,10 +257,44 @@ body {
   padding: 6px 12px;
   border-radius: 50px;
   font-weight: bold;
-  font-size: 0.85rem;
 }
 
-/* ===== LOGIN / REGISTER FORM ===== */
+/* ===== CARDS & GALLERY ===== */
+.card,
+.news-card,
+.mp-card {
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+.card:hover,
+.news-card:hover,
+.mp-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+.gallery-item img {
+  height: 180px;
+  object-fit: cover;
+  transition: all 0.4s ease;
+}
+.gallery-item:hover img {
+  transform: scale(1.1);
+  filter: brightness(0.9);
+}
+
+/* ===== MALAYALAM TEXT ===== */
+.malayalam {
+  font-family: 'Anek Malayalam', sans-serif !important;
+  font-weight: 500;
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+  color: #222;
+}
+
+/* ===== LOGIN / REGISTER PAGE ===== */
 .container {
   position: relative;
   width: 850px;
@@ -283,15 +361,39 @@ footer {
 footer a { color: #4da3ff; }
 footer a:hover { color: #fff; }
 
-/* ===== WHATSAPP & SCROLLBAR ===== */
-.whatsapp-float { /* existing styles */ }
+/* ===== WHATSAPP FLOAT ===== */
+.whatsapp-float {
+  position: fixed;
+  width: 65px;
+  height: 65px;
+  bottom: 40px;
+  right: 40px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(37,211,102,0.5);
+  z-index: 1000;
+  animation: subtleMove 3s infinite ease-in-out;
+}
+.whatsapp-float:hover {
+  transform: scale(1.15) rotate(15deg);
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
 ::-webkit-scrollbar { width: 12px; }
 ::-webkit-scrollbar-track { background: var(--primary); }
-::-webkit-scrollbar-thumb { background: linear-gradient(var(--accent), #ffda5c); border-radius: 10px; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--accent), #ffda5c);
+  border-radius: 10px;
+  border: 3px solid var(--primary);
+}
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .hero-premium { min-height: 70vh; }
   .container { width: 95%; height: auto; }
   .form-box, .toggle-panel { width: 100%; }
+  .toppers-grid { grid-template-columns: 1fr 1fr; }
 }
