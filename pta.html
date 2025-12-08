@@ -3,189 +3,673 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PTA Members | DARUNNAJATH SHAREEATH AND ARTS COLLEGE</title>
+  <title>PTA Committee | DARUNNAJATH SHAREEATH AND ARTS COLLEGE</title>
 
   <!-- Bootstrap & AOS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --primary-blue: #1a5fb4;
+      --warm-blue: #3584e4;
+      --accent-orange: #ff7800;
+      --light-orange: #ffa348;
+      --light-bg: #f8f9fc;
+      --card-bg: #ffffff;
+      --text-dark: #2d3748;
+      --text-gray: #718096;
+      --border-color: #e2e8f0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      background-color: #0b1d3a;
-      color: #f8f9fa;
+      background-color: var(--light-bg);
+      color: var(--text-dark);
       font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
     }
 
-    header {
-      background: linear-gradient(90deg, #0d47a1, #1976d2);
+    /* Header Styling */
+    .pta-hero {
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--warm-blue) 100%);
+      padding: 5rem 0 4rem;
+      position: relative;
+      overflow: hidden;
     }
 
-    h2, h4, h6 {
-      color: #fff;
+    .pta-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
     }
 
-    .pta-card {
-      background-color: #10264d;
-      border: none;
-      border-radius: 15px;
-      transition: transform 0.3s, box-shadow 0.3s;
-      padding: 20px 10px;
-      height: 100%;
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
     }
 
-    .pta-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2);
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 1rem;
+      font-family: 'Quicksand', sans-serif;
     }
 
-    .pta-card img {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 3px solid #ffd700;
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2rem;
+      line-height: 1.6;
     }
 
-    .pta-role {
-      color: #ffd700;
-      font-weight: 500;
+    .pta-tagline {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
-    .pta-about {
+    .tag-container {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .pta-tag {
+      background: rgba(255, 120, 0, 0.2);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
       font-size: 0.9rem;
-      color: #d0d3d8;
-      margin-top: 8px;
-      min-height: 60px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 120, 0, 0.3);
     }
 
-    .btn-outline-primary {
-      border-color: #ffd700;
-      color: #ffd700;
+    /* Section Styling */
+    .section-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
     }
 
-    .btn-outline-primary:hover {
-      background-color: #ffd700;
-      color: #0b1d3a;
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
     }
 
-    footer {
-      background: #06142c;
+    .section-title h2 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--primary-blue);
+      margin-bottom: 1rem;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .section-title p {
+      color: var(--text-gray);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* PTA Members Grid */
+    .pta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 6rem;
+    }
+
+    /* PTA Member Card */
+    .pta-member-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--border-color);
+    }
+
+    .pta-member-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      border-color: var(--accent-orange);
+    }
+
+    .member-header {
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--warm-blue) 100%);
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .member-photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid white;
+      object-fit: cover;
+      margin: 0 auto;
+      display: block;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .pta-member-card:hover .member-photo {
+      transform: scale(1.05);
+    }
+
+    .role-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: linear-gradient(135deg, var(--accent-orange), var(--light-orange));
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      box-shadow: 0 4px 15px rgba(255, 120, 0, 0.3);
+    }
+
+    .member-content {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .member-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .member-role {
+      color: var(--accent-orange);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .contact-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      background: rgba(26, 95, 180, 0.05);
+      padding: 1rem;
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+
+    .contact-info i {
+      color: var(--primary-blue);
+      font-size: 1.2rem;
+    }
+
+    .contact-number {
+      color: var(--text-dark);
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    /* PTA Activities */
+    .activities-section {
+      background: linear-gradient(135deg, rgba(255, 120, 0, 0.05) 0%, rgba(255, 163, 72, 0.05) 100%);
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 4rem 0;
+    }
+
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .activity-card {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border-color);
+    }
+
+    .activity-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      border-color: var(--accent-orange);
+    }
+
+    .activity-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--accent-orange), var(--light-orange));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .activity-title {
+      color: var(--primary-blue);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .activity-description {
+      color: var(--text-gray);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Mission Statement */
+    .mission-section {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: white;
+      border-radius: 20px;
+      margin: 4rem 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border-color);
+    }
+
+    .mission-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary-blue), var(--warm-blue));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      color: white;
+      font-size: 2rem;
+    }
+
+    .mission-title {
+      color: var(--primary-blue);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .mission-text {
+      color: var(--text-gray);
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Back Button */
+    .back-container {
+      text-align: center;
+      margin: 4rem 0;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      background: linear-gradient(135deg, var(--primary-blue), var(--warm-blue));
+      color: white;
+      text-decoration: none;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(26, 95, 180, 0.3);
+    }
+
+    .back-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(26, 95, 180, 0.4);
+      color: white;
+    }
+
+    /* Footer */
+    .pta-footer {
+      background: linear-gradient(135deg, #0d47a1, #1976d2);
+      padding: 4rem 0 2rem;
+      margin-top: 4rem;
+      color: white;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-column h5 {
+      color: white;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .footer-column p {
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 0.8rem;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .footer-column i {
+      color: var(--light-orange);
+      width: 20px;
+      text-align: center;
+    }
+
+    .copyright {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .section-title h2 {
+        font-size: 2.2rem;
+      }
+
+      .pta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .activities-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .activities-section {
+        padding: 2rem;
+      }
+
+      .mission-section {
+        padding: 3rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .section-title h2 {
+        font-size: 1.8rem;
+      }
+
+      .member-name {
+        font-size: 1.3rem;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="text-white text-center py-4 shadow-sm" data-aos="fade-down">
-    <h2 class="mb-1">Parent–Teacher Association (PTA)</h2>
-    <p class="mb-0 text-light">Working together for our students’ success</p>
-  </header>
-
-  <!-- PTA MEMBERS SECTION -->
-  <section id="pta" class="py-5">
-    <div class="container">
-      <div class="text-center mb-5" data-aos="zoom-in">
-        <h4 class="text-warning fw-bold">Executive Members (2025–26)</h4>
-        <p class="text-light">Meet the key members of our PTA</p>
-      </div>
-
-      <div class="row g-4">
-
-        <!-- President -->
-        <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="pta-card text-center">
-            <img src="https://i.ibb.co/WNk2xXp3/abdumangalath.jpg" alt="President">
-            <h6 class="fw-bold mt-3">ABDU MANGALATH</h6>
-            <small class="pta-role d-block">PRESIDENT</small>
-            <small class="d-block text-light">📞 8281206676</small>
-            <p class="pta-about">Leading the PTA with vision and dedication, fostering collaboration between parents and teachers.</p>
-          </div>
+  <!-- HERO SECTION -->
+  <section class="pta-hero">
+    <div class="section-container">
+      <div class="hero-content" data-aos="fade-up">
+        <h1 class="hero-title">Parent-Teacher Association</h1>
+        <p class="hero-subtitle">Building bridges between home and school for student success</p>
+        <div class="pta-tagline" data-aos="fade-up" data-aos-delay="200">
+          <i class="fas fa-handshake me-2"></i>Partners in Education
         </div>
-
-        <!-- Secretary -->
-        <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-          <div class="pta-card text-center">
-            <img src="https://i.ibb.co/pvnbMsDr/FAIROOS.jpg" alt="Secretary">
-            <h6 class="fw-bold mt-3">FAIROOSUDHEEN P</h6>
-            <small class="pta-role d-block">GENERAL SECRETARY</small>
-            <small class="d-block text-light">📞 9497349254</small>
-            <p class="pta-about">Coordinates all PTA activities and maintains strong communication among members.</p>
-          </div>
+        <div class="tag-container">
+          <span class="pta-tag" data-aos="fade-up" data-aos-delay="100">2025-26 Academic Year</span>
+          <span class="pta-tag" data-aos="fade-up" data-aos-delay="150">Community Collaboration</span>
+          <span class="pta-tag" data-aos="fade-up" data-aos-delay="200">Student-Centered</span>
         </div>
-
-        <!-- Treasurer -->
-        <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-          <div class="pta-card text-center">
-            <img src="https://i.ibb.co/7xzp475Q/SALEEM.jpg" alt="Treasurer">
-            <h6 class="fw-bold mt-3">SAIF SALEEM P</h6>
-            <small class="pta-role d-block">TREASURER</small>
-            <small class="d-block text-light">📞 9961236409</small>
-            <p class="pta-about">Responsible for managing PTA funds and ensuring financial transparency and growth.</p>
-          </div>
-        </div>
-
-        <!-- Staff Secretary -->
-        <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="400">
-          <div class="pta-card text-center">
-            <img src="https://i.ibb.co/kWR6Z5B/AMEER.jpg" alt="Staff Secretary">
-            <h6 class="fw-bold mt-3">AMEERUDHEEN P</h6>
-            <small class="pta-role d-block">STAFF SECRETARY</small>
-            <small class="d-block text-light">📞 8078055520</small>
-            <p class="pta-about">Acts as a bridge between staff and PTA, ensuring smooth communication and teamwork.</p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- PTA ACTIVITIES -->
-      <div class="text-center mt-5 mb-4" data-aos="fade-right">
-        <h4 class="text-warning fw-bold">Recent PTA Activities</h4>
-      </div>
-
-      <div class="row g-4">
-        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
-          <div class="pta-card text-center">
-            <h6 class="fw-bold text-warning">Activity 1</h6>
-            <p class="pta-about">A seminar for parents.</p>
-          </div>
-        </div>
-        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
-          <div class="pta-card text-center">
-            <h6 class="fw-bold text-warning">Campus Clean-Up Day</h6>
-            <p class="pta-about">Parents, teachers, and students joined hands to beautify environment.</p>
-          </div>
-        </div>
-        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
-          <div class="pta-card text-center">
-            <h6 class="fw-bold text-warning">Annual PTA Meeting</h6>
-            <p class="pta-about">condected on sunday on words .</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- BACK TO HOME -->
-      <div class="text-center mt-5" data-aos="fade-up">
-        <a href="index.html" class="btn btn-outline-primary px-4">← Back to Home</a>
       </div>
     </div>
   </section>
 
+  <!-- EXECUTIVE COMMITTEE -->
+  <section class="section-container">
+    <div class="section-title" data-aos="fade-up">
+      <h2>PTA Executive Committee</h2>
+      <p>Dedicated parents and teachers working together for our students</p>
+    </div>
+
+    <div class="pta-grid">
+      <!-- President -->
+      <div class="pta-member-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="member-header">
+          <span class="role-badge">President</span>
+          <img src="https://i.ibb.co/WNk2xXp3/abdumangalath.jpg" alt="President" class="member-photo">
+        </div>
+        <div class="member-content">
+          <h3 class="member-name">ABDU MANGALATH</h3>
+          <div class="member-role">PTA President</div>
+          <div class="contact-info">
+            <i class="fas fa-phone"></i>
+            <span class="contact-number">8281206676</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secretary -->
+      <div class="pta-member-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="member-header">
+          <span class="role-badge">Secretary</span>
+          <img src="https://i.ibb.co/pvnbMsDr/FAIROOS.jpg" alt="Secretary" class="member-photo">
+        </div>
+        <div class="member-content">
+          <h3 class="member-name">FAIROOSUDHEEN P</h3>
+          <div class="member-role">General Secretary</div>
+          <div class="contact-info">
+            <i class="fas fa-phone"></i>
+            <span class="contact-number">9497349254</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Treasurer -->
+      <div class="pta-member-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="member-header">
+          <span class="role-badge">Treasurer</span>
+          <img src="https://i.ibb.co/7xzp475Q/SALEEM.jpg" alt="Treasurer" class="member-photo">
+        </div>
+        <div class="member-content">
+          <h3 class="member-name">SAIF SALEEM P</h3>
+          <div class="member-role">Treasurer</div>
+          <div class="contact-info">
+            <i class="fas fa-phone"></i>
+            <span class="contact-number">9961236409</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Staff Secretary -->
+      <div class="pta-member-card" data-aos="fade-up" data-aos-delay="250">
+        <div class="member-header">
+          <span class="role-badge">Staff Secretary</span>
+          <img src="https://i.ibb.co/kWR6Z5B/AMEER.jpg" alt="Staff Secretary" class="member-photo">
+        </div>
+        <div class="member-content">
+          <h3 class="member-name">AMEERUDHEEN P</h3>
+          <div class="member-role">Staff Secretary</div>
+          <div class="contact-info">
+            <i class="fas fa-phone"></i>
+            <span class="contact-number">8078055520</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PTA ACTIVITIES -->
+  <section class="section-container">
+    <div class="activities-section" data-aos="fade-up">
+      <div class="section-title">
+        <h2 style="color: var(--accent-orange);">Recent PTA Activities</h2>
+        <p>Building community and enhancing educational experience</p>
+      </div>
+
+      <div class="activities-grid">
+        <div class="activity-card" data-aos="zoom-in" data-aos-delay="100">
+          <div class="activity-icon">
+            <i class="fas fa-chalkboard-teacher"></i>
+          </div>
+          <h4 class="activity-title">Parent Education Seminar</h4>
+          <p class="activity-description">Interactive sessions for parents on child development, digital safety, and effective parenting strategies.</p>
+        </div>
+
+        <div class="activity-card" data-aos="zoom-in" data-aos-delay="150">
+          <div class="activity-icon">
+            <i class="fas fa-hands-helping"></i>
+          </div>
+          <h4 class="activity-title">Campus Beautification Day</h4>
+          <p class="activity-description">Parents, teachers, and students worked together to enhance our campus environment and facilities.</p>
+        </div>
+
+        <div class="activity-card" data-aos="zoom-in" data-aos-delay="200">
+          <div class="activity-icon">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <h4 class="activity-title">Annual PTA Meeting</h4>
+          <p class="activity-description">Strategic planning session to set goals and initiatives for the upcoming academic year.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION STATEMENT -->
+  <section class="section-container">
+    <div class="mission-section" data-aos="fade-up">
+      <div class="mission-icon">
+        <i class="fas fa-star"></i>
+      </div>
+      <h3 class="mission-title">Our Mission</h3>
+      <p class="mission-text">
+        To foster strong partnerships between parents, teachers, and the school community, 
+        working collaboratively to enhance the educational experience and ensure every student 
+        reaches their full potential in a supportive and nurturing environment.
+      </p>
+    </div>
+  </section>
+
+  <!-- BACK BUTTON -->
+  <div class="section-container">
+    <div class="back-container" data-aos="zoom-in">
+      <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back to Homepage
+      </a>
+    </div>
+  </div>
+
   <!-- FOOTER -->
-  <footer class="text-white text-center py-3 mt-4" data-aos="fade-up">
-    <small>© 2025 All rights reserved. | DARUNNAJATH SHAREEATH AND ARTS COLLEGE</small>
+  <footer class="pta-footer">
+    <div class="section-container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h5>PTA Office</h5>
+          <p>Darunnajath Shareeath & Arts College</p>
+          <p>Punnakkad, Karuvarakundu</p>
+          <p>Malappuram District, Kerala</p>
+        </div>
+
+        <div class="footer-column">
+          <h5>Contact Information</h5>
+          <p><i class="fas fa-phone"></i> 9048020243</p>
+          <p><i class="fas fa-envelope"></i> najathshareea@gmail.com</p>
+          <p><i class="fas fa-clock"></i> Meetings: First Sunday Monthly</p>
+        </div>
+
+        <div class="footer-column">
+          <h5>Our Values</h5>
+          <p><i class="fas fa-heart"></i> Collaboration</p>
+          <p><i class="fas fa-users"></i> Community</p>
+          <p><i class="fas fa-graduation-cap"></i> Education</p>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>© 2025 Darunnajath Shareeath & Arts College PTA. All rights reserved.</p>
+        <p class="mt-2">Building bridges for better education</p>
+      </div>
+    </div>
   </footer>
 
-  <!-- AOS Script -->
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({
       duration: 1000,
       once: true,
-      offset: 100
+      offset: 100,
+      easing: 'ease-out-cubic'
+    });
+
+    // Enhanced card hover
+    document.querySelectorAll('.pta-member-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px)';
+      });
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
     });
   </script>
 
 </body>
 </html>
-
-
