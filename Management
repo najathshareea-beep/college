@@ -3,179 +3,551 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Management | DARUNNAJATH SHAREEATH AND ARTS COLLEGE</title>
+  <title>Management Committee | DARUNNAJATH SHAREEATH AND ARTS COLLEGE</title>
 
   <!-- Bootstrap & AOS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
+    :root {
+      --primary-dark: #0b1d3a;
+      --primary-blue: #0d47a1;
+      --accent-gold: #d4af37;
+      --light-blue: #1976d2;
+      --text-light: #f8f9fa;
+      --text-gray: #d0d3d8;
+      --card-bg: #1a2b4d;
+    }
+
     body {
-      background-color: #0b1d3a;
-      color: #f8f9fa;
-      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0b1d3a 0%, #162b50 100%);
+      color: var(--text-light);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
     }
 
-    header {
-      background: linear-gradient(90deg, #0d47a1, #1976d2);
+    /* Header Styling */
+    .management-header {
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--light-blue) 100%);
+      padding: 4rem 0;
+      position: relative;
+      overflow: hidden;
     }
 
-    h2, h4, h6 {
-      color: #fff;
+    .management-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
     }
 
-    .pta-card {
-      background-color: #10264d;
-      border: none;
-      border-radius: 15px;
-      transition: transform 0.3s, box-shadow 0.3s;
-      padding: 20px 10px;
+    .management-header h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .management-header p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    /* Executive Card Styling */
+    .executive-card {
+      background: linear-gradient(145deg, var(--card-bg), #152641);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      position: relative;
       height: 100%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
 
-    .pta-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2);
+    .executive-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border-color: var(--accent-gold);
     }
 
-    .pta-card img {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
+    .executive-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-gold), var(--light-blue));
+    }
+
+    .executive-img-container {
+      padding: 2rem 2rem 0;
+      position: relative;
+    }
+
+    .executive-img {
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
-      border: 3px solid #ffd700;
+      border: 5px solid var(--accent-gold);
+      object-fit: cover;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
     }
 
-    .pta-role {
-      color: #ffd700;
-      font-weight: 500;
+    .executive-card:hover .executive-img {
+      transform: scale(1.05);
     }
 
-    .pta-about {
-      font-size: 0.9rem;
-      color: #d0d3d8;
-      margin-top: 8px;
-      min-height: 60px;
+    .executive-badge {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      background: var(--accent-gold);
+      color: var(--primary-dark);
+      padding: 6px 15px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
     }
 
-    .btn-outline-primary {
-      border-color: #ffd700;
-      color: #ffd700;
+    .executive-info {
+      padding: 1.5rem 2rem 2rem;
     }
 
-    .btn-outline-primary:hover {
-      background-color: #ffd700;
-      color: #0b1d3a;
+    .executive-name {
+      color: var(--text-light);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
     }
 
-    footer {
-      background: #06142c;
+    .executive-role {
+      color: var(--accent-gold);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .executive-contact {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.8rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .executive-contact i {
+      color: var(--accent-gold);
+      margin-right: 8px;
+    }
+
+    .executive-bio {
+      color: var(--text-gray);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    /* Section Titles */
+    .section-title {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 3rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-gold), transparent);
+    }
+
+    /* Management Roles */
+    .role-section {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-left: 4px solid var(--accent-gold);
+    }
+
+    .role-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--accent-gold), var(--light-blue));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Statistics */
+    .stat-card {
+      background: linear-gradient(135deg, rgba(13, 71, 161, 0.1), rgba(25, 118, 210, 0.1));
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Timeline */
+    .timeline-item {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      background: var(--accent-gold);
+      border-radius: 50%;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 17px;
+      bottom: -2rem;
+      width: 2px;
+      background: rgba(212, 175, 55, 0.3);
+    }
+
+    .timeline-item:last-child::after {
+      display: none;
+    }
+
+    /* Footer */
+    .management-footer {
+      background: linear-gradient(135deg, #06142c, #0b1d3a);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 3rem 0;
+      margin-top: 4rem;
+    }
+
+    .back-btn {
+      background: linear-gradient(135deg, var(--accent-gold), #ffd700);
+      color: var(--primary-dark);
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    }
+
+    .back-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .management-header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .executive-img {
+        width: 150px;
+        height: 150px;
+      }
+      
+      .executive-badge {
+        top: 20px;
+        right: 20px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="text-white text-center py-4 shadow-sm" data-aos="fade-down">
-    <h2 class="mb-1">Parent–Teacher Association (PTA)</h2>
-    <p class="mb-0 text-light">Working together for our students’ success</p>
+  <!-- MANAGEMENT HEADER -->
+  <header class="management-header text-center text-white" data-aos="fade-down">
+    <div class="container">
+      <h1>Management Committee</h1>
+      <p class="lead">Governing Body & Strategic Leadership of Darunnajath Shareeath & Arts College</p>
+      <div class="mt-4">
+        <span class="badge bg-warning text-dark me-2">2025-2027 Term</span>
+        <span class="badge bg-light text-dark me-2">Strategic Governance</span>
+        <span class="badge bg-info">Educational Leadership</span>
+      </div>
+    </div>
   </header>
 
-  <!-- PTA MEMBERS SECTION -->
-  <section id="pta" class="py-5">
+  <!-- MAIN CONTENT -->
+  <main class="py-5">
     <div class="container">
-      <div class="text-center mb-5" data-aos="zoom-in">
-        <h4 class="text-warning fw-bold">Executive Members (2025–26)</h4>
-        <p class="text-light">Meet the key members of our PTA</p>
-      </div>
 
-      <div class="row g-4">
-
-        <!-- President -->
-        <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <div class="pta-card text-center">
-            <img src="https://i.ibb.co/WNk2xXp3/abdumangalath.jpg" alt="President">
-            <h6 class="fw-bold mt-3">ABDU MANGALATH</h6>
-            <small class="pta-role d-block">PRESIDENT</small>
-            <small class="d-block text-light">📞 8281206676</small>
-            <p class="pta-about">Leading the PTA with vision and dedication, fostering collaboration between parents and teachers.</p>
-          </div>
+      <!-- EXECUTIVE COMMITTEE -->
+      <section id="executive" class="mb-5">
+        <div class="text-center mb-5" data-aos="fade-up">
+          <h2 class="section-title text-warning">Executive Committee</h2>
+          <p class="text-light">Strategic leadership driving institutional excellence</p>
         </div>
 
-        <!-- Secretary -->
-        <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-          <div class="pta-card text-center">
-            <img src="https://i.ibb.co/pvnbMsDr/FAIROOS.jpg" alt="Secretary">
-            <h6 class="fw-bold mt-3">FAIROOSUDHEEN P</h6>
-            <small class="pta-role d-block">GENERAL SECRETARY</small>
-            <small class="d-block text-light">📞 9497349254</small>
-            <p class="pta-about">Coordinates all PTA activities and maintains strong communication among members.</p>
+        <div class="row g-4">
+
+          <!-- Chairman -->
+          <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+            <div class="executive-card">
+              <div class="executive-img-container text-center">
+                <span class="executive-badge">CHAIRMAN</span>
+                <img src="https://i.ibb.co/WNk2xXp3/abdumangalath.jpg" alt="Chairman" class="executive-img">
+              </div>
+              <div class="executive-info">
+                <h4 class="executive-name">ABDU MANGALATH</h4>
+                <div class="executive-role">CHAIRMAN</div>
+                <div class="executive-contact">
+                  <i class="fas fa-phone"></i>8281206676<br>
+                  <i class="fas fa-envelope"></i>chairman@darunnajath.edu
+                </div>
+                <p class="executive-bio">Providing visionary leadership and strategic direction to the institution. Oversees all major policy decisions and institutional development.</p>
+              </div>
+            </div>
           </div>
+
+          <!-- Secretary -->
+          <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+            <div class="executive-card">
+              <div class="executive-img-container text-center">
+                <span class="executive-badge">SECRETARY</span>
+                <img src="https://i.ibb.co/pvnbMsDr/FAIROOS.jpg" alt="Secretary" class="executive-img">
+              </div>
+              <div class="executive-info">
+                <h4 class="executive-name">FAIROOSUDHEEN P</h4>
+                <div class="executive-role">SECRETARY</div>
+                <div class="executive-contact">
+                  <i class="fas fa-phone"></i>9497349254<br>
+                  <i class="fas fa-envelope"></i>secretary@darunnajath.edu
+                </div>
+                <p class="executive-bio">Manages administrative operations, implements board decisions, and coordinates between different management layers.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Treasurer -->
+          <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="executive-card">
+              <div class="executive-img-container text-center">
+                <span class="executive-badge">TREASURER</span>
+                <img src="https://i.ibb.co/7xzp475Q/SALEEM.jpg" alt="Treasurer" class="executive-img">
+              </div>
+              <div class="executive-info">
+                <h4 class="executive-name">SAIF SALEEM P</h4>
+                <div class="executive-role">TREASURER</div>
+                <div class="executive-contact">
+                  <i class="fas fa-phone"></i>9961236409<br>
+                  <i class="fas fa-envelope"></i>treasurer@darunnajath.edu
+                </div>
+                <p class="executive-bio">Oversees financial management, budgeting, investments, and ensures financial transparency and compliance.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Academic Director -->
+          <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+            <div class="executive-card">
+              <div class="executive-img-container text-center">
+                <span class="executive-badge">DIRECTOR</span>
+                <img src="https://i.ibb.co/kWR6Z5B/AMEER.jpg" alt="Academic Director" class="executive-img">
+              </div>
+              <div class="executive-info">
+                <h4 class="executive-name">AMEERUDHEEN P</h4>
+                <div class="executive-role">ACADEMIC DIRECTOR</div>
+                <div class="executive-contact">
+                  <i class="fas fa-phone"></i>8078055520<br>
+                  <i class="fas fa-envelope"></i>academic@darunnajath.edu
+                </div>
+                <p class="executive-bio">Leads academic planning, curriculum development, faculty management, and quality assurance initiatives.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- MANAGEMENT STATISTICS -->
+      <section id="statistics" class="mb-5" data-aos="fade-up">
+        <div class="row g-4">
+          <div class="col-md-3">
+            <div class="stat-card">
+              <div class="stat-number">15</div>
+              <div class="stat-label">Total Members</div>
+              <small>Management Committee</small>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="stat-card">
+              <div class="stat-number">4</div>
+              <div class="stat-label">Executive Roles</div>
+              <small>Key Positions</small>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="stat-card">
+              <div class="stat-number">6</div>
+              <div class="stat-label">Sub-Committees</div>
+              <small>Specialized Teams</small>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="stat-card">
+              <div class="stat-number">4</div>
+              <div class="stat-label">Annual Meetings</div>
+              <small>Strategic Reviews</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MANAGEMENT ROLES & RESPONSIBILITIES -->
+      <section id="roles" class="mb-5" data-aos="fade-up">
+        <div class="text-center mb-5">
+          <h3 class="section-title text-warning">Governance Structure</h3>
+          <p class="text-light">Clear roles and responsibilities for effective management</p>
         </div>
 
-        <!-- Treasurer -->
-        <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-          <div class="pta-card text-center">
-            <img src="https://i.ibb.co/7xzp475Q/SALEEM.jpg" alt="Treasurer">
-            <h6 class="fw-bold mt-3">SAIF SALEEM P</h6>
-            <small class="pta-role d-block">TREASURER</small>
-            <small class="d-block text-light">📞 9961236409</small>
-            <p class="pta-about">Responsible for managing PTA funds and ensuring financial transparency and growth.</p>
+        <div class="row g-4">
+          <div class="col-md-6" data-aos="zoom-in" data-aos-delay="100">
+            <div class="role-section">
+              <div class="role-icon">
+                <i class="fas fa-gavel text-white"></i>
+              </div>
+              <h5>Strategic Planning</h5>
+              <p class="text-light">Setting long-term vision, institutional goals, and strategic direction for academic and administrative excellence.</p>
+            </div>
           </div>
+          <div class="col-md-6" data-aos="zoom-in" data-aos-delay="200">
+            <div class="role-section">
+              <div class="role-icon">
+                <i class="fas fa-chart-line text-white"></i>
+              </div>
+              <h5>Financial Oversight</h5>
+              <p class="text-light">Budget approval, financial planning, resource allocation, and ensuring fiscal responsibility and transparency.</p>
+            </div>
+          </div>
+          <div class="col-md-6" data-aos="zoom-in" data-aos-delay="300">
+            <div class="role-section">
+              <div class="role-icon">
+                <i class="fas fa-user-graduate text-white"></i>
+              </div>
+              <h5>Academic Governance</h5>
+              <p class="text-light">Curriculum development, quality assurance, faculty appointments, and academic policy formulation.</p>
+            </div>
+          </div>
+          <div class="col-md-6" data-aos="zoom-in" data-aos-delay="400">
+            <div class="role-section">
+              <div class="role-icon">
+                <i class="fas fa-hard-hat text-white"></i>
+              </div>
+              <h5>Infrastructure Development</h5>
+              <p class="text-light">Campus expansion, facility planning, technology integration, and infrastructure maintenance.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UPCOMING MEETINGS TIMELINE -->
+      <section id="timeline" class="mb-5" data-aos="fade-up">
+        <div class="text-center mb-5">
+          <h3 class="section-title text-warning">Meeting Schedule 2025</h3>
+          <p class="text-light">Strategic planning and review meetings</p>
         </div>
 
-        <!-- Staff Secretary -->
-        <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="400">
-          <div class="pta-card text-center">
-            <img src="https://i.ibb.co/kWR6Z5B/AMEER.jpg" alt="Staff Secretary">
-            <h6 class="fw-bold mt-3">AMEERUDHEEN P</h6>
-            <small class="pta-role d-block">STAFF SECRETARY</small>
-            <small class="d-block text-light">📞 8078055520</small>
-            <p class="pta-about">Acts as a bridge between staff and PTA, ensuring smooth communication and teamwork.</p>
+        <div class="row">
+          <div class="col-md-10 mx-auto">
+            <div class="timeline-item">
+              <h5 class="text-warning">Q1 Review Meeting</h5>
+              <p class="text-light">March 15, 2025 • Annual budget review and strategic planning</p>
+            </div>
+            <div class="timeline-item">
+              <h5 class="text-warning">Mid-Year Strategic Review</h5>
+              <p class="text-light">June 30, 2025 • Performance assessment and policy adjustments</p>
+            </div>
+            <div class="timeline-item">
+              <h5 class="text-warning">Academic Planning Session</h5>
+              <p class="text-light">September 20, 2025 • Curriculum development and faculty planning</p>
+            </div>
+            <div class="timeline-item">
+              <h5 class="text-warning">Annual General Meeting</h5>
+              <p class="text-light">December 10, 2025 • Annual report presentation and election of officers</p>
+            </div>
           </div>
         </div>
-
-      </div>
-
-      <!-- PTA ACTIVITIES -->
-      <div class="text-center mt-5 mb-4" data-aos="fade-right">
-        <h4 class="text-warning fw-bold">Recent PTA Activities</h4>
-      </div>
-
-      <div class="row g-4">
-        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
-          <div class="pta-card text-center">
-            <h6 class="fw-bold text-warning">Activity 1</h6>
-            <p class="pta-about">A seminar for parents.</p>
-          </div>
-        </div>
-        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
-          <div class="pta-card text-center">
-            <h6 class="fw-bold text-warning">Campus Clean-Up Day</h6>
-            <p class="pta-about">Parents, teachers, and students joined hands to beautify environment.</p>
-          </div>
-        </div>
-        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
-          <div class="pta-card text-center">
-            <h6 class="fw-bold text-warning">Annual PTA Meeting</h6>
-            <p class="pta-about">condected on sunday on words .</p>
-          </div>
-        </div>
-      </div>
+      </section>
 
       <!-- BACK TO HOME -->
       <div class="text-center mt-5" data-aos="fade-up">
-        <a href="index.html" class="btn btn-outline-primary px-4">← Back to Home</a>
+        <a href="index.html" class="btn back-btn px-5">
+          <i class="fas fa-arrow-left me-2"></i>Back to Home
+        </a>
       </div>
+
     </div>
-  </section>
+  </main>
 
   <!-- FOOTER -->
-  <footer class="text-white text-center py-3 mt-4" data-aos="fade-up">
-    <small>© 2025 All rights reserved. | DARUNNAJATH SHAREEATH AND ARTS COLLEGE</small>
+  <footer class="management-footer">
+    <div class="container text-center">
+      <div class="row align-items-center">
+        <div class="col-md-4 mb-3 mb-md-0">
+          <h5 class="text-warning">Management Office</h5>
+          <small class="text-light">Darunnajath Shareeath & Arts College</small><br>
+          <small class="text-light">Punnakkad, Karuvarakundu</small>
+        </div>
+        <div class="col-md-4 mb-3 mb-md-0">
+          <p class="mb-2">
+            <i class="fas fa-phone text-warning me-2"></i>
+            <span class="text-light">04931-287654</span>
+          </p>
+          <p class="mb-0">
+            <i class="fas fa-envelope text-warning me-2"></i>
+            <span class="text-light">management@darunnajath.edu</span>
+          </p>
+        </div>
+        <div class="col-md-4">
+          <small class="text-light">© 2025 All rights reserved.<br>Darunnajath Shareeath & Arts College</small>
+        </div>
+      </div>
+    </div>
   </footer>
 
-  <!-- AOS Script -->
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({
@@ -183,8 +555,17 @@
       once: true,
       offset: 100
     });
+    
+    // Add subtle animation to cards on hover
+    document.querySelectorAll('.executive-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px)';
+      });
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    });
   </script>
 
 </body>
 </html>
-
