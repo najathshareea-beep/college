@@ -62,11 +62,11 @@
   <div class="id-form">
     <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" width="80" alt="logo">
     <h2>DARUNNAJATH SHAREEATH AND ARTS COLLEGE</h2>
-    <p>Enter your Class and Roll Number to generate your ID card</p>
+    <p>Enter your UID and Date of Birth to generate your ID card</p>
     <form id="idForm">
       <div class="mb-3 text-start">
         <label class="form-label">Class</label>
-        <input type="text" name="class" class="form-control" placeholder="Enter Class" required>
+        <input type="text" name="UID" class="form-control" placeholder="Enter UID" required>
       </div>
       <div class="mb-3 text-start">
         <label class="form-label">Roll Number</label>
@@ -95,7 +95,7 @@
         .then(data => {
           if (data.result === 'success') {
             const s = data.student;
-            const qrData = `UID: ${s.UID}, Admission: ${s.AdmissionNumber}, Name: ${s.FullName}, Class: ${s.ClassLevel}, Roll: ${s.RollNumber}`;
+            const qrData = `UID: ${s.UID}, Admission: ${s.AdmissionNumber}, Name: ${s.FullName}, Class: ${s.ClassLevel}, Batch: ${s.BatchNumber}`;
             const qrURL = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=100x100`;
 
             const html = `
@@ -188,9 +188,9 @@
 
                   <div class="id-card">
                     <div class="id-header">
-                      <h5>NOORUSSALAM SECONDARY MADRASA</h5>
-                      <small>Kambippalam Kerala Estate, Malappuram Dt.<br>Email: noorussalam6110@gmail.com</small>
-                      <small>Under SKIMVB, Reg No:6110</small>
+                      <h5>DARUNNAJATH SHAREEATH AND ARTS COLLEGE</h5>
+                      <small>Punnakkad, Karuvarakundu, Malappuram Dt.<br>Email: najathshareea@gmail.com</small>
+                      <small>Affiliated to JAMIA NOORIYYA ARABIYYA</small>
                     </div>
                     <div class="id-body">
                       <img src="${s.PhotoURL || 'https://via.placeholder.com/100'}" class="id-photo">
@@ -200,7 +200,7 @@
                       <p><strong>Admission No:</strong> ${s.AdmissionNumber}</p>
                       <p><strong>Father’s Name:</strong> ${s.FatherName}</p>
                       <p><strong>Class:</strong> ${s.ClassLevel}</p>
-                      <p><strong>Roll No:</strong> ${s.RollNumber}</p>
+                      <p><strong>Batch No:</strong> ${s.BatchNumber}</p>
                       <p><strong>Phone:</strong> ${s.Phone}</p>
 
                       <div class="qr-code">
