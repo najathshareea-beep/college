@@ -26,7 +26,7 @@
 
     .container {
       width: 100%;
-      max-width: 500px;
+      max-width: 450px;
       margin: 0 auto;
     }
 
@@ -138,14 +138,6 @@
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ID CARD STYLES */
-    .id-card-template {
-      width: 100%;
-      max-width: 400px;
-      margin: 20px auto;
-      display: none;
     }
 
     @media (max-width: 768px) {
@@ -271,7 +263,11 @@
                     .id-card {
                       margin: 0 !important;
                       box-shadow: none !important;
-                      border: none !important;
+                      border: 1px solid #000 !important;
+                    }
+                    @page {
+                      size: auto;
+                      margin: 0;
                     }
                   }
 
@@ -292,143 +288,102 @@
                   }
 
                   .id-card {
-                    width: 324px;  /* Standard ID card width (3.375 inches) */
-                    height: 204px; /* Standard ID card height (2.125 inches) */
+                    width: 216mm;  /* A4 portrait width */
+                    height: 279mm; /* A4 portrait height */
                     background: white;
-                    border-radius: 12px;
-                    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+                    border-radius: 15px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
                     overflow: hidden;
                     border: 3px solid #0b5ed7;
                     position: relative;
                     display: flex;
-                  }
-
-                  .left-section {
-                    width: 65%;
-                    padding: 10px;
-                    display: flex;
                     flex-direction: column;
+                    padding: 20px;
                   }
 
-                  .right-section {
-                    width: 35%;
+                  .header-section {
                     background: linear-gradient(135deg, #0b5ed7, #74b9ff);
                     color: white;
-                    padding: 10px;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: space-between;
-                  }
-
-                  .header {
-                    background: #0b5ed7;
-                    color: white;
-                    padding: 5px;
+                    padding: 15px;
                     text-align: center;
-                    border-radius: 5px;
-                    margin-bottom: 10px;
+                    border-radius: 10px 10px 0 0;
+                    margin: -20px -20px 20px -20px;
                   }
 
-                  .header h3 {
-                    font-size: 12px;
+                  .header-section h1 {
+                    font-size: 22px;
                     font-weight: 700;
                     margin: 0;
                     line-height: 1.2;
                   }
 
-                  .header small {
-                    font-size: 8px;
+                  .header-section small {
+                    font-size: 12px;
                     opacity: 0.9;
+                    display: block;
+                    margin-top: 5px;
+                  }
+
+                  .content-section {
+                    display: flex;
+                    flex: 1;
+                    gap: 20px;
+                  }
+
+                  .left-column {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    padding: 15px;
+                    border-right: 2px dashed #0b5ed7;
+                  }
+
+                  .right-column {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    padding: 15px;
                   }
 
                   .photo-section {
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-                    margin-bottom: 10px;
+                    text-align: center;
+                    margin-bottom: 20px;
                   }
 
                   .student-photo {
-                    width: 70px;
-                    height: 70px;
-                    border-radius: 50%;
+                    width: 150px;
+                    height: 180px;
                     object-fit: cover;
-                    border: 2px solid #0b5ed7;
-                    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                    border: 3px solid #0b5ed7;
+                    border-radius: 10px;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                    background: #f8f9fa;
                   }
 
-                  .basic-info {
-                    flex: 1;
-                  }
-
-                  .student-name {
-                    color: #0b5ed7;
-                    font-size: 14px;
-                    font-weight: 700;
-                    margin-bottom: 3px;
-                    text-transform: uppercase;
-                    line-height: 1.1;
-                  }
-
-                  .uid-info {
-                    font-size: 10px;
-                    color: #333;
-                    margin-bottom: 5px;
-                  }
-
-                  .details-grid {
-                    display: grid;
-                    grid-template-columns: repeat(2, 1fr);
-                    gap: 3px;
-                    font-size: 9px;
-                  }
-
-                  .detail-item {
-                    display: flex;
-                    align-items: center;
-                  }
-
-                  .detail-label {
-                    color: #0b5ed7;
-                    font-weight: 600;
-                    min-width: 55px;
-                    font-size: 8px;
-                  }
-
-                  .detail-value {
-                    color: #333;
-                    font-size: 8px;
-                    flex: 1;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                  }
-
-                  .signature-section {
-                    margin-top: 10px;
-                    padding-top: 5px;
-                    border-top: 1px dashed #ccc;
-                    text-align: center;
-                  }
-
-                  .signature {
-                    font-size: 7px;
+                  .photo-label {
+                    font-size: 12px;
                     color: #666;
+                    margin-top: 8px;
+                    font-weight: 600;
                   }
 
                   .qr-section {
                     text-align: center;
-                    margin-top: 5px;
+                    margin-top: 20px;
+                    padding: 15px;
+                    background: #f8f9fa;
+                    border-radius: 10px;
                   }
 
                   .qr-code {
-                    width: 60px;
-                    height: 60px;
-                    margin: 0 auto;
+                    width: 120px;
+                    height: 120px;
+                    margin: 0 auto 10px;
                     background: white;
-                    padding: 3px;
-                    border-radius: 3px;
+                    padding: 8px;
+                    border-radius: 5px;
+                    border: 2px solid #0b5ed7;
                   }
 
                   .qr-code img {
@@ -436,47 +391,108 @@
                     height: 100%;
                   }
 
-                  .college-seal {
-                    margin-top: 10px;
+                  .qr-label {
+                    font-size: 11px;
+                    color: #666;
+                    margin-top: 5px;
                   }
 
-                  .college-seal h4 {
-                    font-size: 9px;
-                    font-weight: 700;
-                    margin: 0;
+                  .student-name {
                     text-align: center;
-                    line-height: 1.1;
+                    color: #0b5ed7;
+                    font-size: 24px;
+                    font-weight: 700;
+                    margin-bottom: 15px;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    padding-bottom: 10px;
+                    border-bottom: 2px solid #0b5ed7;
                   }
 
-                  .college-seal small {
-                    font-size: 6px;
-                    opacity: 0.9;
+                  .details-grid {
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    gap: 12px;
+                    margin-bottom: 20px;
+                  }
+
+                  .detail-row {
+                    display: flex;
+                    align-items: center;
+                    padding: 8px 0;
+                    border-bottom: 1px solid #e0e0e0;
+                  }
+
+                  .detail-label {
+                    color: #0b5ed7;
+                    font-weight: 700;
+                    min-width: 140px;
+                    font-size: 14px;
+                  }
+
+                  .detail-value {
+                    color: #333;
+                    font-size: 14px;
+                    font-weight: 500;
+                    flex: 1;
+                  }
+
+                  .signature-section {
+                    margin-top: auto;
+                    padding-top: 20px;
+                    border-top: 2px dashed #0b5ed7;
+                    text-align: center;
+                  }
+
+                  .signature-line {
+                    border-top: 1px solid #333;
+                    width: 200px;
+                    margin: 10px auto;
+                  }
+
+                  .signature-label {
+                    font-size: 12px;
+                    color: #666;
+                    margin-top: 5px;
+                  }
+
+                  .footer-section {
+                    background: #f8f9fa;
+                    padding: 10px;
+                    text-align: center;
+                    border-radius: 0 0 10px 10px;
+                    margin: 20px -20px -20px -20px;
                   }
 
                   .academic-year {
-                    color: white;
-                    font-weight: 600;
-                    font-size: 9px;
-                    letter-spacing: 0.5px;
-                    text-align: center;
+                    color: #0b5ed7;
+                    font-weight: 700;
+                    font-size: 14px;
+                    letter-spacing: 1px;
+                  }
+
+                  .footer-note {
+                    font-size: 10px;
+                    color: #666;
                     margin-top: 5px;
                   }
 
                   .controls {
                     text-align: center;
                     margin-top: 20px;
+                    margin-bottom: 20px;
                   }
 
                   .btn-print {
                     background: linear-gradient(135deg, #0b5ed7, #0849a2);
                     color: white;
                     border: none;
-                    padding: 10px 25px;
-                    border-radius: 20px;
+                    padding: 12px 30px;
+                    border-radius: 25px;
                     font-weight: 600;
                     cursor: pointer;
                     transition: all 0.3s ease;
-                    font-size: 14px;
+                    font-size: 16px;
                     margin-bottom: 10px;
                   }
 
@@ -485,82 +501,123 @@
                     box-shadow: 0 5px 15px rgba(11, 94, 215, 0.4);
                   }
 
-                  .footer-note {
-                    font-size: 7px;
-                    color: #666;
+                  .college-logo {
+                    width: 80px;
+                    height: 80px;
+                    object-fit: contain;
+                    margin: 0 auto 10px;
+                  }
+
+                  .college-info {
                     text-align: center;
-                    margin-top: 3px;
+                    margin-bottom: 20px;
+                  }
+
+                  .college-info h3 {
+                    color: #0b5ed7;
+                    font-size: 18px;
+                    font-weight: 700;
+                    margin-bottom: 5px;
+                  }
+
+                  .college-info p {
+                    color: #666;
+                    font-size: 12px;
+                    margin: 0;
                   }
                 </style>
               </head>
               <body>
                 <div class="controls no-print">
                   <button class="btn-print" onclick="window.print()">🖨️ Print ID Card</button>
-                  <p style="color: #666; font-size: 12px;">Recommended: Print on card stock paper</p>
+                  <p style="color: #666; font-size: 14px;">Portrait ID Card | Print on A4 Paper</p>
                 </div>
 
                 <div class="id-card">
-                  <!-- Left Section -->
-                  <div class="left-section">
-                    <div class="header">
-                      <h3>DARUNNAJATH SHAREEATH & ARTS COLLEGE</h3>
-                      <small>Punnakkad, Karuvarakundu • Affiliated to JAMIA NOORIYYA ARABIYYA</small>
-                    </div>
+                  <div class="header-section">
+                    <h1>DARUNNAJATH SHAREEATH & ARTS COLLEGE</h1>
+                    <small>Punnakkad, Karuvarakundu, Malappuram District</small>
+                    <small>Affiliated to JAMIA NOORIYYA ARABIYYA</small>
+                  </div>
 
-                    <div class="photo-section">
-                      <img src="${s.PhotoURL || 'https://via.placeholder.com/70x70?text=Photo'}" 
-                           alt="Student Photo" class="student-photo">
-                      <div class="basic-info">
-                        <div class="student-name">${s.FullName}</div>
-                        <div class="uid-info"><strong>UID:</strong> ${s.UID}</div>
+                  <div class="content-section">
+                    <!-- Left Column -->
+                    <div class="left-column">
+                      <div class="photo-section">
+                        <img src="${s.PhotoURL || 'https://via.placeholder.com/150x180?text=Student+Photo'}" 
+                             alt="Student Photo" class="student-photo">
+                        <div class="photo-label">OFFICIAL PHOTOGRAPH</div>
                       </div>
-                    </div>
 
-                    <div class="details-grid">
-                      <div class="detail-item">
-                        <span class="detail-label">ADMISSION NO:</span>
-                        <span class="detail-value">${s.AdmissionNumber}</span>
+                      <div class="qr-section">
+                        <div class="qr-code">
+                          <img src="${qrURL}" alt="QR Code">
+                        </div>
+                        <div class="qr-label">Scan QR Code for Verification</div>
                       </div>
-                      <div class="detail-item">
-                        <span class="detail-label">FATHER:</span>
-                        <span class="detail-value">${s.FatherName}</span>
-                      </div>
-                      <div class="detail-item">
-                        <span class="detail-label">CLASS:</span>
-                        <span class="detail-value">${s.ClassLevel}</span>
-                      </div>
-                      <div class="detail-item">
-                        <span class="detail-label">BATCH:</span>
-                        <span class="detail-value">${s.BatchNumber}</span>
-                      </div>
-                      <div class="detail-item">
-                        <span class="detail-label">PHONE:</span>
-                        <span class="detail-value">${s.Phone}</span>
+
+                      <div class="college-info">
+                        <h3>STUDENT IDENTITY CARD</h3>
+                        <p>Valid for Academic Year 2025-26</p>
                       </div>
                     </div>
 
-                    <div class="signature-section">
-                      <div class="signature">____________________</div>
-                      <div class="signature">Principal's Signature</div>
+                    <!-- Right Column -->
+                    <div class="right-column">
+                      <h2 class="student-name">${s.FullName}</h2>
+
+                      <div class="details-grid">
+                        <div class="detail-row">
+                          <span class="detail-label">UNIQUE ID (UID):</span>
+                          <span class="detail-value">${s.UID}</span>
+                        </div>
+                        <div class="detail-row">
+                          <span class="detail-label">ADMISSION NUMBER:</span>
+                          <span class="detail-value">${s.AdmissionNumber}</span>
+                        </div>
+                        <div class="detail-row">
+                          <span class="detail-label">FATHER'S NAME:</span>
+                          <span class="detail-value">${s.FatherName}</span>
+                        </div>
+                        <div class="detail-row">
+                          <span class="detail-label">CLASS & SECTION:</span>
+                          <span class="detail-value">${s.ClassLevel}</span>
+                        </div>
+                        <div class="detail-row">
+                          <span class="detail-label">BATCH NUMBER:</span>
+                          <span class="detail-value">${s.BatchNumber}</span>
+                        </div>
+                        <div class="detail-row">
+                          <span class="detail-label">CONTACT NUMBER:</span>
+                          <span class="detail-value">${s.Phone}</span>
+                        </div>
+                        <div class="detail-row">
+                          <span class="detail-label">DATE OF BIRTH:</span>
+                          <span class="detail-value">${s.DOB || 'N/A'}</span>
+                        </div>
+                        <div class="detail-row">
+                          <span class="detail-label">BLOOD GROUP:</span>
+                          <span class="detail-value">${s.BloodGroup || 'N/A'}</span>
+                        </div>
+                        <div class="detail-row">
+                          <span class="detail-label">ADDRESS:</span>
+                          <span class="detail-value">${s.Address || 'N/A'}</span>
+                        </div>
+                      </div>
+
+                      <div class="signature-section">
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Authorized Signature</div>
+                        <div class="signature-label">Principal / Authorized Signatory</div>
+                      </div>
                     </div>
                   </div>
 
-                  <!-- Right Section -->
-                  <div class="right-section">
-                    <div class="college-seal">
-                      <h4>DARUNNAJATH</h4>
-                      <small>SHAREEATH & ARTS COLLEGE</small>
-                    </div>
-
-                    <div class="qr-section">
-                      <div class="qr-code">
-                        <img src="${qrURL}" alt="QR Code">
-                      </div>
-                      <div class="footer-note">Scan for verification</div>
-                    </div>
-
-                    <div class="academic-year">
-                      ACADEMIC YEAR<br>2025-26
+                  <div class="footer-section">
+                    <div class="academic-year">ACADEMIC YEAR 2025-2026</div>
+                    <div class="footer-note">
+                      This card is the property of Darunnajath Shareeath & Arts College.<br>
+                      Must be carried at all times within campus. Non-transferable.
                     </div>
                   </div>
                 </div>
