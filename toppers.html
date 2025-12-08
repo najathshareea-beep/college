@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Class Topper Certificate Generator — DARUNNAJATH SHAREEATH AND ARTS COLLEGE</title>
+<title>Class Topper Poster Generator — DARUNNAJATH SHAREEATH AND ARTS COLLEGE</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Amiri&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
@@ -726,8 +726,8 @@ footer p {
   }
 }
 
-/* Certificate Preview */
-#certificatePreview {
+/* Poster Preview */
+#PosterPreview {
   display: none;
   position: fixed;
   top: 0;
@@ -740,7 +740,7 @@ footer p {
   padding: 20px;
 }
 
-.certificate-canvas {
+.Poster-canvas {
   background: white;
   width: 800px;
   max-width: 90%;
@@ -844,27 +844,23 @@ footer p {
         <i class="fas fa-graduation-cap"></i>
       </div>
       <h1>DARUNNAJATH SHAREEATH AND ARTS COLLEGE</h1>
-      <p class="subtitle">Annual Examination Results - Academic Year 2025-2026</p>
+      <p class="subtitle">Annual Examination Results - Academic Year 2025-26</p>
       <p class="tagline">Celebrating Academic Excellence & Achievement</p>
     </div>
     
     <!-- Stats Section -->
     <div class="stats">
       <div class="stat-item">
-        <div class="stat-number">10</div>
+        <div class="stat-number">7</div>
         <div class="stat-label">Classes</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">20</div>
+        <div class="stat-number">14</div>
         <div class="stat-label">Top Students</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">100%</div>
         <div class="stat-label">Success Rate</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number" id="certCount">0</div>
-        <div class="stat-label">Certificates Generated</div>
       </div>
     </div>
     
@@ -874,10 +870,10 @@ footer p {
         <i class="fas fa-lightbulb"></i>
       </div>
       <div class="instructions-content">
-        <h3>How to Generate Certificates</h3>
+        <h3>How to Generate Posters</h3>
         <ul class="instructions-list">
           <li><i class="fas fa-camera"></i> Upload high-quality photos for best results</li>
-          <li><i class="fas fa-eye"></i> Preview the certificate before downloading</li>
+          <li><i class="fas fa-eye"></i> Preview the Poster before downloading</li>
           <li><i class="fas fa-download"></i> Download as PNG or PDF from preview</li>
           <li><i class="fas fa-trash-alt"></i> Clear all photos if needed</li>
         </ul>
@@ -899,8 +895,8 @@ footer p {
   
   <!-- Footer -->
   <footer>
-    <p>© 2025-2026 DARUNNAJATH SHAREEATH AND ARTS COLLEGE — PUNNAKKAD KARUVARAKUNDU</p>
-    <p>Certificates generated: <span class="cert-count" id="certCountFooter">0</span></p>
+    <p>© 2025-26 DARUNNAJATH SHAREEATH AND ARTS COLLEGE — PUNNAKKAD KARUVARAKUNDU</p>
+    <p>Posters generated: <span class="cert-count" id="certCountFooter">0</span></p>
     <p>Designed with <i class="fas fa-heart" style="color:#dc3545;"></i> for celebrating student achievements</p>
   </footer>
 </div>
@@ -908,13 +904,13 @@ footer p {
 <!-- Loading Overlay -->
 <div class="loading" id="loading">
   <div class="loading-spinner"></div>
-  <p>Generating Certificate...</p>
+  <p>Generating Poster...</p>
 </div>
 
-<!-- Certificate Preview Modal -->
-<div id="certificatePreview">
-  <div class="close-preview" onclick="closeCertificatePreview()">×</div>
-  <canvas id="previewCanvas" class="certificate-canvas"></canvas>
+<!-- Poster Preview Modal -->
+<div id="PosterPreview">
+  <div class="close-preview" onclick="closePosterPreview()">×</div>
+  <canvas id="previewCanvas" class="Poster-canvas"></canvas>
 </div>
 
 <!-- Photo Preview Modal -->
@@ -927,7 +923,7 @@ footer p {
 <audio id="certSound" src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3" preload="auto"></audio>
 
 <script>
-// Certificate background image URL
+// Poster background image URL
 const CERT_BG = "https://i.ibb.co/JRqqvrm0/TOPPER.jpg";
 
 // Class data with two toppers per class (First and Second)
@@ -1014,7 +1010,7 @@ classesData.forEach((cls, classIndex) => {
   });
 });
 
-// Track certificate generation count
+// Track Poster generation count
 let certCount = parseInt(localStorage.getItem('certCount') || '0');
 updateCertCount();
 
@@ -1123,8 +1119,8 @@ classesData.forEach((cls, classIndex) => {
         <div class="rank-label ${isFirst ? 'first' : 'second'}">${topper.rank} Place in Class</div>
         <div class="student-meta">Marks: ${escapeHtml(topper.mark)}</div>
         <div class="btns">
-          <button class="btn btn-preview" onclick="previewCertificate('${topper.name}','${cls.class}','${topper.mark}', '${topper.rank}', uploadedPhotos[${classIndex}][${topperIndex}] || '${photoURL}')">
-            <i class="fas fa-eye"></i> Preview Certificate
+          <button class="btn btn-preview" onclick="previewPoster('${topper.name}','${cls.class}','${topper.mark}', '${topper.rank}', uploadedPhotos[${classIndex}][${topperIndex}] || '${photoURL}')">
+            <i class="fas fa-eye"></i> Preview Poster
           </button>
         </div>
       </div>
@@ -1210,8 +1206,8 @@ function loadImage(src) {
   }); 
 }
 
-// Render certificate canvas
-async function renderCertificateCanvas(name, cls, mark, rank, photo) {
+// Render Poster canvas
+async function renderPosterCanvas(name, cls, mark, rank, photo) {
   const w = 1200, h = 1600;
   const canvas = document.createElement("canvas"); 
   canvas.width = w; 
@@ -1226,7 +1222,7 @@ async function renderCertificateCanvas(name, cls, mark, rank, photo) {
     // Add student photo - LARGER PHOTO SIZE WITH STYLISH BORDER
     const cx = w/2, cy = 800, r = 200; // Increased from 180 to 200
     
-    // Draw stylish border for certificate photo
+    // Draw stylish border for Poster photo
     const borderColor = rank === 'First' ? '#ffd700' : '#6c757d';
     const gradient = ctx.createLinearGradient(cx - r - 10, cy - r - 10, cx + r + 10, cy + r + 10);
     
@@ -1294,8 +1290,8 @@ async function renderCertificateCanvas(name, cls, mark, rank, photo) {
     
     return canvas;
   } catch(error) {
-    console.error("Error rendering certificate:", error);
-    throw new Error("Failed to load certificate background");
+    console.error("Error rendering Poster:", error);
+    throw new Error("Failed to load Poster background");
   }
 }
 
@@ -1313,11 +1309,11 @@ function drawPlaceholderPhoto(ctx, cx, cy, r, name) {
   ctx.fillText('PHOTO', cx, cy + 35);
 }
 
-// Preview certificate
-async function previewCertificate(name, cls, mark, rank, photo) {
+// Preview Poster
+async function previewPoster(name, cls, mark, rank, photo) {
   try {
     showLoading();
-    const canvas = await renderCertificateCanvas(name, cls, mark, rank, photo);
+    const canvas = await renderPosterCanvas(name, cls, mark, rank, photo);
     hideLoading();
     
     const previewCanvas = document.getElementById('previewCanvas');
@@ -1327,11 +1323,11 @@ async function previewCertificate(name, cls, mark, rank, photo) {
     previewCanvas.width = 800;
     previewCanvas.height = 1067;
     
-    // Draw scaled certificate
+    // Draw scaled Poster
     ctx.drawImage(canvas, 0, 0, 1200, 1600, 0, 0, 800, 1067);
     
     // Show preview
-    document.getElementById('certificatePreview').style.display = 'block';
+    document.getElementById('PosterPreview').style.display = 'block';
     
     // Add download buttons to preview
     setTimeout(() => {
@@ -1342,35 +1338,35 @@ async function previewCertificate(name, cls, mark, rank, photo) {
       buttonContainer.className = 'preview-buttons';
       
       buttonContainer.innerHTML = `
-        <button onclick="downloadCertificate('${name}','${cls}','${mark}','${rank}','${photo.replace(/'/g, "\\'")}', 'png')" 
+        <button onclick="downloadPoster('${name}','${cls}','${mark}','${rank}','${photo.replace(/'/g, "\\'")}', 'png')" 
                 style="background:#ffd700; color:#000;">
           <i class="fas fa-download"></i> Download PNG
         </button>
-        <button onclick="downloadCertificate('${name}','${cls}','${mark}','${rank}','${photo.replace(/'/g, "\\'")}', 'pdf')" 
+        <button onclick="downloadPoster('${name}','${cls}','${mark}','${rank}','${photo.replace(/'/g, "\\'")}', 'pdf')" 
                 style="background:#0d6efd; color:white;">
           <i class="fas fa-file-pdf"></i> Download PDF
         </button>
       `;
       
-      document.getElementById('certificatePreview').appendChild(buttonContainer);
+      document.getElementById('PosterPreview').appendChild(buttonContainer);
     }, 100);
     
   } catch(error) {
     hideLoading();
-    console.error("Error previewing certificate:", error);
-    showNotification("Error previewing certificate. Please try again.", 'error');
+    console.error("Error previewing Poster:", error);
+    showNotification("Error previewing Poster. Please try again.", 'error');
   }
 }
 
-// Close certificate preview
-function closeCertificatePreview() {
-  document.getElementById('certificatePreview').style.display = 'none';
+// Close Poster preview
+function closePosterPreview() {
+  document.getElementById('PosterPreview').style.display = 'none';
   const buttons = document.querySelector('.preview-buttons');
   if (buttons) buttons.remove();
 }
 
-// Download certificate
-async function downloadCertificate(name, cls, mark, rank, photo, type) {
+// Download Poster
+async function downloadPoster(name, cls, mark, rank, photo, type) {
   try {
     showLoading();
     
@@ -1379,8 +1375,8 @@ async function downloadCertificate(name, cls, mark, rank, photo, type) {
     sound.currentTime = 0; 
     sound.play().catch(e => console.log("Audio play failed:", e));
     
-    // Render certificate
-    const canvas = await renderCertificateCanvas(name, cls, mark, rank, photo);
+    // Render Poster
+    const canvas = await renderPosterCanvas(name, cls, mark, rank, photo);
     const img = canvas.toDataURL("image/png");
     
     // Confetti celebration
@@ -1391,7 +1387,7 @@ async function downloadCertificate(name, cls, mark, rank, photo, type) {
       colors: rank === 'First' ? ['#ffd700', '#0d6efd', '#fff'] : ['#6c757d', '#0d6efd', '#fff']
     });
     
-    // Update certificate count
+    // Update Poster count
     certCount++;
     localStorage.setItem('certCount', certCount);
     updateCertCount();
@@ -1406,21 +1402,21 @@ async function downloadCertificate(name, cls, mark, rank, photo, type) {
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-      showNotification(`PNG certificate for ${name} downloaded!`, 'success');
+      showNotification(`PNG Poster for ${name} downloaded!`, 'success');
     } else if(type === "pdf") {
       const { jsPDF } = window.jspdf; 
       const pdf = new jsPDF({orientation: "portrait", unit: "px", format: [1200, 1600]});
       pdf.addImage(img, "PNG", 0, 0, 1200, 1600); 
       pdf.save(`${fileName}.pdf`);
-      showNotification(`PDF certificate for ${name} downloaded!`, 'success');
+      showNotification(`PDF Poster for ${name} downloaded!`, 'success');
     }
     
     hideLoading();
     
   } catch(error) {
     hideLoading();
-    console.error("Error generating certificate:", error);
-    showNotification("Error generating certificate. Please try again.", 'error');
+    console.error("Error generating Poster:", error);
+    showNotification("Error generating Poster. Please try again.", 'error');
   }
 }
 
@@ -1445,15 +1441,15 @@ document.getElementById('previewModal').addEventListener('click', function(e) {
   if(e.target === this) closePreview();
 });
 
-document.getElementById('certificatePreview').addEventListener('click', function(e) {
-  if(e.target === this) closeCertificatePreview();
+document.getElementById('PosterPreview').addEventListener('click', function(e) {
+  if(e.target === this) closePosterPreview();
 });
 
 // Keyboard shortcuts
 document.addEventListener('keydown', function(e) {
   if(e.key === 'Escape') {
     closePreview();
-    closeCertificatePreview();
+    closePosterPreview();
   }
 });
 
@@ -1462,10 +1458,10 @@ window.addEventListener('load', function() {
   // Test if background image loads
   const testImg = new Image();
   testImg.onload = function() {
-    console.log('Certificate background loaded successfully');
+    console.log('Poster background loaded successfully');
   };
   testImg.onerror = function() {
-    showNotification('Note: Using fallback certificate design', 'info');
+    showNotification('Note: Using fallback Poster design', 'info');
   };
   testImg.src = CERT_BG;
 });
