@@ -150,6 +150,7 @@
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
+      cursor: pointer;
     }
 
     .result-btn::before {
@@ -201,8 +202,85 @@
       border-color: rgba(139, 92, 246, 0.5);
     }
 
-    /* Back Button */
-    .back-btn {
+    /* Form Container (Hidden by default) */
+    .form-container {
+      display: none;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      padding: 30px;
+      margin-top: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-container h3 {
+      color: #2563eb;
+      margin-bottom: 25px;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #1e293b;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+    }
+
+    /* Result Display Area */
+    .result-display {
+      display: none;
+      background: white;
+      border-radius: 15px;
+      padding: 0;
+      margin-top: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Back to Options Button */
+    .back-options-btn {
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -214,11 +292,48 @@
       text-decoration: none;
       font-weight: 500;
       transition: all 0.3s ease;
+      cursor: pointer;
+      margin-top: 20px;
     }
 
-    .back-btn:hover {
+    .back-options-btn:hover {
       background: rgba(255, 255, 255, 0.3);
       transform: translateY(-2px);
+    }
+
+    /* Loading Overlay */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      flex-direction: column;
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #3498db;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    .loading-text {
+      color: white;
+      margin-top: 15px;
+      font-size: 16px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .text-center {
@@ -280,12 +395,22 @@
       .result-box h2 {
         font-size: 1.3rem;
       }
+      
+      .form-container {
+        padding: 20px;
+      }
     }
   </style>
 </head>
 <body>
   <!-- Floating particles -->
   <div class="particles" id="particles"></div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Fetching your result...</div>
+  </div>
 
   <div class="main-container">
     <!-- Header -->
@@ -301,15 +426,13 @@
       <p>Click below to view your latest examination results.</p>
 
       <div class="btn-container">
-        <!-- YOUR GOOGLE APPS SCRIPT URL -->
-        <a href="https://script.google.com/macros/s/AKfycbwVhTyCm_QLpMF2ym1s4LgRyXQ0eTRARgWY9mQj5boJaYPPAtH-L7sM9LXc8wM1_tgO/exec" 
-           class="result-btn" 
-           id="finalResultBtn"
-           target="_blank">
+        <!-- Annual Examination Button (Opens form on same page) -->
+        <div class="result-btn" id="finalResultBtn">
           <i class="fa-solid fa-book-open-reader"></i>
           <span>Annual Examination</span>
-        </a>
+        </div>
         
+        <!-- Jamia Public Exam (External Link) -->
         <a href="https://jamiajuniorcolleges.com/student/" 
            class="result-btn" 
            id="JamiaBtn"
@@ -318,6 +441,7 @@
           <span>Jamia Public Exam</span>
         </a>
         
+        <!-- Toppers Poster (External Link) -->
         <a href="toppers.html" 
            class="result-btn" 
            id="toppersBtn"
@@ -327,7 +451,46 @@
         </a>
       </div>
 
-      <div class="text-center mt-4">
+      <!-- Form Container (Hidden by default) -->
+      <div class="form-container" id="formContainer">
+        <h3>Enter Your Details</h3>
+        <form id="resultForm">
+          <div class="form-group">
+            <label class="form-label" for="rollNumber">
+              <i class="fas fa-user-graduate"></i> Registration Number
+            </label>
+            <input type="text" id="rollNumber" class="form-input" 
+                   placeholder="Enter your registration number" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="dob">
+              <i class="fas fa-calendar-alt"></i> Date of Birth
+            </label>
+            <input type="date" id="dob" class="form-input" required>
+          </div>
+          
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <i class="fas fa-search"></i> Check Result
+          </button>
+        </form>
+        
+        <!-- Back to Options Button (in form) -->
+        <div class="text-center mt-4">
+          <div class="back-options-btn" id="backFromFormBtn">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Options</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Result Display Area -->
+      <div class="result-display" id="resultDisplay">
+        <!-- Result will be loaded here -->
+      </div>
+
+      <!-- Back to Home Button (only in main view) -->
+      <div class="text-center mt-4" id="backButtonContainer">
         <a href="index.html" class="back-btn" id="backBtn">
           <i class="fas fa-arrow-left"></i>
           <span>Back to Home</span>
@@ -337,21 +500,113 @@
   </div>
 
   <script>
-    // You can add JavaScript functionality here if needed
-    console.log("Result Portal Loaded Successfully");
-    
-    // Add loading animation for buttons
-    document.querySelectorAll('.result-btn').forEach(button => {
-      button.addEventListener('click', function(e) {
-        // Add a small loading effect
-        const originalHTML = this.innerHTML;
-        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+    // Your Google Apps Script URL
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwVhTyCm_QLpMF2ym1s4LgRyXQ0eTRARgWY9mQj5boJaYPPAtH-L7sM9LXc8wM1_tgO/exec';
+
+    // DOM Elements
+    const finalResultBtn = document.getElementById('finalResultBtn');
+    const formContainer = document.getElementById('formContainer');
+    const backFromFormBtn = document.getElementById('backFromFormBtn');
+    const resultForm = document.getElementById('resultForm');
+    const resultDisplay = document.getElementById('resultDisplay');
+    const backButtonContainer = document.getElementById('backButtonContainer');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const btnContainer = document.querySelector('.btn-container');
+    const resultBox = document.querySelector('.result-box');
+
+    // Show form when Annual Exam button is clicked
+    finalResultBtn.addEventListener('click', function() {
+      btnContainer.style.display = 'none';
+      formContainer.style.display = 'block';
+      backButtonContainer.style.display = 'none';
+      resultDisplay.style.display = 'none';
+      
+      // Scroll to form
+      formContainer.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Back from form to options
+    backFromFormBtn.addEventListener('click', function() {
+      formContainer.style.display = 'none';
+      btnContainer.style.display = 'grid';
+      backButtonContainer.style.display = 'block';
+      resultDisplay.style.display = 'none';
+    });
+
+    // Handle form submission
+    resultForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const rollNumber = document.getElementById('rollNumber').value;
+      const dob = document.getElementById('dob').value;
+      
+      if (!rollNumber || !dob) {
+        alert("Please enter both Registration Number and Date of Birth");
+        return;
+      }
+      
+      // Show loading
+      loadingOverlay.style.display = 'flex';
+      
+      try {
+        // Call Google Apps Script
+        const response = await fetch(`${APPS_SCRIPT_URL}?roll=${encodeURIComponent(rollNumber)}&dob=${encodeURIComponent(dob)}`);
         
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const resultHtml = await response.text();
+        
+        // Hide form and show result
+        formContainer.style.display = 'none';
+        resultDisplay.innerHTML = resultHtml;
+        resultDisplay.style.display = 'block';
+        
+        // Add "Check Another Result" button to result display
+        const checkAnotherBtn = document.createElement('div');
+        checkAnotherBtn.className = 'text-center mt-4';
+        checkAnotherBtn.innerHTML = `
+          <div class="back-options-btn" id="checkAnotherBtn">
+            <i class="fas fa-redo"></i>
+            <span>Check Another Result</span>
+          </div>
+        `;
+        resultDisplay.appendChild(checkAnotherBtn);
+        
+        // Add event listener to "Check Another Result" button
         setTimeout(() => {
-          this.innerHTML = originalHTML;
-        }, 1000);
+          document.getElementById('checkAnotherBtn').addEventListener('click', function() {
+            resultDisplay.style.display = 'none';
+            resultDisplay.innerHTML = '';
+            formContainer.style.display = 'block';
+            resultForm.reset();
+          });
+        }, 100);
+        
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Error fetching result. Please try again.');
+      } finally {
+        // Hide loading
+        loadingOverlay.style.display = 'none';
+      }
+    });
+
+    // Optional: Add click effects to buttons
+    document.querySelectorAll('.result-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        if (this.id === 'finalResultBtn') {
+          this.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            this.style.transform = '';
+          }, 200);
+        }
       });
     });
+
+    // Initialize today's date as max date for DOB field
+    document.getElementById('dob').max = new Date().toISOString().split('T')[0];
   </script>
 </body>
 </html>
