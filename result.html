@@ -3,154 +3,295 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Result Portal - Darunnajath College</title>
-  
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+  <title>Results - DARUNNAJATH SHAREEATH AND ARTS COLLEGE</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --primary: #0d6efd;
+      --primary-light: #3a8cff;
+      --primary-dark: #0a58ca;
+      --secondary: #20c997;
+      --accent: #ff6b6b;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Animated Gradient Background */
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
       padding: 20px;
-      position: relative;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255,255,255,0.05) 0%, transparent 50%);
+      z-index: -2;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     /* Floating particles */
     .particles {
-      position: absolute;
+      position: fixed;
       width: 100%;
       height: 100%;
-      z-index: 1;
+      z-index: -1;
     }
 
-    .particles::before,
-    .particles::after {
-      content: '';
+    .particle {
       position: absolute;
-      width: 100px;
-      height: 100px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .particles::before {
-      top: 10%;
-      left: 5%;
-      animation-delay: 0s;
-    }
-
-    .particles::after {
-      top: 60%;
-      right: 8%;
-      animation-delay: 3s;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: float 20s infinite linear;
     }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(180deg); }
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(100vw) rotate(720deg);
+        opacity: 0;
+      }
     }
 
-    /* Main container */
-    .main-container {
-      max-width: 900px;
-      width: 100%;
-      z-index: 2;
-      position: relative;
-    }
-
-    /* Header */
+    /* Headings with animation */
     .header-container {
       text-align: center;
-      margin-bottom: 40px;
-      color: white;
+      margin-bottom: 2rem;
+      animation: fadeInDown 1s ease-out;
     }
 
     .main-heading {
-      font-size: 2.8rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      background: linear-gradient(135deg, #fff, #e0f2fe);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      background: linear-gradient(to right, #fff, #f8f9fa);
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 1px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px rgba(255,255,255,0.5),
+                     0 0 20px rgba(255,255,255,0.3),
+                     0 0 30px rgba(255,255,255,0.2);
+      }
+      to {
+        text-shadow: 0 0 20px rgba(255,255,255,0.8),
+                     0 0 30px rgba(255,255,255,0.6),
+                     0 0 40px rgba(255,255,255,0.4);
+      }
     }
 
     .sub-heading {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       font-weight: 600;
-      margin-bottom: 5px;
-      opacity: 0.9;
+      margin-bottom: 0.5rem;
+      color: #e0f7ff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.3s forwards;
     }
 
     .sub-heading-small {
-      font-size: 1.1rem;
-      opacity: 0.8;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #c2e9ff;
+      text-shadow: 0 1px 5px rgba(0,0,0,0.15);
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.6s forwards;
     }
 
-    /* Result Box */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Result Box with glass morphism */
     .result-box {
-      background: rgba(255, 255, 255, 0.1);
+      position: relative;
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      padding: 40px;
+      -webkit-backdrop-filter: blur(20px);
+      color: var(--dark);
+      border-radius: 25px;
+      padding: 3rem;
       text-align: center;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-      color: white;
+      max-width: 550px;
+      width: 100%;
+      box-shadow: 
+        0 25px 50px rgba(0,0,0,0.25),
+        inset 0 1px 0 rgba(255,255,255,0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(255,255,255,0.2);
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.9s forwards;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .result-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255,255,255,0.1),
+        transparent
+      );
+      transform: rotate(45deg);
+      animation: shine 3s infinite;
+      z-index: -1;
+    }
+
+    @keyframes shine {
+      0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+      }
+      100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+      }
+    }
+
+    .result-box:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 
+        0 35px 70px rgba(0,0,0,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.4);
     }
 
     .result-box h2 {
-      font-size: 1.8rem;
-      margin-bottom: 15px;
-      font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      font-size: 2rem;
+      color: var(--primary-dark);
+      position: relative;
+      display: inline-block;
+      padding-bottom: 15px;
+    }
+
+    .result-box h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--gradient-1);
+      border-radius: 2px;
     }
 
     .result-box p {
+      color: #6c757d;
+      margin-bottom: 2.5rem;
       font-size: 1.1rem;
-      margin-bottom: 30px;
-      opacity: 0.9;
+      line-height: 1.6;
     }
 
-    /* Button Container */
+    /* Enhanced Buttons */
     .btn-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-
-    /* Result Buttons */
-    .result-btn {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 15px;
-      padding: 25px 20px;
-      text-decoration: none;
-      color: white;
       display: flex;
       flex-direction: column;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .result-btn {
+      position: relative;
+      border: none;
+      border-radius: 15px;
+      padding: 1.2rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      width: 100%;
+      color: #fff;
+      background: var(--gradient-1);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      overflow: hidden;
+      z-index: 1;
+      display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
+      gap: 12px;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
     }
 
     .result-btn::before {
@@ -160,219 +301,156 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.5s;
-    }
-
-    .result-btn:hover::before {
-      left: 100%;
+      background: var(--gradient-2);
+      transition: 0.5s;
+      z-index: -1;
     }
 
     .result-btn:hover {
       transform: translateY(-5px);
-      border-color: rgba(255, 255, 255, 0.5);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
-    }
-
-    .result-btn i {
-      font-size: 2.5rem;
-      margin-bottom: 15px;
+      box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
       color: #fff;
     }
 
-    .result-btn span {
-      font-size: 1.2rem;
+    .result-btn:hover::before {
+      left: 0;
+    }
+
+    .result-btn:nth-child(2) {
+      background: var(--gradient-3);
+      box-shadow: 0 10px 25px rgba(79, 172, 254, 0.3);
+    }
+
+    .result-btn:nth-child(2)::before {
+      background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    }
+
+    .result-btn:nth-child(3) {
+      background: var(--gradient-2);
+      box-shadow: 0 10px 25px rgba(240, 147, 251, 0.3);
+    }
+
+    .result-btn:nth-child(3)::before {
+      background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+    }
+
+    .result-btn i {
+      font-size: 1.3rem;
+      transition: transform 0.3s;
+    }
+
+    .result-btn:hover i {
+      transform: translateX(5px);
+    }
+
+    /* Back button */
+    .back-btn {
+      border-radius: 12px;
+      padding: 0.9rem 2rem;
       font-weight: 600;
-    }
-
-    /* Specific button colors */
-    #annualExamBtn {
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.8), rgba(59, 130, 246, 0.6));
-      border-color: rgba(37, 99, 235, 0.5);
-    }
-
-    #JamiaBtn, #toppersBtn {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-
-    /* Form Container */
-    .form-container {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 15px;
-      padding: 30px;
-      margin-top: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      display: none;
-    }
-
-    .form-container h3 {
-      color: #2563eb;
-      margin-bottom: 25px;
-      font-size: 1.5rem;
-      text-align: center;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 500;
-      color: #1e293b;
-    }
-
-    .form-input {
-      width: 100%;
-      padding: 12px 15px;
-      border: 2px solid #e2e8f0;
-      border-radius: 8px;
-      font-size: 16px;
-      font-family: 'Poppins', sans-serif;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      background: transparent;
       transition: all 0.3s ease;
-    }
-
-    .form-input:focus {
-      outline: none;
-      border-color: #2563eb;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-    }
-
-    .submit-btn {
-      width: 100%;
-      padding: 14px;
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      transition: all 0.3s ease;
-    }
-
-    .submit-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
-    }
-
-    /* Result Display Styling - This will style the Apps Script result */
-    .result-display {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      margin-top: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      display: none;
-    }
-
-    .result-content {
-      padding: 0;
-    }
-
-    /* Style for Apps Script result content */
-    .result-display .check-another-container {
-      padding: 20px;
-      background: #f8fafc;
-    }
-
-    .result-display .result-card {
-      margin: 0;
-      border-radius: 0;
-      box-shadow: none;
-    }
-
-    .result-display .result-header {
-      padding: 30px;
-      background: linear-gradient(135deg, #2563eb, #8b5cf6);
-    }
-
-    .result-display .student-profile,
-    .result-display .results-section,
-    .result-display .performance-summary {
-      padding: 25px;
-    }
-
-    /* Back Buttons */
-    .back-btn, .back-options-btn {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 12px 25px;
-      background: rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 10px;
-      color: white;
       text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      margin-top: 20px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
     }
 
-    .back-btn:hover, .back-options-btn:hover {
-      background: rgba(255, 255, 255, 0.3);
-      transform: translateY(-2px);
-    }
-
-    /* Loading Overlay */
-    .loading-overlay {
-      position: fixed;
+    .back-btn::before {
+      content: '';
+      position: absolute;
       top: 0;
-      left: 0;
+      left: -100%;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.8);
+      background: var(--primary);
+      transition: 0.4s;
+      z-index: -1;
+    }
+
+    .back-btn:hover {
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(13, 110, 253, 0.3);
+    }
+
+    .back-btn:hover::before {
+      left: 0;
+    }
+
+    .back-btn i {
+      transition: transform 0.3s;
+    }
+
+    .back-btn:hover i {
+      transform: translateX(-5px);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+      margin: 3rem 0 1rem;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      padding: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      width: 100%;
+      max-width: 800px;
+      animation: fadeIn 1s ease-out 1.2s forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Loading animation */
+    .loader {
       display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      flex-direction: column;
-    }
-
-    .loading-spinner {
-      width: 50px;
-      height: 50px;
-      border: 5px solid #f3f3f3;
-      border-top: 5px solid #3498db;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
       border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    .loading-text {
-      color: white;
-      margin-top: 15px;
-      font-size: 16px;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+      margin-right: 10px;
     }
 
     @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      to { transform: rotate(360deg); }
     }
 
-    .text-center {
-      text-align: center;
+    /* Ripple effect for buttons */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      transform: scale(0);
+      animation: ripple 0.6s linear;
+      pointer-events: none;
     }
 
-    .mt-4 {
-      margin-top: 30px;
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
     }
 
-    /* Responsive Design */
+    /* Mobile Responsive */
     @media (max-width: 768px) {
       .main-heading {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
       }
       
       .sub-heading {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
       }
       
       .sub-heading-small {
@@ -380,427 +458,256 @@
       }
       
       .result-box {
-        padding: 25px;
+        padding: 2rem 1.5rem;
+        margin: 0 15px;
       }
       
       .result-box h2 {
-        font-size: 1.5rem;
-      }
-      
-      .btn-container {
-        grid-template-columns: 1fr;
+        font-size: 1.7rem;
       }
       
       .result-btn {
-        padding: 20px 15px;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
       }
       
-      .result-btn i {
-        font-size: 2rem;
-      }
-      
-      .result-btn span {
-        font-size: 1.1rem;
+      .back-btn {
+        padding: 0.8rem 1.5rem;
       }
     }
 
     @media (max-width: 480px) {
       .main-heading {
-        font-size: 1.8rem;
+        font-size: 2rem;
+      }
+      
+      .sub-heading {
+        font-size: 1.2rem;
       }
       
       .result-box {
-        padding: 20px;
+        padding: 1.5rem;
       }
       
-      .result-box h2 {
-        font-size: 1.3rem;
+      .result-btn {
+        padding: 0.9rem;
+        font-size: 0.95rem;
+      }
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: white !important;
+        color: black !important;
       }
       
-      .form-container {
-        padding: 20px;
+      .result-box {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+      }
+      
+      .btn-container, .back-btn {
+        display: none !important;
       }
     }
   </style>
 </head>
 <body>
+
   <!-- Floating particles -->
   <div class="particles" id="particles"></div>
 
-  <!-- Loading Overlay -->
-  <div class="loading-overlay" id="loadingOverlay">
-    <div class="loading-spinner"></div>
-    <div class="loading-text">Fetching your result...</div>
+  <!-- Header -->
+  <div class="header-container">
+    <h1 class="main-heading">RESULT PORTAL</h1>
+    <div class="sub-heading">DARUNNAJATH SHAREEATH AND ARTS COLLEGE</div>
+    <div class="sub-heading-small">Punnakkad, Karuvarakundu</div>
   </div>
 
-  <div class="main-container">
-    <!-- Header -->
-    <div class="header-container">
-      <h1 class="main-heading">RESULT PORTAL</h1>
-      <div class="sub-heading">DARUNNAJATH SHAREEATH AND ARTS COLLEGE</div>
-      <div class="sub-heading-small">Punnakkad, Karuvarakundu</div>
+  <!-- Result Box -->
+  <div class="result-box">
+    <h2>Final Examination Result 2025-26</h2>
+    <p>Click below to view your latest examination results.</p>
+
+    <div class="btn-container">
+      <a href="https://tinyurl.com/dsac-exam-result-oct-2025" 
+         class="result-btn" 
+         id="finalResultBtn">
+        <i class="fa-solid fa-book-open-reader"></i>
+        <span>Annual Examination</span>
+      </a>
+      
+      <a href="https://jamiajuniorcolleges.com/student/" 
+         class="result-btn" 
+         id="JamiaBtn">
+        <i class="fa-solid fa-book-open-reader"></i>
+        <span>Jamia Public Exam</span>
+      </a>
+      
+      <a href="toppers.html" 
+         class="result-btn" 
+         id="toppersBtn">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <span>Toppers Poster</span>
+      </a>
     </div>
 
-    <!-- Result Box -->
-    <div class="result-box">
-      <h2>Final Examination Result 2025-26</h2>
-      <p>Click below to view your latest examination results.</p>
-
-      <!-- Buttons View -->
-      <div class="btn-container" id="btnContainer">
-        <div class="result-btn" id="annualExamBtn">
-          <i class="fa-solid fa-book-open-reader"></i>
-          <span>Annual Examination</span>
-        </div>
-        
-        <a href="https://jamiajuniorcolleges.com/student/" 
-           class="result-btn" 
-           id="JamiaBtn"
-           target="_blank">
-          <i class="fa-solid fa-book-open-reader"></i>
-          <span>Jamia Public Exam</span>
-        </a>
-        
-        <a href="toppers.html" 
-           class="result-btn" 
-           id="toppersBtn"
-           target="_blank">
-          <i class="fa-solid fa-graduation-cap"></i>
-          <span>Toppers Poster</span>
-        </a>
-      </div>
-
-      <!-- Form View -->
-      <div class="form-container" id="formContainer">
-        <h3>Enter Your Details</h3>
-        <form id="resultForm">
-          <div class="form-group">
-            <label class="form-label" for="rollNumber">
-              <i class="fas fa-user-graduate"></i> Registration Number
-            </label>
-            <input type="text" id="rollNumber" class="form-input" 
-                   placeholder="Enter your registration number" required>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="dob">
-              <i class="fas fa-calendar-alt"></i> Date of Birth
-            </label>
-            <input type="date" id="dob" class="form-input" required>
-          </div>
-          
-          <button type="button" class="submit-btn" id="submitBtn">
-            <i class="fas fa-search"></i> Get Result
-          </button>
-        </form>
-        
-        <div class="text-center mt-4">
-          <div class="back-options-btn" id="backToOptionsBtn">
-            <i class="fas fa-arrow-left"></i>
-            <span>Back to Options</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Result Display -->
-      <div class="result-display" id="resultDisplay">
-        <div class="result-content" id="resultContent">
-          <!-- Result will be injected here -->
-        </div>
-        
-        <div class="text-center mt-4" id="resultActions">
-          <div class="back-options-btn" id="checkAnotherBtn">
-            <i class="fas fa-redo"></i>
-            <span>Check Another Result</span>
-          </div>
-          
-          <div class="back-options-btn" id="printResultBtn" style="margin-left: 10px;">
-            <i class="fas fa-print"></i>
-            <span>Print Result</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Back to Home -->
-      <div class="text-center mt-4" id="backHomeBtn">
-        <a href="index.html" class="back-btn">
-          <i class="fas fa-arrow-left"></i>
-          <span>Back to Home</span>
-        </a>
-      </div>
+    <div class="text-center mt-4">
+      <a href="index.html" class="back-btn" id="backBtn">
+        <i class="fas fa-arrow-left"></i>
+        <span>Back to Home</span>
+      </a>
     </div>
   </div>
+
+  <footer>
+    © 2025 DARUNNAJATH SHAREEATH AND ARTS COLLEGE | All Rights Reserved<br>
+    <small>Designed by Rafi Wafi</small>
+  </footer>
 
   <script>
-    // Your Google Apps Script URL
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwVhTyCm_QLpMF2ym1s4LgRyXQ0eTRARgWY9mQj5boJaYPPAtH-L7sM9LXc8wM1_tgO/exec';
-
-    // DOM Elements
-    const annualExamBtn = document.getElementById('annualExamBtn');
-    const btnContainer = document.getElementById('btnContainer');
-    const formContainer = document.getElementById('formContainer');
-    const resultDisplay = document.getElementById('resultDisplay');
-    const resultContent = document.getElementById('resultContent');
-    const backHomeBtn = document.getElementById('backHomeBtn');
-    const loadingOverlay = document.getElementById('loadingOverlay');
-    const rollNumberInput = document.getElementById('rollNumber');
-    const dobInput = document.getElementById('dob');
-    const submitBtn = document.getElementById('submitBtn');
-    const backToOptionsBtn = document.getElementById('backToOptionsBtn');
-    const checkAnotherBtn = document.getElementById('checkAnotherBtn');
-    const printResultBtn = document.getElementById('printResultBtn');
-
-    // Current view state
-    let currentView = 'buttons';
-
-    // 1. Show form when Annual Exam is clicked
-    annualExamBtn.addEventListener('click', function() {
-      showView('form');
-      setTimeout(() => rollNumberInput.focus(), 100);
-    });
-
-    // 2. Back to options
-    backToOptionsBtn.addEventListener('click', function() {
-      showView('buttons');
-    });
-
-    // 3. Check another result
-    checkAnotherBtn.addEventListener('click', function() {
-      showView('form');
-      document.getElementById('resultForm').reset();
-      setTimeout(() => rollNumberInput.focus(), 100);
-    });
-
-    // 4. Print result
-    printResultBtn.addEventListener('click', function() {
-      window.print();
-    });
-
-    // 5. Submit form
-    submitBtn.addEventListener('click', async function() {
-      const rollNumber = rollNumberInput.value.trim();
-      const dob = dobInput.value;
+    // Create floating particles
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 25;
       
-      if (!rollNumber || !dob) {
-        alert("Please fill in all fields");
-        return;
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random size
+        const size = Math.random() * 20 + 5;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Random position
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        
+        // Random animation delay and duration
+        particle.style.animationDelay = `${Math.random() * 5}s`;
+        particle.style.animationDuration = `${Math.random() * 10 + 15}s`;
+        
+        // Random opacity
+        particle.style.opacity = Math.random() * 0.5 + 0.2;
+        
+        particlesContainer.appendChild(particle);
+      }
+    }
+    
+    // Ripple effect for buttons
+    function createRipple(event) {
+      const button = event.currentTarget;
+      const circle = document.createElement('span');
+      const diameter = Math.max(button.clientWidth, button.clientHeight);
+      const radius = diameter / 2;
+      
+      circle.style.width = circle.style.height = `${diameter}px`;
+      circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
+      circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
+      circle.classList.add('ripple');
+      
+      const ripple = button.getElementsByClassName('ripple')[0];
+      if (ripple) {
+        ripple.remove();
       }
       
-      // Show loading
-      loadingOverlay.style.display = 'flex';
+      button.appendChild(circle);
+    }
+    
+    // Loading animation for buttons
+    function addLoadingAnimation(button) {
+      const loader = document.createElement('div');
+      loader.className = 'loader';
+      button.insertBefore(loader, button.firstChild);
+      button.disabled = true;
+    }
+    
+    // Initialize everything when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Create particles
+      createParticles();
       
-      try {
-        // Fetch result from Apps Script
-        const resultHtml = await fetchResultFromAppsScript(rollNumber, dob);
-        
-        // Display result on our page
-        displayResult(resultHtml);
-        
-        // Show result view
-        showView('result');
-        
-      } catch (error) {
-        console.error('Error:', error);
-        alert('Error fetching result. Please try again.');
-      } finally {
-        // Hide loading
-        loadingOverlay.style.display = 'none';
-      }
-    });
-
-    // Function to fetch result from Apps Script
-    async function fetchResultFromAppsScript(rollNumber, dob) {
-      // Create URL with parameters
-      const url = `${APPS_SCRIPT_URL}?roll=${encodeURIComponent(rollNumber)}&dob=${encodeURIComponent(dob)}`;
+      // Add ripple effect to all buttons
+      const buttons = document.querySelectorAll('.result-btn, .back-btn');
+      buttons.forEach(button => {
+        button.addEventListener('click', createRipple);
+      });
       
-      // Use proxy to avoid CORS
-      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-      
-      try {
-        // Try with proxy first
-        const response = await fetch(proxyUrl);
-        const data = await response.json();
-        
-        if (data.contents) {
-          return data.contents;
-        }
-      } catch (proxyError) {
-        console.log('Proxy failed, trying direct fetch...');
-      }
-      
-      // Fallback: Try direct fetch
-      try {
-        const response = await fetch(url, {
-          mode: 'no-cors',
-          credentials: 'omit'
+      // Add loading effect to result buttons
+      const resultButtons = document.querySelectorAll('.result-btn');
+      resultButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          // Only add loading if it's an external link
+          if (this.href.includes('http')) {
+            e.preventDefault();
+            addLoadingAnimation(this);
+            
+            // Simulate loading and redirect
+            setTimeout(() => {
+              window.location.href = this.href;
+            }, 500);
+          }
         });
-        
-        // Since we can't read response with no-cors, we'll use alternative method
-        return await fetchResultAlternative(rollNumber, dob);
-      } catch (error) {
-        throw new Error('Failed to fetch result');
-      }
-    }
-
-    // Alternative method using iframe and extracting content
-    function fetchResultAlternative(rollNumber, dob) {
-      return new Promise((resolve, reject) => {
-        const url = `${APPS_SCRIPT_URL}?roll=${encodeURIComponent(rollNumber)}&dob=${encodeURIComponent(dob)}`;
-        
-        // Create hidden iframe
-        const iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.src = url;
-        
-        iframe.onload = function() {
-          try {
-            // Try to get content from iframe
-            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-            const result = iframeDoc.body.innerHTML;
-            
-            // Clean up
-            document.body.removeChild(iframe);
-            
-            resolve(result);
-          } catch (error) {
-            reject(error);
-          }
-        };
-        
-        iframe.onerror = function() {
-          document.body.removeChild(iframe);
-          reject(new Error('Failed to load result'));
-        };
-        
-        document.body.appendChild(iframe);
-        
-        // Timeout after 10 seconds
-        setTimeout(() => {
-          if (iframe.parentNode) {
-            document.body.removeChild(iframe);
-            reject(new Error('Request timeout'));
-          }
-        }, 10000);
-      });
-    }
-
-    // Function to display result
-    function displayResult(html) {
-      // Inject the HTML
-      resultContent.innerHTML = html;
-      
-      // Modify any links or buttons to work within our page
-      const checkAnotherButtons = resultContent.querySelectorAll('button[onclick*="showMainPage"], .check-another-btn');
-      checkAnotherButtons.forEach(button => {
-        button.onclick = function() {
-          showView('form');
-          document.getElementById('resultForm').reset();
-        };
       });
       
-      // Modify print buttons
-      const printButtons = resultContent.querySelectorAll('button[onclick*="Print"]');
-      printButtons.forEach(button => {
-        const originalOnclick = button.getAttribute('onclick');
-        if (originalOnclick) {
-          button.setAttribute('onclick', originalOnclick.replace('Print(', 'printResult('));
+      // Add hover effect to result box
+      const resultBox = document.querySelector('.result-box');
+      resultBox.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px) scale(1.02)';
+      });
+      
+      resultBox.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+      });
+      
+      // Add keyboard navigation
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          document.getElementById('backBtn').click();
+        }
+        
+        if (e.altKey && e.key === '1') {
+          document.getElementById('finalResultBtn').click();
+        }
+        
+        if (e.altKey && e.key === '2') {
+          document.getElementById('JamiaBtn').click();
+        }
+        
+        if (e.altKey && e.key === '3') {
+          document.getElementById('toppersBtn').click();
         }
       });
-    }
-
-    // Function to show different views
-    function showView(viewName) {
-      currentView = viewName;
       
-      // Hide all views first
-      btnContainer.style.display = 'none';
-      formContainer.style.display = 'none';
-      resultDisplay.style.display = 'none';
-      backHomeBtn.style.display = 'none';
+      // Add scroll animation
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
       
-      // Show selected view
-      switch(viewName) {
-        case 'buttons':
-          btnContainer.style.display = 'grid';
-          backHomeBtn.style.display = 'block';
-          break;
-          
-        case 'form':
-          formContainer.style.display = 'block';
-          break;
-          
-        case 'result':
-          resultDisplay.style.display = 'block';
-          break;
-      }
-    }
-
-    // Print function
-    function printResult(divId) {
-      const printContent = document.getElementById(divId).innerHTML;
-      const originalContent = document.body.innerHTML;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
       
-      document.body.innerHTML = `
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Result Print</title>
-          <style>
-            body { font-family: Arial, sans-serif; }
-            @media print {
-              @page { size: A4; margin: 15mm; }
-              body { margin: 0; padding: 0; }
-            }
-          </style>
-        </head>
-        <body>
-          ${printContent}
-          <script>
-            window.onload = function() {
-              window.print();
-              setTimeout(function() {
-                window.location.reload();
-              }, 1000);
-            };
-          <\/script>
-        </body>
-        </html>
-      `;
-    }
-
-    // Initialize date input
-    function initializeDateInput() {
-      const today = new Date();
-      const maxDate = today.toISOString().split('T')[0];
-      const minDate = new Date(today.getFullYear() - 30, 0, 1).toISOString().split('T')[0];
-      
-      dobInput.max = maxDate;
-      dobInput.min = minDate;
-      
-      // Set default date (18 years ago)
-      const defaultDate = new Date(today.getFullYear() - 18, 0, 1);
-      dobInput.value = defaultDate.toISOString().split('T')[0];
-    }
-
-    // Initialize
-    initializeDateInput();
-
-    // Button animations
-    document.querySelectorAll('.result-btn').forEach(btn => {
-      btn.addEventListener('mousedown', function() {
-        this.style.transform = 'scale(0.95)';
-      });
-      
-      btn.addEventListener('mouseup', function() {
-        this.style.transform = '';
-      });
-      
-      btn.addEventListener('mouseleave', function() {
-        this.style.transform = '';
+      // Observe elements for scroll animations
+      const animatedElements = document.querySelectorAll('.result-box, footer');
+      animatedElements.forEach(el => {
+        observer.observe(el);
       });
     });
-
-    console.log("Result Portal Loaded Successfully");
+    
+    // Add smooth scroll behavior
+    document.documentElement.style.scrollBehavior = 'smooth';
+    
+    // Add touch optimization for mobile
+    document.addEventListener('touchstart', function() {}, {passive: true});
   </script>
 </body>
 </html>
