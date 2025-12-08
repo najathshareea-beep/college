@@ -16,127 +16,168 @@
       --primary-dark: #0b1d3a;
       --primary-blue: #0d47a1;
       --accent-gold: #d4af37;
-      --light-blue: #1976d2;
-      --text-light: #f8f9fa;
-      --text-gray: #d0d3d8;
-      --card-bg: #1a2b4d;
-      --section-spacing: 100px;
+      --light-gold: #f5e1a4;
+      --text-light: #ffffff;
+      --text-gray: #b0b7c3;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --section-spacing: 80px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      background: linear-gradient(135deg, #0b1d3a 0%, #162b50 100%);
+      background: var(--primary-dark);
       color: var(--text-light);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      min-height: 100vh;
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--primary-dark);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-gold);
+      border-radius: 5px;
     }
 
     /* Header Styling */
-    .management-header {
-      background: linear-gradient(rgba(11, 29, 58, 0.9), rgba(11, 29, 58, 0.9)), 
+    .hero-section {
+      min-height: 70vh;
+      background: linear-gradient(135deg, rgba(11, 29, 58, 0.95) 0%, rgba(11, 29, 58, 0.85) 100%),
                   url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
       background-size: cover;
       background-position: center;
-      padding: 6rem 0 4rem;
+      display: flex;
+      align-items: center;
       position: relative;
       overflow: hidden;
     }
 
-    .header-content {
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(13, 71, 161, 0.1) 0%, transparent 50%);
+    }
+
+    .hero-content {
       position: relative;
       z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
     }
 
-    .management-header h1 {
-      font-size: 3.5rem;
+    .hero-title {
+      font-size: 4rem;
       font-weight: 800;
-      margin-bottom: 1rem;
-      background: linear-gradient(90deg, var(--accent-gold), #fff);
+      background: linear-gradient(135deg, var(--accent-gold) 0%, var(--light-gold) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.5px;
     }
 
-    .management-header .lead {
-      font-size: 1.3rem;
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      opacity: 0.9;
-      line-height: 1.6;
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-gray);
+      margin-bottom: 2rem;
+      font-weight: 400;
     }
 
-    .header-badges {
+    .badge-container {
       display: flex;
       justify-content: center;
-      gap: 15px;
+      gap: 1rem;
       flex-wrap: wrap;
+      margin-top: 2rem;
     }
 
-    .header-badge {
-      background: rgba(212, 175, 55, 0.15);
-      border: 1px solid var(--accent-gold);
+    .hero-badge {
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
       color: var(--accent-gold);
-      padding: 8px 20px;
-      border-radius: 30px;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
       font-weight: 600;
       font-size: 0.9rem;
       backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
     }
 
-    /* Section Spacing */
-    section {
-      padding: var(--section-spacing) 0;
+    .hero-badge:hover {
+      background: rgba(212, 175, 55, 0.2);
+      transform: translateY(-2px);
     }
 
-    /* Section Headers */
-    .section-header {
-      text-align: center;
-      margin-bottom: 60px;
+    /* Section Styling */
+    .section-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
     }
 
     .section-title {
-      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-title h2 {
+      font-size: 3rem;
       font-weight: 700;
-      color: var(--accent-gold);
-      position: relative;
-      display: inline-block;
-      margin-bottom: 15px;
+      background: linear-gradient(135deg, var(--accent-gold) 0%, var(--light-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
     }
 
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--accent-gold), var(--light-blue));
-      border-radius: 2px;
-    }
-
-    .section-subtitle {
+    .section-title p {
       color: var(--text-gray);
       font-size: 1.1rem;
       max-width: 600px;
       margin: 0 auto;
     }
 
-    /* Executive Card Grid */
+    /* Executive Cards Grid */
     .executive-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 6rem;
     }
 
     /* Executive Card */
     .executive-card {
-      background: linear-gradient(145deg, var(--card-bg), #152641);
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 20px;
       overflow: hidden;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
-      height: 100%;
+    }
+
+    .executive-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-gold), var(--primary-blue));
     }
 
     .executive-card:hover {
@@ -145,45 +186,40 @@
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
 
-    .card-header {
-      padding: 2rem 2rem 1rem;
-      text-align: center;
+    .card-image {
+      height: 220px;
       position: relative;
-    }
-
-    .role-badge {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: linear-gradient(135deg, var(--accent-gold), #ffd700);
-      color: var(--primary-dark);
-      padding: 6px 15px;
-      border-radius: 20px;
-      font-weight: 700;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+      overflow: hidden;
     }
 
     .executive-photo {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      border: 5px solid var(--accent-gold);
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      margin: 0 auto 1.5rem;
-      display: block;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease;
+      transition: transform 0.6s ease;
     }
 
     .executive-card:hover .executive-photo {
-      transform: scale(1.05);
+      transform: scale(1.1);
     }
 
-    .card-body {
-      padding: 0 2rem 2rem;
+    .role-tag {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: linear-gradient(135deg, var(--accent-gold), #ffd700);
+      color: var(--primary-dark);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+      z-index: 2;
+    }
+
+    .card-content {
+      padding: 2rem;
       text-align: center;
     }
 
@@ -192,9 +228,10 @@
       font-weight: 700;
       color: var(--text-light);
       margin-bottom: 0.5rem;
+      line-height: 1.3;
     }
 
-    .executive-role {
+    .executive-position {
       color: var(--accent-gold);
       font-size: 1rem;
       font-weight: 600;
@@ -204,40 +241,43 @@
     }
 
     .contact-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
       background: rgba(255, 255, 255, 0.05);
       padding: 1rem;
       border-radius: 12px;
-      margin-bottom: 1rem;
-      text-align: left;
+      margin-top: 1rem;
     }
 
-    .contact-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.5rem;
-    }
-
-    .contact-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .contact-item i {
+    .contact-info i {
       color: var(--accent-gold);
-      width: 20px;
-      margin-right: 10px;
-      font-size: 1rem;
+      font-size: 1.2rem;
     }
 
-    /* Statistics Section */
+    .contact-number {
+      color: var(--text-light);
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    /* Stats Section */
     .stats-section {
-      background: rgba(255, 255, 255, 0.03);
+      background: linear-gradient(135deg, rgba(13, 71, 161, 0.1) 0%, rgba(25, 118, 210, 0.1) 100%);
       border-radius: 20px;
-      padding: 3rem;
-      margin: 2rem 0;
+      padding: 4rem 2rem;
+      margin: 4rem 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      text-align: center;
     }
 
     .stat-item {
-      text-align: center;
       padding: 1.5rem;
     }
 
@@ -249,16 +289,10 @@
       line-height: 1;
     }
 
-    .stat-label {
-      font-size: 1.1rem;
+    .stat-text {
       color: var(--text-light);
+      font-size: 1.1rem;
       font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-description {
-      color: var(--text-gray);
-      font-size: 0.9rem;
     }
 
     /* Timeline Section */
@@ -272,15 +306,16 @@
       position: relative;
       padding: 2rem;
       margin-bottom: 2rem;
-      background: rgba(255, 255, 255, 0.03);
+      background: var(--card-bg);
       border-radius: 15px;
       border-left: 4px solid var(--accent-gold);
-      transition: transform 0.3s ease;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
     }
 
     .timeline-item:hover {
       transform: translateX(10px);
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.08);
     }
 
     .meeting-date {
@@ -292,74 +327,51 @@
 
     .meeting-title {
       color: var(--text-light);
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 600;
       margin-bottom: 0.5rem;
     }
 
-    .meeting-description {
-      color: var(--text-gray);
-      margin-bottom: 0;
-    }
-
-    /* Call to Action */
-    .cta-section {
+    /* CTA Button */
+    .cta-container {
       text-align: center;
-      padding: 4rem 0;
-      background: linear-gradient(135deg, rgba(13, 71, 161, 0.1), rgba(25, 118, 210, 0.1));
-      border-radius: 20px;
-      margin: 3rem 0;
+      margin: 4rem 0;
     }
 
-    .cta-title {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--text-light);
-      margin-bottom: 1rem;
-    }
-
-    .cta-subtitle {
-      color: var(--text-gray);
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto 2rem;
-    }
-
-    /* Buttons */
-    .btn-primary-custom {
-      background: linear-gradient(135deg, var(--accent-gold), #ffd700);
-      color: var(--primary-dark);
-      border: none;
-      padding: 12px 35px;
-      border-radius: 30px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-      text-decoration: none;
+    .home-btn {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 10px;
+      gap: 1rem;
+      background: linear-gradient(135deg, var(--accent-gold), #ffd700);
+      color: var(--primary-dark);
+      text-decoration: none;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
     }
 
-    .btn-primary-custom:hover {
+    .home-btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+      box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
       color: var(--primary-dark);
     }
 
     /* Footer */
     .management-footer {
-      background: linear-gradient(135deg, #06142c, #0b1d3a);
+      background: rgba(6, 20, 44, 0.8);
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       padding: 4rem 0 2rem;
       margin-top: 4rem;
+      backdrop-filter: blur(10px);
     }
 
     .footer-content {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 40px;
+      gap: 3rem;
       margin-bottom: 3rem;
     }
 
@@ -372,14 +384,17 @@
 
     .footer-column p {
       color: var(--text-gray);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
       font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
     }
 
     .footer-column i {
       color: var(--accent-gold);
-      margin-right: 10px;
       width: 20px;
+      text-align: center;
     }
 
     .copyright {
@@ -392,255 +407,223 @@
 
     /* Responsive */
     @media (max-width: 768px) {
-      :root {
-        --section-spacing: 60px;
-      }
-
-      .management-header {
-        padding: 4rem 0 3rem;
-      }
-
-      .management-header h1 {
+      .hero-title {
         font-size: 2.5rem;
       }
 
-      .management-header .lead {
-        font-size: 1.1rem;
+      .hero-subtitle {
+        font-size: 1rem;
       }
 
-      .section-title {
-        font-size: 2rem;
-      }
-
-      .executive-photo {
-        width: 150px;
-        height: 150px;
-      }
-
-      .stats-section {
-        padding: 2rem 1rem;
-      }
-
-      .stat-number {
-        font-size: 2.5rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .management-header h1 {
-        font-size: 2rem;
-      }
-
-      .section-title {
-        font-size: 1.8rem;
+      .section-title h2 {
+        font-size: 2.2rem;
       }
 
       .executive-grid {
         grid-template-columns: 1fr;
       }
 
-      .executive-photo {
-        width: 140px;
-        height: 140px;
+      .card-image {
+        height: 180px;
+      }
+
+      .stat-number {
+        font-size: 2.8rem;
+      }
+
+      .stats-grid {
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .section-title h2 {
+        font-size: 1.8rem;
+      }
+
+      .executive-name {
+        font-size: 1.3rem;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- MANAGEMENT HEADER -->
-  <header class="management-header text-center text-white" data-aos="fade-down">
-    <div class="container">
-      <h1>Management Committee</h1>
-      <p class="lead">Governing Body & Strategic Leadership of Darunnajath Shareeath & Arts College</p>
-      <div class="mt-4">
-        <span class="badge bg-warning text-dark me-2">2025-27 Term</span>
-        <span class="badge bg-light text-dark me-2">Strategic Governance</span>
-        <span class="badge bg-info">Educational Leadership</span>
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="section-container">
+      <div class="hero-content" data-aos="fade-up">
+        <h1 class="hero-title">Management Committee</h1>
+        <p class="hero-subtitle">Strategic Leadership & Governance<br>Darunnajath Shareeath & Arts College</p>
+        <div class="badge-container">
+          <span class="hero-badge">2025-27 Term</span>
+          <span class="hero-badge">Institutional Governance</span>
+          <span class="hero-badge">Strategic Planning</span>
+        </div>
       </div>
     </div>
-  </header>
+  </section>
 
-  <!-- EXECUTIVE COMMITTEE SECTION -->
-  <section id="executive-committee">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <h2 class="section-title">Executive Committee</h2>
-        <p class="section-subtitle">The strategic leadership team guiding our institution towards academic excellence</p>
+  <!-- EXECUTIVE COMMITTEE -->
+  <section class="section-container">
+    <div class="section-title" data-aos="fade-up">
+      <h2>Executive Committee</h2>
+      <p>Leadership team guiding institutional excellence</p>
+    </div>
+
+    <div class="executive-grid">
+      <!-- President -->
+      <div class="executive-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-image">
+          <span class="role-tag">President</span>
+          <img src="https://i.ibb.co/4ZRRHqw8/t.jpg" alt="President" class="executive-photo">
+        </div>
+        <div class="card-content">
+          <h3 class="executive-name">SAYYID SADIQ ALI SHIHAB THANGAL</h3>
+          <div class="executive-position">President</div>
+          <div class="contact-info">
+            <i class="fas fa-phone"></i>
+            <span class="contact-number">9000000000</span>
+          </div>
+        </div>
       </div>
 
-      <div class="executive-grid">
-        <!-- President -->
-        <div class="executive-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="card-header">
-            <span class="role-badge">President</span>
-            <img src="https://i.ibb.co/4ZRRHqw8/t.jpg" alt="President" class="executive-photo">
-          </div>
-          <div class="card-body">
-            <h3 class="executive-name">SAYYID SADIQ ALI SHIHAB THANGAL</h3>
-            <div class="executive-role">President</div>
-            <div class="contact-info">
-              <div class="contact-item">
-                <i class="fas fa-phone"></i>
-                <span>9000000000</span>
-              </div>
-            </div>
+      <!-- Secretary -->
+      <div class="executive-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="card-image">
+          <span class="role-tag">Secretary</span>
+          <img src="https://i.ibb.co/BV1mZNbQ/umr.jpg" alt="Secretary" class="executive-photo">
+        </div>
+        <div class="card-content">
+          <h3 class="executive-name">Adv. M UMAR</h3>
+          <div class="executive-position">General Secretary</div>
+          <div class="contact-info">
+            <i class="fas fa-phone"></i>
+            <span class="contact-number">9000000000</span>
           </div>
         </div>
+      </div>
 
-        <!-- Secretary -->
-        <div class="executive-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="card-header">
-            <span class="role-badge">Secretary</span>
-            <img src="https://i.ibb.co/BV1mZNbQ/umr.jpg" alt="Secretary" class="executive-photo">
-          </div>
-          <div class="card-body">
-            <h3 class="executive-name">Adv. M UMAR</h3>
-            <div class="executive-role">General Secretary</div>
-            <div class="contact-info">
-              <div class="contact-item">
-                <i class="fas fa-phone"></i>
-                <span>9000000000</span>
-              </div>
-            </div>
+      <!-- W. Secretary -->
+      <div class="executive-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="card-image">
+          <span class="role-tag">W. Secretary</span>
+          <img src="https://i.ibb.co/NdQKGHWW/v-ust.jpg" alt="W. Secretary" class="executive-photo">
+        </div>
+        <div class="card-content">
+          <h3 class="executive-name">VAKKOD MOIDEEN KUTTI MUSLIAR</h3>
+          <div class="executive-position">W. Secretary</div>
+          <div class="contact-info">
+            <i class="fas fa-phone"></i>
+            <span class="contact-number">9000000000</span>
           </div>
         </div>
+      </div>
 
-        <!-- W. Secretary -->
-        <div class="executive-card" data-aos="fade-up" data-aos-delay="400">
-          <div class="card-header">
-            <span class="role-badge">W. Secretary</span>
-            <img src="https://i.ibb.co/NdQKGHWW/v-ust.jpg" alt="W. Secretary" class="executive-photo">
-          </div>
-          <div class="card-body">
-            <h3 class="executive-name">VAKKOD MOIDEEN KUTTI MUSLIAR</h3>
-            <div class="executive-role">W. Secretary</div>
-            <div class="contact-info">
-              <div class="contact-item">
-                <i class="fas fa-phone"></i>
-                <span>9000000000</span>
-              </div>
-            </div>
+      <!-- Treasurer -->
+      <div class="executive-card" data-aos="fade-up" data-aos-delay="250">
+        <div class="card-image">
+          <span class="role-tag">Treasurer</span>
+          <img src="https://i.ibb.co/3yMS6N15/hf.jpg" alt="Treasurer" class="executive-photo">
+        </div>
+        <div class="card-content">
+          <h3 class="executive-name">ABDUL HAMEED FAIZY</h3>
+          <div class="executive-position">Treasurer</div>
+          <div class="contact-info">
+            <i class="fas fa-phone"></i>
+            <span class="contact-number">9000000000</span>
           </div>
         </div>
+      </div>
 
-        <!-- Treasurer -->
-        <div class="executive-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="card-header">
-            <span class="role-badge">Treasurer</span>
-            <img src="https://i.ibb.co/3yMS6N15/hf.jpg" alt="Treasurer" class="executive-photo">
-          </div>
-          <div class="card-body">
-            <h3 class="executive-name">ABDUL HAMEED FAIZY</h3>
-            <div class="executive-role">Treasurer</div>
-            <div class="contact-info">
-              <div class="contact-item">
-                <i class="fas fa-phone"></i>
-                <span>9000000000</span>
-              </div>
-            </div>
-          </div>
+      <!-- Manager -->
+      <div class="executive-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="card-image">
+          <span class="role-tag">Manager</span>
+          <img src="https://i.ibb.co/NdQKGHWW/v-ust.jpg" alt="Manager" class="executive-photo">
         </div>
-
-        <!-- Manager -->
-        <div class="executive-card" data-aos="fade-up" data-aos-delay="400">
-          <div class="card-header">
-            <span class="role-badge">Manager</span>
-            <img src="https://i.ibb.co/NdQKGHWW/v-ust.jpg" alt="Manager" class="executive-photo">
-          </div>
-          <div class="card-body">
-            <h3 class="executive-name">NK ABDURAHIMAN</h3>
-            <div class="executive-role">Manager</div>
-            <div class="contact-info">
-              <div class="contact-item">
-                <i class="fas fa-phone"></i>
-                <span>9000000000</span>
-              </div>
-            </div>
+        <div class="card-content">
+          <h3 class="executive-name">NK ABDURAHIMAN</h3>
+          <div class="executive-position">Manager</div>
+          <div class="contact-info">
+            <i class="fas fa-phone"></i>
+            <span class="contact-number">9000000000</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- STATISTICS SECTION -->
-  <section id="statistics">
-    <div class="container">
-      <div class="stats-section" data-aos="fade-up">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="stat-item">
-              <div class="stat-number">7</div>
-              <div class="stat-label">Management Committee Members</div>
-              <p class="stat-description">Dedicated leaders overseeing institutional governance</p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="stat-item">
-              <div class="stat-number">4</div>
-              <div class="stat-label">Annual Strategic Meetings</div>
-              <p class="stat-description">Quarterly reviews ensuring continuous improvement</p>
-            </div>
-          </div>
+  <!-- STATISTICS -->
+  <div class="section-container">
+    <div class="stats-section" data-aos="fade-up">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">7</div>
+          <div class="stat-text">Committee Members</div>
         </div>
+        <div class="stat-item">
+          <div class="stat-number">4</div>
+          <div class="stat-text">Annual Meetings</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100%</div>
+          <div class="stat-text">Governance Excellence</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEETING SCHEDULE -->
+  <section class="section-container">
+    <div class="section-title" data-aos="fade-up">
+      <h2>2025 Meeting Schedule</h2>
+      <p>Strategic planning and review sessions</p>
+    </div>
+
+    <div class="timeline-section">
+      <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
+        <div class="meeting-date">March 15, 2025</div>
+        <h4 class="meeting-title">Q1 Strategic Review & Budget Planning</h4>
+      </div>
+
+      <div class="timeline-item" data-aos="fade-right" data-aos-delay="150">
+        <div class="meeting-date">June 30, 2025</div>
+        <h4 class="meeting-title">Mid-Year Performance Assessment</h4>
+      </div>
+
+      <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
+        <div class="meeting-date">September 20, 2025</div>
+        <h4 class="meeting-title">Academic Development Session</h4>
+      </div>
+
+      <div class="timeline-item" data-aos="fade-right" data-aos-delay="250">
+        <div class="meeting-date">December 10, 2025</div>
+        <h4 class="meeting-title">Annual General Meeting</h4>
       </div>
     </div>
   </section>
 
-  <!-- MEETING SCHEDULE SECTION -->
-  <section id="meetings">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <h2 class="section-title">2025 Meeting Schedule</h2>
-        <p class="section-subtitle">Strategic planning sessions for institutional development</p>
-      </div>
-
-      <div class="timeline-section">
-        <!-- Q1 Meeting -->
-        <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
-          <div class="meeting-date">March 15, 2025</div>
-          <h4 class="meeting-title">Q1 Strategic Review & Budget Planning</h4>
-          <p class="meeting-description">Annual budget review, strategic planning, and goal setting for the academic year.</p>
-        </div>
-
-        <!-- Mid-Year Review -->
-        <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
-          <div class="meeting-date">June 30, 2025</div>
-          <h4 class="meeting-title">Mid-Year Performance Assessment</h4>
-          <p class="meeting-description">Evaluation of academic performance and policy adjustments for second half.</p>
-        </div>
-
-        <!-- Academic Planning -->
-        <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
-          <div class="meeting-date">September 20, 2025</div>
-          <h4 class="meeting-title">Academic Development Session</h4>
-          <p class="meeting-description">Curriculum development, faculty planning, and academic quality enhancement.</p>
-        </div>
-
-        <!-- Annual Meeting -->
-        <div class="timeline-item" data-aos="fade-right" data-aos-delay="400">
-          <div class="meeting-date">December 10, 2025</div>
-          <h4 class="meeting-title">Annual General Meeting</h4>
-          <p class="meeting-description">Annual report presentation, officer elections, and strategic planning for next year.</p>
-        </div>
-      </div>
+  <!-- CTA -->
+  <div class="section-container">
+    <div class="cta-container" data-aos="zoom-in">
+      <a href="index.html" class="home-btn">
+        <i class="fas fa-home"></i> Return to Homepage
+      </a>
     </div>
-  </section>
-
-  <!-- CALL TO ACTION -->
-  <section id="cta">
-    <div class="container">
-      <div class="cta-section" data-aos="zoom-in">
-        <a href="index.html" class="btn-primary-custom">
-          <i class="fas fa-home"></i> Return to Homepage
-        </a>
-      </div>
-    </div>
-  </section>
+  </div>
 
   <!-- FOOTER -->
   <footer class="management-footer">
-    <div class="container">
+    <div class="section-container">
       <div class="footer-content">
         <div class="footer-column">
           <h5>Management Office</h5>
@@ -659,7 +642,6 @@
 
       <div class="copyright">
         <p>© 2025 Darunnajath Shareeath & Arts College. All rights reserved.</p>
-        <p class="mt-2">Designed for educational excellence and institutional governance</p>
       </div>
     </div>
   </footer>
@@ -675,7 +657,7 @@
       easing: 'ease-out-cubic'
     });
 
-    // Smooth scrolling for internal links
+    // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -689,7 +671,7 @@
       });
     });
 
-    // Card hover enhancement
+    // Enhanced card hover
     document.querySelectorAll('.executive-card').forEach(card => {
       card.addEventListener('mouseenter', function() {
         this.style.transform = 'translateY(-10px)';
