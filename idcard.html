@@ -86,24 +86,24 @@
       <p>Generate Digital Student ID Card</p>
       
       <form id="idForm">
-        <input type="text" name="class" class="form-control" placeholder="Enter Class (e.g., 10A)" required>
-        <input type="text" name="roll" class="form-control" placeholder="Enter Roll Number" required>
+        <input type="text" name="uid" class="form-control" placeholder="Enter UID Number" required>
+        <input type="date" name="dob" class="form-control" placeholder="Enter Date of Birth" required>
         <button type="submit" class="btn btn-primary">Generate ID Card</button>
       </form>
     </div>
   </div>
 
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxoN5n_pDPzdNMJc_D5MLbOyhLACugk8EhAcHeXjkQKr_-k8lUmXv2hvqOv5lD2Hl2e/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzwNp2D-Kg6yGaiGaP5npYiyGXRoGI3eTrf_DdHCXo-4Lo2mw2kLQEBucmNl5VkQs8R/exec';
 
     document.getElementById('idForm').addEventListener('submit', function(e) {
       e.preventDefault();
       
       const formData = new FormData(e.target);
-      const classVal = formData.get('class');
-      const rollVal = formData.get('roll');
+      const uidVal = formData.get('uid');
+      const dobVal = formData.get('dob');
 
-      const url = `${scriptURL}?class=${encodeURIComponent(classVal)}&roll=${encodeURIComponent(rollVal)}`;
+      const url = `${scriptURL}?uid=${encodeURIComponent(uidVal)}&dob=${encodeURIComponent(dobVal)}`;
 
       const newWin = window.open("", "_blank");
       newWin.document.write(`
@@ -140,7 +140,7 @@
         .then(data => {
           if (data.result === 'success') {
             const s = data.student;
-            const qrData = `UID: ${s.UID}, Admission: ${s.AdmissionNumber}, Name: ${s.FullName}, Class: ${s.ClassLevel}, Batch: ${s.BatchNumber}`;
+            const qrData = `UID: ${s.UID}, Name: ${s.FullName}, Class: ${s.ClassLevel}, Batch: ${s.BatchNumber}`;
             const qrURL = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=70x70&margin=2&color=0b5ed7`;
 
             const html = `
@@ -372,6 +372,10 @@
                         <span class="detail-value">${s.FatherName}</span>
                       </div>
                       <div class="detail-row">
+                        <span class="detail-label">CLASS:</span>
+                        <span class="detail-value">${s.ClassLevel}</span>
+                      </div>
+                      <div class="detail-row">
                         <span class="detail-label">BATCH NO:</span>
                         <span class="detail-value">${s.BatchNumber}</span>
                       </div>
@@ -402,7 +406,7 @@
               <body style="font-family: Poppins; text-align: center; padding: 50px; background: #f0f4ff;">
                 <div style="color: #dc3545;">
                   <h2>Student Not Found</h2>
-                  <p>${data.message || 'Please check class and roll number.'}</p>
+                  <p>${data.message || 'Please check UID and Date of Birth.'}</p>
                   <button onclick="window.close()" style="background: #0b5ed7; color: white; border: none; padding: 10px 20px; border-radius: 25px;">
                     Go Back
                   </button>
