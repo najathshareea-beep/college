@@ -171,7 +171,6 @@
       padding: 0.5rem 0.6rem !important;
       margin: 0 !important;
       border-radius: 6px;
-      
     }
 
     .navbar-nav .nav-link::before {
@@ -196,6 +195,47 @@
     .navbar-nav .nav-link:hover::before {
       width: 80%;
       box-shadow: 0 0 15px var(--accent);
+    }
+
+    /* ===== DROPDOWN MENU STYLES ===== */
+    .dropdown-menu {
+      background: rgba(10, 25, 79, 0.98);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .dropdown-item {
+      color: #f8f9fa;
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-item:hover {
+      color: var(--accent) !important;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateX(5px);
+    }
+
+    .dropdown-divider {
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .dropdown-toggle::after {
+      display: inline-block;
+      margin-left: 0.3em;
+      vertical-align: middle;
+      border-top: 0.3em solid;
+      border-right: 0.3em solid transparent;
+      border-left: 0.3em solid transparent;
+    }
+
+    .nav-item.dropdown:hover .dropdown-menu {
+      display: block;
     }
 
     /* ===== BUTTONS ===== */
@@ -847,6 +887,12 @@
         bottom: 25px;
         right: 25px;
       }
+      
+      .dropdown-menu {
+        background: rgba(10, 25, 79, 0.95);
+        border: none;
+        box-shadow: none;
+      }
     }
 
     /* ===== CUSTOM SCROLLBAR ===== */
@@ -936,12 +982,31 @@
     </button>
     <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="faculties.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="faculties.html">Board</a></li>
-        <li class="nav-item"><a class="nav-link" href="faculties.html">Faculty</a></li>
-        <li class="nav-item"><a class="nav-link" href="pta.html">PTA</a></li>
-        <li class="nav-item"><a class="nav-link" href="result.html">Result</a></li>
-        <li class="nav-item"><a class="nav-link" href="idcard.html">ID Card</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        
+        <!-- Board Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Board
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="faculties.html">Faculty</a></li>
+            <li><a class="dropdown-item" href="pta.html">PTA</a></li>
+          </ul>
+        </li>
+        
+        <!-- Student Zone Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Student Zone
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="idcard.html">ID Card</a></li>
+            <li><a class="dropdown-item" href="result.html">Result</a></li>
+          </ul>
+        </li>
+        
+        <!-- Other navigation items -->
         <li class="nav-item"><a class="nav-link" href="https://jamianooriya.in/">Jamia</a></li>
         <li class="nav-item"><a class="nav-link" href="downloads.html">Downloads</a></li>
         <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
@@ -949,9 +1014,7 @@
         <li class="nav-item"><a class="nav-link" href="library.html">Library</a></li>
         <li class="nav-item"><a class="nav-link active" href="alumni.html">Alumni</a></li>
         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-        <li class="nav-item"><a class="nav-link" href="faculties.html">Student Zone</a></li>
       </ul>
-      <a href="student-zone.html" class="btn btn-primary ms-lg-3">Student Zone</a>
     </div>
   </div>
 </nav>
@@ -1356,14 +1419,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
