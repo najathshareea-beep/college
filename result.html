@@ -68,7 +68,7 @@
 
     /* Main container */
     .main-container {
-      max-width: 800px;
+      max-width: 900px;
       width: 100%;
       z-index: 2;
       position: relative;
@@ -187,29 +187,24 @@
     }
 
     /* Specific button colors */
-    #finalResultBtn {
+    #annualExamBtn {
       background: linear-gradient(135deg, rgba(37, 99, 235, 0.8), rgba(59, 130, 246, 0.6));
       border-color: rgba(37, 99, 235, 0.5);
     }
 
-    #JamiaBtn {
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.8), rgba(251, 191, 36, 0.6));
-      border-color: rgba(245, 158, 11, 0.5);
+    #JamiaBtn, #toppersBtn {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+      border-color: rgba(255, 255, 255, 0.3);
     }
 
-    #toppersBtn {
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.8), rgba(167, 139, 250, 0.6));
-      border-color: rgba(139, 92, 246, 0.5);
-    }
-
-    /* Form Container (Hidden by default) */
+    /* Form Container */
     .form-container {
-      display: none;
       background: rgba(255, 255, 255, 0.95);
       border-radius: 15px;
       padding: 30px;
       margin-top: 20px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      display: none;
     }
 
     .form-container h3 {
@@ -268,19 +263,45 @@
       box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
     }
 
-    /* Result Display Area */
+    /* Result Display Styling - This will style the Apps Script result */
     .result-display {
-      display: none;
       background: white;
       border-radius: 15px;
-      padding: 0;
-      margin-top: 20px;
       overflow: hidden;
+      margin-top: 20px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      display: none;
     }
 
-    /* Back to Options Button */
-    .back-options-btn {
+    .result-content {
+      padding: 0;
+    }
+
+    /* Style for Apps Script result content */
+    .result-display .check-another-container {
+      padding: 20px;
+      background: #f8fafc;
+    }
+
+    .result-display .result-card {
+      margin: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .result-display .result-header {
+      padding: 30px;
+      background: linear-gradient(135deg, #2563eb, #8b5cf6);
+    }
+
+    .result-display .student-profile,
+    .result-display .results-section,
+    .result-display .performance-summary {
+      padding: 25px;
+    }
+
+    /* Back Buttons */
+    .back-btn, .back-options-btn {
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -296,7 +317,7 @@
       margin-top: 20px;
     }
 
-    .back-options-btn:hover {
+    .back-btn:hover, .back-options-btn:hover {
       background: rgba(255, 255, 255, 0.3);
       transform: translateY(-2px);
     }
@@ -425,14 +446,13 @@
       <h2>Final Examination Result 2025-26</h2>
       <p>Click below to view your latest examination results.</p>
 
-      <div class="btn-container">
-        <!-- Annual Examination Button (Opens form on same page) -->
-        <div class="result-btn" id="finalResultBtn">
+      <!-- Buttons View -->
+      <div class="btn-container" id="btnContainer">
+        <div class="result-btn" id="annualExamBtn">
           <i class="fa-solid fa-book-open-reader"></i>
           <span>Annual Examination</span>
         </div>
         
-        <!-- Jamia Public Exam (External Link) -->
         <a href="https://jamiajuniorcolleges.com/student/" 
            class="result-btn" 
            id="JamiaBtn"
@@ -441,7 +461,6 @@
           <span>Jamia Public Exam</span>
         </a>
         
-        <!-- Toppers Poster (External Link) -->
         <a href="toppers.html" 
            class="result-btn" 
            id="toppersBtn"
@@ -451,7 +470,7 @@
         </a>
       </div>
 
-      <!-- Form Container (Hidden by default) -->
+      <!-- Form View -->
       <div class="form-container" id="formContainer">
         <h3>Enter Your Details</h3>
         <form id="resultForm">
@@ -470,28 +489,41 @@
             <input type="date" id="dob" class="form-input" required>
           </div>
           
-          <button type="submit" class="submit-btn" id="submitBtn">
-            <i class="fas fa-search"></i> Check Result
+          <button type="button" class="submit-btn" id="submitBtn">
+            <i class="fas fa-search"></i> Get Result
           </button>
         </form>
         
-        <!-- Back to Options Button (in form) -->
         <div class="text-center mt-4">
-          <div class="back-options-btn" id="backFromFormBtn">
+          <div class="back-options-btn" id="backToOptionsBtn">
             <i class="fas fa-arrow-left"></i>
             <span>Back to Options</span>
           </div>
         </div>
       </div>
 
-      <!-- Result Display Area -->
+      <!-- Result Display -->
       <div class="result-display" id="resultDisplay">
-        <!-- Result will be loaded here -->
+        <div class="result-content" id="resultContent">
+          <!-- Result will be injected here -->
+        </div>
+        
+        <div class="text-center mt-4" id="resultActions">
+          <div class="back-options-btn" id="checkAnotherBtn">
+            <i class="fas fa-redo"></i>
+            <span>Check Another Result</span>
+          </div>
+          
+          <div class="back-options-btn" id="printResultBtn" style="margin-left: 10px;">
+            <i class="fas fa-print"></i>
+            <span>Print Result</span>
+          </div>
+        </div>
       </div>
 
-      <!-- Back to Home Button (only in main view) -->
-      <div class="text-center mt-4" id="backButtonContainer">
-        <a href="index.html" class="back-btn" id="backBtn">
+      <!-- Back to Home -->
+      <div class="text-center mt-4" id="backHomeBtn">
+        <a href="index.html" class="back-btn">
           <i class="fas fa-arrow-left"></i>
           <span>Back to Home</span>
         </a>
@@ -504,44 +536,53 @@
     const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwVhTyCm_QLpMF2ym1s4LgRyXQ0eTRARgWY9mQj5boJaYPPAtH-L7sM9LXc8wM1_tgO/exec';
 
     // DOM Elements
-    const finalResultBtn = document.getElementById('finalResultBtn');
+    const annualExamBtn = document.getElementById('annualExamBtn');
+    const btnContainer = document.getElementById('btnContainer');
     const formContainer = document.getElementById('formContainer');
-    const backFromFormBtn = document.getElementById('backFromFormBtn');
-    const resultForm = document.getElementById('resultForm');
     const resultDisplay = document.getElementById('resultDisplay');
-    const backButtonContainer = document.getElementById('backButtonContainer');
+    const resultContent = document.getElementById('resultContent');
+    const backHomeBtn = document.getElementById('backHomeBtn');
     const loadingOverlay = document.getElementById('loadingOverlay');
-    const btnContainer = document.querySelector('.btn-container');
-    const resultBox = document.querySelector('.result-box');
+    const rollNumberInput = document.getElementById('rollNumber');
+    const dobInput = document.getElementById('dob');
+    const submitBtn = document.getElementById('submitBtn');
+    const backToOptionsBtn = document.getElementById('backToOptionsBtn');
+    const checkAnotherBtn = document.getElementById('checkAnotherBtn');
+    const printResultBtn = document.getElementById('printResultBtn');
 
-    // Show form when Annual Exam button is clicked
-    finalResultBtn.addEventListener('click', function() {
-      btnContainer.style.display = 'none';
-      formContainer.style.display = 'block';
-      backButtonContainer.style.display = 'none';
-      resultDisplay.style.display = 'none';
-      
-      // Scroll to form
-      formContainer.scrollIntoView({ behavior: 'smooth' });
+    // Current view state
+    let currentView = 'buttons';
+
+    // 1. Show form when Annual Exam is clicked
+    annualExamBtn.addEventListener('click', function() {
+      showView('form');
+      setTimeout(() => rollNumberInput.focus(), 100);
     });
 
-    // Back from form to options
-    backFromFormBtn.addEventListener('click', function() {
-      formContainer.style.display = 'none';
-      btnContainer.style.display = 'grid';
-      backButtonContainer.style.display = 'block';
-      resultDisplay.style.display = 'none';
+    // 2. Back to options
+    backToOptionsBtn.addEventListener('click', function() {
+      showView('buttons');
     });
 
-    // Handle form submission
-    resultForm.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      
-      const rollNumber = document.getElementById('rollNumber').value;
-      const dob = document.getElementById('dob').value;
+    // 3. Check another result
+    checkAnotherBtn.addEventListener('click', function() {
+      showView('form');
+      document.getElementById('resultForm').reset();
+      setTimeout(() => rollNumberInput.focus(), 100);
+    });
+
+    // 4. Print result
+    printResultBtn.addEventListener('click', function() {
+      window.print();
+    });
+
+    // 5. Submit form
+    submitBtn.addEventListener('click', async function() {
+      const rollNumber = rollNumberInput.value.trim();
+      const dob = dobInput.value;
       
       if (!rollNumber || !dob) {
-        alert("Please enter both Registration Number and Date of Birth");
+        alert("Please fill in all fields");
         return;
       }
       
@@ -549,40 +590,14 @@
       loadingOverlay.style.display = 'flex';
       
       try {
-        // Call Google Apps Script
-        const response = await fetch(`${APPS_SCRIPT_URL}?roll=${encodeURIComponent(rollNumber)}&dob=${encodeURIComponent(dob)}`);
+        // Fetch result from Apps Script
+        const resultHtml = await fetchResultFromAppsScript(rollNumber, dob);
         
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
+        // Display result on our page
+        displayResult(resultHtml);
         
-        const resultHtml = await response.text();
-        
-        // Hide form and show result
-        formContainer.style.display = 'none';
-        resultDisplay.innerHTML = resultHtml;
-        resultDisplay.style.display = 'block';
-        
-        // Add "Check Another Result" button to result display
-        const checkAnotherBtn = document.createElement('div');
-        checkAnotherBtn.className = 'text-center mt-4';
-        checkAnotherBtn.innerHTML = `
-          <div class="back-options-btn" id="checkAnotherBtn">
-            <i class="fas fa-redo"></i>
-            <span>Check Another Result</span>
-          </div>
-        `;
-        resultDisplay.appendChild(checkAnotherBtn);
-        
-        // Add event listener to "Check Another Result" button
-        setTimeout(() => {
-          document.getElementById('checkAnotherBtn').addEventListener('click', function() {
-            resultDisplay.style.display = 'none';
-            resultDisplay.innerHTML = '';
-            formContainer.style.display = 'block';
-            resultForm.reset();
-          });
-        }, 100);
+        // Show result view
+        showView('result');
         
       } catch (error) {
         console.error('Error:', error);
@@ -593,20 +608,199 @@
       }
     });
 
-    // Optional: Add click effects to buttons
-    document.querySelectorAll('.result-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        if (this.id === 'finalResultBtn') {
-          this.style.transform = 'scale(0.95)';
-          setTimeout(() => {
-            this.style.transform = '';
-          }, 200);
+    // Function to fetch result from Apps Script
+    async function fetchResultFromAppsScript(rollNumber, dob) {
+      // Create URL with parameters
+      const url = `${APPS_SCRIPT_URL}?roll=${encodeURIComponent(rollNumber)}&dob=${encodeURIComponent(dob)}`;
+      
+      // Use proxy to avoid CORS
+      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+      
+      try {
+        // Try with proxy first
+        const response = await fetch(proxyUrl);
+        const data = await response.json();
+        
+        if (data.contents) {
+          return data.contents;
         }
+      } catch (proxyError) {
+        console.log('Proxy failed, trying direct fetch...');
+      }
+      
+      // Fallback: Try direct fetch
+      try {
+        const response = await fetch(url, {
+          mode: 'no-cors',
+          credentials: 'omit'
+        });
+        
+        // Since we can't read response with no-cors, we'll use alternative method
+        return await fetchResultAlternative(rollNumber, dob);
+      } catch (error) {
+        throw new Error('Failed to fetch result');
+      }
+    }
+
+    // Alternative method using iframe and extracting content
+    function fetchResultAlternative(rollNumber, dob) {
+      return new Promise((resolve, reject) => {
+        const url = `${APPS_SCRIPT_URL}?roll=${encodeURIComponent(rollNumber)}&dob=${encodeURIComponent(dob)}`;
+        
+        // Create hidden iframe
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = url;
+        
+        iframe.onload = function() {
+          try {
+            // Try to get content from iframe
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            const result = iframeDoc.body.innerHTML;
+            
+            // Clean up
+            document.body.removeChild(iframe);
+            
+            resolve(result);
+          } catch (error) {
+            reject(error);
+          }
+        };
+        
+        iframe.onerror = function() {
+          document.body.removeChild(iframe);
+          reject(new Error('Failed to load result'));
+        };
+        
+        document.body.appendChild(iframe);
+        
+        // Timeout after 10 seconds
+        setTimeout(() => {
+          if (iframe.parentNode) {
+            document.body.removeChild(iframe);
+            reject(new Error('Request timeout'));
+          }
+        }, 10000);
+      });
+    }
+
+    // Function to display result
+    function displayResult(html) {
+      // Inject the HTML
+      resultContent.innerHTML = html;
+      
+      // Modify any links or buttons to work within our page
+      const checkAnotherButtons = resultContent.querySelectorAll('button[onclick*="showMainPage"], .check-another-btn');
+      checkAnotherButtons.forEach(button => {
+        button.onclick = function() {
+          showView('form');
+          document.getElementById('resultForm').reset();
+        };
+      });
+      
+      // Modify print buttons
+      const printButtons = resultContent.querySelectorAll('button[onclick*="Print"]');
+      printButtons.forEach(button => {
+        const originalOnclick = button.getAttribute('onclick');
+        if (originalOnclick) {
+          button.setAttribute('onclick', originalOnclick.replace('Print(', 'printResult('));
+        }
+      });
+    }
+
+    // Function to show different views
+    function showView(viewName) {
+      currentView = viewName;
+      
+      // Hide all views first
+      btnContainer.style.display = 'none';
+      formContainer.style.display = 'none';
+      resultDisplay.style.display = 'none';
+      backHomeBtn.style.display = 'none';
+      
+      // Show selected view
+      switch(viewName) {
+        case 'buttons':
+          btnContainer.style.display = 'grid';
+          backHomeBtn.style.display = 'block';
+          break;
+          
+        case 'form':
+          formContainer.style.display = 'block';
+          break;
+          
+        case 'result':
+          resultDisplay.style.display = 'block';
+          break;
+      }
+    }
+
+    // Print function
+    function printResult(divId) {
+      const printContent = document.getElementById(divId).innerHTML;
+      const originalContent = document.body.innerHTML;
+      
+      document.body.innerHTML = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Result Print</title>
+          <style>
+            body { font-family: Arial, sans-serif; }
+            @media print {
+              @page { size: A4; margin: 15mm; }
+              body { margin: 0; padding: 0; }
+            }
+          </style>
+        </head>
+        <body>
+          ${printContent}
+          <script>
+            window.onload = function() {
+              window.print();
+              setTimeout(function() {
+                window.location.reload();
+              }, 1000);
+            };
+          <\/script>
+        </body>
+        </html>
+      `;
+    }
+
+    // Initialize date input
+    function initializeDateInput() {
+      const today = new Date();
+      const maxDate = today.toISOString().split('T')[0];
+      const minDate = new Date(today.getFullYear() - 30, 0, 1).toISOString().split('T')[0];
+      
+      dobInput.max = maxDate;
+      dobInput.min = minDate;
+      
+      // Set default date (18 years ago)
+      const defaultDate = new Date(today.getFullYear() - 18, 0, 1);
+      dobInput.value = defaultDate.toISOString().split('T')[0];
+    }
+
+    // Initialize
+    initializeDateInput();
+
+    // Button animations
+    document.querySelectorAll('.result-btn').forEach(btn => {
+      btn.addEventListener('mousedown', function() {
+        this.style.transform = 'scale(0.95)';
+      });
+      
+      btn.addEventListener('mouseup', function() {
+        this.style.transform = '';
+      });
+      
+      btn.addEventListener('mouseleave', function() {
+        this.style.transform = '';
       });
     });
 
-    // Initialize today's date as max date for DOB field
-    document.getElementById('dob').max = new Date().toISOString().split('T')[0];
+    console.log("Result Portal Loaded Successfully");
   </script>
 </body>
 </html>
