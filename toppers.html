@@ -727,7 +727,7 @@ footer p {
 }
 
 /* Poster Preview */
-#PosterPreview {
+#posterPreview { /* Changed from PosterPreview to posterPreview for consistency */
   display: none;
   position: fixed;
   top: 0;
@@ -740,7 +740,7 @@ footer p {
   padding: 20px;
 }
 
-.Poster-canvas {
+.poster-canvas { /* Changed from Poster-canvas to poster-canvas */
   background: white;
   width: 800px;
   max-width: 90%;
@@ -848,14 +848,14 @@ footer p {
       <p class="tagline">Celebrating Academic Excellence & Achievement</p>
     </div>
     
-    <!-- Stats Section -->
+    <!-- Stats Section - Fixed to show correct numbers -->
     <div class="stats">
       <div class="stat-item">
-        <div class="stat-number">7</div>
+        <div class="stat-number">10</div>
         <div class="stat-label">Classes</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">14</div>
+        <div class="stat-number">20</div>
         <div class="stat-label">Top Students</div>
       </div>
       <div class="stat-item">
@@ -888,7 +888,7 @@ footer p {
   
   <!-- Clear All Button -->
   <div class="clear-all-container">
-    <button id="clearAllBtn" onclick="clearAllPhotos()">
+    <button id="clearAllBtn">
       <i class="fas fa-trash-alt"></i> Clear All Uploaded Photos
     </button>
   </div>
@@ -896,7 +896,7 @@ footer p {
   <!-- Footer -->
   <footer>
     <p>© 2025-26 DARUNNAJATH SHAREEATH AND ARTS COLLEGE — PUNNAKKAD KARUVARAKUNDU</p>
-    <p>Posters generated: <span class="cert-count" id="certCountFooter">0</span></p>
+    <p>Posters generated: <span class="cert-count" id="certCount">0</span></p>
     <p>Designed with <i class="fas fa-heart" style="color:#dc3545;"></i> for celebrating student achievements</p>
   </footer>
 </div>
@@ -907,15 +907,15 @@ footer p {
   <p>Generating Poster...</p>
 </div>
 
-<!-- Poster Preview Modal -->
-<div id="PosterPreview">
-  <div class="close-preview" onclick="closePosterPreview()">×</div>
-  <canvas id="previewCanvas" class="Poster-canvas"></canvas>
+<!-- Poster Preview Modal - Fixed ID from PosterPreview to posterPreview -->
+<div id="posterPreview">
+  <div class="close-preview">×</div>
+  <canvas id="previewCanvas" class="poster-canvas"></canvas>
 </div>
 
 <!-- Photo Preview Modal -->
 <div id="previewModal">
-  <span class="close" onclick="closePreview()">×</span>
+  <span class="close">×</span>
   <img id="previewImage" src="" alt="Photo Preview">
 </div>
 
@@ -1045,7 +1045,6 @@ function placeholderDataURL(){
 
 function updateCertCount() {
   document.getElementById('certCount').textContent = certCount;
-  document.getElementById('certCountFooter').textContent = certCount;
 }
 
 // Show notification
@@ -1096,6 +1095,10 @@ classesData.forEach((cls, classIndex) => {
     const photoURL = uploadedPhotos[classIndex][topperIndex] || placeholderDataURL();
     const isFirst = topper.rank === 'First';
     
+    // Escape photo URL for use in HTML
+    const safePhotoURL = photoURL.replace(/'/g, "\\'");
+    const safeName = topper.name.replace(/'/g, "\\'");
+    
     toppersHTML += `
       <div class="topper-card ${isFirst ? 'first' : 'second'}">
         <div class="rank-badge ${isFirst ? 'first' : 'second'}">
@@ -1105,21 +1108,19 @@ classesData.forEach((cls, classIndex) => {
           <div class="photo-frame">
             <div class="photo-border ${isFirst ? 'first' : 'second'}"></div>
             <div class="photo">
-              <img src="${photoURL}" alt="${escapeHtml(topper.name)}" 
-                   onclick="previewPhoto('${photoURL.replace(/'/g, "\\'")}')">
+              <img src="${photoURL}" alt="${escapeHtml(topper.name)}">
             </div>
           </div>
         </div>
-        <button class="upload-btn" onclick="document.getElementById('file-${classIndex}-${topperIndex}').click()">
+        <button class="upload-btn">
           <i class="fas fa-upload"></i> Upload Photo
         </button>
-        <input type="file" id="file-${classIndex}-${topperIndex}" accept="image/*" style="display:none" 
-               onchange="handlePhotoUpload(this, ${classIndex}, ${topperIndex})">
+        <input type="file" id="file-${classIndex}-${topperIndex}" accept="image/*" style="display:none">
         <div class="student-name">${escapeHtml(topper.name)}</div>
         <div class="rank-label ${isFirst ? 'first' : 'second'}">${topper.rank} Place in Class</div>
         <div class="student-meta">Marks: ${escapeHtml(topper.mark)}</div>
         <div class="btns">
-          <button class="btn btn-preview" onclick="previewPoster('${topper.name}','${cls.class}','${topper.mark}', '${topper.rank}', uploadedPhotos[${classIndex}][${topperIndex}] || '${photoURL}')">
+          <button class="btn btn-preview">
             <i class="fas fa-eye"></i> Preview Poster
           </button>
         </div>
@@ -1135,6 +1136,56 @@ classesData.forEach((cls, classIndex) => {
   `;
   
   grid.appendChild(card);
+});
+
+// Set up event listeners after DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  // Set up upload button event listeners
+  classesData.forEach((cls, classIndex) => {
+    cls.toppers.forEach((topper, topperIndex) => {
+      const uploadBtn = document.querySelector(`#file-${classIndex}-${topperIndex}`).previousElementSibling;
+      const fileInput = document.getElementById(`file-${classIndex}-${topperIndex}`);
+      
+      if (uploadBtn && fileInput) {
+        uploadBtn.addEventListener('click', function() {
+          fileInput.click();
+        });
+      }
+      
+      if (fileInput) {
+        fileInput.addEventListener('change', function() {
+          handlePhotoUpload(this, classIndex, topperIndex);
+        });
+      }
+      
+      // Set up photo click for preview
+      const photoImg = document.querySelector(`#file-${classIndex}-${topperIndex}`).closest('.topper-card').querySelector('img');
+      if (photoImg) {
+        photoImg.addEventListener('click', function() {
+          const photoURL = uploadedPhotos[classIndex][topperIndex] || placeholderDataURL();
+          if (!photoURL.includes('Student</text>')) {
+            previewPhoto(photoURL);
+          }
+        });
+      }
+      
+      // Set up preview button
+      const previewBtn = document.querySelector(`#file-${classIndex}-${topperIndex}`).closest('.topper-card').querySelector('.btn-preview');
+      if (previewBtn) {
+        previewBtn.addEventListener('click', function() {
+          const photoURL = uploadedPhotos[classIndex][topperIndex] || placeholderDataURL();
+          previewPoster(topper.name, cls.class, topper.mark, topper.rank, photoURL);
+        });
+      }
+    });
+  });
+  
+  // Clear all button
+  document.getElementById('clearAllBtn').addEventListener('click', clearAllPhotos);
+  
+  // Modal close buttons
+  document.querySelector('#previewModal .close').addEventListener('click', closePreview);
+  document.querySelector('#posterPreview .close-preview').addEventListener('click', closePosterPreview);
 });
 
 // Handle photo upload
@@ -1327,7 +1378,7 @@ async function previewPoster(name, cls, mark, rank, photo) {
     ctx.drawImage(canvas, 0, 0, 1200, 1600, 0, 0, 800, 1067);
     
     // Show preview
-    document.getElementById('PosterPreview').style.display = 'block';
+    document.getElementById('posterPreview').style.display = 'block';
     
     // Add download buttons to preview
     setTimeout(() => {
@@ -1338,17 +1389,24 @@ async function previewPoster(name, cls, mark, rank, photo) {
       buttonContainer.className = 'preview-buttons';
       
       buttonContainer.innerHTML = `
-        <button onclick="downloadPoster('${name}','${cls}','${mark}','${rank}','${photo.replace(/'/g, "\\'")}', 'png')" 
-                style="background:#ffd700; color:#000;">
+        <button id="downloadPNG" style="background:#ffd700; color:#000;">
           <i class="fas fa-download"></i> Download PNG
         </button>
-        <button onclick="downloadPoster('${name}','${cls}','${mark}','${rank}','${photo.replace(/'/g, "\\'")}', 'pdf')" 
-                style="background:#0d6efd; color:white;">
+        <button id="downloadPDF" style="background:#0d6efd; color:white;">
           <i class="fas fa-file-pdf"></i> Download PDF
         </button>
       `;
       
-      document.getElementById('PosterPreview').appendChild(buttonContainer);
+      document.getElementById('posterPreview').appendChild(buttonContainer);
+      
+      // Add event listeners to download buttons
+      document.getElementById('downloadPNG').addEventListener('click', function() {
+        downloadPoster(name, cls, mark, rank, photo, 'png');
+      });
+      
+      document.getElementById('downloadPDF').addEventListener('click', function() {
+        downloadPoster(name, cls, mark, rank, photo, 'pdf');
+      });
     }, 100);
     
   } catch(error) {
@@ -1360,7 +1418,7 @@ async function previewPoster(name, cls, mark, rank, photo) {
 
 // Close Poster preview
 function closePosterPreview() {
-  document.getElementById('PosterPreview').style.display = 'none';
+  document.getElementById('posterPreview').style.display = 'none';
   const buttons = document.querySelector('.preview-buttons');
   if (buttons) buttons.remove();
 }
@@ -1393,7 +1451,7 @@ async function downloadPoster(name, cls, mark, rank, photo, type) {
     updateCertCount();
     
     // Generate output based on type
-    const fileName = `Noorussalam_Class${cls}_${rank.replace(' ', '_')}_${name.replace(/\s+/g, '_')}`;
+    const fileName = `Darunnajath_Class${cls}_${rank.replace(' ', '_')}_${name.replace(/\s+/g, '_')}`;
     
     if(type === "png") {
       const a = document.createElement("a"); 
@@ -1428,6 +1486,7 @@ function clearAllPhotos() {
         localStorage.removeItem(`topperPhoto_${classIndex}_${topperIndex}`);
         uploadedPhotos[classIndex][topperIndex] = null;
         
+        // Find and reset the image
         const img = document.querySelector(`#file-${classIndex}-${topperIndex}`)?.closest('.photo-frame')?.querySelector('img');
         if(img) img.src = placeholderDataURL();
       });
@@ -1441,7 +1500,7 @@ document.getElementById('previewModal').addEventListener('click', function(e) {
   if(e.target === this) closePreview();
 });
 
-document.getElementById('PosterPreview').addEventListener('click', function(e) {
+document.getElementById('posterPreview').addEventListener('click', function(e) {
   if(e.target === this) closePosterPreview();
 });
 
