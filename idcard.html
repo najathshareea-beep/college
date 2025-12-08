@@ -140,7 +140,7 @@
         .then(data => {
           if (data.result === 'success') {
             const s = data.student;
-            const qrData = `UID: ${s.UID}, Name: ${s.FullName}, Class: ${s.ClassLevel}, Batch: ${s.BatchNumber}`;
+            const qrData = `UID: ${s.UID}, Name: ${s.FullName}, S/o ${s.FatherName}, Batch: ${s.BatchNumber}, Phone: ${s.Phone}`;
             const qrURL = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=70x70&margin=2&color=0b5ed7`;
 
             const html = `
@@ -370,10 +370,6 @@
                       <div class="detail-row">
                         <span class="detail-label">FATHER'S NAME:</span>
                         <span class="detail-value">${s.FatherName}</span>
-                      </div>
-                      <div class="detail-row">
-                        <span class="detail-label">CLASS:</span>
-                        <span class="detail-value">${s.ClassLevel}</span>
                       </div>
                       <div class="detail-row">
                         <span class="detail-label">BATCH:</span>
