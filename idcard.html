@@ -3,9 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ID Card Generator | DARUNNAJATH SHAREEATH AND ARTS COLLEGE</title>
+  <title>Student ID Card Generator | DARUNNAJATH SHAREEATH AND ARTS COLLEGE</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       background: linear-gradient(135deg, #0b5ed7 0%, #74b9ff 100%);
       font-family: 'Poppins', sans-serif;
@@ -14,73 +21,313 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 30px;
+      padding: 20px;
     }
-    .id-form {
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-      padding: 30px;
+
+    .container {
       width: 100%;
-      max-width: 420px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .header {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
+      color: white;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .main-content {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .form-container {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      padding: 35px;
+      width: 100%;
+      max-width: 400px;
       animation: fadeIn 0.8s ease;
     }
-    .id-form h2 {
+
+    .logo-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
+
+    .form-container h2 {
       color: #0b5ed7;
       font-weight: 700;
       margin-bottom: 15px;
+      font-size: 1.8rem;
     }
-    .id-form p {
+
+    .form-container p {
       color: #6c757d;
-      font-size: 14px;
+      font-size: 15px;
       margin-bottom: 25px;
+      line-height: 1.5;
     }
-    .id-form button {
-      background: #0b5ed7;
-      border: none;
-      padding: 10px 0;
-      width: 100%;
-      border-radius: 8px;
+
+    .form-label {
       font-weight: 600;
-      color: #fff;
+      color: #495057;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .form-control {
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 16px;
       transition: all 0.3s ease;
     }
-    .id-form button:hover {
-      background: #0849a2;
+
+    .form-control:focus {
+      border-color: #0b5ed7;
+      box-shadow: 0 0 0 0.25rem rgba(11, 94, 215, 0.25);
     }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0b5ed7 0%, #0849a2 100%);
+      border: none;
+      padding: 14px 0;
+      width: 100%;
+      border-radius: 10px;
+      font-weight: 600;
+      color: #fff;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #0849a2 0%, #0b5ed7 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(11, 94, 215, 0.4);
+    }
+
+    .preview-container {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      padding: 30px;
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .preview-title {
+      color: #0b5ed7;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .id-card-preview {
+      width: 350px;
+      height: 500px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+      overflow: hidden;
+      border: 2px solid #e0e0e0;
+      position: relative;
+    }
+
+    .id-preview-content {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .id-preview-header {
+      background: linear-gradient(90deg, #0b5ed7, #74b9ff);
+      color: white;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .id-preview-header h4 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .id-preview-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #f0f4ff;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0b5ed7;
+      font-size: 14px;
+    }
+
+    .id-preview-details {
+      text-align: left;
+      margin: 20px 0;
+    }
+
+    .id-preview-detail {
+      display: flex;
+      margin-bottom: 8px;
+    }
+
+    .id-preview-detail strong {
+      min-width: 120px;
+      color: #0b5ed7;
+    }
+
+    .info-box {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 30px;
+      border-left: 4px solid #0b5ed7;
+    }
+
+    .info-box h5 {
+      color: #0b5ed7;
+      margin-bottom: 10px;
+    }
+
+    .info-box p {
+      color: #6c757d;
+      font-size: 14px;
+      margin: 0;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .form-container, .preview-container {
+        max-width: 100%;
+      }
+      
+      .id-card-preview {
+        width: 320px;
+        height: 460px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Form -->
-  <div class="id-form">
-    <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" width="80" alt="logo">
-    <h2>DARUNNAJATH SHAREEATH AND ARTS COLLEGE</h2>
-    <p>Enter your UID and Date of Birth to generate your ID card</p>
-    <form id="idForm">
-      <div class="mb-3 text-start">
-        <label class="form-label">Class</label>
-        <input type="text" name="UID" class="form-control" placeholder="Enter UID" required>
+  <div class="container">
+    <div class="header">
+      <h1>DARUNNAJATH SHAREEATH AND ARTS COLLEGE</h1>
+      <p>Digital Student ID Card Generator</p>
+    </div>
+
+    <div class="main-content">
+      <!-- Form Section -->
+      <div class="form-container">
+        <div class="logo-container">
+          <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="logo">
+        </div>
+        <h2>Generate Your ID Card</h2>
+        <p>Enter your class and roll number to generate your official digital ID card</p>
+        
+        <form id="idForm">
+          <div class="mb-4">
+            <label class="form-label">Class</label>
+            <input type="text" name="class" class="form-control" placeholder="Enter your class (e.g., 10A)" required>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Roll Number</label>
+            <input type="text" name="roll" class="form-control" placeholder="Enter your roll number" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Generate ID Card</button>
+        </form>
+        
+        <div class="info-box">
+          <h5>Information</h5>
+          <p>Your ID card will be generated with your photo, details, and a unique QR code for verification.</p>
+        </div>
       </div>
-      <div class="mb-3 text-start">
-        <label class="form-label">Roll Number</label>
-        <input type="text" name="roll" class="form-control" placeholder="Enter Roll Number" required>
+
+      <!-- Preview Section -->
+      <div class="preview-container">
+        <h3 class="preview-title">ID Card Preview</h3>
+        <div class="id-card-preview">
+          <div class="id-preview-header">
+            <h4>DARUNNAJATH SHAREEATH AND ARTS COLLEGE</h4>
+            <small>Punnakkad, Karuvarakundu</small>
+          </div>
+          <div class="id-preview-content">
+            <div class="id-preview-photo">
+              Student Photo
+            </div>
+            <div class="id-preview-details">
+              <div class="id-preview-detail">
+                <strong>Name:</strong> <span>__________</span>
+              </div>
+              <div class="id-preview-detail">
+                <strong>Class:</strong> <span>__________</span>
+              </div>
+              <div class="id-preview-detail">
+                <strong>Roll No:</strong> <span>__________</span>
+              </div>
+              <div class="id-preview-detail">
+                <strong>UID:</strong> <span>__________</span>
+              </div>
+            </div>
+            <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
+              <small style="color: #6c757d;">Academic Year 2025-26</small>
+            </div>
+          </div>
+        </div>
+        <p class="mt-3 text-center" style="color: #6c757d; font-size: 14px;">
+          Your actual ID card will appear here
+        </p>
       </div>
-      <button type="submit">Generate Digital ID Card</button>
-    </form>
+    </div>
   </div>
 
   <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbzwNp2D-Kg6yGaiGaP5npYiyGXRoGI3eTrf_DdHCXo-4Lo2mw2kLQEBucmNl5VkQs8R/exec';
 
-    document.getElementById('idForm').addEventListener('submit', e => {
+    document.getElementById('idForm').addEventListener('submit', function(e) {
       e.preventDefault();
+      
       const formData = new FormData(e.target);
       const classVal = formData.get('class');
       const rollVal = formData.get('roll');
@@ -88,7 +335,48 @@
       const url = `${scriptURL}?class=${encodeURIComponent(classVal)}&roll=${encodeURIComponent(rollVal)}`;
 
       const newWin = window.open("", "_blank");
-      newWin.document.write("<h3 style='text-align:center;font-family:Poppins;color:#0b5ed7;'>Loading ID Card...</h3>");
+      newWin.document.write(`
+        <html>
+        <head>
+          <title>Loading ID Card...</title>
+          <style>
+            body {
+              font-family: 'Poppins', sans-serif;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 100vh;
+              background: #f0f4ff;
+              margin: 0;
+            }
+            .loading {
+              text-align: center;
+              color: #0b5ed7;
+            }
+            .spinner {
+              border: 4px solid #f3f3f3;
+              border-top: 4px solid #0b5ed7;
+              border-radius: 50%;
+              width: 50px;
+              height: 50px;
+              animation: spin 1s linear infinite;
+              margin: 20px auto;
+            }
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="loading">
+            <h3>Generating ID Card...</h3>
+            <div class="spinner"></div>
+            <p>Please wait while we fetch your details</p>
+          </div>
+        </body>
+        </html>
+      `);
 
       fetch(url)
         .then(res => res.json())
@@ -96,121 +384,294 @@
           if (data.result === 'success') {
             const s = data.student;
             const qrData = `UID: ${s.UID}, Admission: ${s.AdmissionNumber}, Name: ${s.FullName}, Class: ${s.ClassLevel}, Batch: ${s.BatchNumber}`;
-            const qrURL = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=100x100`;
+            const qrURL = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=120x120&margin=10&color=0b5ed7&bgcolor=ffffff`;
 
             const html = `
+              <!DOCTYPE html>
               <html>
               <head>
                 <title>${s.FullName} | ID Card</title>
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <style>
-
                   @media print {
                     body {
+                      margin: 0;
+                      padding: 0;
                       -webkit-print-color-adjust: exact !important;
                       print-color-adjust: exact !important;
                     }
-                    .print-btn { display: none !important; }
+                    .no-print {
+                      display: none !important;
+                    }
+                    .id-card {
+                      margin: 0 !important;
+                      box-shadow: none !important;
+                      border: none !important;
+                    }
+                  }
+
+                  * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
                   }
 
                   body {
+                    font-family: 'Poppins', 'Arial', sans-serif;
                     background: #f0f4ff;
-                    font-family: 'Poppins', sans-serif;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    height: 100vh;
+                    min-height: 100vh;
+                    padding: 20px;
                   }
+
+                  .container {
+                    width: 100%;
+                    max-width: 400px;
+                  }
+
                   .id-card {
-                    width: 380px;
+                    width: 350px;
+                    height: 500px;
                     background: white;
-                    border-radius: 20px;
-                    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+                    border-radius: 15px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
                     overflow: hidden;
-                    text-align: center;
-                    border: 5px solid #0b5ed7;
+                    border: 3px solid #0b5ed7;
+                    position: relative;
                   }
+
                   .id-header {
                     background: linear-gradient(90deg, #0b5ed7, #74b9ff);
                     color: white;
-                    padding: 12px;
+                    padding: 15px 10px;
+                    text-align: center;
                   }
-                  .id-header h5 {
-                    margin: 0;
+
+                  .id-header h3 {
                     font-size: 18px;
                     font-weight: 700;
+                    margin: 0;
                     line-height: 1.3;
                   }
+
                   .id-header small {
-                    font-size: 12px;
-                    display: block;
+                    font-size: 11px;
                     opacity: 0.9;
+                    display: block;
+                    margin-top: 3px;
                   }
+
                   .id-body {
                     padding: 20px;
                   }
-                  .id-photo {
-                    width: 100px;
-                    height: 100px;
+
+                  .photo-container {
+                    position: relative;
+                    margin: -40px auto 20px;
+                    width: 130px;
+                    height: 130px;
+                  }
+
+                  .student-photo {
+                    width: 100%;
+                    height: 100%;
                     border-radius: 50%;
                     object-fit: cover;
-                    margin-top: -20px;
                     border: 4px solid white;
-                    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
                   }
-                  .id-body h5 { color: #0b5ed7; margin-top: 10px; font-weight: 700; }
-                  .id-body p { margin: 3px 0; color: #333; font-size: 14px; }
-                  .qr-code { margin-top: 10px; }
-                  .academic-year {
-                    font-weight: 600;
+
+                  .photo-frame {
+                    position: absolute;
+                    top: -5px;
+                    left: -5px;
+                    right: -5px;
+                    bottom: -5px;
+                    border-radius: 50%;
+                    border: 2px solid #0b5ed7;
+                    z-index: -1;
+                  }
+
+                  .student-name {
+                    text-align: center;
                     color: #0b5ed7;
-                    margin-top: 8px;
-                    font-size: 15px;
+                    font-size: 22px;
+                    font-weight: 700;
+                    margin-bottom: 15px;
+                    text-transform: uppercase;
                     letter-spacing: 0.5px;
                   }
 
-                  .print-btn {
-                    margin-top: 20px;
-                    padding: 10px 20px;
-                    background: #0b5ed7;
-                    color: white;
-                    border: none;
+                  .details-container {
+                    background: #f8f9fa;
                     border-radius: 10px;
-                    font-size: 16px;
+                    padding: 15px;
+                    margin-bottom: 20px;
                   }
 
+                  .detail-row {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 8px;
+                    font-size: 14px;
+                  }
+
+                  .detail-label {
+                    color: #0b5ed7;
+                    font-weight: 600;
+                    min-width: 120px;
+                  }
+
+                  .detail-value {
+                    color: #333;
+                    font-weight: 500;
+                    text-align: right;
+                    flex: 1;
+                  }
+
+                  .qr-section {
+                    text-align: center;
+                    padding: 10px;
+                    border-top: 1px solid #e0e0e0;
+                    margin-top: 15px;
+                  }
+
+                  .qr-code {
+                    width: 100px;
+                    height: 100px;
+                    margin: 0 auto 10px;
+                  }
+
+                  .qr-code img {
+                    width: 100%;
+                    height: 100%;
+                  }
+
+                  .academic-year {
+                    color: #0b5ed7;
+                    font-weight: 600;
+                    font-size: 14px;
+                    letter-spacing: 1px;
+                  }
+
+                  .footer-note {
+                    font-size: 10px;
+                    color: #666;
+                    text-align: center;
+                    margin-top: 5px;
+                    font-style: italic;
+                  }
+
+                  .controls {
+                    text-align: center;
+                    margin-top: 30px;
+                  }
+
+                  .btn-print {
+                    background: linear-gradient(135deg, #0b5ed7, #0849a2);
+                    color: white;
+                    border: none;
+                    padding: 12px 30px;
+                    border-radius: 25px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    font-size: 16px;
+                    margin-bottom: 15px;
+                  }
+
+                  .btn-print:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 5px 15px rgba(11, 94, 215, 0.4);
+                  }
+
+                  .btn-download {
+                    background: #28a745;
+                    color: white;
+                    border: none;
+                    padding: 10px 25px;
+                    border-radius: 25px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    font-size: 14px;
+                  }
+
+                  .btn-download:hover {
+                    background: #218838;
+                    transform: translateY(-2px);
+                  }
                 </style>
               </head>
               <body>
-
-                <div>
-                  <button class="print-btn" onclick="window.print()">Print ID Card</button>
+                <div class="container">
+                  <div class="controls no-print">
+                    <button class="btn-print" onclick="window.print()">🖨️ Print ID Card</button>
+                    <br>
+                    <button class="btn-download" onclick="downloadIDCard()">📥 Download as Image</button>
+                  </div>
 
                   <div class="id-card">
                     <div class="id-header">
-                      <h5>DARUNNAJATH SHAREEATH AND ARTS COLLEGE</h5>
-                      <small>Punnakkad, Karuvarakundu, Malappuram Dt.<br>Email: najathshareea@gmail.com</small>
+                      <h3>DARUNNAJATH SHAREEATH AND ARTS COLLEGE</h3>
+                      <small>Punnakkad, Karuvarakundu, Malappuram District</small>
                       <small>Affiliated to JAMIA NOORIYYA ARABIYYA</small>
                     </div>
+
                     <div class="id-body">
-                      <img src="${s.PhotoURL || 'https://via.placeholder.com/100'}" class="id-photo">
+                      <div class="photo-container">
+                        <img src="${s.PhotoURL || 'https://via.placeholder.com/130?text=Student+Photo'}" 
+                             alt="Student Photo" class="student-photo">
+                        <div class="photo-frame"></div>
+                      </div>
 
-                      <h5>${s.FullName}</h5>
-                      <p><strong>UID:</strong> ${s.UID}</p>
-                      <p><strong>Admission No:</strong> ${s.AdmissionNumber}</p>
-                      <p><strong>Father’s Name:</strong> ${s.FatherName}</p>
-                      <p><strong>Class:</strong> ${s.ClassLevel}</p>
-                      <p><strong>Batch No:</strong> ${s.BatchNumber}</p>
-                      <p><strong>Phone:</strong> ${s.Phone}</p>
+                      <h2 class="student-name">${s.FullName}</h2>
 
-                      <div class="qr-code">
-                        <img src="${qrURL}">
-                        <p class="academic-year">Academic Year: 2025–26</p>
+                      <div class="details-container">
+                        <div class="detail-row">
+                          <span class="detail-label">UID:</span>
+                          <span class="detail-value">${s.UID}</span>
+                        </div>
+                        <div class="detail-row">
+                          <span class="detail-label">Admission No:</span>
+                          <span class="detail-value">${s.AdmissionNumber}</span>
+                        </div>
+                        <div class="detail-row">
+                          <span class="detail-label">Father's Name:</span>
+                          <span class="detail-value">${s.FatherName}</span>
+                        </div>
+                        <div class="detail-row">
+                          <span class="detail-label">Class:</span>
+                          <span class="detail-value">${s.ClassLevel}</span>
+                        </div>
+                        <div class="detail-row">
+                          <span class="detail-label">Batch No:</span>
+                          <span class="detail-value">${s.BatchNumber}</span>
+                        </div>
+                        <div class="detail-row">
+                          <span class="detail-label">Phone:</span>
+                          <span class="detail-value">${s.Phone}</span>
+                        </div>
+                      </div>
+
+                      <div class="qr-section">
+                        <div class="qr-code">
+                          <img src="${qrURL}" alt="QR Code">
+                        </div>
+                        <div class="academic-year">ACADEMIC YEAR: 2025-26</div>
+                        <div class="footer-note">This is an official ID card. Keep it safe.</div>
                       </div>
                     </div>
                   </div>
                 </div>
 
+                <script>
+                  function downloadIDCard() {
+                    alert('To download as image, please take a screenshot or use print function.');
+                  }
+                <\/script>
               </body>
               </html>
             `;
@@ -219,11 +680,69 @@
             newWin.document.write(html);
             newWin.document.close();
           } else {
-            newWin.document.write(`<h3 style='color:red;text-align:center;'>${data.message}</h3>`);
+            newWin.document.write(`
+              <html>
+              <head>
+                <style>
+                  body {
+                    font-family: 'Poppins', sans-serif;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 100vh;
+                    background: #f0f4ff;
+                    margin: 0;
+                  }
+                  .error-container {
+                    text-align: center;
+                    color: #dc3545;
+                    padding: 40px;
+                    background: white;
+                    border-radius: 15px;
+                    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+                  }
+                  .error-icon {
+                    font-size: 48px;
+                    margin-bottom: 20px;
+                  }
+                  .btn-back {
+                    background: #0b5ed7;
+                    color: white;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 25px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    margin-top: 20px;
+                  }
+                </style>
+              </head>
+              <body>
+                <div class="error-container">
+                  <div class="error-icon">⚠️</div>
+                  <h2>Student Not Found</h2>
+                  <p>${data.message || 'Please check your class and roll number and try again.'}</p>
+                  <button class="btn-back" onclick="window.close()">Go Back</button>
+                </div>
+              </body>
+              </html>
+            `);
           }
         })
         .catch(() => {
-          newWin.document.write("<h3 style='color:red;text-align:center;'>Error fetching data.</h3>");
+          newWin.document.write(`
+            <html>
+            <body style="font-family: Poppins; text-align: center; padding: 50px; background: #f0f4ff;">
+              <div style="color: #dc3545;">
+                <h2>⚠️ Connection Error</h2>
+                <p>Unable to fetch data. Please check your internet connection and try again.</p>
+                <button onclick="window.close()" style="background: #0b5ed7; color: white; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer;">
+                  Go Back
+                </button>
+              </div>
+            </body>
+            </html>
+          `);
         });
     });
   </script>
