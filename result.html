@@ -24,6 +24,7 @@
     .loader { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); display:none; justify-content:center; align-items:center; z-index:9999; }
     .spinner { width:70px; height:70px; border:8px solid #f3f3f3; border-top:8px solid var(--p); border-radius:50%; animation:s 1s linear infinite; }
     @keyframes s { to { transform:rotate(360deg); } }
+    .debug { background: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace; }
   </style>
 </head>
 <body>
@@ -92,10 +93,18 @@
       document.getElementById('rs').innerHTML = '';
 
       try {
-        // Fetch HOME sheet
+        // Test HOME sheet fetch with debug
+        console.log('Fetching HOME sheet...');
         const home = await fetch(`https://docs.google.com/spreadsheets/d/${ssid}/gviz/tq?tqx=out:json&sheet=HOME`);
+        if (!home.ok) throw new Error(`HTTP ${home.status}: ${home.statusText}`);
         const ht = await home.text();
-        const hj = JSON.parse(ht.replace(/.*\(/s,'').slice(0,-2));
+        console.log('Raw HOME response preview:', ht.substring(0, 200));  // Debug: Check first 200 chars
+        let hj;
+        try {
+          hj = JSON.parse(ht.replace(/\/\*.*?\*\//g, '').replace(/google\.visualization\.Query\.setResponse\((.*)\);/, '$1'));
+        } catch (parseErr) {
+          throw new Error(`JSON Parse Error in HOME: ${parseErr.message}. Raw starts with: "${ht.substring(0, 50)}"`);
+        }
         const hr = hj.table.rows;
         const collegeName = hr[0]?.c[1]?.v || '';
         const fullName    = hr[1]?.c[1]?.v || '';
@@ -103,27 +112,44 @@
         const examTitle   = hr[3]?.c[1]?.v || '';
 
         // Get all class sheets
+        console.log('Fetching sheet list...');
         const sheets = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${ssid}?key=${apikey}`);
+        if (!sheets.ok) throw new Error(`Sheet list error: HTTP ${sheets.status}`);
         const sdata = await sheets.json();
         const classSheets = sdata.sheets.map(s=>s.properties.title).filter(t=>/^\d+[A-Z]$/.test(t));
+        console.log('Class sheets found:', classSheets);  // Debug
+
+        if (classSheets.length === 0) throw new Error('No class sheets found (e.g., 1A, 2B). Check sheet names.');
 
         let found = false;
         for (const sh of classSheets) {
-          const url = `https://docs.google.com/spreadsheets/d/${ssid}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sh)}&tq=SELECT+*+WHERE+A=%27${roll}%27`;
+          console.log(`Searching in sheet: ${sh}`);
+          const url = `https://docs.google.com/spreadsheets/d/${ssid}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sh)}&tq=SELECT%20*%20WHERE%20A%3D%27${roll}%27`;
           const res = await fetch(url);
+          if (!res.ok) {
+            console.log(`Fetch failed for ${sh}: ${res.status}`);
+            continue;
+          }
           const txt = await res.text();
-          const js = JSON.parse(txt.replace(/.*\(/s,'').slice(0,-2));
-          if (!js.table.rows.length) continue;
+          console.log(`Raw response preview for ${sh}:`, txt.substring(0, 200));  // Debug
+          let js;
+          try {
+            js = JSON.parse(txt.replace(/\/\*.*?\*\//g, '').replace(/google\.visualization\.Query\.setResponse\((.*)\);/, '$1'));
+          } catch (parseErr) {
+            console.log(`Parse error for ${sh}: ${parseErr.message}`);
+            continue;
+          }
+          if (!js.table || !js.table.rows || js.table.rows.length === 0) continue;
 
           const row = js.table.rows[0].c;
           const dobSheet = row[1] ? new Date(row[1].v).toISOString().slice(0,10) : '';
           if (dobSheet !== dob) throw new Error('Invalid Date of Birth');
 
           // Header (first 2 rows)
-          const hurl = `https://docs.google.com/spreadsheets/d/${ssid}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sh)}&tq=SELECT+*+LIMIT+2`;
+          const hurl = `https://docs.google.com/spreadsheets/d/${ssid}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sh)}&tq=SELECT%20*%20LIMIT%202`;
           const hres = await fetch(hurl);
           const htxt = await hres.text();
-          const hjs = JSON.parse(htxt.replace(/.*\(/s,'').slice(0,-2));
+          const hjs = JSON.parse(htxt.replace(/\/\*.*?\*\//g, '').replace(/google\.visualization\.Query\.setResponse\((.*)\);/, '$1'));
           const [hrow, subjRow] = hjs.table.rows.map(r=>r.c);
 
           const className = hrow[1]?.v || '';
@@ -144,7 +170,6 @@
             let g = 'N/A';
             if(obtM[i]!=='A'){
               const p = (obtM[i]/maxM[i])*100;
-              // simple grading (you can adjust)
               if(p>=90) g='A+'; else if(p>=80) g='A'; else if(p>=70) g='B+'; else if(p>=60) g='B'; else if(p>=50) g='C'; else g='D';
             } else g='D';
             if(g==='D') failed.push(subjects[i]);
@@ -205,10 +230,13 @@
         bootstrap.Modal.getInstance(document.getElementById('formModal')).hide();
 
       } catch(err) {
+        console.error('Full error:', err);  // Debug in console
         document.getElementById('rs').innerHTML = `
           <div class="text-center p-5 bg-white rounded shadow">
             <i class="fas fa-exclamation-triangle fa-3x text-danger mb-3"></i>
-            <h3>${err.message.includes('Date')?'Invalid Date of Birth':err.message}</h3>
+            <h3>${err.message}</h3>
+            <p>Check browser console (F12) for details. Sheet may need full public sharing.</p>
+            <div class="debug">Error: ${err.message}</div>
             <button onclick="location.reload()" class="btn btn-warning mt-3">Try Again</button>
           </div>`;
         document.getElementById('resultArea').style.display = 'block';
