@@ -121,11 +121,17 @@
     async function getClassSheets() {
       const allSheets = await getAllSheetNames();
       
-      // Filter to get only class sheets (1A, 2C, 3C, 8R, etc.)
-      // Pattern: starts with number, ends with letter
-      const classSheets = allSheets.filter(sheetName => {
-        return /^\d+[A-Z]$/.test(sheetName) || sheetName === '8R';
-      });
+      
+      var sheet = sheets[sheetIndex];
+      var sheetName = sheet.getName(); // Get the sheet name (e.g., 1A, 2A, etc.)
+
+      // Skip if the sheet name does not match the pattern \d+[A-Z] (e.g., 1A, 2B, 3C, etc.)
+      if (!/^\d+[A-Z]$/.test(sheetName)) {
+        continue;
+      }
+
+
+
       
       console.log('Class sheets found:', classSheets);
       return classSheets;
@@ -507,3 +513,4 @@
   </script>
 </body>
 </html>
+
