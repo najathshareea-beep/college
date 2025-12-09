@@ -62,7 +62,7 @@
           <form id="myForm">
             <div class="mb-3">
               <label class="form-label">Registration Number</label>
-              <input type="text" class="form-control form-control-lg" id="roll" placeholder="e.g. r1" required>
+              <input type="text" class="form-control form-control-lg" id="roll" placeholder="e.g. r2" required>
             </div>
             <div class="mb-3">
               <label class="form-label">Date of Birth</label>
@@ -90,7 +90,6 @@
       document.getElementById('rs').innerHTML = '';
 
       try {
-        // Get all sheets
         const sheetsRes = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${ssid}?key=${apikey}`);
         const sheetsData = await sheetsRes.json();
         const sheetNames = sheetsData.sheets.map(s => s.properties.title).filter(n => n !== 'HOME');
@@ -100,10 +99,11 @@
           const url = `https://docs.google.com/spreadsheets/d/${ssid}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheet)}`;
           const res = await fetch(url);
           const text = await res.text();
-          const json = JSON.parse(text.match(/\((.*)\);?$/)[1]);
+          const jsonMatch = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\);?$/);
+          if (!jsonMatch) throw new Error('Invalid response from Google');
+          const json = JSON.parse(jsonMatch[1]);
           const rows = json.table.rows;
 
-          // Start from row 3 (index 2)
           for (let i = 2; i < rows.length; i++) {
             const c = rows[i].c;
             if (!c || !c[0]) continue;
@@ -117,10 +117,8 @@
             const total = c[3]?.v || 0;
             const perc = parseFloat(c[4]?.v || 0).toFixed(2);
             const rank = c[5]?.v || '-';
-            const presents = c[6]?.v || '-';
             const grade = c[7]?.v || '-';
 
-            // Subjects from row 2
             const subjRow = rows[1].c.slice(8);
             const maxRow = rows[0].c.slice(8);
             const obtRow = c.slice(8);
@@ -210,4 +208,3 @@
   </script>
 </body>
 </html>
-
