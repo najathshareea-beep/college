@@ -3,399 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Annual Result Portal | DARUNNAJATH COLLEGE</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <title>Student Result | DARUNNAJATH SHAREEATH & ARTS COLLEGE</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      min-height: 100vh;
-      padding: 20px;
+      background: linear-gradient(135deg, #0b5ed7 0%, #74b9ff 100%);
       font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
-    
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    
-    .card {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 20px;
-      padding: 30px;
-      max-width: 600px;
-      margin: 50px auto;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      backdrop-filter: blur(10px);
-    }
-    
-    .result-card {
-      background: white;
+    .container { max-width: 420px; width: 100%; }
+    .form-container {
+      background: #fff;
       border-radius: 15px;
-      padding: 25px;
-      margin-top: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-    
-    .header-banner {
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      color: white;
-      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      padding: 30px;
       text-align: center;
-      border-radius: 15px 15px 0 0;
     }
-    
-    .subject-table {
-      font-size: 0.9rem;
+    .logo { width: 80px; height: 80px; object-fit: contain; margin-bottom: 15px; }
+    h2 { color: #0b5ed7; font-weight: 700; font-size: 1.4rem; margin-bottom: 8px; }
+    p { color: #6c757d; font-size: 15px; margin-bottom: 25px; }
+    .form-control {
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 15px;
+      margin-bottom: 18px;
     }
-    
-    .subject-table th {
-      background: #f8f9fa;
-      position: sticky;
-      top: 0;
+    .btn-primary {
+      background: #0b5ed7;
+      border: none;
+      padding: 14px;
+      width: 100%;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 16px;
     }
-    
-    .grade-Aplus { background: #10b981; color: white; }
-    .grade-A { background: #22c55e; color: white; }
-    .grade-Bplus { background: #3b82f6; color: white; }
-    .grade-B { background: #60a5fa; color: white; }
-    .grade-C { background: #f59e0b; color: white; }
-    .grade-D { background: #ef4444; color: white; }
-    
-    .loader {
-      border: 5px solid #f3f3f3;
-      border-top: 5px solid #3498db;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      animation: spin 1s linear infinite;
-      margin: 20px auto;
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+    .loading { text-align: center; padding: 40px; color: #0b5ed7; }
+    .back-btn { margin-top: 20px; background: #6c757d; }
   </style>
 </head>
 <body>
+
   <div class="container">
-    <div class="card">
-      <div class="text-center mb-4">
-        <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="Logo" style="width: 80px; height: 80px; border-radius: 10px; margin-bottom: 15px;">
-        <h2 class="text-primary fw-bold">Annual Examination Result</h2>
-        <h5 class="text-muted">DARUNNAJATH SHAREEATH & ARTS COLLEGE</h5>
-        <p class="text-muted">Punnakkad, Karuvarakundu</p>
-      </div>
-      
+    <div class="form-container">
+      <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="Logo" class="logo">
+      <h2>DARUNNAJATH SHAREEATH & ARTS COLLEGE</h2>
+      <p>Official Examination Result Portal</p>
+
       <form id="resultForm">
-        <div class="mb-3">
-          <label class="form-label fw-bold">
-            <i class="fas fa-id-card"></i> Registration Number
-          </label>
-          <input type="text" class="form-control form-control-lg" 
-                 id="roll" placeholder="Enter registration number (e.g., r2, r24)" required>
-          <div class="form-text">Enter exactly as in your admit card</div>
-        </div>
-        
-        <div class="mb-4">
-          <label class="form-label fw-bold">
-            <i class="fas fa-calendar-alt"></i> Date of Birth
-          </label>
-          <input type="date" class="form-control form-control-lg" id="dob" required>
-        </div>
-        
-        <button type="submit" class="btn btn-primary btn-lg w-100 py-3">
-          <i class="fas fa-search"></i> Get My Result
-        </button>
+        <input type="text" name="uid" class="form-control" placeholder="Enter Registration Number" required>
+        <input type="date" name="dob" class="form-control" required>
+        <button type="submit" class="btn btn-primary">View Result</button>
       </form>
-      
-      <div id="result" class="mt-4"></div>
-      
-      <div class="text-center mt-4">
-        <small class="text-muted">
-          <i class="fas fa-phone"></i> For assistance: Contact Examination Office
-        </small>
-      </div>
     </div>
   </div>
 
   <script>
-    // Your Google Apps Script URL for results
-    const RESULT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwfnCkY-HtE84fMOEH3UTGTVPKQsdN6Uo75xn3w2RKBj2DoxPFqTQ0Gcz8nlCg-XeU/exec';
-    
-    // Function to calculate grade
-    function calculateGrade(percentage) {
-      const perc = parseFloat(percentage);
-      if (isNaN(perc)) return { grade: 'N/A', css: 'grade-D', passed: false };
-      
-      if (perc >= 90) return { grade: 'A+', css: 'grade-Aplus', passed: true };
-      if (perc >= 80) return { grade: 'A', css: 'grade-A', passed: true };
-      if (perc >= 70) return { grade: 'B+', css: 'grade-Bplus', passed: true };
-      if (perc >= 60) return { grade: 'B', css: 'grade-B', passed: true };
-      if (perc >= 50) return { grade: 'C', css: 'grade-C', passed: true };
-      return { grade: 'D', css: 'grade-D', passed: false };
-    }
-    
-    // Function to calculate subject grade
-    function calculateSubjectGrade(marks, maxMarks = 50) {
-      const obtained = parseFloat(marks);
-      if (isNaN(obtained) || obtained === 'A' || obtained === 'AB') {
-        return { grade: 'AB', css: 'bg-secondary', passed: false, status: 'Absent' };
-      }
-      
-      const percentage = (obtained / maxMarks) * 100;
-      if (percentage >= 90) return { grade: 'A+', css: 'grade-Aplus', passed: true };
-      if (percentage >= 80) return { grade: 'A', css: 'grade-A', passed: true };
-      if (percentage >= 70) return { grade: 'B+', css: 'grade-Bplus', passed: true };
-      if (percentage >= 60) return { grade: 'B', css: 'grade-B', passed: true };
-      if (percentage >= 50) return { grade: 'C', css: 'grade-C', passed: true };
-      return { grade: 'D', css: 'grade-D', passed: false };
-    }
-    
-    document.getElementById('resultForm').onsubmit = async function(e) {
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwfnCkY-HtE84fMOEH3UTGTVPKQsdN6Uo75xn3w2RKBj2DoxPFqTQ0Gcz8nlCg-XeU/exec';
+
+    document.getElementById('resultForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      
-      const roll = document.getElementById('roll').value.trim();
-      const dob = document.getElementById('dob').value;
-      
-      if (!roll || !dob) {
-        alert('Please fill in all fields');
-        return;
-      }
-      
-      // Show loading
-      document.getElementById('result').innerHTML = `
-        <div class="text-center p-5">
-          <div class="loader"></div>
-          <h5 class="mt-3">Fetching your result...</h5>
-          <p>Please wait while we search for your record.</p>
-        </div>
-      `;
-      
-      try {
-        // Call Google Apps Script
-        const url = `${RESULT_SCRIPT_URL}?roll=${encodeURIComponent(roll)}&dob=${encodeURIComponent(dob)}`;
-        
-        console.log('Fetching from:', url);
-        
-        const response = await fetch(url);
-        const data = await response.json();
-        
-        console.log('Response:', data);
-        
-        if (data.result === 'success') {
-          // Display success result
-          displayResult(data);
-        } else {
-          // Display error
-          document.getElementById('result').innerHTML = `
-            <div class="alert alert-danger">
-              <h4><i class="fas fa-exclamation-triangle"></i> ${data.message || 'Registration not found'}</h4>
-              <p>Please check:</p>
-              <ul>
-                <li>Registration number spelling</li>
-                <li>Date of Birth format</li>
-                <li>Contact examination department if issue persists</li>
-              </ul>
-              <button onclick="location.reload()" class="btn btn-warning">Try Again</button>
-            </div>
-          `;
-        }
-        
-      } catch (error) {
-        console.error('Error:', error);
-        document.getElementById('result').innerHTML = `
-          <div class="alert alert-danger">
-            <h4><i class="fas fa-exclamation-circle"></i> Connection Error</h4>
-            <p>${error.message}</p>
-            <p>Please check your internet connection and try again.</p>
-            <button onclick="location.reload()" class="btn btn-secondary">Retry</button>
-          </div>
-        `;
-      }
-    };
-    
-    // Function to display result
-    function displayResult(student) {
-      // Calculate grades and prepare subject data
-      let subjectRows = '';
-      let passedSubjects = 0;
-      let totalSubjects = student.subjects.length;
-      let failedSubjects = [];
-      
-      student.subjects.forEach((subject, index) => {
-        const gradeInfo = calculateSubjectGrade(subject.marks, 50);
-        if (gradeInfo.passed) passedSubjects++;
-        else failedSubjects.push(subject.name);
-        
-        subjectRows += `
-          <tr>
-            <td>${index + 1}</td>
-            <td>${subject.name}</td>
-            <td class="text-center">50</td>
-            <td class="text-center fw-bold">${subject.marks}</td>
-            <td class="text-center"><span class="badge ${gradeInfo.css}">${gradeInfo.grade}</span></td>
-            <td class="text-center">
-              <span class="badge ${gradeInfo.passed ? 'bg-success' : 'bg-danger'}">
-                ${gradeInfo.passed ? 'Pass' : (gradeInfo.status || 'Fail')}
-              </span>
-            </td>
-          </tr>
-        `;
-      });
-      
-      // Calculate overall result
-      const overallGradeInfo = calculateGrade(student.percentage);
-      const overallResult = passedSubjects === totalSubjects ? 'PASSED' : 'FAILED';
-      const currentTime = new Date().toLocaleString('en-IN', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-      });
-      
-      document.getElementById('result').innerHTML = `
-        <div class="result-card">
-          <!-- Action Buttons -->
-          <div class="text-center mb-4">
-            <button onclick="location.reload()" class="btn btn-warning">
-              <i class="fas fa-redo"></i> Check Another
-            </button>
-            <button onclick="window.print()" class="btn btn-success ms-2">
-              <i class="fas fa-print"></i> Print Result
-            </button>
-          </div>
-          
-          <!-- Header Banner -->
-          <div class="header-banner">
-            <h4>DARUNNAJATH SHAREEATH COLLEGE</h4>
-            <p>Annual Examination 2025-26</p>
-          </div>
-          
-          <!-- Student Information -->
-          <div class="p-4">
-            <h5 class="text-primary mb-3">
-              <i class="fas fa-user-graduate"></i> Student Information
-            </h5>
-            <div class="row mb-4">
-              <div class="col-md-6 mb-3">
-                <div class="p-3 bg-light rounded">
-                  <strong>Registration No:</strong><br>
-                  <span class="fs-5">${student.regNo.toUpperCase()}</span>
+      const formData = new FormData(e.target);
+      const uid = formData.get('uid');
+      const dob = formData.get('dob');
+
+      const loadingWin = window.open("", "_blank");
+      loadingWin.document.write(`
+        <html><body style="font-family:Poppins;background:#f0f4ff;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;">
+          <div class="loading"><h3>Fetching Result...</h3><p>Please wait</p></div>
+        </body></html>
+      `);
+
+      const url = `${SCRIPT_URL}?roll=${encodeURIComponent(uid)}&dob=${encodeURIComponent(dob)}`;
+
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          if (data.result === "success" || data.includes("result-card")) {
+            // Your existing AppScript already returns full HTML → just display it
+            loadingWin.document.open();
+            loadingWin.document.write(data);
+            loadingWin.document.close();
+          } else {
+            // Fallback: show clean error
+            loadingWin.document.write(`
+              <html><body style="font-family:Poppins;background:#f0f4ff;text-align:center;padding:50px;">
+                <div style="background:white;padding:30px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.2);max-width:400px;margin:auto;">
+                  <h3 style="color:#dc3545;">Result Not Found</h3>
+                  <p>Please check Registration Number & Date of Birth</p>
+                  <button onclick="window.close()" style="background:#0b5ed7;color:white;border:none;padding:12px 25px;border-radius:8px;margin-top:15px;">
+                    Close
+                  </button>
                 </div>
+              </body></html>
+            `);
+          }
+        })
+        .catch(err => {
+          loadingWin.document.write(`
+            <html><body style="font-family:Poppins;background:#f0f4ff;text-align:center;padding:50px;">
+              <div style="background:white;padding:30px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.2);">
+                <h3 style="color:#dc3545;">Connection Error</h3>
+                <p>Please try again later</p>
+                <button onclick="window.close()" style="background:#0b5ed7;color:white;border:none;padding:12px 25px;border-radius:8px;margin-top:15px;">
+                  Close
+                </button>
               </div>
-              <div class="col-md-6 mb-3">
-                <div class="p-3 bg-light rounded">
-                  <strong>Student Name:</strong><br>
-                  <span class="fs-5">${student.name}</span>
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <div class="p-3 bg-light rounded">
-                  <strong>Class:</strong><br>
-                  <span class="fs-5">${student.class}</span>
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <div class="p-3 bg-light rounded">
-                  <strong>Date of Birth:</strong><br>
-                  <span class="fs-5">${student.dob}</span>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Subject-wise Performance -->
-            <h5 class="text-primary mb-3">
-              <i class="fas fa-book-open"></i> Subject-wise Performance
-            </h5>
-            <div class="table-responsive">
-              <table class="table table-bordered subject-table">
-                <thead class="table-light">
-                  <tr>
-                    <th>#</th>
-                    <th>Subject</th>
-                    <th class="text-center">Max</th>
-                    <th class="text-center">Obtained</th>
-                    <th class="text-center">Grade</th>
-                    <th class="text-center">Status</th>
-                  </tr>
-                </thead>
-                <tbody>${subjectRows}</tbody>
-              </table>
-            </div>
-            
-            <!-- Result Summary -->
-            <div class="alert ${overallResult === 'PASSED' ? 'alert-success' : 'alert-danger'} mt-4">
-              <div class="row align-items-center">
-                <div class="col-md-8">
-                  <h4 class="mb-0">
-                    <i class="fas ${overallResult === 'PASSED' ? 'fa-trophy' : 'fa-exclamation-triangle'}"></i>
-                    FINAL RESULT: ${overallResult}
-                  </h4>
-                  ${overallResult === 'FAILED' && failedSubjects.length > 0 ? 
-                    `<p class="mb-0 mt-2">Failed in: ${failedSubjects.join(', ')}</p>` : 
-                    `<p class="mb-0 mt-2">Congratulations! Passed all subjects</p>`
-                  }
-                </div>
-                <div class="col-md-4 text-end">
-                  <span class="badge ${overallGradeInfo.css} fs-4 p-2">
-                    ${student.overallGrade}
-                  </span>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Performance Stats -->
-            <div class="row text-center mt-4">
-              <div class="col-md-3 col-6 mb-3">
-                <div class="p-3 border rounded">
-                  <div class="text-muted">Total Marks</div>
-                  <div class="fs-4 fw-bold">${student.totalMarks}/350</div>
-                </div>
-              </div>
-              <div class="col-md-3 col-6 mb-3">
-                <div class="p-3 border rounded">
-                  <div class="text-muted">Percentage</div>
-                  <div class="fs-4 fw-bold">${parseFloat(student.percentage).toFixed(2)}%</div>
-                </div>
-              </div>
-              <div class="col-md-3 col-6 mb-3">
-                <div class="p-3 border rounded">
-                  <div class="text-muted">Overall Grade</div>
-                  <div class="fs-4 fw-bold">${student.overallGrade}</div>
-                </div>
-              </div>
-              <div class="col-md-3 col-6 mb-3">
-                <div class="p-3 border rounded">
-                  <div class="text-muted">Class Rank</div>
-                  <div class="fs-4 fw-bold">${student.rank}</div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Footer -->
-            <div class="text-center text-muted mt-4 pt-3 border-top">
-              <small>
-                <i class="fas fa-clock"></i> Generated: ${currentTime} | 
-                <i class="fas fa-calendar-check"></i> Attendance: ${student.presents} days
-              </small>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-    
-    // Initialize
-    window.onload = function() {
-      document.getElementById('roll').focus();
-      // Pre-fill for testing
-      document.getElementById('roll').value = 'r2';
-    };
+            </body></html>
+          `);
+        });
+    });
   </script>
 </body>
 </html>
