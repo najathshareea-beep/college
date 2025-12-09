@@ -62,7 +62,7 @@
           <form id="myForm">
             <div class="mb-3">
               <label class="form-label">Registration Number</label>
-              <input type="text" class="form-control form-control-lg" id="roll" placeholder="e.g. r2" required>
+              <input type="text" class="form-control form-control-lg" id="roll" placeholder="e.g. r1" required>
             </div>
             <div class="mb-3">
               <label class="form-label">Date of Birth</label>
@@ -84,7 +84,7 @@
 
     document.getElementById('myForm').onsubmit = async e => {
       e.preventDefault();
-      const inputRoll = document.getElementById('roll').value.trim().toLowerCase();
+      const inputRoll = document.getElementById('roll').value.trim().toLowerCase();  // Force lowercase
       const inputDob = document.getElementById('dob').value;
       document.getElementById('loader').style.display = 'flex';
       document.getElementById('rs').innerHTML = '';
@@ -100,15 +100,15 @@
           const res = await fetch(url);
           const text = await res.text();
           const jsonMatch = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\);?$/);
-          if (!jsonMatch) throw new Error('Invalid response from Google');
+          if (!jsonMatch) continue;
           const json = JSON.parse(jsonMatch[1]);
           const rows = json.table.rows;
 
           for (let i = 2; i < rows.length; i++) {
             const c = rows[i].c;
             if (!c || !c[0]) continue;
-            const roll = (c[0].v || '').toString().trim().toLowerCase();
-            if (roll !== inputRoll) continue;
+            const sheetRoll = (c[0].v || '').toString().trim().toLowerCase();  // Force lowercase
+            if (sheetRoll !== inputRoll) continue;
 
             const sheetDob = c[1]?.v ? new Date(c[1].v).toISOString().slice(0,10) : '';
             if (sheetDob !== inputDob) throw new Error('Invalid Date of Birth');
