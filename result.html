@@ -121,17 +121,17 @@
     async function getClassSheets() {
       const allSheets = await getAllSheetNames();
       
-      
-      var sheet = sheets[sheetIndex];
-      var sheetName = sheet.getName(); // Get the sheet name (e.g., 1A, 2A, etc.)
-
-      // Skip if the sheet name does not match the pattern \d+[A-Z] (e.g., 1A, 2B, 3C, etc.)
-      if (!/^\d+[A-Z]$/.test(sheetName)) {
-        continue;
-      }
-
-
-
+      // Filter to get only class sheets (1A, 2C, 3C, 8R, etc.)
+      // Pattern: starts with number, ends with letter OR contains specific patterns
+      const classSheets = allSheets.filter(sheetName => {
+        // Allow sheets like: 1A, 2B, 3C, 8R, etc.
+        // Also allow variations like: VIII-A, IX-B if needed
+        return /^\d+[A-Z]$/.test(sheetName) || 
+               /^[IVXLCDM]+[-\s]?[A-Z]$/i.test(sheetName) ||
+               sheetName === '8R' || 
+               sheetName.match(/^Class\s*\d+[A-Z]?$/i) ||
+               sheetName.match(/^\d+[A-Z]\d*$/);
+      });
       
       console.log('Class sheets found:', classSheets);
       return classSheets;
@@ -210,8 +210,15 @@
           return;
         }
         
-        const classSheets = allSheets.filter(sheet => /^\d+[A-Z]$/.test(sheet) || sheet === '8R');
-        const otherSheets = allSheets.filter(sheet => !/^\d+[A-Z]$/.test(sheet) && sheet !== '8R');
+        const classSheets = allSheets.filter(sheet => 
+          /^\d+[A-Z]$/.test(sheet) || 
+          /^[IVXLCDM]+[-\s]?[A-Z]$/i.test(sheet) ||
+          sheet === '8R' || 
+          sheet.match(/^Class\s*\d+[A-Z]?$/i) ||
+          sheet.match(/^\d+[A-Z]\d*$/)
+        );
+        
+        const otherSheets = allSheets.filter(sheet => !classSheets.includes(sheet));
         
         let html = `
           <div class="alert alert-success">
@@ -222,6 +229,7 @@
           html += `
             <div class="mt-3">
               <h6>Class Sheets (${classSheets.length}):</h6>
+              <p><small>These sheets will be searched for student data</small></p>
               <div class="d-flex flex-wrap gap-2">
                 ${classSheets.map(sheet => `<span class="badge bg-primary">${sheet}</span>`).join('')}
               </div>
@@ -233,6 +241,7 @@
           html += `
             <div class="mt-3">
               <h6>Other Sheets (${otherSheets.length}):</h6>
+              <p><small>These sheets will NOT be searched (like HOME, settings, etc.)</small></p>
               <div class="d-flex flex-wrap gap-2">
                 ${otherSheets.map(sheet => `<span class="badge bg-secondary">${sheet}</span>`).join('')}
               </div>
@@ -305,7 +314,20 @@
               const regNum = row[0].toString().trim().toLowerCase();
               const searchRoll = roll.toLowerCase();
               
+              // Check for exact match or partial match
               if (regNum === searchRoll) {
+                // Optional: Verify DOB if provided
+                if (dob) {
+                  const rowDob = row[1] ? row[1].toString().trim() : '';
+                  const searchDob = dob.replace(/-/g, '/');
+                  
+                  if (rowDob && rowDob !== '' && rowDob !== searchDob && !rowDob.includes(searchDob)) {
+                    // DOB doesn't match, continue searching
+                    console.log(`DOB mismatch in ${sheetName}: ${rowDob} vs ${searchDob}`);
+                    continue;
+                  }
+                }
+                
                 found = true;
                 studentData = row;
                 foundSheet = sheetName;
@@ -352,20 +374,23 @@
           let subjectRows = '';
           let totalSubjects = subjects.length;
           let passedSubjects = 0;
+          let failedSubjects = [];
           
           subjects.forEach((subject, index) => {
             const marks = parseFloat(subject.marks) || 0;
             const percentage = (marks / subject.max) * 100;
             const passed = percentage >= 50;
+            if (!passed) failedSubjects.push(subject.name);
             if (passed) passedSubjects++;
             
             let grade = '';
-            if (percentage >= 90) grade = 'A+';
-            else if (percentage >= 80) grade = 'A';
-            else if (percentage >= 70) grade = 'B+';
-            else if (percentage >= 60) grade = 'B';
-            else if (percentage >= 50) grade = 'C';
-            else grade = 'D';
+            let gradeClass = '';
+            if (percentage >= 90) { grade = 'A+'; gradeClass = 'bg-success'; }
+            else if (percentage >= 80) { grade = 'A'; gradeClass = 'bg-success'; }
+            else if (percentage >= 70) { grade = 'B+'; gradeClass = 'bg-info'; }
+            else if (percentage >= 60) { grade = 'B'; gradeClass = 'bg-info'; }
+            else if (percentage >= 50) { grade = 'C'; gradeClass = 'bg-warning'; }
+            else { grade = 'D'; gradeClass = 'bg-danger'; }
             
             subjectRows += `
               <tr>
@@ -374,8 +399,8 @@
                 <td class="text-center">${subject.max}</td>
                 <td class="text-center fw-bold">${subject.marks}</td>
                 <td class="text-center">${percentage.toFixed(1)}%</td>
-                <td class="text-center"><span class="badge ${passed ? 'bg-success' : 'bg-danger'}">${grade}</span></td>
-                <td class="text-center">${passed ? 'Pass' : 'Fail'}</td>
+                <td class="text-center"><span class="badge ${gradeClass}">${grade}</span></td>
+                <td class="text-center ${passed ? 'text-success' : 'text-danger'} fw-bold">${passed ? 'Pass' : 'Fail'}</td>
               </tr>
             `;
           });
@@ -390,19 +415,19 @@
             
             <div class="card">
               <div class="card-header bg-primary text-white">
-                <h5 class="mb-0">Student Information</h5>
+                <h5 class="mb-0"><i class="fas fa-user-graduate"></i> Student Information</h5>
               </div>
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-6">
-                    <p><strong>Registration No:</strong> ${studentInfo.regNo.toUpperCase()}</p>
-                    <p><strong>Student Name:</strong> ${studentInfo.name}</p>
-                    <p><strong>Class:</strong> ${foundSheet}</p>
+                    <p><strong><i class="fas fa-id-card"></i> Registration No:</strong><br>${studentInfo.regNo.toUpperCase()}</p>
+                    <p><strong><i class="fas fa-user"></i> Student Name:</strong><br>${studentInfo.name}</p>
+                    <p><strong><i class="fas fa-chalkboard-teacher"></i> Class:</strong><br>${foundSheet}</p>
                   </div>
                   <div class="col-md-6">
-                    <p><strong>Date of Birth:</strong> ${studentInfo.dob}</p>
-                    <p><strong>Total Marks:</strong> ${studentInfo.totalMarks}/350</p>
-                    <p><strong>Attendance:</strong> ${studentInfo.presents} days</p>
+                    <p><strong><i class="fas fa-birthday-cake"></i> Date of Birth:</strong><br>${studentInfo.dob}</p>
+                    <p><strong><i class="fas fa-chart-bar"></i> Total Marks:</strong><br>${studentInfo.totalMarks}/350</p>
+                    <p><strong><i class="fas fa-calendar-check"></i> Attendance:</strong><br>${studentInfo.presents} days</p>
                   </div>
                 </div>
               </div>
@@ -410,11 +435,11 @@
             
             <div class="card mt-3">
               <div class="card-header bg-info text-white">
-                <h5 class="mb-0">Subject-wise Performance</h5>
+                <h5 class="mb-0"><i class="fas fa-book-open"></i> Subject-wise Performance</h5>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table table-bordered">
+                  <table class="table table-bordered table-hover">
                     <thead class="table-light">
                       <tr>
                         <th>#</th>
@@ -432,26 +457,43 @@
               </div>
             </div>
             
-            <div class="card mt-3">
+            <div class="card mt-3 ${overallResult === 'PASSED' ? 'border-success' : 'border-danger'}">
               <div class="card-body text-center">
-                <h4 class="${overallResult === 'PASSED' ? 'text-success' : 'text-danger'}">
-                  ${overallResult} 
-                  <span class="badge ${overallResult === 'PASSED' ? 'bg-success' : 'bg-danger'}">
-                    ${studentInfo.overallGrade}
-                  </span>
-                </h4>
+                <h3 class="${overallResult === 'PASSED' ? 'text-success' : 'text-danger'}">
+                  <i class="fas ${overallResult === 'PASSED' ? 'fa-trophy' : 'fa-exclamation-triangle'}"></i>
+                  FINAL RESULT: ${overallResult}
+                </h3>
+                
+                ${overallResult === 'FAILED' && failedSubjects.length > 0 ? `
+                  <div class="alert alert-danger mt-2">
+                    <strong>Failed in ${failedSubjects.length} subject(s):</strong> ${failedSubjects.join(', ')}
+                  </div>
+                ` : ''}
+                
                 <div class="row mt-3">
-                  <div class="col-md-3">
-                    <p><strong>Percentage</strong><br>${overallPercentage.toFixed(2)}%</p>
+                  <div class="col-md-3 col-6">
+                    <div class="p-2 border rounded">
+                      <div class="text-muted">Percentage</div>
+                      <div class="fs-4 fw-bold">${overallPercentage.toFixed(2)}%</div>
+                    </div>
                   </div>
-                  <div class="col-md-3">
-                    <p><strong>Class Rank</strong><br>${studentInfo.rank}</p>
+                  <div class="col-md-3 col-6">
+                    <div class="p-2 border rounded">
+                      <div class="text-muted">Class Rank</div>
+                      <div class="fs-4 fw-bold">${studentInfo.rank}</div>
+                    </div>
                   </div>
-                  <div class="col-md-3">
-                    <p><strong>Overall Grade</strong><br>${studentInfo.overallGrade}</p>
+                  <div class="col-md-3 col-6">
+                    <div class="p-2 border rounded">
+                      <div class="text-muted">Overall Grade</div>
+                      <div class="fs-4 fw-bold">${studentInfo.overallGrade}</div>
+                    </div>
                   </div>
-                  <div class="col-md-3">
-                    <p><strong>Result</strong><br>${passedSubjects}/${totalSubjects} Subjects</p>
+                  <div class="col-md-3 col-6">
+                    <div class="p-2 border rounded">
+                      <div class="text-muted">Subjects Passed</div>
+                      <div class="fs-4 fw-bold">${passedSubjects}/${totalSubjects}</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -459,10 +501,10 @@
             
             <div class="text-center mt-4">
               <button onclick="location.reload()" class="btn btn-primary btn-lg">
-                Check Another Result
+                <i class="fas fa-redo"></i> Check Another Result
               </button>
               <button onclick="window.print()" class="btn btn-success btn-lg ms-2">
-                Print Result
+                <i class="fas fa-print"></i> Print Result
               </button>
             </div>
           `;
@@ -507,11 +549,7 @@
     // Initialize
     window.onload = function() {
       document.getElementById('roll').focus();
-      // Pre-fill with test data
-      document.getElementById('roll').value = 'r2';
     };
   </script>
 </body>
 </html>
-
-
