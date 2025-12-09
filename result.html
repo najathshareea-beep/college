@@ -3,109 +3,247 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Result Portal</title>
+  <title>Result Portal - All Classes</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body { padding: 20px; background: #f8f9fa; }
-    .container { max-width: 800px; margin: 0 auto; }
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 700px;
+      margin: 50px auto;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    .loader {
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
-  <div class="container mt-5">
-    <div class="card shadow">
-      <div class="card-header bg-primary text-white">
-        <h3 class="mb-0">Annual Result Checker</h3>
+  <div class="container">
+    <div class="card">
+      <h2 class="text-center mb-4 text-primary">Annual Result Portal</h2>
+      <h5 class="text-center text-muted mb-4">All Classes (1A, 2C, 3C, 8R, etc.)</h5>
+      
+      <div class="mb-4">
+        <button onclick="showAllSheets()" class="btn btn-info w-100">Show All Available Sheets</button>
+        <div id="sheetsInfo" class="mt-3"></div>
       </div>
-      <div class="card-body">
-        <div class="mb-4">
-          <h5>Step 1: Test Google Sheet Access</h5>
-          <button onclick="testAccess()" class="btn btn-info">Test Connection</button>
-          <div id="testResult" class="mt-2"></div>
+      
+      <hr>
+      
+      <form id="resultForm">
+        <div class="mb-3">
+          <label class="form-label fw-bold">Registration Number</label>
+          <input type="text" class="form-control form-control-lg" 
+                 id="roll" placeholder="e.g., r2, r1, etc." required>
         </div>
         
-        <hr>
+        <div class="mb-4">
+          <label class="form-label fw-bold">Date of Birth</label>
+          <input type="date" class="form-control form-control-lg" id="dob" required>
+        </div>
         
-        <h5>Step 2: Check Result</h5>
-        <form id="resultForm">
-          <div class="mb-3">
-            <label class="form-label">Registration Number</label>
-            <input type="text" class="form-control" id="roll" placeholder="e.g., R1, 101" required>
-          </div>
-          <button type="submit" class="btn btn-primary w-100">Search</button>
-        </form>
-        
-        <div id="result" class="mt-4"></div>
-      </div>
+        <button type="submit" class="btn btn-primary btn-lg w-100 py-3">
+          Search in All Classes
+        </button>
+      </form>
+      
+      <div id="result" class="mt-4"></div>
     </div>
   </div>
 
   <script>
     const SHEET_ID = '1ckOFULpgBLG13gWa_jKdy8LJwIUaxCRLN84tljLmCjo';
     
-    // Test if sheet is accessible
-    async function testAccess() {
-      const testResult = document.getElementById('testResult');
-      testResult.innerHTML = '<div class="alert alert-info">Testing connection...</div>';
-      
+    // Function to get ALL sheet names from the spreadsheet
+    async function getAllSheetNames() {
       try {
-        // Try CSV export (most reliable)
-        const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
-        console.log('Testing URL:', url);
-        
+        // This URL returns sheet names in JSON format
+        const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
         const response = await fetch(url);
         
-        if (response.ok) {
-          const text = await response.text();
-          testResult.innerHTML = `
-            <div class="alert alert-success">
-              <strong>✓ Success!</strong> Sheet is accessible.
-              <br><small>First 200 characters:</small>
-              <pre style="background: white; padding: 10px; border-radius: 5px; font-size: 12px; max-height: 200px; overflow: auto;">${text.substring(0, 200)}...</pre>
-              <button onclick="showAllData()" class="btn btn-sm btn-secondary mt-2">Show All Data</button>
-            </div>
-          `;
-        } else {
-          testResult.innerHTML = `
-            <div class="alert alert-danger">
-              <strong>✗ Failed!</strong> Status: ${response.status}
-              <p>Make sure your Google Sheet is shared publicly:</p>
-              <ol>
-                <li>Open your Google Sheet</li>
-                <li>Click "Share" button (top-right)</li>
-                <li>Click "Change to anyone with the link"</li>
-                <li>Select "Viewer"</li>
-                <li>Click "Done"</li>
-              </ol>
-              <a href="https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit" target="_blank" class="btn btn-warning">
-                Open Google Sheet
-              </a>
-            </div>
-          `;
+        if (!response.ok) {
+          throw new Error(`Failed to fetch sheet list: ${response.status}`);
         }
+        
+        const text = await response.text();
+        
+        // Extract JSON from the response
+        const jsonMatch = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]+)\)/);
+        if (!jsonMatch) {
+          throw new Error('Invalid response format from Google Sheets');
+        }
+        
+        const data = JSON.parse(jsonMatch[1]);
+        
+        // Extract sheet names from the response
+        const sheetNames = data.table.rows.map(row => row.c[0].v);
+        console.log('All sheet names:', sheetNames);
+        
+        return sheetNames;
+        
       } catch (error) {
-        testResult.innerHTML = `
-          <div class="alert alert-danger">
-            <strong>Error:</strong> ${error.message}
-          </div>
-        `;
+        console.error('Error getting sheet names:', error);
+        
+        // Fallback: Try to get sheet names via different method
+        try {
+          const fallbackUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
+          const response = await fetch(fallbackUrl);
+          if (response.ok) {
+            // If CSV works but JSON doesn't, return common class patterns
+            return ['8R', '1A', '2C', '3C', '4C', '5C', '6C', '7C', '9R', '10R'];
+          }
+        } catch (e) {
+          // Return empty if both methods fail
+          return [];
+        }
+        return [];
       }
     }
     
-    // Show all data for debugging
-    async function showAllData() {
+    // Function to get only class sheets (filter out HOME and other non-class sheets)
+    async function getClassSheets() {
+      const allSheets = await getAllSheetNames();
+      
+      // Filter to get only class sheets (1A, 2C, 3C, 8R, etc.)
+      // Pattern: starts with number, ends with letter
+      const classSheets = allSheets.filter(sheetName => {
+        return /^\d+[A-Z]$/.test(sheetName) || sheetName === '8R';
+      });
+      
+      console.log('Class sheets found:', classSheets);
+      return classSheets;
+    }
+    
+    // Function to fetch data from a specific sheet
+    async function fetchSheetData(sheetName) {
       try {
-        const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
+        // Use CSV format for simplicity
+        const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(sheetName)}`;
         const response = await fetch(url);
-        const text = await response.text();
         
-        document.getElementById('testResult').innerHTML = `
-          <div class="alert alert-info">
-            <strong>Complete Data:</strong>
-            <pre style="background: white; padding: 10px; border-radius: 5px; font-size: 11px; max-height: 400px; overflow: auto;">${text}</pre>
+        if (!response.ok) {
+          console.warn(`Cannot access sheet "${sheetName}": ${response.status}`);
+          return null;
+        }
+        
+        const csvText = await response.text();
+        
+        // Parse CSV data
+        const rows = [];
+        const lines = csvText.split('\n');
+        
+        for (const line of lines) {
+          if (line.trim() === '') continue;
+          
+          const row = parseCSVRow(line);
+          if (row.length > 0) {
+            rows.push(row);
+          }
+        }
+        
+        console.log(`Sheet "${sheetName}" has ${rows.length} rows`);
+        return rows;
+        
+      } catch (error) {
+        console.error(`Error fetching sheet "${sheetName}":`, error);
+        return null;
+      }
+    }
+    
+    // Parse CSV row
+    function parseCSVRow(row) {
+      const result = [];
+      let current = '';
+      let inQuotes = false;
+      
+      for (let char of row) {
+        if (char === '"') {
+          inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+          result.push(current.trim());
+          current = '';
+        } else {
+          current += char;
+        }
+      }
+      result.push(current.trim());
+      return result;
+    }
+    
+    // Show all sheets in the spreadsheet
+    async function showAllSheets() {
+      const sheetsInfo = document.getElementById('sheetsInfo');
+      sheetsInfo.innerHTML = '<div class="text-center"><div class="loader"></div><p>Loading sheets...</p></div>';
+      
+      try {
+        const allSheets = await getAllSheetNames();
+        
+        if (allSheets.length === 0) {
+          sheetsInfo.innerHTML = `
+            <div class="alert alert-danger">
+              No sheets found. Please check if the Google Sheet is shared publicly.
+            </div>
+          `;
+          return;
+        }
+        
+        const classSheets = allSheets.filter(sheet => /^\d+[A-Z]$/.test(sheet) || sheet === '8R');
+        const otherSheets = allSheets.filter(sheet => !/^\d+[A-Z]$/.test(sheet) && sheet !== '8R');
+        
+        let html = `
+          <div class="alert alert-success">
+            <h5>✓ Found ${allSheets.length} sheets in total</h5>
+        `;
+        
+        if (classSheets.length > 0) {
+          html += `
+            <div class="mt-3">
+              <h6>Class Sheets (${classSheets.length}):</h6>
+              <div class="d-flex flex-wrap gap-2">
+                ${classSheets.map(sheet => `<span class="badge bg-primary">${sheet}</span>`).join('')}
+              </div>
+            </div>
+          `;
+        }
+        
+        if (otherSheets.length > 0) {
+          html += `
+            <div class="mt-3">
+              <h6>Other Sheets (${otherSheets.length}):</h6>
+              <div class="d-flex flex-wrap gap-2">
+                ${otherSheets.map(sheet => `<span class="badge bg-secondary">${sheet}</span>`).join('')}
+              </div>
+            </div>
+          `;
+        }
+        
+        html += `</div>`;
+        
+        sheetsInfo.innerHTML = html;
+        
+      } catch (error) {
+        sheetsInfo.innerHTML = `
+          <div class="alert alert-danger">
+            Error loading sheets: ${error.message}
           </div>
         `;
-      } catch (error) {
-        alert('Error: ' + error.message);
       }
     }
     
@@ -114,65 +252,236 @@
       e.preventDefault();
       
       const roll = document.getElementById('roll').value.trim();
-      if (!roll) return;
+      const dob = document.getElementById('dob').value;
       
-      document.getElementById('result').innerHTML = '<div class="text-center">Searching...</div>';
+      if (!roll) {
+        alert('Please enter registration number');
+        return;
+      }
+      
+      // Show loading
+      document.getElementById('result').innerHTML = `
+        <div class="text-center p-4">
+          <div class="loader"></div>
+          <h5 class="mt-3">Searching in all classes...</h5>
+          <p>Registration: <strong>${roll}</strong></p>
+        </div>
+      `;
       
       try {
-        // Get all sheets first
-        const sheetsListUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
-        const response = await fetch(sheetsListUrl);
-        const text = await response.text();
+        // Get all class sheets
+        const classSheets = await getClassSheets();
         
-        if (!text) {
-          throw new Error('No data received from Google Sheets');
+        if (classSheets.length === 0) {
+          throw new Error('No class sheets found. Please check sheet permissions.');
         }
         
-        // Simple CSV parsing
-        const rows = text.split('\n').map(row => {
-          return row.split(',').map(cell => {
-            // Remove quotes if present
-            return cell.replace(/^"|"$/g, '').trim();
-          });
-        });
+        console.log('Searching in sheets:', classSheets);
         
-        // Search for registration number
         let found = false;
-        let foundRow = null;
+        let studentData = null;
+        let foundSheet = '';
+        let sheetDataRows = null;
         
-        for (let i = 0; i < rows.length; i++) {
-          if (rows[i].length > 0) {
-            const regNum = rows[i][0] || '';
-            if (regNum.toLowerCase() === roll.toLowerCase()) {
-              found = true;
-              foundRow = rows[i];
-              break;
+        // Search in each class sheet
+        for (const sheetName of classSheets) {
+          console.log(`Searching in: ${sheetName}`);
+          
+          const rows = await fetchSheetData(sheetName);
+          if (!rows || rows.length < 2) continue;
+          
+          // Skip header rows (first 2 rows based on your data structure)
+          // Row 0: Class info, Row 1: Column headers
+          for (let i = 2; i < rows.length; i++) {
+            const row = rows[i];
+            
+            if (row.length > 0 && row[0]) {
+              const regNum = row[0].toString().trim().toLowerCase();
+              const searchRoll = roll.toLowerCase();
+              
+              if (regNum === searchRoll) {
+                found = true;
+                studentData = row;
+                foundSheet = sheetName;
+                sheetDataRows = rows;
+                console.log(`Found in ${sheetName}, row ${i}:`, row);
+                break;
+              }
             }
           }
+          
+          if (found) break;
         }
         
         // Display result
-        if (found && foundRow) {
-          // Display simple result
+        if (found && studentData) {
+          // Extract data based on your column structure
+          const studentInfo = {
+            regNo: studentData[0] || 'N/A',
+            dob: studentData[1] || 'N/A',
+            name: studentData[2] || 'N/A',
+            totalMarks: studentData[3] || '0',
+            percentage: studentData[4] || '0',
+            rank: studentData[5] || '-',
+            presents: studentData[6] || '0',
+            overallGrade: studentData[7] || 'N/A'
+          };
+          
+          // Get subject names from header row (row 1 in sheet)
+          const subjectHeaders = sheetDataRows && sheetDataRows[1] ? 
+            sheetDataRows[1].slice(8) : // Subjects start from column 8
+            ['التلاوة والحفظ', 'الفقه', 'الصرف', 'العقيدة', 'النحو', 'ENGLISH', 'IT'];
+          
+          // Extract subject marks (starting from column 8)
+          const subjects = [];
+          for (let i = 8; i < studentData.length && i - 8 < subjectHeaders.length; i++) {
+            subjects.push({
+              name: subjectHeaders[i - 8] || `Subject ${i - 7}`,
+              marks: studentData[i] || '0',
+              max: 50 // Based on your data
+            });
+          }
+          
+          // Generate result HTML
+          let subjectRows = '';
+          let totalSubjects = subjects.length;
+          let passedSubjects = 0;
+          
+          subjects.forEach((subject, index) => {
+            const marks = parseFloat(subject.marks) || 0;
+            const percentage = (marks / subject.max) * 100;
+            const passed = percentage >= 50;
+            if (passed) passedSubjects++;
+            
+            let grade = '';
+            if (percentage >= 90) grade = 'A+';
+            else if (percentage >= 80) grade = 'A';
+            else if (percentage >= 70) grade = 'B+';
+            else if (percentage >= 60) grade = 'B';
+            else if (percentage >= 50) grade = 'C';
+            else grade = 'D';
+            
+            subjectRows += `
+              <tr>
+                <td>${index + 1}</td>
+                <td>${subject.name}</td>
+                <td class="text-center">${subject.max}</td>
+                <td class="text-center fw-bold">${subject.marks}</td>
+                <td class="text-center">${percentage.toFixed(1)}%</td>
+                <td class="text-center"><span class="badge ${passed ? 'bg-success' : 'bg-danger'}">${grade}</span></td>
+                <td class="text-center">${passed ? 'Pass' : 'Fail'}</td>
+              </tr>
+            `;
+          });
+          
+          const overallResult = passedSubjects === totalSubjects ? 'PASSED' : 'FAILED';
+          const overallPercentage = parseFloat(studentInfo.percentage) || 0;
+          
           document.getElementById('result').innerHTML = `
             <div class="alert alert-success">
-              <h4>✓ Student Found!</h4>
-              <table class="table">
-                <tr><th>Registration:</th><td>${foundRow[0] || 'N/A'}</td></tr>
-                <tr><th>Name:</th><td>${foundRow[2] || 'N/A'}</td></tr>
-                <tr><th>Total Marks:</th><td>${foundRow[3] || 'N/A'}</td></tr>
-                <tr><th>Percentage:</th><td>${foundRow[4] || 'N/A'}%</td></tr>
-                <tr><th>Rank:</th><td>${foundRow[5] || 'N/A'}</td></tr>
-              </table>
-              <button onclick="location.reload()" class="btn btn-primary">Search Again</button>
+              <h4><i class="fas fa-check-circle"></i> Result Found in ${foundSheet} Class</h4>
+            </div>
+            
+            <div class="card">
+              <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Student Information</h5>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <p><strong>Registration No:</strong> ${studentInfo.regNo.toUpperCase()}</p>
+                    <p><strong>Student Name:</strong> ${studentInfo.name}</p>
+                    <p><strong>Class:</strong> ${foundSheet}</p>
+                  </div>
+                  <div class="col-md-6">
+                    <p><strong>Date of Birth:</strong> ${studentInfo.dob}</p>
+                    <p><strong>Total Marks:</strong> ${studentInfo.totalMarks}/350</p>
+                    <p><strong>Attendance:</strong> ${studentInfo.presents} days</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card mt-3">
+              <div class="card-header bg-info text-white">
+                <h5 class="mb-0">Subject-wise Performance</h5>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered">
+                    <thead class="table-light">
+                      <tr>
+                        <th>#</th>
+                        <th>Subject</th>
+                        <th class="text-center">Max</th>
+                        <th class="text-center">Obtained</th>
+                        <th class="text-center">%</th>
+                        <th class="text-center">Grade</th>
+                        <th class="text-center">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>${subjectRows}</tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card mt-3">
+              <div class="card-body text-center">
+                <h4 class="${overallResult === 'PASSED' ? 'text-success' : 'text-danger'}">
+                  ${overallResult} 
+                  <span class="badge ${overallResult === 'PASSED' ? 'bg-success' : 'bg-danger'}">
+                    ${studentInfo.overallGrade}
+                  </span>
+                </h4>
+                <div class="row mt-3">
+                  <div class="col-md-3">
+                    <p><strong>Percentage</strong><br>${overallPercentage.toFixed(2)}%</p>
+                  </div>
+                  <div class="col-md-3">
+                    <p><strong>Class Rank</strong><br>${studentInfo.rank}</p>
+                  </div>
+                  <div class="col-md-3">
+                    <p><strong>Overall Grade</strong><br>${studentInfo.overallGrade}</p>
+                  </div>
+                  <div class="col-md-3">
+                    <p><strong>Result</strong><br>${passedSubjects}/${totalSubjects} Subjects</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="text-center mt-4">
+              <button onclick="location.reload()" class="btn btn-primary btn-lg">
+                Check Another Result
+              </button>
+              <button onclick="window.print()" class="btn btn-success btn-lg ms-2">
+                Print Result
+              </button>
             </div>
           `;
         } else {
           document.getElementById('result').innerHTML = `
             <div class="alert alert-danger">
-              <h4>✗ Not Found</h4>
-              <p>Registration number <strong>${roll}</strong> not found.</p>
-              <button onclick="location.reload()" class="btn btn-warning">Try Again</button>
+              <h4><i class="fas fa-times-circle"></i> Registration Not Found</h4>
+              <p>The registration number <strong>"${roll}"</strong> was not found in any class.</p>
+              <p>Searched in ${classSheets.length} classes: ${classSheets.join(', ')}</p>
+              
+              <div class="mt-3">
+                <h6>Please check:</h6>
+                <ul>
+                  <li>Correct spelling of registration number</li>
+                  <li>Registration number format (e.g., r2, R2, 101, etc.)</li>
+                  <li>Contact examination department for assistance</li>
+                </ul>
+              </div>
+              
+              <button onclick="showAllSheets()" class="btn btn-info">
+                View Available Sheets
+              </button>
+              <button onclick="location.reload()" class="btn btn-warning ms-2">
+                Try Again
+              </button>
             </div>
           `;
         }
@@ -180,16 +489,21 @@
       } catch (error) {
         document.getElementById('result').innerHTML = `
           <div class="alert alert-danger">
-            <h4>Error</h4>
+            <h4>System Error</h4>
             <p>${error.message}</p>
-            <p>Please test the connection first using the "Test Connection" button above.</p>
+            <p>Please try the "Show All Available Sheets" button above to check access.</p>
+            <button onclick="location.reload()" class="btn btn-secondary">Retry</button>
           </div>
         `;
       }
     };
     
-    // Auto-test on page load
-    window.onload = testAccess;
+    // Initialize
+    window.onload = function() {
+      document.getElementById('roll').focus();
+      // Pre-fill with test data
+      document.getElementById('roll').value = 'r2';
+    };
   </script>
 </body>
 </html>
