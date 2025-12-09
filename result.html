@@ -24,7 +24,6 @@
     .loader { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); display:none; justify-content:center; align-items:center; z-index:9999; }
     .spinner { width:70px; height:70px; border:8px solid #f3f3f3; border-top:8px solid var(--p); border-radius:50%; animation:s 1s linear infinite; }
     @keyframes s { to { transform:rotate(360deg); } }
-    .debug { background: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace; }
   </style>
 </head>
 <body>
@@ -41,7 +40,7 @@
     <h3 style="color:#1e293b;">Annual Examination Result 2025-26</h3>
     <p class="text-muted mt-3">Enter Registration Number & Date of Birth</p>
     <button class="btn-big mt-4" id="openForm">
-      <i class="fas fa-search fa-lg"></i> Check Result
+      Check Result
     </button>
   </div>
 
@@ -58,18 +57,18 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header bg-primary text-white">
-          <h5 class="modal-title"><i class="fas fa-id-card"></i> Enter Details</h5>
+          <h5 class="modal-title">Enter Details</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
           <form id="myForm">
             <div class="mb-3">
               <label class="form-label">Registration Number</label>
-              <input type="text" class="form-control form-control-lg" id="roll" placeholder="e.g. 1001" required>
+              <input type="text" class="form-control form-control-lg" id="roll" placeholder="e.g. r2" required>
             </div>
             <div class="mb-3">
               <label class="form-label">Date of Birth</label>
-              <input type="date" class="form-control form-control-lg" id="dob" required>
+              <input type="date" class="form-control form-control-lg" id="dob" value="2011-01-11" required>
             </div>
             <button type="submit" class="btn btn-primary w-100 btn-lg">Get Result</button>
           </form>
@@ -87,156 +86,139 @@
 
     document.getElementById('myForm').onsubmit = async e => {
       e.preventDefault();
-      const roll = document.getElementById('roll').value.trim();
+      const roll = document.getElementById('roll').value.trim().toLowerCase();
       const dob = document.getElementById('dob').value;
       document.getElementById('loader').style.display = 'flex';
       document.getElementById('rs').innerHTML = '';
 
       try {
-        // Test HOME sheet fetch with debug
-        console.log('Fetching HOME sheet...');
-        const home = await fetch(`https://docs.google.com/spreadsheets/d/${ssid}/gviz/tq?tqx=out:json&sheet=HOME`);
-        if (!home.ok) throw new Error(`HTTP ${home.status}: ${home.statusText}`);
-        const ht = await home.text();
-        console.log('Raw HOME response preview:', ht.substring(0, 200));  // Debug: Check first 200 chars
-        let hj;
-        try {
-          hj = JSON.parse(ht.replace(/\/\*.*?\*\//g, '').replace(/google\.visualization\.Query\.setResponse\((.*)\);/, '$1'));
-        } catch (parseErr) {
-          throw new Error(`JSON Parse Error in HOME: ${parseErr.message}. Raw starts with: "${ht.substring(0, 50)}"`);
-        }
-        const hr = hj.table.rows;
+        // Fetch HOME sheet
+        const homeRes = await fetch(`https://docs.google.com/spreadsheets/d/${ssid}/gviz/tq?tqx=out:json&sheet=HOME`);
+        const homeText = await homeRes.text();
+        const homeJson = JSON.parse(homeText.replace(/.*\(/s,'').slice(0,-2));
+        const hr = homeJson.table.rows;
         const collegeName = hr[0]?.c[1]?.v || '';
         const fullName    = hr[1]?.c[1]?.v || '';
         const place       = hr[2]?.c[1]?.v || '';
         const examTitle   = hr[3]?.c[1]?.v || '';
 
-        // Get all class sheets
-        console.log('Fetching sheet list...');
-        const sheets = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${ssid}?key=${apikey}`);
-        if (!sheets.ok) throw new Error(`Sheet list error: HTTP ${sheets.status}`);
-        const sdata = await sheets.json();
-        const classSheets = sdata.sheets.map(s=>s.properties.title).filter(t=>/^\d+[A-Z]$/.test(t));
-        console.log('Class sheets found:', classSheets);  // Debug
-
-        if (classSheets.length === 0) throw new Error('No class sheets found (e.g., 1A, 2B). Check sheet names.');
+        // Get ALL sheet names
+        const sheetsRes = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${ssid}?key=${apikey}`);
+        const sheetsData = await sheetsRes.json();
+        const allSheets = sheetsData.sheets.map(s => s.properties.title);
+        const classSheets = allSheets.filter(name => name !== 'HOME'); // All except HOME
 
         let found = false;
-        for (const sh of classSheets) {
-          console.log(`Searching in sheet: ${sh}`);
-          const url = `https://docs.google.com/spreadsheets/d/${ssid}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sh)}&tq=SELECT%20*%20WHERE%20A%3D%27${roll}%27`;
+        for (const sheetName of classSheets) {
+          const url = `https://docs.google.com/spreadsheets/d/${ssid}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheetName)}`;
           const res = await fetch(url);
-          if (!res.ok) {
-            console.log(`Fetch failed for ${sh}: ${res.status}`);
-            continue;
-          }
-          const txt = await res.text();
-          console.log(`Raw response preview for ${sh}:`, txt.substring(0, 200));  // Debug
-          let js;
-          try {
-            js = JSON.parse(txt.replace(/\/\*.*?\*\//g, '').replace(/google\.visualization\.Query\.setResponse\((.*)\);/, '$1'));
-          } catch (parseErr) {
-            console.log(`Parse error for ${sh}: ${parseErr.message}`);
-            continue;
-          }
-          if (!js.table || !js.table.rows || js.table.rows.length === 0) continue;
+          const text = await res.text();
+          const json = JSON.parse(text.replace(/.*\(/s,'').slice(0,-2));
+          const rows = json.table.rows || [];
 
-          const row = js.table.rows[0].c;
-          const dobSheet = row[1] ? new Date(row[1].v).toISOString().slice(0,10) : '';
-          if (dobSheet !== dob) throw new Error('Invalid Date of Birth');
+          // Start from row 3 (index 2)
+          for (let i = 2; i < rows.length; i++) {
+            const row = rows[i].c;
+            if (!row || !row[0]) continue;
+            const sheetRoll = (row[0].v || '').toString().trim().toLowerCase();
+            if (sheetRoll !== roll) continue;
 
-          // Header (first 2 rows)
-          const hurl = `https://docs.google.com/spreadsheets/d/${ssid}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sh)}&tq=SELECT%20*%20LIMIT%202`;
-          const hres = await fetch(hurl);
-          const htxt = await hres.text();
-          const hjs = JSON.parse(htxt.replace(/\/\*.*?\*\//g, '').replace(/google\.visualization\.Query\.setResponse\((.*)\);/, '$1'));
-          const [hrow, subjRow] = hjs.table.rows.map(r=>r.c);
+            const sheetDOB = row[1] ? new Date(row[1].v).toISOString().slice(0,10) : '';
+            if (sheetDOB !== dob) throw new Error('Invalid Date of Birth');
 
-          const className = hrow[1]?.v || '';
-          const totalMax = hrow[6]?.v || 0;
-          const name = row[2]?.v || '';
-          const totalObt = row[3]?.v || 0;
-          const perc = parseFloat(row[4]?.v || 0).toFixed(2);
-          const rank = row[5]?.v || '';
-          const oGrade = row[7]?.v || '';
+            // Student found!
+            const name = row[2]?.v || 'N/A';
+            const totalObt = row[3]?.v || 0;
+            const perc = parseFloat(row[4]?.v || 0).toFixed(2);
+            const rank = row[5]?.v || '-';
+            const oGrade = row[7]?.v || '-';
 
-          const subjects = subjRow.slice(8,37).map(c=>c?.v||'');
-          const maxM = hrow.slice(8,37).map(c=>c?.v||0);
-          const obtM = row.slice(8,37).map(c=>c?.v ?? c?.f ?? '');
+            // Header row (row 1) for max marks
+            const headerRow = rows[0].c;
+            const subjectNames = rows[1].c.slice(8, 37).map(c => c?.v || '');
+            const maxMarks = headerRow.slice(8, 37).map(c => c?.v || 0);
+            const obtainedMarks = row.slice(8, 37).map(c => c?.v ?? c?.f ?? '');
 
-          let tr = '', failed=[], no=1;
-          for(let i=0;i<subjects.length;i++){
-            if(!subjects[i]) continue;
-            let g = 'N/A';
-            if(obtM[i]!=='A'){
-              const p = (obtM[i]/maxM[i])*100;
-              if(p>=90) g='A+'; else if(p>=80) g='A'; else if(p>=70) g='B+'; else if(p>=60) g='B'; else if(p>=50) g='C'; else g='D';
-            } else g='D';
-            if(g==='D') failed.push(subjects[i]);
-            tr += `<tr><td>${no++}</td><td>${subjects[i]}</td><td>${maxM[i]}</td><td>${obtM[i]}</td><td class="${g==='D'?'grade-fail':'grade-pass'}">${g}</td><td><span class="status-${g==='D'?'fail':'pass'}">${g==='D'?'Fail':'Pass'}</span></td></tr>`;
-          }
+            let tr = '', failed = [], no = 1;
+            for (let j = 0; j < subjectNames.length; j++) {
+              if (!subjectNames[j]) continue;
+              const obt = obtainedMarks[j];
+              let grade = 'N/A';
+              if (obt !== 'A' && obt !== '') {
+                const p = (obt / maxMarks[j]) * 100;
+                if (p >= 90) grade = 'A+';
+                else if (p >= 80) grade = 'A';
+                else if (p >= 70) grade = 'B+';
+                else if (p >= 60) grade = 'B';
+                else if (p >= 50) grade = 'C';
+                else grade = 'D';
+              } else if (obt === 'A') grade = 'D';
 
-          const status = failed.length ? 'FAILED' : 'PASSED';
-          const now = new Date().toLocaleString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+              if (grade === 'D') failed.push(subjectNames[j]);
+              tr += `<tr><td>${no++}</td><td>${subjectNames[j]}</td><td>${maxMarks[j]}</td><td>${obt}</td><td class="${grade==='D'?'grade-fail':'grade-pass'}">${grade}</td><td><span class="status-${grade==='D'?'fail':'pass'}">${grade==='D'?'Fail':'Pass'}</span></td></tr>`;
+            }
 
-          document.getElementById('rs').innerHTML = `
-            <div class="text-center mb-4">
-              <button onclick="location.reload()" class="btn btn-warning"><i class="fas fa-arrow-left"></i> Check Another</button>
-              <button onclick="window.print()" class="btn btn-success ms-3"><i class="fas fa-print"></i> Print</button>
-            </div>
-            <div class="result-card">
-              <div class="header">
-                <div class="d-flex justify-content-center align-items-center gap-4">
-                  <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="logo">
-                  <div class="text-start">
-                    <h1>${collegeName}</h1>
-                    <h2>${fullName}</h2>
-                    <h3>${place}</h3>
-                    <div style="background:rgba(255,255,255,0.3);padding:8px 20px;border-radius:30px;display:inline-block;margin-top:10px;">${examTitle}</div>
+            const status = failed.length > 0 ? 'FAILED' : 'PASSED';
+            const now = new Date().toLocaleString('en-GB', {day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'});
+
+            document.getElementById('rs').innerHTML = `
+              <div class="text-center mb-4">
+                <button onclick="location.reload()" class="btn btn-warning">Check Another</button>
+                <button onclick="window.print()" class="btn btn-success ms-3">Print</button>
+              </div>
+              <div class="result-card">
+                <div class="header">
+                  <div class="d-flex justify-content-center align-items-center gap-4">
+                    <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="logo">
+                    <div class="text-start">
+                      <h1>${collegeName}</h1>
+                      <h2>${fullName}</h2>
+                      <h3>${place}</h3>
+                      <div style="background:rgba(255,255,255,0.3);padding:8px 20px;border-radius:30px;display:inline-block;margin-top:10px;">${examTitle}</div>
+                    </div>
                   </div>
                 </div>
+                <div class="p-4">
+                  <h4 class="text-primary mb-4">Student Information</h4>
+                  <div class="row text-center mb-4">
+                    <div class="col-6 col-md-3"><strong>Reg No:</strong> ${roll.toUpperCase()}</div>
+                    <div class="col-6 col-md-3"><strong>Name:</strong> ${name}</div>
+                    <div class="col-6 col-md-3"><strong>Class:</strong> ${sheetName}</div>
+                    <div class="col-6 col-md-3"><strong>DOB:</strong> ${dob.split('-').reverse().join('-')}</div>
+                  </div>
+                  <h4 class="text-primary mb-3">Subject-wise Performance</h4>
+                  <div class="table-responsive">
+                    <table class="table table-bordered"><thead class="table-primary"><tr><th>#</th><th>Subject</th><th>Max</th><th>Obtained</th><th>Grade</th><th>Status</th></tr></thead><tbody>${tr}</tbody></table>
+                  </div>
+                  <div class="mt-4 text-center ${failed.length?'text-danger':'text-success'} fs-3"><strong>${status}</strong></div>
+                  ${failed.length ? `<p class="text-danger">Failed in: ${failed.join(', ')}</p>` : ''}
+                  <div class="row text-center mt-4">
+                    <div class="col-6 col-md-3"><strong>Total:</strong> ${totalObt}</div>
+                    <div class="col-6 col-md-3"><strong>Percentage:</strong> ${perc}%</div>
+                    <div class="col-6 col-md-3"><strong>Overall Grade:</strong> ${oGrade}</div>
+                    <div class="col-6 col-md-3"><strong>Rank:</strong> ${rank}</div>
+                  </div>
+                  <div class="text-center text-muted mt-4">Generated: ${now}</div>
+                </div>
               </div>
-              <div class="p-4">
-                <h4 class="text-primary mb-4">Student Information</h4>
-                <div class="row text-center">
-                  <div class="col-6 col-md-3"><strong>Reg No:</strong> ${roll}</div>
-                  <div class="col-6 col-md-3"><strong>Name:</strong> ${name}</div>
-                  <div class="col-6 col-md-3"><strong>Class:</strong> ${className}</div>
-                  <div class="col-6 col-md-3"><strong>DOB:</strong> ${dob.split('-').reverse().join('-')}</div>
-                </div>
-                <h4 class="text-primary mt-5 mb-3">Subject-wise Marks</h4>
-                <div class="table-responsive">
-                  <table class="table table-bordered modern-table"><thead class="table-primary"><tr><th>#</th><th>Subject</th><th>Max</th><th>Obtained</th><th>Grade</th><th>Status</th></tr></thead><tbody>${tr}</tbody></table>
-                </div>
-                <div class="mt-5 text-center ${failed.length?'text-danger':'text-success'} fs-3">
-                  <strong>${status}</strong> ${failed.length?`<br>Failed in: ${failed.join(', ')}`:''}
-                </div>
-                <div class="mt-4 row text-center">
-                  <div class="col-6 col-md-3"><strong>Total:</strong> ${totalObt}/${totalMax}</div>
-                  <div class="col-6 col-md-3"><strong>Percentage:</strong> ${perc}%</div>
-                  <div class="col-6 col-md-3"><strong>Grade:</strong> ${oGrade}</div>
-                  <div class="col-6 col-md-3"><strong>Rank:</strong> ${rank}</div>
-                </div>
-                <div class="text-center text-muted mt-4">Generated: ${now}</div>
-              </div>
-            </div>
-          `;
+            `;
 
-          found = true; break;
+            found = true;
+            break;
+          }
+          if (found) break;
         }
-        if(!found) throw new Error('Registration number not found');
+
+        if (!found) throw new Error('Registration number not found');
 
         document.getElementById('resultArea').style.display = 'block';
         bootstrap.Modal.getInstance(document.getElementById('formModal')).hide();
 
-      } catch(err) {
-        console.error('Full error:', err);  // Debug in console
+      } catch (err) {
         document.getElementById('rs').innerHTML = `
           <div class="text-center p-5 bg-white rounded shadow">
             <i class="fas fa-exclamation-triangle fa-3x text-danger mb-3"></i>
             <h3>${err.message}</h3>
-            <p>Check browser console (F12) for details. Sheet may need full public sharing.</p>
-            <div class="debug">Error: ${err.message}</div>
             <button onclick="location.reload()" class="btn btn-warning mt-3">Try Again</button>
           </div>`;
         document.getElementById('resultArea').style.display = 'block';
