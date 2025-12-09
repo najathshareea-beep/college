@@ -460,6 +460,553 @@
         display: none !important;
       }
     }
+    /* Styles from original index.html for the result display */
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --light: #f8fafc;
+      --dark: #1e293b;
+      --gray: #64748b;
+      --border: #e2e8f0;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* Input Card - Reduced size */
+    .input-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .card-header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 15px 20px;
+    }
+
+    .card-header h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-body {
+      padding: 25px;
+    }
+
+    /* Header Styles */
+    .main-header {
+      text-align: center;
+      margin-bottom: 40px;
+      color: white;
+      position: relative;
+    }
+
+    .header-badge {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 8px 20px;
+      border-radius: 25px;
+      display: inline-block;
+      margin-bottom: 15px;
+      font-size: 0.9rem;
+    }
+
+    .main-header h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      background: linear-gradient(135deg, #fff, #e0f2fe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .main-header p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      font-weight: 300;
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--dark);
+      font-size: 0.95rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      background: white;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      box-shadow: 0 3px 10px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, var(--secondary), #eab308);
+      color: white;
+      box-shadow: 0 3px 10px rgba(245, 158, 11, 0.3);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+    }
+
+    /* Result Card - Reduced size */
+    .result-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      margin: 15px auto;
+      border: 1px solid var(--border);
+    }
+
+    .result-header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 20px;
+    }
+
+    .college-brand {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .college-logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+
+    .college-info h1 {
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .college-info h2 {
+      font-size: 1rem;
+      margin-bottom: 5px;
+      font-weight: 500;
+      opacity: 0.95;
+    }
+
+    .college-info h3 {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      font-weight: 400;
+      opacity: 0.9;
+    }
+
+    .exam-title {
+      background: rgba(255,255,255,0.2);
+      padding: 6px 12px;
+      border-radius: 15px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: inline-block;
+    }
+
+    .student-profile, .results-section, .performance-summary {
+      padding: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-header h3 {
+      font-size: 1.1rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      background: var(--light);
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .profile-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .profile-item:last-child {
+      border-bottom: none;
+    }
+
+    .profile-item label {
+      font-weight: 600;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+
+    .profile-item span {
+      font-weight: 500;
+      color: var(--dark);
+      font-size: 0.9rem;
+    }
+
+    /* Table Styles - Smaller */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .modern-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .modern-table th {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 12px 10px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    .modern-table td {
+      padding: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .subject-name {
+      font-weight: 500;
+      color: var(--dark);
+      font-size: 0.9rem;
+    }
+
+    .score {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .grade {
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: var(--success);
+      color: white;
+      display: inline-block;
+      min-width: 70px;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    .grade-fail {
+      background: var(--danger);
+    }
+
+    .status {
+      padding: 4px 10px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .status-pass {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .status-fail {
+      background: #fecaca;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+    }
+
+    /* Summary Styles - Smaller */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .summary-card {
+      background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+      border-radius: 10px;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .summary-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.1rem;
+    }
+
+    .summary-content h4 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+      color: var(--primary);
+    }
+
+    .summary-content p {
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 3px;
+      font-size: 0.9rem;
+    }
+
+    .summary-content small {
+      color: var(--gray);
+      font-size: 0.8rem;
+    }
+
+    .final-result {
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+
+    .result-passed {
+      background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+      border: 2px solid #86efac;
+    }
+
+    .result-failed {
+      background: linear-gradient(135deg, #fecaca, #fca5a5);
+      border: 2px solid #f87171;
+    }
+
+    .result-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .result-passed .result-badge {
+      background: linear-gradient(135deg, var(--success), #34d399);
+      color: white;
+    }
+
+    .result-failed .result-badge {
+      background: linear-gradient(135deg, var(--danger), #f87171);
+      color: white;
+    }
+
+    .result-message {
+      font-weight: 500;
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    .result-footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+
+    .footer-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Error Message - Smaller */
+    .error-message {
+      text-align: center;
+      padding: 30px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      margin: 15px auto;
+      max-width: 400px;
+      border: 1px solid var(--border);
+    }
+
+    .error-message i {
+      font-size: 2.5rem;
+      color: var(--danger);
+      margin-bottom: 15px;
+    }
+
+    .error-message h3 {
+      color: var(--danger);
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .error-message p {
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+
+    /* Loading Overlay */
+    .loader-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modern-loader {
+      width: 60px;
+      height: 60px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-top: 3px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    .loading-text {
+      color: white;
+      margin-top: 15px;
+      font-size: 0.95rem;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+      text-align: center;
+      margin: 15px 0;
+    }
+
+    .action-buttons .btn {
+      margin: 0 5px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+      
+      .container {
+        max-width: 100%;
+      }
+      
+      .college-brand {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+      
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .card-body {
+        padding: 20px 15px;
+      }
+      
+      .result-footer {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+      }
+      
+      .action-buttons .btn {
+        margin-bottom: 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -543,14 +1090,231 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <iframe id="resultIframe" style="width: 100%; height: 600px; border: none;" sandbox="allow-scripts allow-same-origin"></iframe>
+          <div id='PrintDiv'>
+            <div id="rs"></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Loading Overlay -->
+  <div class="loader-container" id="lod">
+    <div style="text-align: center;">
+      <div class="modern-loader"></div>
+      <div class="loading-text">Processing your request...</div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
+    // IMPORTANT: Replace these with your actual values
+    // 1. Spreadsheet ID: From your Google Sheet URL, e.g., https://docs.google.com/spreadsheets/d/ABC123/edit -> ABC123 is the ID
+    // 2. API Key: Create at https://console.cloud.google.com/apis/credentials
+    //    - Enable Google Sheets API in your project
+    //    - Create an API key
+    //    - Restrict it to Sheets API and your GitHub Pages domain (e.g., *.github.io) for security
+    // 3. Make sure your Google Sheet sharing is set to "Anyone with the link can view"
+    const ssid = 'your-spreadsheet-id-here';
+    const apikey = 'your-google-api-key-here';
+
+    // Helper functions
+    function parseGvizDate(dateStr) {
+      if (typeof dateStr !== 'string') return new Date();
+      const match = dateStr.match(/Date\((\d+),(\d+),(\d+)\)/);
+      if (match) {
+        return new Date(match[1], match[2], match[3]);
+      }
+      return new Date();
+    }
+
+    function formatDateForComparison(date) {
+      return date.toISOString().slice(0, 10);
+    }
+
+    function formatDateForDisplay(date) {
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      return `${date.getDate().toString().padStart(2, '0')}-${months[date.getMonth()]}-${date.getFullYear()}`;
+    }
+
+    async function fetchGviz(sheetName, tq) {
+      const url = `https://docs.google.com/spreadsheets/d/${ssid}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheetName)}&tq=${encodeURIComponent(tq)}`;
+      const res = await fetch(url);
+      const text = await res.text();
+      const jsonStr = text.replace(/\/\*.*?\*\//, '').trim(); // Remove comments
+      return JSON.parse(jsonStr);
+    }
+
+    function showInputModal() {
+      bootstrap.Modal.getInstance(document.getElementById('resultModal')).hide();
+      const inputModal = new bootstrap.Modal(document.getElementById('inputModal'));
+      inputModal.show();
+      document.getElementById('resultForm').reset();
+      document.getElementById('rs').innerHTML = '';
+    }
+
+    function Print(DivID) {
+      var iPrint = document.getElementById(DivID).innerHTML;
+      if (!iPrint || iPrint.trim() === '') {
+        alert("No result data available to print. Please submit the form first.");
+        return;
+      }
+      
+      var docprint = window.open("", "_blank");
+      docprint.document.open();
+      docprint.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Official Marksheet - Darunnajath College</title>
+          <style>
+            @page {
+              size: A4;
+              margin: 10mm;
+            }
+            @media print {
+              body {
+                width: 210mm;
+                height: 297mm;
+                margin: 0;
+                padding: 0;
+                font-family: 'Poppins', sans-serif;
+                font-size: 11px;
+                line-height: 1.4;
+              }
+              .print-container {
+                width: 100%;
+                height: 100%;
+                padding: 10mm;
+                box-sizing: border-box;
+              }
+              .result-card {
+                width: 100%;
+                margin: 0;
+              }
+              .result-header {
+                background: #2563eb;
+                color: white;
+                padding: 15px;
+              }
+              .college-brand {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+              }
+              .college-logo {
+                width: 50px;
+                height: 50px;
+                border-radius: 8px;
+              }
+              .college-info h1 {
+                font-size: 14px;
+                margin-bottom: 3px;
+              }
+              .college-info h2 {
+                font-size: 12px;
+                margin-bottom: 3px;
+              }
+              .college-info h3 {
+                font-size: 11px;
+                margin-bottom: 5px;
+              }
+              .exam-title {
+                background: rgba(255,255,255,0.2);
+                padding: 3px 8px;
+                border-radius: 10px;
+                font-size: 10px;
+              }
+              .student-profile, .results-section, .performance-summary {
+                padding: 15px;
+                border-bottom: 1px solid #e2e8f0;
+              }
+              .section-header h3 {
+                font-size: 12px;
+                color: #2563eb;
+                margin-bottom: 10px;
+              }
+              .profile-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+                padding: 10px;
+                font-size: 10px;
+              }
+              .profile-item {
+                padding: 6px 0;
+              }
+              .modern-table {
+                font-size: 9px;
+              }
+              .modern-table th {
+                padding: 8px 6px;
+                font-size: 10px;
+              }
+              .modern-table td {
+                padding: 6px;
+              }
+              .summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                margin-bottom: 10px;
+              }
+              .summary-card {
+                padding: 10px;
+                gap: 8px;
+              }
+              .summary-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+              }
+              .summary-content h4 {
+                font-size: 1.1rem;
+              }
+              .final-result {
+                padding: 15px;
+                margin-top: 10px;
+              }
+              .result-badge {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+              }
+              .official-signature {
+                text-align: right;
+                margin-top: 20px;
+                padding-top: 10px;
+                border-top: 1px solid #000;
+                font-size: 11px;
+              }
+              .action-buttons {
+                display: none !important;
+              }
+            }
+            body {
+              font-family: Arial, sans-serif;
+              margin: 0;
+              padding: 0;
+            }
+            .print-container {
+              width: 210mm;
+              min-height: 297mm;
+              padding: 10mm;
+            }
+          </style>
+        </head>
+        <body onload="window.print();">
+          <div class="print-container">
+            ${iPrint}
+            <div class="official-signature">
+              Authorized Signature<br>
+              Controller of Examinations
+            </div>
+          </div>
+        </body>
+        </html>
+      `);
+      docprint.document.close();
+    }
+
     // Create floating particles
     function createParticles() {
       const particlesContainer = document.getElementById('particles');
@@ -646,28 +1410,362 @@
 
       // Handle form submission
       const resultForm = document.getElementById('resultForm');
-      resultForm.addEventListener('submit', function(e) {
+      resultForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        const uid = document.getElementById('uid').value.trim();
-        const dobInput = document.getElementById('dob');
-        const dob = dobInput.value;  // Already in YYYY-MM-DD format from type="date"
+        const roll = document.getElementById('uid').value.trim();
+        const dob = document.getElementById('dob').value;
 
-        if (!uid || !dob) {
+        if (!roll || !dob) {
           alert('Please enter both UID and Date of Birth.');
           return;
         }
 
-        // Use your TinyURL (it will redirect to the Apps Script URL automatically in the iframe)
-        const webAppUrl = 'https://tinyurl.com/dsac-exam-result-oct-2025';
-        const src = `${webAppUrl}?roll=${encodeURIComponent(uid)}&dob=${encodeURIComponent(dob)}`;
+        document.getElementById('lod').style.display = 'flex';
+        document.getElementById('rs').innerHTML = '';
 
-        document.getElementById('resultIframe').src = src;
+        try {
+          // Get list of sheets
+          const sheetsRes = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${ssid}?key=${apikey}`);
+          if (!sheetsRes.ok) throw new Error('Failed to fetch sheet metadata.');
+          const sheetsData = await sheetsRes.json();
+          const sheetNames = sheetsData.sheets.map(s => s.properties.title).filter(t => /^\d+[A-Z]$/.test(t));
 
-        // Hide input modal and show result modal
-        bootstrap.Modal.getInstance(document.getElementById('inputModal')).hide();
-        const resultModal = new bootstrap.Modal(document.getElementById('resultModal'));
-        resultModal.show();
+          // Fetch HOME sheet
+          const homeGviz = await fetchGviz('HOME', 'select *');
+          const homeRows = homeGviz.table.rows || [];
+          const ta = homeRows[0]?.c[1]?.v || '';
+          const ti = homeRows[1]?.c[1]?.v || '';
+          const tp = homeRows[2]?.c[1]?.v || '';
+          const tt = homeRows[3]?.c[1]?.v || '';
+
+          const gradingCriteria = [];
+          for (let r = 1; r < homeRows.length; r++) {
+            const row = homeRows[r];
+            if (row.c[3] && row.c[4] && row.c[5]) {
+              gradingCriteria.push([row.c[3].v, row.c[4].v, row.c[5].v]);
+            }
+          }
+
+          // Search for student across class sheets
+          let foundSheet = null;
+          let studentRow = null;
+          let headerRow = null;
+          let subjectRow = null;
+
+          for (const sheetName of sheetNames) {
+            const query = `select * where A = '${roll}'`;
+            const gviz = await fetchGviz(sheetName, query);
+            const rows = gviz.table.rows || [];
+            if (rows.length > 0) {
+              studentRow = rows[0];
+              const storedDOB = studentRow.c[1] ? parseGvizDate(studentRow.c[1].v) : new Date();
+              const inputDOBStr = formatDateForComparison(new Date(dob));
+              const sheetDOBStr = formatDateForComparison(storedDOB);
+              if (inputDOBStr !== sheetDOBStr) {
+                document.getElementById('rs').innerHTML = `
+                  <div class="error-message">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Invalid Date of Birth</h3>
+                    <p>Please check your date of birth and try again.</p>
+                  </div>
+                  <div class="action-buttons">
+                    <button onclick="showInputModal()" class="btn btn-secondary">
+                      <i class="fas fa-arrow-left"></i> Check Another Result
+                    </button>
+                  </div>
+                `;
+                document.getElementById('lod').style.display = 'none';
+                return;
+              }
+
+              foundSheet = sheetName;
+
+              // Fetch header rows (row 1 and 2)
+              const headerQuery = `select * limit 2`;
+              const headerGviz = await fetchGviz(sheetName, headerQuery);
+              const headerRows = headerGviz.table.rows || [];
+              headerRow = headerRows[0];
+              subjectRow = headerRows[1];
+              break;
+            }
+          }
+
+          if (!foundSheet) {
+            document.getElementById('rs').innerHTML = `
+              <div class="error-message">
+                <i class="fas fa-search"></i>
+                <h3>Registration Number Not Found</h3>
+                <p>Please check your registration number and try again.</p>
+              </div>
+              <div class="action-buttons">
+                <button onclick="showInputModal()" class="btn btn-secondary">
+                  <i class="fas fa-arrow-left"></i> Check Another Result
+                </button>
+              </div>
+            `;
+            document.getElementById('lod').style.display = 'none';
+            return;
+          }
+
+          // Extract data
+          const className = headerRow.c[1]?.v || '';
+          const h1 = headerRow.c[6]?.v || 0;
+          const h2 = headerRow.c[3]?.v || 0;
+          const b1 = studentRow.c[2]?.v || '';
+          const b2 = studentRow.c[3]?.v || 0;
+          const b4 = studentRow.c[4]?.v || 0;
+          const b3 = studentRow.c[5]?.v || '';
+          const b5 = studentRow.c[6]?.v || 0;
+          const b6 = studentRow.c[7]?.v || '';
+          const formattedPercentage = parseFloat(b4).toFixed(2);
+          const storedDOB = studentRow.c[1] ? parseGvizDate(studentRow.c[1].v) : new Date();
+          const storedDOBDisplay = formatDateForDisplay(storedDOB);
+
+          const subjectNames = subjectRow.c.slice(8, 37).map(c => c ? c.v : '');
+          const maxScores = headerRow.c.slice(8, 37).map(c => c ? c.v : 0);
+          const subjectScores = studentRow.c.slice(8, 37).map(c => c ? (c.v || c.f || '') : '');
+
+          // Build table rows
+          let serialNo = 1;
+          let failedSubjects = [];
+          let data = `
+            <div class="action-buttons">
+              <button onclick="showInputModal()" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Check Another Result
+              </button>
+            </div>
+            <div class="result-card">
+              <div class="result-header">
+                <div class="college-brand">
+                  <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="college-logo">
+                  <div class="college-info">
+                    <h1><i class="fas fa-graduation-cap"></i> ${ta}</h1>
+                    <h2><i class="fas fa-university"></i> ${ti}</h2>
+                    <h3><i class="fas fa-map-marker-alt"></i> ${tp}</h3>
+                    <div class="exam-title"><i class="fas fa-file-alt"></i> ${tt}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="student-profile">
+                <div class="section-header">
+                  <h3><i class="fas fa-user-graduate"></i> Student Information</h3>
+                </div>
+                <div class="profile-grid">
+                  <div class="profile-item">
+                    <label><i class="fas fa-id-card"></i> Reg No:</label>
+                    <span>${roll}</span>
+                  </div>
+                  <div class="profile-item">
+                    <label><i class="fas fa-user"></i> Name:</label>
+                    <span>${b1}</span>
+                  </div>
+                  <div class="profile-item">
+                    <label><i class="fas fa-users"></i> Class:</label>
+                    <span>${className}</span>
+                  </div>
+                  <div class="profile-item">
+                    <label><i class="fas fa-birthday-cake"></i> DOB:</label>
+                    <span>${storedDOBDisplay}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="results-section">
+                <div class="section-header">
+                  <h3><i class="fas fa-chart-bar"></i> Subject-wise Performance</h3>
+                </div>
+                <div class="table-container">
+                  <table class="modern-table">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Subject</th>
+                        <th>Max</th>
+                        <th>Obtained</th>
+                        <th>Grade</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+          `;
+
+          for (let j = 0; j < subjectNames.length; j++) {
+            const subjectName = subjectNames[j];
+            if (subjectName === '') continue;
+
+            const maxScore = maxScores[j];
+            const obtainedScore = subjectScores[j];
+            let grade = 'N/A';
+            let subjectPercentage = 0;
+
+            if (obtainedScore !== 'A') {
+              subjectPercentage = (obtainedScore / maxScore) * 100;
+            }
+
+            if (obtainedScore === 'A') {
+              grade = 'D';
+            } else {
+              for (let k = 0; k < gradingCriteria.length; k++) {
+                const lowerRange = gradingCriteria[k][0];
+                const upperRange = gradingCriteria[k][1];
+                if (subjectPercentage >= lowerRange && subjectPercentage <= upperRange) {
+                  grade = gradingCriteria[k][2];
+                  break;
+                }
+              }
+            }
+
+            const remarks = grade === 'D' ? 'Fail' : 'Pass';
+            const statusClass = remarks === 'Fail' ? 'status-fail' : 'status-pass';
+            const statusIcon = remarks === 'Fail' ? 'fas fa-times' : 'fas fa-check';
+
+            if (remarks === 'Fail') {
+              failedSubjects.push(subjectName);
+            }
+
+            data += `
+              <tr>
+                <td>${serialNo}.</td>
+                <td class="subject-name">${subjectName}</td>
+                <td>${maxScore}</td>
+                <td class="score">${obtainedScore}</td>
+                <td class="grade ${grade === 'D' ? 'grade-fail' : 'grade-pass'}">${grade}</td>
+                <td><span class="status ${statusClass}"><i class="${statusIcon}"></i> ${remarks}</span></td>
+              </tr>
+            `;
+
+            serialNo++;
+          }
+
+          let footerMessage = '';
+          let status = '';
+          let statusClass = '';
+          let statusIcon = '';
+
+          if (failedSubjects.length > 0) {
+            footerMessage = '<i class="fas fa-exclamation-circle"></i> Failed in: ' + failedSubjects.join(", ");
+            status = "FAILED";
+            statusClass = "result-failed";
+            statusIcon = "fas fa-times";
+          } else {
+            footerMessage = '<i class="fas fa-check-double"></i> Passed in all subjects';
+            status = "PASSED";
+            statusClass = "result-passed";
+            statusIcon = "fas fa-check";
+          }
+
+          const now = new Date();
+          const generated = formatDateForDisplay(now) + ' ' + now.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+
+          data += `
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="performance-summary">
+                <div class="section-header">
+                  <h3><i class="fas fa-chart-pie"></i> Overall Performance</h3>
+                </div>
+                <div class="summary-grid">
+                  <div class="summary-card">
+                    <div class="summary-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
+                      <i class="fas fa-star"></i>
+                    </div>
+                    <div class="summary-content">
+                      <h4>${b2}</h4>
+                      <p>Total Score</p>
+                      <small>Out of ${h1}</small>
+                    </div>
+                  </div>
+
+                  <div class="summary-card">
+                    <div class="summary-icon" style="background: linear-gradient(135deg, #10b981, #047857);">
+                      <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="summary-content">
+                      <h4>${formattedPercentage}%</h4>
+                      <p>Percentage</p>
+                    </div>
+                  </div>
+
+                  <div class="summary-card">
+                    <div class="summary-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                      <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="summary-content">
+                      <h4>${b6}</h4>
+                      <p>Overall Grade</p>
+                    </div>
+                  </div>
+
+                  <div class="summary-card">
+                    <div class="summary-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                      <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="summary-content">
+                      <h4>${b3}</h4>
+                      <p>Class Rank</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="final-result ${statusClass}">
+                  <div class="result-badge">
+                    <i class="${statusIcon}"></i>
+                    <span>${status}</span>
+                  </div>
+                  <p class="result-message">${footerMessage}</p>
+                </div>
+
+                <div class="result-footer">
+                  <div class="footer-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Generated: ${generated}</span>
+                  </div>
+                  <div class="footer-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Official Result</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="action-buttons">
+              <button onclick="showInputModal()" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Check Another Result
+              </button>
+              <button type="button" class="btn btn-secondary" onclick="Print('PrintDiv')">
+                <i class="fas fa-print"></i> Print Result
+              </button>
+            </div>
+          `;
+
+          document.getElementById('rs').innerHTML = data;
+
+          // Hide input modal and show result modal
+          bootstrap.Modal.getInstance(document.getElementById('inputModal')).hide();
+          const resultModal = new bootstrap.Modal(document.getElementById('resultModal'));
+          resultModal.show();
+        } catch (error) {
+          document.getElementById('rs').innerHTML = `
+            <div class="error-message">
+              <i class="fas fa-exclamation-circle"></i>
+              <h3>System Error</h3>
+              <p>An error occurred: ${error.message}</p>
+            </div>
+            <div class="action-buttons">
+              <button onclick="showInputModal()" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Check Another Result
+              </button>
+            </div>
+          `;
+          const resultModal = new bootstrap.Modal(document.getElementById('resultModal'));
+          resultModal.show();
+        } finally {
+          document.getElementById('lod').style.display = 'none';
+        }
       });
      
       // Add hover effect to result box
