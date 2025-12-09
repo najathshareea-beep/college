@@ -3,519 +3,193 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Result Portal - Darunnajath College</title>
+  <title>Result Portal</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <style>
-    body {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      padding: 20px;
-    }
-    .card {
-      background: white;
-      border-radius: 20px;
-      padding: 30px;
-      max-width: 600px;
-      margin: 50px auto;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    }
-    .result-card {
-      background: white;
-      border-radius: 15px;
-      margin-top: 20px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
-    .header-banner {
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      color: white;
-      padding: 25px;
-      text-align: center;
-    }
-    .subject-table {
-      font-size: 0.9rem;
-    }
-    .subject-table th {
-      background: #f8f9fa;
-      position: sticky;
-      top: 0;
-    }
-    .grade-badge {
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-weight: bold;
-      font-size: 0.85rem;
-    }
-    .grade-Aplus { background: #10b981; color: white; }
-    .grade-A { background: #22c55e; color: white; }
-    .grade-Bplus { background: #3b82f6; color: white; }
-    .grade-B { background: #60a5fa; color: white; }
-    .grade-C { background: #f59e0b; color: white; }
-    .grade-D { background: #ef4444; color: white; }
-    .status-pass { background: #dcfce7; color: #166534; padding: 4px 12px; border-radius: 20px; }
-    .status-fail { background: #fee2e2; color: #991b1b; padding: 4px 12px; border-radius: 20px; }
-    .info-box {
-      background: #f0f9ff;
-      border: 1px solid #bae6fd;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 20px;
-    }
+    body { padding: 20px; background: #f8f9fa; }
+    .container { max-width: 800px; margin: 0 auto; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="card">
-      <h2 class="text-center mb-3 text-primary">
-        <i class="fas fa-graduation-cap"></i> Annual Examination Result
-      </h2>
-      <h5 class="text-center text-muted mb-4">Darunnajath Shareeath College</h5>
-      
-      <form id="resultForm">
-        <div class="mb-3">
-          <label class="form-label fw-bold">
-            <i class="fas fa-id-card"></i> Registration Number
-          </label>
-          <input type="text" class="form-control form-control-lg" 
-                 id="roll" placeholder="Enter registration number" required>
-          <div class="form-text">Example: R101, 2024001, etc.</div>
-        </div>
-        
+  <div class="container mt-5">
+    <div class="card shadow">
+      <div class="card-header bg-primary text-white">
+        <h3 class="mb-0">Annual Result Checker</h3>
+      </div>
+      <div class="card-body">
         <div class="mb-4">
-          <label class="form-label fw-bold">
-            <i class="fas fa-calendar-alt"></i> Date of Birth
-          </label>
-          <input type="date" class="form-control form-control-lg" id="dob" required>
+          <h5>Step 1: Test Google Sheet Access</h5>
+          <button onclick="testAccess()" class="btn btn-info">Test Connection</button>
+          <div id="testResult" class="mt-2"></div>
         </div>
         
-        <button type="submit" class="btn btn-primary btn-lg w-100 py-3">
-          <i class="fas fa-search"></i> Get Result
-        </button>
-      </form>
-      
-      <div id="result" class="mt-4"></div>
+        <hr>
+        
+        <h5>Step 2: Check Result</h5>
+        <form id="resultForm">
+          <div class="mb-3">
+            <label class="form-label">Registration Number</label>
+            <input type="text" class="form-control" id="roll" placeholder="e.g., R1, 101" required>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Search</button>
+        </form>
+        
+        <div id="result" class="mt-4"></div>
+      </div>
     </div>
   </div>
 
   <script>
-    // Your Google Sheet ID
     const SHEET_ID = '1ckOFULpgBLG13gWa_jKdy8LJwIUaxCRLN84tljLmCjo';
     
-    // Function to fetch sheet data
-    async function fetchSheetData(sheetName) {
+    // Test if sheet is accessible
+    async function testAccess() {
+      const testResult = document.getElementById('testResult');
+      testResult.innerHTML = '<div class="alert alert-info">Testing connection...</div>';
+      
       try {
-        const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(sheetName)}`;
+        // Try CSV export (most reliable)
+        const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
+        console.log('Testing URL:', url);
+        
         const response = await fetch(url);
         
-        if (!response.ok) {
-          console.warn(`Cannot access sheet: ${sheetName}`);
-          return null;
+        if (response.ok) {
+          const text = await response.text();
+          testResult.innerHTML = `
+            <div class="alert alert-success">
+              <strong>✓ Success!</strong> Sheet is accessible.
+              <br><small>First 200 characters:</small>
+              <pre style="background: white; padding: 10px; border-radius: 5px; font-size: 12px; max-height: 200px; overflow: auto;">${text.substring(0, 200)}...</pre>
+              <button onclick="showAllData()" class="btn btn-sm btn-secondary mt-2">Show All Data</button>
+            </div>
+          `;
+        } else {
+          testResult.innerHTML = `
+            <div class="alert alert-danger">
+              <strong>✗ Failed!</strong> Status: ${response.status}
+              <p>Make sure your Google Sheet is shared publicly:</p>
+              <ol>
+                <li>Open your Google Sheet</li>
+                <li>Click "Share" button (top-right)</li>
+                <li>Click "Change to anyone with the link"</li>
+                <li>Select "Viewer"</li>
+                <li>Click "Done"</li>
+              </ol>
+              <a href="https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit" target="_blank" class="btn btn-warning">
+                Open Google Sheet
+              </a>
+            </div>
+          `;
         }
-        
-        const csvText = await response.text();
-        return parseCSV(csvText);
       } catch (error) {
-        console.error(`Error fetching sheet ${sheetName}:`, error);
-        return null;
+        testResult.innerHTML = `
+          <div class="alert alert-danger">
+            <strong>Error:</strong> ${error.message}
+          </div>
+        `;
       }
     }
     
-    // Parse CSV with proper handling
-    function parseCSV(csvText) {
-      const rows = [];
-      const lines = csvText.split('\n');
-      
-      for (let i = 0; i < lines.length; i++) {
-        if (lines[i].trim() === '') continue;
+    // Show all data for debugging
+    async function showAllData() {
+      try {
+        const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
+        const response = await fetch(url);
+        const text = await response.text();
         
-        const row = [];
-        let current = '';
-        let inQuotes = false;
-        
-        for (let char of lines[i]) {
-          if (char === '"') {
-            inQuotes = !inQuotes;
-          } else if (char === ',' && !inQuotes) {
-            row.push(current.trim());
-            current = '';
-          } else {
-            current += char;
-          }
-        }
-        row.push(current.trim());
-        rows.push(row);
+        document.getElementById('testResult').innerHTML = `
+          <div class="alert alert-info">
+            <strong>Complete Data:</strong>
+            <pre style="background: white; padding: 10px; border-radius: 5px; font-size: 11px; max-height: 400px; overflow: auto;">${text}</pre>
+          </div>
+        `;
+      } catch (error) {
+        alert('Error: ' + error.message);
       }
-      
-      return rows;
     }
     
-    // Function to get grade based on percentage
-    function calculateGrade(percentage) {
-      const perc = parseFloat(percentage);
-      if (isNaN(perc)) return { grade: 'N/A', css: 'grade-D', passed: false };
-      
-      if (perc >= 90) return { grade: 'A+', css: 'grade-Aplus', passed: true };
-      if (perc >= 80) return { grade: 'A', css: 'grade-A', passed: true };
-      if (perc >= 70) return { grade: 'B+', css: 'grade-Bplus', passed: true };
-      if (perc >= 60) return { grade: 'B', css: 'grade-B', passed: true };
-      if (perc >= 50) return { grade: 'C', css: 'grade-C', passed: true };
-      return { grade: 'D', css: 'grade-D', passed: false };
-    }
-    
-    // Function to calculate subject grade
-    function calculateSubjectGrade(marks, maxMarks = 100) {
-      const obtained = parseFloat(marks);
-      if (isNaN(obtained) || obtained === 'A' || obtained === 'AB') {
-        return { grade: 'AB', css: 'bg-secondary', passed: false, status: 'Absent' };
-      }
-      
-      const percentage = (obtained / maxMarks) * 100;
-      if (percentage >= 90) return { grade: 'A+', css: 'grade-Aplus', passed: true };
-      if (percentage >= 80) return { grade: 'A', css: 'grade-A', passed: true };
-      if (percentage >= 70) return { grade: 'B+', css: 'grade-Bplus', passed: true };
-      if (percentage >= 60) return { grade: 'B', css: 'grade-B', passed: true };
-      if (percentage >= 50) return { grade: 'C', css: 'grade-C', passed: true };
-      return { grade: 'D', css: 'grade-D', passed: false };
-    }
-    
+    // Main search function
     document.getElementById('resultForm').onsubmit = async function(e) {
       e.preventDefault();
       
       const roll = document.getElementById('roll').value.trim();
-      const dob = document.getElementById('dob').value;
+      if (!roll) return;
       
-      if (!roll || !dob) {
-        alert('Please fill in all fields');
-        return;
-      }
-      
-      // Show loading
-      document.getElementById('result').innerHTML = `
-        <div class="text-center p-5">
-          <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;"></div>
-          <h5 class="mt-3">Searching for student...</h5>
-          <p>Registration: <strong>${roll}</strong></p>
-          <div class="progress mt-3" style="height: 5px;">
-            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
-          </div>
-        </div>
-      `;
+      document.getElementById('result').innerHTML = '<div class="text-center">Searching...</div>';
       
       try {
-        // First, get all sheet names
-        const sheetsUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
-        const sheetsResponse = await fetch(sheetsUrl);
-        const sheetsText = await sheetsResponse.text();
+        // Get all sheets first
+        const sheetsListUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
+        const response = await fetch(sheetsListUrl);
+        const text = await response.text();
         
-        // Extract sheet names from JSON
-        const jsonMatch = sheetsText.match(/google\.visualization\.Query\.setResponse\(([\s\S]+)\)/);
-        if (!jsonMatch) throw new Error('Cannot read sheet data. Please check sharing permissions.');
+        if (!text) {
+          throw new Error('No data received from Google Sheets');
+        }
         
-        const data = JSON.parse(jsonMatch[1]);
-        const allSheets = data.table.rows.map(row => row.c[0].v);
+        // Simple CSV parsing
+        const rows = text.split('\n').map(row => {
+          return row.split(',').map(cell => {
+            // Remove quotes if present
+            return cell.replace(/^"|"$/g, '').trim();
+          });
+        });
         
-        // Filter class sheets (1A, 2A, 3C, 8R, etc.)
-        const classSheets = allSheets.filter(name => /^\d+[A-Z]$/.test(name));
-        
-        console.log('Class sheets found:', classSheets);
-        
+        // Search for registration number
         let found = false;
-        let studentRow = null;
-        let headerRow = null;
-        let foundSheet = '';
+        let foundRow = null;
         
-        // Search in each class sheet
-        for (const sheetName of classSheets) {
-          const sheetData = await fetchSheetData(sheetName);
-          if (!sheetData || sheetData.length < 2) continue;
-          
-          // First row is header (Column names)
-          headerRow = sheetData[0];
-          
-          // Search for registration number in first column (REGISTER NO)
-          for (let i = 1; i < sheetData.length; i++) {
-            const row = sheetData[i];
-            if (row.length > 0) {
-              const regNum = row[0] ? row[0].toString().trim().toLowerCase() : '';
-              const searchRoll = roll.toLowerCase();
-              
-              // Check if registration number matches
-              if (regNum === searchRoll || regNum.includes(searchRoll) || searchRoll.includes(regNum)) {
-                // Optional: Check DOB (column index 1)
-                const rowDob = row[1] ? row[1].toString().trim() : '';
-                const searchDob = dob.replace(/-/g, '/');
-                
-                if (rowDob && rowDob !== searchDob && !rowDob.includes(searchDob)) {
-                  document.getElementById('result').innerHTML = `
-                    <div class="alert alert-warning">
-                      <h4><i class="fas fa-exclamation-triangle"></i> Date of Birth Mismatch</h4>
-                      <p>Registration number found but Date of Birth doesn't match.</p>
-                      <p><strong>Entered DOB:</strong> ${dob}</p>
-                      <p><strong>Registered DOB:</strong> ${rowDob}</p>
-                      <button onclick="location.reload()" class="btn btn-warning">Try Again</button>
-                    </div>
-                  `;
-                  return;
-                }
-                
-                found = true;
-                studentRow = row;
-                foundSheet = sheetName;
-                break;
-              }
+        for (let i = 0; i < rows.length; i++) {
+          if (rows[i].length > 0) {
+            const regNum = rows[i][0] || '';
+            if (regNum.toLowerCase() === roll.toLowerCase()) {
+              found = true;
+              foundRow = rows[i];
+              break;
             }
           }
-          
-          if (found) break;
         }
         
         // Display result
-        if (found && studentRow && headerRow) {
-          // Extract student information based on your column structure:
-          // 0: REGISTER NO, 1: DOB, 2: NAME, 3: TOTAL MARKS, 4: %, 5: RANK, 6: PRESENTS, 7: OVERALL GRADE
-          const studentInfo = {
-            regNo: studentRow[0] || 'N/A',
-            dob: studentRow[1] || 'N/A',
-            name: studentRow[2] || 'N/A',
-            totalMarks: studentRow[3] || '0',
-            percentage: studentRow[4] || '0',
-            rank: studentRow[5] || '-',
-            presents: studentRow[6] || '0',
-            overallGrade: studentRow[7] || 'N/A',
-            class: foundSheet
-          };
-          
-          // Extract subjects (columns 8 onwards)
-          const subjects = [];
-          for (let i = 8; i < headerRow.length; i++) {
-            if (headerRow[i] && headerRow[i].trim() !== '') {
-              subjects.push({
-                name: headerRow[i],
-                marks: studentRow[i] || '0',
-                maxMarks: 100 // Default, adjust if you have different max marks per subject
-              });
-            }
-          }
-          
-          // Format date for display
-          const displayDob = studentInfo.dob.includes('-') 
-            ? studentInfo.dob.split('-').reverse().join('-')
-            : studentInfo.dob;
-          
-          // Generate subject rows for table
-          let subjectRows = '';
-          let passedSubjects = 0;
-          let totalSubjects = subjects.length;
-          
-          subjects.forEach((subject, index) => {
-            const gradeInfo = calculateSubjectGrade(subject.marks, subject.maxMarks);
-            if (gradeInfo.passed) passedSubjects++;
-            
-            subjectRows += `
-              <tr>
-                <td>${index + 1}</td>
-                <td>${subject.name}</td>
-                <td class="text-center">${subject.maxMarks}</td>
-                <td class="text-center fw-bold">${subject.marks}</td>
-                <td class="text-center">
-                  <span class="grade-badge ${gradeInfo.css}">${gradeInfo.grade}</span>
-                </td>
-                <td class="text-center">
-                  <span class="${gradeInfo.passed ? 'status-pass' : 'status-fail'}">
-                    ${gradeInfo.passed ? 'Pass' : (gradeInfo.status || 'Fail')}
-                  </span>
-                </td>
-              </tr>
-            `;
-          });
-          
-          // Calculate overall result
-          const overallGradeInfo = calculateGrade(studentInfo.percentage);
-          const overallResult = passedSubjects === totalSubjects ? 'PASSED' : 'FAILED';
-          const now = new Date().toLocaleString('en-IN', {
-            day: '2-digit',
-            month: 'short',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-          });
-          
+        if (found && foundRow) {
+          // Display simple result
           document.getElementById('result').innerHTML = `
-            <div class="text-center mb-3">
-              <button onclick="location.reload()" class="btn btn-warning">
-                <i class="fas fa-redo"></i> Check Another
-              </button>
-              <button onclick="window.print()" class="btn btn-success ms-2">
-                <i class="fas fa-print"></i> Print Result
-              </button>
-            </div>
-            
-            <div class="result-card">
-              <!-- Header -->
-              <div class="header-banner">
-                <h3 class="mb-2">DARUNNAJATH SHAREEATH COLLEGE</h3>
-                <h5 class="mb-0">Karuvarakundu</h5>
-                <div class="mt-2" style="background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 30px; display: inline-block;">
-                  Annual Examination 2025-26
-                </div>
-              </div>
-              
-              <div class="p-4">
-                <!-- Student Information -->
-                <div class="info-box">
-                  <h5 class="text-primary mb-3">
-                    <i class="fas fa-user-graduate"></i> Student Information
-                  </h5>
-                  <div class="row">
-                    <div class="col-md-3 col-6 mb-2">
-                      <strong>Reg No:</strong><br>
-                      <span class="fs-5">${studentInfo.regNo.toUpperCase()}</span>
-                    </div>
-                    <div class="col-md-3 col-6 mb-2">
-                      <strong>Name:</strong><br>
-                      <span class="fs-5">${studentInfo.name}</span>
-                    </div>
-                    <div class="col-md-3 col-6 mb-2">
-                      <strong>Class:</strong><br>
-                      <span class="fs-5">${studentInfo.class}</span>
-                    </div>
-                    <div class="col-md-3 col-6 mb-2">
-                      <strong>DOB:</strong><br>
-                      <span class="fs-5">${displayDob}</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <!-- Subject-wise Performance -->
-                <h5 class="text-primary mb-3">
-                  <i class="fas fa-book-open"></i> Subject-wise Performance
-                </h5>
-                <div class="table-responsive">
-                  <table class="table table-bordered subject-table">
-                    <thead class="table-light">
-                      <tr>
-                        <th width="5%">#</th>
-                        <th>Subject</th>
-                        <th width="10%" class="text-center">Max</th>
-                        <th width="12%" class="text-center">Obtained</th>
-                        <th width="15%" class="text-center">Grade</th>
-                        <th width="12%" class="text-center">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>${subjectRows}</tbody>
-                  </table>
-                </div>
-                
-                <!-- Result Summary -->
-                <div class="alert ${overallResult === 'PASSED' ? 'alert-success' : 'alert-danger'} mt-4">
-                  <div class="row align-items-center">
-                    <div class="col-md-8">
-                      <h4 class="mb-0">
-                        <i class="fas ${overallResult === 'PASSED' ? 'fa-trophy' : 'fa-exclamation-circle'}"></i>
-                        RESULT: ${overallResult}
-                      </h4>
-                      ${overallResult === 'FAILED' ? 
-                        `<p class="mb-0 mt-2">Failed in ${totalSubjects - passedSubjects} out of ${totalSubjects} subjects</p>` : 
-                        `<p class="mb-0 mt-2">Congratulations! Passed in all ${totalSubjects} subjects</p>`
-                      }
-                    </div>
-                    <div class="col-md-4 text-end">
-                      <span class="badge ${overallGradeInfo.css} fs-5 p-2">
-                        ${overallGradeInfo.grade}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                
-                <!-- Performance Summary -->
-                <div class="row text-center mt-4">
-                  <div class="col-md-3 col-6 mb-3">
-                    <div class="p-3 border rounded">
-                      <div class="text-muted">Total Marks</div>
-                      <div class="fs-3 fw-bold">${studentInfo.totalMarks}</div>
-                    </div>
-                  </div>
-                  <div class="col-md-3 col-6 mb-3">
-                    <div class="p-3 border rounded">
-                      <div class="text-muted">Percentage</div>
-                      <div class="fs-3 fw-bold">${parseFloat(studentInfo.percentage).toFixed(2)}%</div>
-                    </div>
-                  </div>
-                  <div class="col-md-3 col-6 mb-3">
-                    <div class="p-3 border rounded">
-                      <div class="text-muted">Overall Grade</div>
-                      <div class="fs-3 fw-bold">${studentInfo.overallGrade}</div>
-                    </div>
-                  </div>
-                  <div class="col-md-3 col-6 mb-3">
-                    <div class="p-3 border rounded">
-                      <div class="text-muted">Class Rank</div>
-                      <div class="fs-3 fw-bold">${studentInfo.rank}</div>
-                    </div>
-                  </div>
-                </div>
-                
-                <!-- Footer -->
-                <div class="text-center text-muted mt-4 pt-3 border-top">
-                  <small>
-                    <i class="fas fa-clock"></i> Generated on: ${now} |
-                    <i class="fas fa-chalkboard-teacher"></i> Attendance: ${studentInfo.presents} days
-                  </small>
-                </div>
-              </div>
+            <div class="alert alert-success">
+              <h4>✓ Student Found!</h4>
+              <table class="table">
+                <tr><th>Registration:</th><td>${foundRow[0] || 'N/A'}</td></tr>
+                <tr><th>Name:</th><td>${foundRow[2] || 'N/A'}</td></tr>
+                <tr><th>Total Marks:</th><td>${foundRow[3] || 'N/A'}</td></tr>
+                <tr><th>Percentage:</th><td>${foundRow[4] || 'N/A'}%</td></tr>
+                <tr><th>Rank:</th><td>${foundRow[5] || 'N/A'}</td></tr>
+              </table>
+              <button onclick="location.reload()" class="btn btn-primary">Search Again</button>
             </div>
           `;
         } else {
-          // Not found
           document.getElementById('result').innerHTML = `
             <div class="alert alert-danger">
-              <h4><i class="fas fa-user-times"></i> Registration Not Found</h4>
-              <p>The registration number <strong>"${roll}"</strong> was not found in our database.</p>
-              
-              <div class="mt-3">
-                <h6><i class="fas fa-lightbulb"></i> Suggestions:</h6>
-                <ul class="text-start">
-                  <li>Check spelling of registration number</li>
-                  <li>Try without spaces or special characters</li>
-                  <li>Contact examination department for correct number</li>
-                  <li>Available class sections: ${classSheets.join(', ')}</li>
-                </ul>
-              </div>
-              
-              <button onclick="location.reload()" class="btn btn-warning mt-2">
-                <i class="fas fa-redo"></i> Try Again
-              </button>
+              <h4>✗ Not Found</h4>
+              <p>Registration number <strong>${roll}</strong> not found.</p>
+              <button onclick="location.reload()" class="btn btn-warning">Try Again</button>
             </div>
           `;
         }
         
       } catch (error) {
-        console.error('Error:', error);
         document.getElementById('result').innerHTML = `
           <div class="alert alert-danger">
-            <h4><i class="fas fa-exclamation-circle"></i> System Error</h4>
+            <h4>Error</h4>
             <p>${error.message}</p>
-            <p>Please ensure:</p>
-            <ol class="text-start">
-              <li>Google Sheet is shared publicly (Anyone with link can view)</li>
-              <li>You have internet connection</li>
-              <li>Sheet ID is correct: ${SHEET_ID}</li>
-            </ol>
-            <a href="https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit" 
-               target="_blank" class="btn btn-info">
-              <i class="fas fa-external-link-alt"></i> Open Google Sheet
-            </a>
-            <button onclick="location.reload()" class="btn btn-secondary ms-2">
-              Retry
-            </button>
+            <p>Please test the connection first using the "Test Connection" button above.</p>
           </div>
         `;
       }
     };
     
-    // Auto-focus on registration field
-    document.getElementById('roll').focus();
+    // Auto-test on page load
+    window.onload = testAccess;
   </script>
 </body>
 </html>
