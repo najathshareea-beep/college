@@ -104,104 +104,89 @@
 </div>
 
 <script>
-// Your Google Sheet must be published as CSV or use sheet2api.com
-// Here we use a public proxy + your sheet in CSV format
+// Updated for single "Results" sheet
 const SHEET_ID = "1ckOFULpgBLG13gWa_jKdy8LJwIUaxCRLN84tljLmCjo";
-const API_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
+const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=0`; // Change gid if needed
 
 async function checkResult() {
   const roll = document.getElementById("roll").value.trim();
   const dobInput = document.getElementById("dob").value;
-  if (!roll || !dobInput) return alert("Please fill both fields");
+  if (!roll || !dobInput) return alert("Fill both fields");
 
   document.getElementById("formCard").style.display = "none";
   document.getElementById("loader").style.display = "block";
-  document.getElementById("resultCard").style.display = "none";
 
   try {
-    const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(API_URL)}`);
-    const data = await response.json();
-    const csv = data.contents;
-    const rows = csv.split("\n").map(r => r.split(","));
+    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(CSV_URL)}`;
+    const resp = await fetch(proxyUrl);
+    const data = await resp.json();
+    const rows = data.contents.split("\n").map(r => r.split(","));
 
-    // Parse HOME sheet config
-    const home = rows.slice(0, 10);
-    const collegeArabic = home[0][1] || "دار النجاة الشرعية";
-    const collegeEnglish = home[1][1] || "Darunnajath Shareeath College";
-    const place = home[2][1] || "Kerala";
-    const exam = home[3][1] || "Annual Examination 2025";
+    // Config from B1:B4
+    const ta = rows[0][1] || "دار النجاة الشرعية";
+    const ti = rows[1][1] || "Darunnajath Shareeath College";
+    const tp = rows[2][1] || "Poonoor";
+    const tt = rows[3][1] || "Annual Examination";
 
-    // Find student
-    let found = null;
-    for (let i = 10; i < rows.length; i++) {
-      const row = rows[i];
-      if (row[0] == roll) {
-        const storedDOB = row[1]?.trim();
-        const inputDOB = dobInput.replace(/-/g, '');
-        const storedFormatted = storedDOB?.replace(/\//g, '').replace(/-/g, '');
-        if (inputDOB === storedFormatted || dobInput === storedDOB) {
-          found = { row, index: i };
+    // Find student (start from row 5 or wherever data begins)
+    let studentRow = null;
+    for (let i = 5; i < rows.length; i++) {
+      if (rows[i][0] == roll) {
+        const storedDOB = rows[i][1]?.trim();
+        const inputFormatted = dobInput.replace(/-/g, '');
+        const storedFormatted = storedDOB?.replace(/[-\/]/g, '');
+        if (inputFormatted === storedFormatted) {
+          studentRow = rows[i];
           break;
         }
       }
     }
 
-    if (!found) {
-      showError("Registration Number Not Found or Invalid DOB");
+    if (!studentRow) {
+      showError("Registration Number not found or Invalid Date of Birth");
       return;
     }
 
-    displayResult(found.row, collegeArabic, collegeEnglish, place, exam);
+    displayResult(studentRow, rows, ta, ti, tp, tt);
 
   } catch (e) {
-    showError("Network error. Try again.");
+    showError("Failed to load results. Check internet or try later.");
   }
 }
 
-function showError(msg) {
-  document.getElementById("loader").style.display = "none";
-  document.getElementById("resultCard").innerHTML = `
-    <div class="w3-panel w3-red w3-display-container w3-round">
-      <h3><i class="fa fa-exclamation-triangle"></i> ${msg}</h3>
-      <button class="w3-button w3-teal w3-round" onclick="location.reload()">Try Again</button>
-    </div>`;
-  document.getElementById("resultCard").style.display = "block";
-}
-
-function displayResult(row, ta, ti, tp, tt) {
+function displayResult(row, allRows, ta, ti, tp, tt) {
   const name = row[2];
-  const total = row[3];
-  const percent = parseFloat(row[4]).toFixed(2);
-  const rank = row[5];
+  const className = row[3];
+  const total = row[4];
+  const percent = parseFloat(row[5]).toFixed(2);
+  const rank = row[6];
   const overallGrade = row[7];
 
-  let subjectsHTML = "";
-  let failed = 0;
+  let tableRows = "";
+  let failedCount = 0;
+
   for (let j = 8; j < row.length; j++) {
     if (!row[j] || row[j] === "") break;
-    const subName = rows[1][j] || `Subject ${j-7}`;
-    const max = rows[0][j] || 100;
-    const obtained = row[j] === "A" ? "A" : parseFloat(row[j]);
+    const subName = allRows[2][j] || `Subject ${j-7}`;
+    const max = allRows[1][j] || 100;
+    const obt = row[j].trim();
     let grade = "", status = "Pass", cls = "pass";
-    if (obtained === "A") {
-      grade = "D"; status = "Fail"; cls = "fail"; failed++;
+
+    if (obt === "A" || obt === "a") {
+      grade = "Absent"; status = "Fail"; cls = "fail"; failedCount++;
     } else {
-      const perc = (obtained / max) * 100;
+      const perc = (parseFloat(obt) / max) * 100;
       grade = getGrade(perc);
-      if (grade === "D") { status = "Fail"; cls = "fail"; failed++; }
+      if (grade === "F") { status = "Fail"; cls = "fail"; failedCount++; }
     }
-    subjectsHTML += `<tr class="${cls}">
-      <td>${j-7}</td>
-      <td>${subName}</td>
-      <td>${max}</td>
-      <td>${obtained}</td>
-      <td>${grade}</td>
-      <td>${status}</td>
+
+    tableRows += `<tr class="${cls}">
+      <td>${j-7}</td><td>${subName}</td><td>${max}</td><td>${obt}</td><td>${grade}</td><td>${status}</td>
     </tr>`;
   }
 
-  const passStatus = failed === 0 ? "PASSED" : "FAILED";
-  const badgeClass = failed === 0 ? "passed" : "failed";
+  const resultStatus = failedCount === 0 ? "PASSED" : "FAILED";
+  const badge = failedCount === 0 ? "passed" : "failed";
 
   document.getElementById("resultCard").innerHTML = `
     <div id="printArea">
@@ -209,36 +194,33 @@ function displayResult(row, ta, ti, tp, tt) {
         <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" class="logo">
         <h2>${ta}</h2>
         <h3>${ti}, ${tp}</h3>
-        <h4><i class="fa fa-trophy"></i> ${tt}</h4>
+        <h4>${tt}</h4>
       </div>
       <hr>
       <div class="w3-row w3-section">
         <div class="w3-col s6 m3"><b>Reg No:</b> ${row[0]}</div>
         <div class="w3-col s6 m3"><b>Name:</b> ${name}</div>
-        <div class="w3-col s6 m3"><b>Class:</b> ${row[row.length-1]}</div>
+        <div class="w3-col s6 m3"><b>Class:</b> ${className}</div>
         <div class="w3-col s6 m3"><b>DOB:</b> ${formatDOB(row[1])}</div>
       </div>
 
-      <table>
-        <tr><th>#</th><th>Subject</th><th>Max</th><th>Obtained</th><th>Grade</th><th>Status</th></tr>
-        ${subjectsHTML}
-      </table>
+      <table><tr><th>#</th><th>Subject</th><th>Max</th><th>Obtained</th><th>Grade</th><th>Status</th></tr>${tableRows}</table>
 
       <div class="w3-row w3-section">
-        <div class="w3-third w3-card w3-padding w3-center"><b>Total</b><br>${total}</div>
-        <div class="w3-third w3-card w3-padding w3-center"><b>Percentage</b><br>${percent}%</div>
-        <div class="w3-third w3-card w3-padding w3-center"><b>Rank</b><br>${rank}</div>
+        <div class="w3-third w3-center w3-card w3-padding"><b>Total</b><br>${total}</div>
+        <div class="w3-third w3-center w3-card w3-padding"><b>Percentage</b><br>${percent}%</div>
+        <div class="w3-third w3-center w3-card w3-padding"><b>Rank</b><br>${rank}</div>
       </div>
 
-      <div class="w3-center w3-margin">
-        <span class="badge ${badgeClass}">${passStatus}</span>
+      <div class="w3-center w3-margin-top">
+        <span class="badge ${badge}">${resultStatus}</span>
       </div>
-      <p class="w3-center"><i>Generated on: ${new Date().toLocaleString()}</i></p>
-      <div class="signature">Principal<br>______________________</div>
+      <p class="w3-center w3-small">Generated: ${new Date().toLocaleString()}</p>
+      <div class="signature">Principal<br>_________________</div>
     </div>
 
     <div class="no-print w3-center w3-margin">
-      <button class="w3-button print-btn" onclick="window.print()"><i class="fa fa-print"></i> Print Result</button>
+      <button class="w3-button print-btn" onclick="window.print()">Print Result</button>
       <button class="w3-button w3-teal" onclick="location.reload()">Check Another</button>
     </div>
   `;
@@ -258,11 +240,22 @@ function getGrade(p) {
 }
 
 function formatDOB(d) {
-  if (!d) return "";
-  const parts = d.includes("/") ? d.split("/") : d.split("-");
-  const date = new Date(parts.reverse().join("-"));
-  return date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  try {
+    const date = new Date(d);
+    return date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  } catch { return d; }
+}
+
+function showError(msg) {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("resultCard").innerHTML = `
+    <div class="w3-panel w3-red w3-round w3-center">
+      <h3>${msg}</h3>
+      <button class="w3-button w3-teal w3-round" onclick="location.reload()">Try Again</button>
+    </div>`;
+  document.getElementById("resultCard").style.display = "block";
 }
 </script>
 </body>
 </html>
+
