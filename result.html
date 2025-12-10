@@ -2,73 +2,214 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Result | DARUNNAJATH COLLEGE</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Result Portal - Darunnajath College</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
   <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{background:linear-gradient(135deg,#0b5ed7,#74b9ff);font-family:'Poppins',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
-    .card{max-width:400px;width:100%;background:#fff;border-radius:18px;box-shadow:0 15px 40px rgba(0,0,0,.3);overflow:hidden}
-    .header{background:linear-gradient(135deg,#0b5ed7,#409cff);color:#fff;padding:30px 20px;text-align:center}
-    .logo{width:85px;height:85px;border-radius:50%;border:5px solid rgba(255,255,255,.5);object-fit:contain;margin-bottom:12px}
-    h2{font-size:1.5rem;font-weight:700;margin:10px 0 5px}
-    p{font-size:15px;opacity:0.95}
-    .body{padding:35px 30px}
-    input{width:100%;padding:15px 18px;margin-bottom:20px;border:2px solid #e0e0e0;border-radius:12px;font-size:15px;transition:.3s}
-    input:focus{border-color:#0b5ed7;outline:none;box-shadow:0 0 0 4px rgba(11,94,215,.15)}
-    button{background:#0b5ed7;color:#fff;border:none;padding:16px;border-radius:12px;width:100%;font-weight:600;font-size:16px;cursor:pointer;transition:.3s}
-    button:hover{background:#0950b8;transform:translateY(-2px)}
+    :root {
+      --primary-color: #00796b;
+      --secondary-color: #004d40;
+      --accent-color: #ff5722;
+      --bg-gradient: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-gradient);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .header {
+      background: var(--primary-color);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .input-card {
+      padding: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: var(--secondary-color);
+    }
+    #rs {
+      padding: 20px;
+    }
+    .w3-table th {
+      background: var(--primary-color);
+      color: white;
+    }
+    .summary-card {
+      background: #f0f0f0;
+      border-radius: 5px;
+      padding: 10px;
+      text-align: center;
+    }
+    .error {
+      background: #ffebee;
+      border: 1px solid #f44336;
+      border-radius: 5px;
+      padding: 15px;
+      margin: 15px 0;
+    }
+    #lod {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 1000;
+    }
+    .spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid var(--primary-color);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @media (max-width: 768px) {
+      .w3-row-padding .w3-col {
+        width: 50% !important;
+        margin-bottom: 10px;
+      }
+      table {
+        font-size: 0.8em;
+      }
+    }
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #PrintDiv, #PrintDiv * {
+        visibility: visible;
+      }
+      #PrintDiv {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 0;
+      }
+      button {
+        display: none;
+      }
+      .no-print {
+        display: none;
+      }
+      .signature {
+        margin-top: 50px;
+        text-align: right;
+        padding-right: 20px;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="card">
+  <div class="container">
     <div class="header">
-      <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" class="logo" alt="Logo">
-      <h2>DARUNNAJATH COLLEGE</h2>
-      <p>Official Result Portal • 2025-26</p>
+      <h2>DARUNNAJATH SHAREEATH COLLEGE</h2>
+      <p>Official Result Portal</p>
     </div>
-    <div class="body">
-      <form id="f">
-        <input type="text" name="roll" placeholder="Registration Number" required>
-        <input type="date" name="dob" required>
-        <button type="submit">View Result</button>
+    <div id="inputCard" class="input-card">
+      <form id="lab" onsubmit="subm(this); return false;">
+        <div class="form-group">
+          <label for="roll"><i class="fa fa-id-badge"></i> Registration Number:</label>
+          <input type="text" id="roll" name="roll" required>
+        </div>
+        <div class="form-group">
+          <label for="dob"><i class="fa fa-calendar"></i> Date of Birth:</label>
+          <input type="date" id="dob" name="dob" required>
+        </div>
+        <button type="submit"><i class="fa fa-search"></i> Get Results</button>
       </form>
     </div>
+    <div id="rs"></div>
   </div>
-
-<script>
-const URL = 'https://script.google.com/macros/s/AKfycbwfnCkY-HtE84fMOEH3UTGTVPKQsdN6Uo75xn3w2RKBj2DoxPFqTQ0Gcz8nlCg-XeU/exec';
-document.getElementById('f').onsubmit=e=>{
-  e.preventDefault();
-  const win=window.open('','_blank');
-  win.document.write('<body style="font-family:Poppins;background:#f0f4ff;display:flex;align-items:center;justify-content:center;height:100vh;margin:0"><div style="text-align:center;color:#0b5ed7"><h3>Fetching Result...</h3><p>Please wait</p></div></body>');
-  
-  const u = e.target.roll.value.trim();
-  const d = e.target.dob.value;
-  
-  fetch(`${URL}?roll=${u}&dob=${d}`)
-    .then(r=>r.text())
-    .then(html=>{
-      win.document.open();
-      if(html.includes('grade')||html.includes('PASSED')||html.includes('FAILED')||html.includes('Result')){
-        win.document.write(html);
-      }else{
-        win.document.write(`<body style="font-family:Poppins;background:#f0f4ff;display:flex;align-items:center;justify-content:center;height:100vh;padding:20px">
-          <div style="background:#fff;padding:40px;border-radius:18px;box-shadow:0 15px 40px rgba(0,0, 0,.3);text-align:center;max-width:380px">
-            <h3 style="color:#dc3545;margin-bottom:15px">Result Not Found</h3>
-            <p>Please check Registration Number & Date of Birth</p>
-            <button onclick="window.close()" style="margin-top:20px;background:#0b5ed7;color:#fff;border:none;padding:12px 30px;border-radius:12px;cursor:pointer">Close</button>
-          </div>
-        </body>`);
-      }
-      win.document.close();
-    })
-    .catch(()=>{
-      win.document.write('<body style="font-family:Poppins;background:#f0f4ff;display:flex;align-items:center;justify-content:center;height:100vh"><h3 style="color:#dc3545">Connection Failed<br>Please try again</h3></body>');
-    });
-};
-</script>
+  <div id="lod">
+    <div class="spinner"></div>
+    <p>Loading Results...</p>
+  </div>
+  <script>
+    function subm(form) {
+      document.getElementById('lod').style.display = 'flex';
+      var v = {
+        roll: form.roll.value,
+        dob: form.dob.value
+      };
+      google.script.run.withSuccessHandler(pass).withFailureHandler(fail).sub(v);
+    }
+    function pass(result) {
+      document.getElementById('lod').style.display = 'none';
+      document.getElementById('rs').innerHTML = result;
+      document.getElementById('inputCard').style.display = 'none';
+      document.getElementById('lab').reset();
+    }
+    function fail(error) {
+      document.getElementById('lod').style.display = 'none';
+      document.getElementById('rs').innerHTML = '<div class="error"><i class="fa fa-exclamation-triangle"></i> Error: ' + error.message + '</div>';
+    }
+    function showMainPage() {
+      document.getElementById('inputCard').style.display = 'block';
+      document.getElementById('rs').innerHTML = '';
+      document.getElementById('lab').reset();
+      window.scrollTo(0, 0);
+    }
+    function Print(divId) {
+      var printContent = document.getElementById(divId).innerHTML;
+      var printWindow = window.open('', '', 'height=842,width=595');
+      printWindow.document.write('<html><head><title>Print Result</title>');
+      printWindow.document.write('<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">');
+      printWindow.document.write('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">');
+      printWindow.document.write('<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">');
+      printWindow.document.write('<style>@media print { body {font-family: "Poppins", sans-serif; page-break-before: avoid;} table {width: 100%; border-collapse: collapse;} th, td {border: 1px solid #ddd; padding: 8px;} .signature {margin-top: 50px; text-align: right;} .signature::after {content: "___________________"; display: block; width: 200px; font-weight: bold;} }</style>');
+      printWindow.document.write('</head><body>');
+      printWindow.document.write(printContent);
+      printWindow.document.write('<div class="signature">Principal\'s Signature</div>');
+      printWindow.document.write('</body></html>');
+      printWindow.document.close();
+      printWindow.print();
+    }
+  </script>
 </body>
 </html>
-
-
