@@ -8,14 +8,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Same CSS as before */
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #0b5ed7 0%, #2980b9 100%);
             min-height: 100vh;
         }
-        .container {
-            max-width: 1200px;
-        }
+        .container { max-width: 1200px; }
         .header {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -48,9 +47,7 @@
             height: 100%;
             border: none;
         }
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
+        .service-card:hover { transform: translateY(-10px); }
         .service-icon {
             width: 70px;
             height: 70px;
@@ -111,6 +108,13 @@
             border-color: #0b5ed7;
             box-shadow: 0 0 0 0.25rem rgba(11, 94, 215, 0.25);
         }
+        #resultDisplay {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
@@ -128,9 +132,7 @@
             <!-- Application Submission -->
             <div class="col-md-6 col-lg-3">
                 <div class="service-card text-center">
-                    <div class="service-icon">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
+                    <div class="service-icon"><i class="fas fa-file-alt"></i></div>
                     <h3 class="service-title">Application Submission</h3>
                     <p>Submit new admission application online</p>
                     <a href="#" class="btn-service" data-bs-toggle="modal" data-bs-target="#applicationModal">
@@ -142,9 +144,7 @@
             <!-- Download Application -->
             <div class="col-md-6 col-lg-3">
                 <div class="service-card text-center">
-                    <div class="service-icon">
-                        <i class="fas fa-download"></i>
-                    </div>
+                    <div class="service-icon"><i class="fas fa-download"></i></div>
                     <h3 class="service-title">Download Application</h3>
                     <p>Download your submitted application form</p>
                     <a href="#" class="btn-service" data-bs-toggle="modal" data-bs-target="#downloadModal">
@@ -156,9 +156,7 @@
             <!-- Hall Ticket -->
             <div class="col-md-6 col-lg-3">
                 <div class="service-card text-center">
-                    <div class="service-icon">
-                        <i class="fas fa-ticket-alt"></i>
-                    </div>
+                    <div class="service-icon"><i class="fas fa-ticket-alt"></i></div>
                     <h3 class="service-title">Hall Ticket</h3>
                     <p>Download your exam hall ticket</p>
                     <a href="#" class="btn-service" data-bs-toggle="modal" data-bs-target="#hallticketModal">
@@ -170,9 +168,7 @@
             <!-- Check Result -->
             <div class="col-md-6 col-lg-3">
                 <div class="service-card text-center">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
+                    <div class="service-icon"><i class="fas fa-chart-line"></i></div>
                     <h3 class="service-title">Check Result</h3>
                     <p>Check your exam results online</p>
                     <a href="#" class="btn-service" data-bs-toggle="modal" data-bs-target="#resultModal">
@@ -183,25 +179,10 @@
         </div>
 
         <!-- Result Display Area -->
-        <div id="resultDisplay" class="mt-4"></div>
+        <div id="resultDisplay"></div>
     </div>
 
     <!-- Modals -->
-    <!-- Application Modal -->
-    <div class="modal fade" id="applicationModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"><i class="fas fa-file-alt me-2"></i>Application Form</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <p class="text-center">Application form will be available soon.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Download Modal -->
     <div class="modal fade" id="downloadModal" tabindex="-1">
         <div class="modal-dialog">
@@ -214,11 +195,11 @@
                     <form id="downloadForm">
                         <div class="mb-3">
                             <label class="form-label">Mobile Number *</label>
-                            <input type="tel" class="form-control" pattern="\d{10}" required>
+                            <input type="tel" class="form-control" id="appMobile" pattern="\d{10}" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Date of Birth *</label>
-                            <input type="date" class="form-control" required>
+                            <input type="date" class="form-control" id="appDob" required>
                         </div>
                         <button type="submit" class="btn btn-primary w-100">
                             <i class="fas fa-search me-2"></i>Search
@@ -241,11 +222,11 @@
                     <form id="hallticketForm">
                         <div class="mb-3">
                             <label class="form-label">Mobile Number *</label>
-                            <input type="tel" class="form-control" pattern="\d{10}" required>
+                            <input type="tel" class="form-control" id="ticketMobile" pattern="\d{10}" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Date of Birth *</label>
-                            <input type="date" class="form-control" required>
+                            <input type="date" class="form-control" id="ticketDob" required>
                         </div>
                         <button type="submit" class="btn btn-warning w-100">
                             <i class="fas fa-download me-2"></i>Download
@@ -268,11 +249,11 @@
                     <form id="resultForm">
                         <div class="mb-3">
                             <label class="form-label">Mobile Number *</label>
-                            <input type="tel" class="form-control" pattern="\d{10}" required>
+                            <input type="tel" class="form-control" id="resultMobile" pattern="\d{10}" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Date of Birth *</label>
-                            <input type="date" class="form-control" required>
+                            <input type="date" class="form-control" id="resultDob" required>
                         </div>
                         <button type="submit" class="btn btn-info w-100">
                             <i class="fas fa-search me-2"></i>Check Result
@@ -295,51 +276,113 @@
         // Your Google Apps Script URL
         const scriptURL = 'https://script.google.com/macros/s/AKfycbyi6_R4hZ37MEmk0EFkEn7oj_j_kMSKY6YDYE9_4uKYvKpm-gEbplB3ucLgTvxQLVmvpg/exec';
         
-        // Handle form submissions
+        // Show notification
+        function showMessage(message, type = 'info') {
+            alert(message);
+        }
+        
+        // Handle Download Application
         document.getElementById('downloadForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            const mobile = this.querySelector('input[type="tel"]').value;
-            const dob = this.querySelector('input[type="date"]').value;
+            const mobile = document.getElementById('appMobile').value;
+            const dob = document.getElementById('appDob').value;
             
             try {
-                const response = await fetch(`${scriptURL}?mobile=${mobile}&dob=${dob}&type=application`);
-                const html = await response.text();
-                document.getElementById('resultDisplay').innerHTML = html;
+                showMessage('Searching for application...', 'info');
                 
-                // Close modal
-                const modal = bootstrap.Modal.getInstance(document.getElementById('downloadModal'));
-                modal.hide();
+                const response = await fetch(`${scriptURL}?mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}&type=application`);
+                const result = await response.json();
                 
-                // Show success message
-                alert('Application data loaded successfully!');
+                if (result.success) {
+                    document.getElementById('resultDisplay').innerHTML = result.html;
+                    document.getElementById('resultDisplay').style.display = 'block';
+                    
+                    // Close modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('downloadModal'));
+                    modal.hide();
+                    
+                    // Scroll to result
+                    document.getElementById('resultDisplay').scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    showMessage(result.html || 'Application not found', 'error');
+                }
             } catch (error) {
-                alert('Error loading application. Please try again.');
+                showMessage('Error: ' + error.message, 'error');
             }
         });
         
-        // Similar handlers for other forms
+        // Handle Hall Ticket Download
         document.getElementById('hallticketForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            alert('Hall ticket download feature will connect to Google Apps Script');
-        });
-        
-        document.getElementById('resultForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const mobile = this.querySelector('input[type="tel"]').value;
-            const dob = this.querySelector('input[type="date"]').value;
+            const mobile = document.getElementById('ticketMobile').value;
+            const dob = document.getElementById('ticketDob').value;
             
             try {
-                const response = await fetch(`${scriptURL}?roll=${mobile}&dob=${dob}`);
-                const html = await response.text();
-                document.getElementById('resultDisplay').innerHTML = html;
+                showMessage('Searching for hall ticket...', 'info');
                 
-                // Close modal
-                const modal = bootstrap.Modal.getInstance(document.getElementById('resultModal'));
-                modal.hide();
+                const response = await fetch(`${scriptURL}?mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}&type=hallticket`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    document.getElementById('resultDisplay').innerHTML = result.html;
+                    document.getElementById('resultDisplay').style.display = 'block';
+                    
+                    // Close modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('hallticketModal'));
+                    modal.hide();
+                    
+                    // Scroll to result
+                    document.getElementById('resultDisplay').scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    showMessage(result.html || 'Hall ticket not found', 'error');
+                }
             } catch (error) {
-                alert('Error loading result. Please try again.');
+                showMessage('Error: ' + error.message, 'error');
             }
         });
+        
+        // Handle Result Check
+        document.getElementById('resultForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const mobile = document.getElementById('resultMobile').value;
+            const dob = document.getElementById('resultDob').value;
+            
+            try {
+                showMessage('Checking result...', 'info');
+                
+                const response = await fetch(`${scriptURL}?mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}&type=result`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    document.getElementById('resultDisplay').innerHTML = result.html;
+                    document.getElementById('resultDisplay').style.display = 'block';
+                    
+                    // Close modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('resultModal'));
+                    modal.hide();
+                    
+                    // Scroll to result
+                    document.getElementById('resultDisplay').scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    showMessage(result.html || 'Result not found', 'error');
+                }
+            } catch (error) {
+                showMessage('Error: ' + error.message, 'error');
+            }
+        });
+        
+        // Reset forms when modals are closed
+        const modals = ['downloadModal', 'hallticketModal', 'resultModal'];
+        modals.forEach(modalId => {
+            const modal = document.getElementById(modalId);
+            modal.addEventListener('hidden.bs.modal', function() {
+                const form = modal.querySelector('form');
+                if (form) form.reset();
+            });
+        });
+        
+        // Add current year to footer
+        document.querySelector('.footer p').innerHTML = document.querySelector('.footer p').innerHTML.replace('2024', new Date().getFullYear());
     </script>
 </body>
 </html>
