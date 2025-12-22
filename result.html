@@ -3,825 +3,714 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Result Portal - Darunnajath College</title>
-  
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Results - Darunnajath Shareeath & Arts College, Karuvarakundu</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --secondary: #f59e0b;
-      --success: #10b981;
-      --danger: #ef4444;
-      --light: #f8fafc;
-      --dark: #1e293b;
-      --gray: #64748b;
-      --border: #e2e8f0;
+      --primary: #0d6efd;
+      --primary-light: #3a8cff;
+      --primary-dark: #0a58ca;
+      --secondary: #20c997;
+      --accent: #ff6b6b;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     }
 
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
+    /* Animated Gradient Background */
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
-      padding: 15px;
-      line-height: 1.5;
-    }
-
-    .container {
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    /* Input Card - Reduced size */
-    .input-card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-
-    .card-header {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      padding: 15px 20px;
-    }
-
-    .card-header h2 {
-      font-size: 1.2rem;
-      font-weight: 600;
       display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      gap: 10px;
-    }
-
-    .card-body {
-      padding: 25px;
-    }
-
-    /* Header Styles */
-    .main-header {
-      text-align: center;
-      margin-bottom: 40px;
-      color: white;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
+      padding: 20px;
+      overflow-x: hidden;
       position: relative;
     }
 
-    .header-badge {
-      background: var(--glass);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 8px 20px;
-      border-radius: 25px;
-      display: inline-block;
-      margin-bottom: 15px;
-      font-size: 0.9rem;
-    }
-
-    .main-header h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-      text-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      background: linear-gradient(135deg, #fff, #e0f2fe);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .main-header p {
-      font-size: 1.3rem;
-      opacity: 0.9;
-      font-weight: 300;
-    }
-
-    /* Form Styles */
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 500;
-      color: var(--dark);
-      font-size: 0.95rem;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 12px 15px;
-      border: 2px solid var(--border);
-      border-radius: 8px;
-      font-size: 14px;
-      transition: all 0.3s ease;
-      background: white;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    .form-control:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-    }
-
-    .btn {
-      padding: 12px 25px;
-      border: none;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      box-shadow: 0 3px 10px rgba(37, 99, 235, 0.3);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
-    }
-
-    .btn-secondary {
-      background: linear-gradient(135deg, var(--secondary), #eab308);
-      color: white;
-      box-shadow: 0 3px 10px rgba(245, 158, 11, 0.3);
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
-    }
-
-    /* Result Card - Reduced size */
-    .result-card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      overflow: hidden;
-      margin: 15px auto;
-      border: 1px solid var(--border);
-    }
-
-    .result-header {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      padding: 20px;
-    }
-
-    .college-brand {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .college-logo {
-      width: 60px;
-      height: 60px;
-      border-radius: 10px;
-      object-fit: cover;
-      border: 2px solid rgba(255,255,255,0.3);
-    }
-
-    .college-info h1 {
-      font-size: 1.3rem;
-      margin-bottom: 5px;
-      font-weight: 600;
-    }
-
-    .college-info h2 {
-      font-size: 1rem;
-      margin-bottom: 5px;
-      font-weight: 500;
-      opacity: 0.95;
-    }
-
-    .college-info h3 {
-      font-size: 0.9rem;
-      margin-bottom: 10px;
-      font-weight: 400;
-      opacity: 0.9;
-    }
-
-    .exam-title {
-      background: rgba(255,255,255,0.2);
-      padding: 6px 12px;
-      border-radius: 15px;
-      font-weight: 600;
-      font-size: 0.85rem;
-      display: inline-block;
-    }
-
-    .student-profile, .results-section, .performance-summary {
-      padding: 20px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .section-header {
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .section-header h3 {
-      font-size: 1.1rem;
-      color: var(--primary);
-      font-weight: 600;
-    }
-
-    .profile-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      background: var(--light);
-      padding: 15px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-    }
-
-    .profile-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .profile-item:last-child {
-      border-bottom: none;
-    }
-
-    .profile-item label {
-      font-weight: 600;
-      color: var(--gray);
-      font-size: 0.9rem;
-    }
-
-    .profile-item span {
-      font-weight: 500;
-      color: var(--dark);
-      font-size: 0.9rem;
-    }
-
-    /* Table Styles - Smaller */
-    .table-container {
-      overflow-x: auto;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-    }
-
-    .modern-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-    }
-
-    .modern-table th {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      padding: 12px 10px;
-      text-align: left;
-      font-weight: 600;
-      font-size: 0.85rem;
-    }
-
-    .modern-table td {
-      padding: 10px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .subject-name {
-      font-weight: 500;
-      color: var(--dark);
-      font-size: 0.9rem;
-    }
-
-    .score {
-      font-weight: 600;
-      color: var(--primary);
-    }
-
-    .grade {
-      font-weight: 600;
-      padding: 4px 8px;
-      border-radius: 6px;
-      background: var(--success);
-      color: white;
-      display: inline-block;
-      min-width: 70px;
-      text-align: center;
-      font-size: 0.85rem;
-    }
-
-    .grade-fail {
-      background: var(--danger);
-    }
-
-    .status {
-      padding: 4px 10px;
-      border-radius: 15px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-
-    .status-pass {
-      background: #dcfce7;
-      color: #166534;
-      border: 1px solid #bbf7d0;
-    }
-
-    .status-fail {
-      background: #fecaca;
-      color: #991b1b;
-      border: 1px solid #fca5a5;
-    }
-
-    /* Summary Styles - Smaller */
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 15px;
-      margin-bottom: 20px;
-    }
-
-    .summary-card {
-      background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-      border-radius: 10px;
-      padding: 15px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      border: 1px solid var(--border);
-    }
-
-    .summary-icon {
-      width: 45px;
-      height: 45px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.1rem;
-    }
-
-    .summary-content h4 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 5px;
-      color: var(--primary);
-    }
-
-    .summary-content p {
-      font-weight: 500;
-      color: var(--dark);
-      margin-bottom: 3px;
-      font-size: 0.9rem;
-    }
-
-    .summary-content small {
-      color: var(--gray);
-      font-size: 0.8rem;
-    }
-
-    .final-result {
-      text-align: center;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 15px;
-    }
-
-    .result-passed {
-      background: linear-gradient(135deg, #dcfce7, #bbf7d0);
-      border: 2px solid #86efac;
-    }
-
-    .result-failed {
-      background: linear-gradient(135deg, #fecaca, #fca5a5);
-      border: 2px solid #f87171;
-    }
-
-    .result-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 10px;
-    }
-
-    .result-passed .result-badge {
-      background: linear-gradient(135deg, var(--success), #34d399);
-      color: white;
-    }
-
-    .result-failed .result-badge {
-      background: linear-gradient(135deg, var(--danger), #f87171);
-      color: white;
-    }
-
-    .result-message {
-      font-weight: 500;
-      margin: 0;
-      font-size: 0.95rem;
-    }
-
-    .result-footer {
-      display: flex;
-      justify-content: space-between;
-      padding: 15px 20px;
-      border-top: 1px solid var(--border);
-      font-size: 0.85rem;
-      color: var(--gray);
-    }
-
-    .footer-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    /* Error Message - Smaller */
-    .error-message {
-      text-align: center;
-      padding: 30px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-      margin: 15px auto;
-      max-width: 400px;
-      border: 1px solid var(--border);
-    }
-
-    .error-message i {
-      font-size: 2.5rem;
-      color: var(--danger);
-      margin-bottom: 15px;
-    }
-
-    .error-message h3 {
-      color: var(--danger);
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-    }
-
-    .error-message p {
-      color: var(--gray);
-      font-size: 0.95rem;
-    }
-
-    /* Loading Overlay */
-    .loader-container {
+    body::before {
+      content: '';
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.7);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255,255,255,0.05) 0%, transparent 50%);
+      z-index: -2;
     }
 
-    .modern-loader {
-      width: 60px;
-      height: 60px;
-      border: 3px solid rgba(255,255,255,0.3);
-      border-top: 3px solid white;
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating particles */
+    .particles {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.3);
       border-radius: 50%;
-      animation: spin 1s linear infinite;
+      animation: float 20s infinite linear;
     }
 
-    .loading-text {
-      color: white;
-      margin-top: 15px;
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(100vw) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* Headings with animation */
+    .header-container {
+      text-align: center;
+      margin-bottom: 2rem;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    .main-heading {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      background: linear-gradient(to right, #fff, #f8f9fa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 1px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px rgba(255,255,255,0.5),
+                     0 0 20px rgba(255,255,255,0.3),
+                     0 0 30px rgba(255,255,255,0.2);
+      }
+      to {
+        text-shadow: 0 0 20px rgba(255,255,255,0.8),
+                     0 0 30px rgba(255,255,255,0.6),
+                     0 0 40px rgba(255,255,255,0.4);
+      }
+    }
+
+    .sub-heading {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #e0f7ff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.3s forwards;
+    }
+
+    .sub-heading-small {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #c2e9ff;
+      text-shadow: 0 1px 5px rgba(0,0,0,0.15);
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.6s forwards;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Result Box with glass morphism */
+    .result-box {
+      position: relative;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      color: var(--dark);
+      border-radius: 25px;
+      padding: 3rem;
+      text-align: center;
+      max-width: 550px;
+      width: 100%;
+      box-shadow: 
+        0 25px 50px rgba(0,0,0,0.25),
+        inset 0 1px 0 rgba(255,255,255,0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(255,255,255,0.2);
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.9s forwards;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .result-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255,255,255,0.1),
+        transparent
+      );
+      transform: rotate(45deg);
+      animation: shine 3s infinite;
+      z-index: -1;
+    }
+
+    @keyframes shine {
+      0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+      }
+      100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+      }
+    }
+
+    .result-box:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 
+        0 35px 70px rgba(0,0,0,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+
+    .result-box h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      font-size: 2rem;
+      color: var(--primary-dark);
+      position: relative;
+      display: inline-block;
+      padding-bottom: 15px;
+    }
+
+    .result-box h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--gradient-1);
+      border-radius: 2px;
+    }
+
+    .result-box p {
+      color: #6c757d;
+      margin-bottom: 2.5rem;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* Enhanced Buttons */
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .result-btn {
+      position: relative;
+      border: none;
+      border-radius: 15px;
+      padding: 1.2rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      width: 100%;
+      color: #fff;
+      background: var(--gradient-1);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      overflow: hidden;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+    }
+
+    .result-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-2);
+      transition: 0.5s;
+      z-index: -1;
+    }
+
+    .result-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
+      color: #fff;
+    }
+
+    .result-btn:hover::before {
+      left: 0;
+    }
+
+    .result-btn:nth-child(2) {
+      background: var(--gradient-3);
+      box-shadow: 0 10px 25px rgba(79, 172, 254, 0.3);
+    }
+
+    .result-btn:nth-child(2)::before {
+      background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    }
+
+    .result-btn:nth-child(3) {
+      background: var(--gradient-2);
+      box-shadow: 0 10px 25px rgba(240, 147, 251, 0.3);
+    }
+
+    .result-btn:nth-child(3)::before {
+      background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+    }
+
+    .result-btn i {
+      font-size: 1.3rem;
+      transition: transform 0.3s;
+    }
+
+    .result-btn:hover i {
+      transform: translateX(5px);
+    }
+
+    /* Back button */
+    .back-btn {
+      border-radius: 12px;
+      padding: 0.9rem 2rem;
+      font-weight: 600;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      background: transparent;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .back-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--primary);
+      transition: 0.4s;
+      z-index: -1;
+    }
+
+    .back-btn:hover {
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(13, 110, 253, 0.3);
+    }
+
+    .back-btn:hover::before {
+      left: 0;
+    }
+
+    .back-btn i {
+      transition: transform 0.3s;
+    }
+
+    .back-btn:hover i {
+      transform: translateX(-5px);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.8);
       font-size: 0.95rem;
+      margin: 3rem 0 1rem;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      padding: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      width: 100%;
+      max-width: 800px;
+      animation: fadeIn 1s ease-out 1.2s forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Loading animation */
+    .loader {
+      display: none;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+      margin-right: 10px;
     }
 
     @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      to { transform: rotate(360deg); }
     }
 
-    /* Action Buttons */
-    .action-buttons {
-      text-align: center;
-      margin: 15px 0;
+    /* Ripple effect for buttons */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      transform: scale(0);
+      animation: ripple 0.6s linear;
+      pointer-events: none;
     }
 
-    .action-buttons .btn {
-      margin: 0 5px;
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
     }
 
+    /* Mobile Responsive */
     @media (max-width: 768px) {
+      .main-heading {
+        font-size: 2.5rem;
+      }
+      
+      .sub-heading {
+        font-size: 1.5rem;
+      }
+      
+      .sub-heading-small {
+        font-size: 1rem;
+      }
+      
+      .result-box {
+        padding: 2rem 1.5rem;
+        margin: 0 15px;
+      }
+      
+      .result-box h2 {
+        font-size: 1.7rem;
+      }
+      
+      .result-btn {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+      }
+      
+      .back-btn {
+        padding: 0.8rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .main-heading {
+        font-size: 2rem;
+      }
+      
+      .sub-heading {
+        font-size: 1.2rem;
+      }
+      
+      .result-box {
+        padding: 1.5rem;
+      }
+      
+      .result-btn {
+        padding: 0.9rem;
+        font-size: 0.95rem;
+      }
+    }
+
+    /* Print styles */
+    @media print {
       body {
-        padding: 10px;
+        background: white !important;
+        color: black !important;
       }
       
-      .container {
-        max-width: 100%;
+      .result-box {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
       }
       
-      .college-brand {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
-      }
-      
-      .profile-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .summary-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .card-body {
-        padding: 20px 15px;
-      }
-      
-      .result-footer {
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-      }
-      
-      .action-buttons .btn {
-        margin-bottom: 10px;
+      .btn-container, .back-btn {
+        display: none !important;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Main Header -->
-    <header class="main-header" id="main-header">
-      <h1>Darunnajath Shareeath & Arts College Karuvarakundu</h1>
-      <p>Official Result Portal</p>
-    </header>
-    <!-- Input Card -->
-    <div id="exam-result-input" class="input-card">
-      <div class="card-header">
-        <h2><i class="fas fa-id-card-alt"></i> Examination Result</h2>
-      </div>
-      <div class="card-body">
-        <form id="lab" onsubmit="event.preventDefault(); subm(this)">
-          <div class="form-group">
-            <label class="form-label" for="roll">
-              <i class="fas fa-user-graduate"></i> Registration Number
-            </label>
-            <input type="text" name="roll" id="roll" class="form-control" 
-                   placeholder="Enter your registration number" required>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="dob">
-              <i class="fas fa-calendar-check"></i> Date of Birth
-            </label>
-            <input type="date" name="dob" id="dob" class="form-control" required>
-          </div>
-          
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary">
-              <i class="fas fa-search"></i> Get Results
-            </button>
-          </div>
-        </form>
-      </div>
+
+  <!-- Floating particles -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Header -->
+  <div class="header-container">
+    <h1 class="main-heading">RESULT PORTAL</h1>
+    <div class="sub-heading">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div>
+    <div class="sub-heading-small">KARUVARAKUNDU</div>
+  </div>
+
+  <!-- Result Box -->
+  <div class="result-box">
+    <h2>Final Examination Result 2025-26</h2>
+    <p>Click below to view your latest examination results.</p>
+
+    <div class="btn-container">
+      <a href="https://script.google.com/macros/s/AKfycbxJhfIlJjHFnpaUocvYQO7eP0NZnrlvjbWB7FphkhMKXwp4LcCuSdbnjxwnelWAkY6o/exec" 
+         class="result-btn" 
+         id="finalResultBtn">
+        <i class="fa-solid fa-book-open-reader"></i>
+        <span>Annual Examination</span>
+      </a>
+      
+      <a href="https://jamiajuniorcolleges.com/student/" 
+         class="result-btn" 
+         id="samasthaBtn">
+        <i class="fa-solid fa-book-open-reader"></i>
+        <span>Jamia Junior College Public Exam</span>
+      </a>
+      
+      <a href="maintenance.html" 
+         class="result-btn" 
+         id="toppersBtn">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <span>Toppers Poster</span>
+      </a>
     </div>
 
-    <!-- Results Display Area -->
-    <div id='PrintDiv'>
-      <div id="rs"></div>
+    <div class="text-center mt-4">
+      <a href="index.html" class="back-btn" id="backBtn">
+        <i class="fas fa-arrow-left"></i>
+        <span>Back to Home</span>
+      </a>
     </div>
   </div>
 
-  <!-- Loading Overlay -->
-  <div class="loader-container" id="lod">
-    <div style="text-align: center;">
-      <div class="modern-loader"></div>
-      <div class="loading-text">Processing your request...</div>
-    </div>
-  </div>
+  <footer>
+    © 2025 Noorussalam Madrasa | All Rights Reserved<br>
+    <small>Designed by Suhail kerala</small>
+  </footer>
 
   <script>
-    function subm(v){
-      document.getElementById('lod').style.display = 'flex';
-      google.script.run
-        .withFailureHandler(fail)
-        .withSuccessHandler(pass)
-        .sub(v);
-    }                    
+    // Create floating particles
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 25;
       
-    function fail(v){
-      document.getElementById('lod').style.display = 'none';
-      document.getElementById("rs").innerHTML = v;
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random size
+        const size = Math.random() * 20 + 5;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Random position
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        
+        // Random animation delay and duration
+        particle.style.animationDelay = `${Math.random() * 5}s`;
+        particle.style.animationDuration = `${Math.random() * 10 + 15}s`;
+        
+        // Random opacity
+        particle.style.opacity = Math.random() * 0.5 + 0.2;
+        
+        particlesContainer.appendChild(particle);
+      }
     }
     
-    function pass(v){
-      document.getElementById('lod').style.display = 'none';
-      document.getElementById("rs").innerHTML = v;
-      document.getElementById("lab").reset();
+    // Ripple effect for buttons
+    function createRipple(event) {
+      const button = event.currentTarget;
+      const circle = document.createElement('span');
+      const diameter = Math.max(button.clientWidth, button.clientHeight);
+      const radius = diameter / 2;
       
-      // Hide input form when showing results
-      document.getElementById("exam-result-input").style.display = 'none';
-    }
-
-    function showMainPage() {
-      // Show input form again
-      document.getElementById("exam-result-input").style.display = 'block';
+      circle.style.width = circle.style.height = `${diameter}px`;
+      circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
+      circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
+      circle.classList.add('ripple');
       
-      // Clear results
-      document.getElementById("rs").innerHTML = '';
-      
-      // Reset form
-      document.getElementById("lab").reset();
-      
-      // Scroll to top
-      window.scrollTo(0, 0);
-    }
-
-    function Print(DivID) {
-      var iPrint = document.getElementById(DivID).innerHTML;
-      if (!iPrint || iPrint.trim() === '<div id="rs"></div>') {
-        alert("No result data available to print. Please submit the form first.");
-        return;
+      const ripple = button.getElementsByClassName('ripple')[0];
+      if (ripple) {
+        ripple.remove();
       }
       
-      var docprint = window.open("", "_blank");
-      docprint.document.open();
-      docprint.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Official Marksheet - Darunnajath College</title>
-          <style>
-            @page {
-              size: A4;
-              margin: 10mm;
-            }
-            @media print {
-              body {
-                width: 210mm;
-                height: 297mm;
-                margin: 0;
-                padding: 0;
-                font-family: 'Poppins', sans-serif;
-                font-size: 11px;
-                line-height: 1.4;
-              }
-              .print-container {
-                width: 100%;
-                height: 100%;
-                padding: 10mm;
-                box-sizing: border-box;
-              }
-              .result-card {
-                width: 100%;
-                margin: 0;
-              }
-              .result-header {
-                background: #2563eb;
-                color: white;
-                padding: 15px;
-              }
-              .college-brand {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-              }
-              .college-logo {
-                width: 50px;
-                height: 50px;
-                border-radius: 8px;
-              }
-              .college-info h1 {
-                font-size: 14px;
-                margin-bottom: 3px;
-              }
-              .college-info h2 {
-                font-size: 12px;
-                margin-bottom: 3px;
-              }
-              .college-info h3 {
-                font-size: 11px;
-                margin-bottom: 5px;
-              }
-              .exam-title {
-                background: rgba(255,255,255,0.2);
-                padding: 3px 8px;
-                border-radius: 10px;
-                font-size: 10px;
-              }
-              .student-profile, .results-section, .performance-summary {
-                padding: 15px;
-                border-bottom: 1px solid #e2e8f0;
-              }
-              .section-header h3 {
-                font-size: 12px;
-                color: #2563eb;
-                margin-bottom: 10px;
-              }
-              .profile-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 8px;
-                padding: 10px;
-                font-size: 10px;
-              }
-              .profile-item {
-                padding: 6px 0;
-              }
-              .modern-table {
-                font-size: 9px;
-              }
-              .modern-table th {
-                padding: 8px 6px;
-                font-size: 10px;
-              }
-              .modern-table td {
-                padding: 6px;
-              }
-              .summary-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-                margin-bottom: 10px;
-              }
-              .summary-card {
-                padding: 10px;
-                gap: 8px;
-              }
-              .summary-icon {
-                width: 35px;
-                height: 35px;
-                font-size: 1rem;
-              }
-              .summary-content h4 {
-                font-size: 1.1rem;
-              }
-              .final-result {
-                padding: 15px;
-                margin-top: 10px;
-              }
-              .result-badge {
-                padding: 6px 12px;
-                font-size: 0.9rem;
-              }
-              .official-signature {
-                text-align: right;
-                margin-top: 20px;
-                padding-top: 10px;
-                border-top: 1px solid #000;
-                font-size: 11px;
-              }
-              .action-buttons {
-                display: none !important;
-              }
-            }
-            body {
-              font-family: Arial, sans-serif;
-              margin: 0;
-              padding: 0;
-            }
-            .print-container {
-              width: 210mm;
-              min-height: 297mm;
-              padding: 10mm;
-            }
-          </style>
-        </head>
-        <body onload="window.print();">
-          <div class="print-container">
-            ${iPrint}
-            <div class="official-signature">
-              Authorized Signature<br>
-              Controller of Examinations
-            </div>
-          </div>
-        </body>
-        </html>
-      `);
-      docprint.document.close();
+      button.appendChild(circle);
     }
+    
+    // Loading animation for buttons
+    function addLoadingAnimation(button) {
+      const loader = document.createElement('div');
+      loader.className = 'loader';
+      button.insertBefore(loader, button.firstChild);
+      button.disabled = true;
+    }
+    
+    // Initialize everything when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Create particles
+      createParticles();
+      
+      // Add ripple effect to all buttons
+      const buttons = document.querySelectorAll('.result-btn, .back-btn');
+      buttons.forEach(button => {
+        button.addEventListener('click', createRipple);
+      });
+      
+      // Add loading effect to result buttons
+      const resultButtons = document.querySelectorAll('.result-btn');
+      resultButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          // Only add loading if it's an external link
+          if (this.href.includes('http')) {
+            e.preventDefault();
+            addLoadingAnimation(this);
+            
+            // Simulate loading and redirect
+            setTimeout(() => {
+              window.location.href = this.href;
+            }, 500);
+          }
+        });
+      });
+      
+      // Add hover effect to result box
+      const resultBox = document.querySelector('.result-box');
+      resultBox.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px) scale(1.02)';
+      });
+      
+      resultBox.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+      });
+      
+      // Add keyboard navigation
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          document.getElementById('backBtn').click();
+        }
+        
+        if (e.altKey && e.key === '1') {
+          document.getElementById('finalResultBtn').click();
+        }
+        
+        if (e.altKey && e.key === '2') {
+          document.getElementById('samasthaBtn').click();
+        }
+        
+        if (e.altKey && e.key === '3') {
+          document.getElementById('toppersBtn').click();
+        }
+      });
+      
+      // Add scroll animation
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+      
+      // Observe elements for scroll animations
+      const animatedElements = document.querySelectorAll('.result-box, footer');
+      animatedElements.forEach(el => {
+        observer.observe(el);
+      });
+    });
+    
+    // Add smooth scroll behavior
+    document.documentElement.style.scrollBehavior = 'smooth';
+    
+    // Add touch optimization for mobile
+    document.addEventListener('touchstart', function() {}, {passive: true});
   </script>
 </body>
 </html>
+
+
 
