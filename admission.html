@@ -1,21 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College Portal | Darunnajath Shareeath & Arts College</title>
+    <title>College Portal | ഡാറുണ്ണജാത്ത് ഷറീഅത്ത് & ആർട്സ് കോളേജ്</title>
+    
+    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- W3.CSS -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
+    <!-- PDF Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
     <style>
         :root {
-            --primary: #0b5ed7;
-            --secondary: #2c3e50;
-            --success: #28a745;
-            --warning: #ffc107;
-            --danger: #dc3545;
-            --light: #f8f9fa;
-            --dark: #343a40;
+            --primary-blue: #1d29d6;
+            --secondary-blue: #0b5ed7;
+            --accent-green: #2E7D32;
+            --dark-red: #800000;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
         }
         
         * {
@@ -25,27 +39,45 @@
         }
         
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0b5ed7 0%, #2980b9 100%);
+            font-family: 'Poppins', 'Noto Sans Malayalam', sans-serif;
+            background: linear-gradient(135deg, var(--light-bg) 0%, #e3f2fd 100%);
             min-height: 100vh;
             color: #333;
             line-height: 1.6;
         }
         
+        /* Malayalam Font Support */
+        .malayalam {
+            font-family: 'Noto Sans Malayalam', sans-serif;
+        }
+        
+        /* Main Container */
         .main-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
         
+        /* Header Card */
         .header-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--white);
             border-radius: 20px;
             padding: 30px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-            border: 5px solid white;
+            box-shadow: 0 10px 30px var(--shadow);
+            border: 3px solid var(--primary-blue);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-green));
         }
         
         .college-logo {
@@ -53,204 +85,460 @@
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid var(--primary);
+            border: 5px solid var(--primary-blue);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .college-logo:hover {
+            transform: scale(1.05);
         }
         
         .college-name {
-            color: var(--primary);
+            color: var(--primary-blue);
+            font-family: 'Impact', 'Noto Sans Malayalam', sans-serif;
+            font-size: 2.2rem;
             font-weight: 700;
-            font-size: 2rem;
             margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
         }
         
-        .college-address {
-            color: var(--secondary);
-            font-size: 1.1rem;
+        .college-subtitle {
+            color: var(--accent-green);
+            font-weight: 600;
+            font-size: 1.2rem;
             margin-bottom: 5px;
         }
         
-        .services-container {
+        .college-address {
+            color: #555;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        
+        .portal-title {
+            color: var(--dark-red);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px dashed #ddd;
+        }
+        
+        /* Services Dashboard */
+        .dashboard-container {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+        
+        .dashboard-title {
+            text-align: center;
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .dashboard-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-green));
+            border-radius: 2px;
+        }
+        
+        .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
         
         .service-card {
-            background: white;
+            background: linear-gradient(135deg, var(--white) 0%, #f8f9fa 100%);
             border-radius: 15px;
             padding: 25px;
             text-align: center;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 25px var(--shadow);
             transition: all 0.3s ease;
-            border: none;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-green));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
         
         .service-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-color: var(--primary-blue);
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
         }
         
         .service-icon {
             width: 70px;
             height: 70px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary) 0%, #2980b9 100%);
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--white);
             font-size: 30px;
             margin: 0 auto 20px;
-            box-shadow: 0 5px 15px rgba(11, 94, 215, 0.3);
+            box-shadow: 0 5px 15px rgba(29, 41, 214, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
         }
         
         .service-title {
-            color: var(--secondary);
+            color: var(--primary-blue);
             font-weight: 600;
             margin-bottom: 15px;
             font-size: 1.3rem;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .service-desc {
             color: #666;
             margin-bottom: 20px;
-            font-size: 0.95rem;
-            flex-grow: 1;
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
         
         .btn-service {
-            background: linear-gradient(135deg, var(--primary) 0%, #2980b9 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: var(--white);
             border: none;
             border-radius: 50px;
-            padding: 10px 25px;
+            padding: 12px 25px;
             font-weight: 600;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
             width: 100%;
-            box-shadow: 0 4px 10px rgba(11, 94, 215, 0.2);
+            box-shadow: 0 4px 10px rgba(29, 41, 214, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-service::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
         }
         
         .btn-service:hover {
             transform: translateY(-3px);
-            box-shadow: 0 7px 15px rgba(11, 94, 215, 0.3);
-            color: white;
+            box-shadow: 0 7px 15px rgba(29, 41, 214, 0.3);
+            color: var(--white);
         }
         
-        .modal-content {
-            border-radius: 15px;
-            border: none;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        .btn-service:hover::before {
+            left: 100%;
         }
         
-        .modal-header {
-            background: linear-gradient(135deg, var(--primary) 0%, #2980b9 100%);
-            color: white;
-            border-radius: 15px 15px 0 0;
-            border: none;
-            padding: 20px 30px;
-        }
-        
-        .modal-title {
-            font-weight: 600;
-            font-size: 1.2rem;
-        }
-        
-        .modal-body {
+        /* Form Containers */
+        .form-container {
+            background: var(--white);
+            border-radius: 20px;
             padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px var(--shadow);
+            display: none;
+        }
+        
+        .form-title {
+            color: var(--primary-blue);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
         }
         
         .form-label {
             font-weight: 600;
-            color: var(--secondary);
+            color: #444;
             margin-bottom: 8px;
+            display: block;
+            font-size: 1rem;
+        }
+        
+        .form-label.required::after {
+            content: " *";
+            color: #dc3545;
         }
         
         .form-control {
             padding: 12px 15px;
             border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 16px;
             transition: all 0.3s ease;
-            margin-bottom: 20px;
+            width: 100%;
+            font-family: 'Poppins', 'Noto Sans Malayalam', sans-serif;
         }
         
         .form-control:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 0.25rem rgba(11, 94, 215, 0.25);
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 0.25rem rgba(29, 41, 214, 0.25);
+            outline: none;
         }
         
         .btn-submit {
-            background: linear-gradient(135deg, var(--primary) 0%, #2980b9 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: var(--white);
             border: none;
-            border-radius: 8px;
-            padding: 12px;
+            border-radius: 10px;
+            padding: 14px 30px;
             font-weight: 600;
             font-size: 16px;
             width: 100%;
             transition: all 0.3s ease;
             margin-top: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(29, 41, 214, 0.2);
         }
         
         .btn-submit:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(11, 94, 215, 0.3);
+            box-shadow: 0 7px 15px rgba(29, 41, 214, 0.3);
         }
         
-        .result-container {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
             margin-top: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            display: none;
+            justify-content: center;
         }
         
-        .footer {
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
-            opacity: 0.9;
-        }
-        
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: white;
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+            color: var(--white);
+            border: none;
             border-radius: 10px;
-            padding: 15px 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            z-index: 9999;
-            display: none;
-            max-width: 400px;
-            border-left: 5px solid var(--primary);
+            padding: 14px 30px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
         }
         
-        .loader {
-            display: none;
-            text-align: center;
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 15px rgba(108, 117, 125, 0.3);
+            color: var(--white);
+        }
+        
+        /* Result Container */
+        .result-container {
+            background: var(--white);
+            border-radius: 20px;
             padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px var(--shadow);
+            display: none;
+            border: 2px solid var(--primary-blue);
+            position: relative;
+        }
+        
+        .result-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #f0f0f0;
+        }
+        
+        .result-title {
+            color: var(--primary-blue);
+            font-family: 'Andalus', 'Noto Sans Malayalam', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .result-content {
+            padding: 20px;
+        }
+        
+        .student-info {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .info-row {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #dee2e6;
+            align-items: center;
+        }
+        
+        .info-row:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #495057;
+            width: 200px;
+            min-width: 200px;
+            font-size: 1rem;
+        }
+        
+        .info-value {
+            color: #212529;
+            flex: 1;
+            font-size: 1rem;
+        }
+        
+        .status-box {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            margin: 25px 0;
+            border: 2px solid #28a745;
+        }
+        
+        .status-title {
+            color: #155724;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .status-value {
+            color: #155724;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-action {
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-width: 160px;
+        }
+        
+        .btn-print {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: var(--white);
+        }
+        
+        .btn-download {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: var(--white);
+        }
+        
+        .btn-new {
+            background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+            color: var(--white);
+        }
+        
+        .btn-back {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+            color: var(--white);
+        }
+        
+        .btn-action:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Loading Spinner */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            flex-direction: column;
         }
         
         .spinner {
+            width: 70px;
+            height: 70px;
             border: 5px solid #f3f3f3;
-            border-top: 5px solid var(--primary);
+            border-top: 5px solid var(--primary-blue);
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
+            margin-bottom: 20px;
         }
         
         @keyframes spin {
@@ -258,6 +546,161 @@
             100% { transform: rotate(360deg); }
         }
         
+        .loading-text {
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--white);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 9998;
+            display: none;
+            max-width: 400px;
+            border-left: 5px solid var(--primary-blue);
+            transform: translateX(100%);
+            animation: slideIn 0.3s ease forwards;
+        }
+        
+        @keyframes slideIn {
+            to { transform: translateX(0); }
+        }
+        
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .notification-icon {
+            font-size: 24px;
+            color: var(--primary-blue);
+        }
+        
+        .notification-message {
+            flex: 1;
+            color: #333;
+        }
+        
+        .notification-close {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 20px;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .notification-close:hover {
+            background: #f8f9fa;
+            color: #333;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            color: #666;
+            border-top: 1px solid #e9ecef;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--secondary-blue);
+            text-decoration: underline;
+        }
+        
+        /* Ticker */
+        .ticker-container {
+            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue));
+            color: var(--white);
+            padding: 12px 0;
+            overflow: hidden;
+            margin-top: 30px;
+            border-radius: 10px;
+        }
+        
+        .ticker-content {
+            display: inline-block;
+            white-space: nowrap;
+            padding-left: 100%;
+            animation: ticker 25s linear infinite;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .ticker-content:hover {
+            animation-play-state: paused;
+        }
+        
+        /* Instructions */
+        .instructions-box {
+            background: #e8f4ff;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 2px solid #cfe2ff;
+        }
+        
+        .instructions-title {
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .instructions-list {
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+        
+        .instructions-list li {
+            margin-bottom: 10px;
+            color: #444;
+        }
+        
+        .instructions-list li:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Responsive Design */
         @media (max-width: 768px) {
             .main-container {
                 padding: 15px;
@@ -268,413 +711,660 @@
             }
             
             .college-name {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
             
-            .services-container {
+            .services-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .service-card {
+                padding: 20px;
+            }
+            
+            .info-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .info-label {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+            
+            .info-value {
+                width: 100%;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn-action {
+                width: 100%;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .ticker-content {
+                font-size: 0.9rem;
             }
         }
         
-        .btn-close-white {
-            filter: invert(1) grayscale(100%) brightness(200%);
+        /* Print Styles */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            
+            .result-container,
+            .result-container * {
+                visibility: visible;
+            }
+            
+            .result-container {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                margin: 0;
+                padding: 20px;
+                box-shadow: none;
+                border: none;
+            }
+            
+            .action-buttons,
+            .footer,
+            .notification,
+            .loading-overlay {
+                display: none !important;
+            }
         }
         
-        .instructions {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 20px;
-            font-size: 0.9rem;
+        /* Radio & Checkbox Groups */
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
         }
         
-        .instructions ul {
-            padding-left: 20px;
-            margin-bottom: 0;
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
         }
         
-        .instructions li {
-            margin-bottom: 5px;
+        .radio-option input[type="radio"] {
+            width: 18px;
+            height: 18px;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-blue);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-blue);
         }
     </style>
 </head>
 <body>
-    <div class="main-container">
-        <!-- Header -->
-        <div class="header-card">
-            <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="college-logo">
-            <h1 class="college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</h1>
-            <p class="college-address">Punnakkad, Karuvarakundu, Malappuram District</p>
-            <p class="text-muted">Affiliated to University of Calicut</p>
-            <h4 class="mt-3" style="color: var(--primary);">Student Portal</h4>
-        </div>
-        
-        <!-- Services -->
-        <div class="services-container">
-            <!-- Download Application -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-file-download"></i>
-                </div>
-                <h3 class="service-title">Download Application</h3>
-                <p class="service-desc">Download your submitted admission application form with complete details.</p>
-                <a href="#" class="btn-service" data-bs-toggle="modal" data-bs-target="#downloadModal">
-                    <i class="fas fa-download me-2"></i> Download Application
-                </a>
-            </div>
-            
-            <!-- Hall Ticket -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-ticket-alt"></i>
-                </div>
-                <h3 class="service-title">Hall Ticket</h3>
-                <p class="service-desc">Download your exam hall ticket with exam date, time, and venue details.</p>
-                <a href="#" class="btn-service" data-bs-toggle="modal" data-bs-target="#hallticketModal">
-                    <i class="fas fa-ticket-alt me-2"></i> Get Hall Ticket
-                </a>
-            </div>
-            
-            <!-- Check Result -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h3 class="service-title">Check Result</h3>
-                <p class="service-desc">Check your examination results online with detailed performance analysis.</p>
-                <a href="#" class="btn-service" data-bs-toggle="modal" data-bs-target="#resultModal">
-                    <i class="fas fa-search me-2"></i> Check Result
-                </a>
-            </div>
-        </div>
-        
-        <!-- Instructions -->
-        <div class="instructions">
-            <h5><i class="fas fa-info-circle me-2"></i>Instructions:</h5>
-            <ul>
-                <li>All services require your <strong>registered mobile number</strong> and <strong>date of birth</strong></li>
-                <li>Mobile number must be 10 digits</li>
-                <li>Date of birth format: YYYY-MM-DD (Example: 2000-12-31)</li>
-                <li>Results will open in a new window for printing</li>
-            </ul>
-        </div>
-        
-        <!-- Result Display Area -->
-        <div id="resultContainer" class="result-container"></div>
-        
-        <!-- Loading Spinner -->
-        <div id="loader" class="loader">
-            <div class="spinner"></div>
-            <h4>Processing...</h4>
-            <p>Please wait while we fetch your data</p>
-        </div>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <div class="loading-text">കാത്തിരിക്കുക...</div>
     </div>
     
     <!-- Notification -->
-    <div id="notification" class="notification"></div>
-    
-    <!-- Modals -->
-    <!-- Download Application Modal -->
-    <div class="modal fade" id="downloadModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"><i class="fas fa-file-download me-2"></i>Download Application</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="downloadForm">
-                        <div class="mb-3">
-                            <label class="form-label">Mobile Number *</label>
-                            <input type="tel" class="form-control" id="appMobile" 
-                                   pattern="\d{10}" 
-                                   placeholder="10 digit mobile number"
-                                   required>
-                            <small class="text-muted">Enter the mobile number used during application</small>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Date of Birth *</label>
-                            <input type="date" class="form-control" id="appDob" required>
-                            <small class="text-muted">Format: YYYY-MM-DD</small>
-                        </div>
-                        <button type="submit" class="btn-submit">
-                            <i class="fas fa-search me-2"></i>Search Application
-                        </button>
-                    </form>
-                </div>
-            </div>
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <i class="fas fa-info-circle notification-icon"></i>
+            <div class="notification-message" id="notificationMessage"></div>
+            <button class="notification-close" onclick="hideNotification()">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
     </div>
     
-    <!-- Hall Ticket Modal -->
-    <div class="modal fade" id="hallticketModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"><i class="fas fa-ticket-alt me-2"></i>Hall Ticket</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Header -->
+        <div class="header-card text-center">
+            <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="college-logo">
+            <h1 class="college-name malayalam">ഡാറുണ്ണജാത്ത് ഷറീഅത്ത് & ആർട്സ് കോളേജ്</h1>
+            <h2 class="college-subtitle">DARUNNAJATH SHAREEATH & ARTS COLLEGE</h2>
+            <p class="college-address">പുന്നക്കാട്, കരുവാരകുണ്ട്, മലപ്പുറം ജില്ല</p>
+            <p class="college-address">Punnakkad, Karuvarakundu, Malappuram District</p>
+            <h3 class="portal-title">വിദ്യാർത്ഥി പോർട്ടൽ | Student Portal</h3>
+        </div>
+        
+        <!-- Dashboard -->
+        <div class="dashboard-container" id="dashboardView">
+            <h2 class="dashboard-title">സേവനങ്ങൾ | Services</h2>
+            
+            <div class="services-grid">
+                <!-- Application Download -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-download"></i>
+                    </div>
+                    <h3 class="service-title malayalam">അപേക്ഷ ഡൗൺലോഡ്</h3>
+                    <p class="service-desc malayalam">സമർപ്പിച്ച അപേക്ഷാ ഫോം ഡൗൺലോഡ് ചെയ്യുക</p>
+                    <button class="btn-service" onclick="showForm('applicationForm')">
+                        <i class="fas fa-download me-2"></i> ഡൗൺലോഡ്
+                    </button>
                 </div>
-                <div class="modal-body">
-                    <form id="hallticketForm">
-                        <div class="mb-3">
-                            <label class="form-label">Mobile Number *</label>
-                            <input type="tel" class="form-control" id="ticketMobile" 
-                                   pattern="\d{10}"
-                                   placeholder="10 digit mobile number"
-                                   required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Date of Birth *</label>
-                            <input type="date" class="form-control" id="ticketDob" required>
-                            <small class="text-muted">Format: YYYY-MM-DD</small>
-                        </div>
-                        <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, var(--warning) 0%, #ffaa00 100%);">
-                            <i class="fas fa-download me-2"></i>Download Hall Ticket
-                        </button>
-                    </form>
+                
+                <!-- Hall Ticket -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <h3 class="service-title malayalam">ഹാൾ ടിക്കറ്റ്</h3>
+                    <p class="service-desc malayalam">പരീക്ഷാ ഹാൾ ടിക്കറ്റ് ഡൗൺലോഡ് ചെയ്യുക</p>
+                    <button class="btn-service" onclick="showForm('hallticketForm')">
+                        <i class="fas fa-ticket-alt me-2"></i> ടിക്കറ്റ്
+                    </button>
+                </div>
+                
+                <!-- Result Check -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="service-title malayalam">ഫലം പരിശോധിക്കുക</h3>
+                    <p class="service-desc malayalam">പരീക്ഷാ ഫലം പരിശോധിക്കുക</p>
+                    <button class="btn-service" onclick="showForm('resultForm')">
+                        <i class="fas fa-search me-2"></i> ഫലം
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Instructions -->
+            <div class="instructions-box">
+                <h3 class="instructions-title">
+                    <i class="fas fa-info-circle"></i>
+                    നിർദ്ദേശങ്ങൾ | Instructions
+                </h3>
+                <ul class="instructions-list">
+                    <li class="malayalam">എല്ലാ സേവനങ്ങൾക്കും <strong>രജിസ്റ്റർ ചെയ്ത മൊബൈൽ നമ്പർ</strong> ഉം <strong>ജനന തീയതി</strong> ഉം ആവശ്യമാണ്</li>
+                    <li class="malayalam">മൊബൈൽ നമ്പർ 10 അക്കങ്ങൾ ആയിരിക്കണം</li>
+                    <li class="malayalam">ജനന തീയതി ഫോർമാറ്റ്: YYYY-MM-DD (ഉദാഹരണം: 2000-12-31)</li>
+                    <li class="malayalam">ഫലങ്ങൾ പ്രിന്റ് ചെയ്യാനും ഡൗൺലോഡ് ചെയ്യാനും പറ്റും</li>
+                </ul>
+            </div>
+            
+            <!-- News Ticker -->
+            <div class="ticker-container">
+                <div class="ticker-content">
+                    <span>📢 കോളേജ് പ്രവേശനം തുടങ്ങി | College Admissions Started</span>
+                    &nbsp;&nbsp;•&nbsp;&nbsp;
+                    <span>🎓 പരീക്ഷാ ഫലങ്ങൾ പ്രഖ്യാപിച്ചു | Exam Results Announced</span>
+                    &nbsp;&nbsp;•&nbsp;&nbsp;
+                    <span>📅 ഹാൾ ടിക്കറ്റ് ഡൗൺലോഡ് ചെയ്യുക | Download Hall Tickets</span>
+                    &nbsp;&nbsp;•&nbsp;&nbsp;
+                    <span>📞 സഹായത്തിന്: 1234567890 | Helpline: 1234567890</span>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <!-- Result Modal -->
-    <div class="modal fade" id="resultModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"><i class="fas fa-chart-line me-2"></i>Check Result</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        
+        <!-- Application Form -->
+        <div class="form-container" id="applicationForm">
+            <h2 class="form-title malayalam">
+                <i class="fas fa-file-download me-2"></i>
+                അപേക്ഷ ഡൗൺലോഡ് | Application Download
+            </h2>
+            
+            <form id="downloadApplicationForm">
+                <div class="form-group">
+                    <label class="form-label required malayalam">
+                        <i class="fas fa-mobile-alt me-2"></i>
+                        മൊബൈൽ നമ്പർ | Mobile Number
+                    </label>
+                    <input type="tel" class="form-control" id="appMobile" 
+                           pattern="\d{10}" 
+                           placeholder="10 അക്ക മൊബൈൽ നമ്പർ | 10 digit mobile number"
+                           required>
+                    <small class="text-muted malayalam">അപേക്ഷ സമർപ്പിക്കുമ്പോൾ ഉപയോഗിച്ച മൊബൈൽ നമ്പർ</small>
                 </div>
-                <div class="modal-body">
-                    <form id="resultForm">
-                        <div class="mb-3">
-                            <label class="form-label">Mobile Number *</label>
-                            <input type="tel" class="form-control" id="resultMobile" 
-                                   pattern="\d{10}"
-                                   placeholder="10 digit mobile number"
-                                   required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Date of Birth *</label>
-                            <input type="date" class="form-control" id="resultDob" required>
-                            <small class="text-muted">Format: YYYY-MM-DD</small>
-                        </div>
-                        <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);">
-                            <i class="fas fa-search me-2"></i>Check Result
-                        </button>
-                    </form>
+                
+                <div class="form-group">
+                    <label class="form-label required malayalam">
+                        <i class="fas fa-calendar-alt me-2"></i>
+                        ജനന തീയതി | Date of Birth
+                    </label>
+                    <input type="date" class="form-control" id="appDob" required>
+                    <small class="text-muted malayalam">ഫോർമാറ്റ്: YYYY-MM-DD</small>
                 </div>
-            </div>
+                
+                <button type="submit" class="btn-submit" id="submitApplicationBtn">
+                    <i class="fas fa-search me-2"></i>
+                    അപേക്ഷ തിരയുക | Search Application
+                </button>
+                
+                <div class="button-group">
+                    <button type="button" class="btn-secondary" onclick="showDashboard()">
+                        <i class="fas fa-arrow-left me-2"></i>
+                        തിരികെ | Back
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Hall Ticket Form -->
+        <div class="form-container" id="hallticketForm">
+            <h2 class="form-title malayalam">
+                <i class="fas fa-ticket-alt me-2"></i>
+                ഹാൾ ടിക്കറ്റ് | Hall Ticket
+            </h2>
+            
+            <form id="downloadHallticketForm">
+                <div class="form-group">
+                    <label class="form-label required malayalam">
+                        <i class="fas fa-mobile-alt me-2"></i>
+                        മൊബൈൽ നമ്പർ | Mobile Number
+                    </label>
+                    <input type="tel" class="form-control" id="ticketMobile" 
+                           pattern="\d{10}"
+                           placeholder="10 അക്ക മൊബൈൽ നമ്പർ | 10 digit mobile number"
+                           required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required malayalam">
+                        <i class="fas fa-calendar-alt me-2"></i>
+                        ജനന തീയതി | Date of Birth
+                    </label>
+                    <input type="date" class="form-control" id="ticketDob" required>
+                    <small class="text-muted malayalam">ഫോർമാറ്റ്: YYYY-MM-DD</small>
+                </div>
+                
+                <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);" id="submitTicketBtn">
+                    <i class="fas fa-download me-2"></i>
+                    ഹാൾ ടിക്കറ്റ് ഡൗൺലോഡ് | Download Hall Ticket
+                </button>
+                
+                <div class="button-group">
+                    <button type="button" class="btn-secondary" onclick="showDashboard()">
+                        <i class="fas fa-arrow-left me-2"></i>
+                        തിരികെ | Back
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Result Form -->
+        <div class="form-container" id="resultForm">
+            <h2 class="form-title malayalam">
+                <i class="fas fa-chart-line me-2"></i>
+                ഫലം പരിശോധിക്കുക | Check Result
+            </h2>
+            
+            <form id="checkResultForm">
+                <div class="form-group">
+                    <label class="form-label required malayalam">
+                        <i class="fas fa-mobile-alt me-2"></i>
+                        മൊബൈൽ നമ്പർ | Mobile Number
+                    </label>
+                    <input type="tel" class="form-control" id="resultMobile" 
+                           pattern="\d{10}"
+                           placeholder="10 അക്ക മൊബൈൽ നമ്പർ | 10 digit mobile number"
+                           required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required malayalam">
+                        <i class="fas fa-calendar-alt me-2"></i>
+                        ജനന തീയതി | Date of Birth
+                    </label>
+                    <input type="date" class="form-control" id="resultDob" required>
+                    <small class="text-muted malayalam">ഫോർമാറ്റ്: YYYY-MM-DD</small>
+                </div>
+                
+                <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);" id="submitResultBtn">
+                    <i class="fas fa-search me-2"></i>
+                    ഫലം പരിശോധിക്കുക | Check Result
+                </button>
+                
+                <div class="button-group">
+                    <button type="button" class="btn-secondary" onclick="showDashboard()">
+                        <i class="fas fa-arrow-left me-2"></i>
+                        തിരികെ | Back
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Result Display -->
+        <div class="result-container" id="resultDisplay">
+            <!-- Result will be loaded here dynamically -->
         </div>
     </div>
     
     <!-- Footer -->
-    <div class="footer">
-        <p>© <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.</p>
-        <p>Contact: info@darunnajathcollege.edu.in | Phone: +91 1234567890</p>
-        <p style="opacity: 0.7; font-size: 0.9rem; margin-top: 10px;">
-            Powered by Google Apps Script & GitHub Pages
+    <footer class="footer">
+        <p>© <span id="currentYear"></span> ഡാറുണ്ണജാത്ത് ഷറീഅത്ത് & ആർട്സ് കോളേജ്. എല്ലാ അവകാശങ്ങളും നിക്ഷിപ്തം.</p>
+        <p>© <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All Rights Reserved.</p>
+        
+        <div class="footer-links">
+            <a href="#" class="footer-link malayalam">വിലാസം | Address</a>
+            <a href="#" class="footer-link malayalam">ഫോൺ | Phone</a>
+            <a href="#" class="footer-link malayalam">ഇമെയിൽ | Email</a>
+            <a href="#" class="footer-link malayalam">സഹായം | Help</a>
+        </div>
+        
+        <p class="mt-3" style="font-size: 0.8rem; color: #888;">
+            Powered by Google Apps Script & Modern Web Technologies
         </p>
-    </div>
+    </footer>
     
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Configuration
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzD14oCSaBMnVhP7fFwSLMntR2vUSG28FawA1MlGd2Tyr_P81nB_BOPprc1YgPFSrhUrg/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyi6_R4hZ37MEmk0EFkEn7oj_j_kMSKY6YDYE9_4uKYvKpm-gEbplB3ucLgTvxQLVmvpg/exec';
         
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Set max date for date inputs
+            const today = new Date().toISOString().split('T')[0];
+            document.querySelectorAll('input[type="date"]').forEach(input => {
+                input.setAttribute('max', today);
+            });
+            
+            // Form submissions
+            document.getElementById('downloadApplicationForm').addEventListener('submit', handleApplicationSubmit);
+            document.getElementById('downloadHallticketForm').addEventListener('submit', handleHallticketSubmit);
+            document.getElementById('checkResultForm').addEventListener('submit', handleResultSubmit);
+        });
         
-        // Show notification
+        // Show/Hide functions
+        function showDashboard() {
+            hideAllForms();
+            document.getElementById('dashboardView').style.display = 'block';
+        }
+        
+        function showForm(formId) {
+            hideAllForms();
+            document.getElementById(formId).style.display = 'block';
+        }
+        
+        function hideAllForms() {
+            document.getElementById('dashboardView').style.display = 'none';
+            document.getElementById('applicationForm').style.display = 'none';
+            document.getElementById('hallticketForm').style.display = 'none';
+            document.getElementById('resultForm').style.display = 'none';
+            document.getElementById('resultDisplay').style.display = 'none';
+        }
+        
+        // Notification functions
         function showNotification(message, type = 'info') {
             const notification = document.getElementById('notification');
-            const icon = type === 'success' ? 'check-circle' : 
-                        type === 'error' ? 'exclamation-circle' : 
-                        'info-circle';
-            const color = type === 'success' ? '#28a745' : 
-                         type === 'error' ? '#dc3545' : 
-                         '#0b5ed7';
+            const messageEl = document.getElementById('notificationMessage');
+            const icon = notification.querySelector('.notification-icon');
             
-            notification.innerHTML = `
-                <div style="display: flex; align-items: center;">
-                    <i class="fas fa-${icon} me-3" style="color: ${color}; font-size: 20px;"></i>
-                    <div>${message}</div>
-                </div>
-            `;
+            // Set icon based on type
+            switch(type) {
+                case 'success':
+                    icon.className = 'fas fa-check-circle notification-icon';
+                    notification.style.borderLeftColor = '#28a745';
+                    icon.style.color = '#28a745';
+                    break;
+                case 'error':
+                    icon.className = 'fas fa-exclamation-circle notification-icon';
+                    notification.style.borderLeftColor = '#dc3545';
+                    icon.style.color = '#dc3545';
+                    break;
+                case 'warning':
+                    icon.className = 'fas fa-exclamation-triangle notification-icon';
+                    notification.style.borderLeftColor = '#ffc107';
+                    icon.style.color = '#ffc107';
+                    break;
+                default:
+                    icon.className = 'fas fa-info-circle notification-icon';
+                    notification.style.borderLeftColor = '#1d29d6';
+                    icon.style.color = '#1d29d6';
+            }
+            
+            messageEl.textContent = message;
             notification.style.display = 'block';
-            notification.style.borderLeftColor = color;
             
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 5000);
+            // Auto hide after 5 seconds
+            setTimeout(hideNotification, 5000);
         }
         
-        // Show loader
-        function showLoader() {
-            document.getElementById('loader').style.display = 'block';
-            document.getElementById('resultContainer').style.display = 'none';
+        function hideNotification() {
+            document.getElementById('notification').style.display = 'none';
         }
         
-        // Hide loader
-        function hideLoader() {
-            document.getElementById('loader').style.display = 'none';
+        // Loading functions
+        function showLoading() {
+            document.getElementById('loadingOverlay').style.display = 'flex';
         }
         
-        // Open result in new window
-        function openResultInNewWindow(html) {
-            const newWindow = window.open();
-            newWindow.document.write(html);
-            newWindow.document.close();
+        function hideLoading() {
+            document.getElementById('loadingOverlay').style.display = 'none';
         }
         
-        // Handle Download Application
-        document.getElementById('downloadForm').addEventListener('submit', async function(e) {
+        // Handle Application Form Submit
+        async function handleApplicationSubmit(e) {
             e.preventDefault();
+            
             const mobile = document.getElementById('appMobile').value;
             const dob = document.getElementById('appDob').value;
             
+            // Validation
             if (!/^\d{10}$/.test(mobile)) {
-                showNotification('Please enter a valid 10-digit mobile number', 'error');
+                showNotification('10 അക്ക മൊബൈൽ നമ്പർ നൽകുക | Please enter 10 digit mobile number', 'error');
                 return;
             }
             
             if (!dob) {
-                showNotification('Please select date of birth', 'error');
+                showNotification('ജനന തീയതി തിരഞ്ഞെടുക്കുക | Please select date of birth', 'error');
                 return;
             }
             
-            showLoader();
-            showNotification('Searching for application...', 'info');
+            showLoading();
             
             try {
                 const url = `${scriptURL}?mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}&type=application`;
                 const response = await fetch(url);
                 const html = await response.text();
                 
-                if (html.includes('Error') && html.includes('not found')) {
-                    showNotification('Application not found. Please check details.', 'error');
+                // Check if it's an error
+                if (html.includes('Error') || html.includes('not found') || html.includes('not found')) {
+                    showNotification('അപേക്ഷ കണ്ടെത്തിയില്ല. വിവരങ്ങൾ പരിശോധിക്കുക | Application not found. Please check details.', 'error');
                 } else {
-                    openResultInNewWindow(html);
-                    showNotification('Application found and opened in new window', 'success');
+                    // Display result in new window for printing
+                    const newWindow = window.open();
+                    newWindow.document.write(html);
+                    newWindow.document.close();
                     
-                    // Close modal
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('downloadModal'));
-                    modal.hide();
+                    showNotification('അപേക്ഷ കണ്ടെത്തി. പുതിയ വിന്റോയിൽ തുറക്കുന്നു | Application found. Opening in new window.', 'success');
                     
-                    // Reset form
-                    this.reset();
+                    // Reset form and show dashboard
+                    e.target.reset();
+                    showDashboard();
                 }
             } catch (error) {
-                showNotification('Error: ' + error.message, 'error');
+                showNotification('പിഴവ് സംഭവിച്ചു. ദയവായി വീണ്ടും ശ്രമിക്കുക | Error occurred. Please try again.', 'error');
+                console.error('Error:', error);
             } finally {
-                hideLoader();
+                hideLoading();
             }
-        });
+        }
         
-        // Handle Hall Ticket
-        document.getElementById('hallticketForm').addEventListener('submit', async function(e) {
+        // Handle Hallticket Form Submit
+        async function handleHallticketSubmit(e) {
             e.preventDefault();
+            
             const mobile = document.getElementById('ticketMobile').value;
             const dob = document.getElementById('ticketDob').value;
             
+            // Validation
             if (!/^\d{10}$/.test(mobile)) {
-                showNotification('Please enter a valid 10-digit mobile number', 'error');
+                showNotification('10 അക്ക മൊബൈൽ നമ്പർ നൽകുക | Please enter 10 digit mobile number', 'error');
                 return;
             }
             
             if (!dob) {
-                showNotification('Please select date of birth', 'error');
+                showNotification('ജനന തീയതി തിരഞ്ഞെടുക്കുക | Please select date of birth', 'error');
                 return;
             }
             
-            showLoader();
-            showNotification('Searching for hall ticket...', 'info');
+            showLoading();
             
             try {
                 const url = `${scriptURL}?mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}&type=hallticket`;
                 const response = await fetch(url);
                 const html = await response.text();
                 
-                if (html.includes('Error') && html.includes('not found')) {
-                    showNotification('Hall ticket not found. Please check details.', 'error');
+                // Check if it's an error
+                if (html.includes('Error') || html.includes('not found') || html.includes('not found')) {
+                    showNotification('ഹാൾ ടിക്കറ്റ് കണ്ടെത്തിയില്ല. വിവരങ്ങൾ പരിശോധിക്കുക | Hall ticket not found. Please check details.', 'error');
                 } else {
-                    openResultInNewWindow(html);
-                    showNotification('Hall ticket found and opened in new window', 'success');
+                    // Display result in new window for printing
+                    const newWindow = window.open();
+                    newWindow.document.write(html);
+                    newWindow.document.close();
                     
-                    // Close modal
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('hallticketModal'));
-                    modal.hide();
+                    showNotification('ഹാൾ ടിക്കറ്റ് കണ്ടെത്തി. പുതിയ വിന്റോയിൽ തുറക്കുന്നു | Hall ticket found. Opening in new window.', 'success');
                     
-                    // Reset form
-                    this.reset();
+                    // Reset form and show dashboard
+                    e.target.reset();
+                    showDashboard();
                 }
             } catch (error) {
-                showNotification('Error: ' + error.message, 'error');
+                showNotification('പിഴവ് സംഭവിച്ചു. ദയവായി വീണ്ടും ശ്രമിക്കുക | Error occurred. Please try again.', 'error');
+                console.error('Error:', error);
             } finally {
-                hideLoader();
+                hideLoading();
             }
-        });
+        }
         
-        // Handle Result Check
-        document.getElementById('resultForm').addEventListener('submit', async function(e) {
+        // Handle Result Form Submit
+        async function handleResultSubmit(e) {
             e.preventDefault();
+            
             const mobile = document.getElementById('resultMobile').value;
             const dob = document.getElementById('resultDob').value;
             
+            // Validation
             if (!/^\d{10}$/.test(mobile)) {
-                showNotification('Please enter a valid 10-digit mobile number', 'error');
+                showNotification('10 അക്ക മൊബൈൽ നമ്പർ നൽകുക | Please enter 10 digit mobile number', 'error');
                 return;
             }
             
             if (!dob) {
-                showNotification('Please select date of birth', 'error');
+                showNotification('ജനന തീയതി തിരഞ്ഞെടുക്കുക | Please select date of birth', 'error');
                 return;
             }
             
-            showLoader();
-            showNotification('Checking result...', 'info');
+            showLoading();
             
             try {
                 const url = `${scriptURL}?mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}&type=result`;
                 const response = await fetch(url);
                 const html = await response.text();
                 
-                if (html.includes('Error') && html.includes('not found')) {
-                    showNotification('Result not found. Please check details.', 'error');
+                // Check if it's an error
+                if (html.includes('Error') || html.includes('not found') || html.includes('not found')) {
+                    showNotification('ഫലം കണ്ടെത്തിയില്ല. വിവരങ്ങൾ പരിശോധിക്കുക | Result not found. Please check details.', 'error');
                 } else {
-                    openResultInNewWindow(html);
-                    showNotification('Result found and opened in new window', 'success');
+                    // Display result in new window for printing
+                    const newWindow = window.open();
+                    newWindow.document.write(html);
+                    newWindow.document.close();
                     
-                    // Close modal
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('resultModal'));
-                    modal.hide();
+                    showNotification('ഫലം കണ്ടെത്തി. പുതിയ വിന്റോയിൽ തുറക്കുന്നു | Result found. Opening in new window.', 'success');
                     
-                    // Reset form
-                    this.reset();
+                    // Reset form and show dashboard
+                    e.target.reset();
+                    showDashboard();
                 }
             } catch (error) {
-                showNotification('Error: ' + error.message, 'error');
+                showNotification('പിഴവ് സംഭവിച്ചു. ദയവായി വീണ്ടും ശ്രമിക്കുക | Error occurred. Please try again.', 'error');
+                console.error('Error:', error);
             } finally {
-                hideLoader();
+                hideLoading();
             }
-        });
+        }
         
-        // Reset forms when modals are closed
-        const modals = ['downloadModal', 'hallticketModal', 'resultModal'];
-        modals.forEach(modalId => {
-            const modal = document.getElementById(modalId);
-            modal.addEventListener('hidden.bs.modal', function() {
-                const form = modal.querySelector('form');
-                if (form) form.reset();
+        // Download as PDF function
+        function downloadAsPDF(elementId, filename) {
+            const element = document.getElementById(elementId);
+            
+            // Temporarily hide action buttons for PDF
+            const actionButtons = element.querySelector('.action-buttons');
+            if (actionButtons) {
+                actionButtons.style.display = 'none';
+            }
+            
+            html2canvas(element, {
+                scale: 2,
+                useCORS: true,
+                windowWidth: element.scrollWidth,
+                windowHeight: element.scrollHeight
+            }).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF({
+                    orientation: 'portrait',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+                
+                const imgWidth = 190;
+                const pageHeight = 297;
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                let heightLeft = imgHeight;
+                let position = 10;
+                
+                pdf.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+                
+                // Multiple pages if needed
+                while (heightLeft >= pageHeight) {
+                    position = heightLeft - pageHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'PNG', 10, 10 - position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                }
+                
+                pdf.save(filename);
+                
+                // Restore action buttons
+                if (actionButtons) {
+                    actionButtons.style.display = 'flex';
+                }
+                
+                showNotification('PDF ഡൗൺലോഡ് ചെയ്തു | PDF downloaded successfully', 'success');
+            }).catch(error => {
+                console.error('PDF generation error:', error);
+                showNotification('PDF ഡൗൺലോഡിൽ പിഴവ് | Error downloading PDF', 'error');
+                
+                // Restore action buttons
+                if (actionButtons) {
+                    actionButtons.style.display = 'flex';
+                }
             });
-        });
-        
-        // Set max date for date inputs (today)
-        const today = new Date().toISOString().split('T')[0];
-        document.querySelectorAll('input[type="date"]').forEach(input => {
-            input.setAttribute('max', today);
-        });
+        }
     </script>
 </body>
 </html>
