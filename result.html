@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Darunnajath College - Result Portal</title>
     
-    <!-- CSS ലിങ്കുകൾ -->
+    <!-- CSS Links -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     
@@ -83,19 +83,13 @@
 
     .main-header h1 {
       font-family: 'Poppins', sans-serif;
-      font-size: 3rem;
+      font-size: 2.8rem;
       font-weight: 600;
       margin-bottom: 10px;
       text-shadow: 0 4px 8px rgba(0,0,0,0.3);
       background: linear-gradient(135deg, #fff, #e0f2fe);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-    }
-
-    .main-header p {
-      font-size: 1.3rem;
-      opacity: 0.9;
-      font-weight: 300;
     }
 
     /* Glass Card Styles */
@@ -111,7 +105,7 @@
     }
 
     .glass-card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-5px);
       box-shadow: var(--shadow-lg);
       border-color: rgba(255, 255, 255, 0.3);
     }
@@ -363,7 +357,7 @@
       color: var(--dark);
     }
 
-    /* Enhanced Table Styles */
+    /* Table Styles */
     .table-container {
       overflow-x: auto;
       border-radius: 16px;
@@ -445,7 +439,7 @@
       border: 1px solid #fca5a5;
     }
 
-    /* Enhanced Summary Styles */
+    /* Summary Styles */
     .summary-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -561,7 +555,7 @@
       font-size: 1.1rem;
     }
 
-    /* Enhanced Error Message Styles */
+    /* Error Message Styles */
     .error-message {
       text-align: center;
       padding: 50px;
@@ -591,7 +585,7 @@
       font-size: 1.1rem;
     }
 
-    /* Enhanced Loading Animation */
+    /* Loading Animation */
     .loader-container {
       position: fixed;
       top: 0;
@@ -675,6 +669,51 @@
       box-shadow: 0 8px 25px rgba(245, 158, 11, 0.6);
     }
 
+    /* API Configuration Styles */
+    .config-section {
+      display: none;
+    }
+    
+    .api-info {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-top: 5px;
+      display: block;
+    }
+    
+    .mode-selector {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .mode-btn {
+      flex: 1;
+      padding: 15px;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      color: white;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .mode-btn:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    
+    .mode-btn.active {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-color: rgba(255,255,255,0.5);
+    }
+    
+    .mode-btn i {
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+      display: block;
+    }
+
     /* Responsive Design */
     @media (max-width: 768px) {
       .main-header h1 {
@@ -701,8 +740,33 @@
       .card-body {
         padding: 25px 20px;
       }
+      
+      .mode-selector {
+        flex-direction: column;
+      }
     }
-  </style>
+    
+    @media (max-width: 480px) {
+      .main-header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .card-header h2 {
+        font-size: 1.3rem;
+      }
+      
+      .college-logo {
+        width: 70px;
+        height: 70px;
+      }
+      
+      .summary-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+    }
+    </style>
 </head>
 <body>
   <!-- Floating Background Elements -->
@@ -717,7 +781,50 @@
         <i class="fas fa-star"></i> Official Result Portal
       </div>
       <h1>Darunnajath Shareeath & Arts College Karuvarakundu</h1>
+      <p>Academic Year 2023-2024</p>
     </header>
+
+    <!-- Configuration Section (Hidden by default) -->
+    <div class="glass-card config-section" id="config-section">
+      <div class="card-header">
+        <h2><i class="fas fa-cogs"></i> Configuration</h2>
+      </div>
+      <div class="card-body">
+        <div class="mode-selector" id="mode-selector">
+          <div class="mode-btn active" data-mode="direct">
+            <i class="fas fa-bolt"></i>
+            <div>Direct Mode</div>
+            <small>Use AppScript Directly</small>
+          </div>
+          <div class="mode-btn" data-mode="api">
+            <i class="fas fa-cloud"></i>
+            <div>API Mode</div>
+            <small>Use via GitHub</small>
+          </div>
+        </div>
+        
+        <div id="api-config" style="display: none;">
+          <div class="form-group">
+            <label class="form-label" for="apiUrl">
+              <i class="fas fa-link"></i> AppScript Web App URL
+            </label>
+            <input type="text" id="apiUrl" class="form-control" 
+                   placeholder="https://script.google.com/macros/s/.../exec"
+                   value="https://script.google.com/macros/s/AKfycbyDC7pTwG4nMnSBzMcJke3B6hCESkLjS6pIqRY9wjPn3tKgtn-HRvIOwPMgcOlP8kb0/exec">
+            <small class="api-info">Get this from Apps Script Deployment > Web App URL</small>
+          </div>
+          
+          <div class="btn-group">
+            <button onclick="saveConfig()" class="btn btn-primary">
+              <i class="fas fa-save"></i> Save Configuration
+            </button>
+            <button onclick="testConnection()" class="btn btn-secondary">
+              <i class="fas fa-test"></i> Test Connection
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Input Card -->
     <div id="exam-result-input" class="glass-card">
@@ -725,7 +832,7 @@
         <h2><i class="fas fa-id-card-alt"></i> Examination Result</h2>
       </div>
       <div class="card-body">
-        <form id="lab" onsubmit="event.preventDefault(); subm()">
+        <form id="lab" onsubmit="event.preventDefault(); handleSubmit()">
           <div class="form-group">
             <label class="form-label" for="roll">
               <i class="fas fa-user-graduate"></i> Registration Number
@@ -745,6 +852,9 @@
             <button type="submit" class="btn btn-primary">
               <i class="fas fa-search"></i> Get Results
             </button>
+            <button type="button" class="btn btn-secondary" onclick="resetForm()">
+              <i class="fas fa-redo"></i> Reset
+            </button>
           </div>
         </form>
       </div>
@@ -756,7 +866,7 @@
     </div>
   </div>
 
-  <!-- Enhanced Loading Overlay -->
+  <!-- Loading Overlay -->
   <div class="loader-container" id="lod">
     <div>
       <div class="modern-loader"></div>
@@ -765,593 +875,333 @@
   </div>
 
   <script>
-    function subm(){
-      document.getElementById('lod').style.display = 'flex';
-      var form = document.getElementById('lab');
-      google.script.run
-        .withFailureHandler(fail)
-        .withSuccessHandler(pass)
-        .sub(form);
-    }                    
+    // Configuration with YOUR AppScript URL
+    const CONFIG = {
+      apiUrl: 'https://script.google.com/macros/s/AKfycbyDC7pTwG4nMnSBzMcJke3B6hCESkLjS6pIqRY9wjPn3tKgtn-HRvIOwPMgcOlP8kb0/exec',
+      mode: 'direct',
+      isGitHub: false
+    };
+    
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      initApp();
+    });
+    
+    function initApp() {
+      // Check if running on GitHub Pages
+      CONFIG.isGitHub = window.location.hostname.includes('github.io') || 
+                       window.location.hostname.includes('github.com') ||
+                       window.location.hostname === 'localhost' || 
+                       window.location.hostname === '127.0.0.1';
       
-    function fail(v){
-      document.getElementById('lod').style.display = 'none';
-      document.getElementById("rs").innerHTML = v;
+      // Load saved configuration
+      loadConfig();
+      
+      // Setup event listeners
+      setupEventListeners();
+      
+      // Auto-detect and setup mode
+      setupAutoMode();
     }
     
-    function pass(v){
-      document.getElementById('lod').style.display = 'none';
-      document.getElementById("rs").innerHTML = v;
-      document.getElementById("lab").reset();
-      
-      // Hide all sections when showing results
-      document.getElementById("exam-result-input").style.display = 'none';
-      document.getElementById("main-header").style.display = 'none';
+    function setupAutoMode() {
+      // If running on GitHub, show config and set to API mode
+      if (CONFIG.isGitHub) {
+        document.getElementById('config-section').style.display = 'block';
+        // Auto-set to API mode if URL is configured
+        if (CONFIG.apiUrl) {
+          setMode('api');
+        }
+      }
     }
-
-    function showMainPage() {
-      // Show all sections again when returning to main page
-      document.getElementById("exam-result-input").style.display = 'block';
-      document.getElementById("main-header").style.display = 'block';
+    
+    function setupEventListeners() {
+      // Mode selector
+      document.querySelectorAll('.mode-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          setMode(this.dataset.mode);
+        });
+      });
       
-      // Clear results
-      document.getElementById("rs").innerHTML = '';
-      
-      // Reset form
-      document.getElementById("lab").reset();
-      
-      // Scroll to top
-      window.scrollTo(0, 0);
+      // Check if running in AppScript
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        // We're in AppScript - hide config section
+        document.getElementById('config-section').style.display = 'none';
+        CONFIG.mode = 'direct';
+      }
     }
-
-    function Print(DivID) {
-      var iPrint = document.getElementById(DivID).innerHTML;
-      if (!iPrint || iPrint.trim() === '<div id="rs"></div>') {
-        alert("No result data available to print. Please submit the form first.");
+    
+    function loadConfig() {
+      const savedConfig = localStorage.getItem('darunnajathConfig');
+      if (savedConfig) {
+        try {
+          const config = JSON.parse(savedConfig);
+          CONFIG.apiUrl = config.apiUrl || CONFIG.apiUrl;
+          CONFIG.mode = config.mode || 'direct';
+          
+          // Update UI
+          setMode(CONFIG.mode);
+          if (CONFIG.apiUrl) {
+            document.getElementById('apiUrl').value = CONFIG.apiUrl;
+          }
+        } catch (e) {
+          console.error('Error loading config:', e);
+        }
+      }
+    }
+    
+    function saveConfig() {
+      const apiUrl = document.getElementById('apiUrl').value.trim();
+      if (!apiUrl) {
+        alert('Please enter AppScript Web App URL');
         return;
       }
       
-      var docprint = window.open("", "_blank");
-      docprint.document.open();
-      docprint.document.write(`
+      CONFIG.apiUrl = apiUrl;
+      CONFIG.mode = 'api';
+      
+      localStorage.setItem('darunnajathConfig', JSON.stringify(CONFIG));
+      alert('Configuration saved successfully!');
+      
+      // Auto-hide config after saving
+      document.getElementById('config-section').style.display = 'none';
+    }
+    
+    function setMode(mode) {
+      CONFIG.mode = mode;
+      
+      // Update UI
+      document.querySelectorAll('.mode-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.mode === mode) {
+          btn.classList.add('active');
+        }
+      });
+      
+      // Show/hide API config
+      document.getElementById('api-config').style.display = 
+        (mode === 'api') ? 'block' : 'none';
+      
+      // Save to localStorage
+      localStorage.setItem('darunnajathConfig', JSON.stringify(CONFIG));
+    }
+    
+    function testConnection() {
+      const apiUrl = document.getElementById('apiUrl').value.trim();
+      if (!apiUrl) {
+        alert('Please enter AppScript URL first');
+        return;
+      }
+      
+      showLoader();
+      
+      fetch(apiUrl + '?api=data')
+        .then(response => {
+          if (!response.ok) throw new Error('HTTP ' + response.status);
+          return response.json();
+        })
+        .then(data => {
+          hideLoader();
+          if (data.success) {
+            alert('✅ Connection successful!\nData loaded: ' + 
+                  Object.keys(data.sheetsData || {}).length + ' classes');
+          } else {
+            alert('❌ Error: ' + (data.error || 'Unknown error'));
+          }
+        })
+        .catch(error => {
+          hideLoader();
+          alert('❌ Connection failed: ' + error.message);
+        });
+    }
+    
+    function handleSubmit() {
+      const formData = {
+        roll: document.getElementById('roll').value.trim(),
+        dob: document.getElementById('dob').value
+      };
+      
+      if (!formData.roll || !formData.dob) {
+        alert('Please fill in all fields');
+        return;
+      }
+      
+      showLoader();
+      
+      if (CONFIG.isGitHub && CONFIG.mode === 'api') {
+        // GitHub + API mode
+        if (!CONFIG.apiUrl) {
+          hideLoader();
+          alert('Please configure AppScript URL first');
+          document.getElementById('config-section').style.display = 'block';
+          setMode('api');
+          return;
+        }
+        submitViaAPI(formData);
+      } else {
+        // Direct mode (AppScript)
+        submitDirect(formData);
+      }
+    }
+    
+    function submitDirect(formData) {
+      // Check if running in AppScript
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run
+          .withFailureHandler(handleError)
+          .withSuccessHandler(handleSuccess)
+          .sub(formData);
+      } else {
+        handleError('Not running in AppScript environment. Please use API mode.');
+      }
+    }
+    
+    async function submitViaAPI(formData) {
+      try {
+        // Use GET method with parameters
+        const url = `${CONFIG.apiUrl}?roll=${encodeURIComponent(formData.roll)}&dob=${encodeURIComponent(formData.dob)}`;
+        
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const html = await response.text();
+        handleSuccess(html);
+      } catch (error) {
+        handleError(error.message);
+      }
+    }
+    
+    function handleSuccess(html) {
+      hideLoader();
+      document.getElementById('rs').innerHTML = html;
+      document.getElementById('exam-result-input').style.display = 'none';
+      document.getElementById('main-header').style.display = 'none';
+      if (CONFIG.isGitHub) {
+        document.getElementById('config-section').style.display = 'none';
+      }
+      
+      // Scroll to results
+      setTimeout(() => {
+        document.getElementById('rs').scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+    
+    function handleError(error) {
+      hideLoader();
+      document.getElementById('rs').innerHTML = `
+        <div class="error-message">
+          <i class="fas fa-exclamation-triangle fa-beat"></i>
+          <h3>Error</h3>
+          <p>${error}</p>
+          <p>Please check your connection and try again.</p>
+        </div>
+      `;
+    }
+    
+    function showMainPage() {
+      document.getElementById('exam-result-input').style.display = 'block';
+      document.getElementById('main-header').style.display = 'block';
+      document.getElementById('rs').innerHTML = '';
+      
+      if (CONFIG.isGitHub) {
+        document.getElementById('config-section').style.display = 'block';
+      }
+      
+      resetForm();
+      window.scrollTo(0, 0);
+    }
+    
+    function resetForm() {
+      document.getElementById('lab').reset();
+    }
+    
+    function showLoader() {
+      document.getElementById('lod').style.display = 'flex';
+    }
+    
+    function hideLoader() {
+      document.getElementById('lod').style.display = 'none';
+    }
+    
+    function Print(DivID) {
+      const content = document.getElementById(DivID).innerHTML;
+      if (!content || content.includes('id="rs"></div>')) {
+        alert("No result to print. Please submit the form first.");
+        return;
+      }
+      
+      const printWindow = window.open('', '_blank');
+      const printDate = new Date().toLocaleDateString('en-IN', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      
+      printWindow.document.write(`
         <!DOCTYPE html>
         <html>
         <head>
           <title>Official Marksheet - Darunnajath College</title>
           <style>
-            @page {
-              size: A4;
-              margin: 15mm;
-            }
-            @media print {
-              body {
-                width: 210mm;
-                height: 297mm;
-                margin: 0;
-                padding: 0;
-                font-family: 'Poppins', sans-serif;
-                font-size: 12px;
-                line-height: 1.3;
-                background: white;
-              }
-              .print-container {
-                width: 100%;
-                height: 100%;
-                padding: 15mm;
-                box-sizing: border-box;
-              }
-              .result-card {
-                width: 100%;
-                margin: 0;
-                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-                border: 1px solid #e2e8f0;
-                border-radius: 20px;
-                overflow: hidden;
-              }
-              .result-header {
-                background: linear-gradient(135deg, #2563eb, #8b5cf6);
-                color: white;
-                padding: 20px;
-              }
-              .college-brand {
-                display: flex;
-                align-items: center;
-                gap: 15px;
-              }
-              .college-logo {
-                width: 70px;
-                height: 70px;
-                border-radius: 12px;
-                border: 2px solid rgba(255,255,255,0.3);
-              }
-              .college-info h1 {
-                font-family: 'Playfair Display', serif;
-                font-size: 18px;
-                margin-bottom: 5px;
-                font-weight: 600;
-              }
-              .college-info h2 {
-                font-size: 14px;
-                margin-bottom: 5px;
-                font-weight: 500;
-              }
-              .college-info h3 {
-                font-size: 12px;
-                margin-bottom: 10px;
-                font-weight: 400;
-              }
-              .exam-title {
-                background: rgba(255,255,255,0.2);
-                padding: 5px 12px;
-                border-radius: 15px;
-                font-weight: 600;
-                font-size: 11px;
-              }
-              .student-profile, .results-section, .performance-summary {
-                padding: 20px;
-                border-bottom: 1px solid #e2e8f0;
-              }
-              .section-header h3 {
-                font-size: 14px;
-                color: #2563eb;
-                font-weight: 600;
-                margin-bottom: 15px;
-              }
-              .profile-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-                background: #f8fafc;
-                padding: 15px;
-                border-radius: 12px;
-                border: 1px solid #e2e8f0;
-                font-size: 11px;
-              }
-              .profile-item {
-                display: flex;
-                justify-content: space-between;
-                padding: 8px 0;
-                border-bottom: 1px solid #e2e8f0;
-              }
-              .profile-item:last-child {
-                border-bottom: none;
-              }
-              .modern-table {
-                width: 100%;
-                border-collapse: collapse;
-                font-size: 10px;
-              }
-              .modern-table th {
-                background: linear-gradient(135deg, #2563eb, #1d4ed8);
-                color: white;
-                padding: 10px 8px;
-                text-align: left;
-                font-weight: 600;
-              }
-              .modern-table td {
-                padding: 8px;
-                border-bottom: 1px solid #e2e8f0;
-              }
-              .summary-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-                margin-bottom: 15px;
-              }
-              .summary-card {
-                background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-                border-radius: 12px;
-                padding: 15px;
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                border: 1px solid #e2e8f0;
-              }
-              .summary-content h4 {
-                font-size: 16px;
-                font-weight: 700;
-                margin-bottom: 5px;
-                color: #2563eb;
-              }
-              .final-result {
-                text-align: center;
-                padding: 20px;
-                border-radius: 12px;
-                margin-top: 15px;
-              }
-              .result-passed {
-                background: linear-gradient(135deg, #dcfce7, #bbf7d0);
-                border: 2px solid #86efac;
-              }
-              .result-failed {
-                background: linear-gradient(135deg, #fecaca, #fca5a5);
-                border: 2px solid #f87171;
-              }
-              .result-badge {
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                padding: 8px 16px;
-                border-radius: 20px;
-                font-weight: 700;
-                font-size: 14px;
-                margin-bottom: 10px;
-              }
-              .result-passed .result-badge {
-                background: linear-gradient(135deg, #10b981, #34d399);
-                color: white;
-              }
-              .result-failed .result-badge {
-                background: linear-gradient(135deg, #ef4444, #f87171);
-                color: white;
-              }
-              .official-signature {
-                text-align: right;
-                margin-top: 25px;
-                padding-top: 15px;
-                border-top: 1px solid #000;
-                font-size: 12px;
-                font-weight: bold;
-              }
-              /* Hide decorative elements for print */
-              .section-icon, .summary-icon, .floating-element, 
-              .btn-group, .glass-card, .main-header,
-              .check-another-container {
-                display: none !important;
-              }
-            }
+            @page { size: A4; margin: 15mm; }
             body {
-              font-family: Arial, sans-serif;
-              margin: 0;
-              padding: 0;
-            }
-            .print-container {
               width: 210mm;
               min-height: 297mm;
+              margin: 0;
+              padding: 0;
+              font-family: Arial, sans-serif;
+              font-size: 12px;
+              line-height: 1.4;
+              background: white;
+              color: #333;
+            }
+            .print-container {
+              width: 100%;
+              height: 100%;
               padding: 15mm;
               box-sizing: border-box;
             }
-        
-        /* API key input ചേർക്കുക */
-        .api-key-input {
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .api-key-input label {
-            display: block;
-            color: white;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-        }
-        
-        .api-key-input input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 8px;
-            background: rgba(255,255,255,0.9);
-            color: #333;
-        }
-        
-        .api-info {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.7);
-            margin-top: 5px;
-            display: block;
-        }
-    </style>
-</head>
-<body>
-    <!-- Floating Background Elements -->
-    <div class="floating-element float-1"></div>
-    <div class="floating-element float-2"></div>
-    <div class="floating-element float-3"></div>
-
-    <div class="container">
-        <!-- Main Header -->
-        <header class="main-header" id="main-header">
-            <div class="header-badge">
-                <i class="fas fa-star"></i> Official Result Portal
+            .official-stamp {
+              text-align: right;
+              margin-top: 30px;
+              padding-top: 15px;
+              border-top: 2px solid #333;
+              font-weight: bold;
+              font-size: 12px;
+            }
+            /* Hide non-printable elements */
+            .check-another-container, .config-section, 
+            .floating-element, .btn-group, .glass-card {
+              display: none !important;
+            }
+            /* Ensure proper printing */
+            @media print {
+              body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+              }
+            }
+          </style>
+        </head>
+        <body onload="window.print(); window.close();">
+          <div class="print-container">
+            ${content}
+            <div class="official-stamp">
+              <p>Controller of Examinations</p>
+              <p>Darunnajath Shareeath & Arts College</p>
+              <p>Karuvarakundu</p>
+              <p>Generated on: ${printDate}</p>
             </div>
-            <h1>Darunnajath Shareeath & Arts College Karuvarakundu</h1>
-            <p>Academic Year 2023-2024</p>
-        </header>
-
-        <!-- API Configuration -->
-        <div class="glass-card" id="api-config">
-            <div class="card-header">
-                <h2><i class="fas fa-cogs"></i> API Configuration</h2>
-            </div>
-            <div class="card-body">
-                <div class="form-group">
-                    <label class="form-label" for="apiUrl">
-                        <i class="fas fa-link"></i> AppScript Web App URL
-                    </label>
-                    <input type="text" id="apiUrl" class="form-control" 
-                           placeholder="Enter your Google AppScript Web App URL" 
-                           value="https://script.google.com/macros/s/AKfycbzR0D_3A_yeoR2ztfQeIZslCQv-1dRRH5uhT_ik8IZSnw6QRJbyw38z6q9cPGRmQYhr/exec">
-                    <small class="api-info">Get this URL from your Google Apps Script deployment</small>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="sheetId">
-                        <i class="fas fa-table"></i> Google Sheet ID
-                    </label>
-                    <input type="text" id="sheetId" class="form-control" 
-                           placeholder="Enter your Google Sheet ID" 
-                           value="1ckOFULpgBLG13gWa_jKdy8LJwIUaxCRLN84tljLmCjo">
-                    <small class="api-info">This is the long ID from your Google Sheets URL</small>
-                </div>
-                
-                <button onclick="saveConfig()" class="btn btn-primary">
-                    <i class="fas fa-save"></i> Save Configuration
-                </button>
-            </div>
-        </div>
-
-        <!-- Input Card -->
-        <div id="exam-result-input" class="glass-card" style="display: none;">
-            <div class="card-header">
-                <h2><i class="fas fa-id-card-alt"></i> Examination Result</h2>
-            </div>
-            <div class="card-body">
-                <form id="lab" onsubmit="event.preventDefault(); subm()">
-                    <div class="form-group">
-                        <label class="form-label" for="roll">
-                            <i class="fas fa-user-graduate"></i> Registration Number
-                        </label>
-                        <input type="text" name="roll" id="roll" class="form-control" 
-                               placeholder="Enter your registration number" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label" for="dob">
-                            <i class="fas fa-calendar-check"></i> Date of Birth
-                        </label>
-                        <input type="date" name="dob" id="dob" class="form-control" required>
-                    </div>
-                    
-                    <div class="btn-group">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-search"></i> Get Results
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Results Display Area -->
-        <div id='PrintDiv'>
-            <div id="rs"></div>
-        </div>
-    </div>
-
-    <!-- Enhanced Loading Overlay -->
-    <div class="loader-container" id="lod">
-        <div>
-            <div class="modern-loader"></div>
-            <div class="loading-text">Processing your request...</div>
-        </div>
-    </div>
-
-    <script>
-        // Configuration
-        let config = {
-            apiUrl: 'https://script.google.com/macros/s/AKfycbzR0D_3A_yeoR2ztfQeIZslCQv-1dRRH5uhT_ik8IZSnw6QRJbyw38z6q9cPGRmQYhr/exec',
-            sheetId: '1ckOFULpgBLG13gWa_jKdy8LJwIUaxCRLN84tljLmCjo',
-            sheetData: null
-        };
-
-        // Load saved configuration
-        function loadConfig() {
-            const savedConfig = localStorage.getItem('resultPortalConfig');
-            if (savedConfig) {
-                config = JSON.parse(savedConfig);
-                document.getElementById('apiUrl').value = config.apiUrl;
-                document.getElementById('sheetId').value = config.sheetId;
-            }
-        }
-
-        // Save configuration
-        function saveConfig() {
-            config.apiUrl = document.getElementById('apiUrl').value;
-            config.sheetId = document.getElementById('sheetId').value;
-            localStorage.setItem('resultPortalConfig', JSON.stringify(config));
-            
-            // Load data from Google Sheets
-            loadSheetData();
-        }
-
-        // Load data from Google Sheets via AppScript
-        async function loadSheetData() {
-            document.getElementById('lod').style.display = 'flex';
-            
-            try {
-                const response = await fetch(`${config.apiUrl}?api=data`);
-                if (!response.ok) throw new Error('Failed to fetch data');
-                
-                const data = await response.json();
-                config.sheetData = data;
-                
-                // Hide config and show input form
-                document.getElementById('api-config').style.display = 'none';
-                document.getElementById('exam-result-input').style.display = 'block';
-                
-                document.getElementById('lod').style.display = 'none';
-            } catch (error) {
-                document.getElementById('lod').style.display = 'none';
-                alert('Error loading data: ' + error.message);
-            }
-        }
-
-        // Main submission function
-        async function subm() {
-            document.getElementById('lod').style.display = 'flex';
-            
-            const rollNo = document.getElementById('roll').value;
-            const dob = document.getElementById('dob').value;
-            
-            try {
-                // Check if data is loaded
-                if (!config.sheetData) {
-                    await loadSheetData();
-                }
-                
-                // Search for student
-                const result = searchStudent(rollNo, dob);
-                document.getElementById('rs').innerHTML = result;
-                
-                // Hide input form when showing results
-                document.getElementById("exam-result-input").style.display = 'none';
-                document.getElementById("main-header").style.display = 'none';
-                
-                document.getElementById('lod').style.display = 'none';
-            } catch (error) {
-                document.getElementById('lod').style.display = 'none';
-                document.getElementById('rs').innerHTML = `
-                    <div class="error-message">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <h3>Error</h3>
-                        <p>${error.message}</p>
-                    </div>
-                `;
-            }
-        }
-
-        // Search student in loaded data
-        function searchStudent(rollNo, dob) {
-            if (!config.sheetData) {
-                throw new Error('Data not loaded. Please save configuration first.');
-            }
-            
-            // Format DOB for comparison
-            const formattedDOB = formatDateForComparison(dob);
-            
-            // Search through all sheets
-            for (const [sheetName, sheet] of Object.entries(config.sheetData.sheetsData)) {
-                const student = sheet.students.find(s => 
-                    s.rollNo.toString() === rollNo && s.dob === formattedDOB
-                );
-                
-                if (student) {
-                    return generateResultHTML(student, sheet, sheetName);
-                }
-            }
-            
-            return `
-                <div class="error-message">
-                    <i class="fas fa-search-location fa-beat"></i>
-                    <h3>Registration Number Not Found</h3>
-                    <p>Please check your registration number and try again.</p>
-                </div>
-            `;
-        }
-
-        // Generate result HTML
-        function generateResultHTML(student, sheet, sheetName) {
-            const college = config.sheetData.collegeInfo;
-            const gradingCriteria = config.sheetData.gradingCriteria;
-            
-            // Format date for display
-            const displayDOB = formatDateForDisplay(student.dob);
-            
-            // Generate subject rows
-            let subjectRows = '';
-            let serialNo = 1;
-            let failedSubjects = [];
-            
-            for (let j = 0; j < sheet.subjectNames.length; j++) {
-                const subjectName = sheet.subjectNames[j];
-                if (!subjectName) continue;
-                
-                const maxScore = 100; // You need to adjust this based on your sheet structure
-                const obtainedScore = student.subjectScores[j];
-                const subjectPercentage = (obtainedScore / maxScore) * 100;
-                let grade = "N/A";
-                
-                if (obtainedScore === "A") {
-                    grade = "D";
-                } else {
-                    for (const criteria of gradingCriteria) {
-                        if (subjectPercentage >= criteria[0] && subjectPercentage <= criteria[1]) {
-                            grade = criteria[2];
-                            break;
-                        }
-                    }
-                }
-                
-                const remarks = grade === "D" ? "Fail" : "Pass";
-                const statusClass = remarks === "Fail" ? "status-fail" : "status-pass";
-                const statusIcon = remarks === "Fail" ? "fas fa-times-circle" : "fas fa-check-circle";
-                
-                if (remarks === "Fail") {
-                    failedSubjects.push(subjectName);
-                }
-                
-                subjectRows += `
-                    <tr>
-                        <td>${serialNo}.</td>
-                        <td class="subject-name">${subjectName}</td>
-                        <td>${maxScore}</td>
-                        <td class="score">${obtainedScore}</td>
-                        <td class="grade ${grade === 'D' ? 'grade-fail' : 'grade-pass'}">
-                            <i class="fas fa-${grade === 'D' ? 'exclamation-triangle' : 'award'}"></i> ${grade}
-                        </td>
-                        <td><span class="status ${statusClass}"><i class="${statusIcon}"></i> ${remarks}</span></td>
-                    </tr>
-                `;
-                
-                serialNo++;
-            }
-            
-            // Generate final HTML (same as your original HTML structure)
-            return `
-                <div class="check-another-container">
-                    <button onclick="showMainPage()" class="btn btn-secondary check-another-btn">
-                        <i class="fas fa-arrow-left"></i> Check Another Result
-                    </button>
-                </div>
-                <div class="result-card">
-                    <!-- Your result HTML structure here -->
-                    <!-- Copy the entire result card HTML from your original code -->
-                    <!-- Make sure to replace dynamic variables -->
-                </div>
-            `;
-        }
-
-        // Helper functions
-        function formatDateForComparison(date) {
-            if (!date) return '';
-            const d = new Date(date);
-            return d.toISOString().split('T')[0];
-        }
-
-        function formatDateForDisplay(date) {
-            if (!date) return 'N/A';
-            const d = new Date(date);
-            return d.toLocaleDateString('en-IN', {
-                day: '2-digit',
-                month: 'short',
-                year: 'numeric'
-            });
-        }
-
-        function showMainPage() {
-            document.getElementById("exam-result-input").style.display = 'block';
-            document.getElementById("main-header").style.display = 'block';
-            document.getElementById("rs").innerHTML = '';
-            document.getElementById("lab").reset();
-            window.scrollTo(0, 0);
-        }
-
-        // Initialize
-        window.onload = function() {
-            loadConfig();
-        };
-    </script>
+          </div>
+        </body>
+        </html>
+      `);
+      printWindow.document.close();
+    }
+  </script>
 </body>
 </html>
