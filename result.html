@@ -1,34 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Darunnajath College - Result Portal</title>
-    
-    <!-- CSS Links -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <style>
-    :root {
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --primary-light: #3b82f6;
-      --secondary: #f59e0b;
-      --accent: #8b5cf6;
-      --success: #10b981;
-      --danger: #ef4444;
-      --warning: #f59e0b;
-      --light: #f8fafc;
-      --dark: #1e293b;
-      --gray: #64748b;
-      --border: #e2e8f0;
-      --card-bg: rgba(255, 255, 255, 0.95);
-      --glass: rgba(255, 255, 255, 0.1);
-      --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
-    }
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Result Portal | DARUNNAJATH SHAREEATH AND ARTS COLLEGE</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
     * {
       margin: 0;
       padding: 0;
@@ -36,837 +14,420 @@
     }
 
     body {
+      background: linear-gradient(135deg, #0b5ed7 0%, #74b9ff 100%);
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 20px;
-      line-height: 1.6;
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff" fill-opacity="0.05" points="0,1000 1000,0 1000,1000"/></svg>');
-      pointer-events: none;
-      z-index: -1;
     }
 
     .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    /* Header Styles */
-    .main-header {
-      text-align: center;
-      margin-bottom: 40px;
-      color: white;
-      position: relative;
-    }
-
-    .header-badge {
-      background: var(--glass);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 8px 20px;
-      border-radius: 25px;
-      display: inline-block;
-      margin-bottom: 15px;
-      font-size: 0.9rem;
-    }
-
-    .main-header h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 2.8rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-      text-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      background: linear-gradient(135deg, #fff, #e0f2fe);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    /* Glass Card Styles */
-    .glass-card {
-      background: var(--glass);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      margin-bottom: 30px;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .glass-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-lg);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-
-    .card-header {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: white;
-      padding: 25px 30px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card-header h2 {
-      font-size: 1.6rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .card-body {
-      padding: 35px;
-      background: var(--card-bg);
-    }
-
-    /* Form Styles */
-    .form-group {
-      margin-bottom: 25px;
-      position: relative;
-    }
-
-    .form-label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: 500;
-      color: var(--dark);
-      font-size: 1rem;
-    }
-
-    .form-control {
       width: 100%;
-      padding: 16px 20px;
-      border: 2px solid var(--border);
-      border-radius: 12px;
-      font-size: 16px;
-      transition: all 0.3s ease;
-      background: white;
-      font-family: 'Poppins', sans-serif;
+      max-width: 400px;
     }
 
-    .form-control:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-      transform: translateY(-2px);
-    }
-
-    .btn {
-      padding: 16px 32px;
-      border: none;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.6);
-    }
-
-    .btn-secondary {
-      background: linear-gradient(135deg, var(--secondary), #eab308);
-      color: white;
-      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.6);
-    }
-
-    /* Result Card Styles */
-    .result-card {
-      background: white;
-      border-radius: 20px;
-      box-shadow: var(--shadow-lg);
-      overflow: hidden;
-      margin: 20px auto;
-      max-width: 1000px;
-      border: 1px solid var(--border);
-    }
-
-    .result-header {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: white;
-      padding: 30px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .college-brand {
-      display: flex;
-      align-items: center;
-      gap: 25px;
-      text-align: left;
-      position: relative;
-      z-index: 2;
-    }
-
-    .college-logo {
-      width: 90px;
-      height: 90px;
-      border-radius: 16px;
-      object-fit: cover;
-      border: 3px solid rgba(255,255,255,0.3);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-
-    .college-info h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-
-    .college-info h2 {
-      font-size: 1.4rem;
-      margin-bottom: 8px;
-      font-weight: 500;
-    }
-
-    .college-info h3 {
-      font-size: 1.2rem;
-      margin-bottom: 15px;
-      font-weight: 400;
-    }
-
-    .exam-title {
-      background: rgba(255,255,255,0.2);
-      padding: 10px 20px;
-      border-radius: 25px;
-      font-weight: 600;
-      display: inline-block;
-      backdrop-filter: blur(10px);
-    }
-
-    .student-profile, .results-section, .performance-summary {
-      padding: 30px;
-      border-bottom: 1px solid var(--border);
-      background: white;
-    }
-
-    .section-header {
-      margin-bottom: 25px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .section-header h3 {
-      font-size: 1.4rem;
-      color: var(--primary);
-      font-weight: 600;
-    }
-
-    .profile-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      background: var(--light);
+    .form-container {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       padding: 25px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-    }
-
-    .profile-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 15px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .profile-item:last-child {
-      border-bottom: none;
-    }
-
-    .profile-item label {
-      font-weight: 600;
-      color: var(--gray);
-    }
-
-    .profile-item span {
-      font-weight: 500;
-      color: var(--dark);
-    }
-
-    /* Table Styles */
-    .table-container {
-      overflow-x: auto;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-
-    .modern-table {
       width: 100%;
-      border-collapse: collapse;
+      text-align: center;
+    }
+
+    .logo {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #0b5ed7;
+      font-weight: 700;
+      margin-bottom: 5px;
+      font-size: 1.2rem;
+    }
+
+    p {
+      color: #6c757d;
       font-size: 14px;
-    }
-
-    .modern-table th {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      padding: 18px 15px;
-      text-align: left;
-      font-weight: 600;
-    }
-
-    .modern-table td {
-      padding: 15px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .subject-name {
-      font-weight: 500;
-      color: var(--dark);
-    }
-
-    .score {
-      font-weight: 600;
-      color: var(--primary);
-      font-size: 1.1rem;
-    }
-
-    .grade {
-      font-weight: 700;
-      padding: 6px 12px;
-      border-radius: 8px;
-      background: var(--success);
-      color: white;
-      display: inline-block;
-      min-width: 100px;
-      text-align: center;
-    }
-
-    .grade-fail {
-      background: var(--danger);
-    }
-
-    .status {
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-
-    .status-pass {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .status-fail {
-      background: #fecaca;
-      color: #991b1b;
-    }
-
-    /* Summary Styles */
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-      margin-bottom: 30px;
-    }
-
-    .summary-card {
-      background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-      border-radius: 16px;
-      padding: 25px;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      border: 1px solid var(--border);
-    }
-
-    .summary-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.4rem;
-    }
-
-    .summary-content h4 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--primary);
-    }
-
-    .final-result {
-      text-align: center;
-      padding: 30px;
-      border-radius: 16px;
-      margin-top: 25px;
-    }
-
-    .result-passed {
-      background: linear-gradient(135deg, #dcfce7, #bbf7d0);
-      border: 2px solid #86efac;
-    }
-
-    .result-failed {
-      background: linear-gradient(135deg, #fecaca, #fca5a5);
-      border: 2px solid #f87171;
-    }
-
-    .result-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-weight: 700;
-      font-size: 1.2rem;
-      margin-bottom: 15px;
-    }
-
-    .result-passed .result-badge {
-      background: linear-gradient(135deg, var(--success), #34d399);
-      color: white;
-    }
-
-    .result-failed .result-badge {
-      background: linear-gradient(135deg, var(--danger), #f87171);
-      color: white;
-    }
-
-    /* Error Message Styles */
-    .error-message {
-      text-align: center;
-      padding: 50px;
-      background: white;
-      border-radius: 20px;
-      box-shadow: var(--shadow);
-      margin: 20px auto;
-      max-width: 500px;
-      border: 1px solid var(--border);
-    }
-
-    .error-message i {
-      font-size: 3.5rem;
-      color: var(--danger);
       margin-bottom: 20px;
     }
 
-    .error-message h3 {
-      color: var(--danger);
+    .form-control {
+      padding: 10px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
       margin-bottom: 15px;
-      font-size: 1.5rem;
     }
 
-    .error-message p {
-      color: var(--gray);
-      font-size: 1.1rem;
-    }
-
-    /* Loading Animation */
-    .loader-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.8);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    .modern-loader {
-      width: 80px;
-      height: 80px;
-      border: 4px solid rgba(255,255,255,0.3);
-      border-top: 4px solid white;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    .loading-text {
-      color: white;
-      margin-top: 20px;
-      font-size: 1.1rem;
-      text-align: center;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Check Another Result Button Styles */
-    .check-another-container {
-      text-align: center;
-      margin: 20px 0;
-    }
-
-    .check-another-btn {
-      background: linear-gradient(135deg, var(--secondary), #eab308);
-      color: white;
-      padding: 15px 30px;
+    .btn-primary {
+      background: #0b5ed7;
       border: none;
-      border-radius: 12px;
-      font-size: 16px;
+      padding: 12px 0;
+      width: 100%;
+      border-radius: 8px;
       font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
+      color: #fff;
+      font-size: 15px;
+      margin-top: 10px;
     }
-
-    .check-another-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.6);
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .main-header h1 {
-        font-size: 2.2rem;
-      }
-      
-      .college-brand {
-        flex-direction: column;
-        text-align: center;
-      }
-      
-      .profile-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .summary-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .card-body {
-        padding: 25px 20px;
-      }
-    }
-    </style>
+  </style>
 </head>
 <body>
   <div class="container">
-    <!-- Main Header -->
-    <header class="main-header" id="main-header">
-      <div class="header-badge">
-        <i class="fas fa-star"></i> Official Result Portal
-      </div>
-      <h1>Darunnajath Shareeath & Arts College Karuvarakundu</h1>
-      <p>Academic Year 2025-2026</p>
-    </header>
-
-    <!-- Input Card -->
-    <div id="exam-result-input" class="glass-card">
-      <div class="card-header">
-        <h2><i class="fas fa-id-card-alt"></i> Examination Result</h2>
-      </div>
-      <div class="card-body">
-        <form id="lab" onsubmit="event.preventDefault(); handleSubmit()">
-          <div class="form-group">
-            <label class="form-label" for="roll">
-              <i class="fas fa-user-graduate"></i> Registration Number
-            </label>
-            <input type="text" name="roll" id="roll" class="form-control" 
-                   placeholder="Enter your registration number" required>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="dob">
-              <i class="fas fa-calendar-check"></i> Date of Birth
-            </label>
-            <input type="date" name="dob" id="dob" class="form-control" required>
-          </div>
-          
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary" style="width: 100%;">
-              <i class="fas fa-search"></i> Get Results
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <!-- Results Display Area -->
-    <div id='PrintDiv'>
-      <div id="rs"></div>
-    </div>
-  </div>
-
-  <!-- Loading Overlay -->
-  <div class="loader-container" id="lod">
-    <div>
-      <div class="modern-loader"></div>
-      <div class="loading-text">Processing your request...</div>
+    <div class="form-container">
+      <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="logo">
+      <h2>DARUNNAJATH SHAREEATH & ARTS COLLEGE</h2>
+      <p>Result Portal</p>
+      
+      <form id="idForm">
+        <input type="text" name="uid" class="form-control" placeholder="Enter UID Number" required>
+        <input type="date" name="dob" class="form-control" placeholder="Enter Date of Birth" required>
+        <button type="submit" class="btn btn-primary">Generate ID Card</button>
+      </form>
     </div>
   </div>
 
   <script>
-    // 🚨 ഇവിടെയാണ് പ്രധാന മാറ്റം! 🚨
-    // നിങ്ങളുടെ പുതിയ AppScript Web App URL ഇവിടെ ഇടുക
-    const APPSCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzZa3_cbAGXEbLajLpF2xpyQw8ONlEWx_l1EomldF0C58Zim5DteedXOFreeEy_sE4/exec';
-    
-    // Debug mode
-    const DEBUG_MODE = true;
-    
-    // Check if running in AppScript environment
-    function isAppScript() {
-      return typeof google !== 'undefined' && google.script && google.script.run;
-    }
-    
-    // Handle form submission
-    function handleSubmit() {
-      const formData = {
-        roll: document.getElementById('roll').value.trim(),
-        dob: document.getElementById('dob').value
-      };
-      
-      if (!formData.roll || !formData.dob) {
-        alert('Please fill in all fields');
-        return;
-      }
-      
-      if (DEBUG_MODE) {
-        console.log('Form Data:', formData);
-        console.log('AppScript URL:', APPSCRIPT_URL);
-        console.log('Is AppScript:', isAppScript());
-      }
-      
-      showLoader();
-      
-      if (isAppScript()) {
-        // AppScript environment - use google.script.run
-        submitDirect(formData);
-      } else {
-        // GitHub environment - use fetch API
-        submitViaGitHub(formData);
-      }
-    }
-    
-    // Submit directly via AppScript
-    function submitDirect(formData) {
-      google.script.run
-        .withFailureHandler(handleError)
-        .withSuccessHandler(handleSuccess)
-        .sub(formData);
-    }
-    
-    // Submit via GitHub (using fixed URL)
-    async function submitViaGitHub(formData) {
-      try {
-        const params = new URLSearchParams({
-          roll: formData.roll,
-          dob: formData.dob
-        }).toString();
-        const url = `${APPSCRIPT_URL}?${params}`;
-    
-        console.log('Fetching from URL:', url);
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzZa3_cbAGXEbLajLpF2xpyQw8ONlEWx_l1EomldF0C58Zim5DteedXOFreeEy_sE4/exec';
 
-        const response = await fetch(url, {
-          method: 'GET',
-          cache: 'no-cache',
-          redirect: 'follow',  
-          headers: {
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
-          }
-        });
-        
-        if (DEBUG_MODE) {
-          console.log('Response Status:', response.status, response.statusText);
-        }
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const html = await response.text();
-        
-        if (DEBUG_MODE) {
-          console.log('Response received (first 500 chars):', html.substring(0, 500));
-        }
-        
-        if (html.includes('error') || html.includes('Error') || html.includes('exception')) {
-          throw new Error('Server returned an error');
-        }
-        
-        handleSuccess(html);
-      } catch (error) {
-        console.error('Fetch error:', error);
-        handleError('Connection Error: ' + error.message + '. Please check your internet connection and try again.');
-      }
-    }
-    
-    // Handle success
-    function handleSuccess(html) {
-      hideLoader();
-      document.getElementById('rs').innerHTML = html;
-      document.getElementById('exam-result-input').style.display = 'none';
-      document.getElementById('main-header').style.display = 'none';
+    document.getElementById('idForm').addEventListener('submit', function(e) {
+      e.preventDefault();
       
-      // Scroll to results
-      setTimeout(() => {
-        document.getElementById('rs').scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    }
-    
-    // Handle error
-    function handleError(error) {
-      hideLoader();
-      let errorMessage = error;
-      
-      if (typeof error === 'object' && error.message) {
-        errorMessage = error.message;
-      }
-      
-      document.getElementById('rs').innerHTML = `
-        <div class="error-message">
-          <i class="fas fa-exclamation-triangle"></i>
-          <h3>Error</h3>
-          <p>${errorMessage}</p>
-          <p>Please check your details and try again.</p>
-          <button onclick="showMainPage()" class="btn btn-secondary" style="margin-top: 15px;">
-            <i class="fas fa-arrow-left"></i> Try Again
-          </button>
-        </div>
-      `;
-    }
-    
-    // Show main page
-    function showMainPage() {
-      document.getElementById('exam-result-input').style.display = 'block';
-      document.getElementById('main-header').style.display = 'block';
-      document.getElementById('rs').innerHTML = '';
-      document.getElementById('lab').reset();
-      window.scrollTo(0, 0);
-    }
-    
-    // Show loader
-    function showLoader() {
-      document.getElementById('lod').style.display = 'flex';
-    }
-    
-    // Hide loader
-    function hideLoader() {
-      document.getElementById('lod').style.display = 'none';
-    }
-    
-    // Print function
-    function Print(DivID) {
-      const content = document.getElementById(DivID).innerHTML;
-      if (!content || content.includes('id="rs"></div>')) {
-        alert("No result to print. Please submit the form first.");
-        return;
-      }
-      
-      const printWindow = window.open('', '_blank');
-      const printDate = new Date().toLocaleDateString('en-IN', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-      });
-      
-      printWindow.document.write(`
-        <!DOCTYPE html>
+      const formData = new FormData(e.target);
+      const uidVal = formData.get('uid');
+      const dobVal = formData.get('dob');
+
+      const url = `${scriptURL}?uid=${encodeURIComponent(uidVal)}&dob=${encodeURIComponent(dobVal)}`;
+
+      const newWin = window.open("", "_blank");
+      newWin.document.write(`
         <html>
         <head>
-          <title>Official Marksheet - Darunnajath College</title>
+          <title>Loading ID Card...</title>
           <style>
-            @page { size: A4; margin: 15mm; }
             body {
-              width: 210mm;
-              min-height: 297mm;
+              font-family: 'Poppins', sans-serif;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 100vh;
+              background: #f0f4ff;
               margin: 0;
-              padding: 0;
-              font-family: Arial, sans-serif;
-              font-size: 12px;
-              line-height: 1.4;
-              background: white;
-              color: #333;
             }
-            .print-container {
-              width: 100%;
-              height: 100%;
-              padding: 15mm;
-              box-sizing: border-box;
-            }
-            .official-stamp {
-              text-align: right;
-              margin-top: 30px;
-              padding-top: 15px;
-              border-top: 2px solid #333;
-              font-weight: bold;
-              font-size: 12px;
-            }
-            /* Hide non-printable elements */
-            .check-another-container {
-              display: none !important;
+            .loading {
+              text-align: center;
+              color: #0b5ed7;
             }
           </style>
         </head>
-        <body onload="window.print(); window.close();">
-          <div class="print-container">
-            ${content}
-            <div class="official-stamp">
-              <p>Controller of Examinations</p>
-              <p>Darunnajath Shareeath & Arts College</p>
-              <p>Karuvarakundu</p>
-              <p>Generated on: ${printDate}</p>
-            </div>
+        <body>
+          <div class="loading">
+            <h3>Generating ID Card...</h3>
+            <p>Please wait...</p>
           </div>
         </body>
         </html>
       `);
-      printWindow.document.close();
-    }
-    
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('Page loaded. Environment:', isAppScript() ? 'AppScript' : 'GitHub');
-      console.log('AppScript URL:', APPSCRIPT_URL);
-      
-      // Set max date for DOB (today)
-      const today = new Date().toISOString().split('T')[0];
-      document.getElementById('dob').setAttribute('max', today);
+
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          if (data.result === 'success') {
+            const s = data.student;
+            const qrData = `UID: ${s.UID}, Name: ${s.FullName}, S/o ${s.FatherName}, Batch: ${s.BatchNumber}, Phone: ${s.Phone}`;
+            const qrURL = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=70x70&margin=2&color=0b5ed7`;
+
+            const html = `
+              <!DOCTYPE html>
+              <html>
+              <head>
+                <title>${s.FullName} | ID Card</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <style>
+                  @media print {
+                    body { margin: 0; padding: 0; }
+                    .no-print { display: none !important; }
+                    .id-card { margin: 0; box-shadow: none; border: 1px solid #000; }
+                  }
+
+                  * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                  }
+
+                  body {
+                    font-family: 'Poppins', sans-serif;
+                    background: #f0f4ff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-height: 100vh;
+                    padding: 10px;
+                  }
+
+                  .id-card {
+                    width: 300px;
+                    height: 420px;
+                    background: white;
+                    border-radius: 10px;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                    border: 3px solid #0b5ed7;
+                    position: relative;
+                    overflow: hidden;
+                  }
+
+                  .header {
+                    background: linear-gradient(90deg, #0b5ed7, #74b9ff);
+                    color: white;
+                    padding: 8px;
+                    text-align: center;
+                  }
+
+                  .header h3 {
+                    font-size: 14px;
+                    font-weight: 700;
+                    margin: 0;
+                    line-height: 1.2;
+                  }
+
+                  .header small {
+                    font-size: 9px;
+                    display: block;
+                  }
+
+                  .content {
+                    padding: 15px;
+                  }
+
+                  .photo-qr-row {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    margin-bottom: 15px;
+                    gap: 10px;
+                  }
+
+                  .photo-section {
+                    text-align: center;
+                    flex: 1;
+                  }
+
+                  .student-photo {
+                    width: 110px;
+                    height: 130px;
+                    object-fit: cover;
+                    border: 2px solid #0b5ed7;
+                    border-radius: 5px;
+                    background: #f8f9fa;
+                  }
+
+                  .photo-label {
+                    font-size: 10px;
+                    color: #666;
+                    margin-top: 5px;
+                  }
+
+                  .qr-section {
+                    text-align: center;
+                    flex: 0.8;
+                    margin-top: 10px;
+                  }
+
+                  .qr-code {
+                    width: 80px;
+                    height: 80px;
+                    background: white;
+                    padding: 5px;
+                    border: 2px solid #0b5ed7;
+                    border-radius: 5px;
+                  }
+
+                  .qr-label {
+                    font-size: 8px;
+                    color: #666;
+                    margin-top: 3px;
+                  }
+
+                  .student-name {
+                    text-align: center;
+                    color: #0b5ed7;
+                    font-size: 18px;
+                    font-weight: 700;
+                    margin-bottom: 15px;
+                    padding-bottom: 5px;
+                    border-bottom: 2px solid #0b5ed7;
+                  }
+
+                  .details {
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    gap: 6px;
+                    margin-bottom: 15px;
+                  }
+
+                  .detail-row {
+                    display: flex;
+                    align-items: center;
+                    font-size: 11px;
+                  }
+
+                  .detail-label {
+                    color: #0b5ed7;
+                    font-weight: 600;
+                    min-width: 100px;
+                  }
+
+                  .detail-value {
+                    color: #333;
+                    flex: 1;
+                  }
+
+                  .footer {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-end;
+                    margin-top: 10px;
+                    padding-top: 10px;
+                    border-top: 1px dashed #ccc;
+                  }
+
+                  .academic-year {
+                    text-align: center;
+                    flex: 1;
+                  }
+
+                  .year {
+                    color: #0b5ed7;
+                    font-weight: 600;
+                    font-size: 12px;
+                  }
+
+                  .signature {
+                    font-size: 9px;
+                    color: #666;
+                    margin-top: 5px;
+                  }
+
+                  .controls {
+                    text-align: center;
+                    margin-top: 15px;
+                  }
+
+                  .btn-print {
+                    background: #0b5ed7;
+                    color: white;
+                    border: none;
+                    padding: 8px 20px;
+                    border-radius: 20px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    font-size: 14px;
+                  }
+                </style>
+              </head>
+              <body>
+                <div class="controls no-print">
+                  <button class="btn-print" onclick="window.print()">🖨️ Print ID Card</button>
+                </div>
+
+                <div class="id-card">
+                  <div class="header">
+                    <h3>DARUNNAJATH SHAREEATH & ARTS COLLEGE</h3>
+                    <p>Punnakkad, Karuvarakundu</p>
+                  </div>
+
+                  <div class="content">
+                    <div class="photo-qr-row">
+                      <!-- Left: Student Photo -->
+                      <div class="photo-section">
+                        <img src="${s.PhotoURL || 'https://via.placeholder.com/110x130?text=Photo'}" 
+                             alt="Student Photo" class="student-photo">
+                      </div>
+
+                      <!-- Right: QR Code -->
+                      <div class="qr-section">
+                        <div class="qr-code">
+                          <img src="${qrURL}" alt="QR Code">
+                        </div>
+                        <div class="qr-label">SCAN TO VERIFY</div>
+                      </div>
+                    </div>
+
+                    <h2 class="student-name">${s.FullName}</h2>
+
+                    <div class="details">
+                      <div class="detail-row">
+                        <span class="detail-label">UID:</span>
+                        <span class="detail-value">${s.UID}</span>
+                      </div>
+                      <div class="detail-row">
+                        <span class="detail-label">FATHER'S NAME:</span>
+                        <span class="detail-value">${s.FatherName}</span>
+                      </div>
+                      <div class="detail-row">
+                        <span class="detail-label">BATCH:</span>
+                        <span class="detail-value">${s.BatchNumber}</span>
+                      </div>
+                      <div class="detail-row">
+                        <span class="detail-label">PHONE:</span>
+                        <span class="detail-value">${s.Phone}</span>
+                      </div>
+                    </div>
+
+                    <div class="footer">
+                      <div class="academic-year">
+                        <div class="year">ACADEMIC YEAR 2025-26</div>
+                        <div class="signature">PRINCIPAL'S SIGNATURE</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </body>
+              </html>
+            `;
+
+            newWin.document.open();
+            newWin.document.write(html);
+            newWin.document.close();
+          } else {
+            newWin.document.write(`
+              <html>
+              <body style="font-family: Poppins; text-align: center; padding: 50px; background: #f0f4ff;">
+                <div style="color: #dc3545;">
+                  <h2>Student Not Found</h2>
+                  <p>${data.message || 'Please check UID and Date of Birth.'}</p>
+                  <button onclick="window.close()" style="background: #0b5ed7; color: white; border: none; padding: 10px 20px; border-radius: 25px;">
+                    Go Back
+                  </button>
+                </div>
+              </body>
+              </html>
+            `);
+          }
+        })
+        .catch(() => {
+          newWin.document.write(`
+            <html>
+            <body style="font-family: Poppins; text-align: center; padding: 50px; background: #f0f4ff;">
+              <div style="color: #dc3545;">
+                <h2>Connection Error</h2>
+                <p>Please try again.</p>
+                <button onclick="window.close()" style="background: #0b5ed7; color: white; border: none; padding: 10px 20px; border-radius: 25px;">
+                  Go Back
+                </button>
+              </div>
+            </body>
+            </html>
+          `);
+        });
     });
   </script>
 </body>
 </html>
-
-
-
-
-
-
