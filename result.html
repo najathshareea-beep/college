@@ -87,14 +87,17 @@
       
       <form id="idForm">
         <input type="text" name="uid" class="form-control" placeholder="Enter UID Number" required>
-        <input type="date" name="dob" class="form-control" required>
+        <input type="date" name="dob" class="form-control" 
+           placeholder="Select Date of Birth" 
+           title="Select your date of birth"
+           required>
         <button type="submit" class="btn btn-primary">Generate Exam Result</button>
       </form>
     </div>
   </div>
 
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyDkB5FWnzSq5xPzgE9Qa8MYtCEcIHuLyCVKEkWl7DzQw38Hz_C8ziYjZaYTp1VQKZi/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwYeenJgXBOrSC4xfKj12kiiV9UgToAmpDI2ncR_bhVBEA9ASYjhakUR23kYNro1ACb/exec';
 
     document.getElementById('idForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -435,6 +438,7 @@
   </script>
 </body>
 </html>
+
 
 
 
