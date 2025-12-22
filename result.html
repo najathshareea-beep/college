@@ -633,8 +633,12 @@
   </div>
 
   <script>
-    // AppScript URL - Fixed for GitHub
-    const APPSCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyDC7pTwG4nMnSBzMcJke3B6hCESkLjS6pIqRY9wjPn3tKgtn-HRvIOwPMgcOlP8kb0/dev';
+    // 🚨 ഇവിടെയാണ് പ്രധാന മാറ്റം! 🚨
+    // നിങ്ങളുടെ പുതിയ AppScript Web App URL ഇവിടെ ഇടുക
+    const APPSCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxfzEm-cFgNRxAYV9z_Nmjfwmu-g-r32uZ14oKU85qJ3FnoMRR7wO4W6ZtEcXtuq2ZN/exec';
+    
+    // Debug mode
+    const DEBUG_MODE = true;
     
     // Check if running in AppScript environment
     function isAppScript() {
@@ -653,13 +657,19 @@
         return;
       }
       
+      if (DEBUG_MODE) {
+        console.log('Form Data:', formData);
+        console.log('AppScript URL:', APPSCRIPT_URL);
+        console.log('Is AppScript:', isAppScript());
+      }
+      
       showLoader();
       
       if (isAppScript()) {
-        // AppScript environment
+        // AppScript environment - use google.script.run
         submitDirect(formData);
       } else {
-        // GitHub environment
+        // GitHub environment - use fetch API
         submitViaGitHub(formData);
       }
     }
@@ -678,27 +688,42 @@
         // Use GET method with parameters
         const url = `${APPSCRIPT_URL}?roll=${encodeURIComponent(formData.roll)}&dob=${encodeURIComponent(formData.dob)}`;
         
-        console.log('Fetching URL:', url);
+        if (DEBUG_MODE) {
+          console.log('Fetching URL:', url);
+        }
         
         const response = await fetch(url, {
           method: 'GET',
           mode: 'cors',
+          cache: 'no-cache',
           headers: {
             'Accept': 'text/html',
             'Content-Type': 'text/html'
           }
         });
         
+        if (DEBUG_MODE) {
+          console.log('Response Status:', response.status, response.statusText);
+        }
+        
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status} ${response.statusText}`);
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
         
         const html = await response.text();
-        console.log('Response received:', html.substring(0, 100));
+        
+        if (DEBUG_MODE) {
+          console.log('Response received (first 500 chars):', html.substring(0, 500));
+        }
+        
+        if (html.includes('error') || html.includes('Error') || html.includes('exception')) {
+          throw new Error('Server returned an error');
+        }
+        
         handleSuccess(html);
       } catch (error) {
         console.error('Fetch error:', error);
-        handleError('Connection Error: ' + error.message + '. Please try again.');
+        handleError('Connection Error: ' + error.message + '. Please check your internet connection and try again.');
       }
     }
     
@@ -718,12 +743,21 @@
     // Handle error
     function handleError(error) {
       hideLoader();
+      let errorMessage = error;
+      
+      if (typeof error === 'object' && error.message) {
+        errorMessage = error.message;
+      }
+      
       document.getElementById('rs').innerHTML = `
         <div class="error-message">
           <i class="fas fa-exclamation-triangle"></i>
           <h3>Error</h3>
-          <p>${error}</p>
+          <p>${errorMessage}</p>
           <p>Please check your details and try again.</p>
+          <button onclick="showMainPage()" class="btn btn-secondary" style="margin-top: 15px;">
+            <i class="fas fa-arrow-left"></i> Try Again
+          </button>
         </div>
       `;
     }
@@ -822,8 +856,11 @@
     document.addEventListener('DOMContentLoaded', function() {
       console.log('Page loaded. Environment:', isAppScript() ? 'AppScript' : 'GitHub');
       console.log('AppScript URL:', APPSCRIPT_URL);
+      
+      // Set max date for DOB (today)
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('dob').setAttribute('max', today);
     });
   </script>
 </body>
 </html>
-
