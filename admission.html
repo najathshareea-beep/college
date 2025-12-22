@@ -3,711 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College Portal | Darunnajath Shareeath & Arts College</title>
-    
-    <!-- Bootstrap 5 CSS -->
+    <title>College Student Portal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
     <style>
-        :root {
-            --primary-color: #0b5ed7;
-            --secondary-color: #2c3e50;
-            --accent-color: #3498db;
-            --success-color: #28a745;
-            --warning-color: #ffc107;
-            --danger-color: #dc3545;
-            --light-color: #f8f9fa;
-            --dark-color: #343a40;
-            --gradient-primary: linear-gradient(135deg, #0b5ed7 0%, #2980b9 100%);
-            --gradient-secondary: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-            --gradient-accent: linear-gradient(135deg, #3498db 0%, #1abc9c 100%);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #0b5ed7 0%, #2980b9 100%);
             min-height: 100vh;
-            color: var(--dark-color);
-            line-height: 1.6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
-        /* Header Styles */
-        .header {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 20px 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
+        .container {
+            max-width: 800px;
+            margin-top: 50px;
         }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTIwMCA2MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwYjVlZDc7Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojNzRiOWZmOyIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0idXJsKCNncmFkaWVudCkiLz48L3N2Zz4=');
-            opacity: 0.1;
-        }
-        
-        .college-logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-        }
-        
-        .college-logo:hover {
-            transform: scale(1.05);
-        }
-        
-        .college-name {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 2.2rem;
-            margin-bottom: 5px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        }
-        
-        .college-subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 10px;
-        }
-        
-        .college-address {
-            font-size: 0.95rem;
-            opacity: 0.8;
-        }
-        
-        /* Main Container */
-        .main-container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-        
-        /* Welcome Card */
-        .welcome-card {
-            background: white;
+        .card {
             border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             border: none;
-            position: relative;
-            overflow: hidden;
         }
-        
-        .welcome-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 8px;
-            height: 100%;
-            background: var(--gradient-primary);
-        }
-        
-        .welcome-title {
-            color: var(--primary-color);
-            font-weight: 700;
-            margin-bottom: 15px;
-            font-size: 1.8rem;
-        }
-        
-        .welcome-text {
-            color: #555;
-            font-size: 1.05rem;
-            margin-bottom: 20px;
-        }
-        
-        /* Services Section */
-        .services-section {
-            margin-bottom: 40px;
-        }
-        
-        .section-title {
+        .card-header {
+            background: #0b5ed7;
+            color: white;
+            border-radius: 15px 15px 0 0 !important;
+            padding: 20px;
             text-align: center;
-            color: var(--secondary-color);
-            margin-bottom: 30px;
-            font-weight: 700;
-            font-size: 2rem;
-            position: relative;
-            padding-bottom: 15px;
         }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gradient-primary);
-            border-radius: 2px;
+        .btn-service {
+            margin: 10px;
+            width: 100%;
         }
-        
-        .service-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px 25px;
-            height: 100%;
-            text-align: center;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-        }
-        
-        .service-icon {
+        .logo {
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
             margin: 0 auto 20px;
-            color: white;
-            font-size: 30px;
-            box-shadow: 0 5px 15px rgba(11, 94, 215, 0.3);
-        }
-        
-        .service-title {
-            color: var(--secondary-color);
-            font-weight: 600;
-            margin-bottom: 15px;
-            font-size: 1.4rem;
-        }
-        
-        .service-desc {
-            color: #666;
-            margin-bottom: 25px;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-        
-        .btn-service {
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 10px 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 4px 10px rgba(11, 94, 215, 0.2);
-        }
-        
-        .btn-service:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 15px rgba(11, 94, 215, 0.3);
-            color: white;
-        }
-        
-        /* Modal Styles */
-        .modal-content {
-            border-radius: 15px;
-            border: none;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-        }
-        
-        .modal-header {
-            background: var(--gradient-primary);
-            color: white;
-            border-bottom: none;
-            padding: 20px 30px;
-            position: relative;
-        }
-        
-        .modal-title {
-            font-weight: 600;
-        }
-        
-        .modal-body {
-            padding: 30px;
-        }
-        
-        .form-label {
-            font-weight: 600;
-            color: var(--secondary-color);
-            margin-bottom: 8px;
-        }
-        
-        .form-control {
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.25rem rgba(11, 94, 215, 0.25);
-        }
-        
-        .btn-submit {
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 12px 30px;
-            font-weight: 600;
-            font-size: 16px;
-            width: 100%;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-submit:hover {
-            background: var(--primary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(11, 94, 215, 0.3);
-        }
-        
-        .btn-submit:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-        
-        /* Loading Spinner */
-        .spinner-border {
-            width: 1.5rem;
-            height: 1.5rem;
-        }
-        
-        /* Result Container */
-        .result-container {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            margin-top: 30px;
-            display: none;
-        }
-        
-        .result-header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-        
-        .result-title {
-            color: var(--primary-color);
-            font-weight: 700;
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-        }
-        
-        .student-photo {
-            width: 150px;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 10px;
-            border: 3px solid var(--primary-color);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .student-info {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .info-row {
-            display: flex;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px dashed #ddd;
-        }
-        
-        .info-label {
-            font-weight: 600;
-            color: var(--secondary-color);
-            width: 40%;
-        }
-        
-        .info-value {
-            color: #333;
-            width: 60%;
-        }
-        
-        /* Footer */
-        .footer {
-            background: var(--secondary-color);
-            color: white;
-            padding: 40px 0 20px;
-            margin-top: 50px;
-        }
-        
-        .footer-title {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            font-weight: 600;
-            color: #ddd;
-        }
-        
-        .footer-links {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: #aaa;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            margin-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #aaa;
-            font-size: 0.9rem;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .college-name {
-                font-size: 1.8rem;
-            }
-            
-            .section-title {
-                font-size: 1.6rem;
-            }
-            
-            .welcome-card, .service-card {
-                padding: 20px;
-            }
-            
-            .main-container {
-                padding: 0 15px;
-            }
-            
-            .info-row {
-                flex-direction: column;
-            }
-            
-            .info-label, .info-value {
-                width: 100%;
-            }
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.5s ease forwards;
-        }
-        
-        /* Notification */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 9999;
-            min-width: 300px;
-            max-width: 400px;
-            border-radius: 10px;
-            padding: 15px 20px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        .notification-success {
-            background: #d4edda;
-            color: #155724;
-            border-left: 5px solid #28a745;
-        }
-        
-        .notification-error {
-            background: #f8d7da;
-            color: #721c24;
-            border-left: 5px solid #dc3545;
-        }
-        
-        .notification-warning {
-            background: #fff3cd;
-            color: #856404;
-            border-left: 5px solid #ffc107;
-        }
-        
-        /* QR Code */
-        .qr-code {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto;
-            background: white;
-            padding: 10px;
-            border-radius: 10px;
-            border: 2px solid #e0e0e0;
-        }
-        
-        /* Print Styles */
-        @media print {
-            .no-print {
-                display: none !important;
-            }
-            
-            .result-container {
-                box-shadow: none;
-                border: 1px solid #000;
-                margin: 0;
-                padding: 20px;
-            }
+            display: block;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-2 text-center text-md-start mb-3 mb-md-0">
-                    <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="college-logo">
-                </div>
-                <div class="col-md-10 text-center text-md-start">
-                    <h1 class="college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</h1>
-                    <p class="college-subtitle">Punnakkad, Karuvarakundu, Malappuram District</p>
-                    <p class="college-address">Affiliated to University of Calicut | NAAC Accredited</p>
-                </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="Logo" class="logo">
+                <h2>DARUNNAJATH SHAREEATH & ARTS COLLEGE</h2>
+                <p class="mb-0">Student Portal</p>
             </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <div class="main-container">
-        <!-- Welcome Section -->
-        <div class="welcome-card fade-in" data-aos="fade-up">
-            <h2 class="welcome-title">Welcome to College Student Portal</h2>
-            <p class="welcome-text">
-                This portal provides various services for students including online application submission, 
-                hall ticket download, result checking, and ID card generation. All services require your 
-                registered mobile number and date of birth for authentication.
-            </p>
-            <div class="alert alert-info" role="alert">
-                <i class="fas fa-info-circle me-2"></i>
-                Please ensure you have your registered mobile number and date of birth ready before proceeding.
-            </div>
-        </div>
-        
-        <!-- Services Section -->
-        <div class="services-section">
-            <h2 class="section-title" data-aos="fade-up">Student Services</h2>
-            <div class="row g-4">
-                <!-- Application Submission -->
-                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-file-signature"></i>
-                        </div>
-                        <h3 class="service-title">Application Submission</h3>
-                        <p class="service-desc">Submit new admission application online with photo upload facility.</p>
-                        <a href="#" class="btn-service" data-bs-toggle="modal" data-bs-target="#applicationModal">
-                            <i class="fas fa-plus-circle me-2"></i> Apply Now
-                        </a>
+            <div class="card-body p-4">
+                <h4 class="text-center mb-4">Select Service</h4>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <button class="btn btn-primary btn-lg btn-service" data-bs-toggle="modal" data-bs-target="#applicationModal">
+                            📝 Application Submission
+                        </button>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <button class="btn btn-success btn-lg btn-service" data-bs-toggle="modal" data-bs-target="#downloadModal">
+                            📄 Download Application
+                        </button>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <button class="btn btn-warning btn-lg btn-service" data-bs-toggle="modal" data-bs-target="#hallticketModal">
+                            🎫 Hall Ticket Download
+                        </button>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <button class="btn btn-info btn-lg btn-service" data-bs-toggle="modal" data-bs-target="#resultModal">
+                            📊 Check Result
+                        </button>
                     </div>
                 </div>
                 
-                <!-- Download Application -->
-                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-file-download"></i>
-                        </div>
-                        <h3 class="service-title">Download Application</h3>
-                        <p class="service-desc">Download your submitted application form with complete details.</p>
-                        <a href="#" class="btn-service" data-bs-toggle="modal" data-bs-target="#downloadModal">
-                            <i class="fas fa-download me-2"></i> Download
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Hall Ticket -->
-                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-ticket-alt"></i>
-                        </div>
-                        <h3 class="service-title">Hall Ticket</h3>
-                        <p class="service-desc">Download your exam hall ticket with photo and exam details.</p>
-                        <a href="#" class="btn-service" data-bs-toggle="modal" data-bs-target="#hallticketModal">
-                            <i class="fas fa-ticket-alt me-2"></i> Get Hall Ticket
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Check Result -->
-                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3 class="service-title">Check Result</h3>
-                        <p class="service-desc">Check your exam results with detailed performance analysis.</p>
-                        <a href="#" class="btn-service" data-bs-toggle="modal" data-bs-target="#resultModal">
-                            <i class="fas fa-search me-2"></i> Check Result
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Result Display Area -->
-        <div id="resultDisplay" class="result-container"></div>
-    </div>
-
-    <!-- Notification Area -->
-    <div id="notification" class="notification"></div>
-
-    <!-- Application Submission Modal -->
-    <div class="modal fade" id="applicationModal" tabindex="-1" aria-labelledby="applicationModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="applicationModalLabel">
-                        <i class="fas fa-file-signature me-2"></i> Online Application Form
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="applicationForm">
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Full Name *</label>
-                                <input type="text" class="form-control" name="studentName" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">House Name *</label>
-                                <input type="text" class="form-control" name="houseName" required>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Date of Birth *</label>
-                                <input type="date" class="form-control" name="dob" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Aadhaar Number *</label>
-                                <input type="text" class="form-control" name="aadhaarNumber" pattern="\d{12}" required>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label class="form-label">Address *</label>
-                            <textarea class="form-control" name="address" rows="2" required></textarea>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Phone Number *</label>
-                                <input type="tel" class="form-control" name="phoneNumber" pattern="\d{10}" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">WhatsApp Number</label>
-                                <input type="tel" class="form-control" name="whatsappNumber" pattern="\d{10}">
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Father's Name *</label>
-                                <input type="text" class="form-control" name="fatherName" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Father's Occupation *</label>
-                                <input type="text" class="form-control" name="fatherOccupation" required>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label class="form-label">Student Photo (Passport Size)</label>
-                            <input type="file" class="form-control" name="photo" accept="image/*">
-                            <div class="form-text">Max size: 2MB, Format: JPG/PNG</div>
-                        </div>
-                        
-                        <div class="d-grid gap-2 mt-4">
-                            <button type="submit" class="btn-submit" id="submitApplicationBtn">
-                                <i class="fas fa-paper-plane me-2"></i> Submit Application
-                            </button>
-                        </div>
-                    </form>
+                <div class="mt-4 text-center text-muted">
+                    <small>© 2024 Darunnajath Shareeath & Arts College</small>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Download Application Modal -->
-    <div class="modal fade" id="downloadModal" tabindex="-1" aria-labelledby="downloadModalLabel" aria-hidden="true">
+    <!-- Application Modal -->
+    <div class="modal fade" id="applicationModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="downloadModalLabel">
-                        <i class="fas fa-download me-2"></i> Download Application
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title">Application Form</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>This feature will be available soon.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Download Modal -->
+    <div class="modal fade" id="downloadModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Download Application</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <form id="downloadForm">
                         <div class="mb-3">
-                            <label class="form-label">Registered Mobile Number *</label>
-                            <input type="tel" class="form-control" id="downloadMobile" pattern="\d{10}" required>
+                            <label>Mobile Number</label>
+                            <input type="tel" class="form-control" required pattern="\d{10}">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Date of Birth *</label>
-                            <input type="date" class="form-control" id="downloadDob" required>
+                            <label>Date of Birth</label>
+                            <input type="date" class="form-control" required>
                         </div>
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn-submit" id="downloadBtn">
-                                <i class="fas fa-search me-2"></i> Search Application
-                            </button>
-                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Search</button>
                     </form>
                 </div>
             </div>
@@ -715,30 +122,24 @@
     </div>
 
     <!-- Hall Ticket Modal -->
-    <div class="modal fade" id="hallticketModal" tabindex="-1" aria-labelledby="hallticketModalLabel" aria-hidden="true">
+    <div class="modal fade" id="hallticketModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="hallticketModalLabel">
-                        <i class="fas fa-ticket-alt me-2"></i> Download Hall Ticket
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title">Hall Ticket</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <form id="hallticketForm">
                         <div class="mb-3">
-                            <label class="form-label">Registered Mobile Number *</label>
-                            <input type="tel" class="form-control" id="hallticketMobile" pattern="\d{10}" required>
+                            <label>Mobile Number</label>
+                            <input type="tel" class="form-control" required pattern="\d{10}">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Date of Birth *</label>
-                            <input type="date" class="form-control" id="hallticketDob" required>
+                            <label>Date of Birth</label>
+                            <input type="date" class="form-control" required>
                         </div>
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn-submit" id="hallticketBtn">
-                                <i class="fas fa-download me-2"></i> Download Hall Ticket
-                            </button>
-                        </div>
+                        <button type="submit" class="btn btn-warning w-100">Download</button>
                     </form>
                 </div>
             </div>
@@ -746,318 +147,39 @@
     </div>
 
     <!-- Result Modal -->
-    <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
+    <div class="modal fade" id="resultModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="resultModalLabel">
-                        <i class="fas fa-chart-line me-2"></i> Check Result
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title">Check Result</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <form id="resultForm">
                         <div class="mb-3">
-                            <label class="form-label">Registered Mobile Number *</label>
-                            <input type="tel" class="form-control" id="resultMobile" pattern="\d{10}" required>
+                            <label>Mobile Number</label>
+                            <input type="tel" class="form-control" required pattern="\d{10}">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Date of Birth *</label>
-                            <input type="date" class="form-control" id="resultDob" required>
+                            <label>Date of Birth</label>
+                            <input type="date" class="form-control" required>
                         </div>
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn-submit" id="resultBtn">
-                                <i class="fas fa-search me-2"></i> Check Result
-                            </button>
-                        </div>
+                        <button type="submit" class="btn btn-info w-100">Check Result</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <h5 class="footer-title">Contact Information</h5>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt me-2"></i> Punnakkad, Karuvarakundu, Malappuram</li>
-                        <li><i class="fas fa-phone me-2"></i> +91 1234567890</li>
-                        <li><i class="fas fa-envelope me-2"></i> info@darunnajathcollege.edu.in</li>
-                    </ul>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <h5 class="footer-title">Quick Links</h5>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-home me-2"></i> Home</a></li>
-                        <li><a href="#"><i class="fas fa-graduation-cap me-2"></i> Academics</a></li>
-                        <li><a href="#"><i class="fas fa-calendar-alt me-2"></i> Events</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <h5 class="footer-title">Support</h5>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-question-circle me-2"></i> Help Center</a></li>
-                        <li><a href="#"><i class="fas fa-file-alt me-2"></i> Privacy Policy</a></li>
-                        <li><a href="#"><i class="fas fa-shield-alt me-2"></i> Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                &copy; 2024 Darunnajath Shareeath & Arts College. All Rights Reserved.
-            </div>
-        </div>
-    </footer>
-
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- AOS Animation -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- Main Script -->
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-        
-        // Google Apps Script URL
         const scriptURL = 'https://script.google.com/macros/s/AKfycbyi6_R4hZ37MEmk0EFkEn7oj_j_kMSKY6YDYE9_4uKYvKpm-gEbplB3ucLgTvxQLVmvpg/exec';
         
-        // Show notification
-        function showNotification(message, type = 'success') {
-            const notification = document.getElementById('notification');
-            notification.className = `notification notification-${type}`;
-            notification.innerHTML = `
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'exclamation-triangle'} me-3 fs-4"></i>
-                    <div>${message}</div>
-                </div>
-            `;
-            notification.style.display = 'block';
-            
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 5000);
-        }
-        
-        // Application Form Submission
-        document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+        // Add form submission handlers here
+        document.getElementById('downloadForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitApplicationBtn');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Submitting...';
-            submitBtn.disabled = true;
-            
-            const formData = new FormData(this);
-            
-            // Handle file upload
-            const photoFile = formData.get('photo');
-            let photoBase64 = '';
-            
-            if (photoFile && photoFile.size > 0) {
-                if (photoFile.size > 2 * 1024 * 1024) {
-                    showNotification('Photo size should be less than 2MB', 'error');
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                    return;
-                }
-                
-                // Convert file to base64
-                photoBase64 = await new Promise((resolve) => {
-                    const reader = new FileReader();
-                    reader.onload = (e) => resolve(e.target.result.split(',')[1]);
-                    reader.readAsDataURL(photoFile);
-                });
-            }
-            
-            // Prepare data for Google Apps Script
-            const data = {
-                studentName: formData.get('studentName'),
-                houseName: formData.get('houseName'),
-                dob: formData.get('dob'),
-                aadhaarNumber: formData.get('aadhaarNumber'),
-                address: formData.get('address'),
-                phoneNumber: formData.get('phoneNumber'),
-                whatsappNumber: formData.get('whatsappNumber') || '',
-                fatherName: formData.get('fatherName'),
-                fatherOccupation: formData.get('fatherOccupation'),
-                photo: photoBase64 ? {
-                    data: photoBase64,
-                    mimeType: photoFile.type,
-                    name: photoFile.name
-                } : null
-            };
-            
-            try {
-                const response = await fetch(scriptURL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    showNotification('Application submitted successfully!', 'success');
-                    // Close modal
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('applicationModal'));
-                    modal.hide();
-                    // Reset form
-                    document.getElementById('applicationForm').reset();
-                } else {
-                    showNotification(result.message || 'Submission failed. Please try again.', 'error');
-                }
-            } catch (error) {
-                showNotification('Network error. Please check your connection.', 'error');
-                console.error('Error:', error);
-            } finally {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }
+            alert('This will connect to your Google Apps Script');
         });
-        
-        // Download Application
-        document.getElementById('downloadForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const mobile = document.getElementById('downloadMobile').value;
-            const dob = document.getElementById('downloadDob').value;
-            
-            const downloadBtn = document.getElementById('downloadBtn');
-            const originalText = downloadBtn.innerHTML;
-            downloadBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Searching...';
-            downloadBtn.disabled = true;
-            
-            try {
-                const response = await fetch(`${scriptURL}?mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}&type=application`);
-                const html = await response.text();
-                
-                document.getElementById('resultDisplay').innerHTML = html;
-                document.getElementById('resultDisplay').style.display = 'block';
-                
-                // Close modal
-                const modal = bootstrap.Modal.getInstance(document.getElementById('downloadModal'));
-                modal.hide();
-                
-                // Reset form
-                document.getElementById('downloadForm').reset();
-                
-                // Scroll to result
-                document.getElementById('resultDisplay').scrollIntoView({ behavior: 'smooth' });
-            } catch (error) {
-                showNotification('Error fetching application. Please try again.', 'error');
-                console.error('Error:', error);
-            } finally {
-                downloadBtn.innerHTML = originalText;
-                downloadBtn.disabled = false;
-            }
-        });
-        
-        // Hall Ticket Download
-        document.getElementById('hallticketForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const mobile = document.getElementById('hallticketMobile').value;
-            const dob = document.getElementById('hallticketDob').value;
-            
-            const hallticketBtn = document.getElementById('hallticketBtn');
-            const originalText = hallticketBtn.innerHTML;
-            hallticketBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Downloading...';
-            hallticketBtn.disabled = true;
-            
-            try {
-                const response = await fetch(`${scriptURL}?mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}&type=hallticket`);
-                const html = await response.text();
-                
-                document.getElementById('resultDisplay').innerHTML = html;
-                document.getElementById('resultDisplay').style.display = 'block';
-                
-                // Close modal
-                const modal = bootstrap.Modal.getInstance(document.getElementById('hallticketModal'));
-                modal.hide();
-                
-                // Reset form
-                document.getElementById('hallticketForm').reset();
-                
-                // Scroll to result
-                document.getElementById('resultDisplay').scrollIntoView({ behavior: 'smooth' });
-            } catch (error) {
-                showNotification('Error downloading hall ticket. Please try again.', 'error');
-                console.error('Error:', error);
-            } finally {
-                hallticketBtn.innerHTML = originalText;
-                hallticketBtn.disabled = false;
-            }
-        });
-        
-        // Check Result
-        document.getElementById('resultForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const mobile = document.getElementById('resultMobile').value;
-            const dob = document.getElementById('resultDob').value;
-            
-            const resultBtn = document.getElementById('resultBtn');
-            const originalText = resultBtn.innerHTML;
-            resultBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Checking...';
-            resultBtn.disabled = true;
-            
-            try {
-                const response = await fetch(`${scriptURL}?roll=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);
-                const html = await response.text();
-                
-                document.getElementById('resultDisplay').innerHTML = html;
-                document.getElementById('resultDisplay').style.display = 'block';
-                
-                // Close modal
-                const modal = bootstrap.Modal.getInstance(document.getElementById('resultModal'));
-                modal.hide();
-                
-                // Reset form
-                document.getElementById('resultForm').reset();
-                
-                // Scroll to result
-                document.getElementById('resultDisplay').scrollIntoView({ behavior: 'smooth' });
-            } catch (error) {
-                showNotification('Error checking result. Please try again.', 'error');
-                console.error('Error:', error);
-            } finally {
-                resultBtn.innerHTML = originalText;
-                resultBtn.disabled = false;
-            }
-        });
-        
-        // Reset forms when modals are closed
-        const modals = ['applicationModal', 'downloadModal', 'hallticketModal', 'resultModal'];
-        modals.forEach(modalId => {
-            const modal = document.getElementById(modalId);
-            modal.addEventListener('hidden.bs.modal', function() {
-                const form = modal.querySelector('form');
-                if (form) form.reset();
-            });
-        });
-        
-        // Print function for results
-        window.printResult = function() {
-            window.print();
-        };
-        
-        // Initialize tooltips
-        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-        tooltipTriggerList.map(function(tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl);
-        });
-        
-        // Add current year to footer
-        document.querySelector('.copyright').innerHTML = document.querySelector('.copyright').innerHTML.replace('2024', new Date().getFullYear());
     </script>
 </body>
 </html>
