@@ -584,7 +584,7 @@
         <i class="fas fa-star"></i> Official Result Portal
       </div>
       <h1>Darunnajath Shareeath & Arts College Karuvarakundu</h1>
-      <p>Academic Year 2025-2026</p>
+      <p>Academic Year 2023-2024</p>
     </header>
 
     <!-- Input Card -->
@@ -635,7 +635,7 @@
   <script>
     // 🚨 ഇവിടെയാണ് പ്രധാന മാറ്റം! 🚨
     // നിങ്ങളുടെ പുതിയ AppScript Web App URL ഇവിടെ ഇടുക
-    const APPSCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxfzEm-cFgNRxAYV9z_Nmjfwmu-g-r32uZ14oKU85qJ3FnoMRR7wO4W6ZtEcXtuq2ZN/exec';
+    const APPSCRIPT_URL = '';
     
     // Debug mode
     const DEBUG_MODE = true;
@@ -685,20 +685,20 @@
     // Submit via GitHub (using fixed URL)
     async function submitViaGitHub(formData) {
       try {
-        // Use GET method with parameters
-        const url = `${APPSCRIPT_URL}?roll=${encodeURIComponent(formData.roll)}&dob=${encodeURIComponent(formData.dob)}`;
-        
-        if (DEBUG_MODE) {
-          console.log('Fetching URL:', url);
-        }
-        
+        const params = new URLSearchParams({
+          roll: formData.roll,
+          dob: formData.dob
+        }).toString();
+        const url = `${APPSCRIPT_URL}?${params}`;
+    
+        console.log('Fetching from URL:', url);
+
         const response = await fetch(url, {
           method: 'GET',
-          mode: 'cors',
-          cache: 'no-cache',
+          mode: 'no-cors', // <-- NEW MODE (Try this for GitHub)
+          cache: 'no-store',
           headers: {
             'Accept': 'text/html',
-            'Content-Type': 'text/html'
           }
         });
         
@@ -864,4 +864,3 @@
   </script>
 </body>
 </html>
-
