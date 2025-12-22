@@ -602,36 +602,7 @@
             margin-bottom: 25px;
             line-height: 1.6;
         }
-
-        /* GitHub Badge */
-        .github-badge {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .github-badge a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: #333;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .github-badge a:hover {
-            background: #444;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .college-name {
@@ -659,17 +630,7 @@
                 width: 100%;
                 justify-content: center;
             }
-            
-            .github-badge {
-                position: static;
-                margin-bottom: 20px;
-                display: flex;
-                justify-content: center;
-            }
-            
-            .github-badge a {
-                width: fit-content;
-            }
+                        
         }
 
         @media (max-width: 480px) {
@@ -688,13 +649,6 @@
     </style>
 </head>
 <body>
-    <!-- GitHub Badge -->
-    <div class="github-badge">
-        <a href="https://github.com/yourusername/your-repo" target="_blank">
-            <i class="fab fa-github"></i> View on GitHub
-        </a>
-    </div>
-
     <div class="container">
         <!-- Header -->
         <div class="header">
@@ -1035,3 +989,4 @@
     </script>
 </body>
 </html>
+
