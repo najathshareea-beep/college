@@ -3,52 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Results - Darunnajath Shareeath & Arts College, Karuvarakundu</title>
-
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-
+  <title>Student Result Portal - Darunnajath College</title>
+  
+  <!-- External Libraries -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Include SheetJS for Excel/Google Sheets parsing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  
   <style>
     :root {
-      --primary: #0d6efd;
-      --primary-light: #3a8cff;
-      --primary-dark: #0a58ca;
-      --secondary: #20c997;
-      --accent: #ff6b6b;
-      --light: #f8f9fa;
-      --dark: #212529;
-      --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #3b82f6;
+      --secondary: #f59e0b;
+      --accent: #8b5cf6;
+      --success: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --light: #f8fafc;
+      --dark: #1e293b;
+      --gray: #64748b;
+      --border: #e2e8f0;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --glass: rgba(255, 255, 255, 0.1);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
-    /* Animated Gradient Background */
     body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      color: #fff;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
       padding: 20px;
-      overflow-x: hidden;
+      line-height: 1.6;
       position: relative;
+      overflow-x: hidden;
     }
 
     body::before {
@@ -58,664 +56,1583 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: 
-        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(255,255,255,0.05) 0%, transparent 50%);
-      z-index: -2;
-    }
-
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* Floating particles */
-    .particles {
-      position: fixed;
-      width: 100%;
-      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff" fill-opacity="0.05" points="0,1000 1000,0 1000,1000"/></svg>');
+      pointer-events: none;
       z-index: -1;
     }
 
-    .particle {
-      position: absolute;
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      animation: float 20s infinite linear;
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    @keyframes float {
-      0% {
-        transform: translateY(0) translateX(0) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100vh) translateX(100vw) rotate(720deg);
-        opacity: 0;
-      }
-    }
-
-    /* Headings with animation */
-    .header-container {
+    /* Header Styles */
+    .main-header {
       text-align: center;
-      margin-bottom: 2rem;
-      animation: fadeInDown 1s ease-out;
-    }
-
-    .main-heading {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 3.5rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-      text-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      background: linear-gradient(to right, #fff, #f8f9fa);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      letter-spacing: 1px;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 10px rgba(255,255,255,0.5),
-                     0 0 20px rgba(255,255,255,0.3),
-                     0 0 30px rgba(255,255,255,0.2);
-      }
-      to {
-        text-shadow: 0 0 20px rgba(255,255,255,0.8),
-                     0 0 30px rgba(255,255,255,0.6),
-                     0 0 40px rgba(255,255,255,0.4);
-      }
-    }
-
-    .sub-heading {
-      font-size: 1.8rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: #e0f7ff;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 0.3s forwards;
-    }
-
-    .sub-heading-small {
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: #c2e9ff;
-      text-shadow: 0 1px 5px rgba(0,0,0,0.15);
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 0.6s forwards;
-    }
-
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Result Box with glass morphism */
-    .result-box {
+      margin-bottom: 40px;
+      color: white;
       position: relative;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      color: var(--dark);
-      border-radius: 25px;
-      padding: 3rem;
-      text-align: center;
-      max-width: 550px;
-      width: 100%;
-      box-shadow: 
-        0 25px 50px rgba(0,0,0,0.25),
-        inset 0 1px 0 rgba(255,255,255,0.3);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      border: 1px solid rgba(255,255,255,0.2);
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 0.9s forwards;
-      overflow: hidden;
-      z-index: 1;
     }
 
-    .result-box::before {
+    .header-badge {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 8px 20px;
+      border-radius: 25px;
+      display: inline-block;
+      margin-bottom: 15px;
+      font-size: 0.9rem;
+    }
+
+    .main-header h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      background: linear-gradient(135deg, #fff, #e0f2fe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .main-header p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      font-weight: 300;
+    }
+
+    /* Glass Card Styles */
+    .glass-card {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 30px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .glass-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .card-header {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 25px 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-header::before {
       content: '';
       position: absolute;
       top: -50%;
-      left: -50%;
-      width: 200%;
+      right: -50%;
+      width: 100%;
       height: 200%;
-      background: linear-gradient(
-        45deg,
-        transparent,
-        rgba(255,255,255,0.1),
-        transparent
-      );
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
       transform: rotate(45deg);
       animation: shine 3s infinite;
-      z-index: -1;
     }
 
     @keyframes shine {
-      0% {
-        transform: translateX(-100%) translateY(-100%) rotate(45deg);
-      }
-      100% {
-        transform: translateX(100%) translateY(100%) rotate(45deg);
-      }
+      0% { transform: translateX(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) rotate(45deg); }
     }
 
-    .result-box:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 
-        0 35px 70px rgba(0,0,0,0.3),
-        inset 0 1px 0 rgba(255,255,255,0.4);
-    }
-
-    .result-box h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      margin-bottom: 1.2rem;
-      font-size: 2rem;
-      color: var(--primary-dark);
-      position: relative;
-      display: inline-block;
-      padding-bottom: 15px;
-    }
-
-    .result-box h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: var(--gradient-1);
-      border-radius: 2px;
-    }
-
-    .result-box p {
-      color: #6c757d;
-      margin-bottom: 2.5rem;
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-
-    /* Enhanced Buttons */
-    .btn-container {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-      margin-bottom: 2rem;
-    }
-
-    .result-btn {
-      position: relative;
-      border: none;
-      border-radius: 15px;
-      padding: 1.2rem 2rem;
-      font-size: 1.1rem;
+    .card-header h2 {
+      font-size: 1.6rem;
       font-weight: 600;
-      width: 100%;
-      color: #fff;
-      background: var(--gradient-1);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      overflow: hidden;
-      z-index: 1;
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: 12px;
-      text-decoration: none;
-      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+      position: relative;
+      z-index: 1;
     }
 
-    .result-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
+    .card-body {
+      padding: 35px;
+      background: var(--card-bg);
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 500;
+      color: var(--dark);
+      font-size: 1rem;
+    }
+
+    .form-control {
       width: 100%;
-      height: 100%;
-      background: var(--gradient-2);
-      transition: 0.5s;
-      z-index: -1;
-    }
-
-    .result-btn:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
-      color: #fff;
-    }
-
-    .result-btn:hover::before {
-      left: 0;
-    }
-
-    .result-btn:nth-child(2) {
-      background: var(--gradient-3);
-      box-shadow: 0 10px 25px rgba(79, 172, 254, 0.3);
-    }
-
-    .result-btn:nth-child(2)::before {
-      background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
-    }
-
-    .result-btn:nth-child(3) {
-      background: var(--gradient-2);
-      box-shadow: 0 10px 25px rgba(240, 147, 251, 0.3);
-    }
-
-    .result-btn:nth-child(3)::before {
-      background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
-    }
-
-    .result-btn i {
-      font-size: 1.3rem;
-      transition: transform 0.3s;
-    }
-
-    .result-btn:hover i {
-      transform: translateX(5px);
-    }
-
-    /* Back button */
-    .back-btn {
+      padding: 16px 20px;
+      border: 2px solid var(--border);
       border-radius: 12px;
-      padding: 0.9rem 2rem;
-      font-weight: 600;
-      color: var(--primary);
-      border: 2px solid var(--primary);
-      background: transparent;
+      font-size: 16px;
       transition: all 0.3s ease;
+      background: white;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .btn {
+      padding: 16px 32px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      text-decoration: none;
       position: relative;
       overflow: hidden;
-      z-index: 1;
     }
 
-    .back-btn::before {
+    .btn::before {
       content: '';
       position: absolute;
       top: 0;
       left: -100%;
       width: 100%;
       height: 100%;
-      background: var(--primary);
-      transition: 0.4s;
-      z-index: -1;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
     }
 
-    .back-btn:hover {
-      color: #fff;
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-primary:hover {
       transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(13, 110, 253, 0.3);
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.6);
     }
 
-    .back-btn:hover::before {
-      left: 0;
+    .btn-secondary {
+      background: linear-gradient(135deg, var(--secondary), #eab308);
+      color: white;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
     }
 
-    .back-btn i {
-      transition: transform 0.3s;
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.6);
     }
 
-    .back-btn:hover i {
-      transform: translateX(-5px);
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
     }
 
-    /* Footer */
-    footer {
-      text-align: center;
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 0.95rem;
-      margin: 3rem 0 1rem;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      padding: 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
+    /* Result Card Styles */
+    .result-card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      margin: 20px auto;
+      max-width: 1000px;
+      border: 1px solid var(--border);
+    }
+
+    .result-header {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .college-brand {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      text-align: left;
+      position: relative;
+      z-index: 2;
+    }
+
+    .college-logo {
+      width: 90px;
+      height: 90px;
+      border-radius: 16px;
+      object-fit: cover;
+      border: 3px solid rgba(255,255,255,0.3);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .college-info h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .college-info h2 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+      font-weight: 500;
+      opacity: 0.95;
+    }
+
+    .college-info h3 {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      font-weight: 400;
+      opacity: 0.9;
+    }
+
+    .exam-title {
+      background: rgba(255,255,255,0.2);
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-weight: 600;
+      display: inline-block;
+      backdrop-filter: blur(10px);
+    }
+
+    .student-profile, .results-section, .performance-summary {
+      padding: 30px;
+      border-bottom: 1px solid var(--border);
+      background: white;
+    }
+
+    .section-header {
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-header h3 {
+      font-size: 1.4rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      background: var(--light);
+      padding: 25px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .profile-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .profile-item:last-child {
+      border-bottom: none;
+    }
+
+    .profile-item label {
+      font-weight: 600;
+      color: var(--gray);
+    }
+
+    .profile-item span {
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    /* Enhanced Table Styles */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .modern-table {
       width: 100%;
-      max-width: 800px;
-      animation: fadeIn 1s ease-out 1.2s forwards;
-      opacity: 0;
+      border-collapse: collapse;
+      font-size: 14px;
     }
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
+    .modern-table th {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 18px 15px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.9rem;
     }
 
-    /* Loading animation */
-    .loader {
+    .modern-table td {
+      padding: 15px;
+      border-bottom: 1px solid var(--border);
+      transition: background-color 0.3s ease;
+    }
+
+    .modern-table tr:hover {
+      background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+    }
+
+    .subject-name {
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .score {
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .grade {
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: var(--success);
+      color: white;
+      display: inline-block;
+      min-width: 100px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+    }
+
+    .grade-fail {
+      background: var(--danger);
+      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+    }
+
+    .status {
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-pass {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .status-fail {
+      background: #fecaca;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+    }
+
+    /* Enhanced Summary Styles */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+
+    .summary-card {
+      background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+      border-radius: 16px;
+      padding: 25px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .summary-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+    }
+
+    .summary-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    }
+
+    .summary-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .summary-content h4 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .summary-content p {
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 5px;
+      font-size: 1rem;
+    }
+
+    .summary-content small {
+      color: var(--gray);
+      font-size: 0.85rem;
+    }
+
+    .final-result {
+      text-align: center;
+      padding: 30px;
+      border-radius: 16px;
+      margin-top: 25px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-passed {
+      background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+      border: 2px solid #86efac;
+    }
+
+    .result-failed {
+      background: linear-gradient(135deg, #fecaca, #fca5a5);
+      border: 2px solid #f87171;
+    }
+
+    .result-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .result-passed .result-badge {
+      background: linear-gradient(135deg, var(--success), #34d399);
+      color: white;
+    }
+
+    .result-failed .result-badge {
+      background: linear-gradient(135deg, var(--danger), #f87171);
+      color: white;
+    }
+
+    .result-message {
+      font-weight: 500;
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    /* Enhanced Error Message Styles */
+    .error-message {
+      text-align: center;
+      padding: 50px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      margin: 20px auto;
+      max-width: 500px;
+      border: 1px solid var(--border);
+    }
+
+    .error-message i {
+      font-size: 3.5rem;
+      color: var(--danger);
+      margin-bottom: 20px;
+      opacity: 0.8;
+    }
+
+    .error-message h3 {
+      color: var(--danger);
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .error-message p {
+      color: var(--gray);
+      font-size: 1.1rem;
+    }
+
+    /* Enhanced Loading Animation */
+    .loader-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
       display: none;
-      width: 20px;
-      height: 20px;
-      border: 3px solid rgba(255,255,255,.3);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .modern-loader {
+      width: 80px;
+      height: 80px;
+      border: 4px solid rgba(255,255,255,0.3);
+      border-top: 4px solid white;
       border-radius: 50%;
-      border-top-color: white;
-      animation: spin 1s ease-in-out infinite;
-      margin-right: 10px;
+      animation: spin 1s linear infinite;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+
+    .loading-text {
+      color: white;
+      margin-top: 20px;
+      font-size: 1.1rem;
+      text-align: center;
     }
 
     @keyframes spin {
-      to { transform: rotate(360deg); }
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
-    /* Ripple effect for buttons */
-    .ripple {
+    /* Floating Elements */
+    .floating-element {
       position: absolute;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.6);
-      transform: scale(0);
-      animation: ripple 0.6s linear;
-      pointer-events: none;
+      width: 100px;
+      height: 100px;
+      background: var(--glass);
+      border-radius: 20px;
+      animation: float 6s ease-in-out infinite;
+      z-index: -1;
     }
 
-    @keyframes ripple {
-      to {
-        transform: scale(4);
-        opacity: 0;
-      }
+    .float-1 { top: 10%; left: 5%; animation-delay: 0s; }
+    .float-2 { top: 60%; right: 8%; animation-delay: 2s; }
+    .float-3 { bottom: 20%; left: 10%; animation-delay: 4s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
     }
 
-    /* Mobile Responsive */
+    /* Check Another Result Button Styles */
+    .check-another-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .check-another-btn {
+      background: linear-gradient(135deg, var(--secondary), #eab308);
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .check-another-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.6);
+    }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
-      .main-heading {
-        font-size: 2.5rem;
+      .main-header h1 {
+        font-size: 2.2rem;
       }
       
-      .sub-heading {
-        font-size: 1.5rem;
+      .college-brand {
+        flex-direction: column;
+        text-align: center;
       }
       
-      .sub-heading-small {
-        font-size: 1rem;
+      .profile-grid {
+        grid-template-columns: 1fr;
       }
       
-      .result-box {
-        padding: 2rem 1.5rem;
-        margin: 0 15px;
+      .summary-grid {
+        grid-template-columns: 1fr;
       }
       
-      .result-box h2 {
-        font-size: 1.7rem;
+      .btn-group {
+        flex-direction: column;
       }
       
-      .result-btn {
-        padding: 1rem 1.5rem;
-        font-size: 1rem;
-      }
-      
-      .back-btn {
-        padding: 0.8rem 1.5rem;
+      .card-body {
+        padding: 25px 20px;
       }
     }
 
-    @media (max-width: 480px) {
-      .main-heading {
-        font-size: 2rem;
-      }
-      
-      .sub-heading {
-        font-size: 1.2rem;
-      }
-      
-      .result-box {
-        padding: 1.5rem;
-      }
-      
-      .result-btn {
-        padding: 0.9rem;
-        font-size: 0.95rem;
-      }
+    /* ============================================
+       NEW STYLES ADDED FOR FILE UPLOAD
+       ============================================ */
+    
+    .file-upload-container {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 25px;
+      margin-bottom: 25px;
+      color: white;
     }
 
-    /* Print styles */
-    @media print {
-      body {
-        background: white !important;
-        color: black !important;
-      }
-      
-      .result-box {
-        box-shadow: none !important;
-        border: 1px solid #ddd !important;
-      }
-      
-      .btn-container, .back-btn {
-        display: none !important;
-      }
+    .file-upload-container h3 {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .upload-btn {
+      background: linear-gradient(135deg, var(--accent), #7c3aed);
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .upload-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
+    }
+
+    .file-name {
+      margin-left: 15px;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .result-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 30px;
+      background: var(--light);
+      border-top: 1px solid var(--border);
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+
+    .footer-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
   </style>
 </head>
 <body>
+  <!-- Floating Background Elements -->
+  <div class="floating-element float-1"></div>
+  <div class="floating-element float-2"></div>
+  <div class="floating-element float-3"></div>
 
-  <!-- Floating particles -->
-  <div class="particles" id="particles"></div>
+  <div class="container">
+    <!-- Main Header -->
+    <header class="main-header" id="main-header">
+      <div class="header-badge">
+        <i class="fas fa-star"></i> Official Result Portal
+      </div>
+      <h1>Darunnajath Shareeath & Arts College Karuvarakundu</h1>
+    </header>
 
-  <!-- Header -->
-  <div class="header-container">
-    <h1 class="main-heading">RESULT PORTAL</h1>
-    <div class="sub-heading">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div>
-    <div class="sub-heading-small">KARUVARAKUNDU</div>
-  </div>
-
-  <!-- Result Box -->
-  <div class="result-box">
-    <h2>Final Examination Result 2025-26</h2>
-    <p>Click below to view your latest examination results.</p>
-
-    <div class="btn-container">
-      <a href="https://script.google.com/macros/s/AKfycbyDC7pTwG4nMnSBzMcJke3B6hCESkLjS6pIqRY9wjPn3tKgtn-HRvIOwPMgcOlP8kb0/exec" 
-         class="result-btn" 
-         id="finalResultBtn">
-        <i class="fa-solid fa-book-open-reader"></i>
-        <span>Annual Examination</span>
-      </a>
-      
-      <a href="https://jamiajuniorcolleges.com/student/" 
-         class="result-btn" 
-         id="samasthaBtn">
-        <i class="fa-solid fa-book-open-reader"></i>
-        <span>Jamia Junior College Public Exam</span>
-      </a>
-      
-      <a href="maintenance.html" 
-         class="result-btn" 
-         id="toppersBtn">
-        <i class="fa-solid fa-graduation-cap"></i>
-        <span>Toppers Poster</span>
-      </a>
+    <!-- DATA UPLOAD SECTION (New for GitHub) -->
+    <div class="file-upload-container" id="upload-section">
+      <h3><i class="fas fa-file-excel"></i> Upload Excel/Google Sheets Data</h3>
+      <input type="file" id="dataFile" accept=".xlsx,.xls,.csv" style="display: none;">
+      <button class="upload-btn" onclick="document.getElementById('dataFile').click()">
+        <i class="fas fa-upload"></i> Choose Excel File
+      </button>
+      <span class="file-name" id="fileName">No file chosen</span>
+      <div style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">
+        <i class="fas fa-info-circle"></i> Download your Google Sheet as Excel: 
+        <a href="https://docs.google.com/spreadsheets/d/1ckOFULpgBLG13gWa_jKdy8LJwIUaxCRLN84tljLmCjo/export?format=xlsx" 
+           target="_blank" 
+           style="color: #eab308; text-decoration: none;">
+          Click here to download
+        </a>
+      </div>
     </div>
 
-    <div class="text-center mt-4">
-      <a href="index.html" class="back-btn" id="backBtn">
-        <i class="fas fa-arrow-left"></i>
-        <span>Back to Home</span>
-      </a>
+    <!-- Input Card -->
+    <div id="exam-result-input" class="glass-card">
+      <div class="card-header">
+        <h2><i class="fas fa-id-card-alt"></i> Examination Result</h2>
+      </div>
+      <div class="card-body">
+        <form id="lab" onsubmit="event.preventDefault(); subm()">
+          <div class="form-group">
+            <label class="form-label" for="roll">
+              <i class="fas fa-user-graduate"></i> Registration Number
+            </label>
+            <input type="text" name="roll" id="roll" class="form-control" 
+                   placeholder="Enter your registration number" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="dob">
+              <i class="fas fa-calendar-check"></i> Date of Birth
+            </label>
+            <input type="date" name="dob" id="dob" class="form-control" required>
+          </div>
+          
+          <div class="btn-group">
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-search"></i> Get Results
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Results Display Area -->
+    <div id='PrintDiv'>
+      <div id="rs"></div>
     </div>
   </div>
 
-  <footer>
-    © 2025 Noorussalam Madrasa | All Rights Reserved<br>
-    <small>Designed by Suhail kerala</small>
-  </footer>
+  <!-- Enhanced Loading Overlay -->
+  <div class="loader-container" id="lod">
+    <div>
+      <div class="modern-loader"></div>
+      <div class="loading-text">Processing your request...</div>
+    </div>
+  </div>
 
   <script>
-    // Create floating particles
-    function createParticles() {
-      const particlesContainer = document.getElementById('particles');
-      const particleCount = 25;
-      
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        
-        // Random size
-        const size = Math.random() * 20 + 5;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        
-        // Random position
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.top = `${Math.random() * 100}%`;
-        
-        // Random animation delay and duration
-        particle.style.animationDelay = `${Math.random() * 5}s`;
-        particle.style.animationDuration = `${Math.random() * 10 + 15}s`;
-        
-        // Random opacity
-        particle.style.opacity = Math.random() * 0.5 + 0.2;
-        
-        particlesContainer.appendChild(particle);
+    // ============================================
+    // DATA MANAGEMENT FOR GITHUB PAGES
+    // ============================================
+    
+    let resultData = null;
+    let homeData = null;
+    let gradingCriteria = [];
+
+    // File upload handler
+    document.getElementById('dataFile').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        document.getElementById('fileName').textContent = file.name;
+        loadExcelFile(file);
       }
-    }
-    
-    // Ripple effect for buttons
-    function createRipple(event) {
-      const button = event.currentTarget;
-      const circle = document.createElement('span');
-      const diameter = Math.max(button.clientWidth, button.clientHeight);
-      const radius = diameter / 2;
+    });
+
+    function loadExcelFile(file) {
+      showLoader();
       
-      circle.style.width = circle.style.height = `${diameter}px`;
-      circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
-      circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
-      circle.classList.add('ripple');
-      
-      const ripple = button.getElementsByClassName('ripple')[0];
-      if (ripple) {
-        ripple.remove();
-      }
-      
-      button.appendChild(circle);
-    }
-    
-    // Loading animation for buttons
-    function addLoadingAnimation(button) {
-      const loader = document.createElement('div');
-      loader.className = 'loader';
-      button.insertBefore(loader, button.firstChild);
-      button.disabled = true;
-    }
-    
-    // Initialize everything when page loads
-    document.addEventListener('DOMContentLoaded', function() {
-      // Create particles
-      createParticles();
-      
-      // Add ripple effect to all buttons
-      const buttons = document.querySelectorAll('.result-btn, .back-btn');
-      buttons.forEach(button => {
-        button.addEventListener('click', createRipple);
-      });
-      
-      // Add loading effect to result buttons
-      const resultButtons = document.querySelectorAll('.result-btn');
-      resultButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-          // Only add loading if it's an external link
-          if (this.href.includes('http')) {
-            e.preventDefault();
-            addLoadingAnimation(this);
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = new Uint8Array(e.target.result);
+          const workbook = XLSX.read(data, { type: 'array' });
+          
+          // Parse HOME sheet
+          if (workbook.Sheets['HOME']) {
+            const homeSheet = workbook.Sheets['HOME'];
+            const homeJson = XLSX.utils.sheet_to_json(homeSheet, { header: 1 });
             
-            // Simulate loading and redirect
-            setTimeout(() => {
-              window.location.href = this.href;
-            }, 500);
+            // Extract home data (B1, B2, B3, B4)
+            homeData = {
+              arabic: homeJson[0]?.[1] || '',
+              institution: homeJson[1]?.[1] || '',
+              place: homeJson[2]?.[1] || '',
+              exam: homeJson[3]?.[1] || ''
+            };
+            
+            // Extract grading criteria (D2:F...)
+            gradingCriteria = [];
+            for (let i = 1; i < homeJson.length; i++) {
+              if (homeJson[i][3] !== undefined && homeJson[i][4] !== undefined && homeJson[i][5]) {
+                gradingCriteria.push([
+                  homeJson[i][3],
+                  homeJson[i][4],
+                  homeJson[i][5]
+                ]);
+              }
+            }
           }
-        });
-      });
-      
-      // Add hover effect to result box
-      const resultBox = document.querySelector('.result-box');
-      resultBox.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px) scale(1.02)';
-      });
-      
-      resultBox.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-      });
-      
-      // Add keyboard navigation
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          document.getElementById('backBtn').click();
+          
+          // Parse all other sheets (student data)
+          resultData = {};
+          
+          workbook.SheetNames.forEach(sheetName => {
+            if (sheetName !== 'HOME') {
+              const sheet = workbook.Sheets[sheetName];
+              const sheetJson = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+              resultData[sheetName] = sheetJson;
+            }
+          });
+          
+          hideLoader();
+          alert('Data loaded successfully! You can now search for results.');
+          
+          // Hide upload section after successful load
+          document.getElementById('upload-section').style.display = 'none';
+          
+        } catch (error) {
+          hideLoader();
+          alert('Error loading file: ' + error.message);
         }
-        
-        if (e.altKey && e.key === '1') {
-          document.getElementById('finalResultBtn').click();
-        }
-        
-        if (e.altKey && e.key === '2') {
-          document.getElementById('samasthaBtn').click();
-        }
-        
-        if (e.altKey && e.key === '3') {
-          document.getElementById('toppersBtn').click();
-        }
-      });
-      
-      // Add scroll animation
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
       };
       
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          }
-        });
-      }, observerOptions);
+      reader.readAsArrayBuffer(file);
+    }
+
+    // ============================================
+    // REPLACEMENT FOR google.script.run.sub() FUNCTION
+    // ============================================
+    
+    function subm() {
+      showLoader();
       
-      // Observe elements for scroll animations
-      const animatedElements = document.querySelectorAll('.result-box, footer');
-      animatedElements.forEach(el => {
-        observer.observe(el);
-      });
+      const form = document.getElementById('lab');
+      const formData = {
+        roll: form.roll.value,
+        dob: form.dob.value
+      };
+      
+      // Check if data is loaded
+      if (!resultData || !homeData) {
+        fail(`
+          <div class="error-message">
+            <i class="fas fa-file-excel fa-beat"></i>
+            <h3>Data Not Loaded</h3>
+            <p>Please upload the Excel file first.</p>
+          </div>
+        `);
+        return;
+      }
+      
+      // Process the form data
+      try {
+        const result = processStudentResult(formData);
+        pass(result);
+      } catch (error) {
+        fail(`
+          <div class="error-message">
+            <i class="fas fa-bug fa-spin"></i>
+            <h3>System Error</h3>
+            <p>An error occurred: ${error.message}</p>
+            <small><i class="fas fa-life-ring"></i> Please check the data format</small>
+          </div>
+        `);
+      }
+    }
+    
+    // ============================================
+    // MAIN RESULT PROCESSING FUNCTION (Replaces server-side code)
+    // ============================================
+    
+    function processStudentResult(formData) {
+      if (!resultData || !homeData) {
+        throw new Error("Data not loaded");
+      }
+      
+      const { roll, dob } = formData;
+      
+      // Format DOB for comparison
+      const inputDOB = formatDateForComparison(dob);
+      
+      // Search through all sheets
+      for (const [sheetName, sheetData] of Object.entries(resultData)) {
+        // Skip if sheet name doesn't match pattern
+        if (!/^\d+[A-Z]$/.test(sheetName)) {
+          continue;
+        }
+        
+        // Search for roll number in this sheet
+        for (let i = 1; i < sheetData.length; i++) {
+          const row = sheetData[i];
+          if (row && row[0] == roll) {
+            // Check DOB
+            const storedDOB = row[1];
+            const sheetDOB = formatDateForComparison(storedDOB);
+            
+            if (inputDOB !== sheetDOB) {
+              return `
+                <div class="error-message">
+                  <i class="fas fa-exclamation-triangle fa-beat"></i>
+                  <h3>Invalid Date of Birth</h3>
+                  <p>Please check your date of birth and try again.</p>
+                </div>
+              `;
+            }
+            
+            // Found student - extract data
+            return generateResultCard(sheetName, i, row, formData);
+          }
+        }
+      }
+      
+      // Roll number not found
+      return `
+        <div class="error-message">
+          <i class="fas fa-search-location fa-beat"></i>
+          <h3>Registration Number Not Found</h3>
+          <p>Please check your registration number and try again.</p>
+        </div>
+      `;
+    }
+    
+    function generateResultCard(sheetName, rowIndex, rowData, formData) {
+      const sheetData = resultData[sheetName];
+      
+      // Extract data from row (0-indexed)
+      const studentName = rowData[2]; // Column C
+      const totalScore = rowData[3];  // Column D
+      const percentage = rowData[4];  // Column E
+      const rank = rowData[5];        // Column F
+      const presents = rowData[6];    // Column G
+      const overallGrade = rowData[7]; // Column H
+      
+      // Get class name (from row 0, column 1 - A2 in Excel)
+      const className = sheetData[0]?.[1] || '';
+      
+      // Get total maximum score (G1)
+      const totalMaxScore = sheetData[0]?.[6] || '';
+      
+      // Get total presents (D1)
+      const totalPresents = sheetData[0]?.[3] || '';
+      
+      // Get subject names (I2:AG2)
+      const subjectNames = [];
+      for (let col = 8; col <= 36; col++) {
+        if (sheetData[1]?.[col]) {
+          subjectNames.push(sheetData[1][col]);
+        }
+      }
+      
+      // Get student subject scores
+      const subjectScores = [];
+      for (let col = 8; col <= 36; col++) {
+        if (rowData[col] !== undefined) {
+          subjectScores.push(rowData[col]);
+        }
+      }
+      
+      // Get subject maximum scores (row 0, columns I to AG)
+      const subjectMaxScores = [];
+      for (let col = 8; col <= 36; col++) {
+        if (sheetData[0]?.[col]) {
+          subjectMaxScores.push(sheetData[0][col]);
+        }
+      }
+      
+      // Format percentage
+      const formattedPercentage = parseFloat(percentage || 0).toFixed(2);
+      
+      const lo = "https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png";
+      
+      // Start building the HTML
+      let data = `
+        <div class="check-another-container">
+          <button onclick="showMainPage()" class="btn btn-secondary check-another-btn">
+            <i class="fas fa-arrow-left"></i> Check Another Result
+          </button>
+        </div>
+        <div class="result-card">
+          <div class="result-header">
+            <div class="college-brand">
+              <img src="${lo}" alt="College Logo" class="college-logo">
+              <div class="college-info">
+                <h1><i class="fas fa-graduation-cap"></i> ${homeData.arabic}</h1>
+                <h2><i class="fas fa-university"></i> ${homeData.institution}</h2>
+                <h3><i class="fas fa-map-marker-alt"></i> ${homeData.place}</h3>
+                <div class="exam-title"><i class="fas fa-file-alt"></i> ${homeData.exam}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="student-profile">
+            <div class="profile-header">
+              <h3><i class="fas fa-user-graduate fa-shake"></i> Student Information</h3>
+            </div>
+            <div class="profile-grid">
+              <div class="profile-item">
+                <label><i class="fas fa-id-card"></i> Registration No:</label>
+                <span>${formData.roll}</span>
+              </div>
+              <div class="profile-item">
+                <label><i class="fas fa-user"></i> Name:</label>
+                <span>${studentName}</span>
+              </div>
+              <div class="profile-item">
+                <label><i class="fas fa-users"></i> Class:</label>
+                <span>${className}</span>
+              </div>
+              <div class="profile-item">
+                <label><i class="fas fa-birthday-cake"></i> Date of Birth:</label>
+                <span>${formatDateForDisplay(rowData[1])}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="results-section">
+            <div class="section-header">
+              <h3><i class="fas fa-chart-bar fa-bounce"></i> Subject-wise Performance</h3>
+            </div>
+            <div class="table-container">
+              <table class="modern-table">
+                <thead>
+                  <tr>
+                    <th><i class="fas fa-hashtag"></i> #</th>
+                    <th><i class="fas fa-book"></i> Subject</th>
+                    <th><i class="fas fa-chart-line"></i> Max Score</th>
+                    <th><i class="fas fa-trophy"></i> Obtained</th>
+                    <th><i class="fas fa-star"></i> Grade</th>
+                    <th><i class="fas fa-clipboard-check"></i> Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+      `;
+      
+      let serialNo = 1;
+      let failedSubjects = [];
+      
+      // Generate subject rows
+      for (let j = 0; j < subjectNames.length; j++) {
+        const subjectName = subjectNames[j];
+        if (!subjectName) continue;
+        
+        const maxScore = subjectMaxScores[j] || 0;
+        const obtainedScore = subjectScores[j];
+        let grade = "N/A";
+        let remarks = "Pass";
+        
+        if (obtainedScore === "A") {
+          grade = "D";
+          remarks = "Fail";
+        } else if (maxScore > 0) {
+          const subjectPercentage = (obtainedScore / maxScore) * 100;
+          
+          // Find grade from grading criteria
+          for (const criteria of gradingCriteria) {
+            if (subjectPercentage >= criteria[0] && subjectPercentage <= criteria[1]) {
+              grade = criteria[2];
+              break;
+            }
+          }
+          
+          remarks = grade === "D" ? "Fail" : "Pass";
+        }
+        
+        if (remarks === "Fail") {
+          failedSubjects.push(subjectName);
+        }
+        
+        const scoreColor = obtainedScore === "A" ? "#ef4444" : "#2563eb";
+        const scoreFontWeight = obtainedScore === "A" ? "700" : "600";
+        const statusClass = remarks === "Fail" ? "status-fail" : "status-pass";
+        const statusIcon = remarks === "Fail" ? "fas fa-times-circle" : "fas fa-check-circle";
+        
+        data += `
+          <tr>
+            <td>${serialNo}.</td>
+            <td class="subject-name">${subjectName}</td>
+            <td>${maxScore}</td>
+            <td class="score" style="color: ${scoreColor}; font-weight: ${scoreFontWeight};">${obtainedScore}</td>
+            <td class="grade ${grade === 'D' ? 'grade-fail' : 'grade-pass'}">
+              <i class="fas fa-${grade === 'D' ? 'exclamation-triangle' : 'award'}"></i> ${grade}
+            </td>
+            <td><span class="status ${statusClass}"><i class="${statusIcon}"></i> ${remarks}</span></td>
+          </tr>
+        `;
+        
+        serialNo++;
+      }
+      
+      // Generate footer message
+      let footerMessage = "";
+      let status = "";
+      let statusClass = "";
+      let statusIcon = "";
+      
+      if (failedSubjects.length > 0) {
+        footerMessage = '<i class="fas fa-exclamation-circle"></i> Not secured pass mark in: ' + failedSubjects.join(", ");
+        status = "FAILED";
+        statusClass = "result-failed";
+        statusIcon = "fas fa-times-hexagon";
+      } else {
+        footerMessage = '<i class="fas fa-check-double"></i> Secured pass mark in all subjects';
+        status = "PASSED";
+        statusClass = "result-passed";
+        statusIcon = "fas fa-check-hexagon";
+      }
+      
+      // Complete the HTML
+      data += `
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="performance-summary">
+            <div class="section-header">
+              <h3><i class="fas fa-chart-pie fa-spin"></i> Overall Performance</h3>
+            </div>
+            <div class="summary-grid">
+              <div class="summary-card">
+                <div class="summary-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
+                  <i class="fas fa-star fa-beat"></i>
+                </div>
+                <div class="summary-content">
+                  <h4>${totalScore}</h4>
+                  <p><i class="fas fa-chart-line"></i> Total Score</p>
+                  <small><i class="fas fa-bullseye"></i> Out of ${totalMaxScore}</small>
+                </div>
+              </div>
+
+              <div class="summary-card">
+                <div class="summary-icon" style="background: linear-gradient(135deg, #10b981, #047857);">
+                  <i class="fas fa-percentage fa-fade"></i>
+                </div>
+                <div class="summary-content">
+                  <h4>${formattedPercentage}%</h4>
+                  <p><i class="fas fa-chart-pie"></i> Percentage</p>
+                </div>
+              </div>
+
+              <div class="summary-card">
+                <div class="summary-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                  <i class="fas fa-medal fa-bounce"></i>
+                </div>
+                <div class="summary-content">
+                  <h4>${overallGrade}</h4>
+                  <p><i class="fas fa-award"></i> Overall Grade</p>
+                </div>
+              </div>
+
+              <div class="summary-card">
+                <div class="summary-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                  <i class="fas fa-trophy fa-beat-fade"></i>
+                </div>
+                <div class="summary-content">
+                  <h4>${rank}</h4>
+                  <p><i class="fas fa-chess-queen"></i> Class Rank</p>
+                </div>
+              </div>
+
+              <div class="summary-card">
+                <div class="summary-icon" style="background: linear-gradient(135deg, #f59e0b, #eab308);">
+                  <i class="fas fa-calendar-check fa-shake"></i>
+                </div>
+                <div class="summary-content">
+                  <h4>${presents}</h4>
+                  <p><i class="fas fa-user-check"></i> Presents</p>
+                  <small><i class="fas fa-calendar-alt"></i> Out of ${totalPresents}</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="final-result ${statusClass}">
+              <div class="result-badge">
+                <i class="${statusIcon}"></i>
+                <span>${status}</span>
+              </div>
+              <p class="result-message">${footerMessage}</p>
+            </div>
+
+            <div class="result-footer">
+              <div class="footer-item">
+                <i class="fas fa-clock"></i>
+                <span>Generated on: ${new Date().toLocaleDateString('en-IN', { 
+                  day: '2-digit', 
+                  month: 'short', 
+                  year: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })}</span>
+              </div>
+              <div class="footer-item">
+                <i class="fas fa-shield-alt"></i>
+                <span>Official Result - Do Not Tamper</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="check-another-container" style="margin-top: 30px;">
+          <button onclick="showMainPage()" class="btn btn-secondary check-another-btn">
+            <i class="fas fa-arrow-left"></i> Check Another Result
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="Print('PrintDiv')">
+            <i class="fas fa-print"></i> Print Result
+          </button>
+        </div>
+      `;
+      
+      return data;
+    }
+    
+    // ============================================
+    // HELPER FUNCTIONS
+    // ============================================
+    
+    function formatDateForComparison(dateStr) {
+      if (!dateStr) return "";
+      
+      try {
+        // Handle various date formats
+        const date = new Date(dateStr);
+        if (isNaN(date.getTime())) {
+          // Try parsing as DD-MM-YYYY or other formats
+          const parts = dateStr.toString().split(/[-/]/);
+          if (parts.length === 3) {
+            // Assume DD-MM-YYYY or similar
+            const day = parts[0].padStart(2, '0');
+            const month = parts[1].padStart(2, '0');
+            const year = parts[2].length === 2 ? '20' + parts[2] : parts[2];
+            return `${year}-${month}-${day}`;
+          }
+          return dateStr.toString();
+        }
+        return date.toISOString().split('T')[0];
+      } catch (e) {
+        return dateStr.toString();
+      }
+    }
+    
+    function formatDateForDisplay(dateStr) {
+      if (!dateStr) return "N/A";
+      
+      try {
+        const date = new Date(dateStr);
+        if (isNaN(date.getTime())) {
+          return dateStr.toString();
+        }
+        return date.toLocaleDateString('en-IN', {
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric'
+        });
+      } catch (e) {
+        return dateStr.toString();
+      }
+    }
+    
+    // ============================================
+    // UI HELPER FUNCTIONS (Same as before)
+    // ============================================
+    
+    function showLoader() {
+      document.getElementById('lod').style.display = 'flex';
+    }
+    
+    function hideLoader() {
+      document.getElementById('lod').style.display = 'none';
+    }
+    
+    function fail(v) {
+      hideLoader();
+      document.getElementById("rs").innerHTML = v;
+    }
+    
+    function pass(v) {
+      hideLoader();
+      document.getElementById("rs").innerHTML = v;
+      document.getElementById("lab").reset();
+      
+      // Hide all sections when showing results
+      document.getElementById("exam-result-input").style.display = 'none';
+      document.getElementById("main-header").style.display = 'none';
+      document.getElementById("upload-section").style.display = 'none';
+    }
+
+    function showMainPage() {
+      // Show all sections again when returning to main page
+      document.getElementById("exam-result-input").style.display = 'block';
+      document.getElementById("main-header").style.display = 'block';
+      document.getElementById("upload-section").style.display = 'block';
+      
+      // Clear results
+      document.getElementById("rs").innerHTML = '';
+      
+      // Reset form
+      document.getElementById("lab").reset();
+      
+      // Scroll to top
+      window.scrollTo(0, 0);
+    }
+
+    // Print function remains the same
+    function Print(DivID) {
+      var iPrint = document.getElementById(DivID).innerHTML;
+      if (!iPrint || iPrint.trim() === '<div id="rs"></div>') {
+        alert("No result data available to print. Please submit the form first.");
+        return;
+      }
+      
+      var docprint = window.open("", "_blank");
+      docprint.document.open();
+      docprint.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Official Marksheet - Darunnajath College</title>
+          <style>
+            @page {
+              size: A4;
+              margin: 15mm;
+            }
+            @media print {
+              body {
+                width: 210mm;
+                height: 297mm;
+                margin: 0;
+                padding: 0;
+                font-family: 'Poppins', sans-serif;
+                font-size: 12px;
+                line-height: 1.3;
+                background: white;
+              }
+              .print-container {
+                width: 100%;
+                height: 100%;
+                padding: 15mm;
+                box-sizing: border-box;
+              }
+              .result-card {
+                width: 100%;
+                margin: 0;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                border: 1px solid #e2e8f0;
+                border-radius: 20px;
+                overflow: hidden;
+              }
+              .result-header {
+                background: linear-gradient(135deg, #2563eb, #8b5cf6);
+                color: white;
+                padding: 20px;
+              }
+              .college-brand {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+              }
+              .college-logo {
+                width: 70px;
+                height: 70px;
+                border-radius: 12px;
+                border: 2px solid rgba(255,255,255,0.3);
+              }
+              .college-info h1 {
+                font-family: 'Playfair Display', serif;
+                font-size: 18px;
+                margin-bottom: 5px;
+                font-weight: 600;
+              }
+              .college-info h2 {
+                font-size: 14px;
+                margin-bottom: 5px;
+                font-weight: 500;
+              }
+              .college-info h3 {
+                font-size: 12px;
+                margin-bottom: 10px;
+                font-weight: 400;
+              }
+              .exam-title {
+                background: rgba(255,255,255,0.2);
+                padding: 5px 12px;
+                border-radius: 15px;
+                font-weight: 600;
+                font-size: 11px;
+              }
+              .student-profile, .results-section, .performance-summary {
+                padding: 20px;
+                border-bottom: 1px solid #e2e8f0;
+              }
+              .section-header h3 {
+                font-size: 14px;
+                color: #2563eb;
+                font-weight: 600;
+                margin-bottom: 15px;
+              }
+              .profile-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                background: #f8fafc;
+                padding: 15px;
+                border-radius: 12px;
+                border: 1px solid #e2e8f0;
+                font-size: 11px;
+              }
+              .profile-item {
+                display: flex;
+                justify-content: space-between;
+                padding: 8px 0;
+                border-bottom: 1px solid #e2e8f0;
+              }
+              .profile-item:last-child {
+                border-bottom: none;
+              }
+              .modern-table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 10px;
+              }
+              .modern-table th {
+                background: linear-gradient(135deg, #2563eb, #1d4ed8);
+                color: white;
+                padding: 10px 8px;
+                text-align: left;
+                font-weight: 600;
+              }
+              .modern-table td {
+                padding: 8px;
+                border-bottom: 1px solid #e2e8f0;
+              }
+              .summary-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                margin-bottom: 15px;
+              }
+              .summary-card {
+                background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+                border-radius: 12px;
+                padding: 15px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                border: 1px solid #e2e8f0;
+              }
+              .summary-content h4 {
+                font-size: 16px;
+                font-weight: 700;
+                margin-bottom: 5px;
+                color: #2563eb;
+              }
+              .final-result {
+                text-align: center;
+                padding: 20px;
+                border-radius: 12px;
+                margin-top: 15px;
+              }
+              .result-passed {
+                background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+                border: 2px solid #86efac;
+              }
+              .result-failed {
+                background: linear-gradient(135deg, #fecaca, #fca5a5);
+                border: 2px solid #f87171;
+              }
+              .result-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 8px 16px;
+                border-radius: 20px;
+                font-weight: 700;
+                font-size: 14px;
+                margin-bottom: 10px;
+              }
+              .result-passed .result-badge {
+                background: linear-gradient(135deg, #10b981, #34d399);
+                color: white;
+              }
+              .result-failed .result-badge {
+                background: linear-gradient(135deg, #ef4444, #f87171);
+                color: white;
+              }
+              .official-signature {
+                text-align: right;
+                margin-top: 25px;
+                padding-top: 15px;
+                border-top: 1px solid #000;
+                font-size: 12px;
+                font-weight: bold;
+              }
+              /* Hide decorative elements for print */
+              .section-icon, .summary-icon, .floating-element, 
+              .btn-group, .glass-card, .main-header,
+              .check-another-container {
+                display: none !important;
+              }
+            }
+            body {
+              font-family: Arial, sans-serif;
+              margin: 0;
+              padding: 0;
+            }
+            .print-container {
+              width: 210mm;
+              min-height: 297mm;
+              padding: 15mm;
+              box-sizing: border-box;
+            }
+          </style>
+        </head>
+        <body onload="window.print();">
+          <div class="print-container">
+            ${iPrint}
+            <div class="official-signature">
+              Authorized Signature<br>
+              Controller of Examinations
+            </div>
+          </div>
+        </body>
+        </html>
+      `);
+      docprint.document.close();
+    }
+    
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+      // You can pre-load a sample data file if needed
+      // loadSampleData();
     });
-    
-    // Add smooth scroll behavior
-    document.documentElement.style.scrollBehavior = 'smooth';
-    
-    // Add touch optimization for mobile
-    document.addEventListener('touchstart', function() {}, {passive: true});
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
