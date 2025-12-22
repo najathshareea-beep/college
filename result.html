@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Result Portal - Darunnajath College</title>
-  
-  <!-- External Libraries -->
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-  
-  <!-- Include SheetJS for Excel/Google Sheets parsing -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-  
-  <style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darunnajath College - Result Portal</title>
+    
+    <!-- CSS ലിങ്കുകൾ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
     :root {
       --primary: #2563eb;
       --primary-dark: #1d4ed8;
@@ -706,70 +702,6 @@
         padding: 25px 20px;
       }
     }
-
-    /* ============================================
-       NEW STYLES ADDED FOR FILE UPLOAD
-       ============================================ */
-    
-    .file-upload-container {
-      background: var(--glass);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      padding: 25px;
-      margin-bottom: 25px;
-      color: white;
-    }
-
-    .file-upload-container h3 {
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .upload-btn {
-      background: linear-gradient(135deg, var(--accent), #7c3aed);
-      color: white;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.3s ease;
-    }
-
-    .upload-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
-    }
-
-    .file-name {
-      margin-left: 15px;
-      font-size: 0.9rem;
-      opacity: 0.9;
-    }
-
-    .result-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 30px;
-      background: var(--light);
-      border-top: 1px solid var(--border);
-      margin-top: 20px;
-      font-size: 0.9rem;
-      color: var(--gray);
-    }
-
-    .footer-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
   </style>
 </head>
 <body>
@@ -786,24 +718,6 @@
       </div>
       <h1>Darunnajath Shareeath & Arts College Karuvarakundu</h1>
     </header>
-
-    <!-- DATA UPLOAD SECTION (New for GitHub) -->
-    <div class="file-upload-container" id="upload-section">
-      <h3><i class="fas fa-file-excel"></i> Upload Excel/Google Sheets Data</h3>
-      <input type="file" id="dataFile" accept=".xlsx,.xls,.csv" style="display: none;">
-      <button class="upload-btn" onclick="document.getElementById('dataFile').click()">
-        <i class="fas fa-upload"></i> Choose Excel File
-      </button>
-      <span class="file-name" id="fileName">No file chosen</span>
-      <div style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">
-        <i class="fas fa-info-circle"></i> Download your Google Sheet as Excel: 
-        <a href="https://docs.google.com/spreadsheets/d/1ckOFULpgBLG13gWa_jKdy8LJwIUaxCRLN84tljLmCjo/export?format=xlsx" 
-           target="_blank" 
-           style="color: #eab308; text-decoration: none;">
-          Click here to download
-        </a>
-      </div>
-    </div>
 
     <!-- Input Card -->
     <div id="exam-result-input" class="glass-card">
@@ -851,548 +765,34 @@
   </div>
 
   <script>
-    // ============================================
-    // DATA MANAGEMENT FOR GITHUB PAGES
-    // ============================================
-    
-    let resultData = null;
-    let homeData = null;
-    let gradingCriteria = [];
-
-    // File upload handler
-    document.getElementById('dataFile').addEventListener('change', function(e) {
-      const file = e.target.files[0];
-      if (file) {
-        document.getElementById('fileName').textContent = file.name;
-        loadExcelFile(file);
-      }
-    });
-
-    function loadExcelFile(file) {
-      showLoader();
-      
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        try {
-          const data = new Uint8Array(e.target.result);
-          const workbook = XLSX.read(data, { type: 'array' });
-          
-          // Parse HOME sheet
-          if (workbook.Sheets['HOME']) {
-            const homeSheet = workbook.Sheets['HOME'];
-            const homeJson = XLSX.utils.sheet_to_json(homeSheet, { header: 1 });
-            
-            // Extract home data (B1, B2, B3, B4)
-            homeData = {
-              arabic: homeJson[0]?.[1] || '',
-              institution: homeJson[1]?.[1] || '',
-              place: homeJson[2]?.[1] || '',
-              exam: homeJson[3]?.[1] || ''
-            };
-            
-            // Extract grading criteria (D2:F...)
-            gradingCriteria = [];
-            for (let i = 1; i < homeJson.length; i++) {
-              if (homeJson[i][3] !== undefined && homeJson[i][4] !== undefined && homeJson[i][5]) {
-                gradingCriteria.push([
-                  homeJson[i][3],
-                  homeJson[i][4],
-                  homeJson[i][5]
-                ]);
-              }
-            }
-          }
-          
-          // Parse all other sheets (student data)
-          resultData = {};
-          
-          workbook.SheetNames.forEach(sheetName => {
-            if (sheetName !== 'HOME') {
-              const sheet = workbook.Sheets[sheetName];
-              const sheetJson = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-              resultData[sheetName] = sheetJson;
-            }
-          });
-          
-          hideLoader();
-          alert('Data loaded successfully! You can now search for results.');
-          
-          // Hide upload section after successful load
-          document.getElementById('upload-section').style.display = 'none';
-          
-        } catch (error) {
-          hideLoader();
-          alert('Error loading file: ' + error.message);
-        }
-      };
-      
-      reader.readAsArrayBuffer(file);
-    }
-
-    // ============================================
-    // REPLACEMENT FOR google.script.run.sub() FUNCTION
-    // ============================================
-    
-    function subm() {
-      showLoader();
-      
-      const form = document.getElementById('lab');
-      const formData = {
-        roll: form.roll.value,
-        dob: form.dob.value
-      };
-      
-      // Check if data is loaded
-      if (!resultData || !homeData) {
-        fail(`
-          <div class="error-message">
-            <i class="fas fa-file-excel fa-beat"></i>
-            <h3>Data Not Loaded</h3>
-            <p>Please upload the Excel file first.</p>
-          </div>
-        `);
-        return;
-      }
-      
-      // Process the form data
-      try {
-        const result = processStudentResult(formData);
-        pass(result);
-      } catch (error) {
-        fail(`
-          <div class="error-message">
-            <i class="fas fa-bug fa-spin"></i>
-            <h3>System Error</h3>
-            <p>An error occurred: ${error.message}</p>
-            <small><i class="fas fa-life-ring"></i> Please check the data format</small>
-          </div>
-        `);
-      }
-    }
-    
-    // ============================================
-    // MAIN RESULT PROCESSING FUNCTION (Replaces server-side code)
-    // ============================================
-    
-    function processStudentResult(formData) {
-      if (!resultData || !homeData) {
-        throw new Error("Data not loaded");
-      }
-      
-      const { roll, dob } = formData;
-      
-      // Format DOB for comparison
-      const inputDOB = formatDateForComparison(dob);
-      
-      // Search through all sheets
-      for (const [sheetName, sheetData] of Object.entries(resultData)) {
-        // Skip if sheet name doesn't match pattern
-        if (!/^\d+[A-Z]$/.test(sheetName)) {
-          continue;
-        }
-        
-        // Search for roll number in this sheet
-        for (let i = 1; i < sheetData.length; i++) {
-          const row = sheetData[i];
-          if (row && row[0] == roll) {
-            // Check DOB
-            const storedDOB = row[1];
-            const sheetDOB = formatDateForComparison(storedDOB);
-            
-            if (inputDOB !== sheetDOB) {
-              return `
-                <div class="error-message">
-                  <i class="fas fa-exclamation-triangle fa-beat"></i>
-                  <h3>Invalid Date of Birth</h3>
-                  <p>Please check your date of birth and try again.</p>
-                </div>
-              `;
-            }
-            
-            // Found student - extract data
-            return generateResultCard(sheetName, i, row, formData);
-          }
-        }
-      }
-      
-      // Roll number not found
-      return `
-        <div class="error-message">
-          <i class="fas fa-search-location fa-beat"></i>
-          <h3>Registration Number Not Found</h3>
-          <p>Please check your registration number and try again.</p>
-        </div>
-      `;
-    }
-    
-    function generateResultCard(sheetName, rowIndex, rowData, formData) {
-      const sheetData = resultData[sheetName];
-      
-      // Extract data from row (0-indexed)
-      const studentName = rowData[2]; // Column C
-      const totalScore = rowData[3];  // Column D
-      const percentage = rowData[4];  // Column E
-      const rank = rowData[5];        // Column F
-      const presents = rowData[6];    // Column G
-      const overallGrade = rowData[7]; // Column H
-      
-      // Get class name (from row 0, column 1 - A2 in Excel)
-      const className = sheetData[0]?.[1] || '';
-      
-      // Get total maximum score (G1)
-      const totalMaxScore = sheetData[0]?.[6] || '';
-      
-      // Get total presents (D1)
-      const totalPresents = sheetData[0]?.[3] || '';
-      
-      // Get subject names (I2:AG2)
-      const subjectNames = [];
-      for (let col = 8; col <= 36; col++) {
-        if (sheetData[1]?.[col]) {
-          subjectNames.push(sheetData[1][col]);
-        }
-      }
-      
-      // Get student subject scores
-      const subjectScores = [];
-      for (let col = 8; col <= 36; col++) {
-        if (rowData[col] !== undefined) {
-          subjectScores.push(rowData[col]);
-        }
-      }
-      
-      // Get subject maximum scores (row 0, columns I to AG)
-      const subjectMaxScores = [];
-      for (let col = 8; col <= 36; col++) {
-        if (sheetData[0]?.[col]) {
-          subjectMaxScores.push(sheetData[0][col]);
-        }
-      }
-      
-      // Format percentage
-      const formattedPercentage = parseFloat(percentage || 0).toFixed(2);
-      
-      const lo = "https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png";
-      
-      // Start building the HTML
-      let data = `
-        <div class="check-another-container">
-          <button onclick="showMainPage()" class="btn btn-secondary check-another-btn">
-            <i class="fas fa-arrow-left"></i> Check Another Result
-          </button>
-        </div>
-        <div class="result-card">
-          <div class="result-header">
-            <div class="college-brand">
-              <img src="${lo}" alt="College Logo" class="college-logo">
-              <div class="college-info">
-                <h1><i class="fas fa-graduation-cap"></i> ${homeData.arabic}</h1>
-                <h2><i class="fas fa-university"></i> ${homeData.institution}</h2>
-                <h3><i class="fas fa-map-marker-alt"></i> ${homeData.place}</h3>
-                <div class="exam-title"><i class="fas fa-file-alt"></i> ${homeData.exam}</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="student-profile">
-            <div class="profile-header">
-              <h3><i class="fas fa-user-graduate fa-shake"></i> Student Information</h3>
-            </div>
-            <div class="profile-grid">
-              <div class="profile-item">
-                <label><i class="fas fa-id-card"></i> Registration No:</label>
-                <span>${formData.roll}</span>
-              </div>
-              <div class="profile-item">
-                <label><i class="fas fa-user"></i> Name:</label>
-                <span>${studentName}</span>
-              </div>
-              <div class="profile-item">
-                <label><i class="fas fa-users"></i> Class:</label>
-                <span>${className}</span>
-              </div>
-              <div class="profile-item">
-                <label><i class="fas fa-birthday-cake"></i> Date of Birth:</label>
-                <span>${formatDateForDisplay(rowData[1])}</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="results-section">
-            <div class="section-header">
-              <h3><i class="fas fa-chart-bar fa-bounce"></i> Subject-wise Performance</h3>
-            </div>
-            <div class="table-container">
-              <table class="modern-table">
-                <thead>
-                  <tr>
-                    <th><i class="fas fa-hashtag"></i> #</th>
-                    <th><i class="fas fa-book"></i> Subject</th>
-                    <th><i class="fas fa-chart-line"></i> Max Score</th>
-                    <th><i class="fas fa-trophy"></i> Obtained</th>
-                    <th><i class="fas fa-star"></i> Grade</th>
-                    <th><i class="fas fa-clipboard-check"></i> Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-      `;
-      
-      let serialNo = 1;
-      let failedSubjects = [];
-      
-      // Generate subject rows
-      for (let j = 0; j < subjectNames.length; j++) {
-        const subjectName = subjectNames[j];
-        if (!subjectName) continue;
-        
-        const maxScore = subjectMaxScores[j] || 0;
-        const obtainedScore = subjectScores[j];
-        let grade = "N/A";
-        let remarks = "Pass";
-        
-        if (obtainedScore === "A") {
-          grade = "D";
-          remarks = "Fail";
-        } else if (maxScore > 0) {
-          const subjectPercentage = (obtainedScore / maxScore) * 100;
-          
-          // Find grade from grading criteria
-          for (const criteria of gradingCriteria) {
-            if (subjectPercentage >= criteria[0] && subjectPercentage <= criteria[1]) {
-              grade = criteria[2];
-              break;
-            }
-          }
-          
-          remarks = grade === "D" ? "Fail" : "Pass";
-        }
-        
-        if (remarks === "Fail") {
-          failedSubjects.push(subjectName);
-        }
-        
-        const scoreColor = obtainedScore === "A" ? "#ef4444" : "#2563eb";
-        const scoreFontWeight = obtainedScore === "A" ? "700" : "600";
-        const statusClass = remarks === "Fail" ? "status-fail" : "status-pass";
-        const statusIcon = remarks === "Fail" ? "fas fa-times-circle" : "fas fa-check-circle";
-        
-        data += `
-          <tr>
-            <td>${serialNo}.</td>
-            <td class="subject-name">${subjectName}</td>
-            <td>${maxScore}</td>
-            <td class="score" style="color: ${scoreColor}; font-weight: ${scoreFontWeight};">${obtainedScore}</td>
-            <td class="grade ${grade === 'D' ? 'grade-fail' : 'grade-pass'}">
-              <i class="fas fa-${grade === 'D' ? 'exclamation-triangle' : 'award'}"></i> ${grade}
-            </td>
-            <td><span class="status ${statusClass}"><i class="${statusIcon}"></i> ${remarks}</span></td>
-          </tr>
-        `;
-        
-        serialNo++;
-      }
-      
-      // Generate footer message
-      let footerMessage = "";
-      let status = "";
-      let statusClass = "";
-      let statusIcon = "";
-      
-      if (failedSubjects.length > 0) {
-        footerMessage = '<i class="fas fa-exclamation-circle"></i> Not secured pass mark in: ' + failedSubjects.join(", ");
-        status = "FAILED";
-        statusClass = "result-failed";
-        statusIcon = "fas fa-times-hexagon";
-      } else {
-        footerMessage = '<i class="fas fa-check-double"></i> Secured pass mark in all subjects';
-        status = "PASSED";
-        statusClass = "result-passed";
-        statusIcon = "fas fa-check-hexagon";
-      }
-      
-      // Complete the HTML
-      data += `
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <div class="performance-summary">
-            <div class="section-header">
-              <h3><i class="fas fa-chart-pie fa-spin"></i> Overall Performance</h3>
-            </div>
-            <div class="summary-grid">
-              <div class="summary-card">
-                <div class="summary-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
-                  <i class="fas fa-star fa-beat"></i>
-                </div>
-                <div class="summary-content">
-                  <h4>${totalScore}</h4>
-                  <p><i class="fas fa-chart-line"></i> Total Score</p>
-                  <small><i class="fas fa-bullseye"></i> Out of ${totalMaxScore}</small>
-                </div>
-              </div>
-
-              <div class="summary-card">
-                <div class="summary-icon" style="background: linear-gradient(135deg, #10b981, #047857);">
-                  <i class="fas fa-percentage fa-fade"></i>
-                </div>
-                <div class="summary-content">
-                  <h4>${formattedPercentage}%</h4>
-                  <p><i class="fas fa-chart-pie"></i> Percentage</p>
-                </div>
-              </div>
-
-              <div class="summary-card">
-                <div class="summary-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
-                  <i class="fas fa-medal fa-bounce"></i>
-                </div>
-                <div class="summary-content">
-                  <h4>${overallGrade}</h4>
-                  <p><i class="fas fa-award"></i> Overall Grade</p>
-                </div>
-              </div>
-
-              <div class="summary-card">
-                <div class="summary-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
-                  <i class="fas fa-trophy fa-beat-fade"></i>
-                </div>
-                <div class="summary-content">
-                  <h4>${rank}</h4>
-                  <p><i class="fas fa-chess-queen"></i> Class Rank</p>
-                </div>
-              </div>
-
-              <div class="summary-card">
-                <div class="summary-icon" style="background: linear-gradient(135deg, #f59e0b, #eab308);">
-                  <i class="fas fa-calendar-check fa-shake"></i>
-                </div>
-                <div class="summary-content">
-                  <h4>${presents}</h4>
-                  <p><i class="fas fa-user-check"></i> Presents</p>
-                  <small><i class="fas fa-calendar-alt"></i> Out of ${totalPresents}</small>
-                </div>
-              </div>
-            </div>
-
-            <div class="final-result ${statusClass}">
-              <div class="result-badge">
-                <i class="${statusIcon}"></i>
-                <span>${status}</span>
-              </div>
-              <p class="result-message">${footerMessage}</p>
-            </div>
-
-            <div class="result-footer">
-              <div class="footer-item">
-                <i class="fas fa-clock"></i>
-                <span>Generated on: ${new Date().toLocaleDateString('en-IN', { 
-                  day: '2-digit', 
-                  month: 'short', 
-                  year: 'numeric',
-                  hour: '2-digit',
-                  minute: '2-digit'
-                })}</span>
-              </div>
-              <div class="footer-item">
-                <i class="fas fa-shield-alt"></i>
-                <span>Official Result - Do Not Tamper</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="check-another-container" style="margin-top: 30px;">
-          <button onclick="showMainPage()" class="btn btn-secondary check-another-btn">
-            <i class="fas fa-arrow-left"></i> Check Another Result
-          </button>
-          <button type="button" class="btn btn-secondary" onclick="Print('PrintDiv')">
-            <i class="fas fa-print"></i> Print Result
-          </button>
-        </div>
-      `;
-      
-      return data;
-    }
-    
-    // ============================================
-    // HELPER FUNCTIONS
-    // ============================================
-    
-    function formatDateForComparison(dateStr) {
-      if (!dateStr) return "";
-      
-      try {
-        // Handle various date formats
-        const date = new Date(dateStr);
-        if (isNaN(date.getTime())) {
-          // Try parsing as DD-MM-YYYY or other formats
-          const parts = dateStr.toString().split(/[-/]/);
-          if (parts.length === 3) {
-            // Assume DD-MM-YYYY or similar
-            const day = parts[0].padStart(2, '0');
-            const month = parts[1].padStart(2, '0');
-            const year = parts[2].length === 2 ? '20' + parts[2] : parts[2];
-            return `${year}-${month}-${day}`;
-          }
-          return dateStr.toString();
-        }
-        return date.toISOString().split('T')[0];
-      } catch (e) {
-        return dateStr.toString();
-      }
-    }
-    
-    function formatDateForDisplay(dateStr) {
-      if (!dateStr) return "N/A";
-      
-      try {
-        const date = new Date(dateStr);
-        if (isNaN(date.getTime())) {
-          return dateStr.toString();
-        }
-        return date.toLocaleDateString('en-IN', {
-          day: '2-digit',
-          month: 'short',
-          year: 'numeric'
-        });
-      } catch (e) {
-        return dateStr.toString();
-      }
-    }
-    
-    // ============================================
-    // UI HELPER FUNCTIONS (Same as before)
-    // ============================================
-    
-    function showLoader() {
+    function subm(){
       document.getElementById('lod').style.display = 'flex';
-    }
-    
-    function hideLoader() {
+      var form = document.getElementById('lab');
+      google.script.run
+        .withFailureHandler(fail)
+        .withSuccessHandler(pass)
+        .sub(form);
+    }                    
+      
+    function fail(v){
       document.getElementById('lod').style.display = 'none';
-    }
-    
-    function fail(v) {
-      hideLoader();
       document.getElementById("rs").innerHTML = v;
     }
     
-    function pass(v) {
-      hideLoader();
+    function pass(v){
+      document.getElementById('lod').style.display = 'none';
       document.getElementById("rs").innerHTML = v;
       document.getElementById("lab").reset();
       
       // Hide all sections when showing results
       document.getElementById("exam-result-input").style.display = 'none';
       document.getElementById("main-header").style.display = 'none';
-      document.getElementById("upload-section").style.display = 'none';
     }
 
     function showMainPage() {
       // Show all sections again when returning to main page
       document.getElementById("exam-result-input").style.display = 'block';
       document.getElementById("main-header").style.display = 'block';
-      document.getElementById("upload-section").style.display = 'block';
       
       // Clear results
       document.getElementById("rs").innerHTML = '';
@@ -1404,7 +804,6 @@
       window.scrollTo(0, 0);
     }
 
-    // Print function remains the same
     function Print(DivID) {
       var iPrint = document.getElementById(DivID).innerHTML;
       if (!iPrint || iPrint.trim() === '<div id="rs"></div>') {
@@ -1612,27 +1011,347 @@
               padding: 15mm;
               box-sizing: border-box;
             }
-          </style>
-        </head>
-        <body onload="window.print();">
-          <div class="print-container">
-            ${iPrint}
-            <div class="official-signature">
-              Authorized Signature<br>
-              Controller of Examinations
+        
+        /* API key input ചേർക്കുക */
+        .api-key-input {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .api-key-input label {
+            display: block;
+            color: white;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .api-key-input input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+        }
+        
+        .api-info {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+            margin-top: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Background Elements -->
+    <div class="floating-element float-1"></div>
+    <div class="floating-element float-2"></div>
+    <div class="floating-element float-3"></div>
+
+    <div class="container">
+        <!-- Main Header -->
+        <header class="main-header" id="main-header">
+            <div class="header-badge">
+                <i class="fas fa-star"></i> Official Result Portal
             </div>
-          </div>
-        </body>
-        </html>
-      `);
-      docprint.document.close();
-    }
-    
-    // Initialize the page
-    document.addEventListener('DOMContentLoaded', function() {
-      // You can pre-load a sample data file if needed
-      // loadSampleData();
-    });
-  </script>
+            <h1>Darunnajath Shareeath & Arts College Karuvarakundu</h1>
+            <p>Academic Year 2023-2024</p>
+        </header>
+
+        <!-- API Configuration -->
+        <div class="glass-card" id="api-config">
+            <div class="card-header">
+                <h2><i class="fas fa-cogs"></i> API Configuration</h2>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label class="form-label" for="apiUrl">
+                        <i class="fas fa-link"></i> AppScript Web App URL
+                    </label>
+                    <input type="text" id="apiUrl" class="form-control" 
+                           placeholder="Enter your Google AppScript Web App URL" 
+                           value="https://script.google.com/macros/s/AKfycbzR0D_3A_yeoR2ztfQeIZslCQv-1dRRH5uhT_ik8IZSnw6QRJbyw38z6q9cPGRmQYhr/exec">
+                    <small class="api-info">Get this URL from your Google Apps Script deployment</small>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="sheetId">
+                        <i class="fas fa-table"></i> Google Sheet ID
+                    </label>
+                    <input type="text" id="sheetId" class="form-control" 
+                           placeholder="Enter your Google Sheet ID" 
+                           value="1ckOFULpgBLG13gWa_jKdy8LJwIUaxCRLN84tljLmCjo">
+                    <small class="api-info">This is the long ID from your Google Sheets URL</small>
+                </div>
+                
+                <button onclick="saveConfig()" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Save Configuration
+                </button>
+            </div>
+        </div>
+
+        <!-- Input Card -->
+        <div id="exam-result-input" class="glass-card" style="display: none;">
+            <div class="card-header">
+                <h2><i class="fas fa-id-card-alt"></i> Examination Result</h2>
+            </div>
+            <div class="card-body">
+                <form id="lab" onsubmit="event.preventDefault(); subm()">
+                    <div class="form-group">
+                        <label class="form-label" for="roll">
+                            <i class="fas fa-user-graduate"></i> Registration Number
+                        </label>
+                        <input type="text" name="roll" id="roll" class="form-control" 
+                               placeholder="Enter your registration number" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="dob">
+                            <i class="fas fa-calendar-check"></i> Date of Birth
+                        </label>
+                        <input type="date" name="dob" id="dob" class="form-control" required>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i> Get Results
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Results Display Area -->
+        <div id='PrintDiv'>
+            <div id="rs"></div>
+        </div>
+    </div>
+
+    <!-- Enhanced Loading Overlay -->
+    <div class="loader-container" id="lod">
+        <div>
+            <div class="modern-loader"></div>
+            <div class="loading-text">Processing your request...</div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        let config = {
+            apiUrl: 'https://script.google.com/macros/s/AKfycbzR0D_3A_yeoR2ztfQeIZslCQv-1dRRH5uhT_ik8IZSnw6QRJbyw38z6q9cPGRmQYhr/exec',
+            sheetId: '1ckOFULpgBLG13gWa_jKdy8LJwIUaxCRLN84tljLmCjo',
+            sheetData: null
+        };
+
+        // Load saved configuration
+        function loadConfig() {
+            const savedConfig = localStorage.getItem('resultPortalConfig');
+            if (savedConfig) {
+                config = JSON.parse(savedConfig);
+                document.getElementById('apiUrl').value = config.apiUrl;
+                document.getElementById('sheetId').value = config.sheetId;
+            }
+        }
+
+        // Save configuration
+        function saveConfig() {
+            config.apiUrl = document.getElementById('apiUrl').value;
+            config.sheetId = document.getElementById('sheetId').value;
+            localStorage.setItem('resultPortalConfig', JSON.stringify(config));
+            
+            // Load data from Google Sheets
+            loadSheetData();
+        }
+
+        // Load data from Google Sheets via AppScript
+        async function loadSheetData() {
+            document.getElementById('lod').style.display = 'flex';
+            
+            try {
+                const response = await fetch(`${config.apiUrl}?api=data`);
+                if (!response.ok) throw new Error('Failed to fetch data');
+                
+                const data = await response.json();
+                config.sheetData = data;
+                
+                // Hide config and show input form
+                document.getElementById('api-config').style.display = 'none';
+                document.getElementById('exam-result-input').style.display = 'block';
+                
+                document.getElementById('lod').style.display = 'none';
+            } catch (error) {
+                document.getElementById('lod').style.display = 'none';
+                alert('Error loading data: ' + error.message);
+            }
+        }
+
+        // Main submission function
+        async function subm() {
+            document.getElementById('lod').style.display = 'flex';
+            
+            const rollNo = document.getElementById('roll').value;
+            const dob = document.getElementById('dob').value;
+            
+            try {
+                // Check if data is loaded
+                if (!config.sheetData) {
+                    await loadSheetData();
+                }
+                
+                // Search for student
+                const result = searchStudent(rollNo, dob);
+                document.getElementById('rs').innerHTML = result;
+                
+                // Hide input form when showing results
+                document.getElementById("exam-result-input").style.display = 'none';
+                document.getElementById("main-header").style.display = 'none';
+                
+                document.getElementById('lod').style.display = 'none';
+            } catch (error) {
+                document.getElementById('lod').style.display = 'none';
+                document.getElementById('rs').innerHTML = `
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Error</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Search student in loaded data
+        function searchStudent(rollNo, dob) {
+            if (!config.sheetData) {
+                throw new Error('Data not loaded. Please save configuration first.');
+            }
+            
+            // Format DOB for comparison
+            const formattedDOB = formatDateForComparison(dob);
+            
+            // Search through all sheets
+            for (const [sheetName, sheet] of Object.entries(config.sheetData.sheetsData)) {
+                const student = sheet.students.find(s => 
+                    s.rollNo.toString() === rollNo && s.dob === formattedDOB
+                );
+                
+                if (student) {
+                    return generateResultHTML(student, sheet, sheetName);
+                }
+            }
+            
+            return `
+                <div class="error-message">
+                    <i class="fas fa-search-location fa-beat"></i>
+                    <h3>Registration Number Not Found</h3>
+                    <p>Please check your registration number and try again.</p>
+                </div>
+            `;
+        }
+
+        // Generate result HTML
+        function generateResultHTML(student, sheet, sheetName) {
+            const college = config.sheetData.collegeInfo;
+            const gradingCriteria = config.sheetData.gradingCriteria;
+            
+            // Format date for display
+            const displayDOB = formatDateForDisplay(student.dob);
+            
+            // Generate subject rows
+            let subjectRows = '';
+            let serialNo = 1;
+            let failedSubjects = [];
+            
+            for (let j = 0; j < sheet.subjectNames.length; j++) {
+                const subjectName = sheet.subjectNames[j];
+                if (!subjectName) continue;
+                
+                const maxScore = 100; // You need to adjust this based on your sheet structure
+                const obtainedScore = student.subjectScores[j];
+                const subjectPercentage = (obtainedScore / maxScore) * 100;
+                let grade = "N/A";
+                
+                if (obtainedScore === "A") {
+                    grade = "D";
+                } else {
+                    for (const criteria of gradingCriteria) {
+                        if (subjectPercentage >= criteria[0] && subjectPercentage <= criteria[1]) {
+                            grade = criteria[2];
+                            break;
+                        }
+                    }
+                }
+                
+                const remarks = grade === "D" ? "Fail" : "Pass";
+                const statusClass = remarks === "Fail" ? "status-fail" : "status-pass";
+                const statusIcon = remarks === "Fail" ? "fas fa-times-circle" : "fas fa-check-circle";
+                
+                if (remarks === "Fail") {
+                    failedSubjects.push(subjectName);
+                }
+                
+                subjectRows += `
+                    <tr>
+                        <td>${serialNo}.</td>
+                        <td class="subject-name">${subjectName}</td>
+                        <td>${maxScore}</td>
+                        <td class="score">${obtainedScore}</td>
+                        <td class="grade ${grade === 'D' ? 'grade-fail' : 'grade-pass'}">
+                            <i class="fas fa-${grade === 'D' ? 'exclamation-triangle' : 'award'}"></i> ${grade}
+                        </td>
+                        <td><span class="status ${statusClass}"><i class="${statusIcon}"></i> ${remarks}</span></td>
+                    </tr>
+                `;
+                
+                serialNo++;
+            }
+            
+            // Generate final HTML (same as your original HTML structure)
+            return `
+                <div class="check-another-container">
+                    <button onclick="showMainPage()" class="btn btn-secondary check-another-btn">
+                        <i class="fas fa-arrow-left"></i> Check Another Result
+                    </button>
+                </div>
+                <div class="result-card">
+                    <!-- Your result HTML structure here -->
+                    <!-- Copy the entire result card HTML from your original code -->
+                    <!-- Make sure to replace dynamic variables -->
+                </div>
+            `;
+        }
+
+        // Helper functions
+        function formatDateForComparison(date) {
+            if (!date) return '';
+            const d = new Date(date);
+            return d.toISOString().split('T')[0];
+        }
+
+        function formatDateForDisplay(date) {
+            if (!date) return 'N/A';
+            const d = new Date(date);
+            return d.toLocaleDateString('en-IN', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric'
+            });
+        }
+
+        function showMainPage() {
+            document.getElementById("exam-result-input").style.display = 'block';
+            document.getElementById("main-header").style.display = 'block';
+            document.getElementById("rs").innerHTML = '';
+            document.getElementById("lab").reset();
+            window.scrollTo(0, 0);
+        }
+
+        // Initialize
+        window.onload = function() {
+            loadConfig();
+        };
+    </script>
 </body>
 </html>
