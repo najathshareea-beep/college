@@ -635,7 +635,7 @@
   <script>
     // 🚨 ഇവിടെയാണ് പ്രധാന മാറ്റം! 🚨
     // നിങ്ങളുടെ പുതിയ AppScript Web App URL ഇവിടെ ഇടുക
-    const APPSCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzJiKK877YwRLkpyS3yQpA0_9yABG2jbHmTIEgrCdyE_qy9hEATDYhdbgt9BxP00SVe/exec';
+    const APPSCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwlMjA6QAberu7TaHQSQ3oLeYXFVQOTvrqzZHCXhQPA4IoHNyYJ5BBJci72p4_M8WW1/exec';
     
     // Debug mode
     const DEBUG_MODE = true;
@@ -695,10 +695,10 @@
 
         const response = await fetch(url, {
           method: 'GET',
-          mode: 'no-cors', // <-- NEW MODE (Try this for GitHub)
-          cache: 'no-store',
+          cache: 'no-cache',
+          redirect: 'follow',  
           headers: {
-            'Accept': 'text/html',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
           }
         });
         
@@ -864,5 +864,6 @@
   </script>
 </body>
 </html>
+
 
 
