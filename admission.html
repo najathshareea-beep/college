@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College Portal | ഡാറുണ്ണജാത്ത് ഷറീഅത്ത് & ആർട്സ് കോളേജ്</title>
+    <title>College Portal | Daunnajath Shareeath & Arts College</title>
     
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- W3.CSS -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -39,16 +39,11 @@
         }
         
         body {
-            font-family: 'Poppins', 'Noto Sans Malayalam', sans-serif;
+            font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, var(--light-bg) 0%, #e3f2fd 100%);
             min-height: 100vh;
             color: #333;
             line-height: 1.6;
-        }
-        
-        /* Malayalam Font Support */
-        .malayalam {
-            font-family: 'Noto Sans Malayalam', sans-serif;
         }
         
         /* Main Container */
@@ -97,7 +92,7 @@
         
         .college-name {
             color: var(--primary-blue);
-            font-family: 'Impact', 'Noto Sans Malayalam', sans-serif;
+            font-family: 'Impact', sans-serif;
             font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: 10px;
@@ -316,7 +311,7 @@
             font-size: 16px;
             transition: all 0.3s ease;
             width: 100%;
-            font-family: 'Poppins', 'Noto Sans Malayalam', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         
         .form-control:focus {
@@ -401,7 +396,7 @@
         
         .result-title {
             color: var(--primary-blue);
-            font-family: 'Andalus', 'Noto Sans Malayalam', sans-serif;
+            font-family: 'Andalus', sans-serif;
             font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: 10px;
@@ -826,7 +821,7 @@
     <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="spinner"></div>
-        <div class="loading-text">കാത്തിരിക്കുക...</div>
+        <div class="loading-text">Please wait...</div>
     </div>
     
     <!-- Notification -->
@@ -845,16 +840,14 @@
         <!-- Header -->
         <div class="header-card text-center">
             <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="college-logo">
-            <h1 class="college-name malayalam">ഡാറുണ്ണജാത്ത് ഷറീഅത്ത് & ആർട്സ് കോളേജ്</h1>
             <h2 class="college-subtitle">DARUNNAJATH SHAREEATH & ARTS COLLEGE</h2>
-            <p class="college-address">പുന്നക്കാട്, കരുവാരകുണ്ട്, മലപ്പുറം ജില്ല</p>
             <p class="college-address">Punnakkad, Karuvarakundu, Malappuram District</p>
-            <h3 class="portal-title">വിദ്യാർത്ഥി പോർട്ടൽ | Student Portal</h3>
+            <h3 class="portal-title">Student Portal</h3>
         </div>
         
         <!-- Dashboard -->
         <div class="dashboard-container" id="dashboardView">
-            <h2 class="dashboard-title">സേവനങ്ങൾ | Services</h2>
+            <h2 class="dashboard-title">Services</h2>
             
             <div class="services-grid">
                 <!-- Application Download -->
@@ -862,10 +855,10 @@
                     <div class="service-icon">
                         <i class="fas fa-file-download"></i>
                     </div>
-                    <h3 class="service-title malayalam">അപേക്ഷ ഡൗൺലോഡ്</h3>
-                    <p class="service-desc malayalam">സമർപ്പിച്ച അപേക്ഷാ ഫോം ഡൗൺലോഡ് ചെയ്യുക</p>
+                    <h3 class="service-title">Application Download</h3>
+                    <p class="service-desc">Download submitted application form</p>
                     <button class="btn-service" onclick="showForm('applicationForm')">
-                        <i class="fas fa-download me-2"></i> ഡൗൺലോഡ്
+                        <i class="fas fa-download me-2"></i> Download
                     </button>
                 </div>
                 
@@ -874,10 +867,10 @@
                     <div class="service-icon">
                         <i class="fas fa-ticket-alt"></i>
                     </div>
-                    <h3 class="service-title malayalam">ഹാൾ ടിക്കറ്റ്</h3>
-                    <p class="service-desc malayalam">പരീക്ഷാ ഹാൾ ടിക്കറ്റ് ഡൗൺലോഡ് ചെയ്യുക</p>
+                    <h3 class="service-title">Hall Ticket</h3>
+                    <p class="service-desc">Download exam hall ticket</p>
                     <button class="btn-service" onclick="showForm('hallticketForm')">
-                        <i class="fas fa-ticket-alt me-2"></i> ടിക്കറ്റ്
+                        <i class="fas fa-ticket-alt me-2"></i> Ticket
                     </button>
                 </div>
                 
@@ -886,10 +879,10 @@
                     <div class="service-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3 class="service-title malayalam">ഫലം പരിശോധിക്കുക</h3>
-                    <p class="service-desc malayalam">പരീക്ഷാ ഫലം പരിശോധിക്കുക</p>
+                    <h3 class="service-title">Check Result</h3>
+                    <p class="service-desc">Check examination results</p>
                     <button class="btn-service" onclick="showForm('resultForm')">
-                        <i class="fas fa-search me-2"></i> ഫലം
+                        <i class="fas fa-search me-2"></i> Result
                     </button>
                 </div>
             </div>
@@ -898,68 +891,68 @@
             <div class="instructions-box">
                 <h3 class="instructions-title">
                     <i class="fas fa-info-circle"></i>
-                    നിർദ്ദേശങ്ങൾ | Instructions
+                    Instructions
                 </h3>
                 <ul class="instructions-list">
-                    <li class="malayalam">എല്ലാ സേവനങ്ങൾക്കും <strong>രജിസ്റ്റർ ചെയ്ത മൊബൈൽ നമ്പർ</strong> ഉം <strong>ജനന തീയതി</strong> ഉം ആവശ്യമാണ്</li>
-                    <li class="malayalam">മൊബൈൽ നമ്പർ 10 അക്കങ്ങൾ ആയിരിക്കണം</li>
-                    <li class="malayalam">ജനന തീയതി ഫോർമാറ്റ്: YYYY-MM-DD (ഉദാഹരണം: 2000-12-31)</li>
-                    <li class="malayalam">ഫലങ്ങൾ പ്രിന്റ് ചെയ്യാനും ഡൗൺലോഡ് ചെയ്യാനും പറ്റും</li>
+                    <li>All services require <strong>registered mobile number</strong> and <strong>date of birth</strong></li>
+                    <li>Mobile number must be 10 digits</li>
+                    <li>Date format: YYYY-MM-DD (Example: 2000-12-31)</li>
+                    <li>Results can be printed and downloaded</li>
                 </ul>
             </div>
             
             <!-- News Ticker -->
             <div class="ticker-container">
                 <div class="ticker-content">
-                    <span>📢 കോളേജ് പ്രവേശനം തുടങ്ങി | College Admissions Started</span>
+                    <span>📢 College Admissions Started</span>
                     &nbsp;&nbsp;•&nbsp;&nbsp;
-                    <span>🎓 പരീക്ഷാ ഫലങ്ങൾ പ്രഖ്യാപിച്ചു | Exam Results Announced</span>
+                    <span>🎓 Exam Results Announced</span>
                     &nbsp;&nbsp;•&nbsp;&nbsp;
-                    <span>📅 ഹാൾ ടിക്കറ്റ് ഡൗൺലോഡ് ചെയ്യുക | Download Hall Tickets</span>
+                    <span>📅 Download Hall Tickets</span>
                     &nbsp;&nbsp;•&nbsp;&nbsp;
-                    <span>📞 സഹായത്തിന്: 1234567890 | Helpline: 1234567890</span>
+                    <span>📞 Helpline: 1234567890</span>
                 </div>
             </div>
         </div>
         
         <!-- Application Form -->
         <div class="form-container" id="applicationForm">
-            <h2 class="form-title malayalam">
+            <h2 class="form-title">
                 <i class="fas fa-file-download me-2"></i>
-                അപേക്ഷ ഡൗൺലോഡ് | Application Download
+                Application Download
             </h2>
             
             <form id="downloadApplicationForm">
                 <div class="form-group">
-                    <label class="form-label required malayalam">
+                    <label class="form-label required">
                         <i class="fas fa-mobile-alt me-2"></i>
-                        മൊബൈൽ നമ്പർ | Mobile Number
+                        Mobile Number
                     </label>
                     <input type="tel" class="form-control" id="appMobile" 
                            pattern="\d{10}" 
-                           placeholder="10 അക്ക മൊബൈൽ നമ്പർ | 10 digit mobile number"
+                           placeholder="10 digit mobile number"
                            required>
-                    <small class="text-muted malayalam">അപേക്ഷ സമർപ്പിക്കുമ്പോൾ ഉപയോഗിച്ച മൊബൈൽ നമ്പർ</small>
+                    <small class="text-muted">Mobile number used when submitting application</small>
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label required malayalam">
+                    <label class="form-label required">
                         <i class="fas fa-calendar-alt me-2"></i>
-                        ജനന തീയതി | Date of Birth
+                        Date of Birth
                     </label>
                     <input type="date" class="form-control" id="appDob" required>
-                    <small class="text-muted malayalam">ഫോർമാറ്റ്: YYYY-MM-DD</small>
+                    <small class="text-muted">Format: YYYY-MM-DD</small>
                 </div>
                 
                 <button type="submit" class="btn-submit" id="submitApplicationBtn">
                     <i class="fas fa-search me-2"></i>
-                    അപേക്ഷ തിരയുക | Search Application
+                    Search Application
                 </button>
                 
                 <div class="button-group">
                     <button type="button" class="btn-secondary" onclick="showDashboard()">
                         <i class="fas fa-arrow-left me-2"></i>
-                        തിരികെ | Back
+                        Back
                     </button>
                 </div>
             </form>
@@ -967,41 +960,41 @@
         
         <!-- Hall Ticket Form -->
         <div class="form-container" id="hallticketForm">
-            <h2 class="form-title malayalam">
+            <h2 class="form-title">
                 <i class="fas fa-ticket-alt me-2"></i>
-                ഹാൾ ടിക്കറ്റ് | Hall Ticket
+                Hall Ticket
             </h2>
             
             <form id="downloadHallticketForm">
                 <div class="form-group">
-                    <label class="form-label required malayalam">
+                    <label class="form-label required">
                         <i class="fas fa-mobile-alt me-2"></i>
-                        മൊബൈൽ നമ്പർ | Mobile Number
+                        Mobile Number
                     </label>
                     <input type="tel" class="form-control" id="ticketMobile" 
                            pattern="\d{10}"
-                           placeholder="10 അക്ക മൊബൈൽ നമ്പർ | 10 digit mobile number"
+                           placeholder="10 digit mobile number"
                            required>
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label required malayalam">
+                    <label class="form-label required">
                         <i class="fas fa-calendar-alt me-2"></i>
-                        ജനന തീയതി | Date of Birth
+                        Date of Birth
                     </label>
                     <input type="date" class="form-control" id="ticketDob" required>
-                    <small class="text-muted malayalam">ഫോർമാറ്റ്: YYYY-MM-DD</small>
+                    <small class="text-muted">Format: YYYY-MM-DD</small>
                 </div>
                 
                 <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);" id="submitTicketBtn">
                     <i class="fas fa-download me-2"></i>
-                    ഹാൾ ടിക്കറ്റ് ഡൗൺലോഡ് | Download Hall Ticket
+                    Download Hall Ticket
                 </button>
                 
                 <div class="button-group">
                     <button type="button" class="btn-secondary" onclick="showDashboard()">
                         <i class="fas fa-arrow-left me-2"></i>
-                        തിരികെ | Back
+                        Back
                     </button>
                 </div>
             </form>
@@ -1009,41 +1002,41 @@
         
         <!-- Result Form -->
         <div class="form-container" id="resultForm">
-            <h2 class="form-title malayalam">
+            <h2 class="form-title">
                 <i class="fas fa-chart-line me-2"></i>
-                ഫലം പരിശോധിക്കുക | Check Result
+                Check Result
             </h2>
             
             <form id="checkResultForm">
                 <div class="form-group">
-                    <label class="form-label required malayalam">
+                    <label class="form-label required">
                         <i class="fas fa-mobile-alt me-2"></i>
-                        മൊബൈൽ നമ്പർ | Mobile Number
+                        Mobile Number
                     </label>
                     <input type="tel" class="form-control" id="resultMobile" 
                            pattern="\d{10}"
-                           placeholder="10 അക്ക മൊബൈൽ നമ്പർ | 10 digit mobile number"
+                           placeholder="10 digit mobile number"
                            required>
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label required malayalam">
+                    <label class="form-label required">
                         <i class="fas fa-calendar-alt me-2"></i>
-                        ജനന തീയതി | Date of Birth
+                        Date of Birth
                     </label>
                     <input type="date" class="form-control" id="resultDob" required>
-                    <small class="text-muted malayalam">ഫോർമാറ്റ്: YYYY-MM-DD</small>
+                    <small class="text-muted">Format: YYYY-MM-DD</small>
                 </div>
                 
                 <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);" id="submitResultBtn">
                     <i class="fas fa-search me-2"></i>
-                    ഫലം പരിശോധിക്കുക | Check Result
+                    Check Result
                 </button>
                 
                 <div class="button-group">
                     <button type="button" class="btn-secondary" onclick="showDashboard()">
                         <i class="fas fa-arrow-left me-2"></i>
-                        തിരികെ | Back
+                        Back
                     </button>
                 </div>
             </form>
@@ -1057,14 +1050,13 @@
     
     <!-- Footer -->
     <footer class="footer">
-        <p>© <span id="currentYear"></span> ഡാറുണ്ണജാത്ത് ഷറീഅത്ത് & ആർട്സ് കോളേജ്. എല്ലാ അവകാശങ്ങളും നിക്ഷിപ്തം.</p>
         <p>© <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All Rights Reserved.</p>
         
         <div class="footer-links">
-            <a href="#" class="footer-link malayalam">വിലാസം | Address</a>
-            <a href="#" class="footer-link malayalam">ഫോൺ | Phone</a>
-            <a href="#" class="footer-link malayalam">ഇമെയിൽ | Email</a>
-            <a href="#" class="footer-link malayalam">സഹായം | Help</a>
+            <a href="#" class="footer-link">Address</a>
+            <a href="#" class="footer-link">Phone</a>
+            <a href="#" class="footer-link">Email</a>
+            <a href="#" class="footer-link">Help</a>
         </div>
         
         <p class="mt-3" style="font-size: 0.8rem; color: #888;">
@@ -1172,12 +1164,12 @@
             
             // Validation
             if (!/^\d{10}$/.test(mobile)) {
-                showNotification('10 അക്ക മൊബൈൽ നമ്പർ നൽകുക | Please enter 10 digit mobile number', 'error');
+                showNotification('Please enter 10 digit mobile number', 'error');
                 return;
             }
             
             if (!dob) {
-                showNotification('ജനന തീയതി തിരഞ്ഞെടുക്കുക | Please select date of birth', 'error');
+                showNotification('Please select date of birth', 'error');
                 return;
             }
             
@@ -1189,22 +1181,22 @@
                 const html = await response.text();
                 
                 // Check if it's an error
-                if (html.includes('Error') || html.includes('not found') || html.includes('not found')) {
-                    showNotification('അപേക്ഷ കണ്ടെത്തിയില്ല. വിവരങ്ങൾ പരിശോധിക്കുക | Application not found. Please check details.', 'error');
+                if (html.includes('Error') || html.includes('not found')) {
+                    showNotification('Application not found. Please check details.', 'error');
                 } else {
                     // Display result in new window for printing
                     const newWindow = window.open();
                     newWindow.document.write(html);
                     newWindow.document.close();
                     
-                    showNotification('അപേക്ഷ കണ്ടെത്തി. പുതിയ വിന്റോയിൽ തുറക്കുന്നു | Application found. Opening in new window.', 'success');
+                    showNotification('Application found. Opening in new window.', 'success');
                     
                     // Reset form and show dashboard
                     e.target.reset();
                     showDashboard();
                 }
             } catch (error) {
-                showNotification('പിഴവ് സംഭവിച്ചു. ദയവായി വീണ്ടും ശ്രമിക്കുക | Error occurred. Please try again.', 'error');
+                showNotification('Error occurred. Please try again.', 'error');
                 console.error('Error:', error);
             } finally {
                 hideLoading();
@@ -1220,12 +1212,12 @@
             
             // Validation
             if (!/^\d{10}$/.test(mobile)) {
-                showNotification('10 അക്ക മൊബൈൽ നമ്പർ നൽകുക | Please enter 10 digit mobile number', 'error');
+                showNotification('Please enter 10 digit mobile number', 'error');
                 return;
             }
             
             if (!dob) {
-                showNotification('ജനന തീയതി തിരഞ്ഞെടുക്കുക | Please select date of birth', 'error');
+                showNotification('Please select date of birth', 'error');
                 return;
             }
             
@@ -1237,22 +1229,22 @@
                 const html = await response.text();
                 
                 // Check if it's an error
-                if (html.includes('Error') || html.includes('not found') || html.includes('not found')) {
-                    showNotification('ഹാൾ ടിക്കറ്റ് കണ്ടെത്തിയില്ല. വിവരങ്ങൾ പരിശോധിക്കുക | Hall ticket not found. Please check details.', 'error');
+                if (html.includes('Error') || html.includes('not found')) {
+                    showNotification('Hall ticket not found. Please check details.', 'error');
                 } else {
                     // Display result in new window for printing
                     const newWindow = window.open();
                     newWindow.document.write(html);
                     newWindow.document.close();
                     
-                    showNotification('ഹാൾ ടിക്കറ്റ് കണ്ടെത്തി. പുതിയ വിന്റോയിൽ തുറക്കുന്നു | Hall ticket found. Opening in new window.', 'success');
+                    showNotification('Hall ticket found. Opening in new window.', 'success');
                     
                     // Reset form and show dashboard
                     e.target.reset();
                     showDashboard();
                 }
             } catch (error) {
-                showNotification('പിഴവ് സംഭവിച്ചു. ദയവായി വീണ്ടും ശ്രമിക്കുക | Error occurred. Please try again.', 'error');
+                showNotification('Error occurred. Please try again.', 'error');
                 console.error('Error:', error);
             } finally {
                 hideLoading();
@@ -1268,12 +1260,12 @@
             
             // Validation
             if (!/^\d{10}$/.test(mobile)) {
-                showNotification('10 അക്ക മൊബൈൽ നമ്പർ നൽകുക | Please enter 10 digit mobile number', 'error');
+                showNotification('Please enter 10 digit mobile number', 'error');
                 return;
             }
             
             if (!dob) {
-                showNotification('ജനന തീയതി തിരഞ്ഞെടുക്കുക | Please select date of birth', 'error');
+                showNotification('Please select date of birth', 'error');
                 return;
             }
             
@@ -1285,22 +1277,22 @@
                 const html = await response.text();
                 
                 // Check if it's an error
-                if (html.includes('Error') || html.includes('not found') || html.includes('not found')) {
-                    showNotification('ഫലം കണ്ടെത്തിയില്ല. വിവരങ്ങൾ പരിശോധിക്കുക | Result not found. Please check details.', 'error');
+                if (html.includes('Error') || html.includes('not found')) {
+                    showNotification('Result not found. Please check details.', 'error');
                 } else {
                     // Display result in new window for printing
                     const newWindow = window.open();
                     newWindow.document.write(html);
                     newWindow.document.close();
                     
-                    showNotification('ഫലം കണ്ടെത്തി. പുതിയ വിന്റോയിൽ തുറക്കുന്നു | Result found. Opening in new window.', 'success');
+                    showNotification('Result found. Opening in new window.', 'success');
                     
                     // Reset form and show dashboard
                     e.target.reset();
                     showDashboard();
                 }
             } catch (error) {
-                showNotification('പിഴവ് സംഭവിച്ചു. ദയവായി വീണ്ടും ശ്രമിക്കുക | Error occurred. Please try again.', 'error');
+                showNotification('Error occurred. Please try again.', 'error');
                 console.error('Error:', error);
             } finally {
                 hideLoading();
@@ -1354,10 +1346,10 @@
                     actionButtons.style.display = 'flex';
                 }
                 
-                showNotification('PDF ഡൗൺലോഡ് ചെയ്തു | PDF downloaded successfully', 'success');
+                showNotification('PDF downloaded successfully', 'success');
             }).catch(error => {
                 console.error('PDF generation error:', error);
-                showNotification('PDF ഡൗൺലോഡിൽ പിഴവ് | Error downloading PDF', 'error');
+                showNotification('Error downloading PDF', 'error');
                 
                 // Restore action buttons
                 if (actionButtons) {
