@@ -388,6 +388,43 @@
             margin-top: 5px;
             display: block;
         }
+        
+        /* ===== CLASS TOPPERS ===== */
+        #class-toppers {
+          background: linear-gradient(145deg,#e8f1ff,#ffffff);
+          position: relative;
+          overflow: hidden;
+        }
+
+        #class-toppers::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+          animation: borderFlow 3s linear infinite;
+        }
+
+        #class-toppers .card {
+          border: 2px solid transparent;
+          background: linear-gradient(white, white) padding-box,
+                      linear-gradient(135deg, var(--primary), var(--accent)) border-box;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          cursor: pointer;
+        }
+
+        #class-toppers .card:hover {
+          transform: translateY(-10px) scale(1.03);
+          box-shadow: 0 20px 40px rgba(10,25,79,0.15);
+        }
+
+        #class-toppers .badge {
+          animation: pulse 2s infinite;
+          font-size: 0.9rem;
+          padding: 0.5rem 1rem;
+        }
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -908,4 +945,5 @@
     </script>
 </body>
 </html>
+
 
