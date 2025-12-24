@@ -104,95 +104,193 @@
       100% { background-position: 200% center; }
     }
 
-    /* ===== NAVBAR ===== */
-    .navbar-main {
-      background: rgba(13, 92, 62, 0.95);
+        /* ===== OPTIMIZED NAVBAR STYLES ===== */
+    :root {
+      --primary-green: #0d5c3e;
+      --dark-green: #0a3524;
+      --gold: #c19a3c;
+    }
+
+    /* NAVBAR - OPTIMIZED FOR SPACE */
+    .navbar-optimized {
+      background: rgba(13, 92, 62, 0.98);
       backdrop-filter: blur(10px);
       border-bottom: 3px solid var(--gold);
-      padding: 1rem 0;
+      padding: 0.8rem 0;
       transition: all 0.3s ease;
     }
 
-    .navbar-main.scrolled {
-      padding: 0.7rem 0;
-      background: rgba(13, 92, 62, 0.98);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    .navbar-optimized.scrolled {
+      padding: 0.6rem 0;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
     }
 
-    .navbar-brand {
-      position: relative;
-      padding: 0.5rem 1rem;
+    /* Brand logo optimized */
+    .navbar-brand-compact {
+      padding: 0.3rem 0.8rem;
       background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
+      border-radius: 8px;
       border: 2px solid var(--gold);
     }
 
-    .navbar-brand img {
-      width: 60px;
-      height: 60px;
+    .navbar-brand-compact img {
+      width: 50px;
+      height: 50px;
       object-fit: contain;
-      border-radius: 8px;
     }
 
-    .nav-link {
+    .brand-text {
+      font-size: 1.6rem;
+      line-height: 1;
+      margin-bottom: 0.1rem;
+    }
+
+    .brand-subtext {
+      font-size: 0.7rem;
+      opacity: 0.9;
+    }
+
+    /* NAV ITEMS - OPTIMIZED SPACING */
+    .nav-container {
+      flex-wrap: nowrap;
+    }
+
+    .nav-item-optimized {
+      margin: 0 0.15rem !important;
+    }
+
+    .nav-link-optimized {
       color: white !important;
       font-weight: 500;
-      padding: 0.75rem 1.25rem !important;
-      margin: 0 0.25rem;
-      border-radius: 8px;
-      transition: all 0.3s ease;
+      font-size: 0.85rem !important; /* Slightly reduced but readable */
+      padding: 0.5rem 0.7rem !important; /* Reduced padding */
+      margin: 0 !important;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    /* Active state with indicator */
+    .nav-link-optimized.active {
+      background: rgba(193, 154, 60, 0.2);
+      color: #e6c878 !important;
       position: relative;
     }
 
-    .nav-link::before {
+    .nav-link-optimized.active::after {
       content: '';
       position: absolute;
-      bottom: 0;
+      bottom: -3px;
       left: 50%;
       transform: translateX(-50%);
-      width: 0;
+      width: 60%;
       height: 2px;
       background: var(--gold);
-      transition: width 0.3s ease;
+      border-radius: 2px;
     }
 
-    .nav-link:hover {
-      background: rgba(193, 154, 60, 0.1);
-      color: var(--light-gold) !important;
+    /* Hover effect */
+    .nav-link-optimized:hover {
+      background: rgba(193, 154, 60, 0.15);
+      color: #e6c878 !important;
+      transform: translateY(-1px);
     }
 
-    .nav-link:hover::before {
-      width: 70%;
-    }
-
-    .nav-link.active {
-      background: rgba(193, 154, 60, 0.2);
-      color: var(--light-gold) !important;
-    }
-
-    .nav-link.active::before {
-      width: 100%;
-    }
-
-    /* Dropdown */
-    .dropdown-menu {
-      background: rgba(13, 92, 62, 0.95);
+    /* DROPDOWN OPTIMIZATION */
+    .dropdown-menu-optimized {
+      background: rgba(13, 92, 62, 0.98);
       backdrop-filter: blur(10px);
       border: 1px solid var(--gold);
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      min-width: 180px;
+      padding: 0.5rem 0;
+      margin-top: 0.5rem;
     }
 
-    .dropdown-item {
+    .dropdown-item-optimized {
       color: white;
-      padding: 0.75rem 1.5rem;
-      transition: all 0.3s ease;
+      font-size: 0.85rem;
+      padding: 0.5rem 1rem;
+      transition: all 0.2s ease;
     }
 
-    .dropdown-item:hover {
+    .dropdown-item-optimized:hover {
       background: rgba(193, 154, 60, 0.2);
-      color: var(--light-gold);
-      padding-left: 2rem;
+      color: #e6c878;
+      padding-left: 1.3rem;
+    }
+
+    /* Dropdown arrow */
+    .dropdown-toggle::after {
+      margin-left: 0.2em;
+      vertical-align: 0.15em;
+      border-width: 0.3em;
+    }
+
+    /* MOBILE MENU OPTIMIZATION */
+    @media (max-width: 992px) {
+      .navbar-optimized {
+        padding: 0.5rem 0;
+      }
+      
+      .nav-link-optimized {
+        padding: 0.75rem 1rem !important;
+        font-size: 0.9rem !important;
+        margin: 0.15rem 0 !important;
+      }
+      
+      .dropdown-menu-optimized {
+        background: rgba(13, 92, 62, 0.95);
+        border: none;
+        border-left: 3px solid var(--gold);
+        margin: 0;
+        padding-left: 1rem;
+      }
+      
+      .navbar-toggler {
+        padding: 0.3rem 0.5rem;
+        font-size: 1rem;
+      }
+    }
+
+    /* EXTRA SMALL SCREENS */
+    @media (max-width: 576px) {
+      .navbar-brand-compact img {
+        width: 45px;
+        height: 45px;
+      }
+      
+      .brand-text {
+        font-size: 1.4rem;
+      }
+      
+      .brand-subtext {
+        font-size: 0.65rem;
+      }
+    }
+
+    /* Toggle button styling */
+    .navbar-toggler {
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      padding: 0.3rem 0.6rem;
+    }
+    
+    .navbar-toggler:focus {
+      box-shadow: 0 0 0 2px rgba(193, 154, 60, 0.5);
+    }
+    
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      width: 1.2em;
+      height: 1.2em;
+    }
+
+    /* Custom scrollbar for dropdown on mobile */
+    @media (max-height: 600px) {
+      .navbar-collapse {
+        max-height: 70vh;
+        overflow-y: auto;
+      }
     }
 
     /* ===== HERO SECTION ===== */
@@ -724,52 +822,77 @@
 <div class="islamic-ornament ornament-3">✸</div>
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-main fixed-top">
+<nav class="navbar navbar-expand-lg navbar-optimized fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand d-flex align-items-center gap-3" href="#">
-      <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="DSAC Logo">
+    <a class="navbar-brand d-flex align-items-center navbar-brand-compact" href="#">
+      <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="DSAC Logo" class="me-2">
       <div class="d-flex flex-column">
-        <span class="text-white fw-bold fs-3">DSAC</span>
-        <small class="text-light">Karuvarakundu</small>
+        <span class="text-white fw-bold brand-text">DSAC</span>
+        <small class="text-light brand-subtext">Karuvarakundu</small>
       </div>
     </a>
     
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
     
-    <div class="collapse navbar-collapse" id="navbarMain">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ms-auto nav-container">
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized active" href="index.html">Home</a>
+        </li>
         
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Board</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="management.html">Management</a></li>
-            <li><a class="dropdown-item" href="faculties.html">Faculty</a></li>
-            <li><a class="dropdown-item" href="pta.html">PTA</a></li>
+        <!-- Board Dropdown -->
+        <li class="nav-item dropdown nav-item-optimized">
+          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            Board
+          </a>
+          <ul class="dropdown-menu dropdown-menu-optimized">
+            <li><a class="dropdown-item dropdown-item-optimized" href="management.html">Management</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="faculties.html">Faculty</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="pta.html">PTA</a></li>
           </ul>
         </li>
         
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Student Zone</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="idcard.html">ID Card</a></li>
-            <li><a class="dropdown-item" href="result.html">Result</a></li>
+        <!-- Student Zone Dropdown -->
+        <li class="nav-item dropdown nav-item-optimized">
+          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            Student Zone
+          </a>
+          <ul class="dropdown-menu dropdown-menu-optimized">
+            <li><a class="dropdown-item dropdown-item-optimized" href="idcard.html">ID Card</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="result.html">Result</a></li>
           </ul>
         </li>
         
-        <li class="nav-item"><a class="nav-link" href="https://jamianooriya.in/">Jamia</a></li>
-        <li class="nav-item"><a class="nav-link" href="downloads.html">Downloads</a></li>
-        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-        <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-        <li class="nav-item"><a class="nav-link" href="library.html">Library</a></li>
-        <li class="nav-item"><a class="nav-link" href="alumni.html">Alumni</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <!-- Other Items -->
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="https://jamianooriya.in/">Jamia</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="downloads.html">Downloads</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="gallery.html">Gallery</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="login.html">Login</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="library.html">Library</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="alumni.html">Alumni</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="contact.html">Contact</a>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
+
+  
 
 <!-- HERO SECTION -->
 <section class="hero-section">
@@ -1194,3 +1317,4 @@
 </script>
 </body>
 </html>
+
