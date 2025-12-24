@@ -14,9 +14,6 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- W3.CSS -->
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    
     <!-- PDF Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -375,142 +372,6 @@
             color: var(--white);
         }
         
-        /* Result Container */
-        .result-container {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px var(--shadow);
-            display: none;
-            border: 2px solid var(--primary-blue);
-            position: relative;
-        }
-        
-        .result-header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid #f0f0f0;
-        }
-        
-        .result-title {
-            color: var(--primary-blue);
-            font-family: 'Andalus', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        
-        .result-content {
-            padding: 20px;
-        }
-        
-        .student-info {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 25px;
-            border: 1px solid #e9ecef;
-        }
-        
-        .info-row {
-            display: flex;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px dashed #dee2e6;
-            align-items: center;
-        }
-        
-        .info-row:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-        
-        .info-label {
-            font-weight: 600;
-            color: #495057;
-            width: 200px;
-            min-width: 200px;
-            font-size: 1rem;
-        }
-        
-        .info-value {
-            color: #212529;
-            flex: 1;
-            font-size: 1rem;
-        }
-        
-        .status-box {
-            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            margin: 25px 0;
-            border: 2px solid #28a745;
-        }
-        
-        .status-title {
-            color: #155724;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        
-        .status-value {
-            color: #155724;
-            font-size: 2rem;
-            font-weight: 700;
-        }
-        
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .btn-action {
-            padding: 12px 25px;
-            border-radius: 10px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            min-width: 160px;
-        }
-        
-        .btn-print {
-            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
-            color: var(--white);
-        }
-        
-        .btn-download {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
-            color: var(--white);
-        }
-        
-        .btn-new {
-            background: linear-gradient(135deg, #28a745 0%, #218838 100%);
-            color: var(--white);
-        }
-        
-        .btn-back {
-            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
-            color: var(--white);
-        }
-        
-        .btn-action:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 15px rgba(0,0,0,0.2);
-        }
-        
         /* Loading Spinner */
         .loading-overlay {
             position: fixed;
@@ -605,42 +466,6 @@
             color: #333;
         }
 
-        /* ===== HIGHLIGHTS ===== */
-        #highlights .card {
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          border: none;
-          overflow: hidden;
-          position: relative;
-        }
-
-        #highlights .card::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 4px;
-          background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
-          background-size: 200% 100%;
-          animation: borderFlow 3s linear infinite;
-        }
-
-        #highlights .card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-        }
-
-        #highlights .card-title {
-          color: var(--secondary);
-          font-size: 1.3rem;
-          font-weight: 600;
-          transition: color 0.3s ease;
-        }
-
-        #highlights .card:hover .card-title {
-          color: var(--primary);
-        }
-
         /* Footer */
         .footer {
             text-align: center;
@@ -731,6 +556,25 @@
             margin-bottom: 0;
         }
         
+        /* Radio & Checkbox Groups */
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        
+        .radio-option input[type="radio"] {
+            width: 18px;
+            height: 18px;
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .main-container {
@@ -753,28 +597,6 @@
                 padding: 20px;
             }
             
-            .info-row {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .info-label {
-                width: 100%;
-                margin-bottom: 5px;
-            }
-            
-            .info-value {
-                width: 100%;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-            }
-            
-            .btn-action {
-                width: 100%;
-            }
-            
             .button-group {
                 flex-direction: column;
             }
@@ -782,74 +604,6 @@
             .ticker-content {
                 font-size: 0.9rem;
             }
-        }
-        
-        /* Print Styles */
-        @media print {
-            body * {
-                visibility: hidden;
-            }
-            
-            .result-container,
-            .result-container * {
-                visibility: visible;
-            }
-            
-            .result-container {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                margin: 0;
-                padding: 20px;
-                box-shadow: none;
-                border: none;
-            }
-            
-            .action-buttons,
-            .footer,
-            .notification,
-            .loading-overlay {
-                display: none !important;
-            }
-        }
-        
-        /* Radio & Checkbox Groups */
-        .radio-group {
-            display: flex;
-            gap: 20px;
-            margin-top: 10px;
-        }
-        
-        .radio-option {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-        }
-        
-        .radio-option input[type="radio"] {
-            width: 18px;
-            height: 18px;
-        }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 5px;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-blue);
-            border-radius: 5px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--secondary-blue);
         }
     </style>
 </head>
@@ -885,14 +639,8 @@
         <div class="dashboard-container" id="dashboardView">
             <!-- News Ticker -->
             <div class="ticker-container">
-                <div class="ticker-content">
-                    <span>📢 College Admissions Started</span>
-                    &nbsp;&nbsp;•&nbsp;&nbsp;
-                    <span>🎓 Exam Results Announce Later</span>
-                    &nbsp;&nbsp;•&nbsp;&nbsp;
-                    <span>📅 Download Hall Tickets</span>
-                    &nbsp;&nbsp;•&nbsp;&nbsp;
-                    <span>📞 Helpline: 9048020243</span>
+                <div class="ticker-content" id="tickerContent">
+                    <!-- Ticker content will be loaded from API -->
                 </div>
             </div>
             
@@ -968,258 +716,252 @@
                 New Admission Application
             </h2>
             
-            <div class="apply-now-container">
-                <h3>Application Form</h3>
-                <form id="newApplicationForm">
-                    <div class="form-group">
-                        <label class="form-label required">
-                            1. കുട്ടിയുടെ പേര് | Student's Name:
-                        </label>
-                        <input type="text" class="form-control" name="studentName" placeholder="പൂർണ്ണ പേര് രേഖപ്പെടുത്തുക | Enter full name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">
-                            2. വീട്ടു പേര് | House Name:
-                        </label>
-                        <input type="text" class="form-control" name="houseName" placeholder="വീട്ടു പേര് രേഖപ്പെടുത്തുക | House name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">
-                            3. ജനന തിയ്യതി | Date of Birth:
-                        </label>
-                        <input type="date" class="form-control" name="dob" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">
-                            4. ആധാര്‍ നമ്പര്‍ | Aadhaar Number:
-                        </label>
-                        <input type="text" class="form-control" name="aadhaarNumber" placeholder="ആധാര്‍ നമ്പര്‍ രേഖപ്പെടുത്തുക | Enter Aadhaar number" required pattern="\d{12}" title="Aadhaar number must be 12 digits">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">
-                            5. വിലാസം | Postal Address:
-                        </label>
-                        <textarea class="form-control" name="address" placeholder="പൂർണ്ണ വിലാസം രേഖപ്പെടുത്തുക | Enter full address" required rows="3"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">
-                            6. ഫോണ്‍ നമ്പര്‍ | Phone Number:
-                        </label>
-                        <input type="tel" class="form-control" name="phoneNumber" placeholder="9876543210 | Enter phone number" required pattern="\d{10}" title="Phone number must be 10 digits">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">
-                            7. വാട്‌സ്ആപ്പ് നമ്പര്‍ | WhatsApp Number:
-                        </label>
-                        <input type="tel" class="form-control" name="whatsappNumber" placeholder="വാട്‌സ്ആപ്പ് നമ്പര്‍ (വ്യത്യസ്തമെങ്കിൽ) | Enter WhatsApp number (if different)" pattern="\d{10}" title="WhatsApp number must be 10 digits">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">
-                            8. പിതാവിന്‍റെ പേര് | Father's Name:
-                        </label>
-                        <input type="text" class="form-control" name="fatherName" placeholder="പിതാവിന്‍റെ പേര് രേഖപ്പെടുത്തുക | Enter father's name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">
-                            9. പിതാവിന്‍റെ ജോലി | Father's Occupation:
-                        </label>
-                        <input type="text" class="form-control" name="fatherOccupation" placeholder="പിതാവിന്‍റെ ജോലി രേഖപ്പെടുത്തുക | Enter father's occupation" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">
-                            10. രക്ഷിതാവിന്‍റെ പേര് | Guardian's Name:
-                        </label>
-                        <input type="text" class="form-control" name="guardianName" placeholder="രക്ഷിതാവിന്‍റെ പേര് | Guardian's name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">
-                            11. വിദ്യാര്‍ത്ഥിക്ക് രക്ഷിതാവുമായുള്ള ബന്ധം | Relationship with Guardian:
-                        </label>
-                        <select class="form-control" name="relationshipWithGuardian" required>
-                            <option value="" disabled selected>രക്ഷിതാവുമായുള്ള ബന്ധം തിരഞ്ഞെടുക്കുക | Select Relationship</option>
-                            <option value="Father">പിതാവ് | Father</option>
-                            <option value="Mother">മാതാവ് | Mother</option>
-                            <option value="Brother">സഹോദരൻ | Brother</option>
-                            <option value="Sister">സഹോദരി | Sister</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">
-                            12. രക്ഷിതാവ്, പിതാവല്ലെങ്കില്‍ കാരണം | Reason if Guardian is not Father:
-                        </label>
-                        <textarea class="form-control" name="guardianReason" placeholder="രക്ഷിതാവ് പിതാവല്ലെങ്കില്‍ കാരണം | Enter reason if guardian is not father" rows="2"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">
-                            13. പഠിക്കുന്ന മദ്റസയും സ്ഥലവും | Madrasa & Location:
-                        </label>
-                        <input type="text" class="form-control" name="madrasa" placeholder="മദ്റസയും സ്ഥലവും രേഖപ്പെടുത്തുക | Enter Madrasa name and location" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">
-                            ക്ലാസ് | Class:
-                        </label>
-                        <select class="form-control" name="madrasaclass" required>
-                            <option value="" disabled selected>മദ്റസ ക്ലാസ് തിരഞ്ഞെടുക്കുക | Select Madrasa class</option>
-                            <option value="II">II</option>
-                            <option value="III">III</option>
-                            <option value="IV">IV</option>
-                            <option value="V">V</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">
-                            14. പഠിക്കുന്ന സ്കൂളും സ്ഥലവും | School & Location:
-                        </label>
-                        <input type="text" class="form-control" name="school" placeholder="സ്കൂളും സ്ഥലവും രേഖപ്പെടുത്തുക | Enter School name and location" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">
-                            ക്ലാസ് | Class:
-                        </label>
-                        <select class="form-control" name="schoolclass" required>
-                            <option value="" disabled selected>സ്കൂള്‍ ക്ലാസ് തിരഞ്ഞെടുക്കുക | Select School class</option>
-                            <option value="II">II</option>
-                            <option value="III">III</option>
-                            <option value="IV">IV</option>
-                            <option value="V">V</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">
-                            15. മുമ്പ് ഏതെങ്കിലും ഹിഫ്ള് കോളേജ്, ദര്‍സ്, കോളേജ് പഠിച്ചിട്ടുണ്ടോ | Previously Studied at Hifz College/Dars/College:
-                        </label>
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input type="radio" name="previousStudy" value="No" required> ഇല്ല | No
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="previousStudy" value="Yes"> ഉണ്ട് | Yes
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div id="previous-study-section" style="display: none; background: #f8f9fa; padding: 15px; border-radius: 10px; margin: 10px 0;">
-                        <div class="form-group">
-                            <label class="form-label required">
-                                ഏത് സ്ഥാപനത്തില്‍ | Which Institution:
-                            </label>
-                            <input type="text" class="form-control" name="previousInstitution" placeholder="സ്ഥാപനത്തിന്റെ പേര് രേഖപ്പെടുത്തുക | Enter institution name">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label required">
-                                എത്ര കാലം | Duration of Study:
-                            </label>
-                            <input type="text" class="form-control" name="studyDuration" placeholder="പഠന കാലം രേഖപ്പെടുത്തുക | Enter duration">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label required">
-                                എത്ര ജുസുഅ് | Number of Juz:
-                            </label>
-                            <input type="text" class="form-control" name="juzCount" placeholder="ജുസുഅിന്റെ എണ്ണം രേഖപ്പെടുത്തുക | Enter number of Juz">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label required">
-                                പോരാനുള്ള കാരണം | Reason for Leaving:
-                            </label>
-                            <textarea class="form-control" name="reasonForLeaving" placeholder="പോരാനുള്ള കാരണം രേഖപ്പെടുത്തുക | Enter reason for leaving" rows="2"></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label required">
-                                പ്രധാന അദ്ധ്യാപകന്‍റെ ഫോണ്‍ നമ്പര്‍ | Head Teacher's Phone Number:
-                            </label>
-                            <input type="tel" class="form-control" name="headTeacherPhone" placeholder="9876543210 | Enter phone number" pattern="\d{10}" title="Phone number must be 10 digits">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">
-                            16. കുട്ടിയെ തിരിച്ചറിയാനുള്ള അടയാളം | Student's Identification Mark:
-                        </label>
-                        <input type="text" class="form-control" name="identificationMark" placeholder="തിരിച്ചറിയല്‍ അടയാളം രേഖപ്പെടുത്തുക | Enter identification mark" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">
-                            17. കുട്ടിയുടെ ശാരീരിക ക്ഷമത | Student's Physical Fitness:
-                        </label>
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input type="radio" name="physicalFitness" value="Healthy" required> ആരോഗ്യവാന്‍ | Healthy
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="physicalFitness" value="Medication"> സ്ഥിരമായി ഗുളിക കഴിക്കാറുണ്ട് | Regular Medication
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div id="illness-section" style="display: none; background: #f8f9fa; padding: 15px; border-radius: 10px; margin: 10px 0;">
-                        <div class="form-group">
-                            <label class="form-label required">
-                                രോഗം | Illness:
-                            </label>
-                            <textarea class="form-control" name="illness" placeholder="രോഗത്തിന്റെ വിശദാംശങ്ങൾ രേഖപ്പെടുത്തുക | Enter details of illness" rows="2"></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">
-                            18. കുട്ടിയുടെ ഫോട്ടോ | Student's Photo:
-                        </label>
-                        <input type="file" class="form-control" name="photo" accept="image/*">
-                        <small class="text-muted">Optional - Max size: 2MB, Formats: JPG, PNG</small>
-                    </div>
-                    
-                    <div class="instructions-box">
-                        <h4 class="instructions-title">
-                            <i class="fas fa-file-contract"></i>
-                            Declaration
-                        </h4>
-                        <p>
-                            എന്‍റെ കുട്ടിയും ഞാനും അല്‍ ഹാഫിള് മമ്മു മുല്ല തഹ്ഫീളുല്‍ ഖുര്‍ആന്‍ കോളേജിന്‍റെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ അല്‍ ഹാഫിള് മമ്മു മുല്ല തഹ്ഫീളുല്‍ ഖുര്‍ആന്‍ കോളേജില്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.
-                        </p>
-                        <h5 class="mt-3">Note:</h5>
-                        <ul class="instructions-list">
-                            <li>Selection exam date will be announced later</li>
-                            <li>All fields marked with * are mandatory</li>
-                            <li>Please ensure all information is accurate</li>
-                            <li>You will receive a confirmation SMS after successful submission</li>
-                        </ul>
-                    </div>
-                    
-                    <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #28a745 0%, #218838 100%);">
-                        <i class="fas fa-paper-plane me-2"></i>
-                        Submit Application
-                    </button>
-                    
-                    <div class="button-group">
-                        <button type="button" class="btn-secondary" onclick="showDashboard()">
-                            <i class="fas fa-arrow-left me-2"></i>
-                            Back 
-                        </button>
-                    </div>
-                </form>
+            <div id="applyInstructions" class="instructions-box mb-4">
+                <!-- Instructions will be loaded from API -->
             </div>
+            
+            <form id="newApplicationForm">
+                <div class="form-group">
+                    <label class="form-label required">
+                        1. കുട്ടിയുടെ പേര് | Student's Name:
+                    </label>
+                    <input type="text" class="form-control" name="studentName" placeholder="പൂർണ്ണ പേര് രേഖപ്പെടുത്തുക | Enter full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required">
+                        2. വീട്ടു പേര് | House Name:
+                    </label>
+                    <input type="text" class="form-control" name="houseName" placeholder="വീട്ടു പേര് രേഖപ്പെടുത്തുക | House name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required">
+                        3. ജനന തിയ്യതി | Date of Birth:
+                    </label>
+                    <input type="date" class="form-control" name="dob" required max="2019-12-31">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required">
+                        4. ആധാര്‍ നമ്പര്‍ | Aadhaar Number:
+                    </label>
+                    <input type="text" class="form-control" name="aadhaarNumber" placeholder="ആധാര്‍ നമ്പര്‍ രേഖപ്പെടുത്തുക | Enter Aadhaar number" required pattern="\d{12}" title="Aadhaar number must be 12 digits">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required">
+                        5. വിലാസം | Postal Address:
+                    </label>
+                    <textarea class="form-control" name="address" placeholder="പൂർണ്ണ വിലാസം രേഖപ്പെടുത്തുക | Enter full address" required rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required">
+                        6. ഫോണ്‍ നമ്പര്‍ | Phone Number:
+                    </label>
+                    <input type="tel" class="form-control" name="phoneNumber" placeholder="9876543210 | Enter phone number" required pattern="\d{10}" title="Phone number must be 10 digits">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        7. വാട്‌സ്ആപ്പ് നമ്പര്‍ | WhatsApp Number:
+                    </label>
+                    <input type="tel" class="form-control" name="whatsappNumber" placeholder="വാട്‌സ്ആപ്പ് നമ്പര്‍ (വ്യത്യസ്തമെങ്കിൽ) | Enter WhatsApp number (if different)" pattern="\d{10}" title="WhatsApp number must be 10 digits">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required">
+                        8. പിതാവിന്‍റെ പേര് | Father's Name:
+                    </label>
+                    <input type="text" class="form-control" name="fatherName" placeholder="പിതാവിന്‍റെ പേര് രേഖപ്പെടുത്തുക | Enter father's name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required">
+                        9. പിതാവിന്‍റെ ജോലി | Father's Occupation:
+                    </label>
+                    <input type="text" class="form-control" name="fatherOccupation" placeholder="പിതാവിന്‍റെ ജോലി രേഖപ്പെടുത്തുക | Enter father's occupation" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required">
+                        10. രക്ഷിതാവിന്‍റെ പേര് | Guardian's Name:
+                    </label>
+                    <input type="text" class="form-control" name="guardianName" placeholder="രക്ഷിതാവിന്‍റെ പേര് | Guardian's name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required">
+                        11. വിദ്യാര്‍ത്ഥിക്ക് രക്ഷിതാവുമായുള്ള ബന്ധം | Relationship with Guardian:
+                    </label>
+                    <select class="form-control" name="relationshipWithGuardian" required>
+                        <option value="" disabled selected>രക്ഷിതാവുമായുള്ള ബന്ധം തിരഞ്ഞെടുക്കുക | Select Relationship</option>
+                        <option value="Father">പിതാവ് | Father</option>
+                        <option value="Mother">മാതാവ് | Mother</option>
+                        <option value="Brother">സഹോദരൻ | Brother</option>
+                        <option value="Sister">സഹോദരി | Sister</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        12. രക്ഷിതാവ്, പിതാവല്ലെങ്കില്‍ കാരണം | Reason if Guardian is not Father:
+                    </label>
+                    <textarea class="form-control" name="guardianReason" placeholder="രക്ഷിതാവ് പിതാവല്ലെങ്കില്‍ കാരണം | Enter reason if guardian is not father" rows="2"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required">
+                        13. പഠിക്കുന്ന മദ്റസയും സ്ഥലവും | Madrasa & Location:
+                    </label>
+                    <input type="text" class="form-control" name="madrasa" placeholder="മദ്റസയും സ്ഥലവും രേഖപ്പെടുത്തുക | Enter Madrasa name and location" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required">
+                        ക്ലാസ് | Class:
+                    </label>
+                    <select class="form-control" name="madrasaclass" required>
+                        <option value="" disabled selected>മദ്റസ ക്ലാസ് തിരഞ്ഞെടുക്കുക | Select Madrasa class</option>
+                        <option value="II">II</option>
+                        <option value="III">III</option>
+                        <option value="IV">IV</option>
+                        <option value="V">V</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required">
+                        14. പഠിക്കുന്ന സ്കൂളും സ്ഥലവും | School & Location:
+                    </label>
+                    <input type="text" class="form-control" name="school" placeholder="സ്കൂളും സ്ഥലവും രേഖപ്പെടുത്തുക | Enter School name and location" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required">
+                        ക്ലാസ് | Class:
+                    </label>
+                    <select class="form-control" name="schoolclass" required>
+                        <option value="" disabled selected>സ്കൂള്‍ ക്ലാസ് തിരഞ്ഞെടുക്കുക | Select School class</option>
+                        <option value="II">II</option>
+                        <option value="III">III</option>
+                        <option value="IV">IV</option>
+                        <option value="V">V</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required">
+                        15. മുമ്പ് ഏതെങ്കിലും ഹിഫ്ള് കോളേജ്, ദര്‍സ്, കോളേജ് പഠിച്ചിട്ടുണ്ടോ | Previously Studied at Hifz College/Dars/College:
+                    </label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="previousStudy" value="No" required> ഇല്ല | No
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="previousStudy" value="Yes"> ഉണ്ട് | Yes
+                        </label>
+                    </div>
+                </div>
+                
+                <div id="previous-study-section" style="display: none; background: #f8f9fa; padding: 15px; border-radius: 10px; margin: 10px 0;">
+                    <div class="form-group">
+                        <label class="form-label required">
+                            ഏത് സ്ഥാപനത്തില്‍ | Which Institution:
+                        </label>
+                        <input type="text" class="form-control" name="previousInstitution" placeholder="സ്ഥാപനത്തിന്റെ പേര് രേഖപ്പെടുത്തുക | Enter institution name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label required">
+                            എത്ര കാലം | Duration of Study:
+                        </label>
+                        <input type="text" class="form-control" name="studyDuration" placeholder="പഠന കാലം രേഖപ്പെടുത്തുക | Enter duration">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label required">
+                            എത്ര ജുസുഅ് | Number of Juz:
+                        </label>
+                        <input type="text" class="form-control" name="juzCount" placeholder="ജുസുഅിന്റെ എണ്ണം രേഖപ്പെടുത്തുക | Enter number of Juz">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label required">
+                            പോരാനുള്ള കാരണം | Reason for Leaving:
+                        </label>
+                        <textarea class="form-control" name="reasonForLeaving" placeholder="പോരാനുള്ള കാരണം രേഖപ്പെടുത്തുക | Enter reason for leaving" rows="2"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label required">
+                            പ്രധാന അദ്ധ്യാപകന്‍റെ ഫോണ്‍ നമ്പര്‍ | Head Teacher's Phone Number:
+                        </label>
+                        <input type="tel" class="form-control" name="headTeacherPhone" placeholder="9876543210 | Enter phone number" pattern="\d{10}" title="Phone number must be 10 digits">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required">
+                        16. കുട്ടിയെ തിരിച്ചറിയാനുള്ള അടയാളം | Student's Identification Mark:
+                    </label>
+                    <input type="text" class="form-control" name="identificationMark" placeholder="തിരിച്ചറിയല്‍ അടയാളം രേഖപ്പെടുത്തുക | Enter identification mark" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required">
+                        17. കുട്ടിയുടെ ശാരീരിക ക്ഷമത | Student's Physical Fitness:
+                    </label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="physicalFitness" value="Healthy" required> ആരോഗ്യവാന്‍ | Healthy
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="physicalFitness" value="Medication"> സ്ഥിരമായി ഗുളിക കഴിക്കാറുണ്ട് | Regular Medication
+                        </label>
+                    </div>
+                </div>
+                
+                <div id="illness-section" style="display: none; background: #f8f9fa; padding: 15px; border-radius: 10px; margin: 10px 0;">
+                    <div class="form-group">
+                        <label class="form-label required">
+                            രോഗം | Illness:
+                        </label>
+                        <textarea class="form-control" name="illness" placeholder="രോഗത്തിന്റെ വിശദാംശങ്ങൾ രേഖപ്പെടുത്തുക | Enter details of illness" rows="2"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        18. കുട്ടിയുടെ ഫോട്ടോ | Student's Photo:
+                    </label>
+                    <input type="file" class="form-control" id="photoInput" accept="image/*">
+                    <small class="text-muted">Optional - Max size: 5MB, Formats: JPG, PNG</small>
+                </div>
+                
+                <div class="instructions-box mt-4">
+                    <h4 class="instructions-title">
+                        <i class="fas fa-file-contract"></i>
+                        Declaration
+                    </h4>
+                    <p id="declarationText">
+                        <!-- Declaration text will be loaded from API -->
+                    </p>
+                </div>
+                
+                <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #28a745 0%, #218838 100%);">
+                    <i class="fas fa-paper-plane me-2"></i>
+                    Submit Application
+                </button>
+                
+                <div class="button-group">
+                    <button type="button" class="btn-secondary" onclick="showDashboard()">
+                        <i class="fas fa-arrow-left me-2"></i>
+                        Back 
+                    </button>
+                </div>
+            </form>
         </div>
         
         <!-- Application Form -->
@@ -1247,7 +989,7 @@
                         <i class="fas fa-calendar-alt me-2"></i>
                         Date of Birth
                     </label>
-                    <input type="date" class="form-control" id="appDob" required>
+                    <input type="date" class="form-control" id="appDob" required max="2019-12-31">
                 </div>
                 
                 <button type="submit" class="btn-submit" id="submitApplicationBtn">
@@ -1288,7 +1030,7 @@
                         <i class="fas fa-calendar-alt me-2"></i>
                         Date of Birth
                     </label>
-                    <input type="date" class="form-control" id="ticketDob" required>
+                    <input type="date" class="form-control" id="ticketDob" required max="2019-12-31">
                 </div>
                 
                 <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);" id="submitTicketBtn">
@@ -1329,7 +1071,7 @@
                         <i class="fas fa-calendar-alt me-2"></i>
                         Date of Birth
                     </label>
-                    <input type="date" class="form-control" id="resultDob" required>
+                    <input type="date" class="form-control" id="resultDob" required max="2019-12-31">
                 </div>
                 
                 <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);" id="submitResultBtn">
@@ -1345,11 +1087,6 @@
                 </div>
             </form>
         </div>
-        
-        <!-- Result Display -->
-        <div class="result-container" id="resultDisplay">
-            <!-- Result will be loaded here dynamically -->
-        </div>
     </div>
     
     <!-- Footer -->
@@ -1363,15 +1100,18 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Configuration
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyDLEBejpMXZhI1nHdsHg2lyK4cUwggX5jdkuxsyzuDETuFHf7KC9a3wPV63p2Mr3SzrA/exec';
+        // Configuration - REPLACE WITH YOUR APPS SCRIPT DEPLOYMENT URL
+        const SCRIPT_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL'; // Replace this with your actual deployment URL
         
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             // Set current year
             document.getElementById('currentYear').textContent = new Date().getFullYear();
             
-            // Set max date for date inputs
+            // Load college information
+            loadCollegeInfo();
+            
+            // Set max date for date inputs (for students born after 2019)
             const today = new Date().toISOString().split('T')[0];
             document.querySelectorAll('input[type="date"]').forEach(input => {
                 input.setAttribute('max', today);
@@ -1403,9 +1143,10 @@
                         });
                     } else {
                         previousStudySection.style.display = 'none';
-                        // Remove required attribute
+                        // Remove required attribute and clear values
                         previousStudySection.querySelectorAll('input, textarea').forEach(input => {
                             input.required = false;
+                            input.value = '';
                         });
                     }
                 });
@@ -1423,10 +1164,77 @@
                     } else {
                         illnessSection.style.display = 'none';
                         illnessSection.querySelector('textarea').required = false;
+                        illnessSection.querySelector('textarea').value = '';
                     }
                 });
             });
+            
+            // Photo validation
+            document.getElementById('photoInput').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    if (!file.type.startsWith('image/')) {
+                        showNotification('Please upload only image files (JPG, PNG)', 'error');
+                        e.target.value = '';
+                    } else if (file.size > 5 * 1024 * 1024) { // 5MB limit
+                        showNotification('File size must be less than 5MB', 'error');
+                        e.target.value = '';
+                    }
+                }
+            });
         });
+        
+        // Load college information from Google Apps Script
+        async function loadCollegeInfo() {
+            try {
+                showLoading();
+                const response = await fetch(`${SCRIPT_URL}?action=getCollegeInfo`);
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    const college = data.data;
+                    
+                    // Update ticker
+                    const tickerItems = [
+                        college.ticker1,
+                        college.ticker2, 
+                        college.ticker3,
+                        college.ticker4,
+                        college.ticker5
+                    ].filter(item => item).join(' &nbsp;&nbsp;•&nbsp;&nbsp; ');
+                    
+                    document.getElementById('tickerContent').innerHTML = tickerItems || 
+                        '📢 College Admissions Started &nbsp;&nbsp;•&nbsp;&nbsp; 🎓 Exam Results Announce Later';
+                    
+                    // Update apply now instructions
+                    const notes = [
+                        college.note1,
+                        college.note2,
+                        college.note3,
+                        college.note4,
+                        college.note5
+                    ].filter(note => note).join('<br>');
+                    
+                    document.getElementById('applyInstructions').innerHTML = `
+                        <h4 class="instructions-title">
+                            <i class="fas fa-info-circle"></i>
+                            Important Notes
+                        </h4>
+                        <div>${notes || 'Selection exam date will be announced later'}</div>
+                    `;
+                    
+                    // Update declaration
+                    document.getElementById('declarationText').innerHTML = `
+                        എന്‍റെ കുട്ടിയും ഞാനും ${college.collegeName} ൻറെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ ${college.collegeName} ല്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.
+                    `;
+                }
+            } catch (error) {
+                console.error('Error loading college info:', error);
+                showNotification('Could not load college information', 'warning');
+            } finally {
+                hideLoading();
+            }
+        }
         
         // Show/Hide functions
         function showDashboard() {
@@ -1437,6 +1245,15 @@
         function showForm(formId) {
             hideAllForms();
             document.getElementById(formId).style.display = 'block';
+            
+            // Reset forms when showing them
+            if (formId === 'applicationForm') {
+                document.getElementById('appMobile').focus();
+            } else if (formId === 'hallticketForm') {
+                document.getElementById('ticketMobile').focus();
+            } else if (formId === 'resultForm') {
+                document.getElementById('resultMobile').focus();
+            }
         }
         
         function hideAllForms() {
@@ -1445,7 +1262,6 @@
             document.getElementById('applicationForm').style.display = 'none';
             document.getElementById('hallticketForm').style.display = 'none';
             document.getElementById('resultForm').style.display = 'none';
-            document.getElementById('resultDisplay').style.display = 'none';
         }
         
         // Notification functions
@@ -1501,7 +1317,7 @@
         async function handleApplicationSubmit(e) {
             e.preventDefault();
             
-            const mobile = document.getElementById('appMobile').value;
+            const mobile = document.getElementById('appMobile').value.trim();
             const dob = document.getElementById('appDob').value;
             
             // Validation
@@ -1518,28 +1334,23 @@
             showLoading();
             
             try {
-                const url = `${scriptURL}?mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}&type=application`;
+                const url = `${SCRIPT_URL}?type=application&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`;
                 const response = await fetch(url);
                 const html = await response.text();
                 
-                // Check if it's an error
-                if (html.includes('Error') || html.includes('not found') || html.includes('not found')) {
-                    showNotification('Application not found. Please check details.', 'error');
-                } else {
-                    // Display result in new window for printing
-                    const newWindow = window.open();
-                    newWindow.document.write(html);
-                    newWindow.document.close();
-                    
-                    showNotification('Application found. Opening in new window.', 'success');
-                    
-                    // Reset form and show dashboard
-                    e.target.reset();
-                    showDashboard();
-                }
+                // Open in new window for printing
+                const newWindow = window.open('', '_blank');
+                newWindow.document.write(html);
+                newWindow.document.close();
+                
+                showNotification('Application opened in new window', 'success');
+                
+                // Reset form and show dashboard
+                e.target.reset();
+                showDashboard();
             } catch (error) {
-                showNotification('Error occurred. Please try again.', 'error');
                 console.error('Error:', error);
+                showNotification('Error occurred. Please try again.', 'error');
             } finally {
                 hideLoading();
             }
@@ -1549,7 +1360,7 @@
         async function handleHallticketSubmit(e) {
             e.preventDefault();
             
-            const mobile = document.getElementById('ticketMobile').value;
+            const mobile = document.getElementById('ticketMobile').value.trim();
             const dob = document.getElementById('ticketDob').value;
             
             // Validation
@@ -1566,28 +1377,23 @@
             showLoading();
             
             try {
-                const url = `${scriptURL}?mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}&type=hallticket`;
+                const url = `${SCRIPT_URL}?type=hallticket&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`;
                 const response = await fetch(url);
                 const html = await response.text();
                 
-                // Check if it's an error
-                if (html.includes('Error') || html.includes('not found') || html.includes('not found')) {
-                    showNotification('Hall ticket not found. Please check details.', 'error');
-                } else {
-                    // Display result in new window for printing
-                    const newWindow = window.open();
-                    newWindow.document.write(html);
-                    newWindow.document.close();
-                    
-                    showNotification('Hall ticket found. Opening in new window.', 'success');
-                    
-                    // Reset form and show dashboard
-                    e.target.reset();
-                    showDashboard();
-                }
+                // Open in new window for printing
+                const newWindow = window.open('', '_blank');
+                newWindow.document.write(html);
+                newWindow.document.close();
+                
+                showNotification('Hall ticket opened in new window', 'success');
+                
+                // Reset form and show dashboard
+                e.target.reset();
+                showDashboard();
             } catch (error) {
-                showNotification('Error occurred. Please try again.', 'error');
                 console.error('Error:', error);
+                showNotification('Error occurred. Please try again.', 'error');
             } finally {
                 hideLoading();
             }
@@ -1597,7 +1403,7 @@
         async function handleResultSubmit(e) {
             e.preventDefault();
             
-            const mobile = document.getElementById('resultMobile').value;
+            const mobile = document.getElementById('resultMobile').value.trim();
             const dob = document.getElementById('resultDob').value;
             
             // Validation
@@ -1614,38 +1420,33 @@
             showLoading();
             
             try {
-                const url = `${scriptURL}?mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}&type=result`;
+                const url = `${SCRIPT_URL}?type=result&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`;
                 const response = await fetch(url);
                 const html = await response.text();
                 
-                // Check if it's an error
-                if (html.includes('Error') || html.includes('not found') || html.includes('not found')) {
-                    showNotification('Result not found. Please check details.', 'error');
-                } else {
-                    // Display result in new window for printing
-                    const newWindow = window.open();
-                    newWindow.document.write(html);
-                    newWindow.document.close();
-                    
-                    showNotification('Result found. Opening in new window.', 'success');
-                    
-                    // Reset form and show dashboard
-                    e.target.reset();
-                    showDashboard();
-                }
+                // Open in new window for printing
+                const newWindow = window.open('', '_blank');
+                newWindow.document.write(html);
+                newWindow.document.close();
+                
+                showNotification('Result opened in new window', 'success');
+                
+                // Reset form and show dashboard
+                e.target.reset();
+                showDashboard();
             } catch (error) {
-                showNotification('Error occurred. Please try again.', 'error');
                 console.error('Error:', error);
+                showNotification('Error occurred. Please try again.', 'error');
             } finally {
                 hideLoading();
             }
         }
         
-        // Handle New Application Form Submit - FIXED VERSION
+        // Handle New Application Form Submit
         async function handleNewApplicationSubmit(e) {
             e.preventDefault();
             
-            // Validate required fields for conditional sections
+            // Validate conditional sections
             const previousStudy = document.querySelector('input[name="previousStudy"]:checked');
             if (previousStudy && previousStudy.value === 'Yes') {
                 const previousSection = document.getElementById('previous-study-section');
@@ -1670,23 +1471,56 @@
                 }
             }
             
+            // Validate WhatsApp number if provided
+            const whatsappNumber = document.querySelector('input[name="whatsappNumber"]').value;
+            if (whatsappNumber && !/^\d{10}$/.test(whatsappNumber)) {
+                showNotification('WhatsApp number must be 10 digits if provided', 'error');
+                document.querySelector('input[name="whatsappNumber"]').focus();
+                return;
+            }
+            
             // Collect form data
             const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
             
-            // Show loading
+            // Handle photo upload
+            const photoInput = document.getElementById('photoInput');
+            if (photoInput.files.length > 0) {
+                const file = photoInput.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    data.photo = {
+                        name: file.name,
+                        mimeType: file.type,
+                        data: e.target.result.split(',')[1] // Remove data:image/...;base64, prefix
+                    };
+                    submitFormData(data);
+                };
+                
+                reader.readAsDataURL(file);
+            } else {
+                submitFormData(data);
+            }
+        }
+        
+        // Submit form data to Google Apps Script
+        async function submitFormData(data) {
             showLoading();
             
             try {
-                // Convert FormData to URLSearchParams
+                // Convert data to URLSearchParams
                 const formParams = new URLSearchParams();
-                for (let [key, value] of formData.entries()) {
-                    formParams.append(key, value);
+                for (const [key, value] of Object.entries(data)) {
+                    if (key === 'photo') {
+                        // Handle photo separately as JSON
+                        formParams.append(key, JSON.stringify(value));
+                    } else {
+                        formParams.append(key, value);
+                    }
                 }
                 
-                console.log('Submitting form data:', Object.fromEntries(formParams.entries()));
-                
-                // Send data to Google Apps Script
-                const response = await fetch(scriptURL, {
+                const response = await fetch(SCRIPT_URL, {
                     method: 'POST',
                     body: formParams,
                     headers: {
@@ -1696,120 +1530,44 @@
                 
                 const html = await response.text();
                 
-                console.log('Response received:', html.substring(0, 200)); // Log first 200 chars
-                
-                // Check if it's a success page (look for success indicators)
+                // Check if it's a success page
                 if (html.includes('Application Submitted Successfully') || 
                     html.includes('Application ID:') || 
-                    html.includes('confirmation-card') ||
-                    html.includes('Your admission application has been received')) {
+                    html.includes('confirmation-card')) {
                     
                     // Display success message in new window
                     const newWindow = window.open('', '_blank');
-                    if (newWindow) {
-                        newWindow.document.write(html);
-                        newWindow.document.close();
-                    }
+                    newWindow.document.write(html);
+                    newWindow.document.close();
                     
                     showNotification('Application submitted successfully!', 'success');
                     
                     // Reset form and show dashboard
-                    e.target.reset();
-                    
-                    // Reset conditional sections
+                    document.getElementById('newApplicationForm').reset();
                     document.getElementById('previous-study-section').style.display = 'none';
                     document.getElementById('illness-section').style.display = 'none';
-                    
                     showDashboard();
-                } else if (html.includes('Error') || html.includes('required') || html.includes('digits') || html.includes('format')) {
+                } else if (html.includes('Error') || html.includes('required') || html.includes('digits')) {
                     // It's an error message
-                    showNotification('Error in form submission. Please check all fields.', 'error');
-                    
-                    // Extract error message from HTML if possible
                     const errorMatch = html.match(/Error[^<]*/);
-                    if (errorMatch) {
-                        console.error('Server error:', errorMatch[0]);
-                    }
+                    const errorMessage = errorMatch ? errorMatch[0] : 'Error in form submission';
+                    showNotification(errorMessage, 'error');
                 } else {
-                    // Unknown response - assume success but show warning
-                    showNotification('Application submitted! Data has been saved.', 'warning');
+                    // Unknown response - show generic message
+                    showNotification('Application submitted!', 'success');
                     
                     // Reset form and show dashboard
-                    e.target.reset();
+                    document.getElementById('newApplicationForm').reset();
                     document.getElementById('previous-study-section').style.display = 'none';
                     document.getElementById('illness-section').style.display = 'none';
                     showDashboard();
                 }
             } catch (error) {
                 console.error('Submission error:', error);
-                showNotification('Network error. Your data may have been saved. Please check later.', 'warning');
-                
-                // Still reset the form
-                e.target.reset();
-                document.getElementById('previous-study-section').style.display = 'none';
-                document.getElementById('illness-section').style.display = 'none';
+                showNotification('Network error. Please check your connection and try again.', 'error');
             } finally {
                 hideLoading();
             }
-        }
-        
-        // Download as PDF function
-        function downloadAsPDF(elementId, filename) {
-            const element = document.getElementById(elementId);
-            
-            // Temporarily hide action buttons for PDF
-            const actionButtons = element.querySelector('.action-buttons');
-            if (actionButtons) {
-                actionButtons.style.display = 'none';
-            }
-            
-            html2canvas(element, {
-                scale: 2,
-                useCORS: true,
-                windowWidth: element.scrollWidth,
-                windowHeight: element.scrollHeight
-            }).then(canvas => {
-                const imgData = canvas.toDataURL('image/png');
-                const { jsPDF } = window.jspdf;
-                const pdf = new jsPDF({
-                    orientation: 'portrait',
-                    unit: 'mm',
-                    format: 'a4'
-                });
-                
-                const imgWidth = 190;
-                const pageHeight = 297;
-                const imgHeight = (canvas.height * imgWidth) / canvas.width;
-                let heightLeft = imgHeight;
-                let position = 10;
-                
-                pdf.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
-                
-                // Multiple pages if needed
-                while (heightLeft >= pageHeight) {
-                    position = heightLeft - pageHeight;
-                    pdf.addPage();
-                    pdf.addImage(imgData, 'PNG', 10, 10 - position, imgWidth, imgHeight);
-                    heightLeft -= pageHeight;
-                }
-                
-                pdf.save(filename);
-                
-                // Restore action buttons
-                if (actionButtons) {
-                    actionButtons.style.display = 'flex';
-                }
-                
-                showNotification('PDF downloaded successfully', 'success');
-            }).catch(error => {
-                console.error('PDF generation error:', error);
-                showNotification('Error downloading PDF', 'error');
-                
-                // Restore action buttons
-                if (actionButtons) {
-                    actionButtons.style.display = 'flex';
-                }
-            });
         }
     </script>
 </body>
