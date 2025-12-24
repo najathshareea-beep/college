@@ -1004,7 +1004,7 @@
                     <input type="date" class="form-control" id="appDob" required max="2019-12-31">
                 </div>
                 
-                <button type="submit" class="btn-submit" id="submitApplicationBtn">
+                <button type="submit" class="btn-submit" id="submitApplicationSearchBtn">
                     <i class="fas fa-search me-2"></i>
                     Search Application
                 </button>
@@ -1194,6 +1194,30 @@
                     }
                 }
             });
+            
+            // DECLARATION CHECKBOX FUNCTIONALITY - ADDED THIS
+            const declarationCheckbox = document.getElementById('declarationCheckbox');
+            const submitApplicationBtn = document.getElementById('submitApplicationBtn');
+            
+            if (declarationCheckbox && submitApplicationBtn) {
+                // Initialize button as disabled
+                submitApplicationBtn.disabled = true;
+                submitApplicationBtn.style.background = 'linear-gradient(135deg, #6c757d 0%, #495057 100%)';
+                submitApplicationBtn.style.opacity = '0.7';
+                
+                // Add event listener to checkbox
+                declarationCheckbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        submitApplicationBtn.disabled = false;
+                        submitApplicationBtn.style.background = 'linear-gradient(135deg, #28a745 0%, #218838 100%)';
+                        submitApplicationBtn.style.opacity = '1';
+                    } else {
+                        submitApplicationBtn.disabled = true;
+                        submitApplicationBtn.style.background = 'linear-gradient(135deg, #6c757d 0%, #495057 100%)';
+                        submitApplicationBtn.style.opacity = '0.7';
+                    }
+                });
+            }
         });
         
         // Load college information from Google Apps Script
@@ -1491,6 +1515,14 @@
                 return;
             }
             
+            // Check if declaration checkbox is checked
+            const declarationCheckbox = document.getElementById('declarationCheckbox');
+            if (!declarationCheckbox.checked) {
+                showNotification('Please agree to the declaration by checking the box', 'error');
+                declarationCheckbox.focus();
+                return;
+            }
+            
             // Collect form data
             const formData = new FormData(e.target);
             const data = Object.fromEntries(formData);
@@ -1558,6 +1590,10 @@
                     document.getElementById('newApplicationForm').reset();
                     document.getElementById('previous-study-section').style.display = 'none';
                     document.getElementById('illness-section').style.display = 'none';
+                    document.getElementById('declarationCheckbox').checked = false;
+                    document.getElementById('submitApplicationBtn').disabled = true;
+                    document.getElementById('submitApplicationBtn').style.background = 'linear-gradient(135deg, #6c757d 0%, #495057 100%)';
+                    document.getElementById('submitApplicationBtn').style.opacity = '0.7';
                     showDashboard();
                 } else if (html.includes('Error') || html.includes('required') || html.includes('digits')) {
                     // It's an error message
@@ -1572,6 +1608,10 @@
                     document.getElementById('newApplicationForm').reset();
                     document.getElementById('previous-study-section').style.display = 'none';
                     document.getElementById('illness-section').style.display = 'none';
+                    document.getElementById('declarationCheckbox').checked = false;
+                    document.getElementById('submitApplicationBtn').disabled = true;
+                    document.getElementById('submitApplicationBtn').style.background = 'linear-gradient(135deg, #6c757d 0%, #495057 100%)';
+                    document.getElementById('submitApplicationBtn').style.opacity = '0.7';
                     showDashboard();
                 }
             } catch (error) {
