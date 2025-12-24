@@ -4,14 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Darunnajath Shareeath & Arts College | Karuvarakundu</title>
+  
   <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  
   <style>
     /* ===== ISLAMIC THEME ===== */
     :root {
@@ -26,12 +30,15 @@
       --gradient-green: linear-gradient(135deg, #0d5c3e 0%, #0a3524 100%);
       --gradient-gold: linear-gradient(135deg, #c19a3c 0%, #e6c878 100%);
     }
+    
     a {
       text-decoration: none !important;
     }
+    
     a:hover {
       text-decoration: none;
     }
+    
     body {
       font-family: 'Poppins', sans-serif;
       background-color: var(--cream);
@@ -39,26 +46,46 @@
       overflow-x: hidden;
       line-height: 1.6;
     }
+    
+    /* Malayalam text */
     .malayalam {
       font-family: 'Noto Sans Malayalam', sans-serif;
       line-height: 1.8;
     }
+    
+    /* Arabic text */
     .arabic {
       font-family: 'Amiri', serif;
       direction: rtl;
     }
+    
     /* ===== LAYOUT IMPROVEMENTS ===== */
     .container-fluid {
       padding-left: 2rem;
       padding-right: 2rem;
     }
+    
     @media (max-width: 768px) {
       .container-fluid {
         padding-left: 1rem;
         padding-right: 1rem;
       }
     }
-    /* ===== FIXED TICKER ANIMATION ===== */
+    
+    /* ===== PATTERNS & BACKGROUNDS ===== */
+    .islamic-pattern {
+      background-image:
+        radial-gradient(circle at 15% 50%, rgba(193, 154, 60, 0.03) 0%, transparent 55%),
+        radial-gradient(circle at 85% 30%, rgba(13, 92, 62, 0.03) 0%, transparent 55%),
+        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230d5c3e' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+    }
+    
+    /* ===== ANIMATIONS ===== */
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
     @keyframes smoothTicker {
       0% {
         transform: translateX(0);
@@ -68,7 +95,188 @@
       }
     }
     
-    /* ===== OPTIMIZED NEWS TICKER ===== */
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    @keyframes shine {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    
+    /* ===== OPTIMIZED NAVBAR STYLES ===== */
+    .navbar-optimized {
+      background: rgba(13, 92, 62, 0.98);
+      backdrop-filter: blur(10px);
+      border-bottom: 3px solid var(--gold);
+      padding: 0.8rem 0;
+      transition: all 0.3s ease;
+    }
+    
+    .navbar-optimized.scrolled {
+      padding: 0.6rem 0;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Brand logo optimized */
+    .navbar-brand-compact {
+      padding: 0.3rem 0.8rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      border: 2px solid var(--gold);
+    }
+    
+    .navbar-brand-compact img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+    }
+    
+    .brand-text {
+      font-size: 1.6rem;
+      line-height: 1;
+      margin-bottom: 0.1rem;
+    }
+    
+    .brand-subtext {
+      font-size: 0.7rem;
+      opacity: 0.9;
+    }
+    
+    /* NAV ITEMS - OPTIMIZED SPACING */
+    .nav-container {
+      flex-wrap: nowrap;
+    }
+    
+    .nav-item-optimized {
+      margin: 0 0.15rem !important;
+    }
+    
+    .nav-link-optimized {
+      color: white !important;
+      font-weight: 500;
+      font-size: 0.85rem !important;
+      padding: 0.5rem 0.7rem !important;
+      margin: 0 !important;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    
+    /* Active state WITHOUT underline */
+    .nav-link-optimized.active {
+      background: rgba(193, 154, 60, 0.2);
+      color: #e6c878 !important;
+    }
+    
+    /* Hover effect WITHOUT underline */
+    .nav-link-optimized:hover {
+      background: rgba(193, 154, 60, 0.15);
+      color: #e6c878 !important;
+      transform: translateY(-1px);
+    }
+    
+    /* DROPDOWN OPTIMIZATION */
+    .dropdown-menu-optimized {
+      background: rgba(13, 92, 62, 0.98);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      min-width: 180px;
+      padding: 0.5rem 0;
+      margin-top: 0.5rem;
+    }
+    
+    .dropdown-item-optimized {
+      color: white;
+      font-size: 0.85rem;
+      padding: 0.5rem 1rem;
+      transition: all 0.2s ease;
+    }
+    
+    .dropdown-item-optimized:hover {
+      background: rgba(193, 154, 60, 0.2);
+      color: #e6c878;
+      padding-left: 1.3rem;
+    }
+    
+    /* Dropdown arrow */
+    .dropdown-toggle::after {
+      margin-left: 0.2em;
+      vertical-align: 0.15em;
+      border-width: 0.3em;
+    }
+    
+    /* MOBILE MENU OPTIMIZATION */
+    @media (max-width: 992px) {
+      .navbar-optimized {
+        padding: 0.5rem 0;
+      }
+      
+      .nav-link-optimized {
+        padding: 0.75rem 1rem !important;
+        font-size: 0.9rem !important;
+        margin: 0.15rem 0 !important;
+      }
+      
+      .dropdown-menu-optimized {
+        background: rgba(13, 92, 62, 0.95);
+        border: none;
+        border-left: 3px solid var(--gold);
+        margin: 0;
+        padding-left: 1rem;
+      }
+      
+      .navbar-toggler {
+        padding: 0.3rem 0.5rem;
+        font-size: 1rem;
+      }
+      
+      .nav-container {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+    }
+    
+    /* EXTRA SMALL SCREENS */
+    @media (max-width: 576px) {
+      .navbar-brand-compact img {
+        width: 45px;
+        height: 45px;
+      }
+      
+      .brand-text {
+        font-size: 1.4rem;
+      }
+      
+      .brand-subtext {
+        font-size: 0.65rem;
+      }
+      
+      .nav-link-optimized {
+        font-size: 0.8rem !important;
+        padding: 0.6rem 0.8rem !important;
+      }
+    }
+    
+    /* Toggle button styling */
+    .navbar-toggler {
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      padding: 0.3rem 0.6rem;
+    }
+    
+    .navbar-toggler:focus {
+      box-shadow: 0 0 0 2px rgba(193, 154, 60, 0.5);
+    }
+    
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      width: 1.2em;
+      height: 1.2em;
+    }
+    
+    /* ===== FIXED NEWS TICKER ===== */
     .ticker-container {
       background: linear-gradient(90deg, var(--primary-green), var(--dark-green));
       border-top: 2px solid var(--gold);
@@ -154,202 +362,6 @@
       .ticker-wrapper {
         animation: smoothTicker 60s linear infinite;
       }
-    }
-
-    /* ===== REST OF YOUR STYLES (Keep all your existing styles below) ===== */
-    .islamic-pattern {
-      background-image:
-        radial-gradient(circle at 15% 50%, rgba(193, 154, 60, 0.03) 0%, transparent 55%),
-        radial-gradient(circle at 85% 30%, rgba(13, 92, 62, 0.03) 0%, transparent 55%),
-        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230d5c3e' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
-    }
-    
-    .gold-pattern {
-      background: linear-gradient(45deg, transparent 49%, var(--gold) 50%, transparent 51%);
-      background-size: 10px 10px;
-      opacity: 0.1;
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(5deg); }
-    }
-    
-    @keyframes glow {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.6; }
-    }
-    
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-    
-    @keyframes shine {
-      0% { background-position: -200% center; }
-      100% { background-position: 200% center; }
-    }
-    
-    /* ===== OPTIMIZED NAVBAR STYLES ===== */
-    .navbar-optimized {
-      background: rgba(13, 92, 62, 0.98);
-      backdrop-filter: blur(10px);
-      border-bottom: 3px solid var(--gold);
-      padding: 0.8rem 0;
-      transition: all 0.3s ease;
-    }
-    
-    .navbar-optimized.scrolled {
-      padding: 0.6rem 0;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-    }
-    
-    .navbar-brand-compact {
-      padding: 0.3rem 0.8rem;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      border: 2px solid var(--gold);
-    }
-    
-    .navbar-brand-compact img {
-      width: 50px;
-      height: 50px;
-      object-fit: contain;
-    }
-    
-    .brand-text {
-      font-size: 1.6rem;
-      line-height: 1;
-      margin-bottom: 0.1rem;
-    }
-    
-    .brand-subtext {
-      font-size: 0.7rem;
-      opacity: 0.9;
-    }
-    
-    .nav-container {
-      flex-wrap: nowrap;
-    }
-    
-    .nav-item-optimized {
-      margin: 0 0.15rem !important;
-    }
-    
-    .nav-link-optimized {
-      color: white !important;
-      font-weight: 500;
-      font-size: 0.85rem !important;
-      padding: 0.5rem 0.7rem !important;
-      margin: 0 !important;
-      border-radius: 6px;
-      transition: all 0.2s ease;
-      white-space: nowrap;
-    }
-    
-    .nav-link-optimized.active {
-      background: rgba(193, 154, 60, 0.2);
-      color: #e6c878 !important;
-    }
-    
-    .nav-link-optimized:hover {
-      background: rgba(193, 154, 60, 0.15);
-      color: #e6c878 !important;
-      transform: translateY(-1px);
-    }
-    
-    .dropdown-menu-optimized {
-      background: rgba(13, 92, 62, 0.98);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--gold);
-      border-radius: 8px;
-      min-width: 180px;
-      padding: 0.5rem 0;
-      margin-top: 0.5rem;
-    }
-    
-    .dropdown-item-optimized {
-      color: white;
-      font-size: 0.85rem;
-      padding: 0.5rem 1rem;
-      transition: all 0.2s ease;
-    }
-    
-    .dropdown-item-optimized:hover {
-      background: rgba(193, 154, 60, 0.2);
-      color: #e6c878;
-      padding-left: 1.3rem;
-    }
-    
-    .dropdown-toggle::after {
-      margin-left: 0.2em;
-      vertical-align: 0.15em;
-      border-width: 0.3em;
-    }
-    
-    @media (max-width: 992px) {
-      .navbar-optimized {
-        padding: 0.5rem 0;
-      }
-      
-      .nav-link-optimized {
-        padding: 0.75rem 1rem !important;
-        font-size: 0.9rem !important;
-        margin: 0.15rem 0 !important;
-      }
-      
-      .dropdown-menu-optimized {
-        background: rgba(13, 92, 62, 0.95);
-        border: none;
-        border-left: 3px solid var(--gold);
-        margin: 0;
-        padding-left: 1rem;
-      }
-      
-      .navbar-toggler {
-        padding: 0.3rem 0.5rem;
-        font-size: 1rem;
-      }
-      
-      .nav-container {
-        flex-wrap: wrap;
-        justify-content: flex-start;
-      }
-    }
-    
-    @media (max-width: 576px) {
-      .navbar-brand-compact img {
-        width: 45px;
-        height: 45px;
-      }
-      
-      .brand-text {
-        font-size: 1.4rem;
-      }
-      
-      .brand-subtext {
-        font-size: 0.65rem;
-      }
-      
-      .nav-link-optimized {
-        font-size: 0.8rem !important;
-        padding: 0.6rem 0.8rem !important;
-      }
-    }
-    
-    .navbar-toggler {
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      padding: 0.3rem 0.6rem;
-    }
-    
-    .navbar-toggler:focus {
-      box-shadow: 0 0 0 2px rgba(193, 154, 60, 0.5);
-    }
-    
-    .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-      width: 1.2em;
-      height: 1.2em;
     }
     
     /* ===== HERO SECTION ===== */
@@ -501,46 +513,228 @@
       border-radius: 2px;
     }
     
-    /* ===== REST OF YOUR STYLES - Keep all other styles you have ===== */
+    /* ===== ABOUT SECTION ===== */
+    .about-section {
+      background: var(--light-bg);
+    }
     
-    /* Add all your other styles here (about-section, highlights-section, etc.) */
-    /* I'm keeping them short here because they're very long */
+    .about-image {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(13, 92, 62, 0.1);
+      transition: all 0.5s ease;
+    }
     
-    .about-section { background: var(--light-bg); }
-    .about-image { border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(13, 92, 62, 0.1); transition: all 0.5s ease; }
-    .about-image:hover { transform: scale(1.02); box-shadow: 0 30px 60px rgba(13, 92, 62, 0.2); }
-    .milestone-card { background: var(--gradient-green); color: white; padding: 2rem; border-radius: 15px; position: relative; overflow: hidden; height: 100%; }
-    .milestone-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%); background-size: 200% 200%; animation: shine 3s infinite linear; }
-    .milestone-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem; }
+    .about-image:hover {
+      transform: scale(1.02);
+      box-shadow: 0 30px 60px rgba(13, 92, 62, 0.2);
+    }
     
-    .highlights-section { background: var(--cream); }
-    .highlight-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px var(--shadow); transition: all 0.3s ease; height: 100%; border: 1px solid rgba(13, 92, 62, 0.1); }
-    .highlight-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(13, 92, 62, 0.15); }
-    .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
-    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    .milestone-card {
+      background: var(--gradient-green);
+      color: white;
+      padding: 2rem;
+      border-radius: 15px;
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
     
-    .news-section { background: var(--gradient-green); }
-    .news-card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 15px; overflow: hidden; transition: all 0.3s ease; height: 100%; border: 1px solid rgba(255, 255, 255, 0.1); }
-    .news-card:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.15); }
-    .news-image { height: 200px; object-fit: cover; width: 100%; transition: transform 0.5s ease; }
-    .news-card:hover .news-image { transform: scale(1.1); }
-    .news-date { color: var(--gold); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .milestone-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%);
+      background-size: 200% 200%;
+      animation: shine 3s infinite linear;
+    }
     
-    .notifications-section { background: white; }
-    .notification-card { background: var(--light-bg); border-left: 4px solid var(--gold); border-radius: 10px; padding: 1.5rem; margin-bottom: 1rem; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); }
-    .notification-card:hover { transform: translateX(10px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
-    .notification-badge { background: var(--gradient-gold); color: var(--dark-green); padding: 0.25rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; animation: pulse 2s infinite; }
+    .milestone-icon {
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
     
-    .footer { background: var(--gradient-green); color: white; padding: 3rem 0 1rem; position: relative; overflow: hidden; }
-    .footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gradient-gold); animation: shine 3s infinite linear; }
-    .footer-brand { font-size: 2rem; font-weight: 700; color: var(--gold); margin-bottom: 1rem; }
-    .social-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
-    .social-icon { width: 45px; height: 45px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s ease; font-size: 1.2rem; }
-    .social-icon:hover { background: var(--gold); color: var(--dark-green); transform: translateY(-5px); }
-    .footer-links h5 { color: var(--light-gold); margin-bottom: 1.5rem; font-size: 1.2rem; }
-    .footer-links a { color: rgba(255, 255, 255, 0.8); text-decoration: none; margin-bottom: 0.75rem; display: block; transition: all 0.3s ease; }
-    .footer-links a:hover { color: var(--gold); padding-left: 10px; }
+    /* ===== HIGHLIGHTS SECTION ===== */
+    .highlights-section {
+      background: var(--cream);
+    }
     
+    .highlight-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px var(--shadow);
+      transition: all 0.3s ease;
+      height: 100%;
+      border: 1px solid rgba(13, 92, 62, 0.1);
+    }
+    
+    .highlight-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(13, 92, 62, 0.15);
+    }
+    
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+    }
+    
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    /* ===== NEWS SECTION ===== */
+    .news-section {
+      background: var(--gradient-green);
+    }
+    
+    .news-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      height: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .news-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.15);
+    }
+    
+    .news-image {
+      height: 200px;
+      object-fit: cover;
+      width: 100%;
+      transition: transform 0.5s ease;
+    }
+    
+    .news-card:hover .news-image {
+      transform: scale(1.1);
+    }
+    
+    .news-date {
+      color: var(--gold);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    /* ===== NOTIFICATIONS SECTION ===== */
+    .notifications-section {
+      background: white;
+    }
+    
+    .notification-card {
+      background: var(--light-bg);
+      border-left: 4px solid var(--gold);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .notification-card:hover {
+      transform: translateX(10px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .notification-badge {
+      background: var(--gradient-gold);
+      color: var(--dark-green);
+      padding: 0.25rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      animation: pulse 2s infinite;
+    }
+    
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--gradient-green);
+      color: white;
+      padding: 3rem 0 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-gold);
+      animation: shine 3s infinite linear;
+    }
+    
+    .footer-brand {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-icon {
+      width: 45px;
+      height: 45px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+    }
+    
+    .social-icon:hover {
+      background: var(--gold);
+      color: var(--dark-green);
+      transform: translateY(-5px);
+    }
+    
+    .footer-links h5 {
+      color: var(--light-gold);
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      margin-bottom: 0.75rem;
+      display: block;
+      transition: all 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--gold);
+      padding-left: 10px;
+    }
+    
+    /* ===== WHATSAPP BUTTON ===== */
     .whatsapp-float {
       position: fixed;
       bottom: 30px;
@@ -566,55 +760,152 @@
       box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
     }
     
-    /* Responsive fixes */
+    /* ===== RESPONSIVE DESIGN FIXES ===== */
     @media (max-width: 992px) {
-      .hero-title { font-size: 2.5rem; }
-      .hero-subtitle { font-size: 1.1rem; }
-      .section-title { font-size: 2rem; }
-      .section { padding: 3rem 0; }
-      .btn-gold, .btn-outline-gold { padding: 0.6rem 1.5rem; font-size: 0.9rem; }
-      .milestone-card { margin-top: 2rem; }
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .section {
+        padding: 3rem 0;
+      }
+      
+      .btn-gold, .btn-outline-gold {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+      }
+      
+      .milestone-card {
+        margin-top: 2rem;
+      }
     }
     
     @media (max-width: 768px) {
-      .hero-title { font-size: 2rem; }
-      .hero-badge { font-size: 0.9rem; padding: 0.4rem 1rem; }
-      .hero-section { min-height: 70vh; padding: 4rem 0; }
-      .section-title { font-size: 1.8rem; }
-      .about-image { margin-bottom: 2rem; }
-      .highlight-card, .news-card { margin-bottom: 1.5rem; }
-      .whatsapp-float { width: 55px; height: 55px; bottom: 20px; right: 20px; font-size: 1.5rem; }
+      .hero-title {
+        font-size: 2rem;
+      }
+      
+      .hero-badge {
+        font-size: 0.9rem;
+        padding: 0.4rem 1rem;
+      }
+      
+      .hero-section {
+        min-height: 70vh;
+        padding: 4rem 0;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .about-image {
+        margin-bottom: 2rem;
+      }
+      
+      .highlight-card, .news-card {
+        margin-bottom: 1.5rem;
+      }
+      
+      .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 1.5rem;
+      }
     }
     
     @media (max-width: 576px) {
-      .hero-title { font-size: 1.6rem; }
-      .hero-subtitle { font-size: 1rem; }
-      .hero-badge { font-size: 0.8rem; margin-bottom: 1rem; }
-      .section-title { font-size: 1.5rem; }
-      .btn-gold, .btn-outline-gold { padding: 0.5rem 1.2rem; font-size: 0.85rem; margin: 0.3rem; }
-      .container-fluid { padding-left: 0.75rem; padding-right: 0.75rem; }
-      .footer { padding: 2rem 0 1rem; }
-      .social-icon { width: 40px; height: 40px; font-size: 1rem; }
+      .hero-title {
+        font-size: 1.6rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+      
+      .hero-badge {
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+      }
+      
+      .btn-gold, .btn-outline-gold {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.85rem;
+        margin: 0.3rem;
+      }
+      
+      .container-fluid {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+      }
+      
+      .footer {
+        padding: 2rem 0 1rem;
+      }
+      
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
     }
     
-    /* Custom scrollbar */
-    ::-webkit-scrollbar { width: 10px; }
-    ::-webkit-scrollbar-track { background: var(--cream); }
-    ::-webkit-scrollbar-thumb { background: var(--gradient-gold); border-radius: 5px; }
-    ::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #e6c878 0%, #c19a3c 100%); }
+    /* ===== CUSTOM SCROLLBAR ===== */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
     
-    /* Utility classes */
-    .gold-text { color: var(--gold); }
-    .green-text { color: var(--primary-green); }
-    .text-shadow { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); }
-    .hover-lift { transition: transform 0.3s ease; }
-    .hover-lift:hover { transform: translateY(-5px); }
+    ::-webkit-scrollbar-track {
+      background: var(--cream);
+    }
     
-    /* Remove any underlines */
-    .nav-link-optimized.active::after { display: none !important; }
+    ::-webkit-scrollbar-thumb {
+      background: var(--gradient-gold);
+      border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, #e6c878 0%, #c19a3c 100%);
+    }
+    
+    /* ===== UTILITY CLASSES ===== */
+    .gold-text {
+      color: var(--gold);
+    }
+    
+    .green-text {
+      color: var(--primary-green);
+    }
+    
+    .text-shadow {
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    .hover-lift {
+      transition: transform 0.3s ease;
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-5px);
+    }
   </style>
 </head>
 <body class="islamic-pattern">
+
 <!-- Floating Islamic Ornaments -->
 <div class="islamic-ornament ornament-1">✸</div>
 <div class="islamic-ornament ornament-2">✸</div>
@@ -754,7 +1045,6 @@
   </div>
 </div>
 
-<!-- The rest of your HTML content remains the same -->
 <!-- ABOUT SECTION -->
 <section id="about" class="section about-section">
   <div class="container-fluid">
@@ -823,8 +1113,221 @@
   </div>
 </section>
 
-<!-- Rest of your HTML content (HIGHLIGHTS, NEWS, NOTIFICATIONS, FOOTER) -->
-<!-- I'm keeping it short here because it's very long -->
+<!-- HIGHLIGHTS -->
+<section class="section highlights-section">
+  <div class="container-fluid">
+    <div class="section-header">
+      <h2 class="section-title">College Highlights</h2>
+      <p class="text-muted">Memorable Moments & Events</p>
+    </div>
+  
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="highlight-card">
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/EMgzRUdoiWk" allowfullscreen="true"></iframe>
+          </div>
+          <div class="p-4">
+            <h4 class="green-text mb-3">First Convocation Ceremony</h4>
+            <p class="text-muted mb-0">The historic first convocation ceremony of our college</p>
+          </div>
+        </div>
+      </div>
+    
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="highlight-card">
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/vNfz0ExArPg" allowfullscreen="true"></iframe>
+          </div>
+          <div class="p-4">
+            <h4 class="green-text mb-3">49th Anniversary Celebration</h4>
+            <p class="text-muted mb-0">Commemorating 49 years of educational excellence</p>
+          </div>
+        </div>
+      </div>
+    
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="highlight-card">
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/NFVBCxXrl4k" allowfullscreen="true"></iframe>
+          </div>
+          <div class="p-4">
+            <h4 class="green-text mb-3">48th Anniversary Special</h4>
+            <p class="text-muted mb-0">Celebrating our journey through the years</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="text-center mt-5" data-aos="fade-up">
+      <a href="youtube.html" class="btn-gold btn-lg px-5">
+        <i class="fab fa-youtube me-2"></i>View More on YouTube
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS SECTION -->
+<section class="section news-section">
+  <div class="container-fluid">
+    <div class="section-header">
+      <h2 class="section-title text-white">Latest News</h2>
+      <p class="text-light opacity-75">Stay updated with college announcements</p>
+    </div>
+  
+    <div class="row g-4 justify-content-center">
+      <div class="col-lg-10">
+        <div class="row g-4">
+          <div class="col-md-6" data-aos="fade-right">
+            <div class="news-card">
+              <img src="https://i.ibb.co/XrX5fh5M/study-tips-for-final-exams.webp" class="news-image" alt="Annual Exam">
+              <div class="p-4">
+                <div class="news-date">
+                  <i class="far fa-calendar me-2"></i>Jan 31 - Feb 12, 2026
+                </div>
+                <h4 class="text-white mb-3">വാര്‍ഷിക പരീക്ഷ</h4>
+                <p class="text-light mb-4">2025-26 വര്‍ഷത്തിലെ വാര്‍ഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1,2,10,11,12 തിയ്യതികളില്‍.</p>
+                <a href="#" class="btn btn-outline-gold btn-sm">Read More</a>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-md-6" data-aos="fade-left">
+            <div class="news-card">
+              <img src="https://i.ibb.co/LDJxRX0j/freelancer-pricing-04.png" class="news-image" alt="Parents Meeting">
+              <div class="p-4">
+                <div class="news-date">
+                  <i class="far fa-calendar me-2"></i>November 16, 2025
+                </div>
+                <h4 class="text-white mb-3">Parents Meeting</h4>
+                <p class="text-light mb-4">Parents meeting will be held on 16th November 2025. All parents are requested to attend.</p>
+                <a href="#" class="btn btn-outline-gold btn-sm">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOTIFICATIONS -->
+<section class="section notifications-section">
+  <div class="container-fluid">
+    <div class="section-header">
+      <h2 class="section-title">Notifications & Alerts</h2>
+      <p class="text-muted">Important updates and announcements</p>
+    </div>
+  
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="notification-card" data-aos="fade-up">
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <h4 class="green-text mb-0">Admission Open for 2025-26 Academic Year</h4>
+            <span class="notification-badge">NEW</span>
+          </div>
+          <p class="text-muted mb-3">Applications are now being accepted for all courses. Early applicants will receive special consideration.</p>
+          <a href="admission.html" class="btn-gold btn-sm">Apply Now</a>
+        </div>
+      
+        <div class="notification-card" data-aos="fade-up" data-aos-delay="100">
+          <h4 class="green-text mb-3">Meelad Day Celebration</h4>
+          <p class="text-muted mb-3">December 20, 2025 — All parents and guardians are invited to join us for the Meelad Day celebrations.</p>
+          <a href="#" class="text-gold text-decoration-none">View Details →</a>
+        </div>
+      
+        <div class="notification-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h4 class="green-text mb-2">Examination Results Published</h4>
+              <p class="text-muted mb-0">Check your results online. Download mark sheets and certificates.</p>
+            </div>
+            <a href="result.html" class="btn-gold">View Results</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-4 mb-4" data-aos="fade-up">
+        <div class="footer-brand">DSAC</div>
+        <p class="text-light opacity-75">
+          Darunnajath Shareeath & Arts College<br>
+          Punnakkad, Karuvarakundu<br>
+          Affiliated to Jamia Nooriyya Arabiyya, Pattikkad
+        </p>
+        <div class="social-links">
+          <a href="https://facebook.com/" class="social-icon" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://instagram.com/" class="social-icon" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://x.com/" class="social-icon" target="_blank">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://youtube.com/" class="social-icon" target="_blank">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+    
+      <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="footer-links">
+          <h5>Quick Links</h5>
+          <a href="index.html">Home</a>
+          <a href="admission.html">Admissions</a>
+          <a href="result.html">Results</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    
+      <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="footer-links">
+          <h5>Resources</h5>
+          <a href="downloads.html">Downloads</a>
+          <a href="library.html">Library</a>
+          <a href="faculties.html">Faculty</a>
+          <a href="management.html">Management</a>
+          <a href="pta.html">PTA</a>
+        </div>
+      </div>
+    
+      <div class="col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="footer-links">
+          <h5>Contact Info</h5>
+          <p class="text-light opacity-75">
+            <i class="fas fa-envelope me-2 gold-text"></i>najathshareea@gmail.com<br>
+            <i class="fas fa-phone me-2 gold-text"></i>+91 9048020243<br>
+            <i class="fas fa-map-marker-alt me-2 gold-text"></i>Karuvarakundu, Kerala
+          </p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="text-center pt-4 mt-4 border-top border-light border-opacity-25">
+      <p class="text-light mb-2">
+        © <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.
+      </p>
+      <small class="text-light opacity-75">
+        Hosted by <span class="gold-text">Rafi Wafi</span> • Designed with Islamic Inspiration
+      </small>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!"
+   class="whatsapp-float" target="_blank"
+   title="Chat with us on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
 
 <!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -859,9 +1362,6 @@
       }
     });
   });
-  
-  // FIXED TICKER: Starts immediately, smooth speed
-  // No JavaScript needed - pure CSS animation
   
   // Card hover effects
   document.querySelectorAll('.highlight-card, .news-card').forEach(card => {
