@@ -81,8 +81,9 @@
       0%, 100% { opacity: 0.3; }
       50% { opacity: 0.6; }
     }
+    /* FIXED TICKER ANIMATION */
     @keyframes slideIn {
-      0% { transform: translateX(0%); }
+      0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
     }
     @keyframes pulse {
@@ -153,18 +154,6 @@
     .nav-link-optimized.active {
       background: rgba(193, 154, 60, 0.2);
       color: #e6c878 !important;
-      position: relative;
-    }
-    .nav-link-optimized.active::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60%;
-      height: 2px;
-      background: var(--gold);
-      border-radius: 2px;
     }
     /* Hover effect */
     .nav-link-optimized:hover {
@@ -204,13 +193,13 @@
       .navbar-optimized {
         padding: 0.5rem 0;
       }
-     
+    
       .nav-link-optimized {
         padding: 0.75rem 1rem !important;
         font-size: 0.9rem !important;
         margin: 0.15rem 0 !important;
       }
-     
+    
       .dropdown-menu-optimized {
         background: rgba(13, 92, 62, 0.95);
         border: none;
@@ -218,10 +207,15 @@
         margin: 0;
         padding-left: 1rem;
       }
-     
+    
       .navbar-toggler {
         padding: 0.3rem 0.5rem;
         font-size: 1rem;
+      }
+      
+      .nav-container {
+        flex-wrap: wrap;
+        justify-content: flex-start;
       }
     }
     /* EXTRA SMALL SCREENS */
@@ -230,13 +224,18 @@
         width: 45px;
         height: 45px;
       }
-     
+    
       .brand-text {
         font-size: 1.4rem;
       }
-     
+    
       .brand-subtext {
         font-size: 0.65rem;
+      }
+      
+      .nav-link-optimized {
+        font-size: 0.8rem !important;
+        padding: 0.6rem 0.8rem !important;
       }
     }
     /* Toggle button styling */
@@ -244,22 +243,15 @@
       border: 2px solid rgba(255, 255, 255, 0.3);
       padding: 0.3rem 0.6rem;
     }
-   
+  
     .navbar-toggler:focus {
       box-shadow: 0 0 0 2px rgba(193, 154, 60, 0.5);
     }
-   
+  
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
       width: 1.2em;
       height: 1.2em;
-    }
-    /* Custom scrollbar for dropdown on mobile */
-    @media (max-height: 600px) {
-      .navbar-collapse {
-        max-height: 70vh;
-        overflow-y: auto;
-      }
     }
     /* ===== HERO SECTION ===== */
     .hero-section {
@@ -392,21 +384,28 @@
       background: var(--gradient-gold);
       border-radius: 2px;
     }
-    /* ===== NEWS TICKER ===== */
+    /* ===== FIXED NEWS TICKER ===== */
     .ticker-container {
       background: linear-gradient(90deg, var(--primary-green), var(--dark-green));
       border-top: 2px solid var(--gold);
       border-bottom: 2px solid var(--gold);
       overflow: hidden;
       position: relative;
+      width: 100%;
     }
     .ticker-container:hover .ticker-content {
-      animation-play-state: paused;  /* Pauses scrolling when mouse over */
+      animation-play-state: paused; /* Pauses scrolling when mouse over */
+    }
+    .ticker-wrapper {
+      display: flex;
+      width: 100%;
+      overflow: hidden;
     }
     .ticker-content {
       display: flex;
-      animation: slideIn 15s linear infinite;
+      animation: slideIn 60s linear infinite; /* Slower for better visibility */
       white-space: nowrap;
+      min-width: max-content; /* Ensures content doesn't wrap */
     }
     .ticker-item {
       padding: 1rem 2rem;
@@ -416,7 +415,7 @@
       border-right: 1px solid rgba(255, 255, 255, 0.2);
       display: flex;
       align-items: center;
-      min-width: max-content;
+      min-width: fit-content;
     }
     .ticker-badge {
       background: var(--gradient-gold);
@@ -425,6 +424,33 @@
       border-radius: 20px;
       font-weight: 600;
       margin-right: 1rem;
+      white-space: nowrap;
+    }
+    /* Mobile ticker optimization */
+    @media (max-width: 768px) {
+      .ticker-item {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.9rem;
+      }
+      .ticker-badge {
+        padding: 0.2rem 0.8rem;
+        font-size: 0.8rem;
+        margin-right: 0.8rem;
+      }
+      .ticker-content {
+        animation: slideIn 80s linear infinite; /* Slower on mobile */
+      }
+    }
+    @media (max-width: 576px) {
+      .ticker-item {
+        padding: 0.7rem 1rem;
+        font-size: 0.85rem;
+      }
+      .ticker-badge {
+        padding: 0.15rem 0.6rem;
+        font-size: 0.75rem;
+        margin-right: 0.6rem;
+      }
     }
     /* ===== ABOUT SECTION ===== */
     .about-section {
@@ -641,55 +667,87 @@
       transform: scale(1.1) rotate(10deg);
       box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
     }
-    /* ===== RESPONSIVE DESIGN ===== */
-    @media (max-width: 768px) {
+    /* ===== RESPONSIVE DESIGN FIXES ===== */
+    @media (max-width: 992px) {
       .hero-title {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
       }
-     
       .hero-subtitle {
         font-size: 1.1rem;
       }
-     
       .section-title {
         font-size: 2rem;
       }
-     
       .section {
         padding: 3rem 0;
       }
-     
-      .navbar-collapse {
-        background: rgba(13, 92, 62, 0.95);
-        padding: 1rem;
-        border-radius: 10px;
-        margin-top: 1rem;
+      .btn-gold, .btn-outline-gold {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
       }
-     
-      .nav-link {
-        margin: 0.25rem 0;
+      .milestone-card {
+        margin-top: 2rem;
       }
-     
+    }
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+      .hero-badge {
+        font-size: 0.9rem;
+        padding: 0.4rem 1rem;
+      }
+      .hero-section {
+        min-height: 70vh;
+        padding: 4rem 0;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .about-image {
+        margin-bottom: 2rem;
+      }
+      .highlight-card, .news-card {
+        margin-bottom: 1.5rem;
+      }
       .whatsapp-float {
         width: 55px;
         height: 55px;
         bottom: 20px;
         right: 20px;
-      }
-     
-      .ticker-item {
-        padding: 0.75rem 1rem;
-        font-size: 0.9rem;
+        font-size: 1.5rem;
       }
     }
     @media (max-width: 576px) {
       .hero-title {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
       }
-     
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+      .hero-badge {
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+      }
+      .section-title {
+        font-size: 1.5rem;
+      }
       .btn-gold, .btn-outline-gold {
-        padding: 0.6rem 1.5rem;
-        font-size: 0.9rem;
+        padding: 0.5rem 1.2rem;
+        font-size: 0.85rem;
+        margin: 0.3rem;
+      }
+      .container-fluid {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+      }
+      .footer {
+        padding: 2rem 0 1rem;
+      }
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
       }
     }
     /* ===== CUSTOM SCROLLBAR ===== */
@@ -722,6 +780,10 @@
     .hover-lift:hover {
       transform: translateY(-5px);
     }
+    /* Remove any underlines */
+    .nav-link-optimized.active::after {
+      display: none !important;
+    }
   </style>
 </head>
 <body class="islamic-pattern">
@@ -739,17 +801,17 @@
         <small class="text-light brand-subtext">Karuvarakundu</small>
       </div>
     </a>
-   
+  
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
-   
+  
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav ms-auto nav-container">
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized active" href="index.html">Home</a>
         </li>
-       
+      
         <!-- Board Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
           <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
@@ -761,7 +823,7 @@
             <li><a class="dropdown-item dropdown-item-optimized" href="pta.html">PTA</a></li>
           </ul>
         </li>
-       
+      
         <!-- Student Zone Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
           <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
@@ -772,7 +834,7 @@
             <li><a class="dropdown-item dropdown-item-optimized" href="result.html">Result</a></li>
           </ul>
         </li>
-       
+      
         <!-- Other Items -->
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized" href="https://jamianooriya.in/">Jamia</a>
@@ -799,7 +861,6 @@
     </div>
   </div>
 </nav>
- 
 <!-- HERO SECTION -->
 <section class="hero-section">
   <div class="hero-overlay"></div>
@@ -822,24 +883,26 @@
     </div>
   </div>
 </section>
-<!-- IMPORTANT ALERT -->
+<!-- FIXED NEWS TICKER -->
 <div class="ticker-container">
-  <div class="ticker-content">
-    <div class="ticker-item">
-      <span class="ticker-badge">⚠ IMPORTANT</span>
-      Admission started! Apply now.
-    </div>
-    <div class="ticker-item">
-      <span class="ticker-badge">📢 NEWS</span>
-      2025-26 വര്‍ഷത്തിലെ വാര്‍ഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1, 2, 10, 11, 12 തിയ്യതികളില്‍.
-    </div>
-    <div class="ticker-item">
-      <span class="ticker-badge">🎉 EVENT</span>
-      സമസ്ത നൂറാം വാര്‍ഷികം 2026 ഫെബ്രുവരി 4-8 തിയ്യതികളില്‍ കാസര്‍ഗോഡ് കുണിയയില്‍ നടക്കും.
-    </div>
-    <div class="ticker-item">
-      <span class="ticker-badge" style="font-size: 1.2rem; animation: pulse 2s infinite;">✨ UPDATED</span>
-      <strong>പുതുമകളോടെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജ് വെബ്‌സൈറ്റ് ലോഞ്ച് ചെയ്തു.</strong>
+  <div class="ticker-wrapper">
+    <div class="ticker-content">
+      <div class="ticker-item">
+        <span class="ticker-badge">⚠ IMPORTANT</span>
+        Admission started! Apply now.
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-badge">📢 NEWS</span>
+        2025-26 വര്‍ഷത്തിലെ വാര്‍ഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1, 2, 10, 11, 12 തിയ്യതികളില്‍.
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-badge">🎉 EVENT</span>
+        സമസ്ത നൂറാം വാര്‍ഷികം 2026 ഫെബ്രുവരി 4-8 തിയ്യതികളില്‍ കാസര്‍ഗോഡ് കുണിയയില്‍ നടക്കും.
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-badge" style="font-size: 1.2rem; animation: pulse 2s infinite;">✨ UPDATED</span>
+        <strong>പുതുമകളോടെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജ് വെബ്‌സൈറ്റ് ലോഞ്ച് ചെയ്തു.</strong>
+      </div>
     </div>
   </div>
 </div>
@@ -847,10 +910,10 @@
 <section id="about" class="section about-section">
   <div class="container-fluid">
     <div class="section-header">
-      <h2 class="section-title">About Our Institutioin</h2>
+      <h2 class="section-title">About Our Institution</h2>
       <p class="text-muted">വിശ്വാസവും വിജ്ഞാനവും ഒന്നിച്ചു വളരുന്ന വിദ്യാലയം</p>
     </div>
-   
+  
     <div class="row align-items-center">
       <div class="col-lg-8 mb-4 mb-lg-0" data-aos="fade-right">
         <div class="about-image">
@@ -872,7 +935,7 @@
           </p>
         </div>
       </div>
-     
+    
       <div class="col-lg-4" data-aos="fade-left">
         <div class="milestone-card">
           <div class="d-flex align-items-center mb-4">
@@ -917,7 +980,7 @@
       <h2 class="section-title">College Highlights</h2>
       <p class="text-muted">Memorable Moments & Events</p>
     </div>
-   
+  
     <div class="row g-4">
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
         <div class="highlight-card">
@@ -930,7 +993,7 @@
           </div>
         </div>
       </div>
-     
+    
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
         <div class="highlight-card">
           <div class="video-container">
@@ -942,7 +1005,7 @@
           </div>
         </div>
       </div>
-     
+    
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
         <div class="highlight-card">
           <div class="video-container">
@@ -955,7 +1018,7 @@
         </div>
       </div>
     </div>
-   
+  
     <div class="text-center mt-5" data-aos="fade-up">
       <a href="youtube.html" class="btn-gold btn-lg px-5">
         <i class="fab fa-youtube me-2"></i>View More on YouTube
@@ -970,7 +1033,7 @@
       <h2 class="section-title text-white">Latest News</h2>
       <p class="text-light opacity-75">Stay updated with college announcements</p>
     </div>
-   
+  
     <div class="row g-4 justify-content-center">
       <div class="col-lg-10">
         <div class="row g-4">
@@ -987,7 +1050,7 @@
               </div>
             </div>
           </div>
-         
+        
           <div class="col-md-6" data-aos="fade-left">
             <div class="news-card">
               <img src="https://i.ibb.co/LDJxRX0j/freelancer-pricing-04.png" class="news-image" alt="Parents Meeting">
@@ -1013,7 +1076,7 @@
       <h2 class="section-title">Notifications & Alerts</h2>
       <p class="text-muted">Important updates and announcements</p>
     </div>
-   
+  
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="notification-card" data-aos="fade-up">
@@ -1024,13 +1087,13 @@
           <p class="text-muted mb-3">Applications are now being accepted for all courses. Early applicants will receive special consideration.</p>
           <a href="admission.html" class="btn-gold btn-sm">Apply Now</a>
         </div>
-       
+      
         <div class="notification-card" data-aos="fade-up" data-aos-delay="100">
           <h4 class="green-text mb-3">Meelad Day Celebration</h4>
           <p class="text-muted mb-3">December 20, 2025 — All parents and guardians are invited to join us for the Meelad Day celebrations.</p>
           <a href="#" class="text-gold text-decoration-none">View Details →</a>
         </div>
-       
+      
         <div class="notification-card" data-aos="fade-up" data-aos-delay="200">
           <div class="d-flex justify-content-between align-items-center">
             <div>
@@ -1070,7 +1133,7 @@
           </a>
         </div>
       </div>
-     
+    
       <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
         <div class="footer-links">
           <h5>Quick Links</h5>
@@ -1081,7 +1144,7 @@
           <a href="contact.html">Contact</a>
         </div>
       </div>
-     
+    
       <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
         <div class="footer-links">
           <h5>Resources</h5>
@@ -1092,7 +1155,7 @@
           <a href="pta.html">PTA</a>
         </div>
       </div>
-     
+    
       <div class="col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
         <div class="footer-links">
           <h5>Contact Info</h5>
@@ -1104,7 +1167,7 @@
         </div>
       </div>
     </div>
-   
+  
     <div class="text-center pt-4 mt-4 border-top border-light border-opacity-25">
       <p class="text-light mb-2">
         © <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.
@@ -1151,30 +1214,48 @@
       }
     });
   });
-  // News ticker animation
+  // FIXED News ticker animation
   function setupTicker() {
     const ticker = document.querySelector('.ticker-content');
     if (!ticker) return;
-    // Duplicate content for seamless loop
+    
+    // Get original content
     const originalContent = ticker.innerHTML;
-    ticker.innerHTML = originalContent + originalContent + originalContent + originalContent;
+    
+    // For seamless loop, we need to duplicate content
+    // Calculate how many duplicates we need based on screen width
+    const screenWidth = window.innerWidth;
+    const duplicateCount = screenWidth < 768 ? 6 : 4; // More duplicates on mobile
+    
+    let duplicatedContent = '';
+    for (let i = 0; i < duplicateCount; i++) {
+      duplicatedContent += originalContent;
+    }
+    
+    ticker.innerHTML = duplicatedContent;
   }
+  
+  // Setup ticker on load and resize
   setupTicker();
+  window.addEventListener('resize', setupTicker);
+  
   // Card hover effects
   document.querySelectorAll('.highlight-card, .news-card').forEach(card => {
     card.addEventListener('mouseenter', function() {
       this.style.transform = 'translateY(-10px)';
     });
-   
+  
     card.addEventListener('mouseleave', function() {
       this.style.transform = 'translateY(0)';
     });
   });
+  
   // Initialize tooltips
   const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
   tooltipTriggerList.map(function(tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl);
   });
+  
   // Add loading animation
   window.addEventListener('load', function() {
     document.body.style.opacity = '0';
@@ -1183,6 +1264,7 @@
       document.body.style.opacity = '1';
     }, 100);
   });
+  
   // Mobile menu close on click
   document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
     link.addEventListener('click', () => {
@@ -1192,11 +1274,12 @@
       }
     });
   });
+  
   // Parallax effect for floating ornaments
   window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const ornaments = document.querySelectorAll('.islamic-ornament');
-   
+  
     ornaments.forEach((ornament, index) => {
       const speed = 0.1 * (index + 1);
       ornament.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
@@ -1205,9 +1288,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
