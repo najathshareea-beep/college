@@ -174,7 +174,6 @@
     .nav-link-optimized.active {
       background: rgba(193, 154, 60, 0.2);
       color: #e6c878 !important;
-      position: relative;
     }
 
     .nav-link-optimized.active::after {
@@ -1239,7 +1238,7 @@
 
   // Navbar scroll effect
   window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar-main');
+    const navbar = document.querySelector('.navbar-optimized');
     navbar.classList.toggle('scrolled', window.scrollY > 50);
   });
 
@@ -1317,5 +1316,6 @@
 </script>
 </body>
 </html>
+
 
 
