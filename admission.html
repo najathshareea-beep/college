@@ -1117,12 +1117,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('currentYear').textContent = new Date().getFullYear();
             loadCollegeInfo();
-
             const today = new Date().toISOString().split('T')[0];
             document.querySelectorAll('input[type="date"]').forEach(input => {
                 input.setAttribute('max', today);
             });
-
             document.getElementById('downloadApplicationForm').addEventListener('submit', handleApplicationSubmit);
             document.getElementById('downloadHallticketForm').addEventListener('submit', handleHallticketSubmit);
             document.getElementById('checkResultForm').addEventListener('submit', handleResultSubmit);
@@ -1187,7 +1185,6 @@
                 submitApplicationBtn.disabled = true;
                 submitApplicationBtn.style.background = 'linear-gradient(135deg, #6c757d 0%, #495057 100%)';
                 submitApplicationBtn.style.opacity = '0.7';
-
                 declarationCheckbox.addEventListener('change', function() {
                     if (this.checked) {
                         submitApplicationBtn.disabled = false;
@@ -1212,7 +1209,6 @@
                     const tickerItems = [college.ticker1, college.ticker2, college.ticker3, college.ticker4, college.ticker5]
                         .filter(item => item).join(' &nbsp;&nbsp;•&nbsp;&nbsp; ');
                     document.getElementById('tickerContent').innerHTML = tickerItems || '📢 College Admissions Started &nbsp;&nbsp;•&nbsp;&nbsp; 🎓 Exam Results Announce Later';
-
                     const notes = [college.note1, college.note2, college.note3, college.note4, college.note5]
                         .filter(note => note).join('<br>');
                     document.getElementById('applyInstructions').innerHTML = `
@@ -1250,7 +1246,6 @@
             const notification = document.getElementById('notification');
             const messageEl = document.getElementById('notificationMessage');
             const icon = notification.querySelector('.notification-icon');
-
             switch(type) {
                 case 'success':
                     icon.className = 'fas fa-check-circle notification-icon';
@@ -1272,7 +1267,6 @@
                     notification.style.borderLeftColor = '#1d29d6';
                     icon.style.color = '#1d29d6';
             }
-
             messageEl.textContent = message;
             notification.style.display = 'block';
             setTimeout(hideNotification, 5000);
@@ -1383,15 +1377,15 @@
             }
         }
 
-        // FINAL FIXED NEW APPLICATION SUBMISSION
+        // FINAL WORKING NEW APPLICATION SUBMISSION (PHOTO UPLOAD FIXED)
         async function handleNewApplicationSubmit(e) {
             e.preventDefault();
 
-            // Previous study validation
+            // All your existing validations
             const previousStudy = document.querySelector('input[name="previousStudy"]:checked');
             if (previousStudy && previousStudy.value === 'Yes') {
                 const previousSection = document.getElementById('previous-study-section');
-                const requiredFields = previousSection.querySelectorAll('input[name="previousInstitution"], input[name="studyDuration"], input[name="juzCount"], textarea[name="reasonForLeaving"], input[name="headTeacherPhone"]');
+                const requiredFields = previousSection.querySelectorAll('input, textarea');
                 for (let field of requiredFields) {
                     if (!field.value.trim()) {
                         showNotification('Please fill all required fields in previous study section', 'error');
@@ -1401,7 +1395,6 @@
                 }
             }
 
-            // Physical fitness validation
             const physicalFitness = document.querySelector('input[name="physicalFitness"]:checked');
             if (physicalFitness && physicalFitness.value === 'Medication') {
                 const illnessField = document.querySelector('textarea[name="illness"]');
@@ -1412,99 +1405,93 @@
                 }
             }
 
-            // WhatsApp validation
             const whatsappNumber = document.querySelector('input[name="whatsappNumber"]').value;
             if (whatsappNumber && !/^\d{10}$/.test(whatsappNumber)) {
                 showNotification('WhatsApp number must be 10 digits if provided', 'error');
-                document.querySelector('input[name="whatsappNumber"]').focus();
                 return;
             }
 
-            // Declaration
             const declarationCheckbox = document.getElementById('declarationCheckbox');
             if (!declarationCheckbox.checked) {
                 showNotification('Please agree to the declaration by checking the box', 'error');
-                declarationCheckbox.focus();
                 return;
             }
 
-            // Collect data manually
+            // Collect normal fields using FormData
+            const formData = new FormData(e.target);
             const data = {};
-            const form = e.target;
-            const inputs = form.querySelectorAll('input[name], textarea[name], select[name]');
-            inputs.forEach(input => {
-                if (input.type !== 'file') {
-                    if (input.type === 'radio' || input.type === 'checkbox') {
-                        if (input.checked) {
-                            data[input.name] = input.value;
-                        }
-                    } else {
-                        data[input.name] = input.value.trim();
-                    }
+            for (let [key, value] of formData.entries()) {
+                if (key !== 'photoInput') { // Skip the file input itself
+                    data[key] = value.trim();
                 }
-            });
+            }
 
             // Handle photo
-            const photoInput = document.getElementById('photoInput');
-            const file = photoInput.files && photoInput.files[0];
+            const photoFile = document.getElementById('photoInput').files[0];
 
-            const submitData = async () => {
+            const submit = (photoObj = null) => {
+                if (photoObj) {
+                    data.photo = photoObj;
+                }
+
+                const params = new URLSearchParams();
+                for (const key in data) {
+                    if (key === 'photo' && data.photo) {
+                        params.append('photo', JSON.stringify(data.photo));
+                    } else {
+                        params.append(key, data[key]);
+                    }
+                }
+
                 showLoading();
-                try {
-                    const formDataObj = new FormData();
-                    for (const [key, value] of Object.entries(data)) {
-                        formDataObj.append(key, value);
+                fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: params,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
                     }
-                    if (file) {
-                        formDataObj.append('photo', JSON.stringify({
-                            name: file.name,
-                            mimeType: file.type || 'image/jpeg',
-                            data: await fileToBase64(file)
-                        }));
-                    }
-
-                    const response = await fetch(SCRIPT_URL, {
-                        method: 'POST',
-                        body: formDataObj
-                    });
-
-                    const html = await response.text();
-
+                })
+                .then(response => response.text())
+                .then(html => {
                     if (html.includes('Application Submitted Successfully') || html.includes('Application ID:')) {
-                        const newWindow = window.open('', '_blank');
-                        newWindow.document.write(html);
-                        newWindow.document.close();
+                        const win = window.open('', '_blank');
+                        win.document.write(html);
+                        win.document.close();
                         showNotification('Application submitted successfully!', 'success');
-                        form.reset();
+                        e.target.reset();
                         document.getElementById('previous-study-section').style.display = 'none';
                         document.getElementById('illness-section').style.display = 'none';
-                        document.getElementById('declarationCheckbox').checked = false;
+                        declarationCheckbox.checked = false;
                         document.getElementById('submitApplicationBtn').disabled = true;
                         document.getElementById('submitApplicationBtn').style.background = 'linear-gradient(135deg, #6c757d 0%, #495057 100%)';
                         document.getElementById('submitApplicationBtn').style.opacity = '0.7';
                         showDashboard();
                     } else {
-                        showNotification('Submission error. Please try again.', 'error');
+                        showNotification('Submission failed. Please try again.', 'error');
                     }
-                } catch (error) {
-                    console.error('Submission error:', error);
+                })
+                .catch(err => {
+                    console.error(err);
                     showNotification('Network error. Please try again.', 'error');
-                } finally {
-                    hideLoading();
-                }
+                })
+                .finally(hideLoading);
             };
 
-            // Helper to convert file to base64
-            const fileToBase64 = (file) => {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.onload = () => resolve(reader.result.split(',')[1]);
-                    reader.onerror = reject;
-                    reader.readAsDataURL(file);
-                });
-            };
-
-            submitData();
+            if (photoFile) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const photoObj = {
+                        name: photoFile.name,
+                        mimeType: photoFile.type || 'image/jpeg',
+                        data: e.target.result.split(',')[1]
+                    };
+                    submit(photoObj);
+                };
+                reader.onerror = () => showNotification('Error reading photo file', 'error');
+                reader.readAsDataURL(photoFile);
+            } else {
+                submit();
+            }
         }
     </script>
 </body>
