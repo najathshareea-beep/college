@@ -1478,16 +1478,15 @@
             }
         }
         
-        // Handle New Application Form Submit
+        // Handle New Application Form Submit - CORRECTED VERSION
         async function handleNewApplicationSubmit(e) {
             e.preventDefault();
-            
-            // Validate conditional sections
+
+            // Validate conditional sections (your existing code - keep it)
             const previousStudy = document.querySelector('input[name="previousStudy"]:checked');
             if (previousStudy && previousStudy.value === 'Yes') {
                 const previousSection = document.getElementById('previous-study-section');
                 const requiredFields = previousSection.querySelectorAll('input[name="previousInstitution"], input[name="studyDuration"], input[name="juzCount"], textarea[name="reasonForLeaving"], input[name="headTeacherPhone"]');
-                
                 for (let field of requiredFields) {
                     if (!field.value.trim()) {
                         showNotification('Please fill all required fields in previous study section', 'error');
@@ -1496,7 +1495,7 @@
                     }
                 }
             }
-            
+
             const physicalFitness = document.querySelector('input[name="physicalFitness"]:checked');
             if (physicalFitness && physicalFitness.value === 'Medication') {
                 const illnessField = document.querySelector('textarea[name="illness"]');
@@ -1506,87 +1505,78 @@
                     return;
                 }
             }
-            
-            // Validate WhatsApp number if provided
+
             const whatsappNumber = document.querySelector('input[name="whatsappNumber"]').value;
             if (whatsappNumber && !/^\d{10}$/.test(whatsappNumber)) {
                 showNotification('WhatsApp number must be 10 digits if provided', 'error');
                 document.querySelector('input[name="whatsappNumber"]').focus();
                 return;
             }
-            
-            // Check if declaration checkbox is checked
+
             const declarationCheckbox = document.getElementById('declarationCheckbox');
             if (!declarationCheckbox.checked) {
                 showNotification('Please agree to the declaration by checking the box', 'error');
                 declarationCheckbox.focus();
                 return;
             }
-            
-            // Collect form data
-            const formData = new FormData(e.target);
-            const data = Object.fromEntries(formData);
-            
-            // Handle photo upload
+
+            // Collect all form fields except photo
+            const formElement = e.target;
+            const data = {};
+            const inputs = formElement.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                if (input.name && input.type !== 'file') {
+                    data[input.name] = input.value.trim();
+                }
+            });
+
+            // Handle photo separately with FileReader
             const photoInput = document.getElementById('photoInput');
-            if (photoInput.files.length > 0) {
-                const file = photoInput.files[0];
+            const file = photoInput.files[0];
+
+            if (file) {
                 const reader = new FileReader();
-                
                 reader.onload = function(e) {
                     data.photo = {
                         name: file.name,
-                        mimeType: file.type,
-                        data: e.target.result.split(',')[1] // Remove data:image/...;base64, prefix
+                        mimeType: file.type || "image/jpeg",
+                        data: e.target.result.split(',')[1]  // Remove data:image/...;base64, part
                     };
-                    submitFormData(data);
+                    submitApplicationWithData(data);  // Submit after photo loads
                 };
-                
+                reader.onerror = function() {
+                    showNotification('Error reading photo file', 'error');
+                };
                 reader.readAsDataURL(file);
             } else {
-                submitFormData(data);
+                data.photo = null;
+                submitApplicationWithData(data);  // No photo
             }
         }
-        
-        // Submit form data to Google Apps Script
-        async function submitFormData(data) {
+
+        // New function to submit data (after photo is ready)
+        async function submitApplicationWithData(data) {
             showLoading();
-            
+
             try {
-                // Convert data to URLSearchParams
-                const formParams = new URLSearchParams();
-                for (const [key, value] of Object.entries(data)) {
-                    if (key === 'photo') {
-                        // Handle photo separately as JSON
-                        formParams.append(key, JSON.stringify(value));
-                    } else {
-                        formParams.append(key, value);
-                    }
-                }
-                
                 const response = await fetch(SCRIPT_URL, {
                     method: 'POST',
-                    body: formParams,
+                    body: JSON.stringify(data),
                     headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
+                        'Content-Type': 'application/json'
                     }
                 });
-                
+
                 const html = await response.text();
-                
-                // Check if it's a success page
-                if (html.includes('Application Submitted Successfully') || 
-                    html.includes('Application ID:') || 
-                    html.includes('confirmation-card')) {
-                    
-                    // Display success message in new window
+
+                if (html.includes('Application Submitted Successfully') || html.includes('Application ID:')) {
                     const newWindow = window.open('', '_blank');
                     newWindow.document.write(html);
                     newWindow.document.close();
-                    
+
                     showNotification('Application submitted successfully!', 'success');
-                    
-                    // Reset form and show dashboard
+
+                    // Reset form
                     document.getElementById('newApplicationForm').reset();
                     document.getElementById('previous-study-section').style.display = 'none';
                     document.getElementById('illness-section').style.display = 'none';
@@ -1595,28 +1585,12 @@
                     document.getElementById('submitApplicationBtn').style.background = 'linear-gradient(135deg, #6c757d 0%, #495057 100%)';
                     document.getElementById('submitApplicationBtn').style.opacity = '0.7';
                     showDashboard();
-                } else if (html.includes('Error') || html.includes('required') || html.includes('digits')) {
-                    // It's an error message
-                    const errorMatch = html.match(/Error[^<]*/);
-                    const errorMessage = errorMatch ? errorMatch[0] : 'Error in form submission';
-                    showNotification(errorMessage, 'error');
                 } else {
-                    // Unknown response - show generic message
-                    showNotification('Application submitted!', 'success');
-                    
-                    // Reset form and show dashboard
-                    document.getElementById('newApplicationForm').reset();
-                    document.getElementById('previous-study-section').style.display = 'none';
-                    document.getElementById('illness-section').style.display = 'none';
-                    document.getElementById('declarationCheckbox').checked = false;
-                    document.getElementById('submitApplicationBtn').disabled = true;
-                    document.getElementById('submitApplicationBtn').style.background = 'linear-gradient(135deg, #6c757d 0%, #495057 100%)';
-                    document.getElementById('submitApplicationBtn').style.opacity = '0.7';
-                    showDashboard();
+                    showNotification('Error: ' + html.substring(0, 200), 'error');
                 }
             } catch (error) {
                 console.error('Submission error:', error);
-                showNotification('Network error. Please check your connection and try again.', 'error');
+                showNotification('Network error. Please try again.', 'error');
             } finally {
                 hideLoading();
             }
