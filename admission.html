@@ -1115,52 +1115,46 @@
         </p>
     </footer>
     
-    <!-- Scripts -->
+<!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Configuration - REPLACE WITH YOUR APPS SCRIPT DEPLOYMENT URL
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwv2Knqp77fh5obn6DhyLZfBJBwBJTG9Wjv_wPClLyLIcoSvEkiylH7Edg0GWD2r7nscg/exec'; 
-        // Initialize
+        // Configuration - REPLACE WITH YOUR ACTUAL APPS SCRIPT DEPLOYMENT URL
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwv2Knqp77fh5obn6DhyLZfBJBwBJTG9Wjv_wPClLyLIcoSvEkiylH7Edg0GWD2r7nscg/exec';
+
         document.addEventListener('DOMContentLoaded', function() {
             // Set current year
             document.getElementById('currentYear').textContent = new Date().getFullYear();
-            
+
             // Load college information
             loadCollegeInfo();
-            
-            // Set max date for date inputs (for students born after 2019)
+
+            // Set max date for date inputs
             const today = new Date().toISOString().split('T')[0];
             document.querySelectorAll('input[type="date"]').forEach(input => {
                 input.setAttribute('max', today);
             });
-            
+
             // Form submissions
             document.getElementById('downloadApplicationForm').addEventListener('submit', handleApplicationSubmit);
             document.getElementById('downloadHallticketForm').addEventListener('submit', handleHallticketSubmit);
             document.getElementById('checkResultForm').addEventListener('submit', handleResultSubmit);
             document.getElementById('newApplicationForm').addEventListener('submit', handleNewApplicationSubmit);
-            
+
             // Previous study toggle
             const previousStudyRadios = document.querySelectorAll('input[name="previousStudy"]');
             const previousStudySection = document.getElementById('previous-study-section');
-            
+
             previousStudyRadios.forEach(radio => {
                 radio.addEventListener('change', function() {
                     if (this.value === 'Yes') {
                         previousStudySection.style.display = 'block';
-                        // Make all inputs in this section required
                         previousStudySection.querySelectorAll('input, textarea').forEach(input => {
-                            if (input.name === 'previousInstitution' || 
-                                input.name === 'studyDuration' || 
-                                input.name === 'juzCount' || 
-                                input.name === 'reasonForLeaving' ||
-                                input.name === 'headTeacherPhone') {
+                            if (['previousInstitution', 'studyDuration', 'juzCount', 'reasonForLeaving', 'headTeacherPhone'].includes(input.name)) {
                                 input.required = true;
                             }
                         });
                     } else {
                         previousStudySection.style.display = 'none';
-                        // Remove required attribute and clear values
                         previousStudySection.querySelectorAll('input, textarea').forEach(input => {
                             input.required = false;
                             input.value = '';
@@ -1168,11 +1162,11 @@
                     }
                 });
             });
-            
+
             // Physical fitness toggle
             const physicalFitnessRadios = document.querySelectorAll('input[name="physicalFitness"]');
             const illnessSection = document.getElementById('illness-section');
-            
+
             physicalFitnessRadios.forEach(radio => {
                 radio.addEventListener('change', function() {
                     if (this.value === 'Medication') {
@@ -1185,7 +1179,7 @@
                     }
                 });
             });
-            
+
             // Photo validation
             document.getElementById('photoInput').addEventListener('change', function(e) {
                 const file = e.target.files[0];
@@ -1199,18 +1193,15 @@
                     }
                 }
             });
-            
-            // DECLARATION CHECKBOX FUNCTIONALITY - ADDED THIS
+
+            // Declaration checkbox controls submit button
             const declarationCheckbox = document.getElementById('declarationCheckbox');
             const submitApplicationBtn = document.getElementById('submitApplicationBtn');
-            
             if (declarationCheckbox && submitApplicationBtn) {
-                // Initialize button as disabled
                 submitApplicationBtn.disabled = true;
                 submitApplicationBtn.style.background = 'linear-gradient(135deg, #6c757d 0%, #495057 100%)';
                 submitApplicationBtn.style.opacity = '0.7';
-                
-                // Add event listener to checkbox
+
                 declarationCheckbox.addEventListener('change', function() {
                     if (this.checked) {
                         submitApplicationBtn.disabled = false;
@@ -1224,29 +1215,29 @@
                 });
             }
         });
-        
+
         // Load college information from Google Apps Script
         async function loadCollegeInfo() {
             try {
                 showLoading();
                 const response = await fetch(`${SCRIPT_URL}?action=getCollegeInfo`);
                 const data = await response.json();
-                
+
                 if (data.status === 'success') {
                     const college = data.data;
-                    
+
                     // Update ticker
                     const tickerItems = [
                         college.ticker1,
-                        college.ticker2, 
+                        college.ticker2,
                         college.ticker3,
                         college.ticker4,
                         college.ticker5
                     ].filter(item => item).join(' &nbsp;&nbsp;•&nbsp;&nbsp; ');
-                    
-                    document.getElementById('tickerContent').innerHTML = tickerItems || 
+
+                    document.getElementById('tickerContent').innerHTML = tickerItems ||
                         '📢 College Admissions Started &nbsp;&nbsp;•&nbsp;&nbsp; 🎓 Exam Results Announce Later';
-                    
+
                     // Update apply now instructions
                     const notes = [
                         college.note1,
@@ -1255,7 +1246,7 @@
                         college.note4,
                         college.note5
                     ].filter(note => note).join('<br>');
-                    
+
                     document.getElementById('applyInstructions').innerHTML = `
                         <h4 class="instructions-title">
                             <i class="fas fa-info-circle"></i>
@@ -1271,18 +1262,17 @@
                 hideLoading();
             }
         }
-        
+
         // Show/Hide functions
         function showDashboard() {
             hideAllForms();
             document.getElementById('dashboardView').style.display = 'block';
         }
-        
+
         function showForm(formId) {
             hideAllForms();
             document.getElementById(formId).style.display = 'block';
-            
-            // Reset forms when showing them
+
             if (formId === 'applicationForm') {
                 document.getElementById('appMobile').focus();
             } else if (formId === 'hallticketForm') {
@@ -1291,7 +1281,7 @@
                 document.getElementById('resultMobile').focus();
             }
         }
-        
+
         function hideAllForms() {
             document.getElementById('dashboardView').style.display = 'none';
             document.getElementById('applyNowForm').style.display = 'none';
@@ -1299,14 +1289,13 @@
             document.getElementById('hallticketForm').style.display = 'none';
             document.getElementById('resultForm').style.display = 'none';
         }
-        
+
         // Notification functions
         function showNotification(message, type = 'info') {
             const notification = document.getElementById('notification');
             const messageEl = document.getElementById('notificationMessage');
             const icon = notification.querySelector('.notification-icon');
-            
-            // Set icon based on type
+
             switch(type) {
                 case 'success':
                     icon.className = 'fas fa-check-circle notification-icon';
@@ -1328,60 +1317,56 @@
                     notification.style.borderLeftColor = '#1d29d6';
                     icon.style.color = '#1d29d6';
             }
-            
+
             messageEl.textContent = message;
             notification.style.display = 'block';
-            
-            // Auto hide after 5 seconds
+
             setTimeout(hideNotification, 5000);
         }
-        
+
         function hideNotification() {
             document.getElementById('notification').style.display = 'none';
         }
-        
+
         // Loading functions
         function showLoading() {
             document.getElementById('loadingOverlay').style.display = 'flex';
         }
-        
+
         function hideLoading() {
             document.getElementById('loadingOverlay').style.display = 'none';
         }
-        
-        // Handle Application Form Submit
+
+        // Handle Application Download
         async function handleApplicationSubmit(e) {
             e.preventDefault();
-            
+
             const mobile = document.getElementById('appMobile').value.trim();
             const dob = document.getElementById('appDob').value;
-            
-            // Validation
+
             if (!/^\d{10}$/.test(mobile)) {
                 showNotification('Please enter 10 digit mobile number', 'error');
                 return;
             }
-            
+
             if (!dob) {
                 showNotification('Please select date of birth', 'error');
                 return;
             }
-            
+
             showLoading();
-            
+
             try {
                 const url = `${SCRIPT_URL}?type=application&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`;
                 const response = await fetch(url);
                 const html = await response.text();
-                
-                // Open in new window for printing
+
                 const newWindow = window.open('', '_blank');
                 newWindow.document.write(html);
                 newWindow.document.close();
-                
+
                 showNotification('Application opened in new window', 'success');
-                
-                // Reset form and show dashboard
+
                 e.target.reset();
                 showDashboard();
             } catch (error) {
@@ -1391,40 +1376,37 @@
                 hideLoading();
             }
         }
-        
-        // Handle Hallticket Form Submit
+
+        // Handle Hallticket Download
         async function handleHallticketSubmit(e) {
             e.preventDefault();
-            
+
             const mobile = document.getElementById('ticketMobile').value.trim();
             const dob = document.getElementById('ticketDob').value;
-            
-            // Validation
+
             if (!/^\d{10}$/.test(mobile)) {
                 showNotification('Please enter 10 digit mobile number', 'error');
                 return;
             }
-            
+
             if (!dob) {
                 showNotification('Please select date of birth', 'error');
                 return;
             }
-            
+
             showLoading();
-            
+
             try {
                 const url = `${SCRIPT_URL}?type=hallticket&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`;
                 const response = await fetch(url);
                 const html = await response.text();
-                
-                // Open in new window for printing
+
                 const newWindow = window.open('', '_blank');
                 newWindow.document.write(html);
                 newWindow.document.close();
-                
+
                 showNotification('Hall ticket opened in new window', 'success');
-                
-                // Reset form and show dashboard
+
                 e.target.reset();
                 showDashboard();
             } catch (error) {
@@ -1434,40 +1416,37 @@
                 hideLoading();
             }
         }
-        
-        // Handle Result Form Submit
+
+        // Handle Result Check
         async function handleResultSubmit(e) {
             e.preventDefault();
-            
+
             const mobile = document.getElementById('resultMobile').value.trim();
             const dob = document.getElementById('resultDob').value;
-            
-            // Validation
+
             if (!/^\d{10}$/.test(mobile)) {
                 showNotification('Please enter 10 digit mobile number', 'error');
                 return;
             }
-            
+
             if (!dob) {
                 showNotification('Please select date of birth', 'error');
                 return;
             }
-            
+
             showLoading();
-            
+
             try {
                 const url = `${SCRIPT_URL}?type=result&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`;
                 const response = await fetch(url);
                 const html = await response.text();
-                
-                // Open in new window for printing
+
                 const newWindow = window.open('', '_blank');
                 newWindow.document.write(html);
                 newWindow.document.close();
-                
+
                 showNotification('Result opened in new window', 'success');
-                
-                // Reset form and show dashboard
+
                 e.target.reset();
                 showDashboard();
             } catch (error) {
@@ -1477,12 +1456,12 @@
                 hideLoading();
             }
         }
-        
-        // Handle New Application Form Submit - CORRECTED VERSION
+
+        // === CORRECTED: New Application Submission ===
         async function handleNewApplicationSubmit(e) {
             e.preventDefault();
 
-            // Validate conditional sections (your existing code - keep it)
+            // Validation for previous study
             const previousStudy = document.querySelector('input[name="previousStudy"]:checked');
             if (previousStudy && previousStudy.value === 'Yes') {
                 const previousSection = document.getElementById('previous-study-section');
@@ -1496,6 +1475,7 @@
                 }
             }
 
+            // Validation for illness
             const physicalFitness = document.querySelector('input[name="physicalFitness"]:checked');
             if (physicalFitness && physicalFitness.value === 'Medication') {
                 const illnessField = document.querySelector('textarea[name="illness"]');
@@ -1506,6 +1486,7 @@
                 }
             }
 
+            // WhatsApp number validation
             const whatsappNumber = document.querySelector('input[name="whatsappNumber"]').value;
             if (whatsappNumber && !/^\d{10}$/.test(whatsappNumber)) {
                 showNotification('WhatsApp number must be 10 digits if provided', 'error');
@@ -1513,6 +1494,7 @@
                 return;
             }
 
+            // Declaration checkbox
             const declarationCheckbox = document.getElementById('declarationCheckbox');
             if (!declarationCheckbox.checked) {
                 showNotification('Please agree to the declaration by checking the box', 'error');
@@ -1520,29 +1502,72 @@
                 return;
             }
 
-            // Collect all form fields except photo
-            const formElement = e.target;
+            // Collect all form data manually
             const data = {};
-            const inputs = formElement.querySelectorAll('input, textarea, select');
+            const form = e.target;
+            const inputs = form.querySelectorAll('input[name], textarea[name], select[name]');
             inputs.forEach(input => {
-                if (input.name && input.type !== 'file') {
+                if (input.type !== 'file' && input.type !== 'checkbox' && input.type !== 'radio') {
                     data[input.name] = input.value.trim();
+                }
+                if (input.type === 'radio' && input.checked) {
+                    data[input.name] = input.value;
                 }
             });
 
-            // Handle photo separately with FileReader
+            // Handle photo with FileReader
             const photoInput = document.getElementById('photoInput');
-            const file = photoInput.files[0];
+            const file = photoInput.files && photoInput.files[0];
+
+            const submitData = async () => {
+                showLoading();
+                try {
+                    const response = await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    const html = await response.text();
+
+                    if (html.includes('Application Submitted Successfully') || html.includes('Application ID:')) {
+                        const newWindow = window.open('', '_blank');
+                        newWindow.document.write(html);
+                        newWindow.document.close();
+
+                        showNotification('Application submitted successfully!', 'success');
+
+                        // Reset form and sections
+                        form.reset();
+                        document.getElementById('previous-study-section').style.display = 'none';
+                        document.getElementById('illness-section').style.display = 'none';
+                        document.getElementById('declarationCheckbox').checked = false;
+                        document.getElementById('submitApplicationBtn').disabled = true;
+                        document.getElementById('submitApplicationBtn').style.background = 'linear-gradient(135deg, #6c757d 0%, #495057 100%)';
+                        document.getElementById('submitApplicationBtn').style.opacity = '0.7';
+                        showDashboard();
+                    } else {
+                        showNotification('Submission error. Please try again.', 'error');
+                    }
+                } catch (error) {
+                    console.error('Submission error:', error);
+                    showNotification('Network error. Please try again.', 'error');
+                } finally {
+                    hideLoading();
+                }
+            };
 
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     data.photo = {
                         name: file.name,
-                        mimeType: file.type || "image/jpeg",
-                        data: e.target.result.split(',')[1]  // Remove data:image/...;base64, part
+                        mimeType: file.type || 'image/jpeg',
+                        data: e.target.result.split(',')[1]  // Remove data:image/...;base64, prefix
                     };
-                    submitApplicationWithData(data);  // Submit after photo loads
+                    submitData();
                 };
                 reader.onerror = function() {
                     showNotification('Error reading photo file', 'error');
@@ -1550,49 +1575,7 @@
                 reader.readAsDataURL(file);
             } else {
                 data.photo = null;
-                submitApplicationWithData(data);  // No photo
-            }
-        }
-
-        // New function to submit data (after photo is ready)
-        async function submitApplicationWithData(data) {
-            showLoading();
-
-            try {
-                const response = await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-
-                const html = await response.text();
-
-                if (html.includes('Application Submitted Successfully') || html.includes('Application ID:')) {
-                    const newWindow = window.open('', '_blank');
-                    newWindow.document.write(html);
-                    newWindow.document.close();
-
-                    showNotification('Application submitted successfully!', 'success');
-
-                    // Reset form
-                    document.getElementById('newApplicationForm').reset();
-                    document.getElementById('previous-study-section').style.display = 'none';
-                    document.getElementById('illness-section').style.display = 'none';
-                    document.getElementById('declarationCheckbox').checked = false;
-                    document.getElementById('submitApplicationBtn').disabled = true;
-                    document.getElementById('submitApplicationBtn').style.background = 'linear-gradient(135deg, #6c757d 0%, #495057 100%)';
-                    document.getElementById('submitApplicationBtn').style.opacity = '0.7';
-                    showDashboard();
-                } else {
-                    showNotification('Error: ' + html.substring(0, 200), 'error');
-                }
-            } catch (error) {
-                console.error('Submission error:', error);
-                showNotification('Network error. Please try again.', 'error');
-            } finally {
-                hideLoading();
+                submitData();
             }
         }
     </script>
