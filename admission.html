@@ -1520,44 +1520,49 @@
             const file = photoInput.files && photoInput.files[0];
 
             const submitData = async () => {
-                showLoading();
-                try {
-                    const response = await fetch(SCRIPT_URL, {
-                        method: 'POST',
-                        body: JSON.stringify(data),
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    });
-
-                    const html = await response.text();
-
-                    if (html.includes('Application Submitted Successfully') || html.includes('Application ID:')) {
-                        const newWindow = window.open('', '_blank');
-                        newWindow.document.write(html);
-                        newWindow.document.close();
-
-                        showNotification('Application submitted successfully!', 'success');
-
-                        // Reset form and sections
-                        form.reset();
-                        document.getElementById('previous-study-section').style.display = 'none';
-                        document.getElementById('illness-section').style.display = 'none';
-                        document.getElementById('declarationCheckbox').checked = false;
-                        document.getElementById('submitApplicationBtn').disabled = true;
-                        document.getElementById('submitApplicationBtn').style.background = 'linear-gradient(135deg, #6c757d 0%, #495057 100%)';
-                        document.getElementById('submitApplicationBtn').style.opacity = '0.7';
-                        showDashboard();
-                    } else {
-                        showNotification('Submission error. Please try again.', 'error');
-                    }
-                } catch (error) {
-                    console.error('Submission error:', error);
-                    showNotification('Network error. Please try again.', 'error');
-                } finally {
-                    hideLoading();
+              showLoading();
+              try {
+                const formDataObj = new FormData();
+                for (const [key, value] of Object.entries(data)) {
+                  if (key === 'photo' && value) {
+                    formDataObj.append('photo', JSON.stringify(value));
+                  } else if (value !== null && value !== undefined) {
+                    formDataObj.append(key, value);
+                  }
                 }
-            };
+
+                const response = await fetch(SCRIPT_URL, {
+                  method: 'POST',
+                  body: formDataObj
+                });
+
+                const html = await response.text();
+
+                if (html.includes('Application Submitted Successfully') || html.includes('Application ID:')) {
+                  const newWindow = window.open('', '_blank');
+                  newWindow.document.write(html);
+                  newWindow.document.close();
+                  showNotification('Application submitted successfully!', 'success');
+
+                    // Reset form and sections
+                    form.reset();
+                    document.getElementById('previous-study-section').style.display = 'none';
+                    document.getElementById('illness-section').style.display = 'none';
+                    document.getElementById('declarationCheckbox').checked = false;
+                    document.getElementById('submitApplicationBtn').disabled = true;
+                    document.getElementById('submitApplicationBtn').style.background = 'linear-gradient(135deg, #6c757d 0%, #495057 100%)';
+                    document.getElementById('submitApplicationBtn').style.opacity = '0.7';
+                    showDashboard();
+                } else {
+                    showNotification('Submission failed. Please try again.', 'error');
+                }
+              } catch (error) {
+                console.error('Network error:', error);
+                showNotification('Network error. Please check your internet connection.', 'error');
+              } finally {
+                hideLoading();
+              }
+           };
 
             if (file) {
                 const reader = new FileReader();
