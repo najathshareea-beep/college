@@ -1550,76 +1550,101 @@
         
         // Submit form data to Google Apps Script
         async function submitFormData(data) {
-            showLoading();
-            
-            try {
-                // Convert data to URLSearchParams
-                const formParams = new URLSearchParams();
-                for (const [key, value] of Object.entries(data)) {
-                    if (key === 'photo') {
-                        // Handle photo separately as JSON
-                        formParams.append(key, JSON.stringify(value));
-                    } else {
-                        formParams.append(key, value);
-                    }
+          showLoading();
+  
+          try {
+            // FIXED: Convert data to URLSearchParams with proper encoding
+            const formParams = new URLSearchParams();
+            for (const [key, value] of Object.entries(data)) {
+              if (key === 'photo') {
+                // Handle photo as JSON string
+                if (value && value.data) {
+                  formParams.append(key, JSON.stringify(value));
                 }
-                
-                const response = await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    body: formParams,
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    }
-                });
-                
-                const html = await response.text();
-                
-                // Check if it's a success page
-                if (html.includes('Application Submitted Successfully') || 
-                    html.includes('Application ID:') || 
-                    html.includes('confirmation-card')) {
-                    
-                    // Display success message in new window
-                    const newWindow = window.open('', '_blank');
-                    newWindow.document.write(html);
-                    newWindow.document.close();
-                    
-                    showNotification('Application submitted successfully!', 'success');
-                    
-                    // Reset form and show dashboard
-                    document.getElementById('newApplicationForm').reset();
-                    document.getElementById('previous-study-section').style.display = 'none';
-                    document.getElementById('illness-section').style.display = 'none';
-                    document.getElementById('declarationCheckbox').checked = false;
-                    document.getElementById('submitApplicationBtn').disabled = true;
-                    document.getElementById('submitApplicationBtn').style.background = 'linear-gradient(135deg, #6c757d 0%, #495057 100%)';
-                    document.getElementById('submitApplicationBtn').style.opacity = '0.7';
-                    showDashboard();
-                } else if (html.includes('Error') || html.includes('required') || html.includes('digits')) {
-                    // It's an error message
-                    const errorMatch = html.match(/Error[^<]*/);
-                    const errorMessage = errorMatch ? errorMatch[0] : 'Error in form submission';
-                    showNotification(errorMessage, 'error');
-                } else {
-                    // Unknown response - show generic message
-                    showNotification('Application submitted!', 'success');
-                    
-                    // Reset form and show dashboard
-                    document.getElementById('newApplicationForm').reset();
-                    document.getElementById('previous-study-section').style.display = 'none';
-                    document.getElementById('illness-section').style.display = 'none';
-                    document.getElementById('declarationCheckbox').checked = false;
-                    document.getElementById('submitApplicationBtn').disabled = true;
-                    document.getElementById('submitApplicationBtn').style.background = 'linear-gradient(135deg, #6c757d 0%, #495057 100%)';
-                    document.getElementById('submitApplicationBtn').style.opacity = '0.7';
-                    showDashboard();
-                }
-            } catch (error) {
-                console.error('Submission error:', error);
-                showNotification('Network error. Please check your connection and try again.', 'error');
-            } finally {
-                hideLoading();
+              } else if (value !== null && value !== undefined) {
+                formParams.append(key, value.toString());
+              }
             }
+    
+            console.log('Submitting form data with photo:', data.photo ? 'Yes' : 'No');
+    
+            const response = await fetch(SCRIPT_URL, {
+              method: 'POST',
+              body: formParams,
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+              }
+            });
+    
+            const html = await response.text();
+    
+            // Check if it's a success page
+            if (html.includes('Application Submitted Successfully') || 
+                html.includes('Application ID:') || 
+                html.includes('confirmation-card')) {
+      
+              // Display success message in new window
+              const newWindow = window.open('', '_blank');
+              newWindow.document.write(html);
+              newWindow.document.close();
+      
+              showNotification('Application submitted successfully!', 'success');
+      
+              // Reset form and show dashboard
+              document.getElementById('newApplicationForm').reset();
+              document.getElementById('previous-study-section').style.display = 'none';
+              document.getElementById('illness-section').style.display = 'none';
+              document.getElementById('declarationCheckbox').checked = false;
+              document.getElementById('submitApplicationBtn').disabled = true;
+              document.getElementById('submitApplicationBtn').style.background = 'linear-gradient(135deg, #6c757d 0%, #495057 100%)';
+              document.getElementById('submitApplicationBtn').style.opacity = '0.7';
+              document.getElementById('photoInput').value = ''; // Clear photo input
+              showDashboard();
+            } else if (html.includes('Error') || html.includes('required') || html.includes('digits')) {
+              // It's an error message
+              const errorMatch = html.match(/Error[^<]*/) || html.match(/message[^<]*/i);
+              let errorMessage = 'Error in form submission. Please check all fields.';
+      
+              if (errorMatch) {
+                errorMessage = errorMatch[0];
+                // Try to extract JSON error if it's a JSON response
+                try {
+                  const jsonMatch = html.match(/{[^}]+}/);
+                  if (jsonMatch) {
+                    const errorData = JSON.parse(jsonMatch[0]);
+                    errorMessage = errorData.message || errorMessage;
+                  }
+                } catch (e) {
+                  // Use the matched error text
+                }
+              }
+      
+              showNotification(errorMessage, 'error');
+            } else {
+              // Unknown response - show in new window
+              const newWindow = window.open('', '_blank');
+              newWindow.document.write(html);
+              newWindow.document.close();
+      
+              showNotification('Application submitted! Please check the new window.', 'info');
+      
+              // Reset form and show dashboard
+              document.getElementById('newApplicationForm').reset();
+              document.getElementById('previous-study-section').style.display = 'none';
+              document.getElementById('illness-section').style.display = 'none';
+              document.getElementById('declarationCheckbox').checked = false;
+              document.getElementById('submitApplicationBtn').disabled = true;
+              document.getElementById('submitApplicationBtn').style.background = 'linear-gradient(135deg, #6c757d 0%, #495057 100%)';
+              document.getElementById('submitApplicationBtn').style.opacity = '0.7';
+              document.getElementById('photoInput').value = ''; // Clear photo input
+              showDashboard();
+            }
+          } catch (error) {
+            console.error('Submission error:', error);
+            showNotification('Network error. Please check your connection and try again.', 'error');
+          } finally {
+            hideLoading();
+          }
         }
     </script>
 </body>
