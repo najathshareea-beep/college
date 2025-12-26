@@ -207,6 +207,15 @@
             animation: bounce 0.5s;
         }
 
+        #posterBtn:hover {
+            border-color: var(--accent-purple);
+        }
+
+        #posterBtn:hover i {
+            color: var(--accent-purple);
+            animation: bounce 0.5s;
+        }
+
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
@@ -384,6 +393,7 @@
             box-shadow: var(--card-shadow);
             position: relative;
             overflow: hidden;
+            display: none;
         }
 
         .toppers-section::before {
@@ -645,6 +655,10 @@
             .toppers-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .btn-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
@@ -735,6 +749,14 @@
                     <i class="fa-solid fa-graduation-cap"></i>
                     <span>Class Toppers</span>
                 </a>
+                
+                <a href="toppers.html" 
+                   class="result-btn" 
+                   id="posterBtn"
+                   target="_blank">
+                    <i class="fa-solid fa-image"></i>
+                    <span>Toppers Poster</span>
+                </a>
             </div>
 
             <div class="text-center mt-4">
@@ -778,7 +800,7 @@
         </div>
 
         <!-- Class Toppers Section -->
-        <div class="toppers-section" id="toppersContainer" style="display: none;">
+        <div class="toppers-section" id="toppersContainer">
             <div class="toppers-header">
                 <h2>CLASS TOPPERS</h2>
                 <p>First Semester Examination 2025-26 • Celebrating Academic Excellence</p>
@@ -943,6 +965,7 @@
         const errorText = document.getElementById('errorText');
         const annualExamBtn = document.getElementById('annualExamBtn');
         const toppersBtn = document.getElementById('toppersBtn');
+        const posterBtn = document.getElementById('posterBtn');
 
         // Annual Exam Button Click Handler
         annualExamBtn.addEventListener('click', function(e) {
