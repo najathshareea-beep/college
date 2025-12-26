@@ -471,30 +471,6 @@
             opacity: 0.7;
         }
 
-        .topper-card:nth-child(2)::before {
-            background: var(--topper-silver);
-        }
-
-        .topper-card:nth-child(3)::before {
-            background: var(--topper-bronze);
-        }
-
-        .topper-card:nth-child(4)::before {
-            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-        }
-
-        .topper-card:nth-child(5)::before {
-            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
-        }
-
-        .topper-card:nth-child(6)::before {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-        }
-
-        .topper-card:nth-child(7)::before {
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-        }
-
         .topper-card:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 20px 40px rgba(11, 94, 215, 0.15);
@@ -562,72 +538,15 @@
             animation: shine 3s infinite linear;
         }
 
-        .topper-card:nth-child(2) .percentage-badge {
-            background: var(--topper-silver);
-            box-shadow: 0 5px 15px rgba(192, 192, 192, 0.3);
-        }
-
-        .topper-card:nth-child(3) .percentage-badge {
-            background: var(--topper-bronze);
-            box-shadow: 0 5px 15px rgba(205, 127, 50, 0.3);
-        }
-
         @keyframes shine {
             0% { left: -100%; }
             100% { left: 100%; }
         }
-
-        .topper-rank {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 40px;
-            height: 40px;
-            background: var(--gradient-primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.2rem;
-            box-shadow: 0 3px 10px rgba(11, 94, 215, 0.3);
-        }
-
         .topper-medal {
             font-size: 2.5rem;
             margin-bottom: 15px;
             color: #FFD700;
             filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.2));
-        }
-
-        .topper-card:nth-child(2) .topper-medal {
-            color: #C0C0C0;
-        }
-
-        .topper-card:nth-child(3) .topper-medal {
-            color: #CD7F32;
-        }
-
-        .topper-card:nth-child(4) .topper-medal,
-        .topper-card:nth-child(5) .topper-medal,
-        .topper-card:nth-child(6) .topper-medal,
-        .topper-card:nth-child(7) .topper-medal {
-            color: var(--primary-blue);
-        }
-
-        .topper-info {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .topper-info i {
-            color: var(--primary-blue);
         }
 
         /* Footer */
@@ -791,107 +710,72 @@
             <div class="toppers-grid">
                 <!-- Class 1 Topper -->
                 <div class="topper-card">
-                    <div class="topper-rank">1</div>
                     <div class="topper-medal">
-                        <i class="fas fa-medal"></i>
+                        <i class="fas fa-crown"></i>
                     </div>
                     <div class="class-label">Class 1 Topper</div>
                     <h3 class="topper-name">MUHAMMED FASIL ALI</h3>
                     <div class="percentage-badge">76.28%</div>
-                    <div class="topper-info">
-                        <i class="fas fa-star"></i>
-                        <span>Highest Percentage</span>
-                    </div>
                 </div>
                 
                 <!-- Class 2 Topper -->
                 <div class="topper-card">
-                    <div class="topper-rank">2</div>
                     <div class="topper-medal">
-                        <i class="fas fa-medal"></i>
+                        <i class="fas fa-crown"></i>
                     </div>
                     <div class="class-label">Class 2 Topper</div>
                     <h3 class="topper-name">MUHAMMED SALIH K</h3>
                     <div class="percentage-badge">58.71%</div>
-                    <div class="topper-info">
-                        <i class="fas fa-trophy"></i>
-                        <span>Academic Excellence</span>
-                    </div>
                 </div>
                 
                 <!-- Class 3 Topper -->
                 <div class="topper-card">
-                    <div class="topper-rank">3</div>
                     <div class="topper-medal">
-                        <i class="fas fa-medal"></i>
+                        <i class="fas fa-crown"></i>
                     </div>
                     <div class="class-label">Class 3 Topper</div>
                     <h3 class="topper-name">ANSHIF P</h3>
                     <div class="percentage-badge">67.42%</div>
-                    <div class="topper-info">
-                        <i class="fas fa-award"></i>
-                        <span>Outstanding Performance</span>
-                    </div>
-                </div>
+                 </div>
                 
                 <!-- Class 4 Topper -->
                 <div class="topper-card">
-                    <div class="topper-rank">4</div>
                     <div class="topper-medal">
-                        <i class="fas fa-star"></i>
+                        <i class="fas fa-crown"></i>
                     </div>
                     <div class="class-label">Class 4 Topper</div>
                     <h3 class="topper-name">MUHAMMED SAFWAN NP</h3>
                     <div class="percentage-badge">42.12%</div>
-                    <div class="topper-info">
-                        <i class="fas fa-graduation-cap"></i>
-                        <span>Class Topper</span>
-                    </div>
                 </div>
                 
                 <!-- Class 5 Topper -->
                 <div class="topper-card">
-                    <div class="topper-rank">5</div>
                     <div class="topper-medal">
-                        <i class="fas fa-star"></i>
+                        <i class="fas fa-crown"></i>
                     </div>
                     <div class="class-label">Class 5 Topper</div>
                     <h3 class="topper-name">MUHAMMED SWALIH CP</h3>
                     <div class="percentage-badge">54.39%</div>
-                    <div class="topper-info">
-                        <i class="fas fa-chart-line"></i>
-                        <span>Consistent Performer</span>
-                    </div>
                 </div>
                 
                 <!-- Class 6 Topper -->
                 <div class="topper-card">
-                    <div class="topper-rank">6</div>
                     <div class="topper-medal">
-                        <i class="fas fa-star"></i>
+                        <i class="fas fa-crown"></i>
                     </div>
                     <div class="class-label">Class 6 Topper</div>
                     <h3 class="topper-name">MUHAMMED LABEEB TV</h3>
                     <div class="percentage-badge">61.05%</div>
-                    <div class="topper-info">
-                        <i class="fas fa-brain"></i>
-                        <span>Academic Achiever</span>
-                    </div>
                 </div>
                 
                 <!-- Class 8 Topper -->
                 <div class="topper-card">
-                    <div class="topper-rank">7</div>
                     <div class="topper-medal">
                         <i class="fas fa-crown"></i>
                     </div>
                     <div class="class-label">Class 8 Topper</div>
                     <h3 class="topper-name">MUHAMMED AFTHAB</h3>
                     <div class="percentage-badge">86.57%</div>
-                    <div class="topper-info">
-                        <i class="fas fa-fire"></i>
-                        <span>Highest Overall Score</span>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1267,3 +1151,4 @@
     </script>
 </body>
 </html>
+
