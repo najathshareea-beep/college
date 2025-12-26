@@ -10,20 +10,22 @@
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Google Fonts for Islamic aesthetic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=El+Messiri:wght@400;600;700&family=Noto+Naskh+Arabic:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --primary-blue: #1a5fb4;
-      --warm-blue: #3584e4;
-      --accent-orange: #ff7800;
-      --light-orange: #ffa348;
-      --light-bg: #f8f9fc;
-      --card-bg: #ffffff;
-      --text-dark: #2d3748;
-      --text-gray: #718096;
-      --border-color: #e2e8f0;
+      --islamic-green: #0a5c36;
+      --islamic-gold: #c19a53;
+      --accent-blue: #2d5aa0;
+      --light-beige: #f8f3e9;
+      --dark-blue: #0b2a42;
+      --text-light: #ffffff;
+      --text-gray: #b0b7c3;
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --border-color: rgba(193, 154, 83, 0.2);
     }
 
     * {
@@ -33,15 +35,47 @@
     }
 
     body {
-      background-color: var(--light-bg);
-      color: var(--text-dark);
+      background: linear-gradient(135deg, rgba(11, 42, 66, 0.95) 0%, rgba(10, 92, 54, 0.85) 100%);
+      color: var(--text-light);
       font-family: 'Poppins', sans-serif;
       overflow-x: hidden;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(10, 92, 54, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(193, 154, 83, 0.05) 0%, transparent 20%),
+        url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c19a53' fill-opacity='0.05'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.6;
+      z-index: -1;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--dark-blue);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, var(--islamic-gold), var(--islamic-green));
+      border-radius: 5px;
     }
 
     /* Header Styling */
     .pta-hero {
-      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--warm-blue) 100%);
+      background: linear-gradient(135deg, rgba(10, 92, 54, 0.9) 0%, rgba(45, 90, 160, 0.9) 100%),
+                  url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
       padding: 5rem 0 4rem;
       position: relative;
       overflow: hidden;
@@ -54,7 +88,20 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+      background: radial-gradient(circle at 20% 30%, rgba(193, 154, 83, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
+    }
+
+    .pta-hero::after {
+      content: 'ٱللَّٰهُ';
+      position: absolute;
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 200px;
+      color: rgba(255, 255, 255, 0.05);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
     }
 
     .hero-content {
@@ -66,30 +113,60 @@
     }
 
     .hero-title {
-      font-size: 3.5rem;
-      font-weight: 700;
-      color: white;
+      font-family: 'El Messiri', sans-serif;
+      font-size: 3.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--islamic-gold) 0%, #f5e1a4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       margin-bottom: 1rem;
-      font-family: 'Quicksand', sans-serif;
+      text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
     .hero-subtitle {
-      font-size: 1.3rem;
-      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.4rem;
+      color: var(--light-beige);
       margin-bottom: 2rem;
+      font-family: 'Amiri', serif;
       line-height: 1.6;
+    }
+
+    .arabic-calligraphy {
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 1.8rem;
+      color: var(--islamic-gold);
+      margin: 2rem 0;
+      font-weight: 600;
     }
 
     .pta-tagline {
       display: inline-block;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(193, 154, 83, 0.2);
       color: white;
-      padding: 0.8rem 2rem;
+      padding: 1rem 2.5rem;
       border-radius: 50px;
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(193, 154, 83, 0.4);
+      font-family: 'El Messiri', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pta-tagline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.7s ease;
+    }
+
+    .pta-tagline:hover::before {
+      left: 100%;
     }
 
     .tag-container {
@@ -101,14 +178,22 @@
     }
 
     .pta-tag {
-      background: rgba(255, 120, 0, 0.2);
+      background: rgba(10, 92, 54, 0.3);
       color: white;
-      padding: 0.5rem 1.5rem;
+      padding: 0.6rem 1.8rem;
       border-radius: 50px;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 120, 0, 0.3);
+      border: 1px solid rgba(10, 92, 54, 0.5);
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .pta-tag:hover {
+      background: rgba(10, 92, 54, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(10, 92, 54, 0.3);
     }
 
     /* Section Styling */
@@ -121,103 +206,170 @@
     .section-title {
       text-align: center;
       margin-bottom: 4rem;
+      position: relative;
     }
 
     .section-title h2 {
-      font-size: 2.8rem;
+      font-family: 'El Messiri', sans-serif;
+      font-size: 3rem;
       font-weight: 700;
-      color: var(--primary-blue);
+      background: linear-gradient(135deg, var(--islamic-gold) 0%, var(--light-beige) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       margin-bottom: 1rem;
-      font-family: 'Quicksand', sans-serif;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title h2::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, var(--islamic-gold), var(--islamic-green));
+      border-radius: 2px;
     }
 
     .section-title p {
       color: var(--text-gray);
       font-size: 1.1rem;
       max-width: 600px;
-      margin: 0 auto;
+      margin: 1.5rem auto 0;
+      font-family: 'Amiri', serif;
     }
 
     /* PTA Members Grid */
     .pta-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
+      gap: 2.5rem;
       margin-bottom: 6rem;
     }
 
     /* PTA Member Card */
     .pta-member-card {
       background: var(--card-bg);
-      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
       overflow: hidden;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
       border: 1px solid var(--border-color);
     }
 
+    .pta-member-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--islamic-green), var(--islamic-gold), var(--accent-blue));
+      z-index: 1;
+    }
+
+    .pta-member-card::after {
+      content: "❁";
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.5rem;
+      color: var(--islamic-gold);
+      opacity: 0.3;
+    }
+
     .pta-member-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-      border-color: var(--accent-orange);
+      transform: translateY(-12px);
+      border-color: var(--islamic-gold);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
     }
 
     .member-header {
-      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--warm-blue) 100%);
-      padding: 2rem;
+      background: linear-gradient(135deg, var(--islamic-green) 0%, var(--accent-blue) 100%);
+      padding: 2.5rem;
       text-align: center;
       position: relative;
+      overflow: hidden;
+    }
+
+    .member-header::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .pta-member-card:hover .member-header::before {
+      opacity: 1;
     }
 
     .member-photo {
-      width: 140px;
-      height: 140px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       border: 4px solid white;
       object-fit: cover;
       margin: 0 auto;
       display: block;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      transition: transform 0.3s ease;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      transition: all 0.4s ease;
+      position: relative;
+      z-index: 2;
     }
 
     .pta-member-card:hover .member-photo {
-      transform: scale(1.05);
+      transform: scale(1.08);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
     }
 
     .role-badge {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: linear-gradient(135deg, var(--accent-orange), var(--light-orange));
+      top: 1.5rem;
+      right: 1.5rem;
+      background: linear-gradient(135deg, var(--islamic-green), var(--islamic-gold));
       color: white;
-      padding: 0.5rem 1rem;
+      padding: 0.6rem 1.2rem;
       border-radius: 20px;
       font-weight: 700;
-      font-size: 0.8rem;
-      box-shadow: 0 4px 15px rgba(255, 120, 0, 0.3);
+      font-size: 0.85rem;
+      box-shadow: 0 5px 15px rgba(10, 92, 54, 0.4);
+      z-index: 3;
+      font-family: 'El Messiri', sans-serif;
+      letter-spacing: 0.5px;
     }
 
     .member-content {
-      padding: 2rem;
+      padding: 2.5rem;
       text-align: center;
+      background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.05));
     }
 
     .member-name {
-      font-size: 1.5rem;
+      font-family: 'El Messiri', sans-serif;
+      font-size: 1.6rem;
       font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 0.5rem;
+      color: var(--text-light);
+      margin-bottom: 0.8rem;
+      line-height: 1.3;
     }
 
     .member-role {
-      color: var(--accent-orange);
-      font-size: 1rem;
+      color: var(--islamic-gold);
+      font-size: 1.1rem;
       font-weight: 600;
       margin-bottom: 1.5rem;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
+      font-family: 'Poppins', sans-serif;
     }
 
     .contact-info {
@@ -225,205 +377,347 @@
       align-items: center;
       justify-content: center;
       gap: 1rem;
-      background: rgba(26, 95, 180, 0.05);
-      padding: 1rem;
-      border-radius: 12px;
-      margin-top: 1rem;
+      background: rgba(10, 92, 54, 0.15);
+      padding: 1.2rem;
+      border-radius: 15px;
+      margin-top: 1.5rem;
+      border: 1px solid rgba(193, 154, 83, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .pta-member-card:hover .contact-info {
+      background: rgba(10, 92, 54, 0.25);
+      border-color: rgba(193, 154, 83, 0.4);
     }
 
     .contact-info i {
-      color: var(--primary-blue);
-      font-size: 1.2rem;
+      color: var(--islamic-gold);
+      font-size: 1.3rem;
     }
 
     .contact-number {
-      color: var(--text-dark);
+      color: var(--text-light);
       font-weight: 600;
       font-size: 1.1rem;
+      font-family: 'Poppins', sans-serif;
     }
 
     /* PTA Activities */
     .activities-section {
-      background: linear-gradient(135deg, rgba(255, 120, 0, 0.05) 0%, rgba(255, 163, 72, 0.05) 100%);
-      border-radius: 20px;
-      padding: 3rem;
-      margin: 4rem 0;
+      background: linear-gradient(135deg, rgba(10, 92, 54, 0.1) 0%, rgba(45, 90, 160, 0.1) 100%);
+      border-radius: 25px;
+      padding: 4rem;
+      margin: 5rem 0;
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .activities-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(193, 154, 83, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.05) 0%, transparent 50%);
+      z-index: -1;
+    }
+
+    .activities-section .section-title h2 {
+      background: linear-gradient(135deg, var(--islamic-gold) 0%, #f5e1a4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .activities-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      gap: 2.5rem;
       margin-top: 3rem;
     }
 
     .activity-card {
-      background: white;
-      border-radius: 15px;
-      padding: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2.5rem;
       text-align: center;
       transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      border: 1px solid var(--border-color);
+      border: 1px solid rgba(193, 154, 83, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .activity-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, var(--islamic-green), var(--islamic-gold));
     }
 
     .activity-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      border-color: var(--accent-orange);
+      transform: translateY(-8px);
+      border-color: var(--islamic-gold);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
     }
 
     .activity-icon {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, var(--accent-orange), var(--light-orange));
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      color: white;
-      font-size: 1.5rem;
-    }
-
-    .activity-title {
-      color: var(--primary-blue);
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    .activity-description {
-      color: var(--text-gray);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    /* Mission Statement */
-    .mission-section {
-      text-align: center;
-      padding: 4rem 2rem;
-      background: white;
-      border-radius: 20px;
-      margin: 4rem 0;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-      border: 1px solid var(--border-color);
-    }
-
-    .mission-icon {
-      width: 80px;
-      height: 80px;
-      background: linear-gradient(135deg, var(--primary-blue), var(--warm-blue));
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--islamic-green), var(--islamic-gold));
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 2rem;
       color: white;
-      font-size: 2rem;
+      font-size: 1.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .activity-card:hover .activity-icon {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 10px 20px rgba(10, 92, 54, 0.3);
+    }
+
+    .activity-title {
+      color: var(--text-light);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      font-family: 'El Messiri', sans-serif;
+    }
+
+    .activity-description {
+      color: var(--text-gray);
+      font-size: 1rem;
+      line-height: 1.7;
+      font-family: 'Amiri', serif;
+    }
+
+    /* Mission Statement */
+    .mission-section {
+      text-align: center;
+      padding: 5rem;
+      background: linear-gradient(135deg, rgba(10, 92, 54, 0.15) 0%, rgba(45, 90, 160, 0.15) 100%);
+      border-radius: 25px;
+      margin: 5rem 0;
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mission-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 10% 20%, rgba(193, 154, 83, 0.05) 0%, transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(10, 92, 54, 0.05) 0%, transparent 30%);
+    }
+
+    .mission-icon {
+      width: 90px;
+      height: 90px;
+      background: linear-gradient(135deg, var(--islamic-green), var(--accent-blue));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2.5rem;
+      color: white;
+      font-size: 2.5rem;
+      box-shadow: 0 10px 25px rgba(10, 92, 54, 0.3);
+      position: relative;
+      z-index: 1;
     }
 
     .mission-title {
-      color: var(--primary-blue);
-      font-size: 2rem;
+      color: var(--islamic-gold);
+      font-size: 2.5rem;
       font-weight: 700;
-      margin-bottom: 1.5rem;
-      font-family: 'Quicksand', sans-serif;
+      margin-bottom: 1.8rem;
+      font-family: 'El Messiri', sans-serif;
+      position: relative;
+      z-index: 1;
     }
 
     .mission-text {
-      color: var(--text-gray);
-      font-size: 1.1rem;
-      line-height: 1.8;
+      color: var(--light-beige);
+      font-size: 1.3rem;
+      line-height: 1.9;
       max-width: 800px;
       margin: 0 auto;
+      font-family: 'Amiri', serif;
+      position: relative;
+      z-index: 1;
     }
 
     /* Back Button */
     .back-container {
       text-align: center;
-      margin: 4rem 0;
+      margin: 5rem 0;
     }
 
     .back-btn {
       display: inline-flex;
       align-items: center;
       gap: 1rem;
-      background: linear-gradient(135deg, var(--primary-blue), var(--warm-blue));
+      background: linear-gradient(135deg, var(--islamic-green), var(--islamic-gold));
       color: white;
       text-decoration: none;
-      padding: 1rem 2.5rem;
+      padding: 1.3rem 3.5rem;
       border-radius: 50px;
-      font-weight: 600;
-      font-size: 1.1rem;
+      font-weight: 700;
+      font-size: 1.3rem;
       transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(26, 95, 180, 0.3);
+      box-shadow: 0 10px 30px rgba(10, 92, 54, 0.4);
+      font-family: 'El Messiri', sans-serif;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .back-btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.7s ease;
+      z-index: -1;
+    }
+
+    .back-btn:hover::before {
+      left: 100%;
     }
 
     .back-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(26, 95, 180, 0.4);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(10, 92, 54, 0.6);
       color: white;
     }
 
     /* Footer */
     .pta-footer {
-      background: linear-gradient(135deg, #0d47a1, #1976d2);
-      padding: 4rem 0 2rem;
-      margin-top: 4rem;
-      color: white;
+      background: linear-gradient(135deg, rgba(10, 92, 54, 0.9) 0%, rgba(11, 42, 66, 0.95) 100%);
+      border-top: 3px solid var(--islamic-gold);
+      padding: 5rem 0 3rem;
+      margin-top: 6rem;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pta-footer::before {
+      content: "﷽";
+      position: absolute;
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 150px;
+      color: rgba(255, 255, 255, 0.03);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
     }
 
     .footer-content {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 3rem;
-      margin-bottom: 3rem;
+      gap: 4rem;
+      margin-bottom: 4rem;
+      position: relative;
+      z-index: 1;
     }
 
     .footer-column h5 {
-      color: white;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      font-size: 1.2rem;
-      font-family: 'Quicksand', sans-serif;
+      color: var(--islamic-gold);
+      font-weight: 700;
+      margin-bottom: 1.8rem;
+      font-size: 1.4rem;
+      font-family: 'El Messiri', sans-serif;
+      border-bottom: 2px solid rgba(193, 154, 83, 0.3);
+      padding-bottom: 0.8rem;
+      display: inline-block;
     }
 
     .footer-column p {
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 0.8rem;
-      font-size: 0.95rem;
+      color: var(--light-beige);
+      margin-bottom: 1.2rem;
+      font-size: 1.1rem;
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: 1rem;
+      font-family: 'Amiri', serif;
     }
 
     .footer-column i {
-      color: var(--light-orange);
-      width: 20px;
+      color: var(--islamic-gold);
+      width: 24px;
       text-align: center;
+      font-size: 1.3rem;
     }
 
     .copyright {
       text-align: center;
-      color: rgba(255, 255, 255, 0.7);
-      padding-top: 2rem;
+      color: var(--light-beige);
+      padding-top: 2.5rem;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 0.9rem;
+      font-size: 1.1rem;
+      position: relative;
+      z-index: 1;
+      font-family: 'Amiri', serif;
+    }
+
+    .copyright::before {
+      content: "©";
+      margin-right: 5px;
     }
 
     /* Responsive */
+    @media (max-width: 992px) {
+      .activities-section {
+        padding: 3rem;
+      }
+      
+      .mission-section {
+        padding: 4rem 2rem;
+      }
+      
+      .footer-content {
+        gap: 3rem;
+      }
+    }
+
     @media (max-width: 768px) {
       .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
       }
 
       .hero-subtitle {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
+      }
+
+      .arabic-calligraphy {
+        font-size: 1.5rem;
       }
 
       .section-title h2 {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
       }
 
       .pta-grid {
@@ -435,29 +729,47 @@
       }
 
       .activities-section {
-        padding: 2rem;
+        padding: 2.5rem;
+        margin: 3rem 0;
       }
 
       .mission-section {
         padding: 3rem 1.5rem;
+        margin: 3rem 0;
+      }
+
+      .pta-hero::after {
+        font-size: 150px;
       }
     }
 
     @media (max-width: 480px) {
       .hero-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
 
       .section-title h2 {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
 
       .member-name {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
       }
 
       .footer-content {
         grid-template-columns: 1fr;
+      }
+      
+      .pta-footer::before {
+        font-size: 100px;
+      }
+      
+      .mission-title {
+        font-size: 2rem;
+      }
+      
+      .mission-text {
+        font-size: 1.1rem;
       }
     }
   </style>
@@ -469,14 +781,15 @@
     <div class="section-container">
       <div class="hero-content" data-aos="fade-up">
         <h1 class="hero-title">Parent-Teacher Association</h1>
-        <p class="hero-subtitle">Building bridges between home and school for student success</p>
-        <div class="pta-tagline" data-aos="fade-up" data-aos-delay="200">
-          <i class="fas fa-handshake me-2"></i>Partners in Education
+        <div class="arabic-calligraphy" data-aos="fade-up" data-aos-delay="200">جمعية الآباء والمعلمين</div>
+        <p class="hero-subtitle">Building bridges between home and school through Islamic values and educational excellence</p>
+        <div class="pta-tagline" data-aos="fade-up" data-aos-delay="300">
+          <i class="fas fa-handshake me-2"></i>Partners in Islamic Education
         </div>
         <div class="tag-container">
           <span class="pta-tag" data-aos="fade-up" data-aos-delay="100">2025-26 Academic Year</span>
           <span class="pta-tag" data-aos="fade-up" data-aos-delay="150">Community Collaboration</span>
-          <span class="pta-tag" data-aos="fade-up" data-aos-delay="200">Student-Centered</span>
+          <span class="pta-tag" data-aos="fade-up" data-aos-delay="200">Islamic Values</span>
         </div>
       </div>
     </div>
@@ -486,7 +799,7 @@
   <section class="section-container">
     <div class="section-title" data-aos="fade-up">
       <h2>PTA Executive Committee</h2>
-      <p>Dedicated parents and teachers working together for our students</p>
+      <p>Dedicated parents and teachers working together through Islamic principles for our students</p>
     </div>
 
     <div class="pta-grid">
@@ -560,17 +873,17 @@
   <section class="section-container">
     <div class="activities-section" data-aos="fade-up">
       <div class="section-title">
-        <h2 style="color: var(--accent-orange);">Recent PTA Activities</h2>
-        <p>Building community and enhancing educational experience</p>
+        <h2>Recent PTA Activities</h2>
+        <p>Building community and enhancing educational experience through Islamic values</p>
       </div>
 
       <div class="activities-grid">
         <div class="activity-card" data-aos="zoom-in" data-aos-delay="100">
           <div class="activity-icon">
-            <i class="fas fa-chalkboard-teacher"></i>
+            <i class="fas fa-mosque"></i>
           </div>
-          <h4 class="activity-title">Parent Education Seminar</h4>
-          <p class="activity-description">Interactive sessions for parents on child development, digital safety, and effective parenting strategies.</p>
+          <h4 class="activity-title">Islamic Parenting Seminar</h4>
+          <p class="activity-description">Interactive sessions for parents on child development according to Islamic principles, digital safety, and nurturing young Muslims.</p>
         </div>
 
         <div class="activity-card" data-aos="zoom-in" data-aos-delay="150">
@@ -578,15 +891,15 @@
             <i class="fas fa-hands-helping"></i>
           </div>
           <h4 class="activity-title">Campus Beautification Day</h4>
-          <p class="activity-description">Parents, teachers, and students worked together to enhance our campus environment and facilities.</p>
+          <p class="activity-description">Parents, teachers, and students worked together to enhance our campus environment with Islamic art and functional improvements.</p>
         </div>
 
         <div class="activity-card" data-aos="zoom-in" data-aos-delay="200">
           <div class="activity-icon">
-            <i class="fas fa-calendar-alt"></i>
+            <i class="fas fa-book-open"></i>
           </div>
-          <h4 class="activity-title">Annual PTA Meeting</h4>
-          <p class="activity-description">Strategic planning session to set goals and initiatives for the upcoming academic year.</p>
+          <h4 class="activity-title">Quranic Studies Support</h4>
+          <p class="activity-description">Establishing additional resources and support systems for students pursuing Quranic memorization and Islamic studies.</p>
         </div>
       </div>
     </div>
@@ -596,13 +909,13 @@
   <section class="section-container">
     <div class="mission-section" data-aos="fade-up">
       <div class="mission-icon">
-        <i class="fas fa-star"></i>
+        <i class="fas fa-star-and-crescent"></i>
       </div>
-      <h3 class="mission-title">Our Mission</h3>
+      <h3 class="mission-title">Our Islamic Mission</h3>
       <p class="mission-text">
-        To foster strong partnerships between parents, teachers, and the school community, 
-        working collaboratively to enhance the educational experience and ensure every student 
-        reaches their full potential in a supportive and nurturing environment.
+        To foster strong partnerships between parents, teachers, and the school community grounded in Islamic values, 
+        working collaboratively to enhance the educational experience and ensure every student develops both academic excellence 
+        and strong Islamic character in a supportive and nurturing environment guided by Quranic principles.
       </p>
     </div>
   </section>
@@ -622,9 +935,9 @@
       <div class="footer-content">
         <div class="footer-column">
           <h5>PTA Office</h5>
-          <p>Darunnajath Shareeath & Arts College</p>
-          <p>Punnakkad, Karuvarakundu</p>
-          <p>Malappuram District, Kerala</p>
+          <p><i class="fas fa-mosque"></i> Darunnajath Shareeath & Arts College</p>
+          <p><i class="fas fa-map-marker-alt"></i> Punnakkad, Karuvarakundu</p>
+          <p><i class="fas fa-location-dot"></i> Malappuram District, Kerala</p>
         </div>
 
         <div class="footer-column">
@@ -635,16 +948,16 @@
         </div>
 
         <div class="footer-column">
-          <h5>Our Values</h5>
-          <p><i class="fas fa-heart"></i> Collaboration</p>
-          <p><i class="fas fa-users"></i> Community</p>
-          <p><i class="fas fa-graduation-cap"></i> Education</p>
+          <h5>Islamic Values</h5>
+          <p><i class="fas fa-heart"></i> Compassion (Rahma)</p>
+          <p><i class="fas fa-users"></i> Community (Ummah)</p>
+          <p><i class="fas fa-graduation-cap"></i> Knowledge (Ilm)</p>
         </div>
       </div>
 
       <div class="copyright">
         <p>© 2025 Darunnajath Shareeath & Arts College PTA. All rights reserved.</p>
-        <p class="mt-2">Building bridges for better education</p>
+        <p class="mt-3">"And hold firmly to the rope of Allah all together and do not become divided..." (Quran 3:103)</p>
       </div>
     </div>
   </footer>
@@ -663,7 +976,7 @@
     // Enhanced card hover
     document.querySelectorAll('.pta-member-card').forEach(card => {
       card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px)';
+        this.style.transform = 'translateY(-12px)';
       });
       card.addEventListener('mouseleave', function() {
         this.style.transform = 'translateY(0)';
