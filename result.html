@@ -198,15 +198,6 @@
             animation: bounce 0.5s;
         }
 
-        #toppersBtn:hover {
-            border-color: var(--accent-yellow);
-        }
-
-        #toppersBtn:hover i {
-            color: var(--accent-yellow);
-            animation: bounce 0.5s;
-        }
-
         #posterBtn:hover {
             border-color: var(--accent-purple);
         }
@@ -384,16 +375,15 @@
             100% { transform: scale(1); }
         }
 
-        /* ===== CLASS TOPPERS SECTION ===== */
+        /* ===== CLASS TOPPERS SECTION (ALWAYS VISIBLE) ===== */
         .toppers-section {
             background: linear-gradient(145deg, #ffffff, #f0f7ff);
             border-radius: 20px;
-            padding: 50px 30px;
+            padding: 40px 30px;
             margin-bottom: 40px;
             box-shadow: var(--card-shadow);
             position: relative;
             overflow: hidden;
-            display: none;
         }
 
         .toppers-section::before {
@@ -428,8 +418,18 @@
             color: var(--primary-blue);
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            font-size: 2.2rem;
+            font-size: 2rem;
             margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .toppers-header h2 i {
+            color: var(--accent-yellow);
+            font-size: 2.5rem;
+            animation: bounce 2s infinite;
         }
 
         .toppers-header p {
@@ -441,8 +441,8 @@
 
         .toppers-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
             position: relative;
             z-index: 1;
         }
@@ -450,13 +450,14 @@
         .topper-card {
             background: white;
             border-radius: 15px;
-            padding: 25px;
+            padding: 20px;
             text-align: center;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
             border: 2px solid transparent;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: 100%;
         }
 
         .topper-card::before {
@@ -480,6 +481,18 @@
 
         .topper-card:nth-child(4)::before {
             background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+
+        .topper-card:nth-child(5)::before {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+        }
+
+        .topper-card:nth-child(6)::before {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .topper-card:nth-child(7)::before {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
         }
 
         .topper-card:hover {
@@ -508,10 +521,14 @@
         .topper-name {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #222;
             margin: 15px 0;
             line-height: 1.3;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .percentage-badge {
@@ -578,7 +595,7 @@
         }
 
         .topper-medal {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 15px;
             color: #FFD700;
             filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.2));
@@ -590,6 +607,13 @@
 
         .topper-card:nth-child(3) .topper-medal {
             color: #CD7F32;
+        }
+
+        .topper-card:nth-child(4) .topper-medal,
+        .topper-card:nth-child(5) .topper-medal,
+        .topper-card:nth-child(6) .topper-medal,
+        .topper-card:nth-child(7) .topper-medal {
+            color: var(--primary-blue);
         }
 
         .topper-info {
@@ -604,33 +628,6 @@
 
         .topper-info i {
             color: var(--primary-blue);
-        }
-
-        .toppers-cta {
-            text-align: center;
-            margin-top: 40px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .toppers-cta .btn {
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-            padding: 12px 35px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 5px 15px rgba(11, 94, 215, 0.2);
-        }
-
-        .toppers-cta .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(11, 94, 215, 0.3);
         }
 
         /* Footer */
@@ -651,6 +648,12 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .toppers-grid {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            }
+        }
+
         @media (max-width: 992px) {
             .toppers-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -658,6 +661,11 @@
             
             .btn-container {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .topper-name {
+                font-size: 1.3rem;
+                min-height: 50px;
             }
         }
 
@@ -689,6 +697,11 @@
             .topper-card {
                 padding: 20px;
             }
+            
+            .topper-name {
+                font-size: 1.4rem;
+                min-height: auto;
+            }
         }
 
         @media (max-width: 480px) {
@@ -706,6 +719,14 @@
             
             .toppers-section {
                 padding: 30px 15px;
+            }
+            
+            .toppers-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .toppers-header h2 i {
+                font-size: 2rem;
             }
         }
     </style>
@@ -743,13 +764,6 @@
                     <span>Jamia Junior Colleges Public Exam</span>
                 </a>
                 
-                <a href="javascript:void(0);" 
-                   class="result-btn" 
-                   id="toppersBtn">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                    <span>Class Toppers</span>
-                </a>
-                
                 <a href="toppers.html" 
                    class="result-btn" 
                    id="posterBtn"
@@ -764,6 +778,121 @@
                     <i class="fas fa-arrow-left"></i>
                     <span>Back to Home</span>
                 </a>
+            </div>
+        </div>
+
+        <!-- Class Toppers Section (ALWAYS VISIBLE) -->
+        <div class="toppers-section" id="toppersContainer">
+            <div class="toppers-header">
+                <h2><i class="fas fa-trophy"></i> CLASS TOPPERS 2025-26</h2>
+                <p>First Semester Examination • Celebrating Academic Excellence</p>
+            </div>
+            
+            <div class="toppers-grid">
+                <!-- Class 1 Topper -->
+                <div class="topper-card">
+                    <div class="topper-rank">1</div>
+                    <div class="topper-medal">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="class-label">Class 1 Topper</div>
+                    <h3 class="topper-name">MUHAMMED FASIL ALI</h3>
+                    <div class="percentage-badge">76.28%</div>
+                    <div class="topper-info">
+                        <i class="fas fa-star"></i>
+                        <span>Highest Percentage</span>
+                    </div>
+                </div>
+                
+                <!-- Class 2 Topper -->
+                <div class="topper-card">
+                    <div class="topper-rank">2</div>
+                    <div class="topper-medal">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="class-label">Class 2 Topper</div>
+                    <h3 class="topper-name">MUHAMMED SALIH K</h3>
+                    <div class="percentage-badge">58.71%</div>
+                    <div class="topper-info">
+                        <i class="fas fa-trophy"></i>
+                        <span>Academic Excellence</span>
+                    </div>
+                </div>
+                
+                <!-- Class 3 Topper -->
+                <div class="topper-card">
+                    <div class="topper-rank">3</div>
+                    <div class="topper-medal">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="class-label">Class 3 Topper</div>
+                    <h3 class="topper-name">ANSHIF P</h3>
+                    <div class="percentage-badge">67.42%</div>
+                    <div class="topper-info">
+                        <i class="fas fa-award"></i>
+                        <span>Outstanding Performance</span>
+                    </div>
+                </div>
+                
+                <!-- Class 4 Topper -->
+                <div class="topper-card">
+                    <div class="topper-rank">4</div>
+                    <div class="topper-medal">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="class-label">Class 4 Topper</div>
+                    <h3 class="topper-name">MUHAMMED SAFWAN NP</h3>
+                    <div class="percentage-badge">42.12%</div>
+                    <div class="topper-info">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Class Topper</span>
+                    </div>
+                </div>
+                
+                <!-- Class 5 Topper -->
+                <div class="topper-card">
+                    <div class="topper-rank">5</div>
+                    <div class="topper-medal">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="class-label">Class 5 Topper</div>
+                    <h3 class="topper-name">MUHAMMED SWALIH CP</h3>
+                    <div class="percentage-badge">54.39%</div>
+                    <div class="topper-info">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Consistent Performer</span>
+                    </div>
+                </div>
+                
+                <!-- Class 6 Topper -->
+                <div class="topper-card">
+                    <div class="topper-rank">6</div>
+                    <div class="topper-medal">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="class-label">Class 6 Topper</div>
+                    <h3 class="topper-name">MUHAMMED LABEEB TV</h3>
+                    <div class="percentage-badge">61.05%</div>
+                    <div class="topper-info">
+                        <i class="fas fa-brain"></i>
+                        <span>Academic Achiever</span>
+                    </div>
+                </div>
+                
+                <!-- Class 8 Topper -->
+                <div class="topper-card">
+                    <div class="topper-rank">7</div>
+                    <div class="topper-medal">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="class-label">Class 8 Topper</div>
+                    <h3 class="topper-name">MUHAMMED AFTHAB</h3>
+                    <div class="percentage-badge">86.57%</div>
+                    <div class="topper-info">
+                        <i class="fas fa-fire"></i>
+                        <span>Highest Overall Score</span>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -795,121 +924,6 @@
                 <a href="javascript:void(0);" class="back-btn" onclick="showResultSelection()">
                     <i class="fas fa-arrow-left"></i>
                     <span>Back to Exam Selection</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Class Toppers Section -->
-        <div class="toppers-section" id="toppersContainer">
-            <div class="toppers-header">
-                <h2>CLASS TOPPERS</h2>
-                <p>First Semester Examination 2025-26 • Celebrating Academic Excellence</p>
-            </div>
-            
-            <div class="toppers-grid">
-                <div class="topper-card">
-                    <div class="topper-rank">1</div>
-                    <div class="topper-medal">
-                        <i class="fas fa-medal"></i>
-                    </div>
-                    <div class="class-label">Class 1</div>
-                    <h3 class="topper-name">MUHAMMED FASIL ALI</h3>
-                    <div class="percentage-badge">76.28%</div>
-                    <div class="topper-info">
-                        <i class="fas fa-star"></i>
-                        <span>Highest Percentage</span>
-                    </div>
-                </div>
-                
-                <div class="topper-card">
-                    <div class="topper-rank">2</div>
-                    <div class="topper-medal">
-                        <i class="fas fa-medal"></i>
-                    </div>
-                    <div class="class-label">Class 2</div>
-                    <h3 class="topper-name">MUHAMMED SALIH K</h3>
-                    <div class="percentage-badge">58.71%</div>
-                    <div class="topper-info">
-                        <i class="fas fa-trophy"></i>
-                        <span>Academic Excellence</span>
-                    </div>
-                </div>
-                
-                <div class="topper-card">
-                    <div class="topper-rank">3</div>
-                    <div class="topper-medal">
-                        <i class="fas fa-medal"></i>
-                    </div>
-                    <div class="class-label">Class 3</div>
-                    <h3 class="topper-name">ANSHIF P</h3>
-                    <div class="percentage-badge">67.42%</div>
-                    <div class="topper-info">
-                        <i class="fas fa-award"></i>
-                        <span>Outstanding Performance</span>
-                    </div>
-                </div>
-                
-                <div class="topper-card">
-                    <div class="topper-rank">4</div>
-                    <div class="topper-medal">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="class-label">Class 4</div>
-                    <h3 class="topper-name">MUHAMMED SAFWAN NP</h3>
-                    <div class="percentage-badge">42.12%</div>
-                    <div class="topper-info">
-                        <i class="fas fa-graduation-cap"></i>
-                        <span>Class Topper</span>
-                    </div>
-                </div>
-                
-                <div class="topper-card">
-                    <div class="topper-rank">5</div>
-                    <div class="topper-medal">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="class-label">Class 5</div>
-                    <h3 class="topper-name">MUHAMMED SWALIH CP</h3>
-                    <div class="percentage-badge">54.39%</div>
-                    <div class="topper-info">
-                        <i class="fas fa-chart-line"></i>
-                        <span>Consistent Performer</span>
-                    </div>
-                </div>
-                
-                <div class="topper-card">
-                    <div class="topper-rank">6</div>
-                    <div class="topper-medal">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="class-label">Class 6</div>
-                    <h3 class="topper-name">MUHAMMED LABEEB TV</h3>
-                    <div class="percentage-badge">61.05%</div>
-                    <div class="topper-info">
-                        <i class="fas fa-brain"></i>
-                        <span>Academic Achiever</span>
-                    </div>
-                </div>
-                
-                <div class="topper-card">
-                    <div class="topper-rank">7</div>
-                    <div class="topper-medal">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <div class="class-label">Class 8</div>
-                    <h3 class="topper-name">MUHAMMED AFTHAB</h3>
-                    <div class="percentage-badge">86.57%</div>
-                    <div class="topper-info">
-                        <i class="fas fa-fire"></i>
-                        <span>Highest Overall Score</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="toppers-cta">
-                <a href="javascript:void(0);" class="btn" onclick="showResultSelection()">
-                    <i class="fas fa-arrow-left"></i>
-                    Back to Exam Selection
                 </a>
             </div>
         </div>
@@ -955,7 +969,6 @@
         // DOM Elements
         const resultSelectionBox = document.getElementById('resultSelectionBox');
         const formContainer = document.getElementById('formContainer');
-        const toppersContainer = document.getElementById('toppersContainer');
         const loadingContainer = document.getElementById('loadingContainer');
         const errorContainer = document.getElementById('errorContainer');
         const resultContainer = document.getElementById('resultContainer');
@@ -964,8 +977,6 @@
         const errorTitle = document.getElementById('errorTitle');
         const errorText = document.getElementById('errorText');
         const annualExamBtn = document.getElementById('annualExamBtn');
-        const toppersBtn = document.getElementById('toppersBtn');
-        const posterBtn = document.getElementById('posterBtn');
 
         // Annual Exam Button Click Handler
         annualExamBtn.addEventListener('click', function(e) {
@@ -973,27 +984,22 @@
             showForm();
         });
 
-        // Toppers Button Click Handler
-        toppersBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            showToppers();
-        });
-
         // Show result selection box
         function showResultSelection() {
             resultSelectionBox.style.display = 'block';
             formContainer.style.display = 'none';
-            toppersContainer.style.display = 'none';
             resultContainer.style.display = 'none';
             errorContainer.style.display = 'none';
             loadingContainer.style.display = 'none';
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // Show form for annual exam
         function showForm() {
             resultSelectionBox.style.display = 'none';
             formContainer.style.display = 'block';
-            toppersContainer.style.display = 'none';
             resultContainer.style.display = 'none';
             errorContainer.style.display = 'none';
             loadingContainer.style.display = 'none';
@@ -1005,19 +1011,9 @@
             
             // Focus on roll number input
             document.getElementById('roll').focus();
-        }
-
-        // Show toppers section
-        function showToppers() {
-            resultSelectionBox.style.display = 'none';
-            formContainer.style.display = 'none';
-            toppersContainer.style.display = 'block';
-            resultContainer.style.display = 'none';
-            errorContainer.style.display = 'none';
-            loadingContainer.style.display = 'none';
             
-            // Scroll to toppers section
-            toppersContainer.scrollIntoView({ behavior: 'smooth' });
+            // Scroll to form
+            formContainer.scrollIntoView({ behavior: 'smooth' });
         }
 
         // Form submission handler
@@ -1057,8 +1053,6 @@
         function showLoading() {
             formContainer.style.display = 'none';
             resultContainer.style.display = 'none';
-            toppersContainer.style.display = 'none';
-            errorContainer.style.display = 'none';
             loadingContainer.style.display = 'block';
             submitBtn.disabled = true;
         }
@@ -1070,7 +1064,6 @@
             
             formContainer.style.display = 'none';
             resultContainer.style.display = 'none';
-            toppersContainer.style.display = 'none';
             loadingContainer.style.display = 'none';
             errorContainer.style.display = 'block';
             submitBtn.disabled = false;
@@ -1259,7 +1252,6 @@
             // Display result
             resultContainer.innerHTML = resultHTML;
             formContainer.style.display = 'none';
-            toppersContainer.style.display = 'none';
             loadingContainer.style.display = 'none';
             errorContainer.style.display = 'none';
             resultContainer.style.display = 'block';
