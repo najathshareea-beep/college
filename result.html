@@ -802,9 +802,9 @@
             <p>Choose the type of result you wish to view from the options below</p>
             
             <div class="btn-container">
-                <a href="javascript:void(0);" class="result-btn" id="annualExamBtn">
+                <a href="javascript:void(0);" class="result-btn" id="ExamBtn">
                     <i class="fa-solid fa-book-open-reader"></i>
-                    <span>Annual Examination</span>
+                    <span>College Examination Result</span>
                 </a>
                 
                 <a href="https://jamiajuniorcolleges.com/student/" class="result-btn" id="jamiaBtn" target="_blank">
@@ -882,7 +882,7 @@
 
         <!-- Form Container -->
         <div class="form-container" id="formContainer">
-            <h2 class="form-title">Annual Examination Result</h2>
+            <h2 class="form-title">Examination Result</h2>
             <form id="resultForm">
                 <div class="form-group">
                     <label class="form-label" for="roll">
@@ -958,10 +958,10 @@
         const submitBtn = document.getElementById('submitBtn');
         const errorTitle = document.getElementById('errorTitle');
         const errorText = document.getElementById('errorText');
-        const annualExamBtn = document.getElementById('annualExamBtn');
+        const ExamBtn = document.getElementById('ExamBtn');
 
-        // Annual Exam Button Click Handler
-        annualExamBtn.addEventListener('click', function(e) {
+        // Exam Button Click Handler
+        ExamBtn.addEventListener('click', function(e) {
             e.preventDefault();
             showForm();
         });
@@ -976,7 +976,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Show form for annual exam
+        // Show form for exam
         function showForm() {
             resultSelectionBox.style.display = 'none';
             formContainer.style.display = 'block';
@@ -1069,7 +1069,7 @@
             // Generate result HTML with professional layout
             const resultHTML = `
                 <div class="result-header">
-                    <h2><i class="fas fa-graduation-cap"></i> ANNUAL EXAMINATION RESULT</h2>
+                    <h2><i class="fas fa-graduation-cap"></i>EXAMINATION RESULT</h2>
                     <p class="exam-type">Academic Year 2025-26</p>
                 </div>
                 
@@ -1193,5 +1193,6 @@
     </script>
 </body>
 </html>
+
 
 
