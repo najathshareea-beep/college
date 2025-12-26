@@ -334,11 +334,270 @@
 
         <!-- Apply Form -->
         <div id="applyForm" style="display:none;">
-            <!-- Your full Apply Now form from previous code -->
-            <!-- Paste the entire <div class="form-container" id="applyNowForm"> ... </div> here -->
-            <!-- Including all fields, toggles, photo, declaration, submit button -->
+            <h2 class="form-title">
+                <i class="fas fa-file-alt me-2"></i>
+                New Admission Application
+            </h2>
+           
+            <div id="applyInstructions" class="instructions-box mb-4">
+                <!-- Instructions will be loaded from API -->
+            </div>
+           
+            <form id="newApplicationForm">
+                <div class="form-group">
+                    <label class="form-label required">
+                        1. കുട്ടിയുടെ പേര് | Student's Name:
+                    </label>
+                    <input type="text" class="form-control" name="studentName" placeholder="പൂർണ്ണ പേര് രേഖപ്പെടുത്തുക | Enter full name" required>
+                </div>
+               
+                <div class="form-group">
+                    <label class="form-label required">
+                        2. വീട്ടു പേര് | House Name:
+                    </label>
+                    <input type="text" class="form-control" name="houseName" placeholder="വീട്ടു പേര് രേഖപ്പെടുത്തുക | House name" required>
+                </div>
+               
+                <div class="form-group">
+                    <label class="form-label required">
+                        3. ജനന തിയ്യതി | Date of Birth:
+                    </label>
+                    <input type="date" class="form-control" name="dob" required>
+                </div>
+               
+                <div class="form-group">
+                    <label class="form-label required">
+                        4. ആധാര്‍ നമ്പര്‍ | Aadhaar Number:
+                    </label>
+                    <input type="text" class="form-control" name="aadhaarNumber" placeholder="ആധാര്‍ നമ്പര്‍ രേഖപ്പെടുത്തുക | Enter Aadhaar number" required pattern="\d{12}" title="Aadhaar number must be 12 digits">
+                </div>
+               
+                <div class="form-group">
+                    <label class="form-label required">
+                        5. വിലാസം | Postal Address:
+                    </label>
+                    <textarea class="form-control" name="address" placeholder="പൂർണ്ണ വിലാസം രേഖപ്പെടുത്തുക | Enter full address" required rows="3"></textarea>
+                </div>
+               
+                <div class="form-group">
+                    <label class="form-label required">
+                        6. ഫോണ്‍ നമ്പര്‍ | Phone Number:
+                    </label>
+                    <input type="tel" class="form-control" name="phoneNumber" placeholder="9876543210 | Enter phone number" required pattern="\d{10}" title="Phone number must be 10 digits">
+                </div>
+               
+                <div class="form-group">
+                    <label class="form-label">
+                        7. വാട്‌സ്ആപ്പ് നമ്പര്‍ | WhatsApp Number:
+                    </label>
+                    <input type="tel" class="form-control" name="whatsappNumber" placeholder="വാട്‌സ്ആപ്പ് നമ്പര്‍ (വ്യത്യസ്തമെങ്കിൽ) | Enter WhatsApp number (if different)" pattern="\d{10}" title="WhatsApp number must be 10 digits">
+                </div>
+               
+                <div class="form-group">
+                    <label class="form-label required">
+                        8. പിതാവിന്‍റെ പേര് | Father's Name:
+                    </label>
+                    <input type="text" class="form-control" name="fatherName" placeholder="പിതാവിന്‍റെ പേര് രേഖപ്പെടുത്തുക | Enter father's name" required>
+                </div>
+               
+                <div class="form-group">
+                    <label class="form-label required">
+                        9. പിതാവിന്‍റെ ജോലി | Father's Occupation:
+                    </label>
+                    <input type="text" class="form-control" name="fatherOccupation" placeholder="പിതാവിന്‍റെ ജോലി രേഖപ്പെടുത്തുക | Enter father's occupation" required>
+                </div>
+               
+                <div class="form-group">
+                    <label class="form-label required">
+                        10. രക്ഷിതാവിന്‍റെ പേര് | Guardian's Name:
+                    </label>
+                    <input type="text" class="form-control" name="guardianName" placeholder="രക്ഷിതാവിന്‍റെ പേര് | Guardian's name" required>
+                </div>
+               
+                <div class="form-group">
+                    <label class="form-label required">
+                        11. വിദ്യാര്‍ത്ഥിക്ക് രക്ഷിതാവുമായുള്ള ബന്ധം | Relationship with Guardian:
+                    </label>
+                    <select class="form-control" name="relationshipWithGuardian" required>
+                        <option value="" disabled selected>രക്ഷിതാവുമായുള്ള ബന്ധം തിരഞ്ഞെടുക്കുക | Select Relationship</option>
+                        <option value="Father">പിതാവ് | Father</option>
+                        <option value="Mother">മാതാവ് | Mother</option>
+                        <option value="Brother">സഹോദരൻ | Brother</option>
+                        <option value="Sister">സഹോദരി | Sister</option>
+                    </select>
+                </div>
+               
+                <div class="form-group">
+                    <label class="form-label">
+                        12. രക്ഷിതാവ്, പിതാവല്ലെങ്കില്‍ കാരണം | Reason if Guardian is not Father:
+                    </label>
+                    <textarea class="form-control" name="guardianReason" placeholder="രക്ഷിതാവ് പിതാവല്ലെങ്കില്‍ കാരണം | Enter reason if guardian is not father" rows="2"></textarea>
+                </div>
+               
+                <div class="form-group">
+                    <label class="form-label required">
+                        13. പഠിക്കുന്ന മദ്റസയും സ്ഥലവും | Madrasa & Location:
+                    </label>
+                    <input type="text" class="form-control" name="madrasa" placeholder="മദ്റസയും സ്ഥലവും രേഖപ്പെടുത്തുക | Enter Madrasa name and location" required>
+                </div>
+               
+                <div class="form-group">
+                    <label class="form-label required">
+                        ക്ലാസ് | Class:
+                    </label>
+                    <select class="form-control" name="madrasaclass" required>
+                        <option value="" disabled selected>മദ്റസ ക്ലാസ് തിരഞ്ഞെടുക്കുക | Select Madrasa class</option>
+                        <option value="II">II</option>
+                        <option value="III">III</option>
+                        <option value="IV">IV</option>
+                        <option value="V">V</option>
+                    </select>
+                </div>
+               
+                <div class="form-group">
+                    <label class="form-label required">
+                        14. പഠിക്കുന്ന സ്കൂളും സ്ഥലവും | School & Location:
+                    </label>
+                    <input type="text" class="form-control" name="school" placeholder="സ്കൂളും സ്ഥലവും രേഖപ്പെടുത്തുക | Enter School name and location" required>
+                </div>
+               
+                <div class="form-group">
+                    <label class="form-label required">
+                        ക്ലാസ് | Class:
+                    </label>
+                    <select class="form-control" name="schoolclass" required>
+                        <option value="" disabled selected>സ്കൂള്‍ ക്ലാസ് തിരഞ്ഞെടുക്കുക | Select School class</option>
+                        <option value="II">II</option>
+                        <option value="III">III</option>
+                        <option value="IV">IV</option>
+                        <option value="V">V</option>
+                    </select>
+                </div>
+               
+                <div class="form-group">
+                    <label class="form-label required">
+                        15. മുമ്പ് ഏതെങ്കിലും ഹിഫ്ള് കോളേജ്, ദര്‍സ്, കോളേജ് പഠിച്ചിട്ടുണ്ടോ | Previously Studied at Hifz College/Dars/College:
+                    </label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="previousStudy" value="No" required> ഇല്ല | No
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="previousStudy" value="Yes"> ഉണ്ട് | Yes
+                        </label>
+                    </div>
+                </div>
+               
+                <div id="previous-study-section" style="display: none; background: #f8f9fa; padding: 15px; border-radius: 10px; margin: 10px 0;">
+                    <div class="form-group">
+                        <label class="form-label required">
+                            ഏത് സ്ഥാപനത്തില്‍ | Which Institution:
+                        </label>
+                        <input type="text" class="form-control" name="previousInstitution" placeholder="സ്ഥാപനത്തിന്റെ പേര് രേഖപ്പെടുത്തുക | Enter institution name">
+                    </div>
+                   
+                    <div class="form-group">
+                        <label class="form-label required">
+                            എത്ര കാലം | Duration of Study:
+                        </label>
+                        <input type="text" class="form-control" name="studyDuration" placeholder="പഠന കാലം രേഖപ്പെടുത്തുക | Enter duration">
+                    </div>
+                   
+                    <div class="form-group">
+                        <label class="form-label required">
+                            എത്ര ജുസുഅ് | Number of Juz:
+                        </label>
+                        <input type="text" class="form-control" name="juzCount" placeholder="ജുസുഅിന്റെ എണ്ണം രേഖപ്പെടുത്തുക | Enter number of Juz">
+                    </div>
+                   
+                    <div class="form-group">
+                        <label class="form-label required">
+                            പോരാനുള്ള കാരണം | Reason for Leaving:
+                        </label>
+                        <textarea class="form-control" name="reasonForLeaving" placeholder="പോരാനുള്ള കാരണം രേഖപ്പെടുത്തുക | Enter reason for leaving" rows="2"></textarea>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label class="form-label required">
+                            പ്രധാന അദ്ധ്യാപകന്‍റെ ഫോണ്‍ നമ്പര്‍ | Head Teacher's Phone Number:
+                        </label>
+                        <input type="tel" class="form-control" name="headTeacherPhone" placeholder="9876543210 | Enter phone number" pattern="\d{10}" title="Phone number must be 10 digits">
+                    </div>
+                </div>
+               
+                <div class="form-group">
+                    <label class="form-label required">
+                        16. കുട്ടിയെ തിരിച്ചറിയാനുള്ള അടയാളം | Student's Identification Mark:
+                    </label>
+                    <input type="text" class="form-control" name="identificationMark" placeholder="തിരിച്ചറിയല്‍ അടയാളം രേഖപ്പെടുത്തുക | Enter identification mark" required>
+                </div>
+               
+                <div class="form-group">
+                    <label class="form-label required">
+                        17. കുട്ടിയുടെ ശാരീരിക ക്ഷമത | Student's Physical Fitness:
+                    </label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="physicalFitness" value="Healthy" required> ആരോഗ്യവാന്‍ | Healthy
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="physicalFitness" value="Medication"> സ്ഥിരമായി ഗുളിക കഴിക്കാറുണ്ട് | Regular Medication
+                        </label>
+                    </div>
+                </div>
+               
+                <div id="illness-section" style="display: none; background: #f8f9fa; padding: 15px; border-radius: 10px; margin: 10px 0;">
+                    <div class="form-group">
+                        <label class="form-label required">
+                            രോഗം | Illness:
+                        </label>
+                        <textarea class="form-control" name="illness" placeholder="രോഗത്തിന്റെ വിശദാംശങ്ങൾ രേഖപ്പെടുത്തുക | Enter details of illness" rows="2"></textarea>
+                    </div>
+                </div>
+               
+                <div class="form-group">
+                    <label class="form-label">
+                        18. കുട്ടിയുടെ ഫോട്ടോ | Student's Photo:
+                    </label>
+                    <input type="file" class="form-control" id="photoInput" accept="image/*">
+                    <small class="text-muted">Optional - Max size: 5MB, Formats: JPG, PNG</small>
+                </div>
+               
+                <div class="instructions-box mt-4">
+                    <h4 class="instructions-title">
+                        <i class="fas fa-file-contract"></i>
+                        Declaration
+                    </h4>
+                    <p id="declarationText">
+                        <!-- Declaration text will be loaded from API -->
+                    </p>
+                    <div class="form-group mt-3" style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                        <div class="form-check" style="display: flex; align-items: flex-start;">
+                            <input class="form-check-input" type="checkbox" id="declarationCheckbox" required
+                                   style="width: 20px; height: 20px; margin-top: 3px; margin-right: 10px; flex-shrink: 0;">
+                            <label class="form-check-label" for="declarationCheckbox"
+                                   style="font-size: 16px; color: #333; line-height: 1.5;">
+                                എന്‍റെ കുട്ടിയും ഞാനും അല്‍ ഹാഫിള് മമ്മു മുല്ല തഹ്ഫീളുല്‍ ഖുര്‍ആന്‍ കോളേജിന്‍റെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ അല്‍ ഹാഫിള് മമ്മു മുല്ല തഹ്ഫീളുല്‍ ഖുര്‍ആന്‍ കോളേജില്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.
+                            </label>
+                        </div>
+                    </div>
+                </div>
+               
+                <button type="submit" class="btn-submit" id="submitApplicationBtn"
+                        style="background: linear-gradient(135deg, #6c757d 0%, #495057 100%); opacity: 0.7;"
+                        disabled>
+                    <i class="fas fa-paper-plane me-2"></i>
+                    Submit Application
+                </button>
+               
+                <div class="button-group">
+                    <button type="button" class="btn-secondary" onclick="showDashboard()">
+                        <i class="fas fa-arrow-left me-2"></i>
+                        Back
+                    </button>
+                </div>
+            </form>
         </div>
-
         <!-- Display Area for Application / Hall Ticket / Result / Confirmation -->
         <div id="displayArea" style="display:none;"></div>
     </div>
