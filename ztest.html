@@ -7,10 +7,8 @@
   <title>Thirunoor - Mahiriyya Arts Fest 2025</title>
   <meta name="description" content="Mahiriyya Arts Fest 2025" />
   <link rel="icon" href="/favicon.svg" />
-
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
   <style>
     :root {
       --thiru: #16a34a;
@@ -34,7 +32,6 @@
     .mobile-button { padding: 0.75rem 2rem; }
     @media (min-width: 640px) { .mobile-button { padding: 0.75rem 3rem; } }
     html { scroll-behavior: smooth; }
-    .nav-active { @apply text-white bg-Thiru shadow-md scale-105; }
   </style>
 </head>
 <body class="bg-BgClr text-gray-800 min-h-screen">
@@ -68,7 +65,6 @@
     <img src="/logo.webp" alt="Mahiriyya Art Fest Logo" class="mx-auto drop-shadow-2xl mobile-logo mb-8 hover:scale-105 transition-transform" />
     <h1 class="text-4xl md:text-6xl font-medium text-gray-800 tracking-wide">Mahiriyya Art Fest 2K25</h1>
     <p class="text-xl md:text-3xl font-thin text-gray-600 tracking-wider mt-2">Jamia Mahiriyya Islamic College</p>
-
     <div class="mt-12 flex flex-col sm:flex-row gap-6">
       <a href="#results" class="mobile-button font-semibold text-gray-600 border border-gray-300 rounded-full hover:bg-Thiru hover:text-white transition-all">Results</a>
       <a href="#scoreboard" class="mobile-button font-semibold text-gray-600 border border-gray-300 rounded-full hover:bg-Thiru hover:text-white transition-all">Scoreboard</a>
@@ -107,35 +103,30 @@
     <div class="max-w-7xl mx-auto text-center">
       <h2 class="text-4xl font-bold text-slate-800 mb-12">Fest Teams</h2>
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Team Isra -->
         <div class="bg-gradient-to-br from-white to-slate-50 rounded-3xl p-10 border-2 border-slate-200 hover:border-slate-300 hover:shadow-2xl transition-all hover:scale-105">
           <div class="text-6xl font-bold text-Isra mb-6">#1</div>
           <h3 class="text-3xl font-bold text-Isra mb-3">Team Isra</h3>
-          <p class="text-lg text-slate-600 font-semibold mb-4">Score: 0 pts</p>
+          <p class="text-lg text-slate-600 font-semibold mb-4">Score: <span id="team-isra-score">0</span> pts</p>
           <div class="space-y-3 text-left">
             <div class="flex justify-between bg-slate-100 rounded-lg px-4 py-2"><span class="font-medium">Leader:</span><span class="font-semibold">Nihad M</span></div>
             <div class="flex justify-between bg-slate-100 rounded-lg px-4 py-2"><span class="font-medium">Ass. Leader:</span><span class="font-semibold">Midhlaj K</span></div>
             <div class="flex justify-between bg-slate-100 rounded-lg px-4 py-2"><span class="font-medium">Iconic:</span><span class="font-semibold">Haneenul Aman</span></div>
           </div>
         </div>
-
-        <!-- Team Qaswa -->
         <div class="bg-gradient-to-br from-white to-slate-50 rounded-3xl p-10 border-2 border-slate-200 hover:border-slate-300 hover:shadow-2xl transition-all hover:scale-105">
           <div class="text-6xl font-bold text-Qaswa mb-6">#2</div>
           <h3 class="text-3xl font-bold text-Qaswa mb-3">Team Qaswa</h3>
-          <p class="text-lg text-slate-600 font-semibold mb-4">Score: 0 pts</p>
+          <p class="text-lg text-slate-600 font-semibold mb-4">Score: <span id="team-qaswa-score">0</span> pts</p>
           <div class="space-y-3 text-left">
             <div class="flex justify-between bg-slate-100 rounded-lg px-4 py-2"><span class="font-medium">Leader:</span><span class="font-semibold">Jasim K</span></div>
             <div class="flex justify-between bg-slate-100 rounded-lg px-4 py-2"><span class="font-medium">Ass. Leader:</span><span class="font-semibold">Shamsuddeen CK</span></div>
             <div class="flex justify-between bg-slate-100 rounded-lg px-4 py-2"><span class="font-medium">Iconic:</span><span class="font-semibold">Imad Hussain C</span></div>
           </div>
         </div>
-
-        <!-- Team Hira -->
         <div class="bg-gradient-to-br from-white to-slate-50 rounded-3xl p-10 border-2 border-slate-200 hover:border-slate-300 hover:shadow-2xl transition-all hover:scale-105">
           <div class="text-6xl font-bold text-Hira mb-6">#3</div>
           <h3 class="text-3xl font-bold text-Hira mb-3">Team Hira</h3>
-          <p class="text-lg text-slate-600 font-semibold mb-4">Score: 0 pts</p>
+          <p class="text-lg text-slate-600 font-semibold mb-4">Score: <span id="team-hira-score">0</span> pts</p>
           <div class="space-y-3 text-left">
             <div class="flex justify-between bg-slate-100 rounded-lg px-4 py-2"><span class="font-medium">Leader:</span><span class="font-semibold">Moosa TP</span></div>
             <div class="flex justify-between bg-slate-100 rounded-lg px-4 py-2"><span class="font-medium">Ass. Leader:</span><span class="font-semibold">Ameen Abdurahman</span></div>
@@ -147,25 +138,19 @@
     </div>
   </section>
 
-  <!-- ==================== RESULTS SECTION ==================== -->
-  <section id="results" class="min-h-screen flex items-center justify-center p-8 bg-gradient-to-b from-gray-50 to-white">
-    <div class="text-center max-w-4xl">
-      <h1 class="text-5xl font-bold text-gray-800 mb-8">Event Results</h1>
-      <div class="bg-white rounded-3xl shadow-2xl p-12">
-        <p class="text-2xl text-gray-600 mb-6">Results are being finalized...</p>
-        <p class="text-lg text-gray-500">Official results will be published here shortly after each event concludes.</p>
-        <div class="mt-10">
-          <a href="#contact" class="text-Thiru font-semibold hover:underline">Contact us</a> if you have any queries.
-        </div>
-      </div>
+  <!-- ==================== RESULTS SECTION (LIVE FROM GOOGLE SHEETS) ==================== -->
+  <section id="results" class="min-h-screen p-8 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-6xl mx-auto">
+      <h1 class="text-5xl font-bold text-center mb-12 text-gray-800">Event Results</h1>
+      <div id="results-container" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3"></div>
+      <div id="no-results" class="text-center py-20 text-2xl text-gray-600">No results published yet.</div>
     </div>
   </section>
 
-  <!-- ==================== SCOREBOARD SECTION ==================== -->
+  <!-- ==================== SCOREBOARD SECTION (LIVE FROM GOOGLE SHEETS) ==================== -->
   <section id="scoreboard" class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-16 px-4">
     <div class="max-w-7xl mx-auto text-center">
       <h1 class="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-800 to-slate-600 mb-12">Live Scoreboard</h1>
-
       <div class="flex flex-wrap justify-center gap-4 mb-16">
         <button class="px-8 py-4 rounded-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-xl hover:scale-105 transition-all">General</button>
         <button class="px-8 py-4 rounded-2xl font-bold bg-white/90 text-slate-700 hover:bg-white shadow-lg transition-all">Group</button>
@@ -174,15 +159,28 @@
         <button class="px-8 py-4 rounded-2xl font-bold bg-white/90 text-slate-700 hover:bg-white shadow-lg transition-all">Junior Non-Stage</button>
         <button class="px-8 py-4 rounded-2xl font-bold bg-white/90 text-slate-700 hover:bg-white shadow-lg transition-all">Senior Non-Stage</button>
       </div>
-
-      <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-16 max-w-2xl mx-auto">
-        <h2 class="text-4xl font-bold text-slate-800 mb-4">No Live Data Yet</h2>
-        <p class="text-xl text-slate-600">Scores will be updated in real-time during the fest on October 1–2, 2025.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+        <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-10">
+          <h3 class="text-4xl font-bold text-Isra">Team Isra</h3>
+          <p id="score-isra" class="text-7xl font-black mt-6 text-Isra">0</p>
+          <p class="text-gray-600 mt-4">points</p>
+        </div>
+        <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-10">
+          <h3 class="text-4xl font-bold text-Qaswa">Team Qaswa</h3>
+          <p id="score-qaswa" class="text-7xl font-black mt-6 text-Qaswa">0</p>
+          <p class="text-gray-600 mt-4">points</p>
+        </div>
+        <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-10">
+          <h3 class="text-4xl font-bold text-Hira">Team Hira</h3>
+          <p id="score-hira" class="text-7xl font-black mt-6 text-Hira">0</p>
+          <p class="text-gray-600 mt-4">points</p>
+        </div>
       </div>
+      <p class="mt-12 text-lg text-gray-600">Last updated: <span id="last-updated">Loading...</span></p>
     </div>
   </section>
 
-  <!-- Gallery (Optional - you can add more images) -->
+  <!-- Gallery -->
   <section class="py-16 px-8 bg-gray-50">
     <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Image Gallery</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
@@ -200,14 +198,14 @@
     <h2 class="text-4xl font-bold text-center mb-12">Contact Us</h2>
     <div class="max-w-3xl mx-auto bg-white rounded-3xl shadow-2xl p-10">
       <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
-        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY_HERE"> <!-- Optional: for spam-free form -->
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY_HERE">
         <div class="grid md:grid-cols-2 gap-6">
           <input type="text" name="name" placeholder="Your Name" required class="w-full px-6 py-4 rounded-xl border border-gray-300 focus:ring-4 focus:ring-Thiru/30 focus:border-Thiru outline-none" />
           <input type="tel" name="phone" placeholder="Phone Number" required class="w-full px-6 py-4 rounded-xl border border-gray-300 focus:ring-4 focus:ring-Thiru/30 focus:border-Thiru outline-none" />
         </div>
         <textarea name="message" rows="6" placeholder="Your Message" required class="w-full px-6 py-4 rounded-xl border border-gray-300 focus:ring-4 focus:ring-Thiru/30 focus:border-Thiru outline-none resize-none"></textarea>
         <button type="submit" class="w-full bg-Thiru text-white py-5 rounded-xl font-bold text-xl hover:bg-green-700 transition-all shadow-lg hover:shadow-xl">
-          Send Message
+          Send via WhatsApp / Message
         </button>
       </form>
     </div>
@@ -219,10 +217,14 @@
       <p class="text-sm mb-4">© 2025 Thirunoor Media Team. All rights reserved.</p>
       <div class="flex justify-center space-x-8">
         <a href="https://www.instagram.com/thirunoor/" class="hover:text-gray-700">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"> <!-- Instagram SVG --> <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
         </a>
         <a href="https://www.youtube.com/@amasajmic5827" class="hover:text-gray-700">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"> <!-- YouTube SVG --> <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
         </a>
       </div>
       <div class="mt-4 flex justify-center space-x-6 text-sm">
@@ -233,7 +235,68 @@
     </div>
   </footer>
 
-  <!-- Active Nav Highlight Script -->
+  <!-- LIVE DATA FROM YOUR GOOGLE SHEET -->
+  <script>
+    const SHEET_ID = '1vk_hE-Ja5d8kZdzuj7jeYxlunTyopx0p9HjzJcGFl0c';
+    const scoreboardUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Scoreboard`;
+    const resultsUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Results`;
+
+    // Update Scoreboard + Team Section Scores
+    fetch(scoreboardUrl)
+      .then(res => res.text())
+      .then(csv => {
+        const rows = csv.trim().split('\n').map(row => row.split(',').map(c => c.replace(/^"|"$/g, '').trim()));
+        const generalRow = rows.find(r => r[0] === 'General' || r[0].toLowerCase() === 'general');
+        if (generalRow && generalRow.length >= 4) {
+          const isra = generalRow[1] || 0;
+          const qaswa = generalRow[2] || 0;
+          const hira = generalRow[3] || 0;
+
+          document.getElementById('score-isra').textContent = isra;
+          document.getElementById('score-qaswa').textContent = qaswa;
+          document.getElementById('score-hira').textContent = hira;
+          document.getElementById('team-isra-score').textContent = isra;
+          document.getElementById('team-qaswa-score').textContent = qaswa;
+          document.getElementById('team-hira-score').textContent = hira;
+        }
+        document.getElementById('last-updated').textContent = new Date().toLocaleString('en-IN');
+      });
+
+    // Update Results Section
+    fetch(resultsUrl)
+      .then(res => res.text())
+      .then(csv => {
+        const rows = csv.trim().split('\n');
+        const container = document.getElementById('results-container');
+        const noResults = document.getElementById('no-results');
+
+        if (rows.length <= 1) {
+          noResults.style.display = 'block';
+          return;
+        }
+        noResults.style.display = 'none';
+
+        rows.slice(1).reverse().forEach(row => {
+          const cols = row.split(',').map(c => c.replace(/^"|"$/g, '').trim());
+          if (cols.length >= 4 && cols[1]) {
+            const [date, event, category, winner, first, second, third] = cols;
+            const card = document.createElement('div');
+            card.className = 'bg-white rounded-2xl shadow-xl p-8 text-left hover:shadow-2xl transition-all';
+            card.innerHTML = `
+              <h3 class="text-2xl font-bold text-gray-800">${event} <span class="text-lg font-normal text-gray-600">(${category})</span></h3>
+              <p class="text-xl mt-4">🏆 Winner: <strong>${winner}</strong></p>
+              <p class="mt-2">🥇 1st: Team <strong>${first || '—'}</strong></p>
+              <p>🥈 2nd: Team <strong>${second || '—'}</strong></p>
+              <p>🥉 3rd: Team <strong>${third || '—'}</strong></p>
+              <p class="text-gray-500 mt-6 text-sm">${date}</p>
+            `;
+            container.appendChild(card);
+          }
+        });
+      });
+  </script>
+
+  <!-- Navigation Active Highlight on Scroll -->
   <script>
     const sections = ['home', 'results', 'team', 'scoreboard'];
     const navButtons = {
@@ -246,26 +309,23 @@
     window.addEventListener('scroll', () => {
       let current = 'home';
       sections.forEach(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            current = section;
-          }
+        const el = document.getElementById(section);
+        if (el && el.getBoundingClientRect().top <= 100) {
+          current = section;
         }
       });
-
       Object.keys(navButtons).forEach(key => {
         const btn = navButtons[key];
         if (key === current) {
           btn.classList.add('text-white', 'bg-Thiru', 'shadow-md', 'scale-105');
-          btn.classList.remove('text-gray-600', 'hover:bg-white/40');
+          btn.classList.remove('text-gray-600');
         } else {
           btn.classList.remove('text-white', 'bg-Thiru', 'shadow-md', 'scale-105');
-          btn.classList.add('text-gray-600', 'hover:bg-white/40');
+          btn.classList.add('text-gray-600');
         }
       });
     });
   </script>
+
 </body>
 </html>
