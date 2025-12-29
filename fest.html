@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="google-site-verification" content="hCISWVgGAUDuE6GrZLUnihhS53yj-m3f67tum_6ykrI" />
   <title>Jashne Najath - DSAC Arts Fest 2025</title>
   <meta name="description" content="Jashne Najath 2K25 - അന്യോന്യം" />
   <link rel="icon" href="/favicon.svg" />
@@ -12,112 +11,17 @@
   <style>
     :root {
       --thiru: #16a34a;
-      --noor: #f59e0b;
-      --bg-clr: #f8fafc;
       --isra: #10b981;
       --qaswa: #6366f1;
       --hira: #f97316;
-      --primary-gradient: linear-gradient(135deg, #16a34a 0%, #10b981 100%);
-      --isra-gradient: linear-gradient(135deg, #10b981 0%, #34d399 100%);
-      --qaswa-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-      --hira-gradient: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
     }
     
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      overflow-x: hidden;
-    }
-    
-    .bg-gradient-primary {
-      background: var(--primary-gradient);
-    }
-    
-    .text-gradient-primary {
-      background: var(--primary-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .bg-gradient-isra {
-      background: var(--isra-gradient);
-    }
-    
-    .bg-gradient-qaswa {
-      background: var(--qaswa-gradient);
-    }
-    
-    .bg-gradient-hira {
-      background: var(--hira-gradient);
-    }
-    
-    .section-active {
-      display: block;
-      animation: fadeIn 0.5s ease-in-out;
-    }
-    
-    .section-hidden {
-      display: none;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .card-hover {
-      transition: all 0.3s ease;
-    }
-    
-    .card-hover:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    }
+    .section-active { display: block; }
+    .section-hidden { display: none; }
     
     .nav-tab-active {
-      background: var(--primary-gradient);
+      background: linear-gradient(135deg, #16a34a 0%, #10b981 100%);
       color: white;
-      transform: scale(1.05);
-    }
-    
-    .score-counter {
-      font-family: 'Arial Black', 'Arial Bold', sans-serif;
-      font-weight: 900;
-    }
-    
-    .team-card {
-      border-radius: 24px;
-      overflow: hidden;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .team-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      z-index: 2;
-    }
-    
-    .team-card-isra::before {
-      background: var(--isra-gradient);
-    }
-    
-    .team-card-qaswa::before {
-      background: var(--qaswa-gradient);
-    }
-    
-    .team-card-hira::before {
-      background: var(--hira-gradient);
     }
     
     .mobile-menu {
@@ -129,59 +33,9 @@
       transform: translateX(0);
     }
     
-    .results-badge {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-right: 8px;
-      margin-bottom: 8px;
-    }
-    
-    .logo-float {
-      animation: float 6s ease-in-out infinite;
-    }
-    
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
-      100% { transform: translateY(0px); }
-    }
-    
-    .pulse {
-      animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(22, 163, 74, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
-    }
-    
-    /* Scrollbar styling */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-    
-    ::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      border-radius: 10px;
-    }
-    
-    ::-webkit-scrollbar-thumb {
-      background: var(--thiru);
-      border-radius: 10px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-      background: #0d8f3a;
-    }
-    
-    /* Loading animation */
     .loader {
       border: 4px solid #f3f3f3;
-      border-top: 4px solid var(--thiru);
+      border-top: 4px solid #16a34a;
       border-radius: 50%;
       width: 40px;
       height: 40px;
@@ -193,328 +47,131 @@
       100% { transform: rotate(360deg); }
     }
     
-    /* Medal colors */
-    .medal-gold { background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); }
-    .medal-silver { background: linear-gradient(135deg, #C0C0C0 0%, #A9A9A9 100%); }
-    .medal-bronze { background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%); }
+    .team-badge-isra { background-color: rgba(16, 185, 129, 0.1); color: #10b981; }
+    .team-badge-qaswa { background-color: rgba(99, 102, 241, 0.1); color: #6366f1; }
+    .team-badge-hira { background-color: rgba(249, 115, 22, 0.1); color: #f97316; }
     
-    /* Result card styles */
-    .result-card {
-      border-left: 6px solid #16a34a;
-      transition: all 0.3s ease;
-    }
-    
-    .result-card:hover {
-      transform: translateX(5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
-    
-    .team-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-    
-    .team-badge-isra {
-      background-color: rgba(16, 185, 129, 0.1);
-      color: #10b981;
-    }
-    
-    .team-badge-qaswa {
-      background-color: rgba(99, 102, 241, 0.1);
-      color: #6366f1;
-    }
-    
-    .team-badge-hira {
-      background-color: rgba(249, 115, 22, 0.1);
-      color: #f97316;
-    }
-    
-    /* Category colors */
-    .category-general { border-left-color: #16a34a; }
-    .category-group { border-left-color: #6366f1; }
-    .category-junior-stage { border-left-color: #f59e0b; }
-    .category-senior-stage { border-left-color: #f97316; }
-    .category-junior-non-stage { border-left-color: #8b5cf6; }
-    .category-senior-non-stage { border-left-color: #ec4899; }
-    
-    /* Table styles */
-    .results-table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-    }
-    
-    .results-table th {
-      background-color: #f8fafc;
-      padding: 12px 16px;
-      text-align: left;
-      font-weight: 600;
-      color: #4b5563;
-      border-bottom: 2px solid #e5e7eb;
-    }
-    
-    .results-table td {
-      padding: 16px;
-      border-bottom: 1px solid #e5e7eb;
-      vertical-align: top;
-    }
-    
-    .results-table tr:hover {
-      background-color: #f9fafb;
-    }
-    
-    /* Toppers styling */
-    .topper-card {
-      transition: all 0.3s ease;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    
-    .topper-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
-    
-    .topper-rank {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      color: white;
-    }
-    
-    .rank-1 { background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); }
-    .rank-2 { background: linear-gradient(135deg, #C0C0C0 0%, #A9A9A9 100%); }
-    .rank-3 { background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%); }
-    .rank-other { background: linear-gradient(135deg, #6B7280 0%, #4B5563 100%); }
-    
-    /* Chest number search styling */
-    .chest-search-container {
-      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-      border-radius: 20px;
-      padding: 40px;
-    }
-    
-    /* Programs grid styling */
-    .program-card {
-      transition: all 0.2s ease;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    
-    .program-card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .results-table {
-        display: block;
-        overflow-x: auto;
-      }
-      
-      .results-table th, 
-      .results-table td {
-        min-width: 150px;
-      }
-      
-      .chest-search-container {
-        padding: 20px;
-      }
-    }
-    
-    /* Points display styling */
-    .points-badge {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 12px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      margin-left: 8px;
-    }
-    
-    .points-gold { background-color: rgba(255, 215, 0, 0.2); color: #b8860b; }
-    .points-silver { background-color: rgba(192, 192, 192, 0.2); color: #808080; }
-    .points-bronze { background-color: rgba(205, 127, 50, 0.2); color: #8b4513; }
+    .topper-rank-1 { background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); }
+    .topper-rank-2 { background: linear-gradient(135deg, #C0C0C0 0%, #A9A9A9 100%); }
+    .topper-rank-3 { background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%); }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
-  <!-- Top Navigation -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg border-b border-gray-200 shadow-md">
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow">
     <div class="container mx-auto px-4 py-3">
       <div class="flex items-center justify-between">
-        <!-- Logo -->
         <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
-            <span class="text-white font-bold text-lg">JN</span>
+          <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold">JN</span>
           </div>
           <div>
-            <h1 class="text-xl font-bold text-gray-800">അന്യോന്യം'25</h1>
+            <h1 class="text-xl font-bold">അന്യോന്യം'25</h1>
             <p class="text-xs text-gray-500">Jashne Najath Arts Fest</p>
           </div>
         </div>
         
-        <!-- Desktop Navigation Tabs -->
         <div class="hidden md:flex items-center space-x-1 bg-gray-100 p-2 rounded-xl">
-          <button data-section="home" class="nav-tab px-5 py-3 rounded-lg font-medium transition-all duration-300 nav-tab-active">
+          <button data-section="home" class="nav-tab px-5 py-3 rounded-lg font-medium nav-tab-active">
             <i class="fas fa-home mr-2"></i>Home
           </button>
-          <button data-section="results" class="nav-tab px-5 py-3 rounded-lg font-medium transition-all duration-300">
+          <button data-section="results" class="nav-tab px-5 py-3 rounded-lg font-medium">
             <i class="fas fa-trophy mr-2"></i>Results
           </button>
-          <button data-section="team" class="nav-tab px-5 py-3 rounded-lg font-medium transition-all duration-300">
+          <button data-section="team" class="nav-tab px-5 py-3 rounded-lg font-medium">
             <i class="fas fa-users mr-2"></i>Teams
           </button>
-          <button data-section="scoreboard" class="nav-tab px-5 py-3 rounded-lg font-medium transition-all duration-300">
+          <button data-section="scoreboard" class="nav-tab px-5 py-3 rounded-lg font-medium">
             <i class="fas fa-chart-line mr-2"></i>Scoreboard
           </button>
-          <button data-section="toppers" class="nav-tab px-5 py-3 rounded-lg font-medium transition-all duration-300">
+          <button data-section="toppers" class="nav-tab px-5 py-3 rounded-lg font-medium">
             <i class="fas fa-crown mr-2"></i>Toppers
-          </button>
-          <button data-section="gallery" class="nav-tab px-5 py-3 rounded-lg font-medium transition-all duration-300">
-            <i class="fas fa-images mr-2"></i>Gallery
-          </button>
-          <button data-section="contact" class="nav-tab px-5 py-3 rounded-lg font-medium transition-all duration-300">
-            <i class="fas fa-envelope mr-2"></i>Contact
           </button>
         </div>
         
-        <!-- Mobile Menu Button -->
         <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg bg-gray-100">
-          <i class="fas fa-bars text-xl text-gray-700"></i>
+          <i class="fas fa-bars text-xl"></i>
         </button>
       </div>
     </div>
   </nav>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 bottom-0 z-50 w-64 bg-white shadow-2xl p-6">
+  <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 bottom-0 z-50 w-64 bg-white shadow p-6">
     <div class="flex justify-between items-center mb-8">
-      <h2 class="text-xl font-bold text-gray-800">Menu</h2>
+      <h2 class="text-xl font-bold">Menu</h2>
       <button id="mobile-menu-close" class="p-2 rounded-lg bg-gray-100">
         <i class="fas fa-times text-xl"></i>
       </button>
     </div>
     
     <div class="space-y-4">
-      <button data-section="home" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gradient-primary text-white font-medium flex items-center">
+      <button data-section="home" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-green-500 text-white font-medium">
         <i class="fas fa-home mr-3"></i> Home
       </button>
-      <button data-section="results" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 text-gray-700 font-medium flex items-center">
+      <button data-section="results" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 font-medium">
         <i class="fas fa-trophy mr-3"></i> Results
       </button>
-      <button data-section="team" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 text-gray-700 font-medium flex items-center">
+      <button data-section="team" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 font-medium">
         <i class="fas fa-users mr-3"></i> Teams
       </button>
-      <button data-section="scoreboard" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 text-gray-700 font-medium flex items-center">
+      <button data-section="scoreboard" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 font-medium">
         <i class="fas fa-chart-line mr-3"></i> Scoreboard
       </button>
-      <button data-section="toppers" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 text-gray-700 font-medium flex items-center">
+      <button data-section="toppers" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 font-medium">
         <i class="fas fa-crown mr-3"></i> Toppers
       </button>
-      <button data-section="gallery" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 text-gray-700 font-medium flex items-center">
-        <i class="fas fa-images mr-3"></i> Gallery
-      </button>
-      <button data-section="contact" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 text-gray-700 font-medium flex items-center">
-        <i class="fas fa-envelope mr-3"></i> Contact
-      </button>
-    </div>
-    
-    <div class="absolute bottom-6 left-6 right-6">
-      <p class="text-center text-gray-500 text-sm">© 2025 അന്യോന്യം Media Team</p>
     </div>
   </div>
 
-  <!-- Main Content Container -->
+  <!-- Main Content -->
   <main class="pt-20">
     <!-- Home Section -->
-    <section id="home-section" class="section-active min-h-screen px-4 py-8 md:py-12">
+    <section id="home-section" class="section-active min-h-screen px-4 py-8">
       <div class="container mx-auto">
-        <!-- Hero Section -->
         <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
           <div class="lg:w-1/2 text-center lg:text-left">
             <div class="inline-block px-4 py-2 bg-green-100 text-green-700 rounded-full font-medium mb-6">
               October 01 - 02, 2025
             </div>
-            <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">
               Jashne Najath
-              <span class="text-gradient-primary block">Arts Fest 2K25</span>
+              <span class="text-green-600 block">Arts Fest 2K25</span>
             </h1>
             <p class="text-xl text-gray-600 mb-8">
-              Darunnajath Shareeath & Arts College presents <strong>"അന്യോന്യം"</strong> - The annual Islamic Arts Festival showcasing talents in arts, literature, and culture.
+              Darunnajath Shareeath & Arts College presents <strong>"അന്യോന്യം"</strong>
             </p>
             <div class="flex flex-wrap gap-4">
-              <button data-section="results" class="px-8 py-4 bg-gradient-primary text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105">
-                View Results <i class="fas fa-arrow-right ml-2"></i>
+              <button data-section="results" class="px-8 py-4 bg-green-500 text-white font-bold rounded-xl">
+                View Results
               </button>
-              <button data-section="scoreboard" class="px-8 py-4 bg-white text-gray-700 border-2 border-gray-300 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105">
-                Live Scores <i class="fas fa-chart-line ml-2"></i>
-              </button>
-              <button data-section="toppers" class="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105">
-                Top Performers <i class="fas fa-crown ml-2"></i>
+              <button data-section="scoreboard" class="px-8 py-4 bg-white border-2 border-gray-300 font-bold rounded-xl">
+                Live Scores
               </button>
             </div>
           </div>
           
-          <div class="lg:w-1/2 relative">
-            <div class="logo-float">
-              <img src="https://i.ibb.co/DgHYHFS1/Whats-App-Image-2025-11-26-at-8-50-51-PM.jpg" alt="Jashne Najath Logo" class="w-full max-w-lg mx-auto rounded-2xl shadow-2xl" />
-            </div>
-            <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-isra rounded-full opacity-20 blur-xl"></div>
-            <div class="absolute -top-6 -right-6 w-40 h-40 bg-gradient-qaswa rounded-full opacity-20 blur-xl"></div>
+          <div class="lg:w-1/2">
+            <img src="https://i.ibb.co/DgHYHFS1/Whats-App-Image-2025-11-26-at-8-50-51-PM.jpg" alt="Logo" class="w-full max-w-lg mx-auto rounded-2xl" />
           </div>
         </div>
         
-        <!-- Stats Section -->
         <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div class="bg-white p-6 rounded-2xl shadow-lg text-center card-hover">
+          <div class="bg-white p-6 rounded-2xl shadow text-center">
             <div class="text-4xl font-bold text-green-600 mb-2">130+</div>
-            <div class="text-gray-600 font-medium">Programs</div>
+            <div class="text-gray-600">Programs</div>
           </div>
-          <div class="bg-white p-6 rounded-2xl shadow-lg text-center card-hover">
+          <div class="bg-white p-6 rounded-2xl shadow text-center">
             <div class="text-4xl font-bold text-blue-600 mb-2">150+</div>
-            <div class="text-gray-600 font-medium">Contestants</div>
+            <div class="text-gray-600">Contestants</div>
           </div>
-          <div class="bg-white p-6 rounded-2xl shadow-lg text-center card-hover">
+          <div class="bg-white p-6 rounded-2xl shadow text-center">
             <div class="text-4xl font-bold text-purple-600 mb-2">5</div>
-            <div class="text-gray-600 font-medium">Categories</div>
+            <div class="text-gray-600">Categories</div>
           </div>
-          <div class="bg-white p-6 rounded-2xl shadow-lg text-center card-hover">
+          <div class="bg-white p-6 rounded-2xl shadow text-center">
             <div class="text-4xl font-bold text-orange-600 mb-2">3</div>
-            <div class="text-gray-600 font-medium">Teams</div>
-          </div>
-        </div>
-        
-        <!-- About Section -->
-        <div class="mt-24 bg-gradient-to-r from-green-50 to-blue-50 rounded-3xl p-8 md:p-12">
-          <div class="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 class="text-4xl font-bold text-gray-900 mb-6">About അന്യോന്യം'25</h2>
-              <p class="text-gray-700 text-lg leading-relaxed mb-6">
-                "അന്യോന്യം" (Anyonyam) represents unity and mutual cooperation. This year's arts fest brings together three dynamic teams - <strong>Isra, Qaswa, and Hira</strong> - competing across various artistic and cultural domains.
-              </p>
-              <p class="text-gray-700 text-lg leading-relaxed">
-                The festival includes competitions in stage performances, non-stage events, group activities, and individual talents, celebrating the rich cultural heritage and creative expressions of our students.
-              </p>
-            </div>
-            <div class="relative">
-              <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Cultural Festival" class="rounded-2xl shadow-2xl w-full" />
-              <div class="absolute -bottom-4 -right-4 bg-gradient-primary text-white p-6 rounded-2xl shadow-xl">
-                <div class="text-3xl font-bold">01-02</div>
-                <div class="text-lg">October 2025</div>
-              </div>
-            </div>
+            <div class="text-gray-600">Teams</div>
           </div>
         </div>
       </div>
@@ -524,25 +181,21 @@
     <section id="results-section" class="section-hidden min-h-screen px-4 py-12 bg-gray-50">
       <div class="container mx-auto">
         <div class="text-center mb-12">
-          <h2 class="text-5xl font-bold text-gray-900 mb-4">Event Results</h2>
-          <p class="text-xl text-gray-600">Detailed results from all competitions with points</p>
-          <div class="w-24 h-1 bg-gradient-primary mx-auto mt-6 rounded-full"></div>
+          <h2 class="text-5xl font-bold mb-4">Event Results</h2>
+          <div class="w-24 h-1 bg-green-500 mx-auto mt-6 rounded-full"></div>
         </div>
         
-        <!-- Results Filter -->
         <div class="flex flex-wrap justify-center gap-3 mb-12">
-          <button data-filter="all" class="results-filter-btn px-6 py-3 bg-gradient-primary text-white font-bold rounded-xl shadow-lg">All Results</button>
-          <button data-filter="General" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">General</button>
-          <button data-filter="Group" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">Group</button>
-          <button data-filter="Junior Stage" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">Junior Stage</button>
-          <button data-filter="Senior Stage" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">Senior Stage</button>
-          <button data-filter="Junior Non-Stage" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">Junior Non-Stage</button>
-          <button data-filter="Senior Non-Stage" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">Senior Non-Stage</button>
+          <button data-filter="all" class="results-filter-btn px-6 py-3 bg-green-500 text-white font-bold rounded-xl">All Results</button>
+          <button data-filter="General" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">General</button>
+          <button data-filter="Group" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">Group</button>
+          <button data-filter="Junior Stage" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">Junior Stage</button>
+          <button data-filter="Senior Stage" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">Senior Stage</button>
+          <button data-filter="Junior Non-Stage" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">Junior Non-Stage</button>
+          <button data-filter="Senior Non-Stage" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">Senior Non-Stage</button>
         </div>
         
-        <!-- Results Container -->
         <div id="results-container" class="space-y-8">
-          <!-- Results will be loaded here -->
           <div class="text-center py-12">
             <div class="loader mx-auto mb-6"></div>
             <p class="text-gray-600">Loading results...</p>
@@ -550,10 +203,7 @@
         </div>
         
         <div id="no-results" class="text-center py-16 hidden">
-          <div class="text-6xl text-gray-300 mb-6">
-            <i class="fas fa-trophy"></i>
-          </div>
-          <h3 class="text-2xl font-bold text-gray-700 mb-4">No Results Published Yet</h3>
+          <h3 class="text-2xl font-bold mb-4">No Results Published Yet</h3>
           <p class="text-gray-600">Results will be displayed here as soon as they are available.</p>
         </div>
       </div>
@@ -563,181 +213,120 @@
     <section id="team-section" class="section-hidden min-h-screen px-4 py-12">
       <div class="container mx-auto">
         <div class="text-center mb-16">
-          <h2 class="text-5xl font-bold text-gray-900 mb-4">Competing Teams</h2>
-          <p class="text-xl text-gray-600">Three teams, one champion</p>
-          <div class="w-24 h-1 bg-gradient-primary mx-auto mt-6 rounded-full"></div>
+          <h2 class="text-5xl font-bold mb-4">Competing Teams</h2>
+          <div class="w-24 h-1 bg-green-500 mx-auto mt-6 rounded-full"></div>
         </div>
         
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <!-- Team Isra -->
-          <div class="team-card team-card-isra bg-white shadow-2xl card-hover">
-            <div class="p-8">
-              <div class="flex justify-between items-start mb-6">
+          <div class="bg-white shadow-xl p-8">
+            <div class="flex justify-between items-start mb-6">
+              <div>
+                <div class="text-sm font-bold text-green-600 mb-2">TEAM #1</div>
+                <h3 class="text-3xl font-bold">Team Isra</h3>
+              </div>
+              <div class="text-5xl font-black text-green-600">#1</div>
+            </div>
+            
+            <div class="mb-8">
+              <div class="text-6xl font-black text-green-600 mb-2" id="team-isra-score">0</div>
+              <div class="text-gray-600">Total Points</div>
+            </div>
+            
+            <div class="space-y-4">
+              <div class="flex items-center p-4 bg-green-50 rounded-xl">
+                <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-crown text-white"></i>
+                </div>
                 <div>
-                  <div class="text-sm font-bold text-green-600 mb-2">TEAM #1</div>
-                  <h3 class="text-3xl font-bold text-gray-900">Team Isra</h3>
-                </div>
-                <div class="text-5xl font-black text-green-600">#1</div>
-              </div>
-              
-              <div class="mb-8">
-                <div class="text-6xl font-black text-green-600 mb-2 score-counter" id="team-isra-score">0</div>
-                <div class="text-gray-600">Total Points</div>
-              </div>
-              
-              <div class="space-y-4">
-                <div class="flex items-center p-4 bg-green-50 rounded-xl">
-                  <div class="w-12 h-12 bg-gradient-isra rounded-lg flex items-center justify-center mr-4">
-                    <i class="fas fa-crown text-white"></i>
-                  </div>
-                  <div>
-                    <div class="text-sm text-gray-500">Leader</div>
-                    <div class="font-bold text-gray-900">Nihad M</div>
-                  </div>
-                </div>
-                
-                <div class="flex items-center p-4 bg-green-50 rounded-xl">
-                  <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
-                    <i class="fas fa-user-check text-green-600"></i>
-                  </div>
-                  <div>
-                    <div class="text-sm text-gray-500">Assistant Leader</div>
-                    <div class="font-bold text-gray-900">Midhlaj K</div>
-                  </div>
-                </div>
-                
-                <div class="flex items-center p-4 bg-green-50 rounded-xl">
-                  <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
-                    <i class="fas fa-star text-green-600"></i>
-                  </div>
-                  <div>
-                    <div class="text-sm text-gray-500">Iconic Member</div>
-                    <div class="font-bold text-gray-900">Haneenul Aman</div>
-                  </div>
+                  <div class="text-sm text-gray-500">Leader</div>
+                  <div class="font-bold">Nihad M</div>
                 </div>
               </div>
               
-              <div class="mt-8 pt-6 border-t border-gray-200">
-                <div class="text-center">
-                  <button data-section="scoreboard" class="px-6 py-3 bg-gradient-isra text-white font-bold rounded-lg w-full">
-                    View Scores <i class="fas fa-arrow-right ml-2"></i>
-                  </button>
+              <div class="flex items-center p-4 bg-green-50 rounded-xl">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-user-check text-green-600"></i>
+                </div>
+                <div>
+                  <div class="text-sm text-gray-500">Assistant Leader</div>
+                  <div class="font-bold">Midhlaj K</div>
                 </div>
               </div>
             </div>
           </div>
           
           <!-- Team Qaswa -->
-          <div class="team-card team-card-qaswa bg-white shadow-2xl card-hover">
-            <div class="p-8">
-              <div class="flex justify-between items-start mb-6">
+          <div class="bg-white shadow-xl p-8">
+            <div class="flex justify-between items-start mb-6">
+              <div>
+                <div class="text-sm font-bold text-blue-600 mb-2">TEAM #2</div>
+                <h3 class="text-3xl font-bold">Team Qaswa</h3>
+              </div>
+              <div class="text-5xl font-black text-blue-600">#2</div>
+            </div>
+            
+            <div class="mb-8">
+              <div class="text-6xl font-black text-blue-600 mb-2" id="team-qaswa-score">0</div>
+              <div class="text-gray-600">Total Points</div>
+            </div>
+            
+            <div class="space-y-4">
+              <div class="flex items-center p-4 bg-blue-50 rounded-xl">
+                <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-crown text-white"></i>
+                </div>
                 <div>
-                  <div class="text-sm font-bold text-blue-600 mb-2">TEAM #2</div>
-                  <h3 class="text-3xl font-bold text-gray-900">Team Qaswa</h3>
-                </div>
-                <div class="text-5xl font-black text-blue-600">#2</div>
-              </div>
-              
-              <div class="mb-8">
-                <div class="text-6xl font-black text-blue-600 mb-2 score-counter" id="team-qaswa-score">0</div>
-                <div class="text-gray-600">Total Points</div>
-              </div>
-              
-              <div class="space-y-4">
-                <div class="flex items-center p-4 bg-blue-50 rounded-xl">
-                  <div class="w-12 h-12 bg-gradient-qaswa rounded-lg flex items-center justify-center mr-4">
-                    <i class="fas fa-crown text-white"></i>
-                  </div>
-                  <div>
-                    <div class="text-sm text-gray-500">Leader</div>
-                    <div class="font-bold text-gray-900">Jasim K</div>
-                  </div>
-                </div>
-                
-                <div class="flex items-center p-4 bg-blue-50 rounded-xl">
-                  <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                    <i class="fas fa-user-check text-blue-600"></i>
-                  </div>
-                  <div>
-                    <div class="text-sm text-gray-500">Assistant Leader</div>
-                    <div class="font-bold text-gray-900">Shamsuddeen CK</div>
-                  </div>
-                </div>
-                
-                <div class="flex items-center p-4 bg-blue-50 rounded-xl">
-                  <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                    <i class="fas fa-star text-blue-600"></i>
-                  </div>
-                  <div>
-                    <div class="text-sm text-gray-500">Iconic Member</div>
-                    <div class="font-bold text-gray-900">Imad Hussain C</div>
-                  </div>
+                  <div class="text-sm text-gray-500">Leader</div>
+                  <div class="font-bold">Jasim K</div>
                 </div>
               </div>
               
-              <div class="mt-8 pt-6 border-t border-gray-200">
-                <div class="text-center">
-                  <button data-section="scoreboard" class="px-6 py-3 bg-gradient-qaswa text-white font-bold rounded-lg w-full">
-                    View Scores <i class="fas fa-arrow-right ml-2"></i>
-                  </button>
+              <div class="flex items-center p-4 bg-blue-50 rounded-xl">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-user-check text-blue-600"></i>
+                </div>
+                <div>
+                  <div class="text-sm text-gray-500">Assistant Leader</div>
+                  <div class="font-bold">Shamsuddeen CK</div>
                 </div>
               </div>
             </div>
           </div>
           
           <!-- Team Hira -->
-          <div class="team-card team-card-hira bg-white shadow-2xl card-hover">
-            <div class="p-8">
-              <div class="flex justify-between items-start mb-6">
+          <div class="bg-white shadow-xl p-8">
+            <div class="flex justify-between items-start mb-6">
+              <div>
+                <div class="text-sm font-bold text-orange-600 mb-2">TEAM #3</div>
+                <h3 class="text-3xl font-bold">Team Hira</h3>
+              </div>
+              <div class="text-5xl font-black text-orange-600">#3</div>
+            </div>
+            
+            <div class="mb-8">
+              <div class="text-6xl font-black text-orange-600 mb-2" id="team-hira-score">0</div>
+              <div class="text-gray-600">Total Points</div>
+            </div>
+            
+            <div class="space-y-4">
+              <div class="flex items-center p-4 bg-orange-50 rounded-xl">
+                <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-crown text-white"></i>
+                </div>
                 <div>
-                  <div class="text-sm font-bold text-orange-600 mb-2">TEAM #3</div>
-                  <h3 class="text-3xl font-bold text-gray-900">Team Hira</h3>
-                </div>
-                <div class="text-5xl font-black text-orange-600">#3</div>
-              </div>
-              
-              <div class="mb-8">
-                <div class="text-6xl font-black text-orange-600 mb-2 score-counter" id="team-hira-score">0</div>
-                <div class="text-gray-600">Total Points</div>
-              </div>
-              
-              <div class="space-y-4">
-                <div class="flex items-center p-4 bg-orange-50 rounded-xl">
-                  <div class="w-12 h-12 bg-gradient-hira rounded-lg flex items-center justify-center mr-4">
-                    <i class="fas fa-crown text-white"></i>
-                  </div>
-                  <div>
-                    <div class="text-sm text-gray-500">Leader</div>
-                    <div class="font-bold text-gray-900">Moosa TP</div>
-                  </div>
-                </div>
-                
-                <div class="flex items-center p-4 bg-orange-50 rounded-xl">
-                  <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
-                    <i class="fas fa-user-check text-orange-600"></i>
-                  </div>
-                  <div>
-                    <div class="text-sm text-gray-500">Assistant Leader</div>
-                    <div class="font-bold text-gray-900">Ameen Abdurahman</div>
-                  </div>
-                </div>
-                
-                <div class="flex items-center p-4 bg-orange-50 rounded-xl">
-                  <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
-                    <i class="fas fa-star text-orange-600"></i>
-                  </div>
-                  <div>
-                    <div class="text-sm text-gray-500">Iconic Member</div>
-                    <div class="font-bold text-gray-900">Abdul Ahad M</div>
-                  </div>
+                  <div class="text-sm text-gray-500">Leader</div>
+                  <div class="font-bold">Moosa TP</div>
                 </div>
               </div>
               
-              <div class="mt-8 pt-6 border-t border-gray-200">
-                <div class="text-center">
-                  <button data-section="scoreboard" class="px-6 py-3 bg-gradient-hira text-white font-bold rounded-lg w-full">
-                    View Scores <i class="fas fa-arrow-right ml-2"></i>
-                  </button>
+              <div class="flex items-center p-4 bg-orange-50 rounded-xl">
+                <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-user-check text-orange-600"></i>
+                </div>
+                <div>
+                  <div class="text-sm text-gray-500">Assistant Leader</div>
+                  <div class="font-bold">Ameen Abdurahman</div>
                 </div>
               </div>
             </div>
@@ -747,125 +336,60 @@
     </section>
 
     <!-- Scoreboard Section -->
-    <section id="scoreboard-section" class="section-hidden min-h-screen px-4 py-12 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <section id="scoreboard-section" class="section-hidden min-h-screen px-4 py-12 bg-gray-50">
       <div class="container mx-auto">
         <div class="text-center mb-12">
-          <h2 class="text-5xl font-bold text-gray-900 mb-4">Live Scoreboard</h2>
-          <p class="text-xl text-gray-600">Category-wise scores and team totals</p>
-          <div class="w-24 h-1 bg-gradient-primary mx-auto mt-6 rounded-full"></div>
+          <h2 class="text-5xl font-bold mb-4">Live Scoreboard</h2>
+          <div class="w-24 h-1 bg-green-500 mx-auto mt-6 rounded-full"></div>
         </div>
         
-        <!-- Scoreboard Category Selector -->
         <div class="flex flex-wrap justify-center gap-4 mb-16">
-          <button data-category="General" class="scoreboard-category-btn px-8 py-4 bg-gradient-primary text-white font-bold rounded-2xl shadow-xl flex items-center">
-            <i class="fas fa-star mr-3"></i> General
+          <button data-category="General" class="scoreboard-category-btn px-8 py-4 bg-green-500 text-white font-bold rounded-2xl">
+            General
           </button>
-          <button data-category="Group" class="scoreboard-category-btn px-8 py-4 bg-white text-gray-700 font-bold rounded-2xl shadow-lg flex items-center">
-            <i class="fas fa-users mr-3"></i> Group
+          <button data-category="Group" class="scoreboard-category-btn px-8 py-4 bg-white text-gray-700 font-bold rounded-2xl">
+            Group
           </button>
-          <button data-category="Junior Stage" class="scoreboard-category-btn px-8 py-4 bg-white text-gray-700 font-bold rounded-2xl shadow-lg flex items-center">
-            <i class="fas fa-microphone mr-3"></i> Junior Stage
+          <button data-category="Junior Stage" class="scoreboard-category-btn px-8 py-4 bg-white text-gray-700 font-bold rounded-2xl">
+            Junior Stage
           </button>
-          <button data-category="Senior Stage" class="scoreboard-category-btn px-8 py-4 bg-white text-gray-700 font-bold rounded-2xl shadow-lg flex items-center">
-            <i class="fas fa-theater-masks mr-3"></i> Senior Stage
+          <button data-category="Senior Stage" class="scoreboard-category-btn px-8 py-4 bg-white text-gray-700 font-bold rounded-2xl">
+            Senior Stage
           </button>
-          <button data-category="Junior Non-Stage" class="scoreboard-category-btn px-8 py-4 bg-white text-gray-700 font-bold rounded-2xl shadow-lg flex items-center">
-            <i class="fas fa-paint-brush mr-3"></i> Junior Non-Stage
-          </button>
-          <button data-category="Senior Non-Stage" class="scoreboard-category-btn px-8 py-4 bg-white text-gray-700 font-bold rounded-2xl shadow-lg flex items-center">
-            <i class="fas fa-palette mr-3"></i> Senior Non-Stage
-          </button>
-          <button data-category="Total" class="scoreboard-category-btn px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-2xl shadow-xl flex items-center">
-            <i class="fas fa-trophy mr-3"></i> Total Score
+          <button data-category="Total" class="scoreboard-category-btn px-8 py-4 bg-purple-600 text-white font-bold rounded-2xl">
+            Total Score
           </button>
         </div>
         
-        <!-- Scoreboard Display -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
-          <!-- Team Isra Score -->
-          <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-10 text-center card-hover">
-            <div class="inline-block p-4 bg-gradient-isra rounded-2xl mb-6">
-              <i class="fas fa-flag text-white text-3xl"></i>
-            </div>
-            <h3 class="text-3xl font-bold text-gray-900 mb-2">Team Isra</h3>
-            <div class="text-7xl font-black text-green-600 mb-4 score-counter" id="score-isra">0</div>
-            <div class="text-gray-600 text-lg" id="score-label-isra">Points</div>
-            <div class="mt-8 pt-6 border-t border-gray-200">
-              <div class="text-sm text-gray-500">Current Rank</div>
-              <div class="text-2xl font-bold text-gray-900" id="rank-isra">-</div>
-            </div>
+          <div class="bg-white rounded-3xl shadow-2xl p-10 text-center">
+            <h3 class="text-3xl font-bold mb-2">Team Isra</h3>
+            <div class="text-7xl font-black text-green-600 mb-4" id="score-isra">0</div>
+            <div class="text-gray-600" id="score-label-isra">Points</div>
           </div>
           
-          <!-- Team Qaswa Score -->
-          <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-10 text-center card-hover">
-            <div class="inline-block p-4 bg-gradient-qaswa rounded-2xl mb-6">
-              <i class="fas fa-flag text-white text-3xl"></i>
-            </div>
-            <h3 class="text-3xl font-bold text-gray-900 mb-2">Team Qaswa</h3>
-            <div class="text-7xl font-black text-blue-600 mb-4 score-counter" id="score-qaswa">0</div>
-            <div class="text-gray-600 text-lg" id="score-label-qaswa">Points</div>
-            <div class="mt-8 pt-6 border-t border-gray-200">
-              <div class="text-sm text-gray-500">Current Rank</div>
-              <div class="text-2xl font-bold text-gray-900" id="rank-qaswa">-</div>
-            </div>
+          <div class="bg-white rounded-3xl shadow-2xl p-10 text-center">
+            <h3 class="text-3xl font-bold mb-2">Team Qaswa</h3>
+            <div class="text-7xl font-black text-blue-600 mb-4" id="score-qaswa">0</div>
+            <div class="text-gray-600" id="score-label-qaswa">Points</div>
           </div>
           
-          <!-- Team Hira Score -->
-          <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-10 text-center card-hover">
-            <div class="inline-block p-4 bg-gradient-hira rounded-2xl mb-6">
-              <i class="fas fa-flag text-white text-3xl"></i>
-            </div>
-            <h3 class="text-3xl font-bold text-gray-900 mb-2">Team Hira</h3>
-            <div class="text-7xl font-black text-orange-600 mb-4 score-counter" id="score-hira">0</div>
-            <div class="text-gray-600 text-lg" id="score-label-hira">Points</div>
-            <div class="mt-8 pt-6 border-t border-gray-200">
-              <div class="text-sm text-gray-500">Current Rank</div>
-              <div class="text-2xl font-bold text-gray-900" id="rank-hira">-</div>
-            </div>
+          <div class="bg-white rounded-3xl shadow-2xl p-10 text-center">
+            <h3 class="text-3xl font-bold mb-2">Team Hira</h3>
+            <div class="text-7xl font-black text-orange-600 mb-4" id="score-hira">0</div>
+            <div class="text-gray-600" id="score-label-hira">Points</div>
           </div>
         </div>
         
-        <!-- Category Score Table -->
-        <div class="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl p-8 mb-12">
-          <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Category-wise Breakdown</h3>
-          <div class="overflow-x-auto">
-            <table class="w-full">
-              <thead>
-                <tr class="bg-gray-50">
-                  <th class="py-4 px-6 text-left font-bold text-gray-700 rounded-l-xl">Category</th>
-                  <th class="py-4 px-6 text-center font-bold text-green-600">Team Isra</th>
-                  <th class="py-4 px-6 text-center font-bold text-blue-600">Team Qaswa</th>
-                  <th class="py-4 px-6 text-center font-bold text-orange-600">Team Hira</th>
-                  <th class="py-4 px-6 text-center font-bold text-gray-700 rounded-r-xl">Leader</th>
-                </tr>
-              </thead>
-              <tbody id="category-scores-table">
-                <!-- Category scores will be loaded here -->
-                <tr>
-                  <td colspan="5" class="py-8 text-center text-gray-500">
-                    <div class="loader mx-auto mb-4"></div>
-                    Loading category scores...
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        
-        <!-- Last Updated & Auto-refresh -->
-        <div class="max-w-2xl mx-auto bg-white rounded-2xl p-8 shadow-lg">
+        <div class="max-w-2xl mx-auto bg-white rounded-2xl p-8 shadow">
           <div class="flex flex-col md:flex-row justify-between items-center">
             <div>
               <div class="text-sm text-gray-500">Last Updated</div>
-              <div class="text-xl font-bold text-gray-900" id="last-updated">Loading...</div>
+              <div class="text-xl font-bold" id="last-updated">Loading...</div>
             </div>
-            <div class="flex items-center mt-4 md:mt-0">
-              <div class="w-3 h-3 bg-green-500 rounded-full mr-3 pulse"></div>
-              <span class="text-gray-700">Live updates enabled</span>
-            </div>
-            <div class="mt-4 md:mt-0">
-              <button id="refresh-scores" class="px-6 py-3 bg-gradient-primary text-white font-bold rounded-xl flex items-center">
-                <i class="fas fa-sync-alt mr-2"></i> Refresh Scores
+            <div>
+              <button id="refresh-scores" class="px-6 py-3 bg-green-500 text-white font-bold rounded-xl">
+                Refresh Scores
               </button>
             </div>
           </div>
@@ -874,217 +398,50 @@
     </section>
 
     <!-- Toppers Section -->
-    <section id="toppers-section" class="section-hidden min-h-screen px-4 py-12 bg-gradient-to-br from-amber-50 to-orange-50">
+    <section id="toppers-section" class="section-hidden min-h-screen px-4 py-12 bg-gray-50">
       <div class="container mx-auto">
         <div class="text-center mb-12">
-          <h2 class="text-5xl font-bold text-gray-900 mb-4">Top Performers</h2>
-          <p class="text-xl text-gray-600">Celebrating individual excellence across categories</p>
-          <div class="w-24 h-1 bg-gradient-primary mx-auto mt-6 rounded-full"></div>
+          <h2 class="text-5xl font-bold mb-4">Top Performers</h2>
+          <div class="w-24 h-1 bg-green-500 mx-auto mt-6 rounded-full"></div>
         </div>
         
-        <!-- Toppers Navigation -->
         <div class="flex flex-wrap justify-center gap-3 mb-12">
-          <button data-topper-category="all" class="topper-category-btn px-6 py-3 bg-gradient-primary text-white font-bold rounded-xl shadow-lg">All Toppers</button>
-          <button data-topper-category="General" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">General</button>
-          <button data-topper-category="Junior" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">Junior</button>
-          <button data-topper-category="Senior" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">Senior</button>
-          <button data-topper-category="Super Senior" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">Super Senior</button>
-          <button data-topper-category="Sub Junior" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">Sub Junior</button>
+          <button data-topper-category="all" class="topper-category-btn px-6 py-3 bg-green-500 text-white font-bold rounded-xl">All Toppers</button>
+          <button data-topper-category="General" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">General</button>
+          <button data-topper-category="Junior" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">Junior</button>
+          <button data-topper-category="Senior" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">Senior</button>
         </div>
         
-        <!-- Chest Number Search -->
-        <div class="max-w-2xl mx-auto chest-search-container mb-16">
-          <h3 class="text-2xl font-bold text-center text-gray-900 mb-6">Check Your Score</h3>
+        <div class="max-w-2xl mx-auto bg-white rounded-2xl p-8 mb-16">
+          <h3 class="text-2xl font-bold text-center mb-6">Check Your Score</h3>
           <div class="flex flex-col sm:flex-row gap-4">
             <input
               type="text"
               id="chest-number-input"
-              class="flex-grow px-6 py-4 rounded-xl border-2 border-dashed border-gray-300 focus:outline-none focus:border-green-500 text-center text-lg uppercase"
+              class="flex-grow px-6 py-4 rounded-xl border-2 border-gray-300 text-center text-lg"
               placeholder="Enter Chest Number"
               maxlength="10"
             />
-            <button id="search-chest-btn" class="px-8 py-4 bg-gradient-primary text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all">
-              Get Score <i class="fas fa-search ml-2"></i>
+            <button id="search-chest-btn" class="px-8 py-4 bg-green-500 text-white font-bold rounded-xl">
+              Get Score
             </button>
           </div>
-          <div id="chest-result" class="mt-6 text-center hidden">
-            <!-- Result will be displayed here -->
-          </div>
+          <div id="chest-result" class="mt-6 hidden"></div>
         </div>
         
-        <!-- Toppers Display -->
         <div id="toppers-container" class="space-y-12">
-          <!-- Toppers will be loaded here -->
           <div class="text-center py-12">
             <div class="loader mx-auto mb-6"></div>
             <p class="text-gray-600">Loading toppers data...</p>
           </div>
         </div>
         
-        <!-- Programs List -->
-        <div class="mt-16 bg-white rounded-3xl shadow-2xl p-8">
-          <h3 class="text-3xl font-bold text-center text-gray-900 mb-8">All Programs</h3>
+        <div class="mt-16 bg-white rounded-2xl shadow p-8">
+          <h3 class="text-3xl font-bold text-center mb-8">All Programs</h3>
           <div id="programs-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <!-- Programs will be loaded here -->
             <div class="text-center py-8">
               <div class="loader mx-auto mb-4"></div>
               <p class="text-gray-600">Loading programs...</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery-section" class="section-hidden min-h-screen px-4 py-12 bg-gray-50">
-      <div class="container mx-auto">
-        <div class="text-center mb-12">
-          <h2 class="text-5xl font-bold text-gray-900 mb-4">Festival Gallery</h2>
-          <p class="text-xl text-gray-600">Capturing the moments of അന്യോന്യം'25</p>
-          <div class="w-24 h-1 bg-gradient-primary mx-auto mt-6 rounded-full"></div>
-        </div>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="rounded-2xl overflow-hidden shadow-2xl card-hover">
-            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Stage Performance" class="w-full h-64 object-cover" />
-            <div class="p-6 bg-white">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">Stage Performances</h3>
-              <p class="text-gray-600">Drama, speech, and cultural performances</p>
-            </div>
-          </div>
-          
-          <div class="rounded-2xl overflow-hidden shadow-2xl card-hover">
-            <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Art Exhibition" class="w-full h-64 object-cover" />
-            <div class="p-6 bg-white">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">Art Exhibition</h3>
-              <p class="text-gray-600">Paintings, calligraphy, and crafts</p>
-            </div>
-          </div>
-          
-          <div class="rounded-2xl overflow-hidden shadow-2xl card-hover">
-            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Group Activities" class="w-full h-64 object-cover" />
-            <div class="p-6 bg-white">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">Group Activities</h3>
-              <p class="text-gray-600">Team competitions and collaborative events</p>
-            </div>
-          </div>
-          
-          <div class="rounded-2xl overflow-hidden shadow-2xl card-hover">
-            <img src="https://images.unsplash.com/photo-1492684223066-e9e4aab4d25e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Audience" class="w-full h-64 object-cover" />
-            <div class="p-6 bg-white">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">Festival Audience</h3>
-              <p class="text-gray-600">Students and faculty enjoying the events</p>
-            </div>
-          </div>
-          
-          <div class="rounded-2xl overflow-hidden shadow-2xl card-hover">
-            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Award Ceremony" class="w-full h-64 object-cover" />
-            <div class="p-6 bg-white">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">Award Ceremonies</h3>
-              <p class="text-gray-600">Winners receiving their awards</p>
-            </div>
-          </div>
-          
-          <div class="rounded-2xl overflow-hidden shadow-2xl card-hover">
-            <img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cultural Events" class="w-full h-64 object-cover" />
-            <div class="p-6 bg-white">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">Cultural Events</h3>
-              <p class="text-gray-600">Traditional performances and displays</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact-section" class="section-hidden min-h-screen px-4 py-12 bg-gradient-to-b from-white to-gray-100">
-      <div class="container mx-auto">
-        <div class="text-center mb-12">
-          <h2 class="text-5xl font-bold text-gray-900 mb-4">Contact Us</h2>
-          <p class="text-xl text-gray-600">Get in touch with the festival organizers</p>
-          <div class="w-24 h-1 bg-gradient-primary mx-auto mt-6 rounded-full"></div>
-        </div>
-        
-        <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          <div>
-            <div class="bg-white rounded-3xl shadow-2xl p-10">
-              <h3 class="text-2xl font-bold text-gray-900 mb-8">Send us a message</h3>
-              
-              <form id="contact-form" class="space-y-6">
-                <div>
-                  <label class="block text-gray-700 font-medium mb-2">Your Name</label>
-                  <input type="text" name="name" required class="w-full px-6 py-4 rounded-xl border border-gray-300 focus:ring-4 focus:ring-green-300 focus:border-green-500 outline-none transition-all" placeholder="Enter your name" />
-                </div>
-                
-                <div>
-                  <label class="block text-gray-700 font-medium mb-2">Phone Number</label>
-                  <input type="tel" name="phone" required class="w-full px-6 py-4 rounded-xl border border-gray-300 focus:ring-4 focus:ring-green-300 focus:border-green-500 outline-none transition-all" placeholder="Enter your phone number" />
-                </div>
-                
-                <div>
-                  <label class="block text-gray-700 font-medium mb-2">Your Message</label>
-                  <textarea name="message" rows="5" required class="w-full px-6 py-4 rounded-xl border border-gray-300 focus:ring-4 focus:ring-green-300 focus:border-green-500 outline-none transition-all resize-none" placeholder="Enter your message"></textarea>
-                </div>
-                
-                <button type="submit" class="w-full bg-gradient-primary text-white py-5 rounded-xl font-bold text-xl hover:shadow-2xl transition-all flex items-center justify-center">
-                  <i class="fas fa-paper-plane mr-3"></i> Send Message
-                </button>
-              </form>
-            </div>
-          </div>
-          
-          <div>
-            <div class="bg-white rounded-3xl shadow-2xl p-10 h-full">
-              <h3 class="text-2xl font-bold text-gray-900 mb-8">Contact Information</h3>
-              
-              <div class="space-y-8">
-                <div class="flex items-start">
-                  <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center mr-6">
-                    <i class="fas fa-university text-2xl text-green-600"></i>
-                  </div>
-                  <div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-2">Darunnajath Shareeath & Arts College</h4>
-                    <p class="text-gray-600">Karuvarakundu, Malappuram, Kerala</p>
-                  </div>
-                </div>
-                
-                <div class="flex items-start">
-                  <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mr-6">
-                    <i class="fas fa-users text-2xl text-blue-600"></i>
-                  </div>
-                  <div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-2">Festival Organizers</h4>
-                    <p class="text-gray-600">Arts Club & Student Union</p>
-                    <p class="text-gray-600 mt-2">Email: nissanajath@gmail.com</p>
-                  </div>
-                </div>
-                
-                <div class="flex items-start">
-                  <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mr-6">
-                    <i class="fas fa-calendar-alt text-2xl text-purple-600"></i>
-                  </div>
-                  <div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-2">Event Dates</h4>
-                    <p class="text-gray-600">October 1-2, 2025</p>
-                    <p class="text-gray-600 mt-2">9:00 AM to 6:00 PM daily</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="mt-12 pt-8 border-t border-gray-200">
-                <h4 class="text-xl font-bold text-gray-900 mb-6">Follow Us</h4>
-                <div class="flex space-x-6">
-                  <a href="https://www.instagram.com/anyonyam25/" class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white text-2xl hover:scale-110 transition-transform">
-                    <i class="fab fa-instagram"></i>
-                  </a>
-                  <a href="https://www.youtube.com/@anyonyam25" class="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center text-white text-2xl hover:scale-110 transition-transform">
-                    <i class="fab fa-youtube"></i>
-                  </a>
-                  <a href="https://www.facebook.com/anyonyam25" class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-white text-2xl hover:scale-110 transition-transform">
-                    <i class="fab fa-facebook-f"></i>
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -1098,27 +455,23 @@
       <div class="grid md:grid-cols-3 gap-12">
         <div>
           <div class="flex items-center mb-6">
-            <div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mr-4">
-              <span class="text-white font-bold text-xl">JN</span>
+            <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mr-4">
+              <span class="text-white font-bold">JN</span>
             </div>
             <div>
               <h3 class="text-2xl font-bold">അന്യോന്യം'25</h3>
               <p class="text-gray-400">Jashne Najath Arts Fest</p>
             </div>
           </div>
-          <p class="text-gray-400">
-            Darunnajath Shareeath & Arts College presents the annual Islamic Arts Festival celebrating creativity, culture, and talent.
-          </p>
         </div>
         
         <div>
           <h4 class="text-xl font-bold mb-6">Quick Links</h4>
           <div class="space-y-4">
-            <a href="#" data-section="home" class="block text-gray-400 hover:text-white transition-colors"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Home</a>
-            <a href="#" data-section="results" class="block text-gray-400 hover:text-white transition-colors"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Results</a>
-            <a href="#" data-section="team" class="block text-gray-400 hover:text-white transition-colors"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Teams</a>
-            <a href="#" data-section="scoreboard" class="block text-gray-400 hover:text-white transition-colors"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Scoreboard</a>
-            <a href="#" data-section="toppers" class="block text-gray-400 hover:text-white transition-colors"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Toppers</a>
+            <a href="#" data-section="home" class="block text-gray-400 hover:text-white"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Home</a>
+            <a href="#" data-section="results" class="block text-gray-400 hover:text-white"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Results</a>
+            <a href="#" data-section="team" class="block text-gray-400 hover:text-white"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Teams</a>
+            <a href="#" data-section="scoreboard" class="block text-gray-400 hover:text-white"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Scoreboard</a>
           </div>
         </div>
         
@@ -1127,19 +480,14 @@
           <div class="space-y-4">
             <div class="flex items-start">
               <i class="fas fa-map-marker-alt text-green-500 mt-1 mr-4"></i>
-              <p class="text-gray-400">Darunnajath Shareeath & Arts College, Karuvarakundu, Malappuram, Kerala</p>
-            </div>
-            <div class="flex items-center">
-              <i class="fas fa-envelope text-green-500 mr-4"></i>
-              <p class="text-gray-400">nissanajath@gmail.com</p>
+              <p class="text-gray-400">Darunnajath Shareeath & Arts College</p>
             </div>
           </div>
         </div>
       </div>
       
       <div class="mt-12 pt-8 border-t border-gray-800 text-center">
-        <p class="text-gray-500">© 2025 അന്യോന്യം Media Team. All rights reserved.</p>
-        <p class="text-gray-500 mt-2">Designed with <i class="fas fa-heart text-red-500 mx-1"></i> for Darunnajath College</p>
+        <p class="text-gray-500">© 2025 അന്യോന്യം Media Team</p>
       </div>
     </div>
   </footer>
@@ -1169,64 +517,43 @@
       results: document.getElementById('results-section'),
       team: document.getElementById('team-section'),
       scoreboard: document.getElementById('scoreboard-section'),
-      toppers: document.getElementById('toppers-section'),
-      gallery: document.getElementById('gallery-section'),
-      contact: document.getElementById('contact-section')
+      toppers: document.getElementById('toppers-section')
     };
     
-    // Initialize the application
+    // Initialize
     document.addEventListener('DOMContentLoaded', function() {
-      // Set up navigation
       setupNavigation();
-      
-      // Load all data
       loadScoreboard();
       loadResults();
       loadToppers();
       loadPrograms();
-      
-      // Set up auto-refresh every 30 seconds
-      setInterval(() => {
-        loadScoreboard();
-      }, 30000);
     });
     
     // Navigation Setup
     function setupNavigation() {
-      // Desktop navigation tabs
+      // Desktop tabs
       document.querySelectorAll('.nav-tab').forEach(tab => {
         tab.addEventListener('click', function() {
           const sectionId = this.getAttribute('data-section');
           showSection(sectionId);
           
-          // Update active tab
           document.querySelectorAll('.nav-tab').forEach(t => {
             t.classList.remove('nav-tab-active');
-            t.classList.add('text-gray-600', 'bg-white/0');
           });
           this.classList.add('nav-tab-active');
-          this.classList.remove('text-gray-600', 'bg-white/0');
         });
       });
       
-      // Mobile navigation tabs
+      // Mobile tabs
       document.querySelectorAll('.mobile-nav-tab').forEach(tab => {
         tab.addEventListener('click', function() {
           const sectionId = this.getAttribute('data-section');
           showSection(sectionId);
           closeMobileMenu();
-          
-          // Update active mobile tab
-          document.querySelectorAll('.mobile-nav-tab').forEach(t => {
-            t.classList.remove('bg-gradient-primary', 'text-white');
-            t.classList.add('bg-gray-100', 'text-gray-700');
-          });
-          this.classList.add('bg-gradient-primary', 'text-white');
-          this.classList.remove('bg-gray-100', 'text-gray-700');
         });
       });
       
-      // Mobile menu toggle
+      // Mobile menu
       document.getElementById('mobile-menu-btn').addEventListener('click', openMobileMenu);
       document.getElementById('mobile-menu-close').addEventListener('click', closeMobileMenu);
       
@@ -1239,7 +566,7 @@
         });
       });
       
-      // Home section buttons
+      // Buttons
       document.querySelectorAll('#home-section button[data-section]').forEach(button => {
         button.addEventListener('click', function() {
           const sectionId = this.getAttribute('data-section');
@@ -1247,15 +574,7 @@
         });
       });
       
-      // Team section buttons
-      document.querySelectorAll('#team-section button[data-section]').forEach(button => {
-        button.addEventListener('click', function() {
-          const sectionId = this.getAttribute('data-section');
-          showSection(sectionId);
-        });
-      });
-      
-      // Scoreboard category buttons
+      // Scoreboard buttons
       document.querySelectorAll('.scoreboard-category-btn').forEach(btn => {
         btn.addEventListener('click', function() {
           const category = this.getAttribute('data-category');
@@ -1263,7 +582,7 @@
         });
       });
       
-      // Toppers category buttons
+      // Toppers buttons
       document.querySelectorAll('.topper-category-btn').forEach(btn => {
         btn.addEventListener('click', function() {
           const category = this.getAttribute('data-topper-category');
@@ -1271,34 +590,33 @@
         });
       });
       
-      // Chest number search
+      // Chest search
       document.getElementById('search-chest-btn').addEventListener('click', searchChestNumber);
       document.getElementById('chest-number-input').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-          searchChestNumber();
-        }
+        if (e.key === 'Enter') searchChestNumber();
+      });
+      
+      // Refresh button
+      document.getElementById('refresh-scores').addEventListener('click', function() {
+        loadScoreboard();
       });
     }
     
-    // Show a specific section
+    // Show section
     function showSection(sectionId) {
-      // Hide all sections
       Object.values(sections).forEach(section => {
         section.classList.remove('section-active');
         section.classList.add('section-hidden');
       });
       
-      // Show the selected section
       if (sections[sectionId]) {
         sections[sectionId].classList.remove('section-hidden');
         sections[sectionId].classList.add('section-active');
-        
-        // Scroll to top
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
     
-    // Mobile menu functions
+    // Mobile menu
     function openMobileMenu() {
       document.getElementById('mobile-menu').classList.add('mobile-menu-open');
       document.body.style.overflow = 'hidden';
@@ -1309,7 +627,7 @@
       document.body.style.overflow = 'auto';
     }
     
-    // Load scoreboard data from Google Sheets
+    // Load scoreboard
     function loadScoreboard() {
       fetch(SCOREBOARD_URL)
         .then(res => res.text())
@@ -1328,34 +646,24 @@
             }
           });
           
-          // Calculate total scores
           calculateTotalScores();
-          
-          // Update scoreboard with current category
           updateScoreboard(currentCategory);
           updateTeamScores();
-          updateCategoryTable();
-          updateRanks();
           document.getElementById('last-updated').textContent = new Date().toLocaleString('en-IN');
         })
         .catch(err => {
           console.error('Error loading scoreboard:', err);
-          document.getElementById('last-updated').textContent = 'Failed to load data';
+          document.getElementById('last-updated').textContent = 'Failed to load';
         });
     }
     
-    // Load results data from Google Sheets
+    // Load results
     function loadResults() {
       fetch(RESULTS_URL)
         .then(res => res.text())
         .then(csv => {
           const rows = parseCSV(csv);
           allResults = [];
-          
-          // Parse results with new column structure (including points)
-          // Columns: No, Event Code, Event, Category, 1st Place Chest No, 2nd Place Chest No, 3rd Place Chest No,
-          // 1st Place Name, 2nd Place Name, 3rd Place Name, 1st Place Group, 2nd Place Group, 3rd Place Group,
-          // 1st Place Point, 2nd Place Point, 3rd Place Point
           
           for (let i = 1; i < rows.length; i++) {
             const row = rows[i];
@@ -1381,39 +689,22 @@
             }
           }
           
-          // Reverse to show latest first
           allResults.reverse();
-          
-          // Display results
           displayResults(currentFilter);
-          
-          // Set up result filter buttons
           setupResultFilters();
         })
         .catch(err => {
           console.error('Error loading results:', err);
-          document.getElementById('results-container').innerHTML = `
-            <div class="col-span-3 text-center py-12">
-              <div class="text-6xl text-gray-300 mb-6">
-                <i class="fas fa-exclamation-circle"></i>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-700 mb-4">Failed to Load Results</h3>
-              <p class="text-gray-600">Please check your connection and try again.</p>
-            </div>
-          `;
         });
     }
     
-    // Load toppers data from Google Sheets
+    // Load toppers
     function loadToppers() {
       fetch(TOPPERS_URL)
         .then(res => res.text())
         .then(csv => {
           const rows = parseCSV(csv);
           allToppers = [];
-          
-          // Parse toppers data
-          // Expected columns: Rank, Category, Chest No, Name, Team, Points
           
           for (let i = 1; i < rows.length; i++) {
             const row = rows[i];
@@ -1429,33 +720,20 @@
             }
           }
           
-          // Display toppers
           displayToppers(currentTopperCategory);
         })
         .catch(err => {
           console.error('Error loading toppers:', err);
-          document.getElementById('toppers-container').innerHTML = `
-            <div class="text-center py-12">
-              <div class="text-6xl text-gray-300 mb-6">
-                <i class="fas fa-exclamation-circle"></i>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-700 mb-4">Failed to Load Toppers Data</h3>
-              <p class="text-gray-600">Please check your connection and try again.</p>
-            </div>
-          `;
         });
     }
     
-    // Load programs data from Google Sheets
+    // Load programs
     function loadPrograms() {
       fetch(PROGRAMS_URL)
         .then(res => res.text())
         .then(csv => {
           const rows = parseCSV(csv);
           allPrograms = [];
-          
-          // Parse programs data
-          // Expected columns: Code, Name, Category, Description
           
           for (let i = 1; i < rows.length; i++) {
             const row = rows[i];
@@ -1469,23 +747,14 @@
             }
           }
           
-          // Display programs
           displayPrograms();
         })
         .catch(err => {
           console.error('Error loading programs:', err);
-          document.getElementById('programs-container').innerHTML = `
-            <div class="text-center py-8">
-              <div class="text-4xl text-gray-300 mb-4">
-                <i class="fas fa-exclamation-circle"></i>
-              </div>
-              <p class="text-gray-600">Failed to load programs</p>
-            </div>
-          `;
         });
     }
     
-    // Calculate total scores from all categories except "Total"
+    // Calculate total scores
     function calculateTotalScores() {
       totalScores = { isra: 0, qaswa: 0, hira: 0 };
       
@@ -1497,7 +766,6 @@
         }
       }
       
-      // If there's a "Total" row in the sheet, use that instead
       if (scoreboardData['Total']) {
         totalScores = {
           isra: scoreboardData['Total'].isra || 0,
@@ -1507,7 +775,7 @@
       }
     }
     
-    // Parse CSV data
+    // Parse CSV
     function parseCSV(csv) {
       const lines = csv.trim().split('\n');
       return lines.map(line => {
@@ -1536,20 +804,18 @@
       });
     }
     
-    // Update scoreboard display
+    // Update scoreboard
     function updateScoreboard(category) {
       currentCategory = category;
       let data;
       
       if (category === 'Total') {
         data = totalScores;
-        // Update score labels
         document.getElementById('score-label-isra').textContent = 'Total Points';
         document.getElementById('score-label-qaswa').textContent = 'Total Points';
         document.getElementById('score-label-hira').textContent = 'Total Points';
       } else {
         data = scoreboardData[category] || { isra: 0, qaswa: 0, hira: 0 };
-        // Update score labels
         document.getElementById('score-label-isra').textContent = 'Points';
         document.getElementById('score-label-qaswa').textContent = 'Points';
         document.getElementById('score-label-hira').textContent = 'Points';
@@ -1559,149 +825,36 @@
       document.getElementById('score-qaswa').textContent = data.qaswa || 0;
       document.getElementById('score-hira').textContent = data.hira || 0;
       
-      // Update active category button
+      // Update button styles
       document.querySelectorAll('.scoreboard-category-btn').forEach(btn => {
         if (btn.getAttribute('data-category') === category) {
           if (category === 'Total') {
-            btn.classList.add('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'text-white');
-            btn.classList.remove('bg-white', 'text-gray-700', 'bg-gradient-primary');
-          } else if (category === 'General') {
-            btn.classList.add('bg-gradient-primary', 'text-white');
-            btn.classList.remove('bg-white', 'text-gray-700', 'bg-gradient-to-r', 'from-purple-600', 'to-pink-600');
+            btn.classList.remove('bg-white', 'text-gray-700');
+            btn.classList.add('bg-purple-600', 'text-white');
           } else {
-            btn.classList.add('bg-gradient-primary', 'text-white');
-            btn.classList.remove('bg-white', 'text-gray-700', 'bg-gradient-to-r', 'from-purple-600', 'to-pink-600');
+            btn.classList.remove('bg-white', 'text-gray-700');
+            btn.classList.add('bg-green-500', 'text-white');
           }
         } else {
           if (btn.getAttribute('data-category') === 'Total') {
-            btn.classList.remove('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'text-white');
+            btn.classList.remove('bg-purple-600', 'text-white');
             btn.classList.add('bg-white', 'text-gray-700');
           } else {
-            btn.classList.remove('bg-gradient-primary', 'text-white');
+            btn.classList.remove('bg-green-500', 'text-white');
             btn.classList.add('bg-white', 'text-gray-700');
           }
         }
       });
-      
-      // Update ranks
-      updateRanks();
     }
     
-    // Update team scores in team section
+    // Update team scores
     function updateTeamScores() {
       document.getElementById('team-isra-score').textContent = totalScores.isra;
       document.getElementById('team-qaswa-score').textContent = totalScores.qaswa;
       document.getElementById('team-hira-score').textContent = totalScores.hira;
     }
     
-    // Update category score table
-    function updateCategoryTable() {
-      const tableBody = document.getElementById('category-scores-table');
-      tableBody.innerHTML = '';
-      
-      const categories = ['General', 'Group', 'Junior Stage', 'Senior Stage', 'Junior Non-Stage', 'Senior Non-Stage'];
-      
-      categories.forEach(category => {
-        const data = scoreboardData[category] || { isra: 0, qaswa: 0, hira: 0 };
-        
-        // Determine leader for this category
-        let leader = '';
-        let leaderColor = '';
-        
-        if (data.isra > data.qaswa && data.isra > data.hira) {
-          leader = 'Team Isra';
-          leaderColor = 'text-green-600';
-        } else if (data.qaswa > data.isra && data.qaswa > data.hira) {
-          leader = 'Team Qaswa';
-          leaderColor = 'text-blue-600';
-        } else if (data.hira > data.isra && data.hira > data.qaswa) {
-          leader = 'Team Hira';
-          leaderColor = 'text-orange-600';
-        } else if (data.isra === data.qaswa && data.isra === data.hira && data.isra > 0) {
-          leader = 'Tie';
-          leaderColor = 'text-gray-600';
-        } else {
-          leader = 'No scores';
-          leaderColor = 'text-gray-400';
-        }
-        
-        const row = document.createElement('tr');
-        row.className = 'hover:bg-gray-50';
-        row.innerHTML = `
-          <td class="py-4 px-6 border-b border-gray-200">
-            <div class="font-medium text-gray-900">${category}</div>
-          </td>
-          <td class="py-4 px-6 border-b border-gray-200 text-center font-bold text-green-600">
-            ${data.isra}
-          </td>
-          <td class="py-4 px-6 border-b border-gray-200 text-center font-bold text-blue-600">
-            ${data.qaswa}
-          </td>
-          <td class="py-4 px-6 border-b border-gray-200 text-center font-bold text-orange-600">
-            ${data.hira}
-          </td>
-          <td class="py-4 px-6 border-b border-gray-200 text-center ${leaderColor}">
-            ${leader}
-          </td>
-        `;
-        tableBody.appendChild(row);
-      });
-      
-      // Add Total row
-      const totalRow = document.createElement('tr');
-      totalRow.className = 'bg-gray-50 font-bold';
-      totalRow.innerHTML = `
-        <td class="py-4 px-6 rounded-bl-xl">
-          <div class="font-bold text-gray-900">Total Score</div>
-        </td>
-        <td class="py-4 px-6 text-center text-green-600">
-          ${totalScores.isra}
-        </td>
-        <td class="py-4 px-6 text-center text-blue-600">
-          ${totalScores.qaswa}
-        </td>
-        <td class="py-4 px-6 text-center text-orange-600">
-          ${totalScores.hira}
-        </td>
-        <td class="py-4 px-6 rounded-br-xl text-center">
-          ${getOverallLeader()}
-        </td>
-      `;
-      tableBody.appendChild(totalRow);
-    }
-    
-    // Get overall leader based on total scores
-    function getOverallLeader() {
-      if (totalScores.isra > totalScores.qaswa && totalScores.isra > totalScores.hira) {
-        return '<span class="text-green-600">Team Isra</span>';
-      } else if (totalScores.qaswa > totalScores.isra && totalScores.qaswa > totalScores.hira) {
-        return '<span class="text-blue-600">Team Qaswa</span>';
-      } else if (totalScores.hira > totalScores.isra && totalScores.hira > totalScores.qaswa) {
-        return '<span class="text-orange-600">Team Hira</span>';
-      } else {
-        return '<span class="text-gray-600">Tie</span>';
-      }
-    }
-    
-    // Update team ranks based on total scores
-    function updateRanks() {
-      // Create array of teams with scores
-      const teams = [
-        { name: 'isra', score: totalScores.isra },
-        { name: 'qaswa', score: totalScores.qaswa },
-        { name: 'hira', score: totalScores.hira }
-      ];
-      
-      // Sort by score (descending)
-      teams.sort((a, b) => b.score - a.score);
-      
-      // Update rank display
-      document.getElementById('rank-isra').textContent = '#' + (teams.findIndex(t => t.name === 'isra') + 1);
-      document.getElementById('rank-qaswa').textContent = '#' + (teams.findIndex(t => t.name === 'qaswa') + 1);
-      document.getElementById('rank-hira').textContent = '#' + (teams.findIndex(t => t.name === 'hira') + 1);
-    }
-    
-    // Display filtered results
+    // Display results
     function displayResults(filter) {
       currentFilter = filter;
       const container = document.getElementById('results-container');
@@ -1721,122 +874,95 @@
       noResults.classList.add('hidden');
       
       filtered.forEach(result => {
-        // Determine category class
-        let categoryClass = '';
-        switch(result.category) {
-          case 'General': categoryClass = 'category-general'; break;
-          case 'Group': categoryClass = 'category-group'; break;
-          case 'Junior Stage': categoryClass = 'category-junior-stage'; break;
-          case 'Senior Stage': categoryClass = 'category-senior-stage'; break;
-          case 'Junior Non-Stage': categoryClass = 'category-junior-non-stage'; break;
-          case 'Senior Non-Stage': categoryClass = 'category-senior-non-stage'; break;
-          default: categoryClass = 'category-general';
-        }
-        
-        // Create result card
-        const card = document.createElement('div');
-        card.className = `result-card bg-white rounded-2xl shadow-lg p-8 ${categoryClass}`;
-        
-        // Determine team badges
         const firstGroupBadge = getTeamBadge(result.firstGroup);
         const secondGroupBadge = getTeamBadge(result.secondGroup);
         const thirdGroupBadge = getTeamBadge(result.thirdGroup);
         
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-2xl shadow p-8';
         card.innerHTML = `
-          <div class="flex flex-col md:flex-row md:items-start justify-between mb-6">
-            <div>
-              <div class="flex items-center mb-3">
-                <span class="text-sm font-medium bg-gray-100 text-gray-700 px-3 py-1 rounded-full mr-3">
-                  ${result.eventCode}
-                </span>
-                <span class="text-sm font-medium bg-gray-100 text-gray-700 px-3 py-1 rounded-full">
-                  Event #${result.no}
-                </span>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900">${result.event}</h3>
-              <div class="flex items-center mt-3">
-                <span class="results-badge bg-gray-100 text-gray-700">${result.category}</span>
-              </div>
+          <div class="mb-6">
+            <div class="flex items-center mb-3">
+              <span class="text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full mr-3">
+                ${result.eventCode}
+              </span>
+              <span class="text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full">
+                Event #${result.no}
+              </span>
+            </div>
+            <h3 class="text-2xl font-bold">${result.event}</h3>
+            <div class="flex items-center mt-3">
+              <span class="text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full">${result.category}</span>
             </div>
           </div>
           
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <!-- 1st Place -->
             ${result.firstName ? `
-              <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl p-6">
+              <div class="bg-yellow-50 rounded-xl p-6">
                 <div class="flex items-center justify-between mb-4">
                   <div class="flex items-center">
-                    <div class="w-10 h-10 medal-gold rounded-lg flex items-center justify-center mr-3">
-                      <span class="font-bold text-yellow-800">1</span>
+                    <div class="w-10 h-10 bg-yellow-500 rounded-lg flex items-center justify-center mr-3">
+                      <span class="font-bold text-white">1</span>
                     </div>
                     <div>
                       <div class="text-sm text-gray-600">Chest No</div>
-                      <div class="font-bold text-gray-900">${result.firstChestNo || '-'}</div>
+                      <div class="font-bold">${result.firstChestNo || '-'}</div>
                     </div>
                   </div>
                   ${firstGroupBadge}
                 </div>
-                <div class="text-lg font-bold text-gray-900">${result.firstName}</div>
+                <div class="text-lg font-bold">${result.firstName}</div>
                 <div class="flex items-center justify-between mt-2">
                   <div class="text-sm text-gray-600">1st Place</div>
-                  ${result.firstPoint > 0 ? `<span class="points-badge points-gold">${result.firstPoint} pts</span>` : ''}
+                  ${result.firstPoint > 0 ? `<span class="text-sm bg-yellow-100 text-yellow-800 px-2 py-1 rounded">${result.firstPoint} pts</span>` : ''}
                 </div>
               </div>
             ` : ''}
             
-            <!-- 2nd Place -->
             ${result.secondName ? `
-              <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6">
+              <div class="bg-gray-50 rounded-xl p-6">
                 <div class="flex items-center justify-between mb-4">
                   <div class="flex items-center">
-                    <div class="w-10 h-10 medal-silver rounded-lg flex items-center justify-center mr-3">
-                      <span class="font-bold text-gray-800">2</span>
+                    <div class="w-10 h-10 bg-gray-400 rounded-lg flex items-center justify-center mr-3">
+                      <span class="font-bold text-white">2</span>
                     </div>
                     <div>
                       <div class="text-sm text-gray-600">Chest No</div>
-                      <div class="font-bold text-gray-900">${result.secondChestNo || '-'}</div>
+                      <div class="font-bold">${result.secondChestNo || '-'}</div>
                     </div>
                   </div>
                   ${secondGroupBadge}
                 </div>
-                <div class="text-lg font-bold text-gray-900">${result.secondName}</div>
+                <div class="text-lg font-bold">${result.secondName}</div>
                 <div class="flex items-center justify-between mt-2">
                   <div class="text-sm text-gray-600">2nd Place</div>
-                  ${result.secondPoint > 0 ? `<span class="points-badge points-silver">${result.secondPoint} pts</span>` : ''}
+                  ${result.secondPoint > 0 ? `<span class="text-sm bg-gray-100 text-gray-800 px-2 py-1 rounded">${result.secondPoint} pts</span>` : ''}
                 </div>
               </div>
             ` : ''}
             
-            <!-- 3rd Place -->
             ${result.thirdName ? `
-              <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6">
+              <div class="bg-orange-50 rounded-xl p-6">
                 <div class="flex items-center justify-between mb-4">
                   <div class="flex items-center">
-                    <div class="w-10 h-10 medal-bronze rounded-lg flex items-center justify-center mr-3">
-                      <span class="font-bold text-orange-800">3</span>
+                    <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center mr-3">
+                      <span class="font-bold text-white">3</span>
                     </div>
                     <div>
                       <div class="text-sm text-gray-600">Chest No</div>
-                      <div class="font-bold text-gray-900">${result.thirdChestNo || '-'}</div>
+                      <div class="font-bold">${result.thirdChestNo || '-'}</div>
                     </div>
                   </div>
                   ${thirdGroupBadge}
                 </div>
-                <div class="text-lg font-bold text-gray-900">${result.thirdName}</div>
+                <div class="text-lg font-bold">${result.thirdName}</div>
                 <div class="flex items-center justify-between mt-2">
                   <div class="text-sm text-gray-600">3rd Place</div>
-                  ${result.thirdPoint > 0 ? `<span class="points-badge points-bronze">${result.thirdPoint} pts</span>` : ''}
+                  ${result.thirdPoint > 0 ? `<span class="text-sm bg-orange-100 text-orange-800 px-2 py-1 rounded">${result.thirdPoint} pts</span>` : ''}
                 </div>
               </div>
             ` : ''}
           </div>
-          
-          ${(!result.firstName && !result.secondName && !result.thirdName) ? `
-            <div class="text-center py-8 bg-gray-50 rounded-xl">
-              <i class="fas fa-hourglass-half text-4xl text-gray-400 mb-4"></i>
-              <p class="text-gray-600">Results pending or event in progress</p>
-            </div>
-          ` : ''}
         `;
         
         container.appendChild(card);
@@ -1850,7 +976,6 @@
       
       container.innerHTML = '';
       
-      // Filter toppers by category
       const filtered = category === 'all' 
         ? allToppers 
         : allToppers.filter(t => t.category === category);
@@ -1858,17 +983,13 @@
       if (filtered.length === 0) {
         container.innerHTML = `
           <div class="text-center py-12">
-            <div class="text-6xl text-gray-300 mb-6">
-              <i class="fas fa-crown"></i>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-700 mb-4">No Toppers Data Available</h3>
-            <p class="text-gray-600">Toppers data will be displayed here as soon as it is available.</p>
+            <h3 class="text-2xl font-bold mb-4">No Toppers Data Available</h3>
           </div>
         `;
         return;
       }
       
-      // Group toppers by category
+      // Group by category
       const toppersByCategory = {};
       filtered.forEach(topper => {
         if (!toppersByCategory[topper.category]) {
@@ -1877,26 +998,25 @@
         toppersByCategory[topper.category].push(topper);
       });
       
-      // Display toppers by category
       for (const category in toppersByCategory) {
-        const categoryToppers = toppersByCategory[category].slice(0, 10); // Limit to top 10 per category
+        const categoryToppers = toppersByCategory[category].slice(0, 10);
         
         const categorySection = document.createElement('div');
         categorySection.className = 'mb-12';
         categorySection.innerHTML = `
-          <h3 class="text-3xl font-bold text-gray-900 mb-6 text-center">${category} Toppers</h3>
+          <h3 class="text-3xl font-bold text-center mb-6">${category} Toppers</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            ${categoryToppers.map((topper, index) => `
-              <div class="topper-card bg-white rounded-xl shadow-lg p-6 relative">
-                <div class="topper-rank rank-${topper.rank <= 3 ? topper.rank : 'other'}">
+            ${categoryToppers.map(topper => `
+              <div class="bg-white rounded-xl shadow p-6 relative">
+                <div class="absolute top-3 left-3 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold ${topper.rank <= 3 ? `topper-rank-${topper.rank}` : 'bg-gray-500'}">
                   ${topper.rank}
                 </div>
                 <div class="text-center">
-                  <div class="text-5xl font-bold text-gray-900 mb-3">${topper.points}</div>
+                  <div class="text-5xl font-bold mb-3">${topper.points}</div>
                   <div class="text-sm text-gray-500 mb-1">Points</div>
-                  <h4 class="text-xl font-bold text-gray-900 mb-2">${topper.name}</h4>
+                  <h4 class="text-xl font-bold mb-2">${topper.name}</h4>
                   <div class="text-sm text-gray-600 mb-3">Chest No: ${topper.chestNo}</div>
-                  <div class="${getTeamColorClass(topper.team)} px-3 py-1 rounded-full text-sm font-medium inline-block">
+                  <div class="${getTeamColorClass(topper.team)} px-3 py-1 rounded-full text-sm inline-block">
                     ${topper.team}
                   </div>
                 </div>
@@ -1908,13 +1028,13 @@
         container.appendChild(categorySection);
       }
       
-      // Update active topper category button
+      // Update button styles
       document.querySelectorAll('.topper-category-btn').forEach(btn => {
         if (btn.getAttribute('data-topper-category') === category) {
-          btn.classList.add('bg-gradient-primary', 'text-white');
+          btn.classList.add('bg-green-500', 'text-white');
           btn.classList.remove('bg-white', 'text-gray-700');
         } else {
-          btn.classList.remove('bg-gradient-primary', 'text-white');
+          btn.classList.remove('bg-green-500', 'text-white');
           btn.classList.add('bg-white', 'text-gray-700');
         }
       });
@@ -1928,18 +1048,15 @@
       
       allPrograms.forEach(program => {
         const programCard = document.createElement('div');
-        programCard.className = 'program-card bg-gradient-to-br from-green-50 to-blue-50 border border-green-200 p-5 rounded-xl';
+        programCard.className = 'bg-green-50 border border-green-200 p-5 rounded-xl';
         programCard.innerHTML = `
           <div class="flex items-start">
             <div class="bg-green-100 text-green-700 font-bold px-3 py-1 rounded-lg mr-4">
               ${program.code}
             </div>
             <div>
-              <h4 class="font-bold text-gray-900 text-lg mb-2">${program.name}</h4>
-              <div class="flex items-center">
-                <span class="text-sm text-gray-600">${program.category}</span>
-                ${program.description ? `<span class="text-xs text-gray-500 ml-3">${program.description}</span>` : ''}
-              </div>
+              <h4 class="font-bold text-lg mb-2">${program.name}</h4>
+              <div class="text-sm text-gray-600">${program.category}</div>
             </div>
           </div>
         `;
@@ -1954,18 +1071,18 @@
       displayToppers(category);
     }
     
-    // Get team badge HTML
+    // Get team badge
     function getTeamBadge(teamName) {
-      if (!teamName) return '<div class="team-badge bg-gray-100 text-gray-600">-</div>';
+      if (!teamName) return '<div class="text-sm bg-gray-100 text-gray-600 px-2 py-1 rounded">-</div>';
       
       if (teamName.includes('Isra')) {
-        return '<div class="team-badge team-badge-isra">Team Isra</div>';
+        return '<div class="team-badge-isra text-sm px-2 py-1 rounded">Team Isra</div>';
       } else if (teamName.includes('Qaswa')) {
-        return '<div class="team-badge team-badge-qaswa">Team Qaswa</div>';
+        return '<div class="team-badge-qaswa text-sm px-2 py-1 rounded">Team Qaswa</div>';
       } else if (teamName.includes('Hira')) {
-        return '<div class="team-badge team-badge-hira">Team Hira</div>';
+        return '<div class="team-badge-hira text-sm px-2 py-1 rounded">Team Hira</div>';
       } else {
-        return `<div class="team-badge bg-gray-100 text-gray-600">${teamName}</div>`;
+        return `<div class="text-sm bg-gray-100 text-gray-600 px-2 py-1 rounded">${teamName}</div>`;
       }
     }
     
@@ -1990,7 +1107,7 @@
       if (!chestNumber) {
         resultDiv.innerHTML = `
           <div class="bg-red-50 text-red-700 p-4 rounded-xl">
-            <i class="fas fa-exclamation-circle mr-2"></i> Please enter a chest number
+            Please enter a chest number
           </div>
         `;
         resultDiv.classList.remove('hidden');
@@ -2032,7 +1149,7 @@
       if (foundResults.length === 0 && !topperInfo) {
         resultDiv.innerHTML = `
           <div class="bg-yellow-50 text-yellow-700 p-4 rounded-xl">
-            <i class="fas fa-search mr-2"></i> No results found for chest number: <strong>${chestNumber}</strong>
+            No results found for chest number: <strong>${chestNumber}</strong>
           </div>
         `;
         resultDiv.classList.remove('hidden');
@@ -2040,7 +1157,7 @@
       }
       
       // Display results
-      let html = `<div class="bg-green-50 text-gray-800 p-6 rounded-xl">`;
+      let html = `<div class="bg-green-50 p-6 rounded-xl">`;
       html += `<h4 class="text-xl font-bold mb-4">Results for Chest Number: <span class="text-green-700">${chestNumber}</span></h4>`;
       
       if (topperInfo) {
@@ -2049,11 +1166,11 @@
             <div class="flex items-center justify-between">
               <div>
                 <div class="text-sm text-gray-500">Overall Rank</div>
-                <div class="text-3xl font-bold text-gray-900">#${topperInfo.rank}</div>
+                <div class="text-3xl font-bold">#${topperInfo.rank}</div>
               </div>
               <div>
                 <div class="text-sm text-gray-500">Category</div>
-                <div class="text-lg font-bold text-gray-900">${topperInfo.category}</div>
+                <div class="text-lg font-bold">${topperInfo.category}</div>
               </div>
               <div>
                 <div class="text-sm text-gray-500">Total Points</div>
@@ -2061,8 +1178,8 @@
               </div>
             </div>
             <div class="mt-4">
-              <div class="text-lg font-bold text-gray-900">${topperInfo.name}</div>
-              <div class="${getTeamColorClass(topperInfo.team)} px-3 py-1 rounded-full text-sm font-medium inline-block mt-2">
+              <div class="text-lg font-bold">${topperInfo.name}</div>
+              <div class="${getTeamColorClass(topperInfo.team)} px-3 py-1 rounded-full text-sm inline-block mt-2">
                 ${topperInfo.team}
               </div>
             </div>
@@ -2074,28 +1191,14 @@
         html += `<div class="mt-4"><h5 class="font-bold mb-3">Event Results:</h5>`;
         
         foundResults.forEach(result => {
-          let positionColor = 'text-gray-600';
-          let positionBg = 'bg-gray-100';
-          
-          if (result.position === '1st Place') {
-            positionColor = 'text-yellow-600';
-            positionBg = 'bg-yellow-100';
-          } else if (result.position === '2nd Place') {
-            positionColor = 'text-gray-600';
-            positionBg = 'bg-gray-100';
-          } else if (result.position === '3rd Place') {
-            positionColor = 'text-orange-600';
-            positionBg = 'bg-orange-100';
-          }
-          
           html += `
             <div class="flex items-center justify-between p-3 bg-white rounded-lg mb-2">
               <div>
-                <span class="${positionColor} ${positionBg} px-3 py-1 rounded-full text-sm font-medium">${result.position}</span>
-                <span class="font-medium ml-3">${result.event}</span>
+                <span class="text-sm bg-gray-100 text-gray-600 px-2 py-1 rounded mr-3">${result.position}</span>
+                <span class="font-medium">${result.event}</span>
               </div>
               <div class="flex items-center">
-                <span class="text-gray-600 mr-3">${getTeamBadge(result.team)}</span>
+                <span class="text-sm bg-gray-100 text-gray-600 px-2 py-1 rounded mr-3">${result.team}</span>
                 <span class="font-bold text-green-600">${result.points} pts</span>
               </div>
             </div>
@@ -2104,16 +1207,14 @@
         
         html += `</div>`;
         
-        // Calculate total points from events
         const totalEventPoints = foundResults.reduce((sum, result) => sum + result.points, 0);
         html += `
-          <div class="mt-4 p-4 bg-gradient-primary text-white rounded-lg">
+          <div class="mt-4 p-4 bg-green-500 text-white rounded-lg">
             <div class="flex justify-between items-center">
               <div>
                 <div class="text-sm">Total Event Points</div>
                 <div class="text-3xl font-bold">${totalEventPoints}</div>
               </div>
-              <i class="fas fa-trophy text-3xl"></i>
             </div>
           </div>
         `;
@@ -2125,58 +1226,26 @@
       resultDiv.classList.remove('hidden');
     }
     
-    // Set up result filter buttons
+    // Setup result filters
     function setupResultFilters() {
       document.querySelectorAll('.results-filter-btn').forEach(btn => {
         btn.addEventListener('click', function() {
           const filter = this.getAttribute('data-filter');
           
-          // Update active button
           document.querySelectorAll('.results-filter-btn').forEach(b => {
-            b.classList.remove('bg-gradient-primary', 'text-white');
+            b.classList.remove('bg-green-500', 'text-white');
             b.classList.add('bg-white', 'text-gray-700');
           });
           
-          this.classList.add('bg-gradient-primary', 'text-white');
+          this.classList.add('bg-green-500', 'text-white');
           this.classList.remove('bg-white', 'text-gray-700');
           
-          // Display filtered results
           displayResults(filter);
         });
       });
     }
     
-    // Set up refresh button
-    document.getElementById('refresh-scores').addEventListener('click', function() {
-      this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Refreshing...';
-      this.disabled = true;
-      
-      loadScoreboard();
-      
-      setTimeout(() => {
-        this.innerHTML = '<i class="fas fa-sync-alt mr-2"></i> Refresh Scores';
-        this.disabled = false;
-      }, 2000);
-    });
-    
-    // Contact form submission
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const formData = new FormData(this);
-      const name = formData.get('name');
-      const phone = formData.get('phone');
-      const message = formData.get('message');
-      
-      // In a real application, you would send this data to a server
-      // For now, we'll just show a success message
-      alert(`Thank you ${name}! Your message has been received. We'll contact you at ${phone} if needed.`);
-      
-      // Reset the form
-      this.reset();
-    });
-    
-    // Initialize with home section active
+    // Start with home section
     showSection('home');
   </script>
 </body>
