@@ -880,8 +880,8 @@
             const row = rows[i];
             if (row.length >= 4) {
               allEvents.push({
-                event: row[0] || '',
-                eventCode: row[1] || '',
+                event: row[1] || '',
+                eventCode: row[0] || '',
                 type: row[2] || '',
                 category: cleanCategoryName(row[3] || '')
               });
