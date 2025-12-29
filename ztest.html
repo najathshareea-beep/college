@@ -7,7 +7,6 @@
   <title>Thirunoor - Mahiriyya Arts Fest 2025</title>
   <meta name="description" content="Mahiriyya Arts Fest 2025" />
   <link rel="icon" href="/favicon.svg" />
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root {
@@ -20,8 +19,6 @@
     }
     .bg-Thiru { background-color: var(--thiru); }
     .text-Thiru { color: var(--thiru); }
-    .hover\:bg-Thiru:hover { background-color: var(--thiru); }
-    .hover\:text-Thiru:hover { color: var(--thiru); }
     .bg-Noor { background-color: var(--noor); }
     .text-Noor { color: var(--noor); }
     .bg-BgClr { background-color: var(--bg-clr); }
@@ -42,17 +39,10 @@
       <div class="flex items-center justify-between">
         <a href="#home" class="text-xl font-semibold text-gray-800 hover:text-Thiru transition-colors">Thirunoor</a>
         <div class="hidden md:flex items-center space-x-1 bg-gray-100/30 rounded-xl p-2">
-          <a href="#home"><button id="nav-home" class="px-5 py-2 rounded-lg text-sm font-medium text-white bg-Thiru shadow-md hover:scale-105 transition-all">Home</button></a>
-          <a href="#results"><button id="nav-results" class="px-5 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-gray-800 hover:bg-white/40 hover:scale-105 transition-all">Results</button></a>
-          <a href="#team"><button id="nav-team" class="px-5 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-gray-800 hover:bg-white/40 hover:scale-105 transition-all">Team</button></a>
-          <a href="#scoreboard"><button id="nav-scoreboard" class="px-5 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-gray-800 hover:bg-white/40 hover:scale-105 transition-all">Scoreboard</button></a>
-        </div>
-        <div class="md:hidden">
-          <button class="text-gray-600 hover:text-gray-800 p-2 rounded-lg hover:bg-gray-100/40">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 12h16M4 18h16M4 6h16"/>
-            </svg>
-          </button>
+          <a href="#home"><button class="nav-btn px-5 py-2 rounded-lg text-sm font-medium text-white bg-Thiru shadow-md hover:scale-105 transition-all">Home</button></a>
+          <a href="#results"><button class="nav-btn px-5 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-gray-800 hover:bg-white/40 hover:scale-105 transition-all">Results</button></a>
+          <a href="#team"><button class="nav-btn px-5 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-gray-800 hover:bg-white/40 hover:scale-105 transition-all">Team</button></a>
+          <a href="#scoreboard"><button class="nav-btn px-5 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-gray-800 hover:bg-white/40 hover:scale-105 transition-all">Scoreboard</button></a>
         </div>
       </div>
     </div>
@@ -60,9 +50,9 @@
 
   <div class="h-20"></div>
 
-  <!-- ==================== HOME SECTION ==================== -->
+  <!-- HOME -->
   <section id="home" class="min-h-screen flex flex-col items-center justify-center px-4 py-12 text-center">
-    <img src="/logo.webp" alt="Mahiriyya Art Fest Logo" class="mx-auto drop-shadow-2xl mobile-logo mb-8 hover:scale-105 transition-transform" />
+    <img src="logo.webp" alt="Logo" class="mx-auto drop-shadow-2xl mobile-logo mb-8 hover:scale-105 transition-transform" />
     <h1 class="text-4xl md:text-6xl font-medium text-gray-800 tracking-wide">Mahiriyya Art Fest 2K25</h1>
     <p class="text-xl md:text-3xl font-thin text-gray-600 tracking-wider mt-2">Jamia Mahiriyya Islamic College</p>
     <div class="mt-12 flex flex-col sm:flex-row gap-6">
@@ -71,19 +61,19 @@
     </div>
   </section>
 
-  <!-- About Fest -->
+  <!-- About -->
   <section class="min-h-screen flex items-center justify-center p-8 bg-white/50">
     <div class="max-w-6xl w-full grid lg:grid-cols-2 gap-12">
       <div class="flex flex-col justify-center">
         <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Thirunoor'25</h1>
         <p class="text-gray-700 leading-relaxed text-lg">
           Jamia Mahiriyya Islamic College, Ramanattukara is hosting its Islamic Art Fest "<strong>Thirunoor</strong>", symbolizing the light of <strong>Prophet Muhammad (S)</strong> and marking the <strong>100th anniversary of Samastha Kerala Jamiyyathul Ulama</strong>.<br><br>
-          The fest showcases student talents in arts, literature, and culture, with three teams – Isra, Hira, and Qaswa – reflecting milestones of Islamic history.
+          The fest showcases student talents in arts, literature, and culture, with three teams – Isra, Hira, and Qaswa.
         </p>
         <h3 class="mt-8 text-2xl">October <span class="bg-Thiru text-white font-bold rounded-full px-3 py-1">01</span> <span class="bg-Thiru text-white font-bold rounded-full px-3 py-1">02</span></h3>
       </div>
       <div class="relative overflow-hidden rounded-lg shadow-2xl">
-        <img src="islamic.png" alt="Thirunoor Fest" class="w-full h-full object-cover" />
+        <img src="islamic.png" alt="Fest" class="w-full h-full object-cover" />
       </div>
     </div>
   </section>
@@ -98,7 +88,7 @@
     </div>
   </section>
 
-  <!-- ==================== TEAM SECTION ==================== -->
+  <!-- TEAM -->
   <section id="team" class="py-16 px-8 bg-BgClr">
     <div class="max-w-7xl mx-auto text-center">
       <h2 class="text-4xl font-bold text-slate-800 mb-12">Fest Teams</h2>
@@ -134,30 +124,38 @@
           </div>
         </div>
       </div>
-      <a href="#scoreboard" class="mt-12 inline-block px-8 py-4 text-lg font-semibold text-gray-600 border border-gray-300 rounded-full hover:bg-Thiru hover:text-white transition-all">View Live Scoreboard</a>
     </div>
   </section>
 
-  <!-- ==================== RESULTS SECTION (LIVE FROM GOOGLE SHEETS) ==================== -->
+  <!-- RESULTS -->
   <section id="results" class="min-h-screen p-8 bg-gradient-to-b from-gray-50 to-white">
     <div class="max-w-6xl mx-auto">
       <h1 class="text-5xl font-bold text-center mb-12 text-gray-800">Event Results</h1>
+      <div class="flex flex-wrap justify-center gap-4 mb-12">
+        <button data-filter="all" class="result-tab px-6 py-3 rounded-xl font-bold bg-Thiru text-white shadow-lg">All</button>
+        <button data-filter="General" class="result-tab px-6 py-3 rounded-xl font-bold bg-white/90 text-gray-700 shadow-lg">General</button>
+        <button data-filter="Group" class="result-tab px-6 py-3 rounded-xl font-bold bg-white/90 text-gray-700 shadow-lg">Group</button>
+        <button data-filter="Junior Stage" class="result-tab px-6 py-3 rounded-xl font-bold bg-white/90 text-gray-700 shadow-lg">Junior Stage</button>
+        <button data-filter="Senior Stage" class="result-tab px-6 py-3 rounded-xl font-bold bg-white/90 text-gray-700 shadow-lg">Senior Stage</button>
+        <button data-filter="Junior Non-Stage" class="result-tab px-6 py-3 rounded-xl font-bold bg-white/90 text-gray-700 shadow-lg">Junior Non-Stage</button>
+        <button data-filter="Senior Non-Stage" class="result-tab px-6 py-3 rounded-xl font-bold bg-white/90 text-gray-700 shadow-lg">Senior Non-Stage</button>
+      </div>
       <div id="results-container" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3"></div>
-      <div id="no-results" class="text-center py-20 text-2xl text-gray-600">No results published yet.</div>
+      <div id="no-results" class="text-center py-20 text-2xl text-gray-600 hidden">No results published yet.</div>
     </div>
   </section>
 
-  <!-- ==================== SCOREBOARD SECTION (LIVE FROM GOOGLE SHEETS) ==================== -->
+  <!-- SCOREBOARD -->
   <section id="scoreboard" class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-16 px-4">
     <div class="max-w-7xl mx-auto text-center">
       <h1 class="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-800 to-slate-600 mb-12">Live Scoreboard</h1>
       <div class="flex flex-wrap justify-center gap-4 mb-16">
-        <button class="px-8 py-4 rounded-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-xl hover:scale-105 transition-all">General</button>
-        <button class="px-8 py-4 rounded-2xl font-bold bg-white/90 text-slate-700 hover:bg-white shadow-lg transition-all">Group</button>
-        <button class="px-8 py-4 rounded-2xl font-bold bg-white/90 text-slate-700 hover:bg-white shadow-lg transition-all">Junior Stage</button>
-        <button class="px-8 py-4 rounded-2xl font-bold bg-white/90 text-slate-700 hover:bg-white shadow-lg transition-all">Senior Stage</button>
-        <button class="px-8 py-4 rounded-2xl font-bold bg-white/90 text-slate-700 hover:bg-white shadow-lg transition-all">Junior Non-Stage</button>
-        <button class="px-8 py-4 rounded-2xl font-bold bg-white/90 text-slate-700 hover:bg-white shadow-lg transition-all">Senior Non-Stage</button>
+        <button data-category="General" class="scoreboard-tab px-8 py-4 rounded-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-xl hover:scale-105 transition-all">General</button>
+        <button data-category="Group" class="scoreboard-tab px-8 py-4 rounded-2xl font-bold bg-white/90 text-slate-700 hover:bg-white shadow-lg transition-all">Group</button>
+        <button data-category="Junior Stage" class="scoreboard-tab px-8 py-4 rounded-2xl font-bold bg-white/90 text-slate-700 hover:bg-white shadow-lg transition-all">Junior Stage</button>
+        <button data-category="Senior Stage" class="scoreboard-tab px-8 py-4 rounded-2xl font-bold bg-white/90 text-slate-700 hover:bg-white shadow-lg transition-all">Senior Stage</button>
+        <button data-category="Junior Non-Stage" class="scoreboard-tab px-8 py-4 rounded-2xl font-bold bg-white/90 text-slate-700 hover:bg-white shadow-lg transition-all">Junior Non-Stage</button>
+        <button data-category="Senior Non-Stage" class="scoreboard-tab px-8 py-4 rounded-2xl font-bold bg-white/90 text-slate-700 hover:bg-white shadow-lg transition-all">Senior Non-Stage</button>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
         <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-10">
@@ -184,28 +182,27 @@
   <section class="py-16 px-8 bg-gray-50">
     <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Image Gallery</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-      <img src="/1.jpg" alt="Gallery 1" class="rounded-xl shadow-lg hover:scale-105 transition-transform" />
-      <img src="/9.jpg" alt="Gallery 2" class="rounded-xl shadow-lg hover:scale-105 transition-transform" />
-      <img src="/24.jpg" alt="Gallery 3" class="rounded-xl shadow-lg hover:scale-105 transition-transform" />
-      <img src="/30.jpg" alt="Gallery 4" class="rounded-xl shadow-lg hover:scale-105 transition-transform" />
-      <img src="/37.jpg" alt="Gallery 5" class="rounded-xl shadow-lg hover:scale-105 transition-transform" />
-      <img src="/38.jpg" alt="Gallery 6" class="rounded-xl shadow-lg hover:scale-105 transition-transform" />
+      <img src="1.jpg" alt="Gallery 1" class="rounded-xl shadow-lg hover:scale-105 transition-transform" />
+      <img src="9.jpg" alt="Gallery 2" class="rounded-xl shadow-lg hover:scale-105 transition-transform" />
+      <img src="24.jpg" alt="Gallery 3" class="rounded-xl shadow-lg hover:scale-105 transition-transform" />
+      <img src="30.jpg" alt="Gallery 4" class="rounded-xl shadow-lg hover:scale-105 transition-transform" />
+      <img src="37.jpg" alt="Gallery 5" class="rounded-xl shadow-lg hover:scale-105 transition-transform" />
+      <img src="38.jpg" alt="Gallery 6" class="rounded-xl shadow-lg hover:scale-105 transition-transform" />
     </div>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="py-16 px-8 bg-BgClr">
+  <section class="py-16 px-8 bg-BgClr">
     <h2 class="text-4xl font-bold text-center mb-12">Contact Us</h2>
     <div class="max-w-3xl mx-auto bg-white rounded-3xl shadow-2xl p-10">
-      <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
-        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY_HERE">
+      <form class="space-y-6">
         <div class="grid md:grid-cols-2 gap-6">
           <input type="text" name="name" placeholder="Your Name" required class="w-full px-6 py-4 rounded-xl border border-gray-300 focus:ring-4 focus:ring-Thiru/30 focus:border-Thiru outline-none" />
           <input type="tel" name="phone" placeholder="Phone Number" required class="w-full px-6 py-4 rounded-xl border border-gray-300 focus:ring-4 focus:ring-Thiru/30 focus:border-Thiru outline-none" />
         </div>
         <textarea name="message" rows="6" placeholder="Your Message" required class="w-full px-6 py-4 rounded-xl border border-gray-300 focus:ring-4 focus:ring-Thiru/30 focus:border-Thiru outline-none resize-none"></textarea>
         <button type="submit" class="w-full bg-Thiru text-white py-5 rounded-xl font-bold text-xl hover:bg-green-700 transition-all shadow-lg hover:shadow-xl">
-          Send via WhatsApp / Message
+          Send Message
         </button>
       </form>
     </div>
@@ -216,116 +213,141 @@
     <div class="container mx-auto px-4">
       <p class="text-sm mb-4">© 2025 Thirunoor Media Team. All rights reserved.</p>
       <div class="flex justify-center space-x-8">
-        <a href="https://www.instagram.com/thirunoor/" class="hover:text-gray-700">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
-        </a>
-        <a href="https://www.youtube.com/@amasajmic5827" class="hover:text-gray-700">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-          </svg>
-        </a>
-      </div>
-      <div class="mt-4 flex justify-center space-x-6 text-sm">
-        <a href="#results" class="hover:text-gray-700">Results</a>
-        <a href="#team" class="hover:text-gray-700">Team</a>
-        <a href="#scoreboard" class="hover:text-gray-700">Scoreboard</a>
+        <a href="https://www.instagram.com/thirunoor/" class="hover:text-gray-700"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><!-- Instagram SVG --></svg></a>
+        <a href="https://www.youtube.com/@amasajmic5827" class="hover:text-gray-700"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><!-- YouTube SVG --></svg></a>
       </div>
     </div>
   </footer>
 
-  <!-- LIVE DATA FROM YOUR GOOGLE SHEET -->
+  <!-- Scripts -->
   <script>
     const SHEET_ID = '1vk_hE-Ja5d8kZdzuj7jeYxlunTyopx0p9HjzJcGFl0c';
     const scoreboardUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Scoreboard`;
     const resultsUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Results`;
 
-    // Update Scoreboard + Team Section Scores
+    let scoreboardData = {};
+    let allResults = [];
+
+    // Parse CSV helper
+    function parseCSV(csv) {
+      const lines = csv.trim().split('\n');
+      return lines.map(line => line.split(',').map(cell => cell.replace(/^"|"$/g, '').trim()));
+    }
+
+    // Load Scoreboard
     fetch(scoreboardUrl)
       .then(res => res.text())
       .then(csv => {
-        const rows = csv.trim().split('\n').map(row => row.split(',').map(c => c.replace(/^"|"$/g, '').trim()));
-        const generalRow = rows.find(r => r[0] === 'General' || r[0].toLowerCase() === 'general');
-        if (generalRow && generalRow.length >= 4) {
-          const isra = generalRow[1] || 0;
-          const qaswa = generalRow[2] || 0;
-          const hira = generalRow[3] || 0;
-
-          document.getElementById('score-isra').textContent = isra;
-          document.getElementById('score-qaswa').textContent = qaswa;
-          document.getElementById('score-hira').textContent = hira;
-          document.getElementById('team-isra-score').textContent = isra;
-          document.getElementById('team-qaswa-score').textContent = qaswa;
-          document.getElementById('team-hira-score').textContent = hira;
-        }
+        const rows = parseCSV(csv);
+        rows.forEach(row => {
+          if (row.length >= 4) {
+            const category = row[0];
+            scoreboardData[category] = {
+              isra: parseInt(row[1]) || 0,
+              qaswa: parseInt(row[2]) || 0,
+              hira: parseInt(row[3]) || 0
+            };
+          }
+        });
+        updateScoreboard('General');
+        updateTeamScores();
         document.getElementById('last-updated').textContent = new Date().toLocaleString('en-IN');
       });
 
-    // Update Results Section
+    // Load Results
     fetch(resultsUrl)
       .then(res => res.text())
       .then(csv => {
-        const rows = csv.trim().split('\n');
-        const container = document.getElementById('results-container');
-        const noResults = document.getElementById('no-results');
-
-        if (rows.length <= 1) {
-          noResults.style.display = 'block';
-          return;
-        }
-        noResults.style.display = 'none';
-
-        rows.slice(1).reverse().forEach(row => {
-          const cols = row.split(',').map(c => c.replace(/^"|"$/g, '').trim());
-          if (cols.length >= 4 && cols[1]) {
-            const [date, event, category, winner, first, second, third] = cols;
-            const card = document.createElement('div');
-            card.className = 'bg-white rounded-2xl shadow-xl p-8 text-left hover:shadow-2xl transition-all';
-            card.innerHTML = `
-              <h3 class="text-2xl font-bold text-gray-800">${event} <span class="text-lg font-normal text-gray-600">(${category})</span></h3>
-              <p class="text-xl mt-4">🏆 Winner: <strong>${winner}</strong></p>
-              <p class="mt-2">🥇 1st: Team <strong>${first || '—'}</strong></p>
-              <p>🥈 2nd: Team <strong>${second || '—'}</strong></p>
-              <p>🥉 3rd: Team <strong>${third || '—'}</strong></p>
-              <p class="text-gray-500 mt-6 text-sm">${date}</p>
-            `;
-            container.appendChild(card);
-          }
-        });
+        const rows = parseCSV(csv);
+        allResults = rows.slice(1).map(row => ({
+          date: row[0] || '',
+          event: row[1] || '',
+          category: row[2] || '',
+          winner: row[3] || '',
+          first: row[4] || '',
+          second: row[5] || '',
+          third: row[6] || ''
+        })).reverse();
+        displayResults('all');
       });
-  </script>
 
-  <!-- Navigation Active Highlight on Scroll -->
-  <script>
-    const sections = ['home', 'results', 'team', 'scoreboard'];
-    const navButtons = {
-      home: document.getElementById('nav-home'),
-      results: document.getElementById('nav-results'),
-      team: document.getElementById('nav-team'),
-      scoreboard: document.getElementById('nav-scoreboard')
-    };
+    function updateScoreboard(category) {
+      const data = scoreboardData[category] || { isra: 0, qaswa: 0, hira: 0 };
+      document.getElementById('score-isra').textContent = data.isra;
+      document.getElementById('score-qaswa').textContent = data.qaswa;
+      document.getElementById('score-hira').textContent = data.hira;
+    }
 
-    window.addEventListener('scroll', () => {
-      let current = 'home';
-      sections.forEach(section => {
-        const el = document.getElementById(section);
-        if (el && el.getBoundingClientRect().top <= 100) {
-          current = section;
-        }
+    function updateTeamScores() {
+      const general = scoreboardData['General'] || { isra: 0, qaswa: 0, hira: 0 };
+      document.getElementById('team-isra-score').textContent = general.isra;
+      document.getElementById('team-qaswa-score').textContent = general.qaswa;
+      document.getElementById('team-hira-score').textContent = general.hira;
+    }
+
+    function displayResults(filter) {
+      const container = document.getElementById('results-container');
+      container.innerHTML = '';
+      const filtered = filter === 'all' ? allResults : allResults.filter(r => r.category === filter);
+      if (filtered.length === 0) {
+        document.getElementById('no-results').classList.remove('hidden');
+        return;
+      }
+      document.getElementById('no-results').classList.add('hidden');
+      filtered.forEach(r => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-2xl shadow-xl p-8 text-left hover:shadow-2xl transition-all';
+        card.innerHTML = `
+          <h3 class="text-2xl font-bold text-gray-800">${r.event} <span class="text-lg font-normal text-gray-600">(${r.category})</span></h3>
+          <p class="text-xl mt-4">🏆 Winner: <strong>${r.winner}</strong></p>
+          <p class="mt-2">🥇 1st: Team <strong>${r.first || '—'}</strong></p>
+          <p>🥈 2nd: Team <strong>${r.second || '—'}</strong></p>
+          <p>🥉 3rd: Team <strong>${r.third || '—'}</strong></p>
+          <p class="text-gray-500 mt-6 text-sm">${r.date}</p>
+        `;
+        container.appendChild(card);
       });
-      Object.keys(navButtons).forEach(key => {
-        const btn = navButtons[key];
-        if (key === current) {
-          btn.classList.add('text-white', 'bg-Thiru', 'shadow-md', 'scale-105');
-          btn.classList.remove('text-gray-600');
-        } else {
-          btn.classList.remove('text-white', 'bg-Thiru', 'shadow-md', 'scale-105');
-          btn.classList.add('text-gray-600');
-        }
+    }
+
+    // Tabs
+    document.querySelectorAll('.result-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.result-tab').forEach(b => b.classList.remove('bg-Thiru', 'text-white'));
+        document.querySelectorAll('.result-tab').forEach(b => b.classList.add('bg-white/90', 'text-gray-700'));
+        btn.classList.add('bg-Thiru', 'text-white');
+        btn.classList.remove('bg-white/90', 'text-gray-700');
+        displayResults(btn.dataset.filter);
       });
     });
-  </script>
 
+    document.querySelectorAll('.scoreboard-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.scoreboard-tab').forEach(b => b.classList.remove('bg-gradient-to-r', 'from-purple-600', 'to-indigo-600', 'text-white'));
+        document.querySelectorAll('.scoreboard-tab').forEach(b => b.classList.add('bg-white/90', 'text-slate-700'));
+        btn.classList.add('bg-gradient-to-r', 'from-purple-600', 'to-indigo-600', 'text-white');
+        btn.classList.remove('bg-white/90', 'text-slate-700');
+        updateScoreboard(btn.dataset.category);
+      });
+    });
+
+    // Navigation highlight
+    window.addEventListener('scroll', () => {
+      const sections = ['home', 'results', 'team', 'scoreboard'];
+      let current = 'home';
+      sections.forEach(sec => {
+        const el = document.getElementById(sec);
+        if (el && el.getBoundingClientRect().top <= 100) current = sec;
+      });
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('text-white', 'bg-Thiru');
+        btn.classList.add('text-gray-600');
+      });
+      const active = Array.from(document.querySelectorAll('.nav-btn')).find(b => b.parentElement.hash === `#${current}`);
+      if (active) {
+        active.classList.add('text-white', 'bg-Thiru');
+        active.classList.remove('text-gray-600');
+      }
+    });
+  </script>
 </body>
 </html>
