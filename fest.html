@@ -155,6 +155,9 @@
           <button data-section="scoreboard" class="nav-tab px-5 py-3 rounded-lg font-medium">
             <i class="fas fa-chart-line mr-2"></i>Scoreboard
           </button>
+          <button data-section="programs" class="nav-tab px-5 py-3 rounded-lg font-medium">
+            <i class="fas fa-crown mr-2"></i>Programs
+          </button>
           <button data-section="toppers" class="nav-tab px-5 py-3 rounded-lg font-medium">
             <i class="fas fa-crown mr-2"></i>Toppers
           </button>
@@ -188,6 +191,9 @@
       </button>
       <button data-section="scoreboard" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 font-medium">
         <i class="fas fa-chart-line mr-3"></i> Scoreboard
+      </button>
+      <button data-section="programs" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 font-medium">
+        <i class="fas fa-chart-line mr-3"></i> Programs
       </button>
       <button data-section="toppers" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 font-medium">
         <i class="fas fa-crown mr-3"></i> Toppers
@@ -444,19 +450,6 @@
     <!-- Toppers Section -->
     <section id="toppers-section" class="section-hidden min-h-screen px-4 py-12 bg-gray-50">
       <div class="container mx-auto">
-        <div class="text-center mb-12">
-          <h2 class="text-5xl font-bold mb-4">Top Performers</h2>
-          <div class="w-24 h-1 bg-green-500 mx-auto mt-6 rounded-full"></div>
-        </div>
-        
-        <div class="flex flex-wrap justify-center gap-3 mb-12">
-          <button data-topper-category="all" class="topper-category-btn px-6 py-3 bg-green-500 text-white font-bold rounded-xl">All Toppers</button>
-          <button data-topper-category="General" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">General</button>
-          <button data-topper-category="Sub Junior" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">Sub Junior</button>
-          <button data-topper-category="Junior" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">Junior</button>
-          <button data-topper-category="Senior" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">Senior</button>
-        </div>
-        
         <!-- Chest Number Search -->
         <div class="max-w-2xl mx-auto bg-white rounded-2xl p-8 mb-16">
           <h3 class="text-2xl font-bold text-center mb-6">Check Your Score</h3>
@@ -474,6 +467,19 @@
           </div>
           <div id="chest-result" class="mt-6 hidden"></div>
         </div>
+
+        <div class="text-center mb-12">
+          <h2 class="text-5xl font-bold mb-4">Top Performers</h2>
+          <div class="w-24 h-1 bg-green-500 mx-auto mt-6 rounded-full"></div>
+        </div>
+        
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+          <button data-topper-category="all" class="topper-category-btn px-6 py-3 bg-green-500 text-white font-bold rounded-xl">All Toppers</button>
+          <button data-topper-category="General" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">General</button>
+          <button data-topper-category="Sub Junior" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">Sub Junior</button>
+          <button data-topper-category="Junior" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">Junior</button>
+          <button data-topper-category="Senior" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">Senior</button>
+        </div>
         
         <!-- Toppers Display -->
         <div id="toppers-container" class="space-y-12">
@@ -482,8 +488,12 @@
             <p class="text-gray-600">Loading toppers data...</p>
           </div>
         </div>
+      </div>
+    </section>  
         
         <!-- Programs Section -->
+    <section id="programs-section" class="section-hidden min-h-screen px-4 py-12 bg-gray-50">
+      <div class="container mx-auto">     
         <div class="mt-16 bg-white rounded-2xl shadow p-8">
           <h3 class="text-3xl font-bold text-center mb-8">All Programs</h3>
           <div class="mb-6 flex flex-wrap justify-center gap-3">
@@ -528,6 +538,7 @@
             <a href="#" data-section="results" class="block text-gray-400 hover:text-white"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Results</a>
             <a href="#" data-section="team" class="block text-gray-400 hover:text-white"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Teams</a>
             <a href="#" data-section="scoreboard" class="block text-gray-400 hover:text-white"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Scoreboard</a>
+            <a href="#" data-section="programs" class="block text-gray-400 hover:text-white"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Programs</a>
           </div>
         </div>
         
@@ -576,6 +587,7 @@
       results: document.getElementById('results-section'),
       team: document.getElementById('team-section'),
       scoreboard: document.getElementById('scoreboard-section'),
+      program: document.getElementById('programs-section'),
       toppers: document.getElementById('toppers-section')
     };
     
