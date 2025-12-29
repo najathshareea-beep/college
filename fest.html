@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="google-site-verification" content="hCISWVgGAUDuE6GrZLUnihhS53yj-m3f67tum_6ykrI" />
   <title>Jashne Najath - DSAC Arts Fest 2025</title>
-  <meta name="description" content="Jashne Najath 2K25" />
+  <meta name="description" content="Jashne Najath 2K25 - അന്യോന്യം" />
   <link rel="icon" href="/favicon.svg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root {
@@ -16,337 +17,1639 @@
       --isra: #10b981;
       --qaswa: #6366f1;
       --hira: #f97316;
+      --primary-gradient: linear-gradient(135deg, #16a34a 0%, #10b981 100%);
+      --isra-gradient: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+      --qaswa-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      --hira-gradient: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
     }
-    .bg-Thiru { background-color: var(--thiru); }
-    .text-Thiru { color: var(--thiru); }
-    .bg-Noor { background-color: var(--noor); }
-    .text-Noor { color: var(--noor); }
-    .bg-BgClr { background-color: var(--bg-clr); }
-    .text-Isra { color: var(--isra); }
-    .text-Qaswa { color: var(--qaswa); }
-    .text-Hira { color: var(--hira); }
-    .mobile-logo { max-width: 220px; }
-    .mobile-button { padding: 0.75rem 2rem; }
-    @media (min-width: 640px) { .mobile-button { padding: 0.75rem 3rem; } }
-    html { scroll-behavior: smooth; }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      overflow-x: hidden;
+    }
+    
+    .bg-gradient-primary {
+      background: var(--primary-gradient);
+    }
+    
+    .text-gradient-primary {
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .bg-gradient-isra {
+      background: var(--isra-gradient);
+    }
+    
+    .bg-gradient-qaswa {
+      background: var(--qaswa-gradient);
+    }
+    
+    .bg-gradient-hira {
+      background: var(--hira-gradient);
+    }
+    
+    .section-active {
+      display: block;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    
+    .section-hidden {
+      display: none;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-tab-active {
+      background: var(--primary-gradient);
+      color: white;
+      transform: scale(1.05);
+    }
+    
+    .score-counter {
+      font-family: 'Arial Black', 'Arial Bold', sans-serif;
+      font-weight: 900;
+    }
+    
+    .team-card {
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .team-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      z-index: 2;
+    }
+    
+    .team-card-isra::before {
+      background: var(--isra-gradient);
+    }
+    
+    .team-card-qaswa::before {
+      background: var(--qaswa-gradient);
+    }
+    
+    .team-card-hira::before {
+      background: var(--hira-gradient);
+    }
+    
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+    }
+    
+    .mobile-menu-open {
+      transform: translateX(0);
+    }
+    
+    .results-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    
+    .logo-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(22, 163, 74, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+    }
+    
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--thiru);
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0d8f3a;
+    }
+    
+    /* Loading animation */
+    .loader {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid var(--thiru);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Medal colors */
+    .medal-gold { background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); }
+    .medal-silver { background: linear-gradient(135deg, #C0C0C0 0%, #A9A9A9 100%); }
+    .medal-bronze { background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%); }
+    
+    /* Result card styles */
+    .result-card {
+      border-left: 6px solid #16a34a;
+      transition: all 0.3s ease;
+    }
+    
+    .result-card:hover {
+      transform: translateX(5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .team-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    
+    .team-badge-isra {
+      background-color: rgba(16, 185, 129, 0.1);
+      color: #10b981;
+    }
+    
+    .team-badge-qaswa {
+      background-color: rgba(99, 102, 241, 0.1);
+      color: #6366f1;
+    }
+    
+    .team-badge-hira {
+      background-color: rgba(249, 115, 22, 0.1);
+      color: #f97316;
+    }
+    
+    /* Category colors */
+    .category-general { border-left-color: #16a34a; }
+    .category-group { border-left-color: #6366f1; }
+    .category-junior-stage { border-left-color: #f59e0b; }
+    .category-senior-stage { border-left-color: #f97316; }
+    .category-junior-non-stage { border-left-color: #8b5cf6; }
+    .category-senior-non-stage { border-left-color: #ec4899; }
+    
+    /* Table styles */
+    .results-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+    
+    .results-table th {
+      background-color: #f8fafc;
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      color: #4b5563;
+      border-bottom: 2px solid #e5e7eb;
+    }
+    
+    .results-table td {
+      padding: 16px;
+      border-bottom: 1px solid #e5e7eb;
+      vertical-align: top;
+    }
+    
+    .results-table tr:hover {
+      background-color: #f9fafb;
+    }
+    
+    /* Responsive table */
+    @media (max-width: 768px) {
+      .results-table {
+        display: block;
+        overflow-x: auto;
+      }
+      
+      .results-table th, 
+      .results-table td {
+        min-width: 150px;
+      }
+    }
   </style>
 </head>
-<body class="bg-BgClr text-gray-800 min-h-screen">
-
-  <!-- Navigation -->
-  <nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-11/12 max-w-4xl">
-    <div class="bg-white/15 backdrop-blur-xl rounded-2xl border border-gray-300/20 px-6 py-4 shadow-lg">
+<body class="bg-gray-50 text-gray-800">
+  <!-- Top Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg border-b border-gray-200 shadow-md">
+    <div class="container mx-auto px-4 py-3">
       <div class="flex items-center justify-between">
-        <a href="#home" class="text-xl font-semibold text-gray-800 hover:text-Thiru transition-colors">Anyonyam</a>
-        <div class="hidden md:flex items-center space-x-1 bg-gray-100/30 rounded-xl p-2">
-          <a href="#home"><button class="nav-btn px-5 py-2 rounded-lg text-sm font-medium text-white bg-Thiru shadow-md hover:scale-105 transition-all">Home</button></a>
-          <a href="#results"><button class="nav-btn px-5 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-gray-800 hover:bg-white/40 hover:scale-105 transition-all">Results</button></a>
-          <a href="#team"><button class="nav-btn px-5 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-gray-800 hover:bg-white/40 hover:scale-105 transition-all">Team</button></a>
-          <a href="#scoreboard"><button class="nav-btn px-5 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-gray-800 hover:bg-white/40 hover:scale-105 transition-all">Scoreboard</button></a>
+        <!-- Logo -->
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-lg">JN</span>
+          </div>
+          <div>
+            <h1 class="text-xl font-bold text-gray-800">അന്യോന്യം'25</h1>
+            <p class="text-xs text-gray-500">Jashne Najath Arts Fest</p>
+          </div>
         </div>
+        
+        <!-- Desktop Navigation Tabs -->
+        <div class="hidden md:flex items-center space-x-1 bg-gray-100 p-2 rounded-xl">
+          <button data-section="home" class="nav-tab px-5 py-3 rounded-lg font-medium transition-all duration-300 nav-tab-active">
+            <i class="fas fa-home mr-2"></i>Home
+          </button>
+          <button data-section="results" class="nav-tab px-5 py-3 rounded-lg font-medium transition-all duration-300">
+            <i class="fas fa-trophy mr-2"></i>Results
+          </button>
+          <button data-section="team" class="nav-tab px-5 py-3 rounded-lg font-medium transition-all duration-300">
+            <i class="fas fa-users mr-2"></i>Teams
+          </button>
+          <button data-section="scoreboard" class="nav-tab px-5 py-3 rounded-lg font-medium transition-all duration-300">
+            <i class="fas fa-chart-line mr-2"></i>Scoreboard
+          </button>
+          <button data-section="gallery" class="nav-tab px-5 py-3 rounded-lg font-medium transition-all duration-300">
+            <i class="fas fa-images mr-2"></i>Gallery
+          </button>
+        </div>
+        
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg bg-gray-100">
+          <i class="fas fa-bars text-xl text-gray-700"></i>
+        </button>
       </div>
     </div>
   </nav>
 
-  <div class="h-20"></div>
-
-  <!-- HOME -->
-  <section id="home" class="min-h-screen flex flex-col items-center justify-center px-4 py-12 text-center">
-    <img src="https://i.ibb.co/DgHYHFS1/Whats-App-Image-2025-11-26-at-8-50-51-PM.jpg" alt="Logo" class="mx-auto drop-shadow-2xl mobile-logo mb-8 hover:scale-105 transition-transform" />
-    <h1 class="text-4xl md:text-6xl font-medium text-gray-800 tracking-wide">Jashne Najath Arts Fest 2K25</h1>
-    <p class="text-xl md:text-3xl font-thin text-gray-600 tracking-wider mt-2">Darunnajath Shareeath & Arts College</p>
-    <div class="mt-12 flex flex-col sm:flex-row gap-6">
-      <a href="#results" class="mobile-button font-semibold text-gray-600 border border-gray-300 rounded-full hover:bg-Thiru hover:text-white transition-all">Results</a>
-      <a href="#scoreboard" class="mobile-button font-semibold text-gray-600 border border-gray-300 rounded-full hover:bg-Thiru hover:text-white transition-all">Scoreboard</a>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 bottom-0 z-50 w-64 bg-white shadow-2xl p-6">
+    <div class="flex justify-between items-center mb-8">
+      <h2 class="text-xl font-bold text-gray-800">Menu</h2>
+      <button id="mobile-menu-close" class="p-2 rounded-lg bg-gray-100">
+        <i class="fas fa-times text-xl"></i>
+      </button>
     </div>
-  </section>
-
-  <!-- About -->
-  <section class="min-h-screen flex items-center justify-center p-8 bg-white/50">
-    <div class="max-w-6xl w-full grid lg:grid-cols-2 gap-12">
-      <div class="flex flex-col justify-center">
-        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">അന്യോന്യം'25</h1>
-        <p class="text-gray-700 leading-relaxed text-lg">
-          Darunnajath Shareeath & Arts College, Karuvarakundu is hosting its Islamic Arts Fest "<strong>അന്യോന്യം</strong>", The fest showcases student talents in arts, literature, and culture, with two teams – aaaa, and bbb.
-        </p>
-        <h3 class="mt-8 text-2xl">October <span class="bg-Thiru text-white font-bold rounded-full px-3 py-1">01</span> <span class="bg-Thiru text-white font-bold rounded-full px-3 py-1">02</span></h3>
-      </div>
-      <div class="relative overflow-hidden rounded-lg shadow-2xl">
-        <img src="islamic.png" alt="Fest" class="w-full h-full object-cover" />
-      </div>
+    
+    <div class="space-y-4">
+      <button data-section="home" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gradient-primary text-white font-medium flex items-center">
+        <i class="fas fa-home mr-3"></i> Home
+      </button>
+      <button data-section="results" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 text-gray-700 font-medium flex items-center">
+        <i class="fas fa-trophy mr-3"></i> Results
+      </button>
+      <button data-section="team" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 text-gray-700 font-medium flex items-center">
+        <i class="fas fa-users mr-3"></i> Teams
+      </button>
+      <button data-section="scoreboard" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 text-gray-700 font-medium flex items-center">
+        <i class="fas fa-chart-line mr-3"></i> Scoreboard
+      </button>
+      <button data-section="gallery" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 text-gray-700 font-medium flex items-center">
+        <i class="fas fa-images mr-3"></i> Gallery
+      </button>
+      <button data-section="contact" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 text-gray-700 font-medium flex items-center">
+        <i class="fas fa-envelope mr-3"></i> Contact
+      </button>
     </div>
-  </section>
-
-  <!-- Stats -->
-  <section class="py-16 border-t border-gray-200 bg-gray-50">
-    <div class="grid grid-cols-4 gap-8 text-center text-Noor max-w-4xl mx-auto">
-      <div><div class="text-4xl font-bold">130+</div><div class="text-sm text-gray-600">Programs</div></div>
-      <div><div class="text-4xl font-bold">150+</div><div class="text-sm text-gray-600">Contestants</div></div>
-      <div><div class="text-4xl font-bold">5</div><div class="text-sm text-gray-600">Categories</div></div>
-      <div><div class="text-4xl font-bold">2</div><div class="text-sm text-gray-600">Teams</div></div>
+    
+    <div class="absolute bottom-6 left-6 right-6">
+      <p class="text-center text-gray-500 text-sm">© 2025 അന്യോന്യം Media Team</p>
     </div>
-  </section>
+  </div>
 
-  <!-- TEAM -->
-  <section id="team" class="py-16 px-8 bg-BgClr">
-    <div class="max-w-7xl mx-auto text-center">
-      <h2 class="text-4xl font-bold text-slate-800 mb-12">Fest Teams</h2>
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div class="bg-gradient-to-br from-white to-slate-50 rounded-3xl p-10 border-2 border-slate-200 hover:border-slate-300 hover:shadow-2xl transition-all hover:scale-105">
-          <div class="text-6xl font-bold text-Isra mb-6">#1</div>
-          <h3 class="text-3xl font-bold text-Isra mb-3">Team Isra</h3>
-          <p class="text-lg text-slate-600 font-semibold mb-4">Score: <span id="team-isra-score">0</span> pts</p>
-          <div class="space-y-3 text-left">
-            <div class="flex justify-between bg-slate-100 rounded-lg px-4 py-2"><span class="font-medium">Leader:</span><span class="font-semibold">Nihad M</span></div>
-            <div class="flex justify-between bg-slate-100 rounded-lg px-4 py-2"><span class="font-medium">Ass. Leader:</span><span class="font-semibold">Midhlaj K</span></div>
-            <div class="flex justify-between bg-slate-100 rounded-lg px-4 py-2"><span class="font-medium">Iconic:</span><span class="font-semibold">Haneenul Aman</span></div>
+  <!-- Main Content Container -->
+  <main class="pt-20">
+    <!-- Home Section -->
+    <section id="home-section" class="section-active min-h-screen px-4 py-8 md:py-12">
+      <div class="container mx-auto">
+        <!-- Hero Section -->
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+          <div class="lg:w-1/2 text-center lg:text-left">
+            <div class="inline-block px-4 py-2 bg-green-100 text-green-700 rounded-full font-medium mb-6">
+              October 01 - 02, 2025
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
+              Jashne Najath
+              <span class="text-gradient-primary block">Arts Fest 2K25</span>
+            </h1>
+            <p class="text-xl text-gray-600 mb-8">
+              Darunnajath Shareeath & Arts College presents <strong>"അന്യോന്യം"</strong> - The annual Islamic Arts Festival showcasing talents in arts, literature, and culture.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <button data-section="results" class="px-8 py-4 bg-gradient-primary text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105">
+                View Results <i class="fas fa-arrow-right ml-2"></i>
+              </button>
+              <button data-section="scoreboard" class="px-8 py-4 bg-white text-gray-700 border-2 border-gray-300 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105">
+                Live Scores <i class="fas fa-chart-line ml-2"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div class="lg:w-1/2 relative">
+            <div class="logo-float">
+              <img src="https://i.ibb.co/DgHYHFS1/Whats-App-Image-2025-11-26-at-8-50-51-PM.jpg" alt="Jashne Najath Logo" class="w-full max-w-lg mx-auto rounded-2xl shadow-2xl" />
+            </div>
+            <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-isra rounded-full opacity-20 blur-xl"></div>
+            <div class="absolute -top-6 -right-6 w-40 h-40 bg-gradient-qaswa rounded-full opacity-20 blur-xl"></div>
           </div>
         </div>
-        <div class="bg-gradient-to-br from-white to-slate-50 rounded-3xl p-10 border-2 border-slate-200 hover:border-slate-300 hover:shadow-2xl transition-all hover:scale-105">
-          <div class="text-6xl font-bold text-Qaswa mb-6">#2</div>
-          <h3 class="text-3xl font-bold text-Qaswa mb-3">Team Qaswa</h3>
-          <p class="text-lg text-slate-600 font-semibold mb-4">Score: <span id="team-qaswa-score">0</span> pts</p>
-          <div class="space-y-3 text-left">
-            <div class="flex justify-between bg-slate-100 rounded-lg px-4 py-2"><span class="font-medium">Leader:</span><span class="font-semibold">Jasim K</span></div>
-            <div class="flex justify-between bg-slate-100 rounded-lg px-4 py-2"><span class="font-medium">Ass. Leader:</span><span class="font-semibold">Shamsuddeen CK</span></div>
-            <div class="flex justify-between bg-slate-100 rounded-lg px-4 py-2"><span class="font-medium">Iconic:</span><span class="font-semibold">Imad Hussain C</span></div>
+        
+        <!-- Stats Section -->
+        <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="bg-white p-6 rounded-2xl shadow-lg text-center card-hover">
+            <div class="text-4xl font-bold text-green-600 mb-2">130+</div>
+            <div class="text-gray-600 font-medium">Programs</div>
+          </div>
+          <div class="bg-white p-6 rounded-2xl shadow-lg text-center card-hover">
+            <div class="text-4xl font-bold text-blue-600 mb-2">150+</div>
+            <div class="text-gray-600 font-medium">Contestants</div>
+          </div>
+          <div class="bg-white p-6 rounded-2xl shadow-lg text-center card-hover">
+            <div class="text-4xl font-bold text-purple-600 mb-2">5</div>
+            <div class="text-gray-600 font-medium">Categories</div>
+          </div>
+          <div class="bg-white p-6 rounded-2xl shadow-lg text-center card-hover">
+            <div class="text-4xl font-bold text-orange-600 mb-2">3</div>
+            <div class="text-gray-600 font-medium">Teams</div>
           </div>
         </div>
-        <div class="bg-gradient-to-br from-white to-slate-50 rounded-3xl p-10 border-2 border-slate-200 hover:border-slate-300 hover:shadow-2xl transition-all hover:scale-105">
-          <div class="text-6xl font-bold text-Hira mb-6">#3</div>
-          <h3 class="text-3xl font-bold text-Hira mb-3">Team Hira</h3>
-          <p class="text-lg text-slate-600 font-semibold mb-4">Score: <span id="team-hira-score">0</span> pts</p>
-          <div class="space-y-3 text-left">
-            <div class="flex justify-between bg-slate-100 rounded-lg px-4 py-2"><span class="font-medium">Leader:</span><span class="font-semibold">Moosa TP</span></div>
-            <div class="flex justify-between bg-slate-100 rounded-lg px-4 py-2"><span class="font-medium">Ass. Leader:</span><span class="font-semibold">Ameen Abdurahman</span></div>
-            <div class="flex justify-between bg-slate-100 rounded-lg px-4 py-2"><span class="font-medium">Iconic:</span><span class="font-semibold">Abdul Ahad M</span></div>
+        
+        <!-- About Section -->
+        <div class="mt-24 bg-gradient-to-r from-green-50 to-blue-50 rounded-3xl p-8 md:p-12">
+          <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 class="text-4xl font-bold text-gray-900 mb-6">About അന്യോന്യം'25</h2>
+              <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                "അന്യോന്യം" (Anyonyam) represents unity and mutual cooperation. This year's arts fest brings together three dynamic teams - <strong>Isra, Qaswa, and Hira</strong> - competing across various artistic and cultural domains.
+              </p>
+              <p class="text-gray-700 text-lg leading-relaxed">
+                The festival includes competitions in stage performances, non-stage events, group activities, and individual talents, celebrating the rich cultural heritage and creative expressions of our students.
+              </p>
+            </div>
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Cultural Festival" class="rounded-2xl shadow-2xl w-full" />
+              <div class="absolute -bottom-4 -right-4 bg-gradient-primary text-white p-6 rounded-2xl shadow-xl">
+                <div class="text-3xl font-bold">01-02</div>
+                <div class="text-lg">October 2025</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- RESULTS -->
-  <section id="results" class="min-h-screen p-8 bg-gradient-to-b from-gray-50 to-white">
-    <div class="max-w-6xl mx-auto">
-      <h1 class="text-5xl font-bold text-center mb-12 text-gray-800">Event Results</h1>
-      <div class="flex flex-wrap justify-center gap-4 mb-12">
-        <button data-filter="all" class="result-tab px-6 py-3 rounded-xl font-bold bg-Thiru text-white shadow-lg">All</button>
-        <button data-filter="General" class="result-tab px-6 py-3 rounded-xl font-bold bg-white/90 text-gray-700 shadow-lg">General</button>
-        <button data-filter="Group" class="result-tab px-6 py-3 rounded-xl font-bold bg-white/90 text-gray-700 shadow-lg">Group</button>
-        <button data-filter="Junior Stage" class="result-tab px-6 py-3 rounded-xl font-bold bg-white/90 text-gray-700 shadow-lg">Junior Stage</button>
-        <button data-filter="Senior Stage" class="result-tab px-6 py-3 rounded-xl font-bold bg-white/90 text-gray-700 shadow-lg">Senior Stage</button>
-        <button data-filter="Junior Non-Stage" class="result-tab px-6 py-3 rounded-xl font-bold bg-white/90 text-gray-700 shadow-lg">Junior Non-Stage</button>
-        <button data-filter="Senior Non-Stage" class="result-tab px-6 py-3 rounded-xl font-bold bg-white/90 text-gray-700 shadow-lg">Senior Non-Stage</button>
-      </div>
-      <div id="results-container" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3"></div>
-      <div id="no-results" class="text-center py-20 text-2xl text-gray-600 hidden">No results published yet.</div>
-    </div>
-  </section>
-
-  <!-- SCOREBOARD -->
-  <section id="scoreboard" class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-16 px-4">
-    <div class="max-w-7xl mx-auto text-center">
-      <h1 class="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-800 to-slate-600 mb-12">Live Scoreboard</h1>
-      <div class="flex flex-wrap justify-center gap-4 mb-16">
-        <button data-category="General" class="scoreboard-tab px-8 py-4 rounded-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-xl hover:scale-105 transition-all">General</button>
-        <button data-category="Group" class="scoreboard-tab px-8 py-4 rounded-2xl font-bold bg-white/90 text-slate-700 hover:bg-white shadow-lg transition-all">Group</button>
-        <button data-category="Junior Stage" class="scoreboard-tab px-8 py-4 rounded-2xl font-bold bg-white/90 text-slate-700 hover:bg-white shadow-lg transition-all">Junior Stage</button>
-        <button data-category="Senior Stage" class="scoreboard-tab px-8 py-4 rounded-2xl font-bold bg-white/90 text-slate-700 hover:bg-white shadow-lg transition-all">Senior Stage</button>
-        <button data-category="Junior Non-Stage" class="scoreboard-tab px-8 py-4 rounded-2xl font-bold bg-white/90 text-slate-700 hover:bg-white shadow-lg transition-all">Junior Non-Stage</button>
-        <button data-category="Senior Non-Stage" class="scoreboard-tab px-8 py-4 rounded-2xl font-bold bg-white/90 text-slate-700 hover:bg-white shadow-lg transition-all">Senior Non-Stage</button>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
-        <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-10">
-          <h3 class="text-4xl font-bold text-Isra">Team Isra</h3>
-          <p id="score-isra" class="text-7xl font-black mt-6 text-Isra">0</p>
-          <p class="text-gray-600 mt-4">points</p>
+    <!-- Results Section -->
+    <section id="results-section" class="section-hidden min-h-screen px-4 py-12 bg-gray-50">
+      <div class="container mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-5xl font-bold text-gray-900 mb-4">Event Results</h2>
+          <p class="text-xl text-gray-600">Detailed results from all competitions</p>
+          <div class="w-24 h-1 bg-gradient-primary mx-auto mt-6 rounded-full"></div>
         </div>
-        <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-10">
-          <h3 class="text-4xl font-bold text-Qaswa">Team Qaswa</h3>
-          <p id="score-qaswa" class="text-7xl font-black mt-6 text-Qaswa">0</p>
-          <p class="text-gray-600 mt-4">points</p>
+        
+        <!-- Results Filter -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+          <button data-filter="all" class="results-filter-btn px-6 py-3 bg-gradient-primary text-white font-bold rounded-xl shadow-lg">All Results</button>
+          <button data-filter="General" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">General</button>
+          <button data-filter="Group" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">Group</button>
+          <button data-filter="Junior Stage" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">Junior Stage</button>
+          <button data-filter="Senior Stage" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">Senior Stage</button>
+          <button data-filter="Junior Non-Stage" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">Junior Non-Stage</button>
+          <button data-filter="Senior Non-Stage" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">Senior Non-Stage</button>
         </div>
-        <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-10">
-          <h3 class="text-4xl font-bold text-Hira">Team Hira</h3>
-          <p id="score-hira" class="text-7xl font-black mt-6 text-Hira">0</p>
-          <p class="text-gray-600 mt-4">points</p>
+        
+        <!-- Results Container -->
+        <div id="results-container" class="space-y-8">
+          <!-- Results will be loaded here -->
+          <div class="text-center py-12">
+            <div class="loader mx-auto mb-6"></div>
+            <p class="text-gray-600">Loading results...</p>
+          </div>
+        </div>
+        
+        <div id="no-results" class="text-center py-16 hidden">
+          <div class="text-6xl text-gray-300 mb-6">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-700 mb-4">No Results Published Yet</h3>
+          <p class="text-gray-600">Results will be displayed here as soon as they are available.</p>
         </div>
       </div>
-      <p class="mt-12 text-lg text-gray-600">Last updated: <span id="last-updated">Loading...</span></p>
-    </div>
-  </section>
+    </section>
 
-  <!-- Gallery -->
-  <section class="py-16 px-8 bg-gray-50">
-    <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Image Gallery</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-      <img src="1.jpg" alt="Gallery 1" class="rounded-xl shadow-lg hover:scale-105 transition-transform" />
-      <img src="9.jpg" alt="Gallery 2" class="rounded-xl shadow-lg hover:scale-105 transition-transform" />
-      <img src="24.jpg" alt="Gallery 3" class="rounded-xl shadow-lg hover:scale-105 transition-transform" />
-      <img src="30.jpg" alt="Gallery 4" class="rounded-xl shadow-lg hover:scale-105 transition-transform" />
-      <img src="37.jpg" alt="Gallery 5" class="rounded-xl shadow-lg hover:scale-105 transition-transform" />
-      <img src="38.jpg" alt="Gallery 6" class="rounded-xl shadow-lg hover:scale-105 transition-transform" />
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section class="py-16 px-8 bg-BgClr">
-    <h2 class="text-4xl font-bold text-center mb-12">Contact Us</h2>
-    <div class="max-w-3xl mx-auto bg-white rounded-3xl shadow-2xl p-10">
-      <form class="space-y-6">
-        <div class="grid md:grid-cols-2 gap-6">
-          <input type="text" name="name" placeholder="Your Name" required class="w-full px-6 py-4 rounded-xl border border-gray-300 focus:ring-4 focus:ring-Thiru/30 focus:border-Thiru outline-none" />
-          <input type="tel" name="phone" placeholder="Phone Number" required class="w-full px-6 py-4 rounded-xl border border-gray-300 focus:ring-4 focus:ring-Thiru/30 focus:border-Thiru outline-none" />
+    <!-- Teams Section -->
+    <section id="team-section" class="section-hidden min-h-screen px-4 py-12">
+      <div class="container mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-5xl font-bold text-gray-900 mb-4">Competing Teams</h2>
+          <p class="text-xl text-gray-600">Three teams, one champion</p>
+          <div class="w-24 h-1 bg-gradient-primary mx-auto mt-6 rounded-full"></div>
         </div>
-        <textarea name="message" rows="6" placeholder="Your Message" required class="w-full px-6 py-4 rounded-xl border border-gray-300 focus:ring-4 focus:ring-Thiru/30 focus:border-Thiru outline-none resize-none"></textarea>
-        <button type="submit" class="w-full bg-Thiru text-white py-5 rounded-xl font-bold text-xl hover:bg-green-700 transition-all shadow-lg hover:shadow-xl">
-          Send Message
-        </button>
-      </form>
-    </div>
-  </section>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Team Isra -->
+          <div class="team-card team-card-isra bg-white shadow-2xl card-hover">
+            <div class="p-8">
+              <div class="flex justify-between items-start mb-6">
+                <div>
+                  <div class="text-sm font-bold text-green-600 mb-2">TEAM #1</div>
+                  <h3 class="text-3xl font-bold text-gray-900">Team Isra</h3>
+                </div>
+                <div class="text-5xl font-black text-green-600">#1</div>
+              </div>
+              
+              <div class="mb-8">
+                <div class="text-6xl font-black text-green-600 mb-2 score-counter" id="team-isra-score">0</div>
+                <div class="text-gray-600">Total Points</div>
+              </div>
+              
+              <div class="space-y-4">
+                <div class="flex items-center p-4 bg-green-50 rounded-xl">
+                  <div class="w-12 h-12 bg-gradient-isra rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-crown text-white"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm text-gray-500">Leader</div>
+                    <div class="font-bold text-gray-900">Nihad M</div>
+                  </div>
+                </div>
+                
+                <div class="flex items-center p-4 bg-green-50 rounded-xl">
+                  <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-user-check text-green-600"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm text-gray-500">Assistant Leader</div>
+                    <div class="font-bold text-gray-900">Midhlaj K</div>
+                  </div>
+                </div>
+                
+                <div class="flex items-center p-4 bg-green-50 rounded-xl">
+                  <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-star text-green-600"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm text-gray-500">Iconic Member</div>
+                    <div class="font-bold text-gray-900">Haneenul Aman</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="mt-8 pt-6 border-t border-gray-200">
+                <div class="text-center">
+                  <button data-section="scoreboard" class="px-6 py-3 bg-gradient-isra text-white font-bold rounded-lg w-full">
+                    View Scores <i class="fas fa-arrow-right ml-2"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Team Qaswa -->
+          <div class="team-card team-card-qaswa bg-white shadow-2xl card-hover">
+            <div class="p-8">
+              <div class="flex justify-between items-start mb-6">
+                <div>
+                  <div class="text-sm font-bold text-blue-600 mb-2">TEAM #2</div>
+                  <h3 class="text-3xl font-bold text-gray-900">Team Qaswa</h3>
+                </div>
+                <div class="text-5xl font-black text-blue-600">#2</div>
+              </div>
+              
+              <div class="mb-8">
+                <div class="text-6xl font-black text-blue-600 mb-2 score-counter" id="team-qaswa-score">0</div>
+                <div class="text-gray-600">Total Points</div>
+              </div>
+              
+              <div class="space-y-4">
+                <div class="flex items-center p-4 bg-blue-50 rounded-xl">
+                  <div class="w-12 h-12 bg-gradient-qaswa rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-crown text-white"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm text-gray-500">Leader</div>
+                    <div class="font-bold text-gray-900">Jasim K</div>
+                  </div>
+                </div>
+                
+                <div class="flex items-center p-4 bg-blue-50 rounded-xl">
+                  <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-user-check text-blue-600"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm text-gray-500">Assistant Leader</div>
+                    <div class="font-bold text-gray-900">Shamsuddeen CK</div>
+                  </div>
+                </div>
+                
+                <div class="flex items-center p-4 bg-blue-50 rounded-xl">
+                  <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-star text-blue-600"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm text-gray-500">Iconic Member</div>
+                    <div class="font-bold text-gray-900">Imad Hussain C</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="mt-8 pt-6 border-t border-gray-200">
+                <div class="text-center">
+                  <button data-section="scoreboard" class="px-6 py-3 bg-gradient-qaswa text-white font-bold rounded-lg w-full">
+                    View Scores <i class="fas fa-arrow-right ml-2"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Team Hira -->
+          <div class="team-card team-card-hira bg-white shadow-2xl card-hover">
+            <div class="p-8">
+              <div class="flex justify-between items-start mb-6">
+                <div>
+                  <div class="text-sm font-bold text-orange-600 mb-2">TEAM #3</div>
+                  <h3 class="text-3xl font-bold text-gray-900">Team Hira</h3>
+                </div>
+                <div class="text-5xl font-black text-orange-600">#3</div>
+              </div>
+              
+              <div class="mb-8">
+                <div class="text-6xl font-black text-orange-600 mb-2 score-counter" id="team-hira-score">0</div>
+                <div class="text-gray-600">Total Points</div>
+              </div>
+              
+              <div class="space-y-4">
+                <div class="flex items-center p-4 bg-orange-50 rounded-xl">
+                  <div class="w-12 h-12 bg-gradient-hira rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-crown text-white"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm text-gray-500">Leader</div>
+                    <div class="font-bold text-gray-900">Moosa TP</div>
+                  </div>
+                </div>
+                
+                <div class="flex items-center p-4 bg-orange-50 rounded-xl">
+                  <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-user-check text-orange-600"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm text-gray-500">Assistant Leader</div>
+                    <div class="font-bold text-gray-900">Ameen Abdurahman</div>
+                  </div>
+                </div>
+                
+                <div class="flex items-center p-4 bg-orange-50 rounded-xl">
+                  <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                    <i class="fas fa-star text-orange-600"></i>
+                  </div>
+                  <div>
+                    <div class="text-sm text-gray-500">Iconic Member</div>
+                    <div class="font-bold text-gray-900">Abdul Ahad M</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="mt-8 pt-6 border-t border-gray-200">
+                <div class="text-center">
+                  <button data-section="scoreboard" class="px-6 py-3 bg-gradient-hira text-white font-bold rounded-lg w-full">
+                    View Scores <i class="fas fa-arrow-right ml-2"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scoreboard Section -->
+    <section id="scoreboard-section" class="section-hidden min-h-screen px-4 py-12 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+      <div class="container mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-5xl font-bold text-gray-900 mb-4">Live Scoreboard</h2>
+          <p class="text-xl text-gray-600">Category-wise scores and team totals</p>
+          <div class="w-24 h-1 bg-gradient-primary mx-auto mt-6 rounded-full"></div>
+        </div>
+        
+        <!-- Scoreboard Category Selector -->
+        <div class="flex flex-wrap justify-center gap-4 mb-16">
+          <button data-category="General" class="scoreboard-category-btn px-8 py-4 bg-gradient-primary text-white font-bold rounded-2xl shadow-xl flex items-center">
+            <i class="fas fa-star mr-3"></i> General
+          </button>
+          <button data-category="Group" class="scoreboard-category-btn px-8 py-4 bg-white text-gray-700 font-bold rounded-2xl shadow-lg flex items-center">
+            <i class="fas fa-users mr-3"></i> Group
+          </button>
+          <button data-category="Junior Stage" class="scoreboard-category-btn px-8 py-4 bg-white text-gray-700 font-bold rounded-2xl shadow-lg flex items-center">
+            <i class="fas fa-microphone mr-3"></i> Junior Stage
+          </button>
+          <button data-category="Senior Stage" class="scoreboard-category-btn px-8 py-4 bg-white text-gray-700 font-bold rounded-2xl shadow-lg flex items-center">
+            <i class="fas fa-theater-masks mr-3"></i> Senior Stage
+          </button>
+          <button data-category="Junior Non-Stage" class="scoreboard-category-btn px-8 py-4 bg-white text-gray-700 font-bold rounded-2xl shadow-lg flex items-center">
+            <i class="fas fa-paint-brush mr-3"></i> Junior Non-Stage
+          </button>
+          <button data-category="Senior Non-Stage" class="scoreboard-category-btn px-8 py-4 bg-white text-gray-700 font-bold rounded-2xl shadow-lg flex items-center">
+            <i class="fas fa-palette mr-3"></i> Senior Non-Stage
+          </button>
+          <button data-category="Total" class="scoreboard-category-btn px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-2xl shadow-xl flex items-center">
+            <i class="fas fa-trophy mr-3"></i> Total Score
+          </button>
+        </div>
+        
+        <!-- Scoreboard Display -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
+          <!-- Team Isra Score -->
+          <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-10 text-center card-hover">
+            <div class="inline-block p-4 bg-gradient-isra rounded-2xl mb-6">
+              <i class="fas fa-flag text-white text-3xl"></i>
+            </div>
+            <h3 class="text-3xl font-bold text-gray-900 mb-2">Team Isra</h3>
+            <div class="text-7xl font-black text-green-600 mb-4 score-counter" id="score-isra">0</div>
+            <div class="text-gray-600 text-lg" id="score-label-isra">Points</div>
+            <div class="mt-8 pt-6 border-t border-gray-200">
+              <div class="text-sm text-gray-500">Current Rank</div>
+              <div class="text-2xl font-bold text-gray-900" id="rank-isra">-</div>
+            </div>
+          </div>
+          
+          <!-- Team Qaswa Score -->
+          <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-10 text-center card-hover">
+            <div class="inline-block p-4 bg-gradient-qaswa rounded-2xl mb-6">
+              <i class="fas fa-flag text-white text-3xl"></i>
+            </div>
+            <h3 class="text-3xl font-bold text-gray-900 mb-2">Team Qaswa</h3>
+            <div class="text-7xl font-black text-blue-600 mb-4 score-counter" id="score-qaswa">0</div>
+            <div class="text-gray-600 text-lg" id="score-label-qaswa">Points</div>
+            <div class="mt-8 pt-6 border-t border-gray-200">
+              <div class="text-sm text-gray-500">Current Rank</div>
+              <div class="text-2xl font-bold text-gray-900" id="rank-qaswa">-</div>
+            </div>
+          </div>
+          
+          <!-- Team Hira Score -->
+          <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-10 text-center card-hover">
+            <div class="inline-block p-4 bg-gradient-hira rounded-2xl mb-6">
+              <i class="fas fa-flag text-white text-3xl"></i>
+            </div>
+            <h3 class="text-3xl font-bold text-gray-900 mb-2">Team Hira</h3>
+            <div class="text-7xl font-black text-orange-600 mb-4 score-counter" id="score-hira">0</div>
+            <div class="text-gray-600 text-lg" id="score-label-hira">Points</div>
+            <div class="mt-8 pt-6 border-t border-gray-200">
+              <div class="text-sm text-gray-500">Current Rank</div>
+              <div class="text-2xl font-bold text-gray-900" id="rank-hira">-</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Category Score Table -->
+        <div class="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl p-8 mb-12">
+          <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Category-wise Breakdown</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr class="bg-gray-50">
+                  <th class="py-4 px-6 text-left font-bold text-gray-700 rounded-l-xl">Category</th>
+                  <th class="py-4 px-6 text-center font-bold text-green-600">Team Isra</th>
+                  <th class="py-4 px-6 text-center font-bold text-blue-600">Team Qaswa</th>
+                  <th class="py-4 px-6 text-center font-bold text-orange-600">Team Hira</th>
+                  <th class="py-4 px-6 text-center font-bold text-gray-700 rounded-r-xl">Leader</th>
+                </tr>
+              </thead>
+              <tbody id="category-scores-table">
+                <!-- Category scores will be loaded here -->
+                <tr>
+                  <td colspan="5" class="py-8 text-center text-gray-500">
+                    <div class="loader mx-auto mb-4"></div>
+                    Loading category scores...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <!-- Last Updated & Auto-refresh -->
+        <div class="max-w-2xl mx-auto bg-white rounded-2xl p-8 shadow-lg">
+          <div class="flex flex-col md:flex-row justify-between items-center">
+            <div>
+              <div class="text-sm text-gray-500">Last Updated</div>
+              <div class="text-xl font-bold text-gray-900" id="last-updated">Loading...</div>
+            </div>
+            <div class="flex items-center mt-4 md:mt-0">
+              <div class="w-3 h-3 bg-green-500 rounded-full mr-3 pulse"></div>
+              <span class="text-gray-700">Live updates enabled</span>
+            </div>
+            <div class="mt-4 md:mt-0">
+              <button id="refresh-scores" class="px-6 py-3 bg-gradient-primary text-white font-bold rounded-xl flex items-center">
+                <i class="fas fa-sync-alt mr-2"></i> Refresh Scores
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery-section" class="section-hidden min-h-screen px-4 py-12 bg-gray-50">
+      <div class="container mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-5xl font-bold text-gray-900 mb-4">Festival Gallery</h2>
+          <p class="text-xl text-gray-600">Capturing the moments of അന്യോന്യം'25</p>
+          <div class="w-24 h-1 bg-gradient-primary mx-auto mt-6 rounded-full"></div>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="rounded-2xl overflow-hidden shadow-2xl card-hover">
+            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Stage Performance" class="w-full h-64 object-cover" />
+            <div class="p-6 bg-white">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Stage Performances</h3>
+              <p class="text-gray-600">Drama, speech, and cultural performances</p>
+            </div>
+          </div>
+          
+          <div class="rounded-2xl overflow-hidden shadow-2xl card-hover">
+            <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Art Exhibition" class="w-full h-64 object-cover" />
+            <div class="p-6 bg-white">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Art Exhibition</h3>
+              <p class="text-gray-600">Paintings, calligraphy, and crafts</p>
+            </div>
+          </div>
+          
+          <div class="rounded-2xl overflow-hidden shadow-2xl card-hover">
+            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Group Activities" class="w-full h-64 object-cover" />
+            <div class="p-6 bg-white">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Group Activities</h3>
+              <p class="text-gray-600">Team competitions and collaborative events</p>
+            </div>
+          </div>
+          
+          <div class="rounded-2xl overflow-hidden shadow-2xl card-hover">
+            <img src="https://images.unsplash.com/photo-1492684223066-e9e4aab4d25e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Audience" class="w-full h-64 object-cover" />
+            <div class="p-6 bg-white">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Festival Audience</h3>
+              <p class="text-gray-600">Students and faculty enjoying the events</p>
+            </div>
+          </div>
+          
+          <div class="rounded-2xl overflow-hidden shadow-2xl card-hover">
+            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Award Ceremony" class="w-full h-64 object-cover" />
+            <div class="p-6 bg-white">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Award Ceremonies</h3>
+              <p class="text-gray-600">Winners receiving their awards</p>
+            </div>
+          </div>
+          
+          <div class="rounded-2xl overflow-hidden shadow-2xl card-hover">
+            <img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cultural Events" class="w-full h-64 object-cover" />
+            <div class="p-6 bg-white">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Cultural Events</h3>
+              <p class="text-gray-600">Traditional performances and displays</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact-section" class="section-hidden min-h-screen px-4 py-12 bg-gradient-to-b from-white to-gray-100">
+      <div class="container mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-5xl font-bold text-gray-900 mb-4">Contact Us</h2>
+          <p class="text-xl text-gray-600">Get in touch with the festival organizers</p>
+          <div class="w-24 h-1 bg-gradient-primary mx-auto mt-6 rounded-full"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div>
+            <div class="bg-white rounded-3xl shadow-2xl p-10">
+              <h3 class="text-2xl font-bold text-gray-900 mb-8">Send us a message</h3>
+              
+              <form id="contact-form" class="space-y-6">
+                <div>
+                  <label class="block text-gray-700 font-medium mb-2">Your Name</label>
+                  <input type="text" name="name" required class="w-full px-6 py-4 rounded-xl border border-gray-300 focus:ring-4 focus:ring-green-300 focus:border-green-500 outline-none transition-all" placeholder="Enter your name" />
+                </div>
+                
+                <div>
+                  <label class="block text-gray-700 font-medium mb-2">Phone Number</label>
+                  <input type="tel" name="phone" required class="w-full px-6 py-4 rounded-xl border border-gray-300 focus:ring-4 focus:ring-green-300 focus:border-green-500 outline-none transition-all" placeholder="Enter your phone number" />
+                </div>
+                
+                <div>
+                  <label class="block text-gray-700 font-medium mb-2">Your Message</label>
+                  <textarea name="message" rows="5" required class="w-full px-6 py-4 rounded-xl border border-gray-300 focus:ring-4 focus:ring-green-300 focus:border-green-500 outline-none transition-all resize-none" placeholder="Enter your message"></textarea>
+                </div>
+                
+                <button type="submit" class="w-full bg-gradient-primary text-white py-5 rounded-xl font-bold text-xl hover:shadow-2xl transition-all flex items-center justify-center">
+                  <i class="fas fa-paper-plane mr-3"></i> Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+          
+          <div>
+            <div class="bg-white rounded-3xl shadow-2xl p-10 h-full">
+              <h3 class="text-2xl font-bold text-gray-900 mb-8">Contact Information</h3>
+              
+              <div class="space-y-8">
+                <div class="flex items-start">
+                  <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center mr-6">
+                    <i class="fas fa-university text-2xl text-green-600"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">Darunnajath College</h4>
+                    <p class="text-gray-600">Karuvarakundu, Malappuram, Kerala</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start">
+                  <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mr-6">
+                    <i class="fas fa-users text-2xl text-blue-600"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">Festival Organizers</h4>
+                    <p class="text-gray-600">Arts Club & Student Union</p>
+                    <p class="text-gray-600 mt-2">Email: anyonyam@darunnajath.ac.in</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start">
+                  <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mr-6">
+                    <i class="fas fa-calendar-alt text-2xl text-purple-600"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">Event Dates</h4>
+                    <p class="text-gray-600">October 1-2, 2025</p>
+                    <p class="text-gray-600 mt-2">9:00 AM to 6:00 PM daily</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="mt-12 pt-8 border-t border-gray-200">
+                <h4 class="text-xl font-bold text-gray-900 mb-6">Follow Us</h4>
+                <div class="flex space-x-6">
+                  <a href="https://www.instagram.com/anyonyam/" class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white text-2xl hover:scale-110 transition-transform">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a href="https://www.youtube.com/@anyonyam" class="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center text-white text-2xl hover:scale-110 transition-transform">
+                    <i class="fab fa-youtube"></i>
+                  </a>
+                  <a href="https://www.facebook.com/anyonyam" class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-white text-2xl hover:scale-110 transition-transform">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
-  <footer class="bg-gray-100 text-gray-500 py-8 text-center">
-    <div class="container mx-auto px-4">
-      <p class="text-sm mb-4">© 2025 അന്യോന്യം Media Team. All rights reserved.</p>
-      <div class="flex justify-center space-x-8">
-        <a href="https://www.instagram.com/അന്യോന്യം/" class="hover:text-gray-700"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><!-- Instagram SVG --></svg></a>
-        <a href="https://www.youtube.com/@amasajmic5827" class="hover:text-gray-700"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><!-- YouTube SVG --></svg></a>
+  <footer class="bg-gray-900 text-white py-12 px-4">
+    <div class="container mx-auto">
+      <div class="grid md:grid-cols-3 gap-12">
+        <div>
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mr-4">
+              <span class="text-white font-bold text-xl">JN</span>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold">അന്യോന്യം'25</h3>
+              <p class="text-gray-400">Jashne Najath Arts Fest</p>
+            </div>
+          </div>
+          <p class="text-gray-400">
+            Darunnajath Shareeath & Arts College presents the annual Islamic Arts Festival celebrating creativity, culture, and talent.
+          </p>
+        </div>
+        
+        <div>
+          <h4 class="text-xl font-bold mb-6">Quick Links</h4>
+          <div class="space-y-4">
+            <a href="#" data-section="home" class="block text-gray-400 hover:text-white transition-colors"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Home</a>
+            <a href="#" data-section="results" class="block text-gray-400 hover:text-white transition-colors"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Results</a>
+            <a href="#" data-section="team" class="block text-gray-400 hover:text-white transition-colors"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Teams</a>
+            <a href="#" data-section="scoreboard" class="block text-gray-400 hover:text-white transition-colors"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Scoreboard</a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-xl font-bold mb-6">Contact Info</h4>
+          <div class="space-y-4">
+            <div class="flex items-start">
+              <i class="fas fa-map-marker-alt text-green-500 mt-1 mr-4"></i>
+              <p class="text-gray-400">Darunnajath Shareeath & Arts College, Karuvarakundu, Malappuram, Kerala</p>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-envelope text-green-500 mr-4"></i>
+              <p class="text-gray-400">anyonyam@darunnajath.ac.in</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-12 pt-8 border-t border-gray-800 text-center">
+        <p class="text-gray-500">© 2025 അന്യോന്യം Media Team. All rights reserved.</p>
+        <p class="text-gray-500 mt-2">Designed with <i class="fas fa-heart text-red-500 mx-1"></i> for Darunnajath College</p>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- JavaScript -->
   <script>
+    // Configuration
     const SHEET_ID = '1vk_hE-Ja5d8kZdzuj7jeYxlunTyopx0p9HjzJcGFl0c';
-    const scoreboardUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Scoreboard`;
-    const resultsUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Results`;
-
+    const SCOREBOARD_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Scoreboard`;
+    const RESULTS_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Results`;
+    
+    // State
     let scoreboardData = {};
     let allResults = [];
-
-    // Parse CSV helper
+    let currentCategory = 'General';
+    let currentFilter = 'all';
+    let totalScores = { isra: 0, qaswa: 0, hira: 0 };
+    
+    // DOM Elements
+    const sections = {
+      home: document.getElementById('home-section'),
+      results: document.getElementById('results-section'),
+      team: document.getElementById('team-section'),
+      scoreboard: document.getElementById('scoreboard-section'),
+      gallery: document.getElementById('gallery-section'),
+      contact: document.getElementById('contact-section')
+    };
+    
+    // Initialize the application
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set up navigation
+      setupNavigation();
+      
+      // Load data
+      loadScoreboard();
+      loadResults();
+      
+      // Set up auto-refresh every 30 seconds
+      setInterval(() => {
+        loadScoreboard();
+      }, 30000);
+    });
+    
+    // Navigation Setup
+    function setupNavigation() {
+      // Desktop navigation tabs
+      document.querySelectorAll('.nav-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+          const sectionId = this.getAttribute('data-section');
+          showSection(sectionId);
+          
+          // Update active tab
+          document.querySelectorAll('.nav-tab').forEach(t => {
+            t.classList.remove('nav-tab-active');
+            t.classList.add('text-gray-600', 'bg-white/0');
+          });
+          this.classList.add('nav-tab-active');
+          this.classList.remove('text-gray-600', 'bg-white/0');
+        });
+      });
+      
+      // Mobile navigation tabs
+      document.querySelectorAll('.mobile-nav-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+          const sectionId = this.getAttribute('data-section');
+          showSection(sectionId);
+          closeMobileMenu();
+          
+          // Update active mobile tab
+          document.querySelectorAll('.mobile-nav-tab').forEach(t => {
+            t.classList.remove('bg-gradient-primary', 'text-white');
+            t.classList.add('bg-gray-100', 'text-gray-700');
+          });
+          this.classList.add('bg-gradient-primary', 'text-white');
+          this.classList.remove('bg-gray-100', 'text-gray-700');
+        });
+      });
+      
+      // Mobile menu toggle
+      document.getElementById('mobile-menu-btn').addEventListener('click', openMobileMenu);
+      document.getElementById('mobile-menu-close').addEventListener('click', closeMobileMenu);
+      
+      // Footer links
+      document.querySelectorAll('footer a[data-section]').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const sectionId = this.getAttribute('data-section');
+          showSection(sectionId);
+        });
+      });
+      
+      // Home section buttons
+      document.querySelectorAll('#home-section button[data-section]').forEach(button => {
+        button.addEventListener('click', function() {
+          const sectionId = this.getAttribute('data-section');
+          showSection(sectionId);
+        });
+      });
+      
+      // Team section buttons
+      document.querySelectorAll('#team-section button[data-section]').forEach(button => {
+        button.addEventListener('click', function() {
+          const sectionId = this.getAttribute('data-section');
+          showSection(sectionId);
+        });
+      });
+      
+      // Scoreboard category buttons
+      document.querySelectorAll('.scoreboard-category-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const category = this.getAttribute('data-category');
+          updateScoreboard(category);
+        });
+      });
+    }
+    
+    // Show a specific section
+    function showSection(sectionId) {
+      // Hide all sections
+      Object.values(sections).forEach(section => {
+        section.classList.remove('section-active');
+        section.classList.add('section-hidden');
+      });
+      
+      // Show the selected section
+      if (sections[sectionId]) {
+        sections[sectionId].classList.remove('section-hidden');
+        sections[sectionId].classList.add('section-active');
+        
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+    
+    // Mobile menu functions
+    function openMobileMenu() {
+      document.getElementById('mobile-menu').classList.add('mobile-menu-open');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeMobileMenu() {
+      document.getElementById('mobile-menu').classList.remove('mobile-menu-open');
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Load scoreboard data from Google Sheets
+    function loadScoreboard() {
+      fetch(SCOREBOARD_URL)
+        .then(res => res.text())
+        .then(csv => {
+          const rows = parseCSV(csv);
+          scoreboardData = {};
+          
+          rows.forEach(row => {
+            if (row.length >= 4) {
+              const category = row[0];
+              scoreboardData[category] = {
+                isra: parseInt(row[1]) || 0,
+                qaswa: parseInt(row[2]) || 0,
+                hira: parseInt(row[3]) || 0
+              };
+            }
+          });
+          
+          // Calculate total scores
+          calculateTotalScores();
+          
+          // Update scoreboard with current category
+          updateScoreboard(currentCategory);
+          updateTeamScores();
+          updateCategoryTable();
+          updateRanks();
+          document.getElementById('last-updated').textContent = new Date().toLocaleString('en-IN');
+        })
+        .catch(err => {
+          console.error('Error loading scoreboard:', err);
+          document.getElementById('last-updated').textContent = 'Failed to load data';
+        });
+    }
+    
+    // Calculate total scores from all categories except "Total"
+    function calculateTotalScores() {
+      totalScores = { isra: 0, qaswa: 0, hira: 0 };
+      
+      for (const category in scoreboardData) {
+        if (category !== 'Total') {
+          totalScores.isra += scoreboardData[category].isra || 0;
+          totalScores.qaswa += scoreboardData[category].qaswa || 0;
+          totalScores.hira += scoreboardData[category].hira || 0;
+        }
+      }
+      
+      // If there's a "Total" row in the sheet, use that instead
+      if (scoreboardData['Total']) {
+        totalScores = {
+          isra: scoreboardData['Total'].isra || 0,
+          qaswa: scoreboardData['Total'].qaswa || 0,
+          hira: scoreboardData['Total'].hira || 0
+        };
+      }
+    }
+    
+    // Load results data from Google Sheets
+    function loadResults() {
+      fetch(RESULTS_URL)
+        .then(res => res.text())
+        .then(csv => {
+          const rows = parseCSV(csv);
+          allResults = [];
+          
+          // Parse results with new column structure
+          // Columns: No, Event Code, Event, Category, 1st Place Chest No, 2nd Place Chest No, 3rd Place Chest No, 
+          // 1st Place Name, 2nd Place Name, 3rd Place Name, 1st Place Group, 2nd Place Group, 3rd Place Group
+          
+          for (let i = 1; i < rows.length; i++) {
+            const row = rows[i];
+            if (row.length >= 13) {
+              allResults.push({
+                no: row[0] || '',
+                eventCode: row[1] || '',
+                event: row[2] || '',
+                category: row[3] || '',
+                firstChestNo: row[4] || '',
+                secondChestNo: row[5] || '',
+                thirdChestNo: row[6] || '',
+                firstName: row[7] || '',
+                secondName: row[8] || '',
+                thirdName: row[9] || '',
+                firstGroup: row[10] || '',
+                secondGroup: row[11] || '',
+                thirdGroup: row[12] || ''
+              });
+            }
+          }
+          
+          // Reverse to show latest first
+          allResults.reverse();
+          
+          // Display results
+          displayResults(currentFilter);
+          
+          // Set up result filter buttons
+          setupResultFilters();
+        })
+        .catch(err => {
+          console.error('Error loading results:', err);
+          document.getElementById('results-container').innerHTML = `
+            <div class="col-span-3 text-center py-12">
+              <div class="text-6xl text-gray-300 mb-6">
+                <i class="fas fa-exclamation-circle"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-700 mb-4">Failed to Load Results</h3>
+              <p class="text-gray-600">Please check your connection and try again.</p>
+            </div>
+          `;
+        });
+    }
+    
+    // Parse CSV data
     function parseCSV(csv) {
       const lines = csv.trim().split('\n');
-      return lines.map(line => line.split(',').map(cell => cell.replace(/^"|"$/g, '').trim()));
-    }
-
-    // Load Scoreboard
-    fetch(scoreboardUrl)
-      .then(res => res.text())
-      .then(csv => {
-        const rows = parseCSV(csv);
-        rows.forEach(row => {
-          if (row.length >= 4) {
-            const category = row[0];
-            scoreboardData[category] = {
-              isra: parseInt(row[1]) || 0,
-              qaswa: parseInt(row[2]) || 0,
-              hira: parseInt(row[3]) || 0
-            };
+      return lines.map(line => {
+        const result = [];
+        let inQuotes = false;
+        let currentField = '';
+        
+        for (let i = 0; i < line.length; i++) {
+          const char = line[i];
+          
+          if (char === '"' && line[i + 1] === '"') {
+            currentField += '"';
+            i++;
+          } else if (char === '"') {
+            inQuotes = !inQuotes;
+          } else if (char === ',' && !inQuotes) {
+            result.push(currentField);
+            currentField = '';
+          } else {
+            currentField += char;
           }
-        });
-        updateScoreboard('General');
-        updateTeamScores();
-        document.getElementById('last-updated').textContent = new Date().toLocaleString('en-IN');
+        }
+        
+        result.push(currentField);
+        return result.map(cell => cell.trim());
       });
-
-    // Load Results
-    fetch(resultsUrl)
-      .then(res => res.text())
-      .then(csv => {
-        const rows = parseCSV(csv);
-        allResults = rows.slice(1).map(row => ({
-          date: row[0] || '',
-          event: row[1] || '',
-          category: row[2] || '',
-          winner: row[3] || '',
-          first: row[4] || '',
-          second: row[5] || '',
-          third: row[6] || ''
-        })).reverse();
-        displayResults('all');
-      });
-
+    }
+    
+    // Update scoreboard display
     function updateScoreboard(category) {
-      const data = scoreboardData[category] || { isra: 0, qaswa: 0, hira: 0 };
-      document.getElementById('score-isra').textContent = data.isra;
-      document.getElementById('score-qaswa').textContent = data.qaswa;
-      document.getElementById('score-hira').textContent = data.hira;
+      currentCategory = category;
+      let data;
+      
+      if (category === 'Total') {
+        data = totalScores;
+        // Update score labels
+        document.getElementById('score-label-isra').textContent = 'Total Points';
+        document.getElementById('score-label-qaswa').textContent = 'Total Points';
+        document.getElementById('score-label-hira').textContent = 'Total Points';
+      } else {
+        data = scoreboardData[category] || { isra: 0, qaswa: 0, hira: 0 };
+        // Update score labels
+        document.getElementById('score-label-isra').textContent = 'Points';
+        document.getElementById('score-label-qaswa').textContent = 'Points';
+        document.getElementById('score-label-hira').textContent = 'Points';
+      }
+      
+      document.getElementById('score-isra').textContent = data.isra || 0;
+      document.getElementById('score-qaswa').textContent = data.qaswa || 0;
+      document.getElementById('score-hira').textContent = data.hira || 0;
+      
+      // Update active category button
+      document.querySelectorAll('.scoreboard-category-btn').forEach(btn => {
+        if (btn.getAttribute('data-category') === category) {
+          if (category === 'Total') {
+            btn.classList.add('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'text-white');
+            btn.classList.remove('bg-white', 'text-gray-700', 'bg-gradient-primary');
+          } else if (category === 'General') {
+            btn.classList.add('bg-gradient-primary', 'text-white');
+            btn.classList.remove('bg-white', 'text-gray-700', 'bg-gradient-to-r', 'from-purple-600', 'to-pink-600');
+          } else {
+            btn.classList.add('bg-gradient-primary', 'text-white');
+            btn.classList.remove('bg-white', 'text-gray-700', 'bg-gradient-to-r', 'from-purple-600', 'to-pink-600');
+          }
+        } else {
+          if (btn.getAttribute('data-category') === 'Total') {
+            btn.classList.remove('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'text-white');
+            btn.classList.add('bg-white', 'text-gray-700');
+          } else {
+            btn.classList.remove('bg-gradient-primary', 'text-white');
+            btn.classList.add('bg-white', 'text-gray-700');
+          }
+        }
+      });
+      
+      // Update ranks
+      updateRanks();
     }
-
+    
+    // Update team scores in team section
     function updateTeamScores() {
-      const general = scoreboardData['General'] || { isra: 0, qaswa: 0, hira: 0 };
-      document.getElementById('team-isra-score').textContent = general.isra;
-      document.getElementById('team-qaswa-score').textContent = general.qaswa;
-      document.getElementById('team-hira-score').textContent = general.hira;
+      document.getElementById('team-isra-score').textContent = totalScores.isra;
+      document.getElementById('team-qaswa-score').textContent = totalScores.qaswa;
+      document.getElementById('team-hira-score').textContent = totalScores.hira;
     }
-
+    
+    // Update category score table
+    function updateCategoryTable() {
+      const tableBody = document.getElementById('category-scores-table');
+      tableBody.innerHTML = '';
+      
+      const categories = ['General', 'Group', 'Junior Stage', 'Senior Stage', 'Junior Non-Stage', 'Senior Non-Stage'];
+      
+      categories.forEach(category => {
+        const data = scoreboardData[category] || { isra: 0, qaswa: 0, hira: 0 };
+        
+        // Determine leader for this category
+        let leader = '';
+        let leaderColor = '';
+        
+        if (data.isra > data.qaswa && data.isra > data.hira) {
+          leader = 'Team Isra';
+          leaderColor = 'text-green-600';
+        } else if (data.qaswa > data.isra && data.qaswa > data.hira) {
+          leader = 'Team Qaswa';
+          leaderColor = 'text-blue-600';
+        } else if (data.hira > data.isra && data.hira > data.qaswa) {
+          leader = 'Team Hira';
+          leaderColor = 'text-orange-600';
+        } else if (data.isra === data.qaswa && data.isra === data.hira && data.isra > 0) {
+          leader = 'Tie';
+          leaderColor = 'text-gray-600';
+        } else {
+          leader = 'No scores';
+          leaderColor = 'text-gray-400';
+        }
+        
+        const row = document.createElement('tr');
+        row.className = 'hover:bg-gray-50';
+        row.innerHTML = `
+          <td class="py-4 px-6 border-b border-gray-200">
+            <div class="font-medium text-gray-900">${category}</div>
+          </td>
+          <td class="py-4 px-6 border-b border-gray-200 text-center font-bold text-green-600">
+            ${data.isra}
+          </td>
+          <td class="py-4 px-6 border-b border-gray-200 text-center font-bold text-blue-600">
+            ${data.qaswa}
+          </td>
+          <td class="py-4 px-6 border-b border-gray-200 text-center font-bold text-orange-600">
+            ${data.hira}
+          </td>
+          <td class="py-4 px-6 border-b border-gray-200 text-center ${leaderColor}">
+            ${leader}
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+      
+      // Add Total row
+      const totalRow = document.createElement('tr');
+      totalRow.className = 'bg-gray-50 font-bold';
+      totalRow.innerHTML = `
+        <td class="py-4 px-6 rounded-bl-xl">
+          <div class="font-bold text-gray-900">Total Score</div>
+        </td>
+        <td class="py-4 px-6 text-center text-green-600">
+          ${totalScores.isra}
+        </td>
+        <td class="py-4 px-6 text-center text-blue-600">
+          ${totalScores.qaswa}
+        </td>
+        <td class="py-4 px-6 text-center text-orange-600">
+          ${totalScores.hira}
+        </td>
+        <td class="py-4 px-6 rounded-br-xl text-center">
+          ${getOverallLeader()}
+        </td>
+      `;
+      tableBody.appendChild(totalRow);
+    }
+    
+    // Get overall leader based on total scores
+    function getOverallLeader() {
+      if (totalScores.isra > totalScores.qaswa && totalScores.isra > totalScores.hira) {
+        return '<span class="text-green-600">Team Isra</span>';
+      } else if (totalScores.qaswa > totalScores.isra && totalScores.qaswa > totalScores.hira) {
+        return '<span class="text-blue-600">Team Qaswa</span>';
+      } else if (totalScores.hira > totalScores.isra && totalScores.hira > totalScores.qaswa) {
+        return '<span class="text-orange-600">Team Hira</span>';
+      } else {
+        return '<span class="text-gray-600">Tie</span>';
+      }
+    }
+    
+    // Update team ranks based on total scores
+    function updateRanks() {
+      // Create array of teams with scores
+      const teams = [
+        { name: 'isra', score: totalScores.isra },
+        { name: 'qaswa', score: totalScores.qaswa },
+        { name: 'hira', score: totalScores.hira }
+      ];
+      
+      // Sort by score (descending)
+      teams.sort((a, b) => b.score - a.score);
+      
+      // Update rank display
+      document.getElementById('rank-isra').textContent = '#' + (teams.findIndex(t => t.name === 'isra') + 1);
+      document.getElementById('rank-qaswa').textContent = '#' + (teams.findIndex(t => t.name === 'qaswa') + 1);
+      document.getElementById('rank-hira').textContent = '#' + (teams.findIndex(t => t.name === 'hira') + 1);
+    }
+    
+    // Display filtered results
     function displayResults(filter) {
+      currentFilter = filter;
       const container = document.getElementById('results-container');
+      const noResults = document.getElementById('no-results');
+      
       container.innerHTML = '';
-      const filtered = filter === 'all' ? allResults : allResults.filter(r => r.category === filter);
+      
+      const filtered = filter === 'all' 
+        ? allResults 
+        : allResults.filter(r => r.category === filter);
+      
       if (filtered.length === 0) {
-        document.getElementById('no-results').classList.remove('hidden');
+        noResults.classList.remove('hidden');
         return;
       }
-      document.getElementById('no-results').classList.add('hidden');
-      filtered.forEach(r => {
+      
+      noResults.classList.add('hidden');
+      
+      filtered.forEach(result => {
+        // Determine category class
+        let categoryClass = '';
+        switch(result.category) {
+          case 'General': categoryClass = 'category-general'; break;
+          case 'Group': categoryClass = 'category-group'; break;
+          case 'Junior Stage': categoryClass = 'category-junior-stage'; break;
+          case 'Senior Stage': categoryClass = 'category-senior-stage'; break;
+          case 'Junior Non-Stage': categoryClass = 'category-junior-non-stage'; break;
+          case 'Senior Non-Stage': categoryClass = 'category-senior-non-stage'; break;
+          default: categoryClass = 'category-general';
+        }
+        
+        // Create result card
         const card = document.createElement('div');
-        card.className = 'bg-white rounded-2xl shadow-xl p-8 text-left hover:shadow-2xl transition-all';
+        card.className = `result-card bg-white rounded-2xl shadow-lg p-8 ${categoryClass}`;
+        
+        // Determine team badges
+        const firstGroupBadge = getTeamBadge(result.firstGroup);
+        const secondGroupBadge = getTeamBadge(result.secondGroup);
+        const thirdGroupBadge = getTeamBadge(result.thirdGroup);
+        
         card.innerHTML = `
-          <h3 class="text-2xl font-bold text-gray-800">${r.event} <span class="text-lg font-normal text-gray-600">(${r.category})</span></h3>
-          <p class="text-xl mt-4">🏆 Winner: <strong>${r.winner}</strong></p>
-          <p class="mt-2">🥇 1st: Team <strong>${r.first || '—'}</strong></p>
-          <p>🥈 2nd: Team <strong>${r.second || '—'}</strong></p>
-          <p>🥉 3rd: Team <strong>${r.third || '—'}</strong></p>
-          <p class="text-gray-500 mt-6 text-sm">${r.date}</p>
+          <div class="flex flex-col md:flex-row md:items-start justify-between mb-6">
+            <div>
+              <div class="flex items-center mb-3">
+                <span class="text-sm font-medium bg-gray-100 text-gray-700 px-3 py-1 rounded-full mr-3">
+                  ${result.eventCode}
+                </span>
+                <span class="text-sm font-medium bg-gray-100 text-gray-700 px-3 py-1 rounded-full">
+                  Event #${result.no}
+                </span>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900">${result.event}</h3>
+              <div class="flex items-center mt-3">
+                <span class="results-badge bg-gray-100 text-gray-700">${result.category}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <!-- 1st Place -->
+            ${result.firstName ? `
+              <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl p-6">
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex items-center">
+                    <div class="w-10 h-10 medal-gold rounded-lg flex items-center justify-center mr-3">
+                      <span class="font-bold text-yellow-800">1</span>
+                    </div>
+                    <div>
+                      <div class="text-sm text-gray-600">Chest No</div>
+                      <div class="font-bold text-gray-900">${result.firstChestNo || '-'}</div>
+                    </div>
+                  </div>
+                  ${firstGroupBadge}
+                </div>
+                <div class="text-lg font-bold text-gray-900">${result.firstName}</div>
+                <div class="text-sm text-gray-600 mt-2">1st Place</div>
+              </div>
+            ` : ''}
+            
+            <!-- 2nd Place -->
+            ${result.secondName ? `
+              <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6">
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex items-center">
+                    <div class="w-10 h-10 medal-silver rounded-lg flex items-center justify-center mr-3">
+                      <span class="font-bold text-gray-800">2</span>
+                    </div>
+                    <div>
+                      <div class="text-sm text-gray-600">Chest No</div>
+                      <div class="font-bold text-gray-900">${result.secondChestNo || '-'}</div>
+                    </div>
+                  </div>
+                  ${secondGroupBadge}
+                </div>
+                <div class="text-lg font-bold text-gray-900">${result.secondName}</div>
+                <div class="text-sm text-gray-600 mt-2">2nd Place</div>
+              </div>
+            ` : ''}
+            
+            <!-- 3rd Place -->
+            ${result.thirdName ? `
+              <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6">
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex items-center">
+                    <div class="w-10 h-10 medal-bronze rounded-lg flex items-center justify-center mr-3">
+                      <span class="font-bold text-orange-800">3</span>
+                    </div>
+                    <div>
+                      <div class="text-sm text-gray-600">Chest No</div>
+                      <div class="font-bold text-gray-900">${result.thirdChestNo || '-'}</div>
+                    </div>
+                  </div>
+                  ${thirdGroupBadge}
+                </div>
+                <div class="text-lg font-bold text-gray-900">${result.thirdName}</div>
+                <div class="text-sm text-gray-600 mt-2">3rd Place</div>
+              </div>
+            ` : ''}
+          </div>
+          
+          ${(!result.firstName && !result.secondName && !result.thirdName) ? `
+            <div class="text-center py-8 bg-gray-50 rounded-xl">
+              <i class="fas fa-hourglass-half text-4xl text-gray-400 mb-4"></i>
+              <p class="text-gray-600">Results pending or event in progress</p>
+            </div>
+          ` : ''}
         `;
+        
         container.appendChild(card);
       });
     }
-
-    // Tabs
-    document.querySelectorAll('.result-tab').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.result-tab').forEach(b => b.classList.remove('bg-Thiru', 'text-white'));
-        document.querySelectorAll('.result-tab').forEach(b => b.classList.add('bg-white/90', 'text-gray-700'));
-        btn.classList.add('bg-Thiru', 'text-white');
-        btn.classList.remove('bg-white/90', 'text-gray-700');
-        displayResults(btn.dataset.filter);
-      });
-    });
-
-    document.querySelectorAll('.scoreboard-tab').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.scoreboard-tab').forEach(b => b.classList.remove('bg-gradient-to-r', 'from-purple-600', 'to-indigo-600', 'text-white'));
-        document.querySelectorAll('.scoreboard-tab').forEach(b => b.classList.add('bg-white/90', 'text-slate-700'));
-        btn.classList.add('bg-gradient-to-r', 'from-purple-600', 'to-indigo-600', 'text-white');
-        btn.classList.remove('bg-white/90', 'text-slate-700');
-        updateScoreboard(btn.dataset.category);
-      });
-    });
-
-    // Navigation highlight
-    window.addEventListener('scroll', () => {
-      const sections = ['home', 'results', 'team', 'scoreboard'];
-      let current = 'home';
-      sections.forEach(sec => {
-        const el = document.getElementById(sec);
-        if (el && el.getBoundingClientRect().top <= 100) current = sec;
-      });
-      document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('text-white', 'bg-Thiru');
-        btn.classList.add('text-gray-600');
-      });
-      const active = Array.from(document.querySelectorAll('.nav-btn')).find(b => b.parentElement.hash === `#${current}`);
-      if (active) {
-        active.classList.add('text-white', 'bg-Thiru');
-        active.classList.remove('text-gray-600');
+    
+    // Get team badge HTML
+    function getTeamBadge(teamName) {
+      if (!teamName) return '<div class="team-badge bg-gray-100 text-gray-600">-</div>';
+      
+      if (teamName.includes('Isra')) {
+        return '<div class="team-badge team-badge-isra">Team Isra</div>';
+      } else if (teamName.includes('Qaswa')) {
+        return '<div class="team-badge team-badge-qaswa">Team Qaswa</div>';
+      } else if (teamName.includes('Hira')) {
+        return '<div class="team-badge team-badge-hira">Team Hira</div>';
+      } else {
+        return `<div class="team-badge bg-gray-100 text-gray-600">${teamName}</div>`;
       }
+    }
+    
+    // Set up result filter buttons
+    function setupResultFilters() {
+      document.querySelectorAll('.results-filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const filter = this.getAttribute('data-filter');
+          
+          // Update active button
+          document.querySelectorAll('.results-filter-btn').forEach(b => {
+            b.classList.remove('bg-gradient-primary', 'text-white');
+            b.classList.add('bg-white', 'text-gray-700');
+          });
+          
+          this.classList.add('bg-gradient-primary', 'text-white');
+          this.classList.remove('bg-white', 'text-gray-700');
+          
+          // Display filtered results
+          displayResults(filter);
+        });
+      });
+    }
+    
+    // Set up refresh button
+    document.getElementById('refresh-scores').addEventListener('click', function() {
+      this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Refreshing...';
+      this.disabled = true;
+      
+      loadScoreboard();
+      
+      setTimeout(() => {
+        this.innerHTML = '<i class="fas fa-sync-alt mr-2"></i> Refresh Scores';
+        this.disabled = false;
+      }, 2000);
     });
+    
+    // Contact form submission
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      const name = formData.get('name');
+      const phone = formData.get('phone');
+      const message = formData.get('message');
+      
+      // In a real application, you would send this data to a server
+      // For now, we'll just show a success message
+      alert(`Thank you ${name}! Your message has been received. We'll contact you at ${phone} if needed.`);
+      
+      // Reset the form
+      this.reset();
+    });
+    
+    // Initialize with home section active
+    showSection('home');
   </script>
 </body>
 </html>
