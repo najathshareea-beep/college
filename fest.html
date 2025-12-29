@@ -267,7 +267,57 @@
       background-color: #f9fafb;
     }
     
-    /* Responsive table */
+    /* Toppers styling */
+    .topper-card {
+      transition: all 0.3s ease;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .topper-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .topper-rank {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+    }
+    
+    .rank-1 { background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); }
+    .rank-2 { background: linear-gradient(135deg, #C0C0C0 0%, #A9A9A9 100%); }
+    .rank-3 { background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%); }
+    .rank-other { background: linear-gradient(135deg, #6B7280 0%, #4B5563 100%); }
+    
+    /* Chest number search styling */
+    .chest-search-container {
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      border-radius: 20px;
+      padding: 40px;
+    }
+    
+    /* Programs grid styling */
+    .program-card {
+      transition: all 0.2s ease;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .program-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Responsive adjustments */
     @media (max-width: 768px) {
       .results-table {
         display: block;
@@ -278,7 +328,25 @@
       .results-table td {
         min-width: 150px;
       }
+      
+      .chest-search-container {
+        padding: 20px;
+      }
     }
+    
+    /* Points display styling */
+    .points-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+    
+    .points-gold { background-color: rgba(255, 215, 0, 0.2); color: #b8860b; }
+    .points-silver { background-color: rgba(192, 192, 192, 0.2); color: #808080; }
+    .points-bronze { background-color: rgba(205, 127, 50, 0.2); color: #8b4513; }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -311,8 +379,14 @@
           <button data-section="scoreboard" class="nav-tab px-5 py-3 rounded-lg font-medium transition-all duration-300">
             <i class="fas fa-chart-line mr-2"></i>Scoreboard
           </button>
+          <button data-section="toppers" class="nav-tab px-5 py-3 rounded-lg font-medium transition-all duration-300">
+            <i class="fas fa-crown mr-2"></i>Toppers
+          </button>
           <button data-section="gallery" class="nav-tab px-5 py-3 rounded-lg font-medium transition-all duration-300">
             <i class="fas fa-images mr-2"></i>Gallery
+          </button>
+          <button data-section="contact" class="nav-tab px-5 py-3 rounded-lg font-medium transition-all duration-300">
+            <i class="fas fa-envelope mr-2"></i>Contact
           </button>
         </div>
         
@@ -345,6 +419,9 @@
       </button>
       <button data-section="scoreboard" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 text-gray-700 font-medium flex items-center">
         <i class="fas fa-chart-line mr-3"></i> Scoreboard
+      </button>
+      <button data-section="toppers" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 text-gray-700 font-medium flex items-center">
+        <i class="fas fa-crown mr-3"></i> Toppers
       </button>
       <button data-section="gallery" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 text-gray-700 font-medium flex items-center">
         <i class="fas fa-images mr-3"></i> Gallery
@@ -383,6 +460,9 @@
               </button>
               <button data-section="scoreboard" class="px-8 py-4 bg-white text-gray-700 border-2 border-gray-300 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105">
                 Live Scores <i class="fas fa-chart-line ml-2"></i>
+              </button>
+              <button data-section="toppers" class="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105">
+                Top Performers <i class="fas fa-crown ml-2"></i>
               </button>
             </div>
           </div>
@@ -445,7 +525,7 @@
       <div class="container mx-auto">
         <div class="text-center mb-12">
           <h2 class="text-5xl font-bold text-gray-900 mb-4">Event Results</h2>
-          <p class="text-xl text-gray-600">Detailed results from all competitions</p>
+          <p class="text-xl text-gray-600">Detailed results from all competitions with points</p>
           <div class="w-24 h-1 bg-gradient-primary mx-auto mt-6 rounded-full"></div>
         </div>
         
@@ -793,6 +873,68 @@
       </div>
     </section>
 
+    <!-- Toppers Section -->
+    <section id="toppers-section" class="section-hidden min-h-screen px-4 py-12 bg-gradient-to-br from-amber-50 to-orange-50">
+      <div class="container mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-5xl font-bold text-gray-900 mb-4">Top Performers</h2>
+          <p class="text-xl text-gray-600">Celebrating individual excellence across categories</p>
+          <div class="w-24 h-1 bg-gradient-primary mx-auto mt-6 rounded-full"></div>
+        </div>
+        
+        <!-- Toppers Navigation -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+          <button data-topper-category="all" class="topper-category-btn px-6 py-3 bg-gradient-primary text-white font-bold rounded-xl shadow-lg">All Toppers</button>
+          <button data-topper-category="General" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">General</button>
+          <button data-topper-category="Junior" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">Junior</button>
+          <button data-topper-category="Senior" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">Senior</button>
+          <button data-topper-category="Super Senior" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">Super Senior</button>
+          <button data-topper-category="Sub Junior" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl shadow-lg">Sub Junior</button>
+        </div>
+        
+        <!-- Chest Number Search -->
+        <div class="max-w-2xl mx-auto chest-search-container mb-16">
+          <h3 class="text-2xl font-bold text-center text-gray-900 mb-6">Check Your Score</h3>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <input
+              type="text"
+              id="chest-number-input"
+              class="flex-grow px-6 py-4 rounded-xl border-2 border-dashed border-gray-300 focus:outline-none focus:border-green-500 text-center text-lg uppercase"
+              placeholder="Enter Chest Number"
+              maxlength="10"
+            />
+            <button id="search-chest-btn" class="px-8 py-4 bg-gradient-primary text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all">
+              Get Score <i class="fas fa-search ml-2"></i>
+            </button>
+          </div>
+          <div id="chest-result" class="mt-6 text-center hidden">
+            <!-- Result will be displayed here -->
+          </div>
+        </div>
+        
+        <!-- Toppers Display -->
+        <div id="toppers-container" class="space-y-12">
+          <!-- Toppers will be loaded here -->
+          <div class="text-center py-12">
+            <div class="loader mx-auto mb-6"></div>
+            <p class="text-gray-600">Loading toppers data...</p>
+          </div>
+        </div>
+        
+        <!-- Programs List -->
+        <div class="mt-16 bg-white rounded-3xl shadow-2xl p-8">
+          <h3 class="text-3xl font-bold text-center text-gray-900 mb-8">All Programs</h3>
+          <div id="programs-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Programs will be loaded here -->
+            <div class="text-center py-8">
+              <div class="loader mx-auto mb-4"></div>
+              <p class="text-gray-600">Loading programs...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Gallery Section -->
     <section id="gallery-section" class="section-hidden min-h-screen px-4 py-12 bg-gray-50">
       <div class="container mx-auto">
@@ -901,7 +1043,7 @@
                     <i class="fas fa-university text-2xl text-green-600"></i>
                   </div>
                   <div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-2">Darunnajath College</h4>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">Darunnajath Shareeath & Arts College</h4>
                     <p class="text-gray-600">Karuvarakundu, Malappuram, Kerala</p>
                   </div>
                 </div>
@@ -913,7 +1055,7 @@
                   <div>
                     <h4 class="text-xl font-bold text-gray-900 mb-2">Festival Organizers</h4>
                     <p class="text-gray-600">Arts Club & Student Union</p>
-                    <p class="text-gray-600 mt-2">Email: anyonyam@darunnajath.ac.in</p>
+                    <p class="text-gray-600 mt-2">Email: nissanajath@gmail.com</p>
                   </div>
                 </div>
                 
@@ -932,13 +1074,13 @@
               <div class="mt-12 pt-8 border-t border-gray-200">
                 <h4 class="text-xl font-bold text-gray-900 mb-6">Follow Us</h4>
                 <div class="flex space-x-6">
-                  <a href="https://www.instagram.com/anyonyam/" class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white text-2xl hover:scale-110 transition-transform">
+                  <a href="https://www.instagram.com/anyonyam25/" class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white text-2xl hover:scale-110 transition-transform">
                     <i class="fab fa-instagram"></i>
                   </a>
-                  <a href="https://www.youtube.com/@anyonyam" class="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center text-white text-2xl hover:scale-110 transition-transform">
+                  <a href="https://www.youtube.com/@anyonyam25" class="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center text-white text-2xl hover:scale-110 transition-transform">
                     <i class="fab fa-youtube"></i>
                   </a>
-                  <a href="https://www.facebook.com/anyonyam" class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-white text-2xl hover:scale-110 transition-transform">
+                  <a href="https://www.facebook.com/anyonyam25" class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-white text-2xl hover:scale-110 transition-transform">
                     <i class="fab fa-facebook-f"></i>
                   </a>
                 </div>
@@ -976,6 +1118,7 @@
             <a href="#" data-section="results" class="block text-gray-400 hover:text-white transition-colors"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Results</a>
             <a href="#" data-section="team" class="block text-gray-400 hover:text-white transition-colors"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Teams</a>
             <a href="#" data-section="scoreboard" class="block text-gray-400 hover:text-white transition-colors"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Scoreboard</a>
+            <a href="#" data-section="toppers" class="block text-gray-400 hover:text-white transition-colors"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Toppers</a>
           </div>
         </div>
         
@@ -988,7 +1131,7 @@
             </div>
             <div class="flex items-center">
               <i class="fas fa-envelope text-green-500 mr-4"></i>
-              <p class="text-gray-400">anyonyam@darunnajath.ac.in</p>
+              <p class="text-gray-400">nissanajath@gmail.com</p>
             </div>
           </div>
         </div>
@@ -1007,12 +1150,17 @@
     const SHEET_ID = '1vk_hE-Ja5d8kZdzuj7jeYxlunTyopx0p9HjzJcGFl0c';
     const SCOREBOARD_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Scoreboard`;
     const RESULTS_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Results`;
+    const TOPPERS_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Toppers`;
+    const PROGRAMS_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Programs`;
     
     // State
     let scoreboardData = {};
     let allResults = [];
+    let allToppers = [];
+    let allPrograms = [];
     let currentCategory = 'General';
     let currentFilter = 'all';
+    let currentTopperCategory = 'all';
     let totalScores = { isra: 0, qaswa: 0, hira: 0 };
     
     // DOM Elements
@@ -1021,6 +1169,7 @@
       results: document.getElementById('results-section'),
       team: document.getElementById('team-section'),
       scoreboard: document.getElementById('scoreboard-section'),
+      toppers: document.getElementById('toppers-section'),
       gallery: document.getElementById('gallery-section'),
       contact: document.getElementById('contact-section')
     };
@@ -1030,9 +1179,11 @@
       // Set up navigation
       setupNavigation();
       
-      // Load data
+      // Load all data
       loadScoreboard();
       loadResults();
+      loadToppers();
+      loadPrograms();
       
       // Set up auto-refresh every 30 seconds
       setInterval(() => {
@@ -1111,6 +1262,22 @@
           updateScoreboard(category);
         });
       });
+      
+      // Toppers category buttons
+      document.querySelectorAll('.topper-category-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const category = this.getAttribute('data-topper-category');
+          updateToppersCategory(category);
+        });
+      });
+      
+      // Chest number search
+      document.getElementById('search-chest-btn').addEventListener('click', searchChestNumber);
+      document.getElementById('chest-number-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          searchChestNumber();
+        }
+      });
     }
     
     // Show a specific section
@@ -1177,28 +1344,6 @@
         });
     }
     
-    // Calculate total scores from all categories except "Total"
-    function calculateTotalScores() {
-      totalScores = { isra: 0, qaswa: 0, hira: 0 };
-      
-      for (const category in scoreboardData) {
-        if (category !== 'Total') {
-          totalScores.isra += scoreboardData[category].isra || 0;
-          totalScores.qaswa += scoreboardData[category].qaswa || 0;
-          totalScores.hira += scoreboardData[category].hira || 0;
-        }
-      }
-      
-      // If there's a "Total" row in the sheet, use that instead
-      if (scoreboardData['Total']) {
-        totalScores = {
-          isra: scoreboardData['Total'].isra || 0,
-          qaswa: scoreboardData['Total'].qaswa || 0,
-          hira: scoreboardData['Total'].hira || 0
-        };
-      }
-    }
-    
     // Load results data from Google Sheets
     function loadResults() {
       fetch(RESULTS_URL)
@@ -1207,13 +1352,14 @@
           const rows = parseCSV(csv);
           allResults = [];
           
-          // Parse results with new column structure
-          // Columns: No, Event Code, Event, Category, 1st Place Chest No, 2nd Place Chest No, 3rd Place Chest No, 
-          // 1st Place Name, 2nd Place Name, 3rd Place Name, 1st Place Group, 2nd Place Group, 3rd Place Group
+          // Parse results with new column structure (including points)
+          // Columns: No, Event Code, Event, Category, 1st Place Chest No, 2nd Place Chest No, 3rd Place Chest No,
+          // 1st Place Name, 2nd Place Name, 3rd Place Name, 1st Place Group, 2nd Place Group, 3rd Place Group,
+          // 1st Place Point, 2nd Place Point, 3rd Place Point
           
           for (let i = 1; i < rows.length; i++) {
             const row = rows[i];
-            if (row.length >= 13) {
+            if (row.length >= 16) {
               allResults.push({
                 no: row[0] || '',
                 eventCode: row[1] || '',
@@ -1227,7 +1373,10 @@
                 thirdName: row[9] || '',
                 firstGroup: row[10] || '',
                 secondGroup: row[11] || '',
-                thirdGroup: row[12] || ''
+                thirdGroup: row[12] || '',
+                firstPoint: parseInt(row[13]) || 0,
+                secondPoint: parseInt(row[14]) || 0,
+                thirdPoint: parseInt(row[15]) || 0
               });
             }
           }
@@ -1253,6 +1402,109 @@
             </div>
           `;
         });
+    }
+    
+    // Load toppers data from Google Sheets
+    function loadToppers() {
+      fetch(TOPPERS_URL)
+        .then(res => res.text())
+        .then(csv => {
+          const rows = parseCSV(csv);
+          allToppers = [];
+          
+          // Parse toppers data
+          // Expected columns: Rank, Category, Chest No, Name, Team, Points
+          
+          for (let i = 1; i < rows.length; i++) {
+            const row = rows[i];
+            if (row.length >= 6) {
+              allToppers.push({
+                rank: parseInt(row[0]) || 0,
+                category: row[1] || '',
+                chestNo: row[2] || '',
+                name: row[3] || '',
+                team: row[4] || '',
+                points: parseInt(row[5]) || 0
+              });
+            }
+          }
+          
+          // Display toppers
+          displayToppers(currentTopperCategory);
+        })
+        .catch(err => {
+          console.error('Error loading toppers:', err);
+          document.getElementById('toppers-container').innerHTML = `
+            <div class="text-center py-12">
+              <div class="text-6xl text-gray-300 mb-6">
+                <i class="fas fa-exclamation-circle"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-700 mb-4">Failed to Load Toppers Data</h3>
+              <p class="text-gray-600">Please check your connection and try again.</p>
+            </div>
+          `;
+        });
+    }
+    
+    // Load programs data from Google Sheets
+    function loadPrograms() {
+      fetch(PROGRAMS_URL)
+        .then(res => res.text())
+        .then(csv => {
+          const rows = parseCSV(csv);
+          allPrograms = [];
+          
+          // Parse programs data
+          // Expected columns: Code, Name, Category, Description
+          
+          for (let i = 1; i < rows.length; i++) {
+            const row = rows[i];
+            if (row.length >= 4) {
+              allPrograms.push({
+                code: row[0] || '',
+                name: row[1] || '',
+                category: row[2] || '',
+                description: row[3] || ''
+              });
+            }
+          }
+          
+          // Display programs
+          displayPrograms();
+        })
+        .catch(err => {
+          console.error('Error loading programs:', err);
+          document.getElementById('programs-container').innerHTML = `
+            <div class="text-center py-8">
+              <div class="text-4xl text-gray-300 mb-4">
+                <i class="fas fa-exclamation-circle"></i>
+              </div>
+              <p class="text-gray-600">Failed to load programs</p>
+            </div>
+          `;
+        });
+    }
+    
+    // Calculate total scores from all categories except "Total"
+    function calculateTotalScores() {
+      totalScores = { isra: 0, qaswa: 0, hira: 0 };
+      
+      for (const category in scoreboardData) {
+        if (category !== 'Total') {
+          totalScores.isra += scoreboardData[category].isra || 0;
+          totalScores.qaswa += scoreboardData[category].qaswa || 0;
+          totalScores.hira += scoreboardData[category].hira || 0;
+        }
+      }
+      
+      // If there's a "Total" row in the sheet, use that instead
+      if (scoreboardData['Total']) {
+        totalScores = {
+          isra: scoreboardData['Total'].isra || 0,
+          qaswa: scoreboardData['Total'].qaswa || 0,
+          hira: scoreboardData['Total'].hira || 0
+        };
+      }
     }
     
     // Parse CSV data
@@ -1525,7 +1777,10 @@
                   ${firstGroupBadge}
                 </div>
                 <div class="text-lg font-bold text-gray-900">${result.firstName}</div>
-                <div class="text-sm text-gray-600 mt-2">1st Place</div>
+                <div class="flex items-center justify-between mt-2">
+                  <div class="text-sm text-gray-600">1st Place</div>
+                  ${result.firstPoint > 0 ? `<span class="points-badge points-gold">${result.firstPoint} pts</span>` : ''}
+                </div>
               </div>
             ` : ''}
             
@@ -1545,7 +1800,10 @@
                   ${secondGroupBadge}
                 </div>
                 <div class="text-lg font-bold text-gray-900">${result.secondName}</div>
-                <div class="text-sm text-gray-600 mt-2">2nd Place</div>
+                <div class="flex items-center justify-between mt-2">
+                  <div class="text-sm text-gray-600">2nd Place</div>
+                  ${result.secondPoint > 0 ? `<span class="points-badge points-silver">${result.secondPoint} pts</span>` : ''}
+                </div>
               </div>
             ` : ''}
             
@@ -1565,7 +1823,10 @@
                   ${thirdGroupBadge}
                 </div>
                 <div class="text-lg font-bold text-gray-900">${result.thirdName}</div>
-                <div class="text-sm text-gray-600 mt-2">3rd Place</div>
+                <div class="flex items-center justify-between mt-2">
+                  <div class="text-sm text-gray-600">3rd Place</div>
+                  ${result.thirdPoint > 0 ? `<span class="points-badge points-bronze">${result.thirdPoint} pts</span>` : ''}
+                </div>
               </div>
             ` : ''}
           </div>
@@ -1582,6 +1843,117 @@
       });
     }
     
+    // Display toppers
+    function displayToppers(category) {
+      currentTopperCategory = category;
+      const container = document.getElementById('toppers-container');
+      
+      container.innerHTML = '';
+      
+      // Filter toppers by category
+      const filtered = category === 'all' 
+        ? allToppers 
+        : allToppers.filter(t => t.category === category);
+      
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12">
+            <div class="text-6xl text-gray-300 mb-6">
+              <i class="fas fa-crown"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-700 mb-4">No Toppers Data Available</h3>
+            <p class="text-gray-600">Toppers data will be displayed here as soon as it is available.</p>
+          </div>
+        `;
+        return;
+      }
+      
+      // Group toppers by category
+      const toppersByCategory = {};
+      filtered.forEach(topper => {
+        if (!toppersByCategory[topper.category]) {
+          toppersByCategory[topper.category] = [];
+        }
+        toppersByCategory[topper.category].push(topper);
+      });
+      
+      // Display toppers by category
+      for (const category in toppersByCategory) {
+        const categoryToppers = toppersByCategory[category].slice(0, 10); // Limit to top 10 per category
+        
+        const categorySection = document.createElement('div');
+        categorySection.className = 'mb-12';
+        categorySection.innerHTML = `
+          <h3 class="text-3xl font-bold text-gray-900 mb-6 text-center">${category} Toppers</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            ${categoryToppers.map((topper, index) => `
+              <div class="topper-card bg-white rounded-xl shadow-lg p-6 relative">
+                <div class="topper-rank rank-${topper.rank <= 3 ? topper.rank : 'other'}">
+                  ${topper.rank}
+                </div>
+                <div class="text-center">
+                  <div class="text-5xl font-bold text-gray-900 mb-3">${topper.points}</div>
+                  <div class="text-sm text-gray-500 mb-1">Points</div>
+                  <h4 class="text-xl font-bold text-gray-900 mb-2">${topper.name}</h4>
+                  <div class="text-sm text-gray-600 mb-3">Chest No: ${topper.chestNo}</div>
+                  <div class="${getTeamColorClass(topper.team)} px-3 py-1 rounded-full text-sm font-medium inline-block">
+                    ${topper.team}
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        
+        container.appendChild(categorySection);
+      }
+      
+      // Update active topper category button
+      document.querySelectorAll('.topper-category-btn').forEach(btn => {
+        if (btn.getAttribute('data-topper-category') === category) {
+          btn.classList.add('bg-gradient-primary', 'text-white');
+          btn.classList.remove('bg-white', 'text-gray-700');
+        } else {
+          btn.classList.remove('bg-gradient-primary', 'text-white');
+          btn.classList.add('bg-white', 'text-gray-700');
+        }
+      });
+    }
+    
+    // Display programs
+    function displayPrograms() {
+      const container = document.getElementById('programs-container');
+      
+      container.innerHTML = '';
+      
+      allPrograms.forEach(program => {
+        const programCard = document.createElement('div');
+        programCard.className = 'program-card bg-gradient-to-br from-green-50 to-blue-50 border border-green-200 p-5 rounded-xl';
+        programCard.innerHTML = `
+          <div class="flex items-start">
+            <div class="bg-green-100 text-green-700 font-bold px-3 py-1 rounded-lg mr-4">
+              ${program.code}
+            </div>
+            <div>
+              <h4 class="font-bold text-gray-900 text-lg mb-2">${program.name}</h4>
+              <div class="flex items-center">
+                <span class="text-sm text-gray-600">${program.category}</span>
+                ${program.description ? `<span class="text-xs text-gray-500 ml-3">${program.description}</span>` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+        
+        container.appendChild(programCard);
+      });
+    }
+    
+    // Update toppers category
+    function updateToppersCategory(category) {
+      currentTopperCategory = category;
+      displayToppers(category);
+    }
+    
     // Get team badge HTML
     function getTeamBadge(teamName) {
       if (!teamName) return '<div class="team-badge bg-gray-100 text-gray-600">-</div>';
@@ -1595,6 +1967,162 @@
       } else {
         return `<div class="team-badge bg-gray-100 text-gray-600">${teamName}</div>`;
       }
+    }
+    
+    // Get team color class
+    function getTeamColorClass(teamName) {
+      if (teamName.includes('Isra')) {
+        return 'bg-green-100 text-green-800';
+      } else if (teamName.includes('Qaswa')) {
+        return 'bg-blue-100 text-blue-800';
+      } else if (teamName.includes('Hira')) {
+        return 'bg-orange-100 text-orange-800';
+      } else {
+        return 'bg-gray-100 text-gray-800';
+      }
+    }
+    
+    // Search chest number
+    function searchChestNumber() {
+      const chestNumber = document.getElementById('chest-number-input').value.trim().toUpperCase();
+      const resultDiv = document.getElementById('chest-result');
+      
+      if (!chestNumber) {
+        resultDiv.innerHTML = `
+          <div class="bg-red-50 text-red-700 p-4 rounded-xl">
+            <i class="fas fa-exclamation-circle mr-2"></i> Please enter a chest number
+          </div>
+        `;
+        resultDiv.classList.remove('hidden');
+        return;
+      }
+      
+      // Search in results
+      let foundResults = [];
+      allResults.forEach(result => {
+        if (result.firstChestNo === chestNumber) {
+          foundResults.push({
+            position: '1st Place',
+            event: result.event,
+            points: result.firstPoint,
+            team: result.firstGroup
+          });
+        }
+        if (result.secondChestNo === chestNumber) {
+          foundResults.push({
+            position: '2nd Place',
+            event: result.event,
+            points: result.secondPoint,
+            team: result.secondGroup
+          });
+        }
+        if (result.thirdChestNo === chestNumber) {
+          foundResults.push({
+            position: '3rd Place',
+            event: result.event,
+            points: result.thirdPoint,
+            team: result.thirdGroup
+          });
+        }
+      });
+      
+      // Search in toppers
+      const topperInfo = allToppers.find(t => t.chestNo === chestNumber);
+      
+      if (foundResults.length === 0 && !topperInfo) {
+        resultDiv.innerHTML = `
+          <div class="bg-yellow-50 text-yellow-700 p-4 rounded-xl">
+            <i class="fas fa-search mr-2"></i> No results found for chest number: <strong>${chestNumber}</strong>
+          </div>
+        `;
+        resultDiv.classList.remove('hidden');
+        return;
+      }
+      
+      // Display results
+      let html = `<div class="bg-green-50 text-gray-800 p-6 rounded-xl">`;
+      html += `<h4 class="text-xl font-bold mb-4">Results for Chest Number: <span class="text-green-700">${chestNumber}</span></h4>`;
+      
+      if (topperInfo) {
+        html += `
+          <div class="bg-white p-4 rounded-lg mb-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-sm text-gray-500">Overall Rank</div>
+                <div class="text-3xl font-bold text-gray-900">#${topperInfo.rank}</div>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Category</div>
+                <div class="text-lg font-bold text-gray-900">${topperInfo.category}</div>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Total Points</div>
+                <div class="text-3xl font-bold text-green-600">${topperInfo.points}</div>
+              </div>
+            </div>
+            <div class="mt-4">
+              <div class="text-lg font-bold text-gray-900">${topperInfo.name}</div>
+              <div class="${getTeamColorClass(topperInfo.team)} px-3 py-1 rounded-full text-sm font-medium inline-block mt-2">
+                ${topperInfo.team}
+              </div>
+            </div>
+          </div>
+        `;
+      }
+      
+      if (foundResults.length > 0) {
+        html += `<div class="mt-4"><h5 class="font-bold mb-3">Event Results:</h5>`;
+        
+        foundResults.forEach(result => {
+          let positionColor = 'text-gray-600';
+          let positionBg = 'bg-gray-100';
+          
+          if (result.position === '1st Place') {
+            positionColor = 'text-yellow-600';
+            positionBg = 'bg-yellow-100';
+          } else if (result.position === '2nd Place') {
+            positionColor = 'text-gray-600';
+            positionBg = 'bg-gray-100';
+          } else if (result.position === '3rd Place') {
+            positionColor = 'text-orange-600';
+            positionBg = 'bg-orange-100';
+          }
+          
+          html += `
+            <div class="flex items-center justify-between p-3 bg-white rounded-lg mb-2">
+              <div>
+                <span class="${positionColor} ${positionBg} px-3 py-1 rounded-full text-sm font-medium">${result.position}</span>
+                <span class="font-medium ml-3">${result.event}</span>
+              </div>
+              <div class="flex items-center">
+                <span class="text-gray-600 mr-3">${getTeamBadge(result.team)}</span>
+                <span class="font-bold text-green-600">${result.points} pts</span>
+              </div>
+            </div>
+          `;
+        });
+        
+        html += `</div>`;
+        
+        // Calculate total points from events
+        const totalEventPoints = foundResults.reduce((sum, result) => sum + result.points, 0);
+        html += `
+          <div class="mt-4 p-4 bg-gradient-primary text-white rounded-lg">
+            <div class="flex justify-between items-center">
+              <div>
+                <div class="text-sm">Total Event Points</div>
+                <div class="text-3xl font-bold">${totalEventPoints}</div>
+              </div>
+              <i class="fas fa-trophy text-3xl"></i>
+            </div>
+          </div>
+        `;
+      }
+      
+      html += `</div>`;
+      
+      resultDiv.innerHTML = html;
+      resultDiv.classList.remove('hidden');
     }
     
     // Set up result filter buttons
