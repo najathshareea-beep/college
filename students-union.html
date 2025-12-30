@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DSAC Students Union - NISSA</title>
+  <title>NISSA - DSAC Students Union</title>
   
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -63,16 +63,26 @@
     
     .islamic-header h1 {
       font-family: 'El Messiri', sans-serif;
-      font-size: 3.2rem;
+      font-size: 3.5rem;
       font-weight: 700;
       margin-bottom: 10px;
       position: relative;
+      letter-spacing: 2px;
     }
     
     .islamic-header h2 {
       font-family: 'El Messiri', sans-serif;
-      font-size: 2.2rem;
+      font-size: 1.8rem;
       font-weight: 600;
+      margin-bottom: 10px;
+      position: relative;
+      color: var(--islamic-gold);
+    }
+    
+    .islamic-header h3 {
+      font-family: 'El Messiri', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
       margin-bottom: 15px;
       position: relative;
     }
@@ -82,19 +92,21 @@
       max-width: 700px;
       margin: 0 auto;
       position: relative;
+      opacity: 0.9;
     }
     
     .union-badge {
       display: inline-block;
       background: linear-gradient(to right, var(--union-red), #f77f00);
       color: white;
-      padding: 8px 25px;
+      padding: 10px 30px;
       border-radius: 50px;
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       margin-top: 15px;
       box-shadow: 0 5px 15px rgba(214, 40, 40, 0.3);
       letter-spacing: 1px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
     }
     
     .section-title {
@@ -127,6 +139,7 @@
       max-width: 800px;
       margin-left: auto;
       margin-right: auto;
+      line-height: 1.6;
     }
     
     .committee-card {
@@ -158,8 +171,8 @@
     }
     
     .member-img {
-      width: 120px;
-      height: 120px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       object-fit: cover;
       border: 4px solid var(--union-blue);
@@ -169,20 +182,21 @@
     
     .member-name {
       font-family: 'El Messiri', sans-serif;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 700;
       color: var(--union-blue);
-      margin-bottom: 5px;
+      margin-bottom: 8px;
+      line-height: 1.3;
     }
     
     .member-position {
       display: inline-block;
       background: linear-gradient(to right, var(--union-blue), var(--union-red));
       color: white;
-      padding: 6px 18px;
+      padding: 8px 20px;
       border-radius: 30px;
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 1rem;
       margin-bottom: 15px;
       box-shadow: 0 4px 10px rgba(0, 48, 73, 0.2);
     }
@@ -192,6 +206,7 @@
       font-size: 0.95rem;
       line-height: 1.6;
       margin-top: 10px;
+      padding: 0 10px;
     }
     
     .union-info-card {
@@ -231,18 +246,31 @@
       text-align: center;
       margin: 40px 0;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .union-motto::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--islamic-gold), var(--union-red));
     }
     
     .union-motto h3 {
       font-family: 'El Messiri', sans-serif;
-      font-size: 2rem;
-      margin-bottom: 20px;
+      font-size: 2.2rem;
+      margin-bottom: 15px;
     }
     
     .union-motto p {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-style: italic;
       line-height: 1.7;
+      opacity: 0.9;
     }
     
     .islamic-divider {
@@ -254,9 +282,9 @@
     
     .islamic-divider span {
       font-family: 'Amiri', serif;
-      font-size: 1.8rem;
+      font-size: 2.2rem;
       color: var(--islamic-gold);
-      margin: 0 15px;
+      margin: 0 20px;
     }
     
     .islamic-divider::before,
@@ -265,6 +293,50 @@
       flex: 1;
       height: 2px;
       background: linear-gradient(to right, transparent, var(--islamic-gold), transparent);
+    }
+    
+    .testimonial-box {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      border-right: 5px solid var(--union-red);
+      position: relative;
+      height: 100%;
+    }
+    
+    .testimonial-box::before {
+      content: "❝";
+      font-family: 'Amiri', serif;
+      font-size: 4rem;
+      color: var(--union-red);
+      opacity: 0.3;
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      line-height: 1;
+    }
+    
+    .quote {
+      font-size: 1.1rem;
+      color: #444;
+      font-style: italic;
+      line-height: 1.7;
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .quote-author {
+      font-weight: 600;
+      color: var(--union-blue);
+      text-align: right;
+      font-size: 1rem;
+    }
+    
+    .quote-author span {
+      color: #777;
+      font-weight: 400;
+      font-size: 0.9rem;
     }
     
     .back-button {
@@ -304,7 +376,7 @@
     
     .footer p {
       margin: 0;
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
     
     .malayalam {
@@ -321,13 +393,39 @@
       color: var(--union-red);
     }
     
+    .contact-box {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      height: 100%;
+      text-align: center;
+      border: 2px solid rgba(0, 48, 73, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .contact-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      border-color: var(--union-red);
+    }
+    
+    .contact-box i {
+      margin-bottom: 15px;
+    }
+    
+    .contact-box h5 {
+      color: var(--union-blue);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
     /* Responsive adjustments */
     @media (max-width: 768px) {
       .islamic-header h1 {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
       }
       
-      .islamic-header h2 {
+      .islamic-header h3 {
         font-size: 1.8rem;
       }
       
@@ -340,11 +438,44 @@
       }
       
       .union-motto h3 {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
       }
       
       .union-motto p {
+        font-size: 1.1rem;
+      }
+      
+      .member-img {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .member-name {
+        font-size: 1.4rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .islamic-header h1 {
+        font-size: 2.3rem;
+      }
+      
+      .islamic-header h3 {
+        font-size: 1.5rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .union-badge {
         font-size: 1rem;
+        padding: 8px 20px;
+      }
+      
+      .member-img {
+        width: 100px;
+        height: 100px;
       }
     }
     
@@ -377,8 +508,8 @@
   <header class="islamic-header">
     <div class="container">
       <h1>NISSA</h1>
-      <h3>Najath Institution for Shareea Students Association</h3>
-      <h2>Executive Committee 2026-27</h2>
+      <h2>Najath Institution for Shareea Students Association</h2>
+      <h3>Executive Committee 2026-27</h3>
       <p class="mb-3">"Representing the Voice, Upholding the Values"</p>
       <div class="union-badge">
         <i class="fas fa-users"></i> DSAC STUDENT BODY
@@ -391,14 +522,15 @@
     <div class="row">
       <div class="col-lg-8">
         <div class="union-info-card">
-          <h3><i class="fas fa-info-circle union-red-text"></i> About Our Union</h3>
+          <h3><i class="fas fa-info-circle union-red-text"></i> About NISSA</h3>
           <p class="malayalam" style="text-align: justify; line-height: 1.7;">
-            ദാറുന്നജാത്ത് വിദ്യാർത്ഥി സംഘടന എന്നത് കോളേജിലെ എല്ലാ വിദ്യാർത്ഥികളുടെയും പ്രതിനിധിയായി പ്രവർത്തിക്കുന്ന ഒരു ജനാധിപത്യ സംഘടനയാണ്. ഇസ്‌ലാമിക മൂല്യങ്ങൾക്കും ആധുനിക വിദ്യാഭ്യാസ തത്വങ്ങൾക്കും അനുസൃതമായി വിദ്യാർത്ഥികളുടെ ആവശ്യങ്ങൾ പ്രതിനിധാനം ചെയ്യുകയും അവരുടെ ആകാംക്ഷകൾ നിറവേറ്റുകയും ചെയ്യുക എന്നതാണ് ഞങ്ങളുടെ ലക്ഷ്യം.
+            ദാറുന്നജാത്ത് വിദ്യാർത്ഥി സംഘടന (NISSA) കോളേജിലെ എല്ലാ വിദ്യാർത്ഥികളുടെയും പ്രതിനിധിയായി പ്രവർത്തിക്കുന്ന ഒരു ജനാധിപത്യ സംഘടനയാണ്. ഇസ്‌ലാമിക മൂല്യങ്ങൾക്കും ആധുനിക വിദ്യാഭ്യാസ തത്വങ്ങൾക്കും അനുസൃതമായി വിദ്യാർത്ഥികളുടെ ആവശ്യങ്ങൾ പ്രതിനിധാനം ചെയ്യുകയും അവരുടെ ആകാംക്ഷകൾ നിറവേറ്റുകയും ചെയ്യുക എന്നതാണ് ഞങ്ങളുടെ ലക്ഷ്യം.
           </p>
           <ul>
             <li><strong>Vision:</strong> To create a vibrant student community that balances Islamic values with academic excellence</li>
             <li><strong>Mission:</strong> To represent student interests, organize enriching activities, and foster leadership skills</li>
             <li><strong>Motto:</strong> "Education, Empowerment, Excellence"</li>
+            <li><strong>Established:</strong> 2007 (Along with the college)</li>
           </ul>
         </div>
       </div>
@@ -407,12 +539,13 @@
         <div class="union-info-card">
           <h3><i class="fas fa-calendar-alt union-red-text"></i> Union Activities</h3>
           <ul>
-            <li>Annual College Fest</li>
-            <li>Academic Seminars</li>
-            <li>Community Service</li>
-            <li>Cultural Programs</li>
-            <li>Debate Competitions</li>
-            <li>Educational Trips</li>
+            <li><strong>Annual College Fest</strong> - Cultural & Academic</li>
+            <li><strong>Academic Seminars</strong> - Subject specific</li>
+            <li><strong>Community Service</strong> - Social outreach</li>
+            <li><strong>Cultural Programs</strong> - Arts & Talent shows</li>
+            <li><strong>Debate Competitions</strong> - Intra & Inter college</li>
+            <li><strong>Educational Trips</strong> - Learning expeditions</li>
+            <li><strong>Sports Events</strong> - Annual sports meet</li>
           </ul>
         </div>
       </div>
@@ -439,6 +572,8 @@
           <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="member-img" alt="President">
           <div class="member-name">MUHAMMED FAWAS PK</div>
           <div class="member-position">President</div>
+          <div class="member-description">
+            Leading the student body and representing all students
           </div>
         </div>
       </div>
@@ -449,6 +584,8 @@
           <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="member-img" alt="Vice President">
           <div class="member-name">ABDUL HAMEED</div>
           <div class="member-position">Vice President</div>
+          <div class="member-description">
+            Supporting the President and overseeing union activities
           </div>
         </div>
       </div>
@@ -459,6 +596,8 @@
           <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="member-img" alt="General Secretary">
           <div class="member-name">FAHAD K.</div>
           <div class="member-position">General Secretary</div>
+          <div class="member-description">
+            Managing union administration and communications
           </div>
         </div>
       </div>
@@ -469,6 +608,8 @@
           <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="member-img" alt="Joint Secretary">
           <div class="member-name">SAJID ALI</div>
           <div class="member-position">Joint Secretary</div>
+          <div class="member-description">
+            Documentation, records and assisting General Secretary
           </div>
         </div>
       </div>
@@ -482,6 +623,8 @@
           <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="member-img" alt="Treasurer">
           <div class="member-name">SHAHID P.</div>
           <div class="member-position">Treasurer</div>
+          <div class="member-description">
+            Financial management and budget allocation
           </div>
         </div>
       </div>
@@ -492,16 +635,20 @@
           <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="member-img" alt="Arts Secretary">
           <div class="member-name">NASREEN FATHIMA</div>
           <div class="member-position">Fine Arts Secretary</div>
+          <div class="member-description">
+            Organizing cultural and fine arts programs
           </div>
         </div>
       </div>
 
-      <!-- Sports Secretary -->
+      <!-- Library Convener -->
       <div class="col-lg-3 col-md-6">
         <div class="committee-card">
-          <img src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="member-img" alt="Sports Secretary">
+          <img src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="member-img" alt="Library Convener">
           <div class="member-name">RIYAS K.</div>
           <div class="member-position">Library Convener</div>
+          <div class="member-description">
+            Managing library activities and reading programs
           </div>
         </div>
       </div>
@@ -509,9 +656,13 @@
       <!-- Class Representatives -->
       <div class="col-lg-3 col-md-6">
         <div class="committee-card">
-          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="member-img" alt="Class Rep">
+          <div style="background: linear-gradient(135deg, var(--union-blue) 0%, var(--islamic-green) 100%); width: 140px; height: 140px; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; border: 4px solid var(--union-blue);">
+            <i class="fas fa-users fa-3x text-white"></i>
+          </div>
           <div class="member-name">Class Representatives</div>
-          <div class="member-position">(5 Members)</div>
+          <div class="member-position">5 Members</div>
+          <div class="member-description">
+            One representative from each class year, representing class-specific interests
           </div>
         </div>
       </div>
@@ -534,7 +685,7 @@
       <div class="col-lg-6">
         <div class="testimonial-box">
           <p class="quote">
-            "The Students Union has been instrumental in organizing activities that balance our academic and extracurricular interests. From sports tournaments to academic seminars, they ensure every student's voice is heard and valued."
+            "NISSA has been instrumental in organizing activities that balance our academic and extracurricular interests. From sports tournaments to academic seminars, they ensure every student's voice is heard and valued in our college community."
           </p>
           <p class="quote-author">— Aisha <span>| BA English | Class Representative</span></p>
         </div>
@@ -543,7 +694,7 @@
       <div class="col-lg-6">
         <div class="testimonial-box">
           <p class="quote">
-            "As a member of the union, I've learned valuable leadership skills while serving my fellow students. The union bridges the gap between administration and students, ensuring a harmonious campus environment."
+            "As a member of NISSA, I've learned valuable leadership skills while serving my fellow students. The union bridges the gap between administration and students, ensuring a harmonious campus environment that promotes both academic and spiritual growth."
           </p>
           <p class="quote-author">— Ahmed <span>| Final Year Najawi | Union Member</span></p>
         </div>
@@ -555,29 +706,33 @@
   <div class="container py-4">
     <div class="union-info-card text-center">
       <h3><i class="fas fa-handshake union-red-text"></i> Get Involved!</h3>
-      <p>Want to join the Students Union or have suggestions? Contact us:</p>
+      <p>Want to join NISSA or have suggestions? Contact us:</p>
       <div class="row mt-4">
         <div class="col-md-4 mb-3">
-          <div class="p-3 border rounded">
-            <i class="fas fa-envelope fa-2x union-red-text mb-3"></i>
+          <div class="contact-box">
+            <i class="fas fa-envelope fa-3x union-red-text mb-3"></i>
             <h5>Email</h5>
-            <p>dsac.studentsunion@gmail.com</p>
+            <p class="mb-0">nissanajath@gmail.com</p>
           </div>
         </div>
         <div class="col-md-4 mb-3">
-          <div class="p-3 border rounded">
-            <i class="fas fa-users fa-2x union-red-text mb-3"></i>
+          <div class="contact-box">
+            <i class="fas fa-users fa-3x union-red-text mb-3"></i>
             <h5>Meetings</h5>
-            <p>Every Friday after Jumu'ah prayer</p>
+            <p class="mb-0">Every Second Saturday<br><small>2:00 PM - 4:00 PM</small></p>
           </div>
         </div>
         <div class="col-md-4 mb-3">
-          <div class="p-3 border rounded">
-            <i class="fas fa-calendar-check fa-2x union-red-text mb-3"></i>
+          <div class="contact-box">
+            <i class="fas fa-calendar-check fa-3x union-red-text mb-3"></i>
             <h5>Elections</h5>
-            <p>Annual elections in September</p>
+            <p class="mb-0">Annual elections in January<br><small>Democratic voting process</small></p>
           </div>
         </div>
+      </div>
+      <div class="mt-4">
+        <p class="mb-3">All students are welcome to participate in union activities and meetings!</p>
+        <a href="#" class="btn btn-outline-danger">Submit Your Suggestions</a>
       </div>
     </div>
   </div>
@@ -593,10 +748,10 @@
   <footer class="footer">
     <div class="container">
       <p>
-        © <span id="currentYear"></span> Darunnajath Students Union. All rights reserved.
+        © <span id="currentYear"></span> NISSA - Najath Institution for Shareea Students Association. All rights reserved.
       </p>
       <small class="text-light opacity-75">
-        DSAC Karuvarakundu • Empowering Students Since 2007
+        Darunnajath Shareeath & Arts College, Karuvarakundu • Empowering Students Since 2007
       </small>
     </div>
   </footer>
@@ -617,6 +772,25 @@
       card.addEventListener('mouseleave', function() {
         this.style.transform = 'translateY(0) scale(1)';
       });
+    });
+    
+    // Add animation on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, observerOptions);
+    
+    // Observe committee cards for animation
+    document.querySelectorAll('.committee-card').forEach(card => {
+      observer.observe(card);
     });
   </script>
 </body>
