@@ -3,234 +3,470 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DSAC Library</title>
+  <title>Islamic Digital Library | DSAC</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;600&family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      background: #f3f8f4;
-      font-family: 'Poppins', sans-serif;
+    :root {
+      --primary-green: #0b5c38;
+      --secondary-green: #0d774c;
+      --light-green: #eaf4ed;
+      --accent-gold: #d4af37;
+      --text-dark: #2c3e50;
+      --text-light: #666;
+      --white: #ffffff;
+      --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.15);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
-    header {
-      background: linear-gradient(135deg, #0b5c38, #0d774c);
-      color: #fff;
-      text-align: center;
-      padding: 3rem 1rem;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-      font-family: 'El Messiri', serif;
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, #f9fdfa 0%, #f3f8f4 100%);
+      color: var(--text-dark);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* HEADER STYLES */
+    .main-header {
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+      color: var(--white);
+      padding: 4rem 1rem;
       position: relative;
       overflow: hidden;
+      text-align: center;
     }
-    header h2 {
-      font-weight: 600;
-      letter-spacing: 1px;
-      font-size: 2.2rem;
-    }
-    header p {
-      font-size: 1.1rem;
-      color: #e6f5ed;
-    }
-    .pattern {
-      background-image: url('https://www.transparenttextures.com/patterns/arabesque.png');
-      background-repeat: repeat;
-      opacity: 0.08;
+
+    .header-overlay {
       position: absolute;
-      inset: 0;
-      z-index: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M30 0C13.4 0 0 13.4 0 30c0 16.6 13.4 30 30 30 16.6 0 30-13.4 30-30C60 13.4 46.6 0 30 0zm0 54C16.7 54 6 43.3 6 30S16.7 6 30 6s24 10.7 24 24-10.7 24-24 24z" fill="%23ffffff" opacity="0.1"/></svg>');
+      opacity: 0.15;
     }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .header-title {
+      font-family: 'El Messiri', serif;
+      font-size: 3.2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.5px;
+    }
+
+    .header-subtitle {
+      font-size: 1.25rem;
+      opacity: 0.95;
+      margin-bottom: 2rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .header-icon {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.15);
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      line-height: 70px;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(5px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* SECTION STYLES */
+    .section-container {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      font-family: 'El Messiri', serif;
+      color: var(--primary-green);
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-green), var(--accent-gold));
+      border-radius: 2px;
+    }
+
+    /* BOOK CARD STYLES */
     .book-card {
       border: none;
-      border-radius: 15px;
+      border-radius: 20px;
       overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      background: #fff;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      background: var(--white);
       height: 100%;
       display: flex;
       flex-direction: column;
+      position: relative;
     }
+
+    .book-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary-green), var(--accent-gold));
+      z-index: 1;
+    }
+
     .book-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
     }
-    .book-card img {
+
+    .book-cover {
       height: 280px;
       object-fit: cover;
       width: 100%;
+      transition: var(--transition);
     }
-    .book-card .card-body {
-      text-align: center;
-      background: #ffffff;
+
+    .book-card:hover .book-cover {
+      transform: scale(1.05);
+    }
+
+    .book-content {
+      padding: 2rem;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 1.5rem;
     }
-    .book-card h5 {
-      color: #0b5c38;
+
+    .book-title {
       font-family: 'El Messiri', serif;
-      font-size: 1.25rem;
-      margin-bottom: 0.8rem;
+      color: var(--primary-green);
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      line-height: 1.4;
     }
-    .book-card p {
-      color: #666;
+
+    .book-description {
+      color: var(--text-light);
       font-size: 0.95rem;
+      margin-bottom: 1.5rem;
       flex-grow: 1;
     }
-    .section-title {
-      text-align: center;
-      color: #0b5c38;
-      font-family: 'El Messiri', serif;
-      font-weight: 600;
-      margin-bottom: 3rem;
-      font-size: 2rem;
-    }
-    .external-section {
-      background: linear-gradient(to bottom, #eaf4ed, #f3f8f4);
-      border-top: 3px solid #0b5c38;
-      padding: 4rem 1rem;
-      margin-top: 4rem;
-      text-align: center;
-    }
-    .external-section h3 {
-      font-family: 'El Messiri', serif;
-      color: #0b5c38;
-      font-weight: 600;
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-    }
-    .external-section p {
-      color: #555;
-      max-width: 700px;
-      margin: 0 auto 2.5rem;
-      font-size: 1.05rem;
-    }
-    .external-card {
-      background: #fff;
-      border-radius: 15px;
-      padding: 2rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-      margin-bottom: 2rem;
-    }
-    .external-card:hover {
-      transform: translateY(-5px);
-    }
-    .external-card img {
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 1.5rem;
-    }
-    .external-btn {
-      background: #0b5c38;
-      color: #fff;
+
+    .book-btn {
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+      color: var(--white);
       border: none;
-      border-radius: 30px;
-      padding: 12px 35px;
-      font-size: 1.1rem;
-      font-weight: 500;
-      transition: background 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .external-btn:hover {
-      background: #09482b;
-      color: #fff;
-    }
-    footer {
-      background: #0b5c38;
-      color: #fff;
-      text-align: center;
-      padding: 1.5rem 0;
-      margin-top: 50px;
-      font-size: 0.95rem;
-    }
-    .btn-home {
-      border-radius: 30px;
+      border-radius: 50px;
       padding: 10px 25px;
       font-weight: 500;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
     }
+
+    .book-btn:hover {
+      background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(11, 92, 56, 0.2);
+    }
+
+    /* RESOURCE SECTION */
+    .resource-section {
+      background: linear-gradient(180deg, var(--white) 0%, var(--light-green) 100%);
+      border-top: 1px solid rgba(11, 92, 56, 0.1);
+      position: relative;
+    }
+
+    .resource-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2.5rem;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      height: 100%;
+      text-align: center;
+      border: 1px solid rgba(11, 92, 56, 0.1);
+    }
+
+    .resource-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--primary-green);
+    }
+
+    .resource-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--light-green), rgba(11, 92, 56, 0.1));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
+      color: var(--primary-green);
+    }
+
+    .resource-title {
+      font-family: 'El Messiri', serif;
+      color: var(--primary-green);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    /* FOOTER */
+    .main-footer {
+      background: linear-gradient(135deg, var(--primary-green), #09482b);
+      color: var(--white);
+      padding: 3rem 0 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer-logo {
+      font-family: 'El Messiri', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .footer-text {
+      opacity: 0.8;
+      font-size: 0.95rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1.5rem;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* NAVIGATION */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--primary-green);
+      border: 2px solid var(--primary-green);
+      border-radius: 50px;
+      padding: 10px 30px;
+      font-weight: 500;
+      transition: var(--transition);
+      text-decoration: none;
+      margin: 2rem auto;
+    }
+
+    .back-btn:hover {
+      background: var(--primary-green);
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(11, 92, 56, 0.2);
+    }
+
+    /* RESPONSIVE DESIGN */
     @media (max-width: 768px) {
-      .book-card img {
+      .header-title {
+        font-size: 2.2rem;
+      }
+      
+      .header-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .section-container {
+        padding: 3rem 0;
+      }
+      
+      .book-cover {
         height: 220px;
       }
-      header h2 {
+      
+      .resource-card {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .header-title {
         font-size: 1.8rem;
       }
+      
+      .section-title {
+        font-size: 1.7rem;
+      }
+      
+      .book-content {
+        padding: 1.5rem;
+      }
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.6s ease-out;
     }
   </style>
 </head>
 <body>
-  <!-- HEADER -->
-  <header>
-    <div class="pattern"></div>
-    <div class="position-relative z-1">
-      <h2 class="mb-3">📚 Digital Library</h2>
-      <p>Explore Islamic knowledge, wisdom, and spiritual guidance in Malayalam & beyond</p>
+  <!-- HEADER SECTION -->
+  <header class="main-header">
+    <div class="header-overlay"></div>
+    <div class="header-content fade-in">
+      <div class="header-icon">
+        <i class="bi bi-journal-bookmark-fill"></i>
+      </div>
+      <h1 class="header-title">Islamic Digital Library</h1>
+      <p class="header-subtitle">Explore profound Islamic knowledge, spiritual guidance, and wisdom in Malayalam and beyond. A curated collection of authentic resources for your journey of faith.</p>
+      <div class="mt-4">
+        <span class="badge bg-light text-primary-green me-2 p-2">Quranic Studies</span>
+        <span class="badge bg-light text-primary-green me-2 p-2">Hadith Collections</span>
+        <span class="badge bg-light text-primary-green p-2">Malayalam Resources</span>
+      </div>
     </div>
   </header>
 
   <!-- ISLAMIC BOOKS SECTION -->
-  <section class="py-5">
+  <section class="section-container">
     <div class="container">
-      <h3 class="section-title">📖 Islamic Knowledge Section</h3>
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8 text-center">
+          <h2 class="section-title fade-in">📖 Sacred Texts & Knowledge</h2>
+          <p class="text-muted">Access authentic Islamic scriptures and scholarly works with reliable translations and explanations</p>
+        </div>
+      </div>
+
       <div class="row g-4 justify-content-center">
         <!-- Book 1: Al-Qur'an -->
-        <div class="col-6 col-md-4 col-lg-3">
-          <div class="card book-card">
-            <img src="https://img.freepik.com/premium-vector/islamic-book-cover-with-green-background-with-gold-border_1047185-40.jpg" alt="Holy Quran" class="card-img-top">
-            <div class="card-body">
-              <h5>Al-Qur'an Kareem</h5>
-              <a href="https://media.islamicity.org/wp-content/uploads/quran/arabic-quran-white.pdf" target="_blank" class="btn btn-success btn-sm">Read PDF</a>
+        <div class="col-md-6 col-lg-4 fade-in" style="animation-delay: 0.1s;">
+          <div class="book-card">
+            <img src="https://images.unsplash.com/photo-1544716278-e513176f20b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Holy Quran" class="book-cover">
+            <div class="book-content">
+              <h3 class="book-title">Al-Qur'an Al-Kareem</h3>
+              <a href="https://media.islamicity.org/wp-content/uploads/quran/arabic-quran-white.pdf" target="_blank" class="book-btn">
+                <i class="bi bi-book"></i> Read PDF
+              </a>
             </div>
           </div>
         </div>
 
-        <!-- Book 2: Hadith -->
-        <div class="col-6 col-md-4 col-lg-3">
-          <div class="card book-card">
-            <img src="https://m.media-amazon.com/images/I/71yIuEyPPFL._AC_UF1000,1000_QL80_.jpg" alt="Hadith Collection" class="card-img-top">
-            <div class="card-body">
-              <h5>Hadith Collection</h5>
-              <a href="https://sunnah.com" class="btn btn-success btn-sm">View Online</a>
+        <!-- Book 2: Hadith Collection -->
+        <div class="col-md-6 col-lg-4 fade-in" style="animation-delay: 0.2s;">
+          <div class="book-card">
+            <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hadith Collection" class="book-cover">
+            <div class="book-content">
+              <h3 class="book-title">Hadith Collections</h3>
+              <a href="https://sunnah.com" class="book-btn">
+                <i class="bi bi-search"></i> Explore Hadith
+              </a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Back to Home -->
+      <!-- Navigation -->
       <div class="text-center mt-5">
-        <a href="index.html" class="btn btn-outline-success btn-home">← Back to Home</a>
+        <a href="index.html" class="back-btn">
+          <i class="bi bi-arrow-left"></i> Back to Home
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- EXTERNAL MALAYALAM ISLAMIC RESOURCES SECTION -->
-  <section class="external-section">
+  <!-- MALAYALAM RESOURCES SECTION -->
+  <section class="resource-section section-container">
     <div class="container">
-      <h3>🌐 Malayalam Islamic Resources</h3>
-      <p>Access authentic Islamic articles, news, and Quran resources in Malayalam from trusted platforms.</p>
-      
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8 text-center">
+          <h2 class="section-title fade-in">🌐 Malayalam Islamic Resources</h2>
+          <p class="text-muted">Access authentic Islamic articles, news, and Quran resources in Malayalam from trusted platforms.</p>
+        </div>
+      </div>
+
       <div class="row g-4 justify-content-center">
         <!-- Resource 1 -->
-        <div class="col-md-6 col-lg-5">
-          <div class="external-card">
-            <img src="https://alquranclasses.com/wp-content/uploads/2025/02/banner-2-edit-1080x675.jpg" alt="Islam on Web Malayalam" class="img-fluid">
-            <h4 style="color: #0b5c38; font-family: 'El Messiri', serif;">IslamonWeb Malayalam</h4>
-            <p>Islamic articles, news, and guidance in Malayalam language.</p>
-            <a href="https://islamonweb.net/ml/" class="external-btn">Visit Site →</a>
+        <div class="col-md-6 col-lg-5 fade-in" style="animation-delay: 0.1s;">
+          <div class="resource-card">
+            <div class="resource-icon">
+              <i class="bi bi-globe"></i>
+            </div>
+            <h3 class="resource-title">IslamonWeb Malayalam</h3>
+            <p class="book-description">Comprehensive Islamic portal featuring articles, news, fatwas, and spiritual guidance specifically for Malayalam-speaking Muslims worldwide.</p>
+            <div class="mt-4">
+              <a href="https://islamonweb.net/ml/" target="_blank" class="book-btn">
+                <i class="bi bi-box-arrow-up-right"></i> Visit Platform
+              </a>
+            </div>
           </div>
         </div>
 
         <!-- Resource 2 -->
-        <div class="col-md-6 col-lg-5">
-          <div class="external-card">
-            <img src="https://png.pngtree.com/thumb_back/fw800/background/20251117/pngtree-read-quran-reflect-islamic-education-and-spirituality-vector-illustration-background-design-image_20331595.webp" alt="Quran on Web" class="img-fluid">
-            <h4 style="color: #0b5c38; font-family: 'El Messiri', serif;">QuranonWeb</h4>
-            <p>Read, listen, and study the Holy Quran online with Malayalam support.</p>
-            <a href="https://www.quranonweb.net/" class="external-btn">Visit Site →</a>
+        <div class="col-md-6 col-lg-5 fade-in" style="animation-delay: 0.2s;">
+          <div class="resource-card">
+            <div class="resource-icon">
+              <i class="bi bi-mic"></i>
+            </div>
+            <h3 class="resource-title">QuranonWeb</h3>
+            <p class="book-description">Complete Quranic resource with Malayalam translation, audio recitations, tafsir, and study tools for comprehensive learning.</p>
+            <div class="mt-4">
+              <a href="https://www.quranonweb.net/" target="_blank" class="book-btn">
+                <i class="bi bi-headphones"></i> Listen & Learn
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -238,10 +474,54 @@
   </section>
 
   <!-- FOOTER -->
-  <footer>
-    <small>© 2025 DARUNNAJATH SHAREEATH AND ARTS COLLEGE | Islamic Digital Library</small>
+  <footer class="main-footer">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="footer-logo">
+            <i class="bi bi-mortarboard-fill me-2"></i>DSAC Digital Library
+          </div>
+          <p class="footer-text">
+            Darunnajath Shareeath and Arts College presents this digital library as a service to the global Muslim community. 
+            May Allah accept our efforts and make this beneficial for all seekers of knowledge.
+          </p>
+          <div class="mt-4">
+            <a href="#" class="text-white me-3"><i class="bi bi-envelope fs-5"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-5"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-twitter fs-5"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom mt-4">
+        <p>© 2025 Darunnajath Shareeath and Arts College. All rights reserved. | Islamic Digital Library Initiative</p>
+      </div>
+    </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Add scroll animations
+    document.addEventListener('DOMContentLoaded', function() {
+      const fadeElements = document.querySelectorAll('.fade-in');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      fadeElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+      });
+    });
+  </script>
 </body>
 </html>
