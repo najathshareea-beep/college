@@ -1,4 +1,566 @@
-<script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jashne Najath - DSAC Arts Fest 2025</title>
+  <meta name="description" content="Jashne Najath 2K25 - അന്യോന്യം" />
+  <link rel="icon" href="/favicon.svg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --jaihoon: #16a34a;
+      --saihoon: #6366f1;
+    }
+    
+    .section-active { display: block; }
+    .section-hidden { display: none; }
+    
+    .nav-tab-active {
+      background: linear-gradient(135deg, #16a34a 0%, #10b981 100%);
+      color: white;
+    }
+    
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+    }
+    
+    .mobile-menu-open {
+      transform: translateX(0);
+    }
+    
+    .loader {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #16a34a;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .team-badge-jaihoon { background-color: rgba(22, 163, 74, 0.1); color: #16a34a; }
+    .team-badge-saihoon { background-color: rgba(99, 102, 241, 0.1); color: #6366f1; }
+    
+    .topper-rank-1 { background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); }
+    .topper-rank-2 { background: linear-gradient(135deg, #C0C0C0 0%, #A9A9A9 100%); }
+    .topper-rank-3 { background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%); }
+    
+    .program-selected {
+      border: 3px solid #16a34a;
+      transform: scale(1.02);
+    }
+    
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      overflow-y: auto;
+    }
+    
+    .modal-content {
+      background-color: white;
+      margin: 5% auto;
+      padding: 0;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: modalFadeIn 0.3s ease-out;
+    }
+    
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .modal-header {
+      padding: 24px 32px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .modal-body {
+      padding: 32px;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    
+    .close-modal {
+      background: none;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: #6b7280;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      transition: all 0.2s;
+    }
+    
+    .close-modal:hover {
+      background-color: #f3f4f6;
+      color: #374151;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold">JN</span>
+          </div>
+          <div>
+            <h1 class="text-xl font-bold">അന്യോന്യം'25</h1>
+            <p class="text-xs text-gray-500">Jashne Najath Arts Fest</p>
+          </div>
+        </div>
+        
+        <div class="hidden md:flex items-center space-x-1 bg-gray-100 p-2 rounded-xl">
+          <button data-section="home" class="nav-tab px-5 py-3 rounded-lg font-medium nav-tab-active">
+            <i class="fas fa-home mr-2"></i>Home
+          </button>
+          <button data-section="results" class="nav-tab px-5 py-3 rounded-lg font-medium">
+            <i class="fas fa-trophy mr-2"></i>Results
+          </button>
+          <button data-section="team" class="nav-tab px-5 py-3 rounded-lg font-medium">
+            <i class="fas fa-users mr-2"></i>Teams
+          </button>
+          <button data-section="scoreboard" class="nav-tab px-5 py-3 rounded-lg font-medium">
+            <i class="fas fa-chart-line mr-2"></i>Scoreboard
+          </button>
+          <button data-section="programs" class="nav-tab px-5 py-3 rounded-lg font-medium">
+            <i class="fas fa-microphone"></i>Programs
+          </button>
+          <button data-section="toppers" class="nav-tab px-5 py-3 rounded-lg font-medium">
+            <i class="fas fa-crown mr-2"></i>Toppers
+          </button>
+        </div>
+        
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg bg-gray-100">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 bottom-0 z-50 w-64 bg-white shadow p-6">
+    <div class="flex justify-between items-center mb-8">
+      <h2 class="text-xl font-bold">Menu</h2>
+      <button id="mobile-menu-close" class="p-2 rounded-lg bg-gray-100">
+        <i class="fas fa-times text-xl"></i>
+      </button>
+    </div>
+    
+    <div class="space-y-4">
+      <button data-section="home" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-green-500 text-white font-medium">
+        <i class="fas fa-home mr-3"></i> Home
+      </button>
+      <button data-section="results" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 font-medium">
+        <i class="fas fa-trophy mr-3"></i> Results
+      </button>
+      <button data-section="team" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 font-medium">
+        <i class="fas fa-users mr-3"></i> Teams
+      </button>
+      <button data-section="scoreboard" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 font-medium">
+        <i class="fas fa-chart-line mr-3"></i> Scoreboard
+      </button>
+      <button data-section="programs" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 font-medium">
+        <i class="fas fa-microphone mr-3"></i> Programs
+      </button>
+      <button data-section="toppers" class="mobile-nav-tab w-full text-left p-4 rounded-xl bg-gray-100 font-medium">
+        <i class="fas fa-crown mr-3"></i> Toppers
+      </button>
+    </div>
+  </div>
+
+  <!-- Program Results Modal -->
+  <div id="program-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="text-2xl font-bold" id="modal-program-title">Program Results</h2>
+        <button class="close-modal" id="close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="modal-program-content">
+          <!-- Program results will be loaded here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="pt-20">
+    <!-- Home Section -->
+    <section id="home-section" class="section-active min-h-screen px-4 py-8">
+      <div class="container mx-auto">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+          <div class="lg:w-1/2 text-center lg:text-left">
+            <div class="inline-block px-4 py-2 bg-green-100 text-green-700 rounded-full font-medium mb-6">
+              October 01 - 02, 2025
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">
+              Jashne Najath
+              <span class="text-green-600 block">Arts Fest 2K25</span>
+            </h1>
+            <p class="text-xl text-gray-600 mb-8">
+              Darunnajath Shareeath & Arts College presents <strong>"അന്യോന്യം"</strong>
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <button data-section="results" class="px-8 py-4 bg-green-500 text-white font-bold rounded-xl">
+                View Results
+              </button>
+              <button data-section="scoreboard" class="px-8 py-4 bg-white border-2 border-gray-300 font-bold rounded-xl">
+                Live Scores
+              </button>
+            </div>
+          </div>
+          
+          <div class="lg:w-1/2">
+            <img src="https://i.ibb.co/DgHYHFS1/Whats-App-Image-2025-11-26-at-8-50-51-PM.jpg" alt="Logo" class="w-full max-w-lg mx-auto rounded-2xl" />
+          </div>
+        </div>
+        
+        <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="bg-white p-6 rounded-2xl shadow text-center">
+            <div class="text-4xl font-bold text-green-600 mb-2">130+</div>
+            <div class="text-gray-600">Programs</div>
+          </div>
+          <div class="bg-white p-6 rounded-2xl shadow text-center">
+            <div class="text-4xl font-bold text-blue-600 mb-2">150+</div>
+            <div class="text-gray-600">Contestants</div>
+          </div>
+          <div class="bg-white p-6 rounded-2xl shadow text-center">
+            <div class="text-4xl font-bold text-purple-600 mb-2">5</div>
+            <div class="text-gray-600">Categories</div>
+          </div>
+          <div class="bg-white p-6 rounded-2xl shadow text-center">
+            <div class="text-4xl font-bold text-orange-600 mb-2">2</div>
+            <div class="text-gray-600">Teams</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results-section" class="section-hidden min-h-screen px-4 py-12 bg-gray-50">
+      <div class="container mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-5xl font-bold mb-4">Event Results</h2>
+          <div class="w-24 h-1 bg-green-500 mx-auto mt-6 rounded-full"></div>
+        </div>
+        
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+          <button data-filter="all" class="results-filter-btn px-6 py-3 bg-green-500 text-white font-bold rounded-xl">All Results</button>
+          <button data-filter="General" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">General</button>
+          <button data-filter="Group" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">Group</button>
+          <button data-filter="Sub Junior" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">Sub Junior</button>
+          <button data-filter="Junior" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">Junior</button>
+          <button data-filter="Senior" class="results-filter-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">Senior</button>
+        </div>
+        
+        <div id="results-container" class="space-y-8">
+          <div class="text-center py-12">
+            <div class="loader mx-auto mb-6"></div>
+            <p class="text-gray-600">Loading results...</p>
+          </div>
+        </div>
+        
+        <div id="no-results" class="text-center py-16 hidden">
+          <h3 class="text-2xl font-bold mb-4">No Results Published Yet</h3>
+          <p class="text-gray-600">Results will be displayed here as soon as they are available.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Teams Section -->
+    <section id="team-section" class="section-hidden min-h-screen px-4 py-12">
+      <div class="container mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-5xl font-bold mb-4">Competing Teams</h2>
+          <div class="w-24 h-1 bg-green-500 mx-auto mt-6 rounded-full"></div>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <!-- Team Jaihoon -->
+          <div class="bg-white shadow-xl p-8">
+            <div class="flex justify-between items-start mb-6">
+              <div>
+                <div class="text-sm font-bold text-green-600 mb-2">TEAM #1</div>
+                <h3 class="text-3xl font-bold">Team Jaihoon</h3>
+              </div>
+              <div class="text-5xl font-black text-green-600">#1</div>
+            </div>
+            
+            <div class="mb-8">
+              <div class="text-6xl font-black text-green-600 mb-2" id="team-jaihoon-score">0</div>
+              <div class="text-gray-600">Total Points</div>
+            </div>
+            
+            <div class="space-y-4">
+              <div class="flex items-center p-4 bg-green-50 rounded-xl">
+                <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-crown text-white"></i>
+                </div>
+                <div>
+                  <div class="text-sm text-gray-500">Leader</div>
+                  <div class="font-bold">Nihad M</div>
+                </div>
+              </div>
+              <!-- Assistant Leader for Team Jaihoon -->
+              <div class="flex items-center p-4 bg-green-50 rounded-xl">
+                <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-user-shield text-white"></i>
+                </div>
+                <div>
+                  <div class="text-sm text-gray-500">Assistant Leader</div>
+                  <div class="font-bold" id="assistant-leader-jaihoon">Javad</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Team Saihoon -->
+          <div class="bg-white shadow-xl p-8">
+            <div class="flex justify-between items-start mb-6">
+              <div>
+                <div class="text-sm font-bold text-blue-600 mb-2">TEAM #2</div>
+                <h3 class="text-3xl font-bold">Team Saihoon</h3>
+              </div>
+              <div class="text-5xl font-black text-blue-600">#2</div>
+            </div>
+            
+            <div class="mb-8">
+              <div class="text-6xl font-black text-blue-600 mb-2" id="team-saihoon-score">0</div>
+              <div class="text-gray-600">Total Points</div>
+            </div>
+            
+            <div class="space-y-4">
+              <div class="flex items-center p-4 bg-blue-50 rounded-xl">
+                <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-crown text-white"></i>
+                </div>
+                <div>
+                  <div class="text-sm text-gray-500">Leader</div>
+                  <div class="font-bold">Jasim K</div>
+                </div>
+              </div>
+              <!-- Assistant Leader for Team Saihoon -->
+              <div class="flex items-center p-4 bg-blue-50 rounded-xl">
+                <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-user-shield text-white"></i>
+                </div>
+                <div>
+                  <div class="text-sm text-gray-500">Assistant Leader</div>
+                  <div class="font-bold" id="assistant-leader-saihoon">Fawas</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scoreboard Section -->
+    <section id="scoreboard-section" class="section-hidden min-h-screen px-4 py-12 bg-gray-50">
+      <div class="container mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-5xl font-bold mb-4">Live Scoreboard</h2>
+          <div class="w-24 h-1 bg-green-500 mx-auto mt-6 rounded-full"></div>
+        </div>
+        
+        <div class="flex flex-wrap justify-center gap-4 mb-16">
+          <button data-category="General" class="scoreboard-category-btn px-8 py-4 bg-green-500 text-white font-bold rounded-2xl">
+            General
+          </button>
+          <button data-category="Group" class="scoreboard-category-btn px-8 py-4 bg-white text-gray-700 font-bold rounded-2xl">
+            Group
+          </button>
+          <button data-category="Sub Junior" class="scoreboard-category-btn px-8 py-4 bg-white text-gray-700 font-bold rounded-2xl">
+            Sub Junior
+          </button>
+          <button data-category="Junior" class="scoreboard-category-btn px-8 py-4 bg-white text-gray-700 font-bold rounded-2xl">
+            Junior
+          </button>
+          <button data-category="Senior" class="scoreboard-category-btn px-8 py-4 bg-white text-gray-700 font-bold rounded-2xl">
+            Senior
+          </button>
+          <button data-category="Total" class="scoreboard-category-btn px-8 py-4 bg-purple-600 text-white font-bold rounded-2xl">
+            Total Score
+          </button>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
+          <div class="bg-white rounded-3xl shadow-2xl p-10 text-center">
+            <h3 class="text-3xl font-bold mb-2">Team Jaihoon</h3>
+            <div class="text-7xl font-black text-green-600 mb-4" id="score-jaihoon">0</div>
+            <div class="text-gray-600" id="score-label-jaihoon">Points</div>
+          </div>
+          
+          <div class="bg-white rounded-3xl shadow-2xl p-10 text-center">
+            <h3 class="text-3xl font-bold mb-2">Team Saihoon</h3>
+            <div class="text-7xl font-black text-blue-600 mb-4" id="score-saihoon">0</div>
+            <div class="text-gray-600" id="score-label-saihoon">Points</div>
+          </div>
+        </div>
+        
+        <div class="max-w-2xl mx-auto bg-white rounded-2xl p-8 shadow">
+          <div class="flex flex-col md:flex-row justify-between items-center">
+            <div>
+              <div class="text-sm text-gray-500">Last Updated</div>
+              <div class="text-xl font-bold" id="last-updated">Loading...</div>
+            </div>
+            <div>
+              <button id="refresh-scores" class="px-6 py-3 bg-green-500 text-white font-bold rounded-xl">
+                Refresh Scores
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Toppers Section -->
+    <section id="toppers-section" class="section-hidden min-h-screen px-4 py-12 bg-gray-50">
+      <div class="container mx-auto">
+        <!-- Chest Number Search -->
+        <div class="max-w-2xl mx-auto bg-white rounded-2xl p-8 mb-16">
+          <h3 class="text-2xl font-bold text-center mb-6">Check Your Score</h3>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <input
+              type="text"
+              id="chest-number-input"
+              class="flex-grow px-6 py-4 rounded-xl border-2 border-gray-300 text-center text-lg"
+              placeholder="Enter Chest Number"
+              maxlength="10"
+            />
+            <button id="search-chest-btn" class="px-8 py-4 bg-green-500 text-white font-bold rounded-xl">
+              Get Score
+            </button>
+          </div>
+          <div id="chest-result" class="mt-6 hidden"></div>
+        </div>
+
+        <div class="text-center mb-12">
+          <h2 class="text-5xl font-bold mb-4">Top Performers</h2>
+          <div class="w-24 h-1 bg-green-500 mx-auto mt-6 rounded-full"></div>
+        </div>
+        
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+          <button data-topper-category="all" class="topper-category-btn px-6 py-3 bg-green-500 text-white font-bold rounded-xl">All Toppers</button>
+          <button data-topper-category="General" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">General</button>
+          <button data-topper-category="Sub Junior" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">Sub Junior</button>
+          <button data-topper-category="Junior" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">Junior</button>
+          <button data-topper-category="Senior" class="topper-category-btn px-6 py-3 bg-white text-gray-700 font-bold rounded-xl">Senior</button>
+        </div>
+        
+        <!-- Toppers Display -->
+        <div id="toppers-container" class="space-y-12">
+          <div class="text-center py-12">
+            <div class="loader mx-auto mb-6"></div>
+            <p class="text-gray-600">Loading toppers data...</p>
+          </div>
+        </div>
+      </div>
+    </section>  
+        
+        <!-- Programs Section -->
+    <section id="programs-section" class="section-hidden min-h-screen px-4 py-12 bg-gray-50">
+      <div class="container mx-auto">     
+        <div class="mt-16 bg-white rounded-2xl shadow p-8">
+          <h3 class="text-3xl font-bold text-center mb-8">All Programs</h3>
+          <div class="mb-6 flex flex-wrap justify-center gap-3">
+            <button data-program-filter="all" class="program-filter-btn px-4 py-2 bg-green-500 text-white rounded-lg">All</button>
+            <button data-program-filter="General" class="program-filter-btn px-4 py-2 bg-gray-100 rounded-lg">General</button>
+            <button data-program-filter="Group" class="program-filter-btn px-4 py-2 bg-gray-100 rounded-lg">Group</button>
+            <button data-program-filter="Sub Junior" class="program-filter-btn px-4 py-2 bg-gray-100 rounded-lg">Sub Junior</button>
+            <button data-program-filter="Junior" class="program-filter-btn px-4 py-2 bg-gray-100 rounded-lg">Junior</button>
+            <button data-program-filter="Senior" class="program-filter-btn px-4 py-2 bg-gray-100 rounded-lg">Senior</button>
+          </div>
+          <div id="programs-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <div class="text-center py-8">
+              <div class="loader mx-auto mb-4"></div>
+              <p class="text-gray-600">Loading programs...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12 px-4">
+    <div class="container mx-auto">
+      <div class="grid md:grid-cols-3 gap-12">
+        <div>
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mr-4">
+              <span class="text-white font-bold">JN</span>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold">അന്യോന്യം'25</h3>
+              <p class="text-gray-400">Jashne Najath Arts Fest</p>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-xl font-bold mb-6">Quick Links</h4>
+          <div class="space-y-4">
+            <a href="#" data-section="home" class="block text-gray-400 hover:text-white"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Home</a>
+            <a href="#" data-section="results" class="block text-gray-400 hover:text-white"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Results</a>
+            <a href="#" data-section="team" class="block text-gray-400 hover:text-white"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Teams</a>
+            <a href="#" data-section="scoreboard" class="block text-gray-400 hover:text-white"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Scoreboard</a>
+            <a href="#" data-section="programs" class="block text-gray-400 hover:text-white"><i class="fas fa-chevron-right mr-3 text-green-500"></i> Programs</a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-xl font-bold mb-6">Contact Info</h4>
+          <div class="space-y-4">
+            <div class="flex items-start">
+              <i class="fas fa-map-marker-alt text-green-500 mt-1 mr-4"></i>
+              <p class="text-gray-400">Darunnajath Shareeath & Arts College</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-12 pt-8 border-t border-gray-800 text-center">
+        <p class="text-gray-500">© 2025 അന്യോന്യം Media Team</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
     // Configuration
     const SHEET_ID = '1vk_hE-Ja5d8kZdzuj7jeYxlunTyopx0p9HjzJcGFl0c';
     const SCOREBOARD_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Scoreboard`;
@@ -6,155 +568,6 @@
     const CANDIDATE_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Candidate`;
     const EVENT_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Event`;
     const TEAM_LEADERS_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=TeamLeaders`;
-    
-    // Demo Data (fallback in case Google Sheets fails to load)
-    const DEMO_SCOREBOARD = {
-        'General': { jaihoon: 450, saihoon: 380 },
-        'Group': { jaihoon: 320, saihoon: 290 },
-        'Sub Junior': { jaihoon: 280, saihoon: 320 },
-        'Junior': { jaihoon: 410, saihoon: 370 },
-        'Senior': { jaihoon: 390, saihoon: 410 },
-        'Total': { jaihoon: 1850, saihoon: 1770 }
-    };
-    
-    const DEMO_RESULTS = [
-        {
-            no: '1',
-            eventCode: 'E001',
-            event: 'Mono Act',
-            category: 'General',
-            firstChestNo: 'J101',
-            secondChestNo: 'S205',
-            thirdChestNo: 'J108',
-            firstName: 'Rahman Ali',
-            secondName: 'Safwan K',
-            thirdName: 'Nihal M',
-            firstGroup: 'Team Jaihoon',
-            secondGroup: 'Team Saihoon',
-            thirdGroup: 'Team Jaihoon',
-            firstPoint: 10,
-            secondPoint: 8,
-            thirdPoint: 6,
-            firstGradePoint: 5,
-            secondGradePoint: 4,
-            thirdGradePoint: 3
-        },
-        {
-            no: '2',
-            eventCode: 'E002',
-            event: 'Mappilapattu',
-            category: 'Group',
-            firstChestNo: 'S115',
-            secondChestNo: 'J203',
-            thirdChestNo: 'S208',
-            firstName: 'Group Alpha',
-            secondName: 'Group Beta',
-            thirdName: 'Group Gamma',
-            firstGroup: 'Team Saihoon',
-            secondGroup: 'Team Jaihoon',
-            thirdGroup: 'Team Saihoon',
-            firstPoint: 12,
-            secondPoint: 10,
-            thirdPoint: 8,
-            firstGradePoint: 6,
-            secondGradePoint: 5,
-            thirdGradePoint: 4
-        },
-        {
-            no: '3',
-            eventCode: 'E003',
-            event: 'Story Telling',
-            category: 'Sub Junior',
-            firstChestNo: 'J305',
-            secondChestNo: 'S308',
-            thirdChestNo: 'J310',
-            firstName: 'Arun Kumar',
-            secondName: 'Faris A',
-            thirdName: 'Jishnu P',
-            firstGroup: 'Team Jaihoon',
-            secondGroup: 'Team Saihoon',
-            thirdGroup: 'Team Jaihoon',
-            firstPoint: 10,
-            secondPoint: 8,
-            thirdPoint: 6,
-            firstGradePoint: 5,
-            secondGradePoint: 4,
-            thirdGradePoint: 3
-        },
-        {
-            no: '4',
-            eventCode: 'E004',
-            event: 'Debate',
-            category: 'Junior',
-            firstChestNo: 'S405',
-            secondChestNo: 'J408',
-            thirdChestNo: 'S410',
-            firstName: 'Sara Ahmed',
-            secondName: 'Jameel K',
-            thirdName: 'Fathima R',
-            firstGroup: 'Team Saihoon',
-            secondGroup: 'Team Jaihoon',
-            thirdGroup: 'Team Saihoon',
-            firstPoint: 15,
-            secondPoint: 12,
-            thirdPoint: 10,
-            firstGradePoint: 8,
-            secondGradePoint: 6,
-            thirdGradePoint: 5
-        },
-        {
-            no: '5',
-            eventCode: 'E005',
-            event: 'Essay Writing',
-            category: 'Senior',
-            firstChestNo: 'J505',
-            secondChestNo: 'S508',
-            thirdChestNo: 'J510',
-            firstName: 'Nihad M',
-            secondName: 'Jasim K',
-            thirdName: 'Javad P',
-            firstGroup: 'Team Jaihoon',
-            secondGroup: 'Team Saihoon',
-            thirdGroup: 'Team Jaihoon',
-            firstPoint: 12,
-            secondPoint: 10,
-            thirdPoint: 8,
-            firstGradePoint: 6,
-            secondGradePoint: 5,
-            thirdGradePoint: 4
-        }
-    ];
-    
-    const DEMO_CANDIDATES = [
-        { chestNo: 'J101', name: 'Rahman Ali', team: 'Team Jaihoon', category: 'General' },
-        { chestNo: 'S205', name: 'Safwan K', team: 'Team Saihoon', category: 'General' },
-        { chestNo: 'J108', name: 'Nihal M', team: 'Team Jaihoon', category: 'General' },
-        { chestNo: 'S115', name: 'Group Alpha', team: 'Team Saihoon', category: 'Group' },
-        { chestNo: 'J203', name: 'Group Beta', team: 'Team Jaihoon', category: 'Group' },
-        { chestNo: 'S208', name: 'Group Gamma', team: 'Team Saihoon', category: 'Group' },
-        { chestNo: 'J305', name: 'Arun Kumar', team: 'Team Jaihoon', category: 'Sub Junior' },
-        { chestNo: 'S308', name: 'Faris A', team: 'Team Saihoon', category: 'Sub Junior' },
-        { chestNo: 'J310', name: 'Jishnu P', team: 'Team Jaihoon', category: 'Sub Junior' },
-        { chestNo: 'S405', name: 'Sara Ahmed', team: 'Team Saihoon', category: 'Junior' },
-        { chestNo: 'J408', name: 'Jameel K', team: 'Team Jaihoon', category: 'Junior' },
-        { chestNo: 'S410', name: 'Fathima R', team: 'Team Saihoon', category: 'Junior' },
-        { chestNo: 'J505', name: 'Nihad M', team: 'Team Jaihoon', category: 'Senior' },
-        { chestNo: 'S508', name: 'Jasim K', team: 'Team Saihoon', category: 'Senior' },
-        { chestNo: 'J510', name: 'Javad P', team: 'Team Jaihoon', category: 'Senior' }
-    ];
-    
-    const DEMO_EVENTS = [
-        { event: 'Mono Act', eventCode: 'E001', type: 'Individual', category: 'General' },
-        { event: 'Mappilapattu', eventCode: 'E002', type: 'Group', category: 'Group' },
-        { event: 'Story Telling', eventCode: 'E003', type: 'Individual', category: 'Sub Junior' },
-        { event: 'Debate', eventCode: 'E004', type: 'Individual', category: 'Junior' },
-        { event: 'Essay Writing', eventCode: 'E005', type: 'Individual', category: 'Senior' },
-        { event: 'Poetry Recitation', eventCode: 'E006', type: 'Individual', category: 'General' },
-        { event: 'Folk Dance', eventCode: 'E007', type: 'Group', category: 'Group' },
-        { event: 'Drawing', eventCode: 'E008', type: 'Individual', category: 'Sub Junior' },
-        { event: 'Elocution', eventCode: 'E009', type: 'Individual', category: 'Junior' },
-        { event: 'Quiz', eventCode: 'E010', type: 'Group', category: 'Senior' }
-    ];
     
     // State
     let scoreboardData = {};
@@ -167,1431 +580,1195 @@
     let currentTopperCategory = 'all';
     let currentProgramFilter = 'all';
     let totalScores = { jaihoon: 0, saihoon: 0 };
-    let usingDemoData = false;
     
     // DOM Elements
     const sections = {
-        home: document.getElementById('home-section'),
-        results: document.getElementById('results-section'),
-        team: document.getElementById('team-section'),
-        scoreboard: document.getElementById('scoreboard-section'),
-        programs: document.getElementById('programs-section'),
-        toppers: document.getElementById('toppers-section')
+      home: document.getElementById('home-section'),
+      results: document.getElementById('results-section'),
+      team: document.getElementById('team-section'),
+      scoreboard: document.getElementById('scoreboard-section'),
+      programs: document.getElementById('programs-section'),
+      toppers: document.getElementById('toppers-section')
     };
     
     // Initialize
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('Initializing Jashne Najath Arts Fest Website...');
-        setupNavigation();
-        setupModal();
-        loadAllData();
-        startCounterAnimation();
+      setupNavigation();
+      setupModal();
+      loadScoreboard();
+      loadResults();
+      loadCandidates();
+      loadEvents();
+      loadTeamLeaders();
     });
-    
-    // Load all data
-    function loadAllData() {
-        console.log('Loading all data...');
-        
-        // Show loading state
-        showLoadingState();
-        
-        // Load all data with timeout
-        Promise.all([
-            loadScoreboard(),
-            loadResults(),
-            loadCandidates(),
-            loadEvents(),
-            loadTeamLeaders()
-        ]).then(() => {
-            console.log('All data loaded successfully!');
-            updateAllDisplays();
-        }).catch(error => {
-            console.error('Error loading data:', error);
-            console.log('Using demo data...');
-            useDemoData();
-            updateAllDisplays();
-        });
-    }
-    
-    // Show loading state
-    function showLoadingState() {
-        const loadingElements = document.querySelectorAll('.loading-state');
-        loadingElements.forEach(el => {
-            el.innerHTML = `
-                <div class="flex flex-col items-center justify-center py-8">
-                    <div class="loader mb-4"></div>
-                    <p class="text-gray-600 animate-pulse">Loading data...</p>
-                </div>
-            `;
-        });
-    }
-    
-    // Use demo data
-    function useDemoData() {
-        usingDemoData = true;
-        scoreboardData = DEMO_SCOREBOARD;
-        allResults = DEMO_RESULTS;
-        allCandidates = DEMO_CANDIDATES;
-        allEvents = DEMO_EVENTS;
-        teamLeaders = {
-            jaihoon: { leader: 'Nihad M', assistant: 'Javad' },
-            saihoon: { leader: 'Jasim K', assistant: 'Fawas' }
-        };
-        
-        // Show demo data notification
-        setTimeout(() => {
-            const notification = document.createElement('div');
-            notification.className = 'fixed bottom-4 right-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-lg shadow-lg z-50 max-w-sm';
-            notification.innerHTML = `
-                <div class="flex items-center">
-                    <i class="fas fa-info-circle mr-3 text-yellow-500"></i>
-                    <div>
-                        <p class="font-medium">Demo Mode Active</p>
-                        <p class="text-sm">Showing sample data for demonstration</p>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(notification);
-            
-            // Remove notification after 5 seconds
-            setTimeout(() => {
-                notification.remove();
-            }, 5000);
-        }, 1000);
-    }
-    
-    // Update all displays
-    function updateAllDisplays() {
-        calculateTotalScores();
-        updateScoreboard(currentCategory);
-        updateTeamScores();
-        updateTeamComparison();
-        updateProgramStats();
-        displayResults(currentFilter);
-        displayToppers(currentTopperCategory);
-        displayPrograms();
-        document.getElementById('last-updated').textContent = new Date().toLocaleString('en-IN');
-    }
     
     // Navigation Setup
     function setupNavigation() {
-        // Desktop tabs
-        document.querySelectorAll('.nav-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                const sectionId = this.getAttribute('data-section');
-                showSection(sectionId);
-                
-                // Update active tab styles
-                document.querySelectorAll('.nav-tab').forEach(t => {
-                    t.classList.remove('nav-tab-active', 'text-green-600');
-                    t.classList.add('text-gray-600');
-                });
-                
-                this.classList.add('nav-tab-active', 'text-green-600');
-                this.classList.remove('text-gray-600');
-            });
+      // Desktop tabs
+      document.querySelectorAll('.nav-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+          const sectionId = this.getAttribute('data-section');
+          showSection(sectionId);
+          
+          document.querySelectorAll('.nav-tab').forEach(t => {
+            t.classList.remove('nav-tab-active');
+          });
+          this.classList.add('nav-tab-active');
         });
-        
-        // Mobile navigation
-        document.querySelectorAll('.mobile-nav-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                const sectionId = this.getAttribute('data-section');
-                showSection(sectionId);
-                closeMobileMenu();
-            });
+      });
+      
+      // Mobile tabs
+      document.querySelectorAll('.mobile-nav-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+          const sectionId = this.getAttribute('data-section');
+          showSection(sectionId);
+          closeMobileMenu();
         });
-        
-        // Mobile menu buttons
-        document.getElementById('mobile-menu-btn').addEventListener('click', openMobileMenu);
-        document.getElementById('mobile-menu-close').addEventListener('click', closeMobileMenu);
-        document.getElementById('mobile-menu-overlay').addEventListener('click', closeMobileMenu);
-        
-        // Footer navigation
-        document.querySelectorAll('footer a[data-section]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const sectionId = this.getAttribute('data-section');
-                showSection(sectionId);
-            });
+      });
+      
+      // Mobile menu
+      document.getElementById('mobile-menu-btn').addEventListener('click', openMobileMenu);
+      document.getElementById('mobile-menu-close').addEventListener('click', closeMobileMenu);
+      
+      // Footer links
+      document.querySelectorAll('footer a[data-section]').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const sectionId = this.getAttribute('data-section');
+          showSection(sectionId);
         });
-        
-        // Home section buttons
-        document.querySelectorAll('#home-section button[data-section]').forEach(button => {
-            button.addEventListener('click', function() {
-                const sectionId = this.getAttribute('data-section');
-                showSection(sectionId);
-            });
+      });
+      
+      // Buttons
+      document.querySelectorAll('#home-section button[data-section]').forEach(button => {
+        button.addEventListener('click', function() {
+          const sectionId = this.getAttribute('data-section');
+          showSection(sectionId);
         });
-        
-        // Results filter buttons
-        document.querySelectorAll('.results-filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const filter = this.getAttribute('data-filter');
-                currentFilter = filter;
-                
-                // Update button styles
-                document.querySelectorAll('.results-filter-btn').forEach(b => {
-                    b.classList.remove('bg-gradient-to-r', 'from-green-500', 'to-emerald-600', 'text-white', 'shadow-lg');
-                    b.classList.add('bg-white', 'text-gray-700', 'shadow');
-                });
-                
-                this.classList.add('bg-gradient-to-r', 'from-green-500', 'to-emerald-600', 'text-white', 'shadow-lg');
-                this.classList.remove('bg-white', 'text-gray-700', 'shadow');
-                
-                displayResults(filter);
-            });
+      });
+      
+      // Results filter buttons
+      document.querySelectorAll('.results-filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const filter = this.getAttribute('data-filter');
+          
+          // Update button styles
+          document.querySelectorAll('.results-filter-btn').forEach(b => {
+            b.classList.remove('bg-green-500', 'text-white');
+            b.classList.add('bg-white', 'text-gray-700');
+          });
+          
+          this.classList.add('bg-green-500', 'text-white');
+          this.classList.remove('bg-white', 'text-gray-700');
+          
+          displayResults(filter);
         });
-        
-        // Scoreboard category buttons
-        document.querySelectorAll('.scoreboard-category-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const category = this.getAttribute('data-category');
-                updateScoreboard(category);
-            });
+      });
+      
+      // Scoreboard buttons
+      document.querySelectorAll('.scoreboard-category-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const category = this.getAttribute('data-category');
+          updateScoreboard(category);
         });
-        
-        // Toppers category buttons
-        document.querySelectorAll('.topper-category-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const category = this.getAttribute('data-topper-category');
-                updateToppersCategory(category);
-            });
+      });
+      
+      // Toppers buttons
+      document.querySelectorAll('.topper-category-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const category = this.getAttribute('data-topper-category');
+          updateToppersCategory(category);
         });
-        
-        // Program filter buttons
-        document.querySelectorAll('.program-filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const filter = this.getAttribute('data-program-filter');
-                updateProgramFilter(filter);
-            });
+      });
+      
+      // Program filter buttons
+      document.querySelectorAll('.program-filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const filter = this.getAttribute('data-program-filter');
+          updateProgramFilter(filter);
         });
-        
-        // Chest number search
-        document.getElementById('search-chest-btn').addEventListener('click', searchChestNumber);
-        document.getElementById('chest-number-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') searchChestNumber();
-        });
-        
-        // Refresh scores button
-        document.getElementById('refresh-scores').addEventListener('click', function() {
-            this.classList.add('animate-pulse');
-            loadAllData();
-            setTimeout(() => {
-                this.classList.remove('animate-pulse');
-            }, 2000);
-        });
+      });
+      
+      // Chest search
+      document.getElementById('search-chest-btn').addEventListener('click', searchChestNumber);
+      document.getElementById('chest-number-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') searchChestNumber();
+      });
+      
+      // Refresh button
+      document.getElementById('refresh-scores').addEventListener('click', function() {
+        loadScoreboard();
+      });
     }
     
     // Setup modal functionality
     function setupModal() {
-        const modal = document.getElementById('program-modal');
-        const closeModalBtn = document.getElementById('close-modal');
-        const modalCloseBtn = document.getElementById('modal-close-btn');
-        
-        // Close modal when clicking X button
-        closeModalBtn.addEventListener('click', closeModal);
-        modalCloseBtn.addEventListener('click', closeModal);
-        
-        // Close modal when clicking outside
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-        
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.style.display === 'block') {
-                closeModal();
-            }
-        });
+      const modal = document.getElementById('program-modal');
+      const closeModalBtn = document.getElementById('close-modal');
+      
+      // Close modal when clicking X button
+      closeModalBtn.addEventListener('click', closeModal);
+      
+      // Close modal when clicking outside
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+      
+      // Close modal with Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.style.display === 'block') {
+          closeModal();
+        }
+      });
     }
     
     // Open modal
     function openModal() {
-        const modal = document.getElementById('program-modal');
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
+      const modal = document.getElementById('program-modal');
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
     }
     
     // Close modal
     function closeModal() {
-        const modal = document.getElementById('program-modal');
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
+      const modal = document.getElementById('program-modal');
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
     }
     
-    // Show section with animation
+    // Show section
     function showSection(sectionId) {
-        // Hide all sections
-        Object.values(sections).forEach(section => {
-            section.classList.remove('active');
-        });
+      Object.values(sections).forEach(section => {
+        section.classList.remove('section-active');
+        section.classList.add('section-hidden');
+      });
+      
+      if (sections[sectionId]) {
+        sections[sectionId].classList.remove('section-hidden');
+        sections[sectionId].classList.add('section-active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         
-        // Show selected section
-        if (sections[sectionId]) {
-            sections[sectionId].classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-            // Load section-specific data
-            setTimeout(() => {
-                if (sectionId === 'toppers') {
-                    displayToppers(currentTopperCategory);
-                } else if (sectionId === 'results') {
-                    displayResults(currentFilter);
-                } else if (sectionId === 'programs') {
-                    displayPrograms();
-                }
-            }, 300);
+        // Load section-specific data
+        if (sectionId === 'toppers') {
+          displayToppers(currentTopperCategory);
+        } else if (sectionId === 'results') {
+          displayResults(currentFilter);
         }
+      }
     }
     
-    // Mobile menu functions
+    // Mobile menu
     function openMobileMenu() {
-        document.getElementById('mobile-menu').classList.add('mobile-menu-open');
-        document.getElementById('mobile-menu-overlay').classList.add('active');
-        document.body.style.overflow = 'hidden';
+      document.getElementById('mobile-menu').classList.add('mobile-menu-open');
+      document.body.style.overflow = 'hidden';
     }
     
     function closeMobileMenu() {
-        document.getElementById('mobile-menu').classList.remove('mobile-menu-open');
-        document.getElementById('mobile-menu-overlay').classList.remove('active');
-        document.body.style.overflow = 'auto';
+      document.getElementById('mobile-menu').classList.remove('mobile-menu-open');
+      document.body.style.overflow = 'auto';
     }
     
-    // Animated counter for statistics
-    function startCounterAnimation() {
-        const counters = document.querySelectorAll('.count-up');
-        const speed = 200;
-        
-        counters.forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-target'));
-            const increment = target / speed;
-            let current = 0;
-            
-            const updateCounter = () => {
-                current += increment;
-                if (current < target) {
-                    counter.textContent = Math.floor(current);
-                    setTimeout(updateCounter, 1);
-                } else {
-                    counter.textContent = target;
-                }
-            };
-            
-            updateCounter();
+    // Load scoreboard
+    function loadScoreboard() {
+      fetch(SCOREBOARD_URL)
+        .then(res => res.text())
+        .then(csv => {
+          const rows = parseCSV(csv);
+          scoreboardData = {};
+          
+          rows.forEach(row => {
+            if (row.length >= 3) {
+              const category = row[0].trim();
+              scoreboardData[category] = {
+                jaihoon: parseInt(row[1]) || 0,
+                saihoon: parseInt(row[2]) || 0
+              };
+            }
+          });
+          
+          calculateTotalScores();
+          updateScoreboard(currentCategory);
+          updateTeamScores();
+          document.getElementById('last-updated').textContent = new Date().toLocaleString('en-IN');
+        })
+        .catch(err => {
+          console.error('Error loading scoreboard:', err);
+          document.getElementById('last-updated').textContent = 'Failed to load';
         });
     }
     
-    // Load scoreboard data
-    async function loadScoreboard() {
-        try {
-            console.log('Loading scoreboard from:', SCOREBOARD_URL);
-            const response = await fetch(SCOREBOARD_URL);
-            if (!response.ok) throw new Error('Network response was not ok');
-            
-            const csv = await response.text();
-            const rows = parseCSV(csv);
-            scoreboardData = {};
-            
-            rows.forEach(row => {
-                if (row.length >= 3) {
-                    const category = row[0].trim();
-                    scoreboardData[category] = {
-                        jaihoon: parseInt(row[1]) || 0,
-                        saihoon: parseInt(row[2]) || 0
-                    };
-                }
-            });
-            
-            console.log('Scoreboard loaded:', scoreboardData);
-            return true;
-        } catch (error) {
-            console.error('Error loading scoreboard:', error);
-            throw error;
-        }
-    }
-    
-    // Load results data
-    async function loadResults() {
-        try {
-            console.log('Loading results from:', RESULTS_URL);
-            const response = await fetch(RESULTS_URL);
-            if (!response.ok) throw new Error('Network response was not ok');
-            
-            const csv = await response.text();
-            const rows = parseCSV(csv);
-            allResults = [];
-            
-            for (let i = 1; i < rows.length; i++) {
-                const row = rows[i];
-                if (row.length >= 19) {
-                    allResults.push({
-                        no: row[0] || '',
-                        eventCode: row[1] || '',
-                        event: row[2] || '',
-                        category: cleanCategoryName(row[3] || ''),
-                        firstChestNo: row[4] || '',
-                        secondChestNo: row[5] || '',
-                        thirdChestNo: row[6] || '',
-                        firstName: row[7] || '',
-                        secondName: row[8] || '',
-                        thirdName: row[9] || '',
-                        firstGroup: row[10] || '',
-                        secondGroup: row[11] || '',
-                        thirdGroup: row[12] || '',
-                        firstPoint: parseInt(row[13]) || 0,
-                        secondPoint: parseInt(row[14]) || 0,
-                        thirdPoint: parseInt(row[15]) || 0,
-                        firstGradePoint: parseInt(row[16]) || 0,
-                        secondGradePoint: parseInt(row[17]) || 0,
-                        thirdGradePoint: parseInt(row[18]) || 0
-                    });
-                }
+    // Load results
+    function loadResults() {
+      fetch(RESULTS_URL)
+        .then(res => res.text())
+        .then(csv => {
+          const rows = parseCSV(csv);
+          allResults = [];
+          
+          for (let i = 1; i < rows.length; i++) {
+            const row = rows[i];
+            if (row.length >= 19) {
+              allResults.push({
+                no: row[0] || '',
+                eventCode: row[1] || '',
+                event: row[2] || '',
+                category: cleanCategoryName(row[3] || ''),
+                firstChestNo: row[4] || '',
+                secondChestNo: row[5] || '',
+                thirdChestNo: row[6] || '',
+                firstName: row[7] || '',
+                secondName: row[8] || '',
+                thirdName: row[9] || '',
+                firstGroup: row[10] || '',
+                secondGroup: row[11] || '',
+                thirdGroup: row[12] || '',
+                firstPoint: parseInt(row[13]) || 0,
+                secondPoint: parseInt(row[14]) || 0,
+                thirdPoint: parseInt(row[15]) || 0,
+                firstGradePoint: parseInt(row[16]) || 0,
+                secondGradePoint: parseInt(row[17]) || 0,
+                thirdGradePoint: parseInt(row[18]) || 0
+              });
             }
-            
-            console.log('Results loaded:', allResults.length, 'results');
-            return true;
-        } catch (error) {
-            console.error('Error loading results:', error);
-            throw error;
-        }
+          }
+          
+          allResults.reverse();
+          displayResults(currentFilter);
+          setupResultFilters();
+        })
+        .catch(err => {
+          console.error('Error loading results:', err);
+        });
     }
     
-    // Load candidates data
-    async function loadCandidates() {
-        try {
-            console.log('Loading candidates from:', CANDIDATE_URL);
-            const response = await fetch(CANDIDATE_URL);
-            if (!response.ok) throw new Error('Network response was not ok');
-            
-            const csv = await response.text();
-            const rows = parseCSV(csv);
-            allCandidates = [];
-            
-            for (let i = 1; i < rows.length; i++) {
-                const row = rows[i];
-                if (row.length >= 4) {
-                    allCandidates.push({
-                        chestNo: row[0] || '',
-                        name: row[1] || '',
-                        team: row[2] || '',
-                        category: row[3] || ''
-                    });
-                }
+    // Load candidates
+    function loadCandidates() {
+      fetch(CANDIDATE_URL)
+        .then(res => res.text())
+        .then(csv => {
+          const rows = parseCSV(csv);
+          allCandidates = [];
+          
+          for (let i = 1; i < rows.length; i++) {
+            const row = rows[i];
+            if (row.length >= 4) {
+              allCandidates.push({
+                chestNo: row[0] || '',
+                name: row[1] || '',
+                team: row[2] || '',
+                category: row[3] || ''
+              });
             }
-            
-            console.log('Candidates loaded:', allCandidates.length, 'candidates');
-            return true;
-        } catch (error) {
-            console.error('Error loading candidates:', error);
-            throw error;
-        }
+          }
+        })
+        .catch(err => {
+          console.error('Error loading candidates:', err);
+        });
     }
     
-    // Load events data
-    async function loadEvents() {
-        try {
-            console.log('Loading events from:', EVENT_URL);
-            const response = await fetch(EVENT_URL);
-            if (!response.ok) throw new Error('Network response was not ok');
-            
-            const csv = await response.text();
-            const rows = parseCSV(csv);
-            allEvents = [];
-            
-            for (let i = 1; i < rows.length; i++) {
-                const row = rows[i];
-                if (row.length >= 4) {
-                    allEvents.push({
-                        event: row[1] || '',
-                        eventCode: row[0] || '',
-                        type: row[2] || '',
-                        category: cleanCategoryName(row[3] || '')
-                    });
-                }
+    // Load events
+    function loadEvents() {
+      fetch(EVENT_URL)
+        .then(res => res.text())
+        .then(csv => {
+          const rows = parseCSV(csv);
+          allEvents = [];
+          
+          for (let i = 1; i < rows.length; i++) {
+            const row = rows[i];
+            if (row.length >= 4) {
+              allEvents.push({
+                event: row[1] || '',
+                eventCode: row[0] || '',
+                type: row[2] || '',
+                category: cleanCategoryName(row[3] || '')
+              });
             }
-            
-            console.log('Events loaded:', allEvents.length, 'events');
-            return true;
-        } catch (error) {
-            console.error('Error loading events:', error);
-            throw error;
-        }
+          }
+          
+          displayPrograms();
+        })
+        .catch(err => {
+          console.error('Error loading events:', err);
+        });
     }
     
-    // Load team leaders data
-    async function loadTeamLeaders() {
-        try {
-            console.log('Loading team leaders from:', TEAM_LEADERS_URL);
-            const response = await fetch(TEAM_LEADERS_URL);
-            if (!response.ok) throw new Error('Network response was not ok');
-            
-            const csv = await response.text();
-            const rows = parseCSV(csv);
-            teamLeaders = { jaihoon: {}, saihoon: {} };
-            
-            for (let i = 1; i < rows.length; i++) {
-                const row = rows[i];
-                if (row.length >= 3) {
-                    const team = row[0].toLowerCase().trim();
-                    const position = row[1].toLowerCase().trim();
-                    const name = row[2].trim();
-                    
-                    if (team.includes('jaihoon')) {
-                        teamLeaders.jaihoon[position] = name;
-                    } else if (team.includes('saihoon')) {
-                        teamLeaders.saihoon[position] = name;
-                    }
-                }
+    // Load team leaders (including assistant leaders)
+    function loadTeamLeaders() {
+      fetch(TEAM_LEADERS_URL)
+        .then(res => res.text())
+        .then(csv => {
+          const rows = parseCSV(csv);
+          teamLeaders = { jaihoon: {}, saihoon: {} };
+          
+          // Skip header row
+          for (let i = 1; i < rows.length; i++) {
+            const row = rows[i];
+            if (row.length >= 3) {
+              const team = row[0].toLowerCase().trim();
+              const position = row[1].toLowerCase().trim();
+              const name = row[2].trim();
+              
+              if (team.includes('jaihoon')) {
+                teamLeaders.jaihoon[position] = name;
+              } else if (team.includes('saihoon')) {
+                teamLeaders.saihoon[position] = name;
+              }
             }
-            
-            console.log('Team leaders loaded:', teamLeaders);
-            return true;
-        } catch (error) {
-            console.error('Error loading team leaders:', error);
-            throw error;
-        }
+          }
+          
+          // Update assistant leaders in the UI
+          if (teamLeaders.jaihoon.assistant || teamLeaders.jaihoon['assistant leader']) {
+            document.getElementById('assistant-leader-jaihoon').textContent = 
+              teamLeaders.jaihoon.assistant || teamLeaders.jaihoon['assistant leader'];
+          }
+          
+          if (teamLeaders.saihoon.assistant || teamLeaders.saihoon['assistant leader']) {
+            document.getElementById('assistant-leader-saihoon').textContent = 
+              teamLeaders.saihoon.assistant || teamLeaders.saihoon['assistant leader'];
+          }
+        })
+        .catch(err => {
+          console.error('Error loading team leaders:', err);
+        });
     }
     
-    // Clean category names
+    // Clean category names to match filter buttons
     function cleanCategoryName(category) {
-        if (!category) return '';
-        
-        category = category.replace('SENIOR - ', '')
-                          .replace('Non stage', '')
-                          .replace('Non Stage', '')
-                          .trim();
-        
-        const categoryMap = {
-            'general': 'General',
-            'group': 'Group',
-            'sub junior': 'Sub Junior',
-            'junior': 'Junior',
-            'senior': 'Senior'
-        };
-        
-        const lowerCategory = category.toLowerCase();
-        for (const key in categoryMap) {
-            if (lowerCategory.includes(key)) {
-                return categoryMap[key];
-            }
+      if (!category) return '';
+      
+      // Remove "SENIOR - Non stage" and similar prefixes
+      category = category.replace('SENIOR - ', '')
+                        .replace('Non stage', '')
+                        .replace('Non Stage', '')
+                        .trim();
+      
+      // Map to match filter button names
+      const categoryMap = {
+        'general': 'General',
+        'group': 'Group',
+        'sub junior': 'Sub Junior',
+        'junior': 'Junior',
+        'senior': 'Senior'
+      };
+      
+      const lowerCategory = category.toLowerCase();
+      for (const key in categoryMap) {
+        if (lowerCategory.includes(key)) {
+          return categoryMap[key];
         }
-        
-        return category;
+      }
+      
+      return category;
     }
     
     // Calculate total scores
     function calculateTotalScores() {
-        totalScores = { jaihoon: 0, saihoon: 0 };
-        
-        for (const category in scoreboardData) {
-            if (category !== 'Total') {
-                totalScores.jaihoon += scoreboardData[category].jaihoon || 0;
-                totalScores.saihoon += scoreboardData[category].saihoon || 0;
-            }
+      totalScores = { jaihoon: 0, saihoon: 0 };
+      
+      for (const category in scoreboardData) {
+        if (category !== 'Total') {
+          totalScores.jaihoon += scoreboardData[category].jaihoon || 0;
+          totalScores.saihoon += scoreboardData[category].saihoon || 0;
         }
-        
-        if (scoreboardData['Total']) {
-            totalScores = {
-                jaihoon: scoreboardData['Total'].jaihoon || 0,
-                saihoon: scoreboardData['Total'].saihoon || 0
-            };
-        }
+      }
+      
+      if (scoreboardData['Total']) {
+        totalScores = {
+          jaihoon: scoreboardData['Total'].jaihoon || 0,
+          saihoon: scoreboardData['Total'].saihoon || 0
+        };
+      }
     }
     
-    // Parse CSV data
+    // Parse CSV
     function parseCSV(csv) {
-        const lines = csv.trim().split('\n');
-        return lines.map(line => {
-            const result = [];
-            let inQuotes = false;
-            let currentField = '';
-            
-            for (let i = 0; i < line.length; i++) {
-                const char = line[i];
-                
-                if (char === '"' && line[i + 1] === '"') {
-                    currentField += '"';
-                    i++;
-                } else if (char === '"') {
-                    inQuotes = !inQuotes;
-                } else if (char === ',' && !inQuotes) {
-                    result.push(currentField);
-                    currentField = '';
-                } else {
-                    currentField += char;
-                }
-            }
-            
-            result.push(currentField);
-            return result.map(cell => cell.trim());
-        });
-    }
-    
-    // Update scoreboard display
-    function updateScoreboard(category) {
-        currentCategory = category;
-        let data;
+      const lines = csv.trim().split('\n');
+      return lines.map(line => {
+        const result = [];
+        let inQuotes = false;
+        let currentField = '';
         
-        if (category === 'Total') {
-            data = totalScores;
-            document.getElementById('score-label-jaihoon').textContent = 'Total Points';
-            document.getElementById('score-label-saihoon').textContent = 'Total Points';
-        } else {
-            data = scoreboardData[category] || { jaihoon: 0, saihoon: 0 };
-            document.getElementById('score-label-jaihoon').textContent = 'Points';
-            document.getElementById('score-label-saihoon').textContent = 'Points';
+        for (let i = 0; i < line.length; i++) {
+          const char = line[i];
+          
+          if (char === '"' && line[i + 1] === '"') {
+            currentField += '"';
+            i++;
+          } else if (char === '"') {
+            inQuotes = !inQuotes;
+          } else if (char === ',' && !inQuotes) {
+            result.push(currentField);
+            currentField = '';
+          } else {
+            currentField += char;
+          }
         }
         
-        const jaihoonScore = data.jaihoon || 0;
-        const saihoonScore = data.saihoon || 0;
-        const totalScore = jaihoonScore + saihoonScore;
-        
-        document.getElementById('score-jaihoon').textContent = jaihoonScore;
-        document.getElementById('score-saihoon').textContent = saihoonScore;
-        
-        // Update progress bars
-        const jaihoonPercent = totalScore > 0 ? (jaihoonScore / totalScore) * 100 : 50;
-        const saihoonPercent = totalScore > 0 ? (saihoonScore / totalScore) * 100 : 50;
-        
-        document.getElementById('score-jaihoon-bar').style.width = `${jaihoonPercent}%`;
-        document.getElementById('score-saihoon-bar').style.width = `${saihoonPercent}%`;
-        
-        // Update button styles
-        document.querySelectorAll('.scoreboard-category-btn').forEach(btn => {
-            const btnCategory = btn.getAttribute('data-category');
-            if (btnCategory === category) {
-                if (category === 'Total') {
-                    btn.classList.add('bg-gradient-to-r', 'from-purple-500', 'to-indigo-600', 'text-white', 'shadow-lg');
-                    btn.classList.remove('bg-white', 'text-gray-700', 'shadow');
-                } else {
-                    btn.classList.add('bg-gradient-to-r', 'from-green-500', 'to-emerald-600', 'text-white', 'shadow-lg');
-                    btn.classList.remove('bg-white', 'text-gray-700', 'shadow');
-                }
-            } else {
-                if (btnCategory === 'Total') {
-                    btn.classList.remove('bg-gradient-to-r', 'from-purple-500', 'to-indigo-600', 'text-white', 'shadow-lg');
-                    btn.classList.add('bg-white', 'text-gray-700', 'shadow');
-                } else {
-                    btn.classList.remove('bg-gradient-to-r', 'from-green-500', 'to-emerald-600', 'text-white', 'shadow-lg');
-                    btn.classList.add('bg-white', 'text-gray-700', 'shadow');
-                }
-            }
-        });
+        result.push(currentField);
+        return result.map(cell => cell.trim());
+      });
+    }
+    
+    // Update scoreboard
+    function updateScoreboard(category) {
+      currentCategory = category;
+      let data;
+      
+      if (category === 'Total') {
+        data = totalScores;
+        document.getElementById('score-label-jaihoon').textContent = 'Total Points';
+        document.getElementById('score-label-saihoon').textContent = 'Total Points';
+      } else {
+        data = scoreboardData[category] || { jaihoon: 0, saihoon: 0 };
+        document.getElementById('score-label-jaihoon').textContent = 'Points';
+        document.getElementById('score-label-saihoon').textContent = 'Points';
+      }
+      
+      document.getElementById('score-jaihoon').textContent = data.jaihoon || 0;
+      document.getElementById('score-saihoon').textContent = data.saihoon || 0;
+      
+      // Update button styles
+      document.querySelectorAll('.scoreboard-category-btn').forEach(btn => {
+        if (btn.getAttribute('data-category') === category) {
+          if (category === 'Total') {
+            btn.classList.remove('bg-white', 'text-gray-700');
+            btn.classList.add('bg-purple-600', 'text-white');
+          } else {
+            btn.classList.remove('bg-white', 'text-gray-700');
+            btn.classList.add('bg-green-500', 'text-white');
+          }
+        } else {
+          if (btn.getAttribute('data-category') === 'Total') {
+            btn.classList.remove('bg-purple-600', 'text-white');
+            btn.classList.add('bg-white', 'text-gray-700');
+          } else {
+            btn.classList.remove('bg-green-500', 'text-white');
+            btn.classList.add('bg-white', 'text-gray-700');
+          }
+        }
+      });
     }
     
     // Update team scores
     function updateTeamScores() {
-        const jaihoonScore = totalScores.jaihoon;
-        const saihoonScore = totalScores.saihoon;
-        const totalScore = jaihoonScore + saihoonScore;
-        
-        // Update scores
-        document.getElementById('team-jaihoon-score').textContent = jaihoonScore;
-        document.getElementById('team-saihoon-score').textContent = saihoonScore;
-        
-        // Update progress bars
-        const jaihoonPercent = totalScore > 0 ? (jaihoonScore / totalScore) * 100 : 50;
-        const saihoonPercent = totalScore > 0 ? (saihoonScore / totalScore) * 100 : 50;
-        
-        document.getElementById('jaihoon-progress-fill').style.width = `${jaihoonPercent}%`;
-        document.getElementById('saihoon-progress-fill').style.width = `${saihoonPercent}%`;
-        document.getElementById('jaihoon-progress').textContent = `${Math.round(jaihoonPercent)}%`;
-        document.getElementById('saihoon-progress').textContent = `${Math.round(saihoonPercent)}%`;
-        
-        // Update team leaders
-        if (teamLeaders.jaihoon && teamLeaders.jaihoon.assistant) {
-            document.getElementById('assistant-leader-jaihoon').textContent = teamLeaders.jaihoon.assistant;
-        }
-        if (teamLeaders.saihoon && teamLeaders.saihoon.assistant) {
-            document.getElementById('assistant-leader-saihoon').textContent = teamLeaders.saihoon.assistant;
-        }
-    }
-    
-    // Update team comparison stats
-    function updateTeamComparison() {
-        let jaihoonWins = 0;
-        let saihoonWins = 0;
-        
-        allResults.forEach(result => {
-            if (result.firstGroup && result.firstGroup.includes('Jaihoon')) jaihoonWins++;
-            if (result.firstGroup && result.firstGroup.includes('Saihoon')) saihoonWins++;
-        });
-        
-        document.getElementById('jaihoon-wins').textContent = jaihoonWins;
-        document.getElementById('saihoon-wins').textContent = saihoonWins;
-        document.getElementById('total-events').textContent = allResults.length;
-    }
-    
-    // Update program statistics
-    function updateProgramStats() {
-        const totalPrograms = allEvents.length;
-        const completedPrograms = allResults.length;
-        const ongoingPrograms = Math.floor(totalPrograms * 0.3);
-        const upcomingPrograms = Math.max(0, totalPrograms - completedPrograms - ongoingPrograms);
-        
-        document.getElementById('total-programs').textContent = totalPrograms;
-        document.getElementById('completed-programs').textContent = completedPrograms;
-        document.getElementById('ongoing-programs').textContent = ongoingPrograms;
-        document.getElementById('upcoming-programs').textContent = upcomingPrograms;
+      document.getElementById('team-jaihoon-score').textContent = totalScores.jaihoon;
+      document.getElementById('team-saihoon-score').textContent = totalScores.saihoon;
     }
     
     // Display results
     function displayResults(filter) {
-        const container = document.getElementById('results-container');
-        const noResults = document.getElementById('no-results');
-        
-        container.innerHTML = '';
-        
-        const filtered = filter === 'all' 
-            ? allResults 
-            : allResults.filter(r => r.category === filter);
-        
-        if (filtered.length === 0) {
-            noResults.classList.remove('hidden');
-            container.innerHTML = '';
-            return;
-        }
-        
-        noResults.classList.add('hidden');
-        
-        filtered.forEach((result, index) => {
-            const firstGroupBadge = getTeamBadge(result.firstGroup);
-            const secondGroupBadge = getTeamBadge(result.secondGroup);
-            const thirdGroupBadge = getTeamBadge(result.thirdGroup);
-            
-            const card = document.createElement('div');
-            card.className = `bg-white rounded-3xl shadow-lg p-8 card-hover animate-fade-in`;
-            card.style.animationDelay = `${index * 0.1}s`;
-            card.innerHTML = `
-                <div class="mb-8">
-                    <div class="flex flex-wrap items-center gap-3 mb-4">
-                        <span class="inline-flex items-center px-3 py-1 bg-gradient-to-r from-green-100 to-emerald-100 text-green-700 rounded-full text-sm font-medium">
-                            <i class="fas fa-hashtag mr-2"></i>${result.eventCode}
-                        </span>
-                        <span class="inline-flex items-center px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">
-                            <i class="fas fa-calendar mr-2"></i>Event #${result.no}
-                        </span>
-                        <span class="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-                            <i class="fas fa-tag mr-2"></i>${result.category}
-                        </span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-800">${result.event}</h3>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    ${result.firstName ? `
-                        <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 border border-yellow-100">
-                            <div class="flex items-center justify-between mb-6">
-                                <div class="flex items-center">
-                                    <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center mr-4 shadow">
-                                        <span class="font-bold text-white text-xl">1</span>
-                                    </div>
-                                    <div>
-                                        <div class="text-sm text-gray-600">Chest No</div>
-                                        <div class="font-bold text-lg">${result.firstChestNo || '-'}</div>
-                                    </div>
-                                </div>
-                                ${firstGroupBadge}
-                            </div>
-                            <div class="text-xl font-bold mb-4">${result.firstName}</div>
-                            <div class="flex items-center justify-between">
-                                <div class="text-sm text-gray-600">1st Place</div>
-                                <div class="flex items-center gap-2">
-                                    <span class="inline-flex items-center px-3 py-1 bg-yellow-100 text-yellow-800 rounded-lg text-sm font-medium">
-                                        ${result.firstPoint} pts
-                                    </span>
-                                    ${result.firstGradePoint > 0 ? `
-                                        <span class="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 rounded-lg text-sm font-medium">
-                                            ${result.firstGradePoint} gp
-                                        </span>
-                                    ` : ''}
-                                </div>
-                            </div>
-                        </div>
-                    ` : ''}
-                    
-                    ${result.secondName ? `
-                        <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 border border-gray-200">
-                            <div class="flex items-center justify-between mb-6">
-                                <div class="flex items-center">
-                                    <div class="w-12 h-12 bg-gradient-to-br from-gray-400 to-gray-600 rounded-xl flex items-center justify-center mr-4 shadow">
-                                        <span class="font-bold text-white text-xl">2</span>
-                                    </div>
-                                    <div>
-                                        <div class="text-sm text-gray-600">Chest No</div>
-                                        <div class="font-bold text-lg">${result.secondChestNo || '-'}</div>
-                                    </div>
-                                </div>
-                                ${secondGroupBadge}
-                            </div>
-                            <div class="text-xl font-bold mb-4">${result.secondName}</div>
-                            <div class="flex items-center justify-between">
-                                <div class="text-sm text-gray-600">2nd Place</div>
-                                <div class="flex items-center gap-2">
-                                    <span class="inline-flex items-center px-3 py-1 bg-gray-100 text-gray-800 rounded-lg text-sm font-medium">
-                                        ${result.secondPoint} pts
-                                    </span>
-                                    ${result.secondGradePoint > 0 ? `
-                                        <span class="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 rounded-lg text-sm font-medium">
-                                            ${result.secondGradePoint} gp
-                                        </span>
-                                    ` : ''}
-                                </div>
-                            </div>
-                        </div>
-                    ` : ''}
-                    
-                    ${result.thirdName ? `
-                        <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-6 border border-orange-100">
-                            <div class="flex items-center justify-between mb-6">
-                                <div class="flex items-center">
-                                    <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-600 rounded-xl flex items-center justify-center mr-4 shadow">
-                                        <span class="font-bold text-white text-xl">3</span>
-                                    </div>
-                                    <div>
-                                        <div class="text-sm text-gray-600">Chest No</div>
-                                        <div class="font-bold text-lg">${result.thirdChestNo || '-'}</div>
-                                    </div>
-                                </div>
-                                ${thirdGroupBadge}
-                            </div>
-                            <div class="text-xl font-bold mb-4">${result.thirdName}</div>
-                            <div class="flex items-center justify-between">
-                                <div class="text-sm text-gray-600">3rd Place</div>
-                                <div class="flex items-center gap-2">
-                                    <span class="inline-flex items-center px-3 py-1 bg-orange-100 text-orange-800 rounded-lg text-sm font-medium">
-                                        ${result.thirdPoint} pts
-                                    </span>
-                                    ${result.thirdGradePoint > 0 ? `
-                                        <span class="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 rounded-lg text-sm font-medium">
-                                            ${result.thirdGradePoint} gp
-                                        </span>
-                                    ` : ''}
-                                </div>
-                            </div>
-                        </div>
-                    ` : ''}
-                </div>
-            `;
-            
-            container.appendChild(card);
-        });
-    }
-    
-    // Display toppers
-    function displayToppers(category) {
-        const container = document.getElementById('toppers-container');
-        
-        container.innerHTML = '';
-        
-        if (allResults.length === 0) {
-            container.innerHTML = `
-                <div class="text-center py-16">
-                    <div class="loader mx-auto mb-6"></div>
-                    <p class="text-gray-600">Loading toppers data...</p>
-                </div>
-            `;
-            return;
-        }
-        
-        // Calculate top performers
-        const candidatePoints = {};
-        
-        allResults.forEach(result => {
-            // First place
-            if (result.firstChestNo && result.firstName) {
-                const key = `${result.firstChestNo}-${result.firstName}`;
-                if (!candidatePoints[key]) {
-                    candidatePoints[key] = {
-                        chestNo: result.firstChestNo,
-                        name: result.firstName,
-                        team: result.firstGroup,
-                        category: result.category,
-                        totalPoints: 0,
-                        totalGradePoints: 0,
-                        events: []
-                    };
-                }
-                candidatePoints[key].totalPoints += result.firstPoint || 0;
-                candidatePoints[key].totalGradePoints += result.firstGradePoint || 0;
-            }
-            
-            // Second place
-            if (result.secondChestNo && result.secondName) {
-                const key = `${result.secondChestNo}-${result.secondName}`;
-                if (!candidatePoints[key]) {
-                    candidatePoints[key] = {
-                        chestNo: result.secondChestNo,
-                        name: result.secondName,
-                        team: result.secondGroup,
-                        category: result.category,
-                        totalPoints: 0,
-                        totalGradePoints: 0,
-                        events: []
-                    };
-                }
-                candidatePoints[key].totalPoints += result.secondPoint || 0;
-                candidatePoints[key].totalGradePoints += result.secondGradePoint || 0;
-            }
-            
-            // Third place
-            if (result.thirdChestNo && result.thirdName) {
-                const key = `${result.thirdChestNo}-${result.thirdName}`;
-                if (!candidatePoints[key]) {
-                    candidatePoints[key] = {
-                        chestNo: result.thirdChestNo,
-                        name: result.thirdName,
-                        team: result.thirdGroup,
-                        category: result.category,
-                        totalPoints: 0,
-                        totalGradePoints: 0,
-                        events: []
-                    };
-                }
-                candidatePoints[key].totalPoints += result.thirdPoint || 0;
-                candidatePoints[key].totalGradePoints += result.thirdGradePoint || 0;
-            }
-        });
-        
-        // Convert to array and sort
-        const candidatesArray = Object.values(candidatePoints);
-        
-        // Group by category
-        const toppersByCategory = {};
-        candidatesArray.forEach(candidate => {
-            if (!toppersByCategory[candidate.category]) {
-                toppersByCategory[candidate.category] = [];
-            }
-            toppersByCategory[candidate.category].push(candidate);
-        });
-        
-        // Sort each category
-        for (const cat in toppersByCategory) {
-            toppersByCategory[cat].sort((a, b) => b.totalPoints - a.totalPoints);
-        }
-        
-        // Display based on selected category
-        if (category === 'all') {
-            const categoriesToShow = ['General', 'Sub Junior', 'Junior', 'Senior', 'Group'];
-            
-            categoriesToShow.forEach((cat, catIndex) => {
-                if (toppersByCategory[cat] && toppersByCategory[cat].length > 0) {
-                    const top3 = toppersByCategory[cat].slice(0, 3);
-                    
-                    const categorySection = document.createElement('div');
-                    categorySection.className = `mb-16 animate-fade-in`;
-                    categorySection.style.animationDelay = `${catIndex * 0.2}s`;
-                    categorySection.innerHTML = `
-                        <div class="flex items-center justify-center mb-10">
-                            <div class="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-                            <h3 class="text-3xl font-bold mx-6 gradient-text">${cat} Toppers</h3>
-                            <div class="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            ${top3.map((candidate, index) => `
-                                <div class="bg-white rounded-2xl shadow-lg p-8 text-center relative card-hover">
-                                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-2xl flex items-center justify-center text-white font-bold shadow-lg ${index < 3 ? `topper-rank-${index + 1}` : 'bg-gray-500'}">
-                                        ${index + 1}
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="text-5xl font-bold mb-4 text-gray-800">${candidate.totalPoints}</div>
-                                        <div class="text-sm text-gray-500 mb-6">Total Points</div>
-                                        <h4 class="text-xl font-bold mb-3 text-gray-800">${candidate.name}</h4>
-                                        <div class="text-sm text-gray-600 mb-4">Chest No: ${candidate.chestNo}</div>
-                                        <div class="${getTeamColorClass(candidate.team)} px-4 py-2 rounded-full text-sm font-medium inline-block mb-4">
-                                            ${candidate.team}
-                                        </div>
-                                        ${candidate.totalGradePoints > 0 ? `
-                                            <div class="text-sm text-gray-600">
-                                                <i class="fas fa-star text-yellow-500 mr-2"></i>Grade Points: ${candidate.totalGradePoints}
-                                            </div>
-                                        ` : ''}
-                                    </div>
-                                </div>
-                            `).join('')}
-                        </div>
-                    `;
-                    container.appendChild(categorySection);
-                }
-            });
-        } else {
-            // Show specific category
-            if (toppersByCategory[category] && toppersByCategory[category].length > 0) {
-                const top10 = toppersByCategory[category].slice(0, 10);
-                
-                const categorySection = document.createElement('div');
-                categorySection.innerHTML = `
-                    <div class="flex items-center justify-center mb-10">
-                        <div class="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-                        <h3 class="text-3xl font-bold mx-6 gradient-text">${category} Toppers</h3>
-                        <div class="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        ${top10.map((candidate, index) => `
-                            <div class="bg-white rounded-2xl shadow-lg p-8 text-center relative card-hover animate-fade-in" style="animation-delay: ${index * 0.1}s">
-                                <div class="absolute top-4 left-4 w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold shadow ${index < 3 ? `topper-rank-${index + 1}` : 'bg-gray-500'}">
-                                    ${index + 1}
-                                </div>
-                                <div class="text-center">
-                                    <div class="text-4xl font-bold mb-4 text-gray-800">${candidate.totalPoints}</div>
-                                    <div class="text-sm text-gray-500 mb-4">Total Points</div>
-                                    <h4 class="text-lg font-bold mb-3 text-gray-800">${candidate.name}</h4>
-                                    <div class="text-sm text-gray-600 mb-3">Chest No: ${candidate.chestNo}</div>
-                                    <div class="${getTeamColorClass(candidate.team)} px-3 py-1 rounded-full text-xs font-medium inline-block mb-3">
-                                        ${candidate.team}
-                                    </div>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-                container.appendChild(categorySection);
-            } else {
-                container.innerHTML = `
-                    <div class="text-center py-16">
-                        <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-crown text-gray-400 text-3xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">No Toppers Data Available</h3>
-                        <p class="text-gray-600 max-w-md mx-auto">Topper data for ${category} will appear here when results are published.</p>
-                    </div>
-                `;
-            }
-        }
-        
-        // Update button styles
-        document.querySelectorAll('.topper-category-btn').forEach(btn => {
-            if (btn.getAttribute('data-topper-category') === category) {
-                btn.classList.add('bg-gradient-to-r', 'from-green-500', 'to-emerald-600', 'text-white', 'shadow-lg');
-                btn.classList.remove('bg-white', 'text-gray-700', 'shadow');
-            } else {
-                btn.classList.remove('bg-gradient-to-r', 'from-green-500', 'to-emerald-600', 'text-white', 'shadow-lg');
-                btn.classList.add('bg-white', 'text-gray-700', 'shadow');
-            }
-        });
-    }
-    
-    // Display programs
-    function displayPrograms() {
-        const container = document.getElementById('programs-container');
-        
-        container.innerHTML = '';
-        
-        const filtered = currentProgramFilter === 'all' 
-            ? allEvents 
-            : allEvents.filter(event => event.category === currentProgramFilter);
-        
-        if (filtered.length === 0) {
-            container.innerHTML = `
-                <div class="text-center py-12 col-span-full">
-                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-microphone text-gray-400 text-2xl"></i>
-                    </div>
-                    <p class="text-gray-600">No programs found for ${currentProgramFilter} category.</p>
-                </div>
-            `;
-            return;
-        }
-        
-        filtered.forEach((event, index) => {
-            const programCard = document.createElement('div');
-            programCard.className = `bg-gradient-to-br from-white to-green-50 border border-green-100 rounded-2xl p-6 cursor-pointer hover:shadow-xl transition-all duration-300 card-hover animate-fade-in`;
-            programCard.style.animationDelay = `${index * 0.05}s`;
-            programCard.dataset.eventCode = event.eventCode;
-            programCard.innerHTML = `
-                <div class="flex items-start mb-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mr-4 shadow">
-                        <span class="text-white font-bold">${event.eventCode}</span>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg mb-2 text-gray-800">${event.event}</h4>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="inline-flex items-center px-2 py-1 bg-green-100 text-green-700 rounded-lg text-xs">
-                                <i class="fas fa-tag mr-1"></i>${event.category}
-                            </span>
-                            <span class="inline-flex items-center px-2 py-1 bg-blue-100 text-blue-700 rounded-lg text-xs">
-                                <i class="fas fa-play-circle mr-1"></i>${event.type}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-right">
-                    <button class="view-results-btn px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white text-sm font-medium rounded-lg hover:shadow-md transition-all duration-300">
-                        <i class="fas fa-chart-bar mr-2"></i>View Results
-                    </button>
-                </div>
-            `;
-            
-            programCard.querySelector('.view-results-btn').addEventListener('click', (e) => {
-                e.stopPropagation();
-                showProgramResultsModal(event.eventCode, event.event);
-            });
-            
-            programCard.addEventListener('click', function() {
-                showProgramResultsModal(event.eventCode, event.event);
-            });
-            
-            container.appendChild(programCard);
-        });
-    }
-    
-    // Show program results in modal
-    function showProgramResultsModal(eventCode, eventName) {
-        const results = allResults.filter(r => r.eventCode === eventCode);
-        
-        if (results.length === 0) {
-            const modalContent = document.getElementById('modal-program-content');
-            modalContent.innerHTML = `
-                <div class="text-center py-12">
-                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-info-circle text-gray-400 text-3xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Results Not Available</h3>
-                    <p class="text-gray-600">No results available for this program yet. Check back later!</p>
-                </div>
-            `;
-            document.getElementById('modal-program-title').textContent = `${eventName} Results`;
-            document.getElementById('modal-program-subtitle').textContent = '';
-            openModal();
-            return;
-        }
-        
-        const result = results[0];
-        
+      currentFilter = filter;
+      const container = document.getElementById('results-container');
+      const noResults = document.getElementById('no-results');
+      
+      container.innerHTML = '';
+      
+      const filtered = filter === 'all' 
+        ? allResults 
+        : allResults.filter(r => r.category === filter);
+      
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12">
+            <h3 class="text-2xl font-bold mb-4">No Results Available</h3>
+            <p class="text-gray-600">Results for ${filter} category will appear here when available.</p>
+          </div>
+        `;
+        return;
+      }
+      
+      noResults.classList.add('hidden');
+      
+      filtered.forEach(result => {
         const firstGroupBadge = getTeamBadge(result.firstGroup);
         const secondGroupBadge = getTeamBadge(result.secondGroup);
         const thirdGroupBadge = getTeamBadge(result.thirdGroup);
         
-        const modalContent = document.getElementById('modal-program-content');
-        modalContent.innerHTML = `
-            <div class="mb-8">
-                <div class="flex flex-wrap items-center gap-3 mb-4">
-                    <span class="inline-flex items-center px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
-                        <i class="fas fa-hashtag mr-2"></i>${result.eventCode}
-                    </span>
-                    <span class="inline-flex items-center px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">
-                        <i class="fas fa-calendar mr-2"></i>Event #${result.no}
-                    </span>
-                    <span class="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-                        <i class="fas fa-tag mr-2"></i>${result.category}
-                    </span>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-800 mb-2">${result.event}</h3>
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-2xl shadow p-8';
+        card.innerHTML = `
+          <div class="mb-6">
+            <div class="flex items-center mb-3">
+              <span class="text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full mr-3">
+                ${result.eventCode}
+              </span>
+              <span class="text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full">
+                Event #${result.no}
+              </span>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                ${result.firstName ? `
-                    <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 border border-yellow-100">
-                        <div class="flex items-center justify-between mb-6">
-                            <div class="flex items-center">
-                                <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center mr-4 shadow">
-                                    <span class="font-bold text-white text-xl">1</span>
-                                </div>
-                                <div>
-                                    <div class="text-sm text-gray-600">Chest No</div>
-                                    <div class="font-bold text-lg">${result.firstChestNo || '-'}</div>
-                                </div>
-                            </div>
-                            ${firstGroupBadge}
-                        </div>
-                        <div class="text-xl font-bold mb-4">${result.firstName}</div>
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-gray-600">1st Place</div>
-                            <div class="flex items-center gap-2">
-                                <span class="inline-flex items-center px-3 py-1 bg-yellow-100 text-yellow-800 rounded-lg text-sm font-medium">
-                                    ${result.firstPoint} pts
-                                </span>
-                                ${result.firstGradePoint > 0 ? `
-                                    <span class="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 rounded-lg text-sm font-medium">
-                                        ${result.firstGradePoint} gp
-                                    </span>
-                                ` : ''}
-                            </div>
-                        </div>
-                    </div>
-                ` : ''}
-                
-                ${result.secondName ? `
-                    <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 border border-gray-200">
-                        <div class="flex items-center justify-between mb-6">
-                            <div class="flex items-center">
-                                <div class="w-12 h-12 bg-gradient-to-br from-gray-400 to-gray-600 rounded-xl flex items-center justify-center mr-4 shadow">
-                                    <span class="font-bold text-white text-xl">2</span>
-                                </div>
-                                <div>
-                                    <div class="text-sm text-gray-600">Chest No</div>
-                                    <div class="font-bold text-lg">${result.secondChestNo || '-'}</div>
-                                </div>
-                            </div>
-                            ${secondGroupBadge}
-                        </div>
-                        <div class="text-xl font-bold mb-4">${result.secondName}</div>
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-gray-600">2nd Place</div>
-                            <div class="flex items-center gap-2">
-                                <span class="inline-flex items-center px-3 py-1 bg-gray-100 text-gray-800 rounded-lg text-sm font-medium">
-                                    ${result.secondPoint} pts
-                                </span>
-                                ${result.secondGradePoint > 0 ? `
-                                    <span class="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 rounded-lg text-sm font-medium">
-                                        ${result.secondGradePoint} gp
-                                    </span>
-                                ` : ''}
-                            </div>
-                        </div>
-                    </div>
-                ` : ''}
-                
-                ${result.thirdName ? `
-                    <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-6 border border-orange-100">
-                        <div class="flex items-center justify-between mb-6">
-                            <div class="flex items-center">
-                                <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-600 rounded-xl flex items-center justify-center mr-4 shadow">
-                                    <span class="font-bold text-white text-xl">3</span>
-                                </div>
-                                <div>
-                                    <div class="text-sm text-gray-600">Chest No</div>
-                                    <div class="font-bold text-lg">${result.thirdChestNo || '-'}</div>
-                                </div>
-                            </div>
-                            ${thirdGroupBadge}
-                        </div>
-                        <div class="text-xl font-bold mb-4">${result.thirdName}</div>
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-gray-600">3rd Place</div>
-                            <div class="flex items-center gap-2">
-                                <span class="inline-flex items-center px-3 py-1 bg-orange-100 text-orange-800 rounded-lg text-sm font-medium">
-                                    ${result.thirdPoint} pts
-                                </span>
-                                ${result.thirdGradePoint > 0 ? `
-                                    <span class="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 rounded-lg text-sm font-medium">
-                                        ${result.thirdGradePoint} gp
-                                    </span>
-                                ` : ''}
-                            </div>
-                        </div>
-                    </div>
-                ` : ''}
+            <h3 class="text-2xl font-bold">${result.event}</h3>
+            <div class="flex items-center mt-3">
+              <span class="text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full">${result.category}</span>
             </div>
-            
-            ${!result.firstName && !result.secondName && !result.thirdName ? `
-                <div class="text-center py-12">
-                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-info-circle text-gray-400 text-3xl"></i>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            ${result.firstName ? `
+              <div class="bg-yellow-50 rounded-xl p-6">
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex items-center">
+                    <div class="w-10 h-10 bg-yellow-500 rounded-lg flex items-center justify-center mr-3">
+                      <span class="font-bold text-white">1</span>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Results Not Published</h3>
-                    <p class="text-gray-600">Results for this program have not been published yet. Please check back later.</p>
+                    <div>
+                      <div class="text-sm text-gray-600">Chest No</div>
+                      <div class="font-bold">${result.firstChestNo || '-'}</div>
+                    </div>
+                  </div>
+                  ${firstGroupBadge}
                 </div>
+                <div class="text-lg font-bold">${result.firstName}</div>
+                <div class="flex items-center justify-between mt-2">
+                  <div class="text-sm text-gray-600">1st Place</div>
+                  <div>
+                    <span class="text-sm bg-yellow-100 text-yellow-800 px-2 py-1 rounded mr-2">${result.firstPoint} pts</span>
+                    ${result.firstGradePoint > 0 ? `<span class="text-sm bg-green-100 text-green-800 px-2 py-1 rounded">${result.firstGradePoint} gp</span>` : ''}
+                  </div>
+                </div>
+              </div>
             ` : ''}
+            
+            ${result.secondName ? `
+              <div class="bg-gray-50 rounded-xl p-6">
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex items-center">
+                    <div class="w-10 h-10 bg-gray-400 rounded-lg flex items-center justify-center mr-3">
+                      <span class="font-bold text-white">2</span>
+                    </div>
+                    <div>
+                      <div class="text-sm text-gray-600">Chest No</div>
+                      <div class="font-bold">${result.secondChestNo || '-'}</div>
+                    </div>
+                  </div>
+                  ${secondGroupBadge}
+                </div>
+                <div class="text-lg font-bold">${result.secondName}</div>
+                <div class="flex items-center justify-between mt-2">
+                  <div class="text-sm text-gray-600">2nd Place</div>
+                  <div>
+                    <span class="text-sm bg-gray-100 text-gray-800 px-2 py-1 rounded mr-2">${result.secondPoint} pts</span>
+                    ${result.secondGradePoint > 0 ? `<span class="text-sm bg-green-100 text-green-800 px-2 py-1 rounded">${result.secondGradePoint} gp</span>` : ''}
+                  </div>
+                </div>
+              </div>
+            ` : ''}
+            
+            ${result.thirdName ? `
+              <div class="bg-orange-50 rounded-xl p-6">
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex items-center">
+                    <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center mr-3">
+                      <span class="font-bold text-white">3</span>
+                    </div>
+                    <div>
+                      <div class="text-sm text-gray-600">Chest No</div>
+                      <div class="font-bold">${result.thirdChestNo || '-'}</div>
+                    </div>
+                  </div>
+                  ${thirdGroupBadge}
+                </div>
+                <div class="text-lg font-bold">${result.thirdName}</div>
+                <div class="flex items-center justify-between mt-2">
+                  <div class="text-sm text-gray-600">3rd Place</div>
+                  <div>
+                    <span class="text-sm bg-orange-100 text-orange-800 px-2 py-1 rounded mr-2">${result.thirdPoint} pts</span>
+                    ${result.thirdGradePoint > 0 ? `<span class="text-sm bg-green-100 text-green-800 px-2 py-1 rounded">${result.thirdGradePoint} gp</span>` : ''}
+                  </div>
+                </div>
+              </div>
+            ` : ''}
+          </div>
         `;
         
+        container.appendChild(card);
+      });
+    }
+    
+    // Display toppers (top candidates by category)
+    function displayToppers(category) {
+      currentTopperCategory = category;
+      const container = document.getElementById('toppers-container');
+      
+      container.innerHTML = '';
+      
+      if (allResults.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12">
+            <div class="loader mx-auto mb-6"></div>
+            <p class="text-gray-600">Loading toppers data...</p>
+          </div>
+        `;
+        return;
+      }
+      
+      // Calculate top performers by category
+      const candidatePoints = {};
+      
+      // Process results to calculate points per candidate
+      allResults.forEach(result => {
+        // First place
+        if (result.firstChestNo && result.firstName) {
+          const key = `${result.firstChestNo}-${result.firstName}`;
+          if (!candidatePoints[key]) {
+            candidatePoints[key] = {
+              chestNo: result.firstChestNo,
+              name: result.firstName,
+              team: result.firstGroup,
+              category: result.category,
+              totalPoints: 0,
+              totalGradePoints: 0,
+              events: []
+            };
+          }
+          candidatePoints[key].totalPoints += result.firstPoint || 0;
+          candidatePoints[key].totalGradePoints += result.firstGradePoint || 0;
+          candidatePoints[key].events.push({
+            event: result.event,
+            position: '1st',
+            points: result.firstPoint || 0,
+            gradePoints: result.firstGradePoint || 0
+          });
+        }
+        
+        // Second place
+        if (result.secondChestNo && result.secondName) {
+          const key = `${result.secondChestNo}-${result.secondName}`;
+          if (!candidatePoints[key]) {
+            candidatePoints[key] = {
+              chestNo: result.secondChestNo,
+              name: result.secondName,
+              team: result.secondGroup,
+              category: result.category,
+              totalPoints: 0,
+              totalGradePoints: 0,
+              events: []
+            };
+          }
+          candidatePoints[key].totalPoints += result.secondPoint || 0;
+          candidatePoints[key].totalGradePoints += result.secondGradePoint || 0;
+          candidatePoints[key].events.push({
+            event: result.event,
+            position: '2nd',
+            points: result.secondPoint || 0,
+            gradePoints: result.secondGradePoint || 0
+          });
+        }
+        
+        // Third place
+        if (result.thirdChestNo && result.thirdName) {
+          const key = `${result.thirdChestNo}-${result.thirdName}`;
+          if (!candidatePoints[key]) {
+            candidatePoints[key] = {
+              chestNo: result.thirdChestNo,
+              name: result.thirdName,
+              team: result.thirdGroup,
+              category: result.category,
+              totalPoints: 0,
+              totalGradePoints: 0,
+              events: []
+            };
+          }
+          candidatePoints[key].totalPoints += result.thirdPoint || 0;
+          candidatePoints[key].totalGradePoints += result.thirdGradePoint || 0;
+          candidatePoints[key].events.push({
+            event: result.event,
+            position: '3rd',
+            points: result.thirdPoint || 0,
+            gradePoints: result.thirdGradePoint || 0
+          });
+        }
+      });
+      
+      // Convert to array and sort by total points
+      const candidatesArray = Object.values(candidatePoints);
+      
+      // Group by category
+      const toppersByCategory = {};
+      candidatesArray.forEach(candidate => {
+        if (!toppersByCategory[candidate.category]) {
+          toppersByCategory[candidate.category] = [];
+        }
+        toppersByCategory[candidate.category].push(candidate);
+      });
+      
+      // Sort each category by total points
+      for (const cat in toppersByCategory) {
+        toppersByCategory[cat].sort((a, b) => b.totalPoints - a.totalPoints);
+      }
+      
+      // Display based on selected category
+      if (category === 'all') {
+        // Show all categories
+        const categoriesToShow = ['General', 'Sub Junior', 'Junior', 'Senior', 'Group'];
+        
+        categoriesToShow.forEach(cat => {
+          if (toppersByCategory[cat] && toppersByCategory[cat].length > 0) {
+            const top3 = toppersByCategory[cat].slice(0, 3);
+            if (top3.length > 0) {
+              const categorySection = document.createElement('div');
+              categorySection.className = 'mb-12';
+              categorySection.innerHTML = `
+                <h3 class="text-3xl font-bold text-center mb-6">${cat} Toppers</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  ${top3.map((candidate, index) => `
+                    <div class="bg-white rounded-xl shadow p-6 relative">
+                      <div class="absolute top-3 left-3 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold ${index < 3 ? `topper-rank-${index + 1}` : 'bg-gray-500'}">
+                        ${index + 1}
+                      </div>
+                      <div class="text-center">
+                        <div class="text-5xl font-bold mb-3">${candidate.totalPoints}</div>
+                        <div class="text-sm text-gray-500 mb-1">Total Points</div>
+                        <h4 class="text-xl font-bold mb-2">${candidate.name}</h4>
+                        <div class="text-sm text-gray-600 mb-3">Chest No: ${candidate.chestNo}</div>
+                        <div class="${getTeamColorClass(candidate.team)} px-3 py-1 rounded-full text-sm inline-block mb-3">
+                          ${candidate.team}
+                        </div>
+                        <div class="text-sm text-gray-600">
+                          ${candidate.totalGradePoints > 0 ? `Grade Points: ${candidate.totalGradePoints}` : ''}
+                        </div>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              `;
+              container.appendChild(categorySection);
+            }
+          }
+        });
+        
+        // If no toppers found at all
+        if (container.innerHTML === '') {
+          container.innerHTML = `
+            <div class="text-center py-12">
+              <h3 class="text-2xl font-bold mb-4">No Toppers Data Available</h3>
+              <p class="text-gray-600">Topper data will appear here when results are published.</p>
+            </div>
+          `;
+        }
+      } else {
+        // Show specific category
+        if (toppersByCategory[category] && toppersByCategory[category].length > 0) {
+          const top10 = toppersByCategory[category].slice(0, 10);
+          
+          const categorySection = document.createElement('div');
+          categorySection.className = 'mb-12';
+          categorySection.innerHTML = `
+            <h3 class="text-3xl font-bold text-center mb-6">${category} Toppers</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              ${top10.map((candidate, index) => `
+                <div class="bg-white rounded-xl shadow p-6 relative">
+                  <div class="absolute top-3 left-3 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold ${index < 3 ? `topper-rank-${index + 1}` : 'bg-gray-500'}">
+                    ${index + 1}
+                  </div>
+                  <div class="text-center">
+                    <div class="text-5xl font-bold mb-3">${candidate.totalPoints}</div>
+                    <div class="text-sm text-gray-500 mb-1">Total Points</div>
+                    <h4 class="text-xl font-bold mb-2">${candidate.name}</h4>
+                    <div class="text-sm text-gray-600 mb-3">Chest No: ${candidate.chestNo}</div>
+                    <div class="${getTeamColorClass(candidate.team)} px-3 py-1 rounded-full text-sm inline-block mb-3">
+                      ${candidate.team}
+                    </div>
+                    <div class="text-sm text-gray-600">
+                      ${candidate.totalGradePoints > 0 ? `Grade Points: ${candidate.totalGradePoints}` : ''}
+                    </div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          `;
+          container.appendChild(categorySection);
+        } else {
+          container.innerHTML = `
+            <div class="text-center py-12">
+              <h3 class="text-2xl font-bold mb-4">No Toppers Data Available for ${category}</h3>
+              <p class="text-gray-600">Topper data for this category will appear here when results are published.</p>
+            </div>
+          `;
+        }
+      }
+      
+      // Update button styles
+      document.querySelectorAll('.topper-category-btn').forEach(btn => {
+        if (btn.getAttribute('data-topper-category') === category) {
+          btn.classList.add('bg-green-500', 'text-white');
+          btn.classList.remove('bg-white', 'text-gray-700');
+        } else {
+          btn.classList.remove('bg-green-500', 'text-white');
+          btn.classList.add('bg-white', 'text-gray-700');
+        }
+      });
+    }
+    
+    // Display programs
+    function displayPrograms() {
+      const container = document.getElementById('programs-container');
+      
+      container.innerHTML = '';
+      
+      const filtered = currentProgramFilter === 'all' 
+        ? allEvents 
+        : allEvents.filter(event => event.category === currentProgramFilter);
+      
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-8 col-span-full">
+            <p class="text-gray-600">No programs found for ${currentProgramFilter} category.</p>
+          </div>
+        `;
+        return;
+      }
+      
+      filtered.forEach(event => {
+        const programCard = document.createElement('div');
+        programCard.className = 'bg-green-50 border border-green-200 p-5 rounded-xl cursor-pointer hover:bg-green-100 transition program-card';
+        programCard.dataset.eventCode = event.eventCode;
+        programCard.innerHTML = `
+          <div class="flex items-start">
+            <div class="bg-green-100 text-green-700 font-bold px-3 py-1 rounded-lg mr-4">
+              ${event.eventCode}
+            </div>
+            <div>
+              <h4 class="font-bold text-lg mb-2">${event.event}</h4>
+              <div class="text-sm text-gray-600">${event.category} - ${event.type}</div>
+            </div>
+          </div>
+        `;
+        
+        programCard.addEventListener('click', function() {
+          showProgramResultsModal(event.eventCode, event.event);
+        });
+        
+        container.appendChild(programCard);
+      });
+    }
+    
+    // Show program results in modal
+    function showProgramResultsModal(eventCode, eventName) {
+      const results = allResults.filter(r => r.eventCode === eventCode);
+      
+      if (results.length === 0) {
+        // Show message in modal instead of alert
+        const modalContent = document.getElementById('modal-program-content');
+        modalContent.innerHTML = `
+          <div class="text-center py-12">
+            <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <i class="fas fa-info-circle text-gray-400 text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Results Not Available</h3>
+            <p class="text-gray-600">No results available for this program yet. Check back later.</p>
+          </div>
+        `;
         document.getElementById('modal-program-title').textContent = `${eventName} Results`;
-        document.getElementById('modal-program-subtitle').textContent = `${result.category} Category`;
         openModal();
+        return;
+      }
+      
+      const result = results[0]; // Assuming one result per event
+      
+      const firstGroupBadge = getTeamBadge(result.firstGroup);
+      const secondGroupBadge = getTeamBadge(result.secondGroup);
+      const thirdGroupBadge = getTeamBadge(result.thirdGroup);
+      
+      const modalContent = document.getElementById('modal-program-content');
+      modalContent.innerHTML = `
+        <div class="mb-6">
+          <div class="flex items-center mb-3">
+            <span class="text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full mr-3">
+              ${result.eventCode}
+            </span>
+            <span class="text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full">
+              ${result.category}
+            </span>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          ${result.firstName ? `
+            <div class="bg-yellow-50 rounded-xl p-6">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center">
+                  <div class="w-10 h-10 bg-yellow-500 rounded-lg flex items-center justify-center mr-3">
+                    <span class="font-bold text-white">1</span>
+                  </div>
+                  <div>
+                    <div class="text-sm text-gray-600">Chest No</div>
+                    <div class="font-bold">${result.firstChestNo || '-'}</div>
+                  </div>
+                </div>
+                ${firstGroupBadge}
+              </div>
+              <div class="text-lg font-bold">${result.firstName}</div>
+              <div class="flex items-center justify-between mt-2">
+                <div class="text-sm text-gray-600">1st Place</div>
+                <div>
+                  <span class="text-sm bg-yellow-100 text-yellow-800 px-2 py-1 rounded mr-2">${result.firstPoint} pts</span>
+                  ${result.firstGradePoint > 0 ? `<span class="text-sm bg-green-100 text-green-800 px-2 py-1 rounded">${result.firstGradePoint} gp</span>` : ''}
+                </div>
+              </div>
+            </div>
+          ` : ''}
+          
+          ${result.secondName ? `
+            <div class="bg-gray-50 rounded-xl p-6">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center">
+                  <div class="w-10 h-10 bg-gray-400 rounded-lg flex items-center justify-center mr-3">
+                    <span class="font-bold text-white">2</span>
+                  </div>
+                  <div>
+                    <div class="text-sm text-gray-600">Chest No</div>
+                    <div class="font-bold">${result.secondChestNo || '-'}</div>
+                  </div>
+                </div>
+                ${secondGroupBadge}
+              </div>
+              <div class="text-lg font-bold">${result.secondName}</div>
+              <div class="flex items-center justify-between mt-2">
+                <div class="text-sm text-gray-600">2nd Place</div>
+                <div>
+                  <span class="text-sm bg-gray-100 text-gray-800 px-2 py-1 rounded mr-2">${result.secondPoint} pts</span>
+                  ${result.secondGradePoint > 0 ? `<span class="text-sm bg-green-100 text-green-800 px-2 py-1 rounded">${result.secondGradePoint} gp</span>` : ''}
+                </div>
+              </div>
+            </div>
+          ` : ''}
+          
+          ${result.thirdName ? `
+            <div class="bg-orange-50 rounded-xl p-6">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center">
+                  <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center mr-3">
+                    <span class="font-bold text-white">3</span>
+                  </div>
+                  <div>
+                    <div class="text-sm text-gray-600">Chest No</div>
+                    <div class="font-bold">${result.thirdChestNo || '-'}</div>
+                  </div>
+                </div>
+                ${thirdGroupBadge}
+              </div>
+              <div class="text-lg font-bold">${result.thirdName}</div>
+              <div class="flex items-center justify-between mt-2">
+                <div class="text-sm text-gray-600">3rd Place</div>
+                <div>
+                  <span class="text-sm bg-orange-100 text-orange-800 px-2 py-1 rounded mr-2">${result.thirdPoint} pts</span>
+                  ${result.thirdGradePoint > 0 ? `<span class="text-sm bg-green-100 text-green-800 px-2 py-1 rounded">${result.thirdGradePoint} gp</span>` : ''}
+                </div>
+              </div>
+            </div>
+          ` : ''}
+        </div>
+        
+        ${result.firstName || result.secondName || result.thirdName ? '' : `
+          <div class="text-center py-12">
+            <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <i class="fas fa-info-circle text-gray-400 text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Results Not Published</h3>
+            <p class="text-gray-600">Results for this program have not been published yet. Please check back later.</p>
+          </div>
+        `}
+      `;
+      
+      document.getElementById('modal-program-title').textContent = `${eventName} Results`;
+      openModal();
     }
     
     // Update toppers category
     function updateToppersCategory(category) {
-        currentTopperCategory = category;
-        displayToppers(category);
+      currentTopperCategory = category;
+      displayToppers(category);
     }
     
     // Update program filter
     function updateProgramFilter(filter) {
-        currentProgramFilter = filter;
-        
-        // Update button styles
-        document.querySelectorAll('.program-filter-btn').forEach(btn => {
-            if (btn.getAttribute('data-program-filter') === filter) {
-                btn.classList.add('bg-gradient-to-r', 'from-green-500', 'to-emerald-600', 'text-white', 'shadow-lg');
-                btn.classList.remove('bg-white', 'text-gray-700', 'shadow');
-            } else {
-                btn.classList.remove('bg-gradient-to-r', 'from-green-500', 'to-emerald-600', 'text-white', 'shadow-lg');
-                btn.classList.add('bg-white', 'text-gray-700', 'shadow');
-            }
-        });
-        
-        displayPrograms();
+      currentProgramFilter = filter;
+      
+      // Update button styles
+      document.querySelectorAll('.program-filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-program-filter') === filter) {
+          btn.classList.add('bg-green-500', 'text-white');
+          btn.classList.remove('bg-gray-100');
+        } else {
+          btn.classList.remove('bg-green-500', 'text-white');
+          btn.classList.add('bg-gray-100');
+        }
+      });
+      
+      displayPrograms();
     }
     
-    // Get team badge HTML
+    // Get team badge
     function getTeamBadge(teamName) {
-        if (!teamName) return '<div class="text-sm bg-gray-100 text-gray-600 px-3 py-1 rounded-lg">-</div>';
-        
-        if (teamName.includes('Jaihoon')) {
-            return '<div class="team-badge-jaihoon text-sm px-3 py-1 rounded-lg font-medium">Team Jaihoon</div>';
-        } else if (teamName.includes('Saihoon')) {
-            return '<div class="team-badge-saihoon text-sm px-3 py-1 rounded-lg font-medium">Team Saihoon</div>';
-        } else {
-            return `<div class="text-sm bg-gray-100 text-gray-600 px-3 py-1 rounded-lg">${teamName}</div>`;
-        }
+      if (!teamName) return '<div class="text-sm bg-gray-100 text-gray-600 px-2 py-1 rounded">-</div>';
+      
+      if (teamName.includes('Jaihoon')) {
+        return '<div class="team-badge-jaihoon text-sm px-2 py-1 rounded">Team Jaihoon</div>';
+      } else if (teamName.includes('Saihoon')) {
+        return '<div class="team-badge-saihoon text-sm px-2 py-1 rounded">Team Saihoon</div>';
+      } else {
+        return `<div class="text-sm bg-gray-100 text-gray-600 px-2 py-1 rounded">${teamName}</div>`;
+      }
     }
     
     // Get team color class
     function getTeamColorClass(teamName) {
-        if (teamName.includes('Jaihoon')) {
-            return 'bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border border-green-200';
-        } else if (teamName.includes('Saihoon')) {
-            return 'bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 border border-blue-200';
-        } else {
-            return 'bg-gray-100 text-gray-800 border border-gray-200';
-        }
+      if (teamName.includes('Jaihoon')) {
+        return 'bg-green-100 text-green-800';
+      } else if (teamName.includes('Saihoon')) {
+        return 'bg-blue-100 text-blue-800';
+      } else {
+        return 'bg-gray-100 text-gray-800';
+      }
     }
     
     // Search chest number
     function searchChestNumber() {
-        const chestNumber = document.getElementById('chest-number-input').value.trim().toUpperCase();
-        const resultDiv = document.getElementById('chest-result');
-        
-        if (!chestNumber) {
-            resultDiv.innerHTML = `
-                <div class="bg-gradient-to-r from-red-50 to-pink-50 text-red-700 p-6 rounded-2xl border border-red-100">
-                    <div class="flex items-center">
-                        <i class="fas fa-exclamation-triangle text-red-500 mr-3 text-xl"></i>
-                        <div>
-                            <h4 class="font-bold">Please enter a chest number</h4>
-                            <p class="text-red-600 text-sm mt-1">Enter your chest number to see your results</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-            resultDiv.classList.remove('hidden');
-            return;
+      const chestNumber = document.getElementById('chest-number-input').value.trim().toUpperCase();
+      const resultDiv = document.getElementById('chest-result');
+      
+      if (!chestNumber) {
+        resultDiv.innerHTML = `
+          <div class="bg-red-50 text-red-700 p-4 rounded-xl">
+            Please enter a chest number
+          </div>
+        `;
+        resultDiv.classList.remove('hidden');
+        return;
+      }
+      
+      // Find candidate information
+      const candidate = allCandidates.find(c => c.chestNo === chestNumber);
+      
+      if (!candidate) {
+        resultDiv.innerHTML = `
+          <div class="bg-yellow-50 text-yellow-700 p-4 rounded-xl">
+            No candidate found with chest number: <strong>${chestNumber}</strong>
+          </div>
+        `;
+        resultDiv.classList.remove('hidden');
+        return;
+      }
+      
+      // Search in results
+      let foundResults = [];
+      let totalPoints = 0;
+      let totalGradePoints = 0;
+      
+      allResults.forEach(result => {
+        if (result.firstChestNo === chestNumber) {
+          foundResults.push({
+            position: '1st Place',
+            event: result.event,
+            points: result.firstPoint,
+            gradePoints: result.firstGradePoint
+          });
+          totalPoints += result.firstPoint;
+          totalGradePoints += result.firstGradePoint;
         }
-        
-        // Find candidate
-        const candidate = allCandidates.find(c => c.chestNo === chestNumber);
-        
-        if (!candidate) {
-            resultDiv.innerHTML = `
-                <div class="bg-gradient-to-r from-yellow-50 to-amber-50 text-yellow-700 p-6 rounded-2xl border border-yellow-100">
-                    <div class="flex items-center">
-                        <i class="fas fa-search text-yellow-500 mr-3 text-xl"></i>
-                        <div>
-                            <h4 class="font-bold">Candidate Not Found</h4>
-                            <p class="text-yellow-600 text-sm mt-1">No candidate found with chest number: <strong>${chestNumber}</strong></p>
-                        </div>
-                    </div>
-                </div>
-            `;
-            resultDiv.classList.remove('hidden');
-            return;
+        if (result.secondChestNo === chestNumber) {
+          foundResults.push({
+            position: '2nd Place',
+            event: result.event,
+            points: result.secondPoint,
+            gradePoints: result.secondGradePoint
+          });
+          totalPoints += result.secondPoint;
+          totalGradePoints += result.secondGradePoint;
         }
+        if (result.thirdChestNo === chestNumber) {
+          foundResults.push({
+            position: '3rd Place',
+            event: result.event,
+            points: result.thirdPoint,
+            gradePoints: result.thirdGradePoint
+          });
+          totalPoints += result.thirdPoint;
+          totalGradePoints += result.thirdGradePoint;
+        }
+      });
+      
+      // Display results
+      let html = `<div class="bg-green-50 p-6 rounded-xl">`;
+      html += `<h4 class="text-xl font-bold mb-4">Results for: <span class="text-green-700">${candidate.name}</span></h4>`;
+      html += `<div class="flex flex-wrap gap-4 mb-6">`;
+      html += `<div class="bg-white p-4 rounded-lg"><div class="text-sm text-gray-500">Chest No</div><div class="text-lg font-bold">${candidate.chestNo}</div></div>`;
+      html += `<div class="bg-white p-4 rounded-lg"><div class="text-sm text-gray-500">Team</div><div class="text-lg font-bold ${getTeamColorClass(candidate.team)} px-3 py-1 rounded">${candidate.team}</div></div>`;
+      html += `<div class="bg-white p-4 rounded-lg"><div class="text-sm text-gray-500">Category</div><div class="text-lg font-bold">${candidate.category}</div></div>`;
+      html += `</div>`;
+      
+      if (foundResults.length > 0) {
+        html += `<div class="mt-4"><h5 class="font-bold mb-3">Event Results:</h5>`;
         
-        // Search results
-        let foundResults = [];
-        let totalPoints = 0;
-        let totalGradePoints = 0;
-        
-        allResults.forEach(result => {
-            if (result.firstChestNo === chestNumber) {
-                foundResults.push({
-                    position: '1st Place',
-                    event: result.event,
-                    points: result.firstPoint,
-                    gradePoints: result.firstGradePoint
-                });
-                totalPoints += result.firstPoint;
-                totalGradePoints += result.firstGradePoint;
-            }
-            if (result.secondChestNo === chestNumber) {
-                foundResults.push({
-                    position: '2nd Place',
-                    event: result.event,
-                    points: result.secondPoint,
-                    gradePoints: result.secondGradePoint
-                });
-                totalPoints += result.secondPoint;
-                totalGradePoints += result.secondGradePoint;
-            }
-            if (result.thirdChestNo === chestNumber) {
-                foundResults.push({
-                    position: '3rd Place',
-                    event: result.event,
-                    points: result.thirdPoint,
-                    gradePoints: result.thirdGradePoint
-                });
-                totalPoints += result.thirdPoint;
-                totalGradePoints += result.thirdGradePoint;
-            }
+        foundResults.forEach(result => {
+          let positionColor = 'text-gray-600';
+          let positionBg = 'bg-gray-100';
+          
+          if (result.position === '1st Place') {
+            positionColor = 'text-yellow-600';
+            positionBg = 'bg-yellow-100';
+          } else if (result.position === '2nd Place') {
+            positionColor = 'text-gray-600';
+            positionBg = 'bg-gray-100';
+          } else if (result.position === '3rd Place') {
+            positionColor = 'text-orange-600';
+            positionBg = 'bg-orange-100';
+          }
+          
+          html += `
+            <div class="flex items-center justify-between p-3 bg-white rounded-lg mb-2">
+              <div>
+                <span class="${positionColor} ${positionBg} px-2 py-1 rounded text-sm mr-3">${result.position}</span>
+                <span class="font-medium">${result.event}</span>
+              </div>
+              <div class="flex items-center">
+                <span class="font-bold text-green-600 mr-3">${result.points} pts</span>
+                ${result.gradePoints > 0 ? `<span class="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">${result.gradePoints} gp</span>` : ''}
+              </div>
+            </div>
+          `;
         });
         
-        // Display results
-        let html = `<div class="bg-gradient-to-r from-green-50 to-emerald-50 p-8 rounded-2xl border border-green-100">`;
-        html += `<h4 class="text-xl font-bold mb-6 text-gray-800">Results for: <span class="text-green-700">${candidate.name}</span></h4>`;
-        html += `<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">`;
-        html += `<div class="bg-white p-4 rounded-xl shadow-sm"><div class="text-sm text-gray-500">Chest No</div><div class="text-lg font-bold">${candidate.chestNo}</div></div>`;
-        html += `<div class="bg-white p-4 rounded-xl shadow-sm"><div class="text-sm text-gray-500">Team</div><div class="text-lg font-bold ${getTeamColorClass(candidate.team)} px-4 py-2 rounded-lg">${candidate.team}</div></div>`;
-        html += `<div class="bg-white p-4 rounded-xl shadow-sm"><div class="text-sm text-gray-500">Category</div><div class="text-lg font-bold">${candidate.category}</div></div>`;
         html += `</div>`;
         
-        if (foundResults.length > 0) {
-            html += `<div class="mb-8"><h5 class="font-bold mb-4 text-gray-800">Event Results:</h5>`;
-            
-            foundResults.forEach(result => {
-                let positionColor = 'text-gray-600';
-                let positionBg = 'bg-gray-100';
-                
-                if (result.position === '1st Place') {
-                    positionColor = 'text-yellow-600';
-                    positionBg = 'bg-yellow-100';
-                } else if (result.position === '2nd Place') {
-                    positionColor = 'text-gray-600';
-                    positionBg = 'bg-gray-100';
-                } else if (result.position === '3rd Place') {
-                    positionColor = 'text-orange-600';
-                    positionBg = 'bg-orange-100';
-                }
-                
-                html += `
-                    <div class="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm mb-3 hover:shadow-md transition-all duration-300">
-                        <div class="flex items-center">
-                            <span class="${positionColor} ${positionBg} px-3 py-1 rounded-lg text-sm font-medium mr-4">${result.position}</span>
-                            <span class="font-medium text-gray-800">${result.event}</span>
-                        </div>
-                        <div class="flex items-center">
-                            <span class="font-bold text-green-600 mr-3">${result.points} pts</span>
-                            ${result.gradePoints > 0 ? `<span class="text-sm bg-blue-100 text-blue-800 px-3 py-1 rounded-lg">${result.gradePoints} gp</span>` : ''}
-                        </div>
-                    </div>
-                `;
-            });
-            
-            html += `</div>`;
-            
-            html += `
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="p-6 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl shadow-lg">
-                        <div class="text-sm opacity-90">Total Points</div>
-                        <div class="text-4xl font-bold">${totalPoints}</div>
-                    </div>
-                    ${totalGradePoints > 0 ? `
-                        <div class="p-6 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-2xl shadow-lg">
-                            <div class="text-sm opacity-90">Total Grade Points</div>
-                            <div class="text-4xl font-bold">${totalGradePoints}</div>
-                        </div>
-                    ` : ''}
-                </div>
-            `;
-        } else {
-            html += `
-                <div class="bg-gradient-to-r from-yellow-50 to-amber-50 text-yellow-700 p-6 rounded-2xl border border-yellow-100">
-                    <div class="flex items-center">
-                        <i class="fas fa-clock text-yellow-500 mr-3 text-xl"></i>
-                        <div>
-                            <h4 class="font-bold">No Results Yet</h4>
-                            <p class="text-yellow-600 text-sm mt-1">No event results found yet. Check back later for updates.</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-        
-        html += `</div>`;
-        
-        resultDiv.innerHTML = html;
-        resultDiv.classList.remove('hidden');
+        html += `
+          <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 bg-green-500 text-white rounded-lg">
+              <div class="text-sm">Total Points</div>
+              <div class="text-3xl font-bold">${totalPoints}</div>
+            </div>
+            ${totalGradePoints > 0 ? `
+              <div class="p-4 bg-blue-500 text-white rounded-lg">
+                <div class="text-sm">Total Grade Points</div>
+                <div class="text-3xl font-bold">${totalGradePoints}</div>
+              </div>
+            ` : ''}
+          </div>
+        `;
+      } else {
+        html += `
+          <div class="bg-yellow-50 text-yellow-700 p-4 rounded-lg">
+            No event results found yet. Check back later for updates.
+          </div>
+        `;
+      }
+      
+      html += `</div>`;
+      
+      resultDiv.innerHTML = html;
+      resultDiv.classList.remove('hidden');
     }
-</script>
+    
+    // Setup result filters
+    function setupResultFilters() {
+      // This is already handled in setupNavigation
+    }
+    
+    // Start with home section
+    showSection('home');
+  </script>
+</body>
+</html>
