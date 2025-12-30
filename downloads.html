@@ -3,99 +3,307 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Downloads | DARUNNAJATH SHAREEATH AND ARTS COLLEGE</title>
+  <title>Downloads | DSAC</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
   <style>
-    body {
-      font-family: "Poppins", sans-serif;
-      background-color: #f9fafc;
+    :root {
+      --primary-blue: #0b5ed7;
+      --dark-blue: #11468f;
+      --accent-yellow: #f3c13a;
+      --light-bg: #f9fafc;
+      --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      --card-shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.15);
     }
 
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--light-bg);
+      color: #333;
+    }
+
+    /* Header Styles */
     .page-header {
-      background: linear-gradient(90deg, #0b5ed7, #11468f);
-      color: #fff;
-      padding: 60px 0;
+      background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+      color: white;
+      padding: 80px 0 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+      background-size: cover;
+    }
+
+    .page-header h1 {
+      font-weight: 700;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .page-header .lead {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Card Styles */
+    .download-card {
+      border: none;
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      height: 100%;
+      background: white;
+      overflow: hidden;
+    }
+
+    .download-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .download-card .card-body {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .download-icon-wrapper {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, rgba(11, 94, 215, 0.1), rgba(17, 70, 143, 0.05));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .download-icon {
+      font-size: 2.5rem;
+      color: var(--primary-blue);
+    }
+
+    .download-card h5 {
+      color: var(--dark-blue);
+      font-weight: 600;
+      margin-bottom: 1rem;
       text-align: center;
     }
 
-    .downloads-section {
-      padding: 60px 0;
+    .download-card p {
+      color: #666;
+      text-align: center;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
     }
 
-    .card {
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-      height: 100%;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
+    /* Button Styles */
     .btn-download {
-      background-color: #f3c13a;
-      color: #fff;
+      background: linear-gradient(135deg, var(--accent-yellow), #e0ae33);
+      color: #333;
       font-weight: 600;
       border: none;
-      transition: 0.3s;
+      border-radius: 50px;
+      padding: 10px 25px;
+      transition: all 0.3s ease;
+      min-width: 140px;
     }
 
     .btn-download:hover {
-      background-color: #e0ae33;
+      background: linear-gradient(135deg, #e0ae33, var(--accent-yellow));
+      transform: scale(1.05);
+      color: #333;
+      box-shadow: 0 5px 15px rgba(243, 193, 58, 0.4);
     }
 
     .btn-download.loading {
       position: relative;
       color: transparent;
+      pointer-events: none;
     }
-    
+
     .btn-download.loading::after {
       content: '';
       position: absolute;
-      width: 16px;
-      height: 16px;
-      border: 2px solid #fff;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
       border-radius: 50%;
-      border-top-color: transparent;
+      border-top-color: white;
       animation: spin 1s linear infinite;
-      left: calc(50% - 8px);
-      top: calc(50% - 8px);
+      left: calc(50% - 10px);
+      top: calc(50% - 10px);
     }
 
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
 
-    .download-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+    /* File Info */
+    .file-info {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 0.75rem;
+      margin: 1rem 0;
+      width: 100%;
+      font-size: 0.9rem;
     }
 
-    .file-info {
-      font-size: 0.85rem;
+    .file-info i {
+      color: var(--primary-blue);
+      margin-right: 5px;
+    }
+
+    /* Filter Section */
+    .filters-section {
+      background: white;
+      border-bottom: 1px solid #eee;
+      padding: 2rem 0;
+    }
+
+    .input-group {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border-radius: 50px;
+      overflow: hidden;
+    }
+
+    .input-group-text {
+      background: white;
+      border: none;
+      padding-left: 1.5rem;
+    }
+
+    .form-control {
+      border: none;
+      padding: 0.75rem 1rem;
+    }
+
+    .form-control:focus {
+      box-shadow: none;
+    }
+
+    #searchButton {
+      border-radius: 0 50px 50px 0;
+      padding: 0.75rem 2rem;
+      background: var(--primary-blue);
+      color: white;
+      border: none;
+    }
+
+    #searchButton:hover {
+      background: var(--dark-blue);
+    }
+
+    .form-select {
+      border-radius: 50px;
+      padding: 0.75rem 2rem 0.75rem 1.5rem;
+      border: 2px solid #e0e0e0;
+      transition: all 0.3s ease;
+    }
+
+    .form-select:focus {
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 0.25rem rgba(11, 94, 215, 0.25);
+    }
+
+    /* Alert */
+    .info-alert {
+      background: linear-gradient(135deg, rgba(23, 162, 184, 0.1), rgba(23, 162, 184, 0.05));
+      border: none;
+      border-radius: 12px;
+      border-left: 4px solid var(--primary-blue);
+    }
+
+    /* No Results */
+    .no-results {
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .no-results i {
+      font-size: 5rem;
+      color: #ddd;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Counter */
+    .download-counter {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e0e0e0;
+    }
+
+    /* Footer */
+    .main-footer {
+      background: linear-gradient(135deg, var(--dark-blue), #0a3d75);
+      color: white;
+      padding: 3rem 0 2rem;
+      margin-top: 4rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page-header {
+        padding: 60px 0 40px;
+      }
+
+      .page-header h1 {
+        font-size: 2.2rem;
+      }
+
+      .download-card .card-body {
+        padding: 1.5rem;
+      }
+
+      .download-icon-wrapper {
+        width: 70px;
+        height: 70px;
+      }
+
+      .download-icon {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-sm">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="index.html">DARUNNAJATH SHAREEATH AND ARTS COLLEGE</a>
+      <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+        <i class="bi bi-building me-2"></i>
+        DSAC
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="toppers.html">Examination</a></li>
-          <li class="nav-item"><a class="nav-link" href="forms.html">Forms</a></li>
-          <li class="nav-item"><a class="nav-link active" href="downloads.html">Downloads</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i> Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="toppers.html"><i class="bi bi-trophy me-1"></i> Examination</a></li>
+          <li class="nav-item"><a class="nav-link" href="forms.html"><i class="bi bi-file-earmark-text me-1"></i> Forms</a></li>
+          <li class="nav-item"><a class="nav-link active" href="downloads.html"><i class="bi bi-download me-1"></i> Downloads</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html"><i class="bi bi-info-circle me-1"></i> About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-telephone me-1"></i> Contact</a></li>
         </ul>
       </div>
     </div>
@@ -103,43 +311,51 @@
 
   <!-- HEADER -->
   <header class="page-header">
-    <div class="container">
-      <h1 class="fw-bold">Downloads</h1>
-      <p class="lead">Access all important forms, applications, and syllabus files here.</p>
+    <div class="container position-relative">
+      <h1 class="fw-bold">Downloads Center</h1>
+      <p class="lead">Access all important forms, applications, and documents in one place</p>
+      <div class="mt-4">
+        <span class="badge bg-light text-primary me-2 p-2">PDF Files</span>
+        <span class="badge bg-light text-primary me-2 p-2">Applications</span>
+        <span class="badge bg-light text-primary p-2">Official Documents</span>
+      </div>
     </div>
   </header>
 
   <!-- SEARCH AND FILTER SECTION -->
-  <section class="filters-section py-4 bg-light">
+  <section class="filters-section">
     <div class="container">
-      <div class="row mb-4">
-        <div class="col-md-6">
+      <div class="row align-items-center mb-4">
+        <div class="col-md-6 mb-3 mb-md-0">
           <div class="input-group">
-            <span class="input-group-text bg-white border-end-0">
+            <span class="input-group-text bg-white">
               <i class="bi bi-search"></i>
             </span>
-            <input type="text" class="form-control border-start-0" placeholder="Search downloads..." id="searchInput">
-            <button class="btn btn-outline-primary" type="button" id="searchButton">
+            <input type="text" class="form-control" placeholder="Search for documents, forms, or files..." id="searchInput">
+            <button class="btn btn-primary" type="button" id="searchButton">
               Search
             </button>
           </div>
         </div>
-        <div class="col-md-6 text-md-end mt-3 mt-md-0">
-          <select class="form-select w-auto d-inline-block" id="categoryFilter">
-            <option value="all">All Categories</option>
-            <option value="forms">Forms</option>
-            <option value="syllabus">Syllabus</option>
-            <option value="circulars">Circulars</option>
-            <option value="applications">Applications</option>
-          </select>
+        <div class="col-md-6">
+          <div class="d-flex justify-content-md-end align-items-center">
+            <label class="me-2 d-none d-md-block">Filter by:</label>
+            <select class="form-select w-auto" id="categoryFilter">
+              <option value="all">All Categories</option>
+              <option value="forms">Forms</option>
+              <option value="applications">Applications</option>
+            </select>
+          </div>
         </div>
       </div>
       
       <div class="row">
         <div class="col-12">
-          <div class="alert alert-info d-flex align-items-center" role="alert">
-            <i class="bi bi-info-circle-fill me-2"></i>
-            <div>Click any download button to get the file. Files open in a new window.</div>
+          <div class="alert info-alert d-flex align-items-center" role="alert">
+            <i class="bi bi-info-circle-fill fs-4 text-primary me-3"></i>
+            <div>
+              <strong>Note:</strong> Click the download button to get the file. All files open in a new window for your convenience.
+            </div>
           </div>
         </div>
       </div>
@@ -147,52 +363,79 @@
   </section>
 
   <!-- DOWNLOADS SECTION -->
-  <section class="downloads-section">
+  <section class="py-5">
     <div class="container">
       <div class="row g-4" id="downloadsContainer">
-        <!-- Card 1 -->
-        <div class="col-md-4 col-lg-3 download-item" data-category="forms" data-name="admission form">
-          <div class="card text-center p-3">
+        <!-- Card 1: Application Form -->
+        <div class="col-md-6 col-lg-4 download-item" data-category="applications" data-name="application form">
+          <div class="download-card">
             <div class="card-body">
-              <i class="bi bi-file-earmark-text-fill download-icon text-primary"></i>
-              <h5 class="card-title fw-bold text-primary">Application Form</h5>
-              <p class="card-text">Download the latest Application form for new admission.</p>
-              <p class="card-text small text-muted mt-2 file-info">
-                <i class="bi bi-filetype-pdf"></i> PDF • 121KB • Updated: Jan 2026
-              </p>
+              <div class="download-icon-wrapper">
+                <i class="bi bi-file-earmark-text-fill download-icon"></i>
+              </div>
+              <h5 class="fw-bold">Application Form</h5>
+              <p>Complete application form for new admissions to Darunnajath Shareeath and Arts College.</p>
+              <div class="file-info">
+                <div class="d-flex justify-content-between">
+                  <span><i class="bi bi-filetype-pdf"></i> PDF Format</span>
+                  <span><i class="bi bi-download"></i> 121 KB</span>
+                </div>
+                <div class="text-center mt-2">
+                  <small class="text-muted"><i class="bi bi-calendar-check"></i> Updated: January 2026</small>
+                </div>
+              </div>
               <a href="https://crimson-night-427.linkyhost.com/" 
-                 class="btn btn-download" 
-                 download
+                 class="btn btn-download mt-2" 
+                 download="DSAC_Application_Form.pdf"
                  target="_blank"
-                 rel="noopener noreferrer"
-                 aria-label="Download Admission Form PDF">
-                Download <span class="visually-hidden">Application Form</span>
+                 rel="noopener noreferrer">
+                <i class="bi bi-download me-2"></i>Download Form
               </a>
             </div>
           </div>
         </div>
 
+        <!-- Placeholder for future downloads -->
+        <div class="col-md-6 col-lg-4">
+          <div class="download-card border-dashed" style="border: 2px dashed #dee2e6; background: transparent; box-shadow: none;">
+            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="min-height: 350px;">
+              <div class="download-icon-wrapper mb-3" style="background: rgba(0,0,0,0.05);">
+                <i class="bi bi-plus-lg download-icon" style="color: #6c757d;"></i>
+              </div>
+              <h5 class="text-muted mb-3">More Downloads Coming Soon</h5>
+              <p class="text-center text-muted">We're preparing additional forms and documents for you.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- No Results Message -->
       <div class="row mt-5 d-none" id="noResults">
-        <div class="col-12 text-center py-5">
-          <i class="bi bi-file-earmark-x display-1 text-muted mb-3"></i>
-          <h4 class="mt-3">No downloads found</h4>
-          <p class="text-muted">Try adjusting your search criteria or browse all categories</p>
-          <button class="btn btn-outline-primary mt-2" id="resetFilters">
-            <i class="bi bi-arrow-clockwise me-2"></i>Reset Filters
-          </button>
+        <div class="col-12">
+          <div class="no-results">
+            <i class="bi bi-file-earmark-x"></i>
+            <h4 class="mb-3">No matching downloads found</h4>
+            <p class="text-muted mb-4">Try adjusting your search terms or select a different category</p>
+            <button class="btn btn-outline-primary" id="resetFilters">
+              <i class="bi bi-arrow-clockwise me-2"></i>Reset All Filters
+            </button>
+          </div>
         </div>
       </div>
 
       <!-- Download Counter -->
       <div class="row mt-5">
         <div class="col-12">
-          <div class="card bg-light border-0">
-            <div class="card-body text-center">
-              <p class="mb-0">
-                <i class="bi bi-download me-2"></i>
-                <span id="totalDownloads">0</span> files downloaded this session
-              </p>
+          <div class="download-counter">
+            <div class="row align-items-center">
+              <div class="col-md-8">
+                <h5 class="mb-2"><i class="bi bi-graph-up me-2"></i>Download Statistics</h5>
+                <p class="text-muted mb-0">Track how many files have been downloaded in this session</p>
+              </div>
+              <div class="col-md-4 text-md-end">
+                <div class="display-6 fw-bold text-primary" id="totalDownloads">0</div>
+                <small class="text-muted">Total Downloads</small>
+              </div>
             </div>
           </div>
         </div>
@@ -201,40 +444,49 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="py-4 bg-primary text-white text-center">
+  <footer class="main-footer">
     <div class="container">
-      <strong>DARUNNAJATH SHAREEATH AND ARTS COLLEGE</strong><br>
-      <span class="small">© <span id="year"></span> All rights reserved.</span>
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <h5 class="fw-bold mb-3"><i class="bi bi-building me-2"></i>DARUNNAJATH SHAREEATH AND ARTS COLLEGE</h5>
+          <p class="mb-0" style="opacity: 0.8;">Official Downloads Portal | Providing easy access to college documents</p>
+        </div>
+        <div class="col-md-4 text-md-end">
+          <p class="mb-0">
+            © <span id="year"></span> All rights reserved.<br>
+            <small>Last updated: January 2026</small>
+          </p>
+        </div>
+      </div>
     </div>
   </footer>
 
   <script>
-    // Set current year in footer
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Download tracking and enhanced functionality
     document.addEventListener('DOMContentLoaded', function() {
-      const downloadsContainer = document.getElementById('downloadsContainer');
+      // Set current year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Initialize variables
       const searchInput = document.getElementById('searchInput');
       const searchButton = document.getElementById('searchButton');
       const categoryFilter = document.getElementById('categoryFilter');
       const noResults = document.getElementById('noResults');
       const resetFiltersBtn = document.getElementById('resetFilters');
       const totalDownloadsEl = document.getElementById('totalDownloads');
+      const downloadItems = document.querySelectorAll('.download-item');
       
       let downloadCount = 0;
-      const downloadItems = document.querySelectorAll('.download-item');
-
-      // Initialize download count from localStorage
+      
+      // Load download count from localStorage
       const savedCount = localStorage.getItem('totalDownloads');
       if (savedCount) {
         downloadCount = parseInt(savedCount);
         totalDownloadsEl.textContent = downloadCount;
       }
 
-      // Filter functionality
+      // Filter function
       function filterDownloads() {
-        const searchTerm = searchInput.value.toLowerCase();
+        const searchTerm = searchInput.value.toLowerCase().trim();
         const selectedCategory = categoryFilter.value;
         let visibleCount = 0;
 
@@ -246,10 +498,10 @@
           const matchesCategory = selectedCategory === 'all' || itemCategory === selectedCategory;
           
           if (matchesSearch && matchesCategory) {
-            item.classList.remove('d-none');
+            item.style.display = 'block';
             visibleCount++;
           } else {
-            item.classList.add('d-none');
+            item.style.display = 'none';
           }
         });
 
@@ -261,7 +513,7 @@
         }
       }
 
-      // Search event listeners
+      // Event listeners for filtering
       searchInput.addEventListener('input', filterDownloads);
       searchButton.addEventListener('click', filterDownloads);
       categoryFilter.addEventListener('change', filterDownloads);
@@ -271,60 +523,62 @@
         searchInput.value = '';
         categoryFilter.value = 'all';
         filterDownloads();
+        searchInput.focus();
       });
 
-      // Download tracking with loading animation
+      // Download tracking
       document.querySelectorAll('.btn-download').forEach(button => {
         button.addEventListener('click', function(e) {
-          const fileName = this.previousElementSibling.previousElementSibling.previousElementSibling.textContent;
+          const fileName = this.download || 'document';
           
           // Add loading animation
           this.classList.add('loading');
+          this.innerHTML = '<span class="visually-hidden">Downloading...</span>';
           
-          // Simulate download delay for large files
+          // Simulate download delay
           setTimeout(() => {
             this.classList.remove('loading');
+            this.innerHTML = '<i class="bi bi-download me-2"></i>Download Form';
             
-            // Track download
+            // Update download count
             downloadCount++;
             totalDownloadsEl.textContent = downloadCount;
             localStorage.setItem('totalDownloads', downloadCount);
             
-            // Log to console (replace with analytics in production)
-            console.log(`Downloaded: ${fileName} | Total: ${downloadCount}`);
+            // Show success notification
+            showNotification('Download started', 'Your file is being downloaded...', 'success');
             
-            // Show success message
-            const toast = document.createElement('div');
-            toast.className = 'position-fixed bottom-0 end-0 p-3';
-            toast.innerHTML = `
-              <div class="toast show" role="alert">
-                <div class="toast-header bg-success text-white">
-                  <i class="bi bi-check-circle-fill me-2"></i>
-                  <strong class="me-auto">Download Started</strong>
-                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
-                </div>
-                <div class="toast-body">
-                  "${fileName}" is downloading...
-                </div>
-              </div>
-            `;
-            document.body.appendChild(toast);
-            
-            // Remove toast after 3 seconds
-            setTimeout(() => {
-              toast.remove();
-            }, 3000);
-          }, 800); // Simulated delay
+            // Log for analytics
+            console.log(`Downloaded: ${fileName} | Total downloads: ${downloadCount}`);
+          }, 1500);
         });
       });
 
-      // Simple pagination example (for future enhancement)
-      const itemsPerPage = 8;
-      let currentPage = 1;
-      
-      // This would be implemented when you have many more downloads
-      function paginateDownloads() {
-        // Implementation for pagination
+      // Notification function
+      function showNotification(title, message, type) {
+        const toast = document.createElement('div');
+        toast.className = 'position-fixed bottom-0 end-0 p-3';
+        toast.style.zIndex = '1050';
+        toast.innerHTML = `
+          <div class="toast show" role="alert">
+            <div class="toast-header bg-${type === 'success' ? 'success' : 'info'} text-white">
+              <i class="bi bi-${type === 'success' ? 'check-circle' : 'info-circle'}-fill me-2"></i>
+              <strong class="me-auto">${title}</strong>
+              <button type="button" class="btn-close btn-close-white" onclick="this.parentElement.parentElement.parentElement.remove()"></button>
+            </div>
+            <div class="toast-body">
+              ${message}
+            </div>
+          </div>
+        `;
+        document.body.appendChild(toast);
+        
+        // Auto-remove after 4 seconds
+        setTimeout(() => {
+          if (toast.parentNode) {
+            toast.remove();
+          }
+        }, 4000);
       }
 
       // Initialize filters
