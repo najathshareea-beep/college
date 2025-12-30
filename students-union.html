@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DSAC Students Union - NISSA</title>
+  
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Google Fonts for Islamic aesthetic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=El+Messiri:wght@400;600;700&family=Poppins:wght@300;400;500;600&family=Noto+Sans+Malayalam:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --islamic-green: #0a5c36;
+      --islamic-gold: #c19a53;
+      --light-beige: #f8f3e9;
+      --dark-blue: #1a365d;
+      --accent-blue: #2d5aa0;
+      --union-red: #d62828;
+      --union-blue: #003049;
+    }
+    
+    body {
+      background-color: var(--light-beige);
+      font-family: 'Poppins', sans-serif;
+      background-image: 
+        radial-gradient(circle at 15% 50%, rgba(10, 92, 54, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 85% 30%, rgba(193, 154, 83, 0.05) 0%, transparent 20%);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230a5c36' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+      opacity: 0.6;
+      z-index: -1;
+    }
+    
+    .islamic-header {
+      background: linear-gradient(135deg, var(--union-blue) 0%, var(--islamic-green) 100%);
+      color: white;
+      padding: 30px 0;
+      margin-bottom: 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 5px solid var(--islamic-gold);
+    }
+    
+    .islamic-header h1 {
+      font-family: 'El Messiri', sans-serif;
+      font-size: 3.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    
+    .islamic-header h2 {
+      font-family: 'El Messiri', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      position: relative;
+    }
+    
+    .islamic-header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .union-badge {
+      display: inline-block;
+      background: linear-gradient(to right, var(--union-red), #f77f00);
+      color: white;
+      padding: 8px 25px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-top: 15px;
+      box-shadow: 0 5px 15px rgba(214, 40, 40, 0.3);
+      letter-spacing: 1px;
+    }
+    
+    .section-title {
+      font-family: 'El Messiri', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--union-blue);
+      text-align: center;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(to right, var(--union-red), var(--islamic-gold));
+      border-radius: 3px;
+    }
+    
+    .section-subtitle {
+      text-align: center;
+      color: #666;
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .committee-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      padding: 25px 20px;
+      transition: all 0.4s ease;
+      border-top: 5px solid var(--union-red);
+      text-align: center;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .committee-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, var(--union-blue), var(--union-red));
+    }
+    
+    .committee-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(214, 40, 40, 0.15);
+    }
+    
+    .member-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--union-blue);
+      margin-bottom: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .member-name {
+      font-family: 'El Messiri', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--union-blue);
+      margin-bottom: 5px;
+    }
+    
+    .member-position {
+      display: inline-block;
+      background: linear-gradient(to right, var(--union-blue), var(--union-red));
+      color: white;
+      padding: 6px 18px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 10px rgba(0, 48, 73, 0.2);
+    }
+    
+    .member-description {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-top: 10px;
+    }
+    
+    .union-info-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      padding: 30px;
+      margin-bottom: 30px;
+      border-left: 5px solid var(--union-red);
+    }
+    
+    .union-info-card h3 {
+      color: var(--union-blue);
+      font-family: 'El Messiri', sans-serif;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+    
+    .union-info-card ul {
+      padding-left: 20px;
+    }
+    
+    .union-info-card li {
+      margin-bottom: 10px;
+      color: #444;
+    }
+    
+    .union-info-card li strong {
+      color: var(--union-blue);
+    }
+    
+    .union-motto {
+      background: linear-gradient(135deg, var(--union-blue) 0%, var(--islamic-green) 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      margin: 40px 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .union-motto h3 {
+      font-family: 'El Messiri', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    
+    .union-motto p {
+      font-size: 1.2rem;
+      font-style: italic;
+      line-height: 1.7;
+    }
+    
+    .islamic-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 40px 0;
+    }
+    
+    .islamic-divider span {
+      font-family: 'Amiri', serif;
+      font-size: 1.8rem;
+      color: var(--islamic-gold);
+      margin: 0 15px;
+    }
+    
+    .islamic-divider::before,
+    .islamic-divider::after {
+      content: "";
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--islamic-gold), transparent);
+    }
+    
+    .back-button {
+      display: inline-block;
+      background: linear-gradient(to right, var(--union-blue), var(--union-red));
+      color: white;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: 0 8px 20px rgba(0, 48, 73, 0.3);
+      transition: all 0.3s ease;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .back-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 48, 73, 0.4);
+      color: white;
+    }
+    
+    .back-button i {
+      margin-right: 8px;
+    }
+    
+    .footer {
+      background: linear-gradient(135deg, var(--union-blue) 0%, #0c2d52 100%);
+      color: white;
+      padding: 25px 0;
+      margin-top: 60px;
+      text-align: center;
+      font-family: 'El Messiri', sans-serif;
+      border-top: 5px solid var(--union-red);
+    }
+    
+    .footer p {
+      margin: 0;
+      font-size: 1rem;
+    }
+    
+    .malayalam {
+      font-family: 'Noto Sans Malayalam', sans-serif;
+    }
+    
+    /* Student Union Specific Colors */
+    .union-blue-bg {
+      background-color: var(--union-blue);
+      color: white;
+    }
+    
+    .union-red-text {
+      color: var(--union-red);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .islamic-header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .islamic-header h2 {
+        font-size: 1.8rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .committee-card {
+        margin-bottom: 20px;
+      }
+      
+      .union-motto h3 {
+        font-size: 1.6rem;
+      }
+      
+      .union-motto p {
+        font-size: 1rem;
+      }
+    }
+    
+    /* Animation for committee cards */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .committee-card {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    
+    .committee-card:nth-child(2) { animation-delay: 0.1s; }
+    .committee-card:nth-child(3) { animation-delay: 0.2s; }
+    .committee-card:nth-child(4) { animation-delay: 0.3s; }
+    .committee-card:nth-child(5) { animation-delay: 0.4s; }
+    .committee-card:nth-child(6) { animation-delay: 0.5s; }
+  </style>
+</head>
+
+<body>
+  <!-- Islamic Header -->
+  <header class="islamic-header">
+    <div class="container">
+      <h1>NISSA</h1>
+      <h3>Najath Institution for Shareea Students Association</h3>
+      <h2>Executive Committee 2026-27</h2>
+      <p class="mb-3">"Representing the Voice, Upholding the Values"</p>
+      <div class="union-badge">
+        <i class="fas fa-users"></i> DSAC STUDENT BODY
+      </div>
+    </div>
+  </header>
+
+  <!-- Union Information -->
+  <section class="container py-4">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="union-info-card">
+          <h3><i class="fas fa-info-circle union-red-text"></i> About Our Union</h3>
+          <p class="malayalam" style="text-align: justify; line-height: 1.7;">
+            ദാറുന്നജാത്ത് വിദ്യാർത്ഥി സംഘടന എന്നത് കോളേജിലെ എല്ലാ വിദ്യാർത്ഥികളുടെയും പ്രതിനിധിയായി പ്രവർത്തിക്കുന്ന ഒരു ജനാധിപത്യ സംഘടനയാണ്. ഇസ്‌ലാമിക മൂല്യങ്ങൾക്കും ആധുനിക വിദ്യാഭ്യാസ തത്വങ്ങൾക്കും അനുസൃതമായി വിദ്യാർത്ഥികളുടെ ആവശ്യങ്ങൾ പ്രതിനിധാനം ചെയ്യുകയും അവരുടെ ആകാംക്ഷകൾ നിറവേറ്റുകയും ചെയ്യുക എന്നതാണ് ഞങ്ങളുടെ ലക്ഷ്യം.
+          </p>
+          <ul>
+            <li><strong>Vision:</strong> To create a vibrant student community that balances Islamic values with academic excellence</li>
+            <li><strong>Mission:</strong> To represent student interests, organize enriching activities, and foster leadership skills</li>
+            <li><strong>Motto:</strong> "Education, Empowerment, Excellence"</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="col-lg-4">
+        <div class="union-info-card">
+          <h3><i class="fas fa-calendar-alt union-red-text"></i> Union Activities</h3>
+          <ul>
+            <li>Annual College Fest</li>
+            <li>Academic Seminars</li>
+            <li>Community Service</li>
+            <li>Cultural Programs</li>
+            <li>Debate Competitions</li>
+            <li>Educational Trips</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Union Motto -->
+  <div class="container">
+    <div class="union-motto">
+      <h3>"വിദ്യാഭ്യാസം, ശാക്തീകരണം, മികവ്"</h3>
+      <p>"ഇസ്‌ലാമിക മൂല്യങ്ങളിൽ അധിഷ്ഠിതമായ ആധുനിക വിദ്യാർത്ഥി നേതൃത്വം"</p>
+    </div>
+  </div>
+
+  <!-- Executive Committee Section -->
+  <section class="container py-4">
+    <h2 class="section-title">Executive Committee Members</h2>
+    <p class="section-subtitle">Elected representatives serving the student community for the academic year 2026-27</p>
+    
+    <div class="row g-4 justify-content-center">
+      <!-- President -->
+      <div class="col-lg-3 col-md-6">
+        <div class="committee-card">
+          <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="member-img" alt="President">
+          <div class="member-name">MUHAMMED FAWAS PK</div>
+          <div class="member-position">President</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vice President -->
+      <div class="col-lg-3 col-md-6">
+        <div class="committee-card">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="member-img" alt="Vice President">
+          <div class="member-name">ABDUL HAMEED</div>
+          <div class="member-position">Vice President</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- General Secretary -->
+      <div class="col-lg-3 col-md-6">
+        <div class="committee-card">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="member-img" alt="General Secretary">
+          <div class="member-name">FAHAD K.</div>
+          <div class="member-position">General Secretary</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Joint Secretary -->
+      <div class="col-lg-3 col-md-6">
+        <div class="committee-card">
+          <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="member-img" alt="Joint Secretary">
+          <div class="member-name">SAJID ALI</div>
+          <div class="member-position">Joint Secretary</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Second Row of Committee Members -->
+    <div class="row g-4 justify-content-center mt-3">
+      <!-- Treasurer -->
+      <div class="col-lg-3 col-md-6">
+        <div class="committee-card">
+          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="member-img" alt="Treasurer">
+          <div class="member-name">SHAHID P.</div>
+          <div class="member-position">Treasurer</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arts & Cultural Secretary -->
+      <div class="col-lg-3 col-md-6">
+        <div class="committee-card">
+          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="member-img" alt="Arts Secretary">
+          <div class="member-name">NASREEN FATHIMA</div>
+          <div class="member-position">Fine Arts Secretary</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sports Secretary -->
+      <div class="col-lg-3 col-md-6">
+        <div class="committee-card">
+          <img src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="member-img" alt="Sports Secretary">
+          <div class="member-name">RIYAS K.</div>
+          <div class="member-position">Library Convener</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Class Representatives -->
+      <div class="col-lg-3 col-md-6">
+        <div class="committee-card">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="member-img" alt="Class Rep">
+          <div class="member-name">Class Representatives</div>
+          <div class="member-position">(5 Members)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Islamic Divider -->
+  <div class="container">
+    <div class="islamic-divider">
+      <span>﷽</span>
+    </div>
+  </div>
+
+  <!-- Student Messages Section -->
+  <section class="container pb-5">
+    <h2 class="section-title">Student Voices</h2>
+    <p class="section-subtitle">What our students say about the union and college life</p>
+
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="testimonial-box">
+          <p class="quote">
+            "The Students Union has been instrumental in organizing activities that balance our academic and extracurricular interests. From sports tournaments to academic seminars, they ensure every student's voice is heard and valued."
+          </p>
+          <p class="quote-author">— Aisha <span>| BA English | Class Representative</span></p>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="testimonial-box">
+          <p class="quote">
+            "As a member of the union, I've learned valuable leadership skills while serving my fellow students. The union bridges the gap between administration and students, ensuring a harmonious campus environment."
+          </p>
+          <p class="quote-author">— Ahmed <span>| Final Year Najawi | Union Member</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Join Section -->
+  <div class="container py-4">
+    <div class="union-info-card text-center">
+      <h3><i class="fas fa-handshake union-red-text"></i> Get Involved!</h3>
+      <p>Want to join the Students Union or have suggestions? Contact us:</p>
+      <div class="row mt-4">
+        <div class="col-md-4 mb-3">
+          <div class="p-3 border rounded">
+            <i class="fas fa-envelope fa-2x union-red-text mb-3"></i>
+            <h5>Email</h5>
+            <p>dsac.studentsunion@gmail.com</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="p-3 border rounded">
+            <i class="fas fa-users fa-2x union-red-text mb-3"></i>
+            <h5>Meetings</h5>
+            <p>Every Friday after Jumu'ah prayer</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="p-3 border rounded">
+            <i class="fas fa-calendar-check fa-2x union-red-text mb-3"></i>
+            <h5>Elections</h5>
+            <p>Annual elections in September</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Home Button -->
+  <div class="container text-center py-5">
+    <a href="index.html" class="back-button">
+      <i class="fas fa-arrow-left"></i> Back to College Home
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>
+        © <span id="currentYear"></span> Darunnajath Students Union. All rights reserved.
+      </p>
+      <small class="text-light opacity-75">
+        DSAC Karuvarakundu • Empowering Students Since 2007
+      </small>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Set current year in footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    
+    // Add hover effect to committee cards
+    document.querySelectorAll('.committee-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px) scale(1.02)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+  </script>
+</body>
+</html>
