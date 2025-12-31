@@ -647,11 +647,91 @@
       .btn-gold, .btn-outline-gold { padding: 0.6rem 1.5rem; font-size: 0.9rem; }
       .milestone-card { margin-top: 2rem; }
     }
+    
+    /* MOBILE FIX (768px and below) - THE MISSING PART */
+    @media (max-width: 768px) {
+      .container-fluid { padding: 0 1rem; }
+      
+      /* NAVBAR MOBILE FIX */
+      .navbar-optimized .container-fluid {
+        padding: 0 0.75rem !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+      }
+      
+      .navbar-brand-compact {
+        padding: 0.2rem 0.5rem !important;
+        max-width: 70% !important;
+        flex-shrink: 1 !important;
+      }
+      
+      .navbar-brand-compact img {
+        width: 40px !important;
+        height: 40px !important;
+      }
+      
+      .brand-text {
+        font-size: 1.2rem !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        max-width: 100px !important;
+      }
+      
+      .brand-subtext {
+        font-size: 0.6rem !important;
+      }
+      
+      .navbar-toggler {
+        padding: 0.2rem 0.4rem !important;
+        margin-left: auto !important;
+      }
+      
+      /* Other mobile styles */
+      .ticker-container { height: 50px; }
+      .ticker-item { padding: 0 1.5rem; font-size: 0.9rem; }
+      .ticker-badge { padding: 0.2rem 0.8rem; font-size: 0.8rem; margin-right: 0.8rem; }
+      .ticker-wrapper { animation: smoothTicker 50s linear infinite; }
+      
+      .hero-title { font-size: 2rem; }
+      .hero-section { min-height: 70vh; padding: 4rem 0; }
+      .section-title { font-size: 1.8rem; }
+      .about-image { margin-bottom: 2rem; }
+      .highlight-card, .news-card { margin-bottom: 1.5rem; }
+      .whatsapp-float { width: 55px; height: 55px; bottom: 20px; right: 20px; font-size: 1.5rem; }
+    }
 
     /* Small Mobile (576px and below) */
     @media (max-width: 576px) {
-      .container-fluid { padding: 0 0.75rem; }
+      .container-fluid { padding: 0 0.5rem; }
       .arabic-text { font-size: 0.9rem !important; padding: 0.3rem 1rem !important; }
+      
+      /* Extra small navbar fix */
+      .navbar-optimized .container-fluid {
+        padding: 0 0.5rem !important;
+      }
+      
+      .navbar-brand-compact {
+        padding: 0.15rem 0.4rem !important;
+        max-width: 65% !important;
+      }
+      
+      .navbar-brand-compact img {
+        width: 35px !important;
+        height: 35px !important;
+      }
+      
+      .brand-text {
+        font-size: 1rem !important;
+        max-width: 80px !important;
+      }
+      
+      .brand-subtext {
+        font-size: 0.55rem !important;
+      }
       
       .ticker-container { height: 45px; }
       .ticker-item { padding: 0 1.2rem; font-size: 0.85rem; }
@@ -665,6 +745,29 @@
       
       .footer { padding: 2rem 0 1rem; }
       .social-icon { width: 40px; height: 40px; font-size: 1rem; }
+    }
+    
+    /* EMERGENCY NAVBAR FIX - Add this if still overflowing */
+    @media (max-width: 768px) {
+      .navbar-optimized {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        left: 0 !important;
+        right: 0 !important;
+        margin: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      
+      .navbar-optimized .container-fluid {
+        min-width: 0 !important;
+        flex-wrap: nowrap !important;
+      }
+      
+      .navbar-brand-compact {
+        min-width: 0 !important;
+        flex-shrink: 1 !important;
+      }
     }
   </style>
 </head>
@@ -1179,6 +1282,7 @@
 </script>
 </body>
 </html>
+
 
 
 
