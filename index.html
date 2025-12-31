@@ -14,8 +14,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -33,15 +33,12 @@
       --shadow: rgba(13, 92, 62, 0.1);
       --gradient-green: linear-gradient(135deg, #0d5c3e 0%, #0a3524 100%);
       --gradient-gold: linear-gradient(135deg, #c19a3c 0%, #e6c878 100%);
+      --transition: all 0.3s ease;
     }
     
     /* ===== BASE STYLES ===== */
     a {
       text-decoration: none !important;
-    }
-    
-    a:hover {
-      text-decoration: none;
     }
     
     body {
@@ -71,7 +68,7 @@
       margin-bottom: 1.6rem;
       animation: pulse 2s infinite;
     }
-   
+    
     /* ===== LAYOUT ===== */
     .container-fluid {
       padding: 0 2rem;
@@ -112,7 +109,7 @@
       backdrop-filter: blur(10px);
       border-bottom: 3px solid var(--gold);
       padding: 0.8rem 0;
-      transition: all 0.3s ease;
+      transition: var(--transition);
     }
     
     .navbar-optimized.scrolled {
@@ -133,24 +130,10 @@
       object-fit: contain;
     }
     
-    .brand-text {
-      font-size: 1.6rem;
-      line-height: 1;
-      margin-bottom: 0.1rem;
-    }
-    
-    .brand-subtext {
-      font-size: 0.7rem;
-      opacity: 0.9;
-    }
-    
-    .nav-container {
-      flex-wrap: nowrap;
-    }
-    
-    .nav-item-optimized {
-      margin: 0 0.15rem !important;
-    }
+    .brand-text { font-size: 1.6rem; line-height: 1; margin-bottom: 0.1rem; }
+    .brand-subtext { font-size: 0.7rem; opacity: 0.9; }
+    .nav-container { flex-wrap: nowrap; }
+    .nav-item-optimized { margin: 0 0.15rem !important; }
     
     .nav-link-optimized {
       color: white !important;
@@ -159,19 +142,17 @@
       padding: 0.5rem 0.7rem !important;
       margin: 0 !important;
       border-radius: 6px;
-      transition: all 0.2s ease;
+      transition: var(--transition);
       white-space: nowrap;
     }
     
     .nav-link-optimized.active,
     .nav-link-optimized:hover {
       background: rgba(193, 154, 60, 0.2);
-      color: #e6c878 !important;
+      color: var(--light-gold) !important;
     }
     
-    .nav-link-optimized:hover {
-      transform: translateY(-1px);
-    }
+    .nav-link-optimized:hover { transform: translateY(-1px); }
     
     /* Dropdown */
     .dropdown-menu-optimized {
@@ -188,12 +169,12 @@
       color: white;
       font-size: 0.85rem;
       padding: 0.5rem 1rem;
-      transition: all 0.2s ease;
+      transition: var(--transition);
     }
     
     .dropdown-item-optimized:hover {
       background: rgba(193, 154, 60, 0.2);
-      color: #e6c878;
+      color: var(--light-gold);
       padding-left: 1.3rem;
     }
     
@@ -238,9 +219,7 @@
       animation: smoothTicker 40s linear infinite;
     }
     
-    .ticker-wrapper:hover {
-      animation-play-state: paused;
-    }
+    .ticker-wrapper:hover { animation-play-state: paused; }
     
     .ticker-item {
       padding: 0 2rem;
@@ -270,8 +249,7 @@
       min-height: 90vh;
       display: flex;
       align-items: center;
-      background: var(--gradient-green),
-                  url('https://images.unsplash.com/photo-1518611507436-f9221403cca2?auto=format&fit=crop&w=1920&q=80');
+      background: var(--gradient-green), url('https://images.unsplash.com/photo-1518611507436-f9221403cca2?auto=format&fit=crop&w=1920&q=80');
       background-blend-mode: overlay;
       background-size: cover;
       background-position: center;
@@ -321,14 +299,17 @@
     .ornament-3 { bottom: 30%; left: 20%; animation-delay: 4s; }
     
     /* ===== BUTTONS ===== */
+    .btn-gold, .btn-outline-gold {
+      font-weight: 600;
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      transition: var(--transition);
+    }
+    
     .btn-gold {
       background: var(--gradient-gold);
       border: none;
       color: var(--dark-green);
-      font-weight: 600;
-      padding: 0.75rem 2rem;
-      border-radius: 50px;
-      transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
     }
@@ -349,18 +330,12 @@
       box-shadow: 0 10px 25px rgba(193, 154, 60, 0.4);
     }
     
-    .btn-gold:hover::after {
-      left: 100%;
-    }
+    .btn-gold:hover::after { left: 100%; }
     
     .btn-outline-gold {
       border: 2px solid var(--gold);
       color: var(--gold);
       background: transparent;
-      padding: 0.75rem 2rem;
-      border-radius: 50px;
-      font-weight: 600;
-      transition: all 0.3s ease;
     }
     
     .btn-outline-gold:hover {
@@ -407,7 +382,7 @@
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 20px 40px rgba(13, 92, 62, 0.1);
-      transition: all 0.5s ease;
+      transition: var(--transition);
     }
     
     .about-image:hover {
@@ -449,7 +424,7 @@
       border-radius: 15px;
       overflow: hidden;
       box-shadow: 0 10px 30px var(--shadow);
-      transition: all 0.3s ease;
+      transition: var(--transition);
       height: 100%;
       border: 1px solid rgba(13, 92, 62, 0.1);
     }
@@ -510,7 +485,7 @@
       border-radius: 10px;
       padding: 1.5rem;
       margin-bottom: 1rem;
-      transition: all 0.3s ease;
+      transition: var(--transition);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     }
     
@@ -576,7 +551,7 @@
       justify-content: center;
       color: white;
       text-decoration: none;
-      transition: all 0.3s ease;
+      transition: var(--transition);
       font-size: 1.2rem;
     }
     
@@ -597,7 +572,7 @@
       text-decoration: none;
       margin-bottom: 0.75rem;
       display: block;
-      transition: all 0.3s ease;
+      transition: var(--transition);
     }
     
     .footer-links a:hover {
@@ -622,7 +597,7 @@
       box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
       z-index: 1000;
       animation: float 3s ease-in-out infinite;
-      transition: all 0.3s ease;
+      transition: var(--transition);
       text-decoration: none;
     }
     
@@ -637,6 +612,7 @@
     .text-shadow { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); }
     .hover-lift { transition: transform 0.3s ease; }
     .hover-lift:hover { transform: translateY(-5px); }
+    .text-light { color: rgba(255, 255, 255, 0.9) !important; }
     
     /* Scrollbar */
     ::-webkit-scrollbar {
@@ -657,7 +633,7 @@
     }
     
     /* ===== RESPONSIVE DESIGN ===== */
-    /* Tablet (max-width: 992px) */
+    /* Tablet (992px and below) */
     @media (max-width: 992px) {
       .navbar-optimized { padding: 0.5rem 0; }
       .nav-link-optimized { padding: 0.75rem 1rem !important; font-size: 0.9rem !important; margin: 0.15rem 0 !important; }
@@ -672,7 +648,7 @@
       .milestone-card { margin-top: 2rem; }
     }
     
-    /* Mobile (max-width: 768px) */
+    /* Mobile (768px and below) */
     @media (max-width: 768px) {
       .container-fluid { padding: 0 1rem; }
       
@@ -694,7 +670,7 @@
       .whatsapp-float { width: 55px; height: 55px; bottom: 20px; right: 20px; font-size: 1.5rem; }
     }
     
-    /* Small Mobile (max-width: 576px) */
+    /* Small Mobile (576px and below) */
     @media (max-width: 576px) {
       .container-fluid { padding: 0 0.75rem; }
       
@@ -706,7 +682,7 @@
       .hero-title { font-size: 1.6rem; }
       .hero-subtitle { font-size: 1rem; }
       .section-title { font-size: 1.5rem; }
-      .btn-gold, .btn-outline-gold { padding: 0.5rem 1.2rem; font-size: 0.85rem; margin: 0.3rem; }
+      .btn-gold, .btn-outline-gold { padding: 0.5rem 1.2rem; font-size: 0.85rem; }
       
       .footer { padding: 2rem 0 1rem; }
       .social-icon { width: 40px; height: 40px; font-size: 1rem; }
@@ -1224,6 +1200,7 @@
 </script>
 </body>
 </html>
+
 
 
 
