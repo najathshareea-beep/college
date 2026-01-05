@@ -1416,20 +1416,15 @@
 
   // Fix for mobile ticker speed - direct JavaScript control
   function adjustTickerSpeed() {
-    const tickerWrapper = document.querySelector('.ticker-wrapper');
-    if (!tickerWrapper) return;
-    
-    if (window.innerWidth <= 576) {
-      // Small mobile
-      tickerWrapper.style.animationDuration = '20s';
-    } else if (window.innerWidth <= 768) {
-      // Tablet
-      tickerWrapper.style.animationDuration = '25s';
-    } else {
-      // Desktop
-      tickerWrapper.style.animationDuration = '40s';
-    }
+  const tickerWrapper = document.querySelector('.ticker-wrapper');
+  if (!tickerWrapper) return;
+  
+  if (window.innerWidth <= 768) {
+    tickerWrapper.style.animationDuration = '35s';
+  } else {
+    tickerWrapper.style.animationDuration = '40s';
   }
+}
   
   // Run on load and resize
   window.addEventListener('load', adjustTickerSpeed);
@@ -1440,4 +1435,5 @@
 </script>
 </body>
 </html>
+
 
