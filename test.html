@@ -379,7 +379,6 @@
                     <span id="section1Title">പ്രാഥമിക വിവരങ്ങൾ | Basic Information</span>
                 </div>
                 
-                <!-- From Jamia Site -->
                 <div class="form-group">
                     <label class="form-label required">
                         <span id="mobileLabel">മൊബൈൽ നമ്പർ | Mobile Number</span>
@@ -402,7 +401,6 @@
                            required>
                 </div>
                 
-                <!-- From Jamia Site -->
                 <div class="form-group">
                     <label class="form-label required">
                         <span id="categoryLabel">പ്രവേശനം തേടുന്ന വിഭാഗം | Admission Category</span>
@@ -421,20 +419,6 @@
                         <span id="dobLabel">ജനന തിയ്യതി | Date of Birth</span>
                     </label>
                     <input type="date" class="form-control" name="dob" required>
-                </div>
-                
-                <!-- ADDED: Gender Field (Missing in your form) -->
-                <div class="form-group">
-                    <label class="form-label required">
-                        <span id="genderLabel">ലിംഗഭേദം | Gender</span>
-                    </label>
-                    <select class="form-control" name="gender" required>
-                        <option value="" disabled selected>
-                            <span id="selectGender">തിരഞ്ഞെടുക്കുക | Select</span>
-                        </option>
-                        <option value="MALE">പുരുഷൻ | Male</option>
-                        <option value="FEMALE">സ്ത്രീ | Female</option>
-                    </select>
                 </div>
                 
                 <div class="section-divider"></div>
@@ -760,9 +744,9 @@
     
     <!-- Footer -->
     <footer class="text-center py-4">
-        <p>© <span id="currentYear"></span> Coordination of Jamia Junior Colleges</p>
+        <p>© <span id="currentYear"></span>Darunnajath Islamic Centre</p>
         <p class="mt-2">
-            <small>jamiajuniorcolleges.com | jjcexamboard@gmail.com | jamiajuniorcolleges@gmail.com | +91 9288951564</small>
+            <small>najathshareea.com | najathshareea@gmail.com | +91 9048020243</small>
         </p>
     </footer>
     
@@ -771,7 +755,7 @@
     <script>
         // Configuration - Google Sheets Web App URL
         // Use the CORRECT URL (the one you deployed)
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzixk5pfXbd0eZxTUiRnORyhhG3u9FVz_-Hovi98mQMkQKNVaLLFlOSM9egFTJZjcWd/exec";
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwT1wPVqaPRacT7eLNADnEMMPYmsewdDyZPYIUrx7o4TghzI53xetowL7chNBygi4Qr/exec";
         
         // Language settings
         let currentLanguage = 'malayalam';
@@ -790,8 +774,6 @@
                 categoryLabel: "പ്രവേശനം തേടുന്ന വിഭാഗം",
                 selectCategory: "തിരഞ്ഞെടുക്കുക",
                 dobLabel: "ജനന തിയ്യതി",
-                genderLabel: "ലിംഗഭേദം",
-                selectGender: "തിരഞ്ഞെടുക്കുക",
                 section2Title: "വീട്ടുവിവരങ്ങൾ",
                 houseLabel: "വീട്ടു പേര്",
                 addressLabel: "പൂർണ്ണ വിലാസം",
