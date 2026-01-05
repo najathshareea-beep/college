@@ -1172,33 +1172,37 @@
         }
         
         async function submitToGoogleSheets(data) {
-            // This is where you would send data to your Google Apps Script
-            // For now, we'll simulate a successful response
-            
-            // Uncomment and configure this when you have Google Apps Script set up
-            /*
-            const response = await fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
+          try {
+            // Convert data to URL parameters
+            const params = new URLSearchParams();
+    
+            // Add all form data to parameters
+            for (const key in data) {
+              if (data[key] !== null && data[key] !== undefined) {
+                params.append(key, data[key]);
+              }
+            }
+    
+            console.log('Sending data to Google Sheets:', data);
+    
+            // Send data to your Google Apps Script
+            const response = await fetch(https://script.google.com/macros/s/AKfycbzixk5pfXbd0eZxTUiRnORyhhG3u9FVz_-Hovi98mQMkQKNVaLLFlOSM9egFTJZjcWd/exec, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+              },
+              body: params
             });
-            
-            return await response.json();
-            */
-            
-            // Simulated response for testing
-            return new Promise(resolve => {
-                setTimeout(() => {
-                    console.log('Data to be saved:', data);
-                    resolve({
-                        success: true,
-                        message: 'Data saved successfully',
-                        applicationId: data.applicationId
-                    });
-                }, 1500);
-            });
+    
+            const result = await response.json();
+            console.log('Google Sheets response:', result);
+    
+            return result;
+    
+          } catch (error) {
+            console.error('Error submitting to Google Sheets:', error);
+            throw error;
+          }
         }
         
         function printApplication() {
