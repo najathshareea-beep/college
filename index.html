@@ -185,7 +185,7 @@
     /* ===== SECTIONS ===== */
     .section-header {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
       position: relative;
       padding: 2rem 0;
     }
@@ -194,11 +194,12 @@
       color: var(--islamic-green);
       font-weight: 700;
       display: inline-block;
-      padding: 0 2rem;
+      padding: 0 1rem;
       background: var(--islamic-cream);
       position: relative;
       z-index: 2;
       margin-bottom: 0.5rem;
+      font-size: 2rem;
     }
 
     .section-header::before {
@@ -220,10 +221,11 @@
       overflow: hidden;
       position: relative;
       border-bottom: 2px solid var(--islamic-gold);
-      height: 60px;
+      height: 50px;
       display: flex;
       align-items: center;
-      margin-top: 0; /* EXPLICITLY SET TO 0 */
+      margin-top: 0;
+      z-index: 10;
     }
 
     .ticker-wrapper {
@@ -236,19 +238,19 @@
     .ticker-item {
       display: inline-flex;
       align-items: center;
-      padding: 0 40px;
-      font-size: 1.1rem;
+      padding: 0 30px;
+      font-size: 1rem;
       position: relative;
     }
 
     .ticker-badge {
       background: var(--islamic-gold);
       color: var(--islamic-green);
-      padding: 4px 10px;
+      padding: 3px 8px;
       border-radius: 20px;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 700;
-      margin-right: 15px;
+      margin-right: 10px;
       white-space: nowrap;
     }
 
@@ -257,7 +259,7 @@
       color: var(--islamic-gold);
       position: absolute;
       right: -10px;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
     }
 
     @keyframes ticker {
@@ -267,43 +269,66 @@
 
     /* ===== HERO SECTION ===== */
     .hero-section {
-      background: linear-gradient(135deg, rgba(10, 92, 54, 0.9), rgba(6, 78, 59, 0.9));
+      background: 
+        linear-gradient(rgba(10, 92, 54, 0.85), rgba(6, 78, 59, 0.85)),
+        url('https://i.ibb.co/rf3Sp41S/COLLEGE-2.png');
       background-size: cover;
       background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       position: relative;
       overflow: hidden;
       padding: 4rem 0;
-      min-height: 70vh;
+      min-height: 85vh;
       display: flex;
       align-items: center;
+      margin-bottom: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(10, 92, 54, 0.85), rgba(6, 78, 59, 0.85));
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
     }
 
     .arabic-text {
       font-family: 'Scheherazade New', serif;
-      font-size: 1.4rem;
+      font-size: 1.8rem;
       color: var(--islamic-gold);
       margin: 2rem 0;
       text-align: center;
       direction: rtl;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
 
     .hero-title {
       color: var(--islamic-gold);
       font-weight: 700;
       margin-bottom: 1.5rem;
-      font-size: 2.5rem;
+      font-size: 2.8rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
 
     .hero-subtitle {
       color: white;
-      font-size: 1.2rem;
-      opacity: 0.9;
+      font-size: 1.3rem;
+      opacity: 0.95;
       margin-bottom: 2rem;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     }
 
     /* ===== ABOUT SECTION ===== */
     .about-section {
-      padding: 5rem 0;
+      padding: 4rem 0;
       background: var(--islamic-cream);
     }
 
@@ -314,6 +339,8 @@
       transition: transform 0.4s ease;
       width: 100%;
       height: auto;
+      max-height: 500px;
+      object-fit: cover;
     }
 
     .about-image img:hover {
@@ -325,29 +352,32 @@
       font-size: 1.1rem;
       text-align: justify;
       line-height: 1.8;
+      color: #444;
     }
 
     .milestone-card {
       background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
       border-radius: 15px;
-      padding: 2rem;
+      padding: 1.5rem;
       border: 2px solid var(--islamic-gold);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      height: 100%;
     }
 
     .milestone-icon {
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: var(--islamic-gold);
     }
 
     .gold-text {
       color: var(--islamic-gold);
+      font-weight: 600;
     }
 
     .milestone-list > div {
-      padding-bottom: 1rem;
+      padding-bottom: 0.8rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
     }
 
     .milestone-list > div:last-child {
@@ -357,7 +387,7 @@
 
     /* ===== HIGHLIGHTS SECTION ===== */
     .highlights-section {
-      padding: 5rem 0;
+      padding: 4rem 0;
       background: white;
     }
 
@@ -367,14 +397,15 @@
       overflow: hidden;
       transition: var(--transition);
       border: 3px solid transparent;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
       height: 100%;
+      margin-bottom: 1rem;
     }
 
     .highlight-card:hover {
-      transform: translateY(-10px);
+      transform: translateY(-8px);
       border-color: var(--islamic-gold);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
     }
 
     .video-container {
@@ -382,6 +413,7 @@
       padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
       height: 0;
       overflow: hidden;
+      background: #000;
     }
 
     .video-container iframe {
@@ -395,11 +427,12 @@
 
     .green-text {
       color: var(--islamic-green);
+      font-weight: 600;
     }
 
     /* ===== NOTIFICATIONS ===== */
     #notifications {
-      padding: 5rem 0;
+      padding: 4rem 0;
       background: var(--islamic-cream);
     }
 
@@ -409,10 +442,12 @@
       margin-bottom: 10px;
       transition: var(--transition);
       padding: 1rem;
+      background: white;
+      border: 1px solid #e9ecef;
     }
 
     .notification-item:hover {
-      background-color: white;
+      background-color: var(--islamic-light);
       transform: translateX(5px);
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
@@ -421,12 +456,12 @@
     .footer {
       background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
       border-top: 3px solid var(--islamic-gold);
-      padding: 4rem 0 2rem;
+      padding: 3rem 0 1.5rem;
       color: white;
     }
 
     .footer-brand {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: 700;
       color: var(--islamic-gold);
       margin-bottom: 1rem;
@@ -434,7 +469,7 @@
 
     .social-links {
       display: flex;
-      gap: 15px;
+      gap: 12px;
       margin-top: 1rem;
     }
 
@@ -449,6 +484,7 @@
       text-decoration: none;
       transition: var(--transition);
       background: rgba(255, 255, 255, 0.1);
+      font-size: 1.1rem;
     }
 
     .social-icon:hover {
@@ -459,16 +495,18 @@
 
     .footer-links h5 {
       color: var(--islamic-gold);
-      margin-bottom: 1.5rem;
-      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
     }
 
     .footer-links a {
       display: block;
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(255, 255, 255, 0.85);
       text-decoration: none;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.6rem;
       transition: var(--transition);
+      font-size: 0.95rem;
     }
 
     .footer-links a:hover {
@@ -479,17 +517,17 @@
     /* ===== WHATSAPP BUTTON ===== */
     .whatsapp-float {
       position: fixed;
-      bottom: 30px;
+      bottom: 25px;
       right: 15px;
-      width: 65px;
-      height: 65px;
+      width: 60px;
+      height: 60px;
       background: linear-gradient(135deg, #25D366, #128C7E);
       color: white;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
       z-index: 1000;
       animation: float 3s ease-in-out infinite;
@@ -504,10 +542,10 @@
 
     @keyframes float {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      50% { transform: translateY(-8px); }
     }
 
-    /* ===== RESPONSIVE ===== */
+    /* ===== MOBILE OPTIMIZATION ===== */
     @media (max-width: 768px) {
       body {
         padding-top: 70px;
@@ -515,34 +553,17 @@
       
       .navbar-optimized {
         height: 70px;
-      }
-      
-      .ticker-container {
-        height: auto;
-        padding: 10px 0;
-      }
-      
-      .ticker-wrapper {
-        animation-duration: 35s;
-        padding-left: 100%;
-      }
-      
-      .ticker-item {
-        padding: 0 20px;
-        font-size: 1rem;
-      }
-      
-      .hero-title {
-        font-size: 1.8rem;
-      }
-      
-      .arabic-text {
-        font-size: 1.1rem;
+        padding: 0.3rem 0;
       }
       
       .navbar-brand-compact img {
         width: 50px;
         height: 50px;
+      }
+      
+      .navbar-toggler {
+        padding: 0.25rem 0.5rem;
+        font-size: 1rem;
       }
       
       .navbar-collapse {
@@ -551,11 +572,188 @@
         border-radius: 0 0 10px 10px;
         border: 1px solid var(--islamic-gold);
         margin-top: 10px;
+        max-height: 70vh;
+        overflow-y: auto;
       }
       
+      .nav-item-optimized {
+        margin: 0.1rem 0;
+      }
+      
+      .nav-link-optimized {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.95rem;
+        margin: 0.1rem 0;
+      }
+      
+      .dropdown-menu-optimized {
+        background: var(--dark-green);
+        border: 1px solid var(--islamic-gold);
+        margin-top: 0;
+      }
+      
+      /* HERO SECTION MOBILE */
+      .hero-section {
+        min-height: 70vh;
+        padding: 2.5rem 0;
+        background-attachment: scroll;
+      }
+      
+      .hero-title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+      }
+      
+      .arabic-text {
+        font-size: 1.2rem;
+        margin: 1.5rem 0;
+      }
+      
+      .hero-subtitle {
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+      
+      /* BUTTONS MOBILE */
       .btn-gold, .btn-outline-gold {
-        padding: 0.5rem 1rem;
+        padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
+        margin: 0.2rem;
+      }
+      
+      .d-flex.justify-content-center.gap-3 {
+        gap: 0.5rem !important;
+      }
+      
+      /* TICKER MOBILE */
+      .ticker-container {
+        height: auto;
+        padding: 8px 0;
+      }
+      
+      .ticker-wrapper {
+        animation-duration: 30s;
+        padding-left: 100%;
+      }
+      
+      .ticker-item {
+        padding: 0 15px;
+        font-size: 0.85rem;
+      }
+      
+      .ticker-badge {
+        font-size: 0.65rem;
+        padding: 2px 6px;
+        margin-right: 8px;
+      }
+      
+      /* SECTIONS MOBILE */
+      .section-header {
+        padding: 1.5rem 0;
+        margin-bottom: 1.5rem;
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+        padding: 0 0.8rem;
+      }
+      
+      .about-section, .highlights-section, #notifications {
+        padding: 2.5rem 0;
+      }
+      
+      /* ABOUT SECTION MOBILE */
+      .milestone-card {
+        margin-top: 2rem;
+        padding: 1.2rem;
+      }
+      
+      .malayalam {
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: left;
+      }
+      
+      /* HIGHLIGHTS MOBILE */
+      .highlight-card {
+        margin-bottom: 1.5rem;
+      }
+      
+      .video-container {
+        padding-bottom: 56.25%;
+      }
+      
+      /* NOTIFICATIONS MOBILE */
+      .notification-item {
+        padding: 0.8rem;
+      }
+      
+      /* FOOTER MOBILE */
+      .footer {
+        padding: 2rem 0 1rem;
+      }
+      
+      .footer-links {
+        margin-bottom: 1.5rem;
+      }
+      
+      .footer-links h5 {
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+      }
+      
+      .footer-links a {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .social-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+      }
+      
+      /* WHATSAPP BUTTON MOBILE */
+      .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        font-size: 1.4rem;
+        bottom: 20px;
+        right: 15px;
+      }
+      
+      /* FIX TOUCH TARGETS */
+      button, 
+      a, 
+      .btn,
+      .nav-link-optimized,
+      .dropdown-item-optimized {
+        min-height: 44px;
+        min-width: 44px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-title {
+        font-size: 1.6rem;
+      }
+      
+      .arabic-text {
+        font-size: 1.1rem;
+      }
+      
+      .section-title {
+        font-size: 1.3rem;
+      }
+      
+      .container {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+      
+      .ticker-item {
+        padding: 0 10px;
+        font-size: 0.8rem;
       }
     }
 
@@ -565,14 +763,16 @@
       }
       
       .nav-link-optimized {
-        padding: 0.5rem;
-        margin: 0.2rem 0;
+        padding: 0.6rem 0.8rem;
+        margin: 0.15rem 0;
       }
       
-      .ticker-badge {
-        font-size: 0.7rem;
-        padding: 3px 8px;
-        margin-right: 10px;
+      .hero-title {
+        font-size: 2.2rem;
+      }
+      
+      .arabic-text {
+        font-size: 1.5rem;
       }
     }
 
@@ -580,8 +780,8 @@
     .islamic-ornament {
       position: fixed;
       color: var(--islamic-gold);
-      opacity: 0.1;
-      font-size: 2rem;
+      opacity: 0.08;
+      font-size: 1.8rem;
       z-index: -1;
       pointer-events: none;
     }
@@ -603,6 +803,42 @@
       left: 10%;
       animation: float 7s ease-in-out infinite;
     }
+
+    /* ===== ACCESSIBILITY & TOUCH FRIENDLY ===== */
+    @media (hover: none) and (pointer: coarse) {
+      .highlight-card:hover {
+        transform: none;
+      }
+      
+      .notification-item:hover {
+        transform: none;
+      }
+      
+      .nav-link-optimized:hover {
+        background: transparent;
+      }
+      
+      .btn-gold:hover, .btn-outline-gold:hover {
+        transform: none;
+      }
+    }
+
+    /* ===== PERFORMANCE OPTIMIZATIONS ===== */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ===== LOADING OPTIMIZATION ===== */
+    .lazy-load {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .lazy-load.loaded {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -623,7 +859,8 @@
       </div>
     </a>
  
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
+            aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
  
@@ -633,12 +870,13 @@
           <a class="nav-link-optimized active" href="index.html">Home</a>
         </li>
         <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized active" href="founder.html">Founder</a>
+          <a class="nav-link-optimized" href="founder.html">Founder</a>
         </li>
      
         <!-- Board Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
-          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" 
+             aria-haspopup="true" aria-expanded="false">
             Board
           </a>
           <ul class="dropdown-menu dropdown-menu-optimized">
@@ -652,7 +890,8 @@
      
         <!-- Student Zone Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
-          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
             Student Zone
           </a>
           <ul class="dropdown-menu dropdown-menu-optimized">
@@ -691,7 +930,7 @@
 
 <!-- HERO SECTION -->
 <section class="hero-section">
-  <div class="container">
+  <div class="container hero-content">
     <div class="row justify-content-center">
       <div class="col-lg-10 text-center">
         <div class="arabic-text">﴿ وَيَا قَوْمِ مَا لِي أَدْعُوكُمْ إِلَى النَّجَاةِ ۞ ﴾ [ سورة غافر: 41]</div>
@@ -762,7 +1001,7 @@
     <div class="row align-items-center">
       <div class="col-lg-8 mb-4 mb-lg-0" data-aos="fade-right">
         <div class="about-image">
-          <img src="https://i.ibb.co/rf3Sp41S/COLLEGE-2.png" alt="College Campus" class="img-fluid w-100">
+          <img src="https://i.ibb.co/rf3Sp41S/COLLEGE-2.png" alt="College Campus" class="img-fluid w-100 lazy-load" loading="lazy">
         </div>
         <div class="mt-4">
           <p class="malayalam">
@@ -831,7 +1070,7 @@
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
         <div class="highlight-card">
           <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/EMgzRUdoiWk" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/EMgzRUdoiWk" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" title="First Convocation Ceremony"></iframe>
           </div>
           <div class="p-4">
             <h4 class="green-text mb-3">First Convocation Ceremony</h4>
@@ -843,7 +1082,7 @@
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
         <div class="highlight-card">
           <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/uGe4yT6RU70" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/uGe4yT6RU70" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" title="Golden Jubilee Inaugural Conference"></iframe>
           </div>
           <div class="p-4">
             <h4 class="green-text mb-3">Golden Jubilee Inaugural Conference</h4>
@@ -855,7 +1094,7 @@
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
         <div class="highlight-card">
           <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/vNfz0ExArPg" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/vNfz0ExArPg" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" title="49th Anniversary Celebration"></iframe>
           </div>
           <div class="p-4">
             <h4 class="green-text mb-3">49th Anniversary Celebration</h4>
@@ -866,7 +1105,7 @@
     </div>
     
     <div class="text-center mt-5" data-aos="fade-up">
-      <a href="youtube.html" class="btn-gold btn-lg px-5">
+      <a href="youtube.html" class="btn-gold btn-lg px-4 px-md-5">
         <i class="fab fa-youtube me-2"></i>View More on YouTube
       </a>
     </div>
@@ -941,16 +1180,16 @@
           Affiliated to Jamia Nooriyya Arabiyya, Pattikkad
         </p>
         <div class="social-links">
-          <a href="https://facebook.com/" class="social-icon" target="_blank">
+          <a href="https://facebook.com/" class="social-icon" target="_blank" aria-label="Facebook">
             <i class="fab fa-facebook-f"></i>
           </a>
-          <a href="https://instagram.com/" class="social-icon" target="_blank">
+          <a href="https://instagram.com/" class="social-icon" target="_blank" aria-label="Instagram">
             <i class="fab fa-instagram"></i>
           </a>
-          <a href="https://x.com/" class="social-icon" target="_blank">
+          <a href="https://x.com/" class="social-icon" target="_blank" aria-label="Twitter">
             <i class="fab fa-twitter"></i>
           </a>
-          <a href="https://youtube.com/" class="social-icon" target="_blank">
+          <a href="https://youtube.com/" class="social-icon" target="_blank" aria-label="YouTube">
             <i class="fab fa-youtube"></i>
           </a>
         </div>
@@ -1004,7 +1243,7 @@
 <!-- WHATSAPP BUTTON -->
 <a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!"
    class="whatsapp-float" target="_blank"
-   title="Chat with us on WhatsApp">
+   title="Chat with us on WhatsApp" aria-label="WhatsApp Chat">
   <i class="fab fa-whatsapp"></i>
 </a>
 
@@ -1014,18 +1253,33 @@
 <script>
   // Initialize AOS
   AOS.init({
-    duration: 1000,
+    duration: 800,
     once: true,
-    offset: 100
+    offset: 50,
+    disable: window.innerWidth < 768 // Disable on mobile for performance
   });
  
   // Update current year
   document.getElementById('currentYear').textContent = new Date().getFullYear();
  
   // Navbar scroll effect
+  let lastScrollTop = 0;
   window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar-optimized');
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    navbar.classList.toggle('scrolled', scrollTop > 50);
+    
+    // Hide navbar on scroll down, show on scroll up (mobile only)
+    if (window.innerWidth <= 768) {
+      if (scrollTop > lastScrollTop && scrollTop > 100) {
+        navbar.style.transform = 'translateY(-100%)';
+      } else {
+        navbar.style.transform = 'translateY(0)';
+      }
+    }
+    
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
   });
  
   // Smooth scroll for anchor links
@@ -1035,10 +1289,17 @@
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
+          const offset = window.innerWidth <= 768 ? 70 : 80;
           window.scrollTo({
-            top: target.offsetTop - 80,
+            top: target.offsetTop - offset,
             behavior: 'smooth'
           });
+          
+          // Close mobile menu if open
+          const navbarCollapse = document.querySelector('.navbar-collapse');
+          if (navbarCollapse.classList.contains('show')) {
+            bootstrap.Collapse.getInstance(navbarCollapse).hide();
+          }
         }
       }
     });
@@ -1054,15 +1315,17 @@
     });
   });
  
-  // Parallax effect for floating ornaments
+  // Parallax effect for floating ornaments (disabled on mobile for performance)
   window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const ornaments = document.querySelectorAll('.islamic-ornament');
+    if (window.innerWidth > 768) {
+      const scrolled = window.pageYOffset;
+      const ornaments = document.querySelectorAll('.islamic-ornament');
  
-    ornaments.forEach((ornament, index) => {
-      const speed = 0.1 * (index + 1);
-      ornament.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
-    });
+      ornaments.forEach((ornament, index) => {
+        const speed = 0.05 * (index + 1);
+        ornament.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.05}deg)`;
+      });
+    }
   });
 
   // Fix for mobile ticker speed
@@ -1071,28 +1334,56 @@
     if (!tickerWrapper) return;
     
     if (window.innerWidth <= 768) {
-      tickerWrapper.style.animationDuration = '35s';
+      tickerWrapper.style.animationDuration = '30s';
     } else {
       tickerWrapper.style.animationDuration = '40s';
     }
   }
   
-  // Run on load and resize
-  window.addEventListener('load', adjustTickerSpeed);
-  window.addEventListener('resize', adjustTickerSpeed);
+  // Lazy load images
+  function lazyLoadImages() {
+    const images = document.querySelectorAll('img.lazy-load');
+    images.forEach(img => {
+      if (img.getBoundingClientRect().top < window.innerHeight + 100) {
+        img.src = img.dataset.src || img.src;
+        img.classList.add('loaded');
+      }
+    });
+  }
   
-  // Add loading animation
+  // Run on load and resize
   window.addEventListener('load', function() {
     document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.5s ease';
+    document.body.style.transition = 'opacity 0.3s ease';
     setTimeout(() => {
       document.body.style.opacity = '1';
-    }, 100);
+    }, 50);
+    
+    adjustTickerSpeed();
+    lazyLoadImages();
   });
+  
+  window.addEventListener('resize', adjustTickerSpeed);
+  window.addEventListener('scroll', lazyLoadImages);
+  
+  // Touch device detection
+  function isTouchDevice() {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  }
+  
+  if (isTouchDevice()) {
+    document.body.classList.add('touch-device');
+  }
+  
+  // Prevent zoom on double tap for mobile
+  let lastTouchEnd = 0;
+  document.addEventListener('touchend', function(event) {
+    const now = (new Date()).getTime();
+    if (now - lastTouchEnd <= 300) {
+      event.preventDefault();
+    }
+    lastTouchEnd = now;
+  }, false);
 </script>
 </body>
 </html>
-
-
-
-
