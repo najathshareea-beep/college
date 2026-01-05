@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
+        /* Keep all your CSS styles exactly as they are */
         :root {
             --primary-blue: #1d29d6;
             --secondary-blue: #0b5ed7;
@@ -420,7 +421,21 @@
                         <span id="dobLabel">ജനന തിയ്യതി | Date of Birth</span>
                     </label>
                     <input type="date" class="form-control" name="dob" required>
-                </div>                
+                </div>
+                
+                <!-- ADDED: Gender Field (Missing in your form) -->
+                <div class="form-group">
+                    <label class="form-label required">
+                        <span id="genderLabel">ലിംഗഭേദം | Gender</span>
+                    </label>
+                    <select class="form-control" name="gender" required>
+                        <option value="" disabled selected>
+                            <span id="selectGender">തിരഞ്ഞെടുക്കുക | Select</span>
+                        </option>
+                        <option value="MALE">പുരുഷൻ | Male</option>
+                        <option value="FEMALE">സ്ത്രീ | Female</option>
+                    </select>
+                </div>
                 
                 <div class="section-divider"></div>
                 
@@ -755,8 +770,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Configuration - Google Sheets Web App URL
-        // You need to create Google Apps Script and deploy as Web App
-        // Replace with your actual Google Apps Script URL
+        // Use the CORRECT URL (the one you deployed)
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzixk5pfXbd0eZxTUiRnORyhhG3u9FVz_-Hovi98mQMkQKNVaLLFlOSM9egFTJZjcWd/exec";
         
         // Language settings
@@ -1171,34 +1185,35 @@
             });
         }
         
+        // FIXED FUNCTION - Use the correct URL
         async function submitToGoogleSheets(data) {
           try {
             // Convert data to URL parameters
             const params = new URLSearchParams();
-    
+
             // Add all form data to parameters
             for (const key in data) {
               if (data[key] !== null && data[key] !== undefined) {
                 params.append(key, data[key]);
               }
             }
-    
+
             console.log('Sending data to Google Sheets:', data);
-    
-            // Send data to your Google Apps Script
-            const response = await fetch(https://script.google.com/macros/s/AKfycbzixk5pfXbd0eZxTUiRnORyhhG3u9FVz_-Hovi98mQMkQKNVaLLFlOSM9egFTJZjcWd/exec, {
+
+            // Send data to your Google Apps Script - USE THE CONSTANT URL
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
               },
               body: params
             });
-    
+
             const result = await response.json();
             console.log('Google Sheets response:', result);
-    
+
             return result;
-    
+
           } catch (error) {
             console.error('Error submitting to Google Sheets:', error);
             throw error;
@@ -1210,7 +1225,7 @@
                 <!DOCTYPE html>
                 <html>
                 <head>
-                    <title>Jamia Junior Colleges - Application Receipt</title>
+                    <title>Darunnajath shareeath & Arts College - Application Receipt</title>
                     <style>
                         body { font-family: Arial, sans-serif; padding: 20px; }
                         .receipt { max-width: 800px; margin: 0 auto; }
@@ -1226,7 +1241,7 @@
                 <body>
                     <div class="receipt">
                         <div class="header">
-                            <h1 class="college-name">Jamia Junior Colleges</h1>
+                            <h1 class="college-name">Darunnajath Shareeath & Arts College</h1>
                             <h3>Admission Application Receipt</h3>
                         </div>
                         
@@ -1237,7 +1252,7 @@
                         <div class="footer">
                             <p>Thank you for your application!</p>
                             <p>Admission test date will be notified later via SMS</p>
-                            <p>jamiajuniorcolleges.com | +91 9288951564</p>
+                            <p>darunnajath.org | +91 9048020243</p>
                         </div>
                     </div>
                 </body>
