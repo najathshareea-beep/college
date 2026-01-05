@@ -102,11 +102,6 @@
       50% { transform: translateY(-20px) rotate(5deg); }
     }
    
-    @keyframes smoothTicker {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-   
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.05); }
@@ -220,48 +215,100 @@
       height: 1.2em;
     }
    
-    /* ===== NEWS TICKER ===== */
-    .ticker-container {
-      background: linear-gradient(90deg, var(--primary-green), var(--dark-green));
+    /* ===== IMPROVED NEWS TICKER ===== */
+    .news-ticker {
+      --ticker-duration: 35s; /* Desktop speed (bigger number = slower) */
+      --badge-flash-duration: 1.2s;
+      --ticker-height: 60px;
+      --bg-gradient: linear-gradient(90deg, var(--primary-green), var(--dark-green) 40%, #0a3524 100%);
+      --text-color: #fff;
+      --muted-color: rgba(255,255,255,0.75);
+      --gap: 3rem;
+      
+      box-sizing: border-box;
+      width: 100%;
+      min-height: var(--ticker-height);
+      display: flex;
+      align-items: center;
+      padding: 0.4rem 1rem;
+      gap: 0.75rem;
+      background: var(--bg-gradient);
+      color: var(--text-color);
       border-top: 2px solid var(--gold);
       border-bottom: 2px solid var(--gold);
       overflow: hidden;
-      position: relative;
-      width: 100%;
-      max-width: 100vw !important;
-      height: 60px;
+      font-family: 'Poppins', sans-serif;
     }
-   
-    .ticker-wrapper {
-      display: flex;
+
+    .news-ticker__badge {
+      flex: 0 0 auto;
+      display: inline-flex;
       align-items: center;
-      height: 100%;
-      width: max-content;
-      animation: smoothTicker 40s linear infinite;
-    }
-   
-    .ticker-wrapper:hover { animation-play-state: paused; }
-   
-    .ticker-item {
-      padding: 0 2rem;
-      color: white;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      height: 100%;
-      white-space: nowrap;
-      border-right: 1px solid rgba(255, 255, 255, 0.2);
-    }
-   
-    .ticker-badge {
+      justify-content: center;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
       background: var(--gradient-gold);
       color: var(--dark-green);
-      padding: 0.25rem 1rem;
-      border-radius: 20px;
-      font-weight: 600;
-      margin-right: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      will-change: opacity;
+      animation: flashBadge var(--badge-flash-duration) linear infinite;
       white-space: nowrap;
-      font-size: 0.9rem;
+    }
+
+    @keyframes flashBadge{
+      0%, 60% { opacity: 1; transform: scale(1); }
+      30% { opacity: 0.7; transform: scale(.98); }
+    }
+
+    .news-ticker__viewport{
+      position: relative;
+      overflow: hidden;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .news-ticker__track{
+      display: inline-block;
+      white-space: nowrap;
+      will-change: transform;
+      animation: tick-move var(--ticker-duration) linear infinite;
+      font-weight: 500;
+    }
+
+    .news-ticker__group{
+      display: inline-flex;
+      align-items: center;
+      gap: 2rem;
+      padding-right: var(--gap);
+    }
+
+    @keyframes tick-move{
+      from { transform: translateX(0%); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .news-item{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.2rem 0;
+      font-size: clamp(14px, 2.2vw, 16px);
+      line-height: 1;
+      color: var(--text-color);
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      padding-right: 2rem;
+    }
+
+    .news-ticker__viewport:focus-within .news-ticker__track,
+    .news-ticker__viewport:hover .news-ticker__track {
+      animation-play-state: paused;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .news-ticker__track { animation: none !important; transform: none !important; }
+      .news-ticker__badge { animation: none !important; }
     }
    
     /* ===== HERO SECTION ===== */
@@ -790,11 +837,23 @@
         margin-left: auto !important;
       }
      
-      /* TICKER SPEED FIX: Make it faster on mobile (changed from 30s to 20s) */
-      .ticker-container { height: 50px; }
-      .ticker-item { padding: 0 1.5rem; font-size: 0.9rem; }
-      .ticker-badge { padding: 0.2rem 0.8rem; font-size: 0.8rem; margin-right: 0.8rem; }
-      .ticker-wrapper { animation: smoothTicker 20s linear infinite !important; }
+      /* TICKER SPEED FIX FOR MOBILE - MAKE IT FASTER */
+      .news-ticker {
+        --ticker-duration: 25s !important; /* Faster on mobile */
+        --ticker-height: 50px;
+        padding: 0.3rem 0.8rem;
+      }
+      
+      .news-ticker__badge {
+        padding: 0.28rem 0.7rem;
+        font-size: 14px;
+      }
+      
+      .news-item {
+        font-size: 13px;
+        padding-right: 1.5rem;
+        gap: 0.4rem;
+      }
      
       .hero-title { font-size: 2rem; }
       .hero-section { min-height: 70vh; padding: 4rem 0; }
@@ -854,11 +913,23 @@
         font-size: 0.55rem !important;
       }
      
-      /* TICKER SPEED FIX: Make it even faster on small devices (changed from 20s to 15s) */
-      .ticker-container { height: 45px; }
-      .ticker-item { padding: 0 1.2rem; font-size: 0.85rem; }
-      .ticker-badge { padding: 0.15rem 0.6rem; font-size: 0.75rem; margin-right: 0.6rem; }
-      .ticker-wrapper { animation: smoothTicker 15s linear infinite !important; }
+      /* TICKER SPEED FIX FOR SMALL MOBILE - EVEN FASTER */
+      .news-ticker {
+        --ticker-duration: 20s !important; /* Even faster on small screens */
+        --ticker-height: 45px;
+        padding: 0.25rem 0.6rem;
+      }
+      
+      .news-ticker__badge {
+        padding: 0.2rem 0.6rem;
+        font-size: 13px;
+      }
+      
+      .news-item {
+        font-size: 12px;
+        padding-right: 1.2rem;
+        gap: 0.3rem;
+      }
      
       .hero-title { font-size: 1.6rem; }
       .hero-subtitle { font-size: 1rem; }
@@ -903,12 +974,10 @@
   </style>
 </head>
 <body class="islamic-pattern">
-
 <!-- Floating Islamic Ornaments -->
 <div class="islamic-ornament ornament-1">✸</div>
 <div class="islamic-ornament ornament-2">✸</div>
 <div class="islamic-ornament ornament-3">✸</div>
-
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-optimized fixed-top">
   <div class="container-fluid">
@@ -919,20 +988,17 @@
         <small class="text-light brand-subtext">Karuvarakundu</small>
       </div>
     </a>
-  
+ 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
+ 
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav ms-auto nav-container">
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized active" href="index.html">Home</a>
         </li>
-        <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized" href="founder.html">Founder</a>
-        </li>
-      
+     
         <!-- Board Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
           <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
@@ -946,7 +1012,7 @@
             <li><a class="dropdown-item dropdown-item-optimized" href="students-union.html">Students Union</a></li>
           </ul>
         </li>
-      
+     
         <!-- Student Zone Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
           <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
@@ -958,7 +1024,7 @@
             <li><a class="dropdown-item dropdown-item-optimized" href="fest.html">Fest Score</a></li>
           </ul>
         </li>
-      
+     
         <!-- Other Items -->
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized" href="https://jamianooriya.in/">Jamia</a>
@@ -985,7 +1051,6 @@
     </div>
   </div>
 </nav>
-
 <!-- HERO SECTION -->
 <section class="hero-section">
   <div class="hero-overlay"></div>
@@ -993,7 +1058,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-8 text-center">
         <br><br>
-        <div class="arabic-text">  ﴿ وَيَا قَوْمِ مَا لِي أَدْعُوكُمْ إِلَى النَّجَاةِ ۞ ﴾ [ سورة غافر: 41] </div>
+        <div class="arabic-text"> ﴿ وَيَا قَوْمِ مَا لِي أَدْعُوكُمْ إِلَى النَّجَاةِ ۞ ﴾ [ سورة غافر: 41] </div>
         <h1 class="hero-title" data-aos="fade-up">DARUNNAJATH SHAREEATH & ARTS COLLEGE</h1>
         <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
           PUNNAKKAD, KARUVARAKUNDU<br>
@@ -1010,42 +1075,51 @@
   </div>
 </section>
 
-<!-- FIXED NEWS TICKER - IMMEDIATE START, SMOOTH SPEED -->
-<div class="ticker-container">
-  <div class="ticker-wrapper">
-    <!-- First set of items -->
-    <div class="ticker-item">
-      <span class="ticker-badge">⚠ IMPORTANT</span>
-      Admission started! Apply now.
-    </div>
-    <div class="ticker-item">
-      <span class="ticker-badge">📢 NEWS</span>
-      2025-26 വര്‍ഷത്തിലെ വാര്‍ഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1, 2, 10, 11, 12 തിയ്യതികളില്‍.
-    </div>
-    <div class="ticker-item">
-      <span class="ticker-badge">🎉 EVENT</span>
-      സമസ്ത നൂറാം വാര്‍ഷികം 2026 ഫെബ്രുവരി 4-8 തിയ്യതികളില്‍ കാസര്‍ഗോഡ് കുണിയയില്‍ നടക്കും.
-    </div>
-    <div class="ticker-item">
-      <span class="ticker-badge">✨ UPDATED</span>
-      <strong>പുതുമകളോടെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജ് വെബ്‌സൈറ്റ് ലോഞ്ച് ചെയ്തു.</strong>
-    </div>
-    <!-- Duplicate set for seamless loop -->
-    <div class="ticker-item">
-      <span class="ticker-badge">⚠ IMPORTANT</span>
-      Admission started! Apply now.
-    </div>
-    <div class="ticker-item">
-      <span class="ticker-badge">📢 NEWS</span>
-      2025-26 വര്‍ഷത്തിലെ വാര്‍ഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1, 2, 10, 11, 12 തിയ്യതികളില്‍.
-    </div>
-    <div class="ticker-item">
-      <span class="ticker-badge">🎉 EVENT</span>
-      സമസ്ത നൂറാം വാര്‍ഷികം 2026 ഫെബ്രുവരി 4-8 തിയ്യതികളില്‍ കാസര്‍ഗോഡ് കുണിയയില്‍ നടക്കും.
-    </div>
-    <div class="ticker-item">
-      <span class="ticker-badge">✨ UPDATED</span>
-      <strong>പുതുമകളോടെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജ് വെബ്‌സൈറ്റ് ലോഞ്ച് ചെയ്തു.</strong>
+<!-- IMPROVED NEWS TICKER -->
+<div class="news-ticker" role="region" aria-label="Latest news ticker">
+  <div class="news-ticker__badge" aria-hidden="true">LATEST</div>
+
+  <div class="news-ticker__viewport" tabindex="0" aria-live="polite">
+    <div class="news-ticker__track">
+      <!-- MAIN GROUP -->
+      <div class="news-ticker__group">
+        <div class="news-item">
+          <span>⚠ IMPORTANT:</span>
+          Admission started! Apply now.
+        </div>
+        <div class="news-item">
+          <span>📢 NEWS:</span>
+          2025-26 വര്‍ഷത്തിലെ വാര്‍ഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1, 2, 10, 11, 12 തിയ്യതികളില്‍.
+        </div>
+        <div class="news-item">
+          <span>🎉 EVENT:</span>
+          സമസ്ത നൂറാം വാര്‍ഷികം 2026 ഫെബ്രുവരി 4-8 തിയ്യതികളില്‍ കാസര്‍ഗോഡ് കുണിയയില്‍ നടക്കും.
+        </div>
+        <div class="news-item">
+          <span>✨ UPDATED:</span>
+          <strong>പുതുമകളോടെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജ് വെബ്‌സൈറ്റ് ലോഞ്ച് ചെയ്തു.</strong>
+        </div>
+      </div>
+
+      <!-- DUPLICATE FOR LOOP -->
+      <div class="news-ticker__group" aria-hidden="true">
+        <div class="news-item">
+          <span>⚠ IMPORTANT:</span>
+          Admission started! Apply now.
+        </div>
+        <div class="news-item">
+          <span>📢 NEWS:</span>
+          2025-26 വര്‍ഷത്തിലെ വാര്‍ഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1, 2, 10, 11, 12 തിയ്യതികളില്‍.
+        </div>
+        <div class="news-item">
+          <span>🎉 EVENT:</span>
+          സമസ്ത നൂറാം വാര്‍ഷികം 2026 ഫെബ്രുവരി 4-8 തിയ്യതികളില്‍ കാസര്‍ഗോഡ് കുണിയയില്‍ നടക്കും.
+        </div>
+        <div class="news-item">
+          <span>✨ UPDATED:</span>
+          <strong>പുതുമകളോടെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജ് വെബ്‌സൈറ്റ് ലോഞ്ച് ചെയ്തു.</strong>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -1057,7 +1131,7 @@
       <h2 class="section-title">About the Institution</h2>
       <p class="text-muted">വിശ്വാസവും വിജ്ഞാനവും ഒന്നിച്ചു വളരുന്ന വിദ്യാലയം</p>
     </div>
-  
+ 
     <div class="row align-items-center">
       <div class="col-lg-8 mb-4 mb-lg-0" data-aos="fade-right">
         <div class="about-image">
@@ -1079,7 +1153,7 @@
           </p>
         </div>
       </div>
-    
+   
       <div class="col-lg-4" data-aos="fade-left">
         <div class="milestone-card">
           <div class="d-flex align-items-center mb-4">
@@ -1117,7 +1191,6 @@
     </div>
   </div>
 </section>
-
 <!-- HIGHLIGHTS -->
 <section class="section highlights-section">
   <div class="container-fluid">
@@ -1125,7 +1198,7 @@
       <h2 class="section-title">College Highlights</h2>
       <p class="text-muted">Memorable Moments & Events</p>
     </div>
-  
+ 
     <div class="row g-4">
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
         <div class="highlight-card">
@@ -1138,7 +1211,7 @@
           </div>
         </div>
       </div>
-    
+   
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
         <div class="highlight-card">
           <div class="video-container">
@@ -1150,7 +1223,6 @@
           </div>
         </div>
       </div>
-
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
         <div class="highlight-card">
           <div class="video-container">
@@ -1162,7 +1234,7 @@
           </div>
         </div>
       </div>
-    
+   
     <div class="text-center mt-5" data-aos="fade-up">
       <a href="youtube.html" class="btn-gold btn-lg px-5">
         <i class="fab fa-youtube me-2"></i>View More on YouTube
@@ -1170,7 +1242,6 @@
     </div>
   </div>
 </section>
-
 <!-- NEWS SECTION -->
 <section class="section news-section">
   <div class="container-fluid">
@@ -1178,7 +1249,7 @@
       <h2 class="section-title text-white">Latest News</h2>
       <p class="text-light opacity-75">Stay updated with college announcements</p>
     </div>
-  
+ 
     <div class="row g-4 justify-content-center">
       <div class="col-lg-10">
         <div class="row g-4">
@@ -1195,7 +1266,7 @@
               </div>
             </div>
           </div>
-        
+       
           <div class="col-md-6" data-aos="fade-left">
             <div class="news-card">
               <img src="https://i.ibb.co/LDJxRX0j/freelancer-pricing-04.png" class="news-image" alt="Parents Meeting">
@@ -1214,7 +1285,6 @@
     </div>
   </div>
 </section>
-
 <!-- NOTIFICATIONS -->
 <section class="section notifications-section">
   <div class="container-fluid">
@@ -1222,7 +1292,7 @@
       <h2 class="section-title">Notifications & Alerts</h2>
       <p class="text-muted">Important updates and announcements</p>
     </div>
-  
+ 
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="notification-card" data-aos="fade-up">
@@ -1233,13 +1303,13 @@
           <p class="text-muted mb-3">Applications are now being accepted for all courses. Early applicants will receive special consideration.</p>
           <a href="admission.html" class="btn-gold btn-sm">Apply Now</a>
         </div>
-      
+     
         <div class="notification-card" data-aos="fade-up" data-aos-delay="100">
           <h4 class="green-text mb-3">Meelad Day Celebration</h4>
           <p class="text-muted mb-3">December 20, 2025 — All parents and guardians are invited to join us for the Meelad Day celebrations.</p>
           <a href="#" class="text-gold text-decoration-none">View Details →</a>
         </div>
-      
+     
         <div class="notification-card" data-aos="fade-up" data-aos-delay="200">
           <div class="d-flex justify-content-between align-items-center">
             <div>
@@ -1253,7 +1323,6 @@
     </div>
   </div>
 </section>
-
 <!-- FOOTER -->
 <footer class="footer">
   <div class="container-fluid">
@@ -1280,7 +1349,7 @@
           </a>
         </div>
       </div>
-    
+   
       <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
         <div class="footer-links">
           <h5>Quick Links</h5>
@@ -1291,7 +1360,7 @@
           <a href="contact.html">Contact</a>
         </div>
       </div>
-    
+   
       <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
         <div class="footer-links">
           <h5>Resources</h5>
@@ -1302,7 +1371,7 @@
           <a href="pta.html">PTA</a>
         </div>
       </div>
-    
+   
       <div class="col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
         <div class="footer-links">
           <h5>Contact Info</h5>
@@ -1314,7 +1383,7 @@
         </div>
       </div>
     </div>
-  
+ 
     <div class="text-center pt-4 mt-4 border-top border-light border-opacity-25">
       <p class="text-light mb-2">
         © <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.
@@ -1325,14 +1394,12 @@
     </div>
   </div>
 </footer>
-
 <!-- WHATSAPP BUTTON -->
 <a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!"
    class="whatsapp-float" target="_blank"
    title="Chat with us on WhatsApp">
   <i class="fab fa-whatsapp"></i>
 </a>
-
 <!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
@@ -1343,16 +1410,16 @@
     once: true,
     offset: 100
   });
-  
+ 
   // Update current year
   document.getElementById('currentYear').textContent = new Date().getFullYear();
-  
+ 
   // Navbar scroll effect
   window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar-optimized');
     navbar.classList.toggle('scrolled', window.scrollY > 50);
   });
-  
+ 
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
@@ -1366,24 +1433,24 @@
       }
     });
   });
-  
+ 
   // Card hover effects
   document.querySelectorAll('.highlight-card, .news-card').forEach(card => {
     card.addEventListener('mouseenter', function() {
       this.style.transform = 'translateY(-10px)';
     });
-  
+ 
     card.addEventListener('mouseleave', function() {
       this.style.transform = 'translateY(0)';
     });
   });
-  
+ 
   // Initialize tooltips
   const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
   tooltipTriggerList.map(function(tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl);
   });
-  
+ 
   // Add loading animation
   window.addEventListener('load', function() {
     document.body.style.opacity = '0';
@@ -1392,7 +1459,7 @@
       document.body.style.opacity = '1';
     }, 100);
   });
-  
+ 
   // Mobile menu close on click
   document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
     link.addEventListener('click', () => {
@@ -1402,27 +1469,38 @@
       }
     });
   });
-  
+ 
   // Parallax effect for floating ornaments
   window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const ornaments = document.querySelectorAll('.islamic-ornament');
-  
+ 
     ornaments.forEach((ornament, index) => {
       const speed = 0.1 * (index + 1);
       ornament.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
     });
   });
+
+  // Ticker speed control for mobile (optional - can adjust dynamically)
+  function adjustTickerSpeedForScreen() {
+    const ticker = document.querySelector('.news-ticker');
+    if (!ticker) return;
+    
+    if (window.innerWidth <= 576) {
+      // Very small screens
+      ticker.style.setProperty('--ticker-duration', '20s');
+    } else if (window.innerWidth <= 768) {
+      // Tablets and small laptops
+      ticker.style.setProperty('--ticker-duration', '25s');
+    } else {
+      // Desktop
+      ticker.style.setProperty('--ticker-duration', '35s');
+    }
+  }
+  
+  // Run on load and resize
+  window.addEventListener('load', adjustTickerSpeedForScreen);
+  window.addEventListener('resize', adjustTickerSpeedForScreen);
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
