@@ -692,7 +692,21 @@
       .btn-gold, .btn-outline-gold { padding: 0.6rem 1.5rem; font-size: 0.9rem; }
       .milestone-card { margin-top: 2rem; }
     }
-   
+
+    @media (max-width: 768px) {
+      .islamic-ornament,
+      .btn-gold::after,
+      .milestone-card::before,
+      .arabic-text,
+      .notification-badge {
+        animation: none !important;
+      }
+
+      [data-aos] {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
     /* MOBILE FIX (768px and below) */
     @media (max-width: 768px) {
       .container-fluid {
@@ -1426,3 +1440,4 @@
 </script>
 </body>
 </html>
+
