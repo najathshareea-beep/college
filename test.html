@@ -1,1013 +1,481 @@
+
 <!doctype html>
-<html lang="en">
+<html class="no-js" lang="zxx">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DSAC | Home</title>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>Coordination of Jamia Junior Collages</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap & Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+      <!-- Place favicon.ico in the root directory -->
+      <link rel="shortcut icon" type="image/x-icon" href="https://jamiajuniorcolleges.com/assets/img/logo/favicon.png">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
+      <!-- CSS here -->
+      <link rel="stylesheet" href="https://jamiajuniorcolleges.com/assets/css/bootstrap.css">
+      <link rel="stylesheet" href="https://jamiajuniorcolleges.com/assets/css/animate.css">
+      <link rel="stylesheet" href="https://jamiajuniorcolleges.com/assets/css/slick.css">
+      <link rel="stylesheet" href="https://jamiajuniorcolleges.com/assets/css/swiper-bundle.css">
+      <link rel="stylesheet" href="https://jamiajuniorcolleges.com/assets/css/hover-reveal.css">
+      <link rel="stylesheet" href="https://jamiajuniorcolleges.com/assets/css/magnific-popup.css">
+      <link rel="stylesheet" href="https://jamiajuniorcolleges.com/assets/css/font-awesome-pro.css">
+      <link rel="stylesheet" href="https://jamiajuniorcolleges.com/assets/css/spacing.css">
+      <link rel="stylesheet" href="https://jamiajuniorcolleges.com/assets/css/main.css">
+        <link rel="stylesheet" href="https://jamiajuniorcolleges.com/assets/css/infocss.css">
+      <!-- ...bi bi icons cdn............. -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+   </head>
 
-  <!-- AOS Animation -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+   <body>
 
-  <style>
-    /* ===== CSS VARIABLES ===== */
-    :root {
-      --islamic-green: #0a5c36;
-      --islamic-gold: #c19a3f;
-      --islamic-cream: #f8f3e6;
-      --islamic-light: #e9f5e9;
-      --dark-green: #064e3b;
-      --light-gold: #ffd24d;
-    }
-
-    /* ===== BASE STYLES ===== */
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--islamic-cream);
-      color: #333;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-      padding-top: 80px; /* Added padding for fixed navbar */
-    }
-
-    .arabic-font {
-      font-family: 'Scheherazade New', serif;
-    }
-
-    .malayalam-font {
-      font-family: 'Anek Malayalam', sans-serif;
-    }
-
-    /* ===== PATTERN BACKGROUND ===== */
-    .pattern-bg {
-      background-image: 
-        radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px),
-        radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px);
-      background-size: 50px 50px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-
-    /* ===== NAVBAR ===== */
-    .navbar {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      border-bottom: 3px solid var(--islamic-gold);
-      transition: all 0.4s ease;
-      padding: 0.5rem 0;
-      height: 80px; /* Fixed height */
-    }
-
-    .navbar.scrolled {
-      background: rgba(10, 92, 54, 0.98);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-      height: 70px;
-    }
-
-    /* FIXED LOGO SIZE */
-    .navbar-brand img {
-      border-radius: 8px;
-      border: 2px solid var(--islamic-gold);
-      transition: transform 0.3s ease;
-      width: 60px; /* Fixed width */
-      height: 60px; /* Fixed height */
-      object-fit: contain; /* Ensure image fits properly */
-    }
-
-    .navbar.scrolled .navbar-brand img {
-      width: 50px;
-      height: 50px;
-    }
-
-    .navbar-brand:hover img {
-      transform: scale(1.05);
-    }
-
-    .navbar-brand {
-      padding: 0;
-      margin-right: 15px;
-    }
-
-    .nav-link {
-      color: #fff !important;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      margin: 0 2px;
-      white-space: nowrap;
-    }
-
-    .nav-link:hover {
-      color: var(--islamic-gold) !important;
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* Navbar dropdown fixes */
-    .dropdown-menu {
-      background: var(--islamic-green);
-      border: 1px solid var(--islamic-gold);
-    }
-
-    .dropdown-item {
-      color: white;
-      padding: 0.5rem 1rem;
-    }
-
-    .dropdown-item:hover {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    /* ===== BUTTONS ===== */
-    .btn-primary {
-      background: linear-gradient(135deg, var(--islamic-gold), #d4af37);
-      border: none;
-      color: var(--islamic-green);
-      font-weight: 600;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3);
-      transition: all 0.3s ease;
-    }
-
-    .btn-primary:hover {
-      background: linear-gradient(135deg, #d4af37, var(--islamic-gold));
-      box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4);
-      transform: translateY(-2px);
-    }
-
-    .btn-outline-light {
-      border: 2px solid var(--islamic-gold);
-      color: var(--islamic-gold);
-    }
-
-    .btn-outline-light:hover {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    /* ===== SECTIONS ===== */
-    .section-header {
-      text-align: center;
-      margin-bottom: 3rem;
-      position: relative;
-    }
-
-    .section-header h2 {
-      color: var(--islamic-green);
-      font-weight: 700;
-      display: inline-block;
-      padding: 0 2rem;
-      background: var(--islamic-cream);
-      position: relative;
-      z-index: 2;
-    }
-
-    .section-header::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent);
-      z-index: 1;
-    }
-
-    /* ===== NEWS TICKER ===== */
-    .news-ticker-container {
-      background: linear-gradient(90deg, var(--dark-green), var(--islamic-green));
-      color: white;
-      padding: 15px 0;
-      overflow: hidden;
-      position: relative;
-      border-bottom: 2px solid var(--islamic-gold);
-      margin-top: 80px; /* Added margin to account for fixed navbar */
-    }
-
-    .news-ticker-label {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-      padding: 8px 20px;
-      font-weight: 700;
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      box-shadow: 3px 0 10px rgba(0,0,0,0.2);
-    }
-
-    .news-ticker {
-      white-space: nowrap;
-      display: inline-block;
-      animation: ticker 30s linear infinite;
-      padding-left: 20px;
-    }
-
-    .ticker-item {
-      display: inline-block;
-      padding: 0 40px;
-      font-size: 1.1rem;
-      position: relative;
-    }
-
-    .ticker-item:after {
-      content: "•";
-      color: var(--islamic-gold);
-      position: absolute;
-      right: -10px;
-      font-size: 1.5rem;
-    }
-
-    @keyframes ticker {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* ===== HERO SECTION ===== */
-    .hero-section {
-      background: linear-gradient(135deg, rgba(10, 92, 54, 0.9), rgba(6, 78, 59, 0.9));
-      background-size: cover;
-      background-position: center;
-      position: relative;
-      overflow: hidden;
-      padding: 4rem 0;
-    }
-
-    .hero-content h1 {
-      color: var(--islamic-gold);
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-    }
-
-    .arabic-calligraphy {
-      font-size: 1.4rem;
-      color: var(--islamic-gold);
-      margin: 2rem 0;
-    }
-
-    /* ===== ABOUT SECTION ===== */
-    .about-img {
-      border-radius: 15px;
-      border: 5px solid var(--islamic-gold);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      transition: transform 0.4s ease;
-      max-width: 100%;
-      height: auto;
-    }
-
-    .about-img:hover {
-      transform: scale(1.03);
-    }
-
-    .feature-box {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .feature-icon {
-      background: var(--islamic-gold);
-      color: white;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 15px;
-      flex-shrink: 0;
-    }
-
-    /* ===== YOUTUBE SECTION ===== */
-    .video-card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      border: 3px solid transparent;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    .video-card:hover {
-      transform: translateY(-10px);
-      border-color: var(--islamic-gold);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-    }
-
-    .video-thumbnail {
-      height: 200px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .video-thumbnail img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .video-thumbnail iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .play-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(193, 154, 63, 0.9);
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.5rem;
-      opacity: 0.9;
-      transition: all 0.3s ease;
-    }
-
-    .video-card:hover .play-button {
-      background: var(--islamic-gold);
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1.1);
-    }
-
-    /* ===== NOTIFICATIONS ===== */
-    .notification-item {
-      border-left: 5px solid var(--islamic-gold);
-      border-radius: 8px;
-      margin-bottom: 10px;
-      transition: all 0.2s ease;
-    }
-
-    .notification-item:hover {
-      background-color: #fff;
-      transform: translateX(5px);
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
-      border-top: 3px solid var(--islamic-gold);
-    }
-
-    .social-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .social-icon:hover {
-      transform: translateY(-5px);
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      body {
-        padding-top: 70px;
-      }
-      
-      .navbar {
-        height: 70px;
-      }
-      
-      .news-ticker-container {
-        margin-top: 70px;
-      }
-      
-      .news-ticker-label {
-        position: relative;
-        width: 100%;
-        justify-content: center;
-        margin-bottom: 10px;
-      }
-      
-      .news-ticker {
-        padding-left: 0;
-        animation: ticker-mobile 40s linear infinite;
-      }
-      
-      @keyframes ticker-mobile {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-100%); }
-      }
-      
-      .ticker-item {
-        padding: 0 20px;
-        font-size: 1rem;
-      }
-      
-      .hero-content h1 {
-        font-size: 1.8rem;
-      }
-      
-      .arabic-calligraphy {
-        font-size: 1.4rem;
-      }
-      
-      .navbar-brand img {
-        width: 50px;
-        height: 50px;
-      }
-      
-      .navbar-collapse {
-        background: var(--dark-green);
-        padding: 1rem;
-        border-radius: 0 0 10px 10px;
-        border: 1px solid var(--islamic-gold);
-      }
-    }
-
-    @media (max-width: 992px) {
-      .navbar-nav {
-        text-align: center;
-      }
-      
-      .nav-link {
-        padding: 0.5rem;
-        margin: 0.2rem 0;
-      }
-    }
-
-        /* ===== WHATSAPP BUTTON ===== */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 30px;
-      right: 15px;
-      width: 65px;
-      height: 65px;
-      background: linear-gradient(135deg, #25D366, #128C7E);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
-      z-index: 1000;
-      animation: float 3s ease-in-out infinite;
-      transition: var(--transition);
-      text-decoration: none;
-    }
-   
-    .whatsapp-float:hover {
-      transform: scale(1.1) rotate(10deg);
-      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
-    }
-
-  </style>
-</head>
-<body>
-
-<!-- Pattern Background -->
-<div class="pattern-bg"></div>
-
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-      <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="DSAC Logo" class="me-2">
-      <div>
-        <div class="fw-bold text-uppercase" style="font-size: 1.1rem;">DSAC</div>
-        <small class="text-light" style="font-size: 0.8rem;">Karuvarakundu</small>
+      <!-- pre loader area start -->
+      <div id="loading">
+         <div id="loading-center">
+            <div id="loading-center-absolute">
+               <!-- loading content here -->
+               <div class="tp-preloader-content">
+                  <div class="tp-preloader-logo">
+                     <div class="tp-preloader-circle">
+                        <svg width="190" height="190" viewBox="0 0 380 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+                           <circle stroke="#D9D9D9" cx="190" cy="190" r="180" stroke-width="6" stroke-linecap="round">
+                           </circle>
+                           <circle stroke="red" cx="190" cy="190" r="180" stroke-width="6" stroke-linecap="round"></circle>
+                        </svg>
+                     </div>
+                     <img src="https://jamiajuniorcolleges.com/assets/img/logo/preloader/preloader-icon.png" alt="">
+                  </div>
+                  <p class="tp-preloader-subtitle">Loading...</p>
+               </div>
+            </div>
+         </div>
       </div>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-            Board
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="management.html">Management</a></li>
-            <li><a class="dropdown-item" href="faculties.html">Faculty</a></li>
-            <li><a class="dropdown-item" href="pta.html">PTA</a></li>
-            <li><a class="dropdown-item" href="alumni.html">Alumni</a></li>
-            <li><a class="dropdown-item" href="students-union.html">Students Union</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-            Student Zone
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="idcard.html">ID Card</a></li>
-            <li><a class="dropdown-item" href="result.html">Exam Results</a></li>
-            <li><a class="dropdown-item" href="fest.html">Fest Score</a></li>
-          </ul>
-        </li>
+      <!-- pre loader area end -->
 
-        <li class="nav-item"><a class="nav-link" href="https://jamianooriya.in/">Jamia</a></li>
-        <li class="nav-item"><a class="nav-link" href="downloads.html"> Downloads</a></li>
-        <li class="nav-item"><a class="nav-link" href="gallery.html"> Gallery</a></li>
-        <li class="nav-item"><a class="nav-link" href="library.html"> Library</a></li>
-        <li class="nav-item"><a class="nav-link" href="admission.html"> Admission</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-
-
-
-
-<!-- HERO SECTION -->
-<section class="hero-section py-5">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-12 text-white">
-        <div class="arabic-font arabic-calligraphy text-center">
-          ﴿ وَيَا قَوْمِ مَا لِي أَدْعُوكُمْ إِلَى النَّجَاةِ ۞ ﴾ [ سورة غافر: 41]
-        </div>
-        
-        <div class="hero-content">
-          <h1 class="display-3">
-            كلية دار النجاة للشريعة والآداب<br>
-            <span class="text-white"> DARUNNAJATH SHAREEATH & ARTS COLLEGE</span>
-          </h1>
-          
-          <p class="lead mb-4">
-            <i class="fas fa-quote-left text-warning me-2"></i>
-            Combining traditional Islamic knowledge with modern education to nurture students for both Deen and Dunya.
-            <i class="fas fa-quote-right text-warning ms-2"></i>
-          </p>
-          
-          <div class="d-flex flex-wrap gap-3">
-            <a href="admission.html" class="btn btn-primary btn-lg px-4">
-              <i class="fas fa-user-plus me-2"></i> New Admission
-            </a>
-            <a href="#about" class="btn btn-outline-light btn-lg px-4">
-              <i class="fas fa-info-circle me-2"></i> Learn More
-            </a>
-            <a href="result.html" class="btn btn-outline-light btn-lg px-4">
-              <i class="fas fa-chart-line me-2"></i>Exam Results
-            </a>
-          </div>
-          
-          <div class="mt-5 pt-3 border-top border-warning">
-            <p class="mb-0" style="font-style: italic;">
-              <i class="fas fa-star text-warning me-2"></i>
-              "Seeking knowledge is obligatory upon every Muslim." - Prophet Muhammad (PBUH)
-            </p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-lg-6 text-center mt-4 mt-lg-0">
-        <div class="position-relative">
-          <div class="position-absolute" style="top: -20px; right: 50px; z-index: 1;">
-            <svg width="80" height="80" viewBox="0 0 100 100">
-              <path d="M50 15 A35 35 0 1 0 50 85 A35 35 0 1 1 50 15 Z" fill="var(--islamic-gold)"/>
-              <circle cx="65" cy="30" r="8" fill="white"/>
+      <!-- back to top start -->
+      <div class="back-to-top-wrapper">
+         <button id="back_to_top" type="button" class="back-to-top-btn">
+            <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <path d="M11 6L6 1L1 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
             </svg>
-          </div>
-          
-          <img src="https://i.ibb.co/rf3Sp41S/COLLEGE-2.png" 
-               alt="College Campus" 
-               class="img-fluid about-img">
-        </div>
+         </button>
       </div>
-    </div>
-  </div>
-</section>
-<!-- NEWS TICKER -->
-<div class="news-ticker-container">
-  <div class="container-fluid px-0">
-    <div class="d-flex align-items-center position-relative">
-      <div class="news-ticker-label">
-        <i class="fas fa-bullhorn me-2"></i> LATEST NEWS
+      <!-- header-area-start -->
+      <header class="header-area p-relative tp-header-4">
+         <div class="tp-header-4-top d-none d-lg-block" style="padding-top:10px; padding-bottom: 10px;">
+            <div class="container">
+               <div class="row align-items-center">
+                  <div class="col-md-6">
+                     <div class="tp-heder-info d-flex align-items-center">
+                        <div class="tp-header-info-item">
+                           <span><a href="#"><i class="bi bi-facebook"></i></a></span>
+                           <span><a href="#"><i class="bi bi-instagram"></i></a></span>
+                            <span><a href="#"><i class="bi bi-youtube"></i></a></span>
+                             <span><a href="#"><i class="bi bi-whatsapp"></i></a></span>
+                        </div>
+                        <div class="tp-header-info-item">
+                           <div class="header-bottom__lang">
+                              <ul>
+                                 <li>
+                                    <a href="mailto:jamiajuniorcolleges@gmail.com">
+                              <span>
+                                 <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 5C1 2.2 2.6 1 5 1H13C15.4 1 17 2.2 17 5V10.6C17 13.4 15.4 14.6 13 14.6H5" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M13 5.40039L10.496 7.40015C9.672 8.05607 8.32 8.05607 7.496 7.40015L5 5.40039" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M1 11.4004H5.8" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M1 8.19922H3.4" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                 </svg>
+                              </span> 
+                          jamiajuniorcolleges@gmail.com </a>
+                              
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="tp-header-4-top d-flex align-items-center justify-content-md-end">
+                         <div class="tp-header-4-top-item">
+                           <div class="tp-header-4-btn-top">
+                              <a href="#">
+                                 <span>
+                             <i class="bi bi-telephone-plus"></i>
+                                 </span>
+                               +91 9288951564
+                             
+                              </a>
+                           </div>
+                        </div>
+                        <div class="tp-header-4-top-item">
+                           <div class="tp-header-4-btn-top">
+                              <a href="https://jamiajuniorcolleges.com/student/">
+                                 <span>
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                       <path d="M7.07223 7.468C7.03023 7.462 6.97623 7.462 6.92823 7.468C5.87223 7.432 5.03223 6.568 5.03223 5.506C5.03223 4.42 5.90823 3.538 7.00023 3.538C8.08623 3.538 8.96823 4.42 8.96823 5.506C8.96223 6.568 8.12823 7.432 7.07223 7.468Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                                       <path d="M11.0441 11.428C9.97605 12.406 8.56005 13 7.00005 13C5.44005 13 4.02405 12.406 2.95605 11.428C3.01605 10.864 3.37605 10.312 4.01805 9.88C5.66205 8.788 8.35005 8.788 9.98205 9.88C10.6241 10.312 10.9841 10.864 11.0441 11.428Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                                       <path d="M7 13C10.3137 13 13 10.3137 13 7C13 3.68629 10.3137 1 7 1C3.68629 1 1 3.68629 1 7C1 10.3137 3.68629 13 7 13Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                 </span>
+                               Students Login
+                          
+                              </a>
+                           </div>
+                        </div>
+                          <div class="tp-header-4-top-item">
+                           <div class="tp-header-4-btn-top">
+                              <a href="https://jamiajuniorcolleges.com/institution/">
+                                 <span>
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                       <path d="M7.07223 7.468C7.03023 7.462 6.97623 7.462 6.92823 7.468C5.87223 7.432 5.03223 6.568 5.03223 5.506C5.03223 4.42 5.90823 3.538 7.00023 3.538C8.08623 3.538 8.96823 4.42 8.96823 5.506C8.96223 6.568 8.12823 7.432 7.07223 7.468Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                                       <path d="M11.0441 11.428C9.97605 12.406 8.56005 13 7.00005 13C5.44005 13 4.02405 12.406 2.95605 11.428C3.01605 10.864 3.37605 10.312 4.01805 9.88C5.66205 8.788 8.35005 8.788 9.98205 9.88C10.6241 10.312 10.9841 10.864 11.0441 11.428Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                                       <path d="M7 13C10.3137 13 13 10.3137 13 7C13 3.68629 10.3137 1 7 1C3.68629 1 1 3.68629 1 7C1 10.3137 3.68629 13 7 13Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                 </span>
+                               Institution Login
+                             
+                              </a>
+                           </div>
+                        </div>
+                     
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="header-sticky" class="tp-header-4-main">
+            <div class="container">
+               <div class="row align-items-center">
+                  <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-6">
+                      <div class="tp-header-4-logo tp-header-logo d-flex align-items-center">
+                          <a href="index.html" class="d-flex align-items-center">
+                              <div>
+                                  <img class="logo-1" src="https://jamiajuniorcolleges.com/assets/img/logo/logo1.png" alt="logo" style="max-height: 67px; margin-right: 10px;">
+                              </div>
+                              <div class="logo-1">
+                                  <span style="display: block; font-size: 16px; font-weight: bold; color:white;">Coordination of</span>
+                                  <span style="display: block; font-size: 16px; font-weight: bold; color:white;">Jamia Junior Colleges</span>
+                              </div>
+                              <img class="logo-2" src="https://jamiajuniorcolleges.com/assets/img/logo/logo-black-1.png" alt="logo"> 
+                          </a>
+                      </div>
+                  </div>
+
+                  <div class="col-xxl-9 col-xl-9 d-none d-xl-block">
+                     <div class="main-menu main-menu-4">
+                        <nav class="tp-main-menu-content">
+                           <ul>
+                              <li class="tp-static">
+                                 <a class="tp-static" href="https://jamiajuniorcolleges.com/home">Home</a> 
+                              </li>
+                                  <li class="has-dropdown"><a href="">About</a>
+                                 <ul class="tp-submenu">
+                                    <li><a href="https://jamiajuniorcolleges.com/">Courses</a></li>
+                                       <li><a href="https://jamiajuniorcolleges.com/">Admission</a></li>
+                                       <li><a href="https://jamiajuniorcolleges.com/">Publications</a></li>
+                                        <li><a href="https://jamiajuniorcolleges.com/">Academics</a></li>
+                                     
+                        
+                                 </ul>
+                              </li>
+                               <li class="">
+                                 <a href="https://jamiajuniorcolleges.com/">Colleges</a>
+                              </li>
+                                <li class=" tp-static">
+                                 <a class="tp-static" href="https://jamiajuniorcolleges.com/">Exam</a>
+                              </li>
+                            <li class=" tp-static">
+                                 <a class="tp-static" href="https://jamiajuniorcolleges.com/downloads">Downloads</a>
+                                 
+                              </li>
+                              <li class=" tp-static">
+                                 <a class="tp-static" href="https://jamiajuniorcolleges.com/news">News</a>
+                                 
+                              </li>
+                              <li class="has-dropdown"><a href="">Updates</a>
+                                 <ul class="tp-submenu">
+                                    <li><a href="https://jamiajuniorcolleges.com/album">Gallery</a></li>
+                                    
+                                 </ul>
+                              </li>
+                           
+                             
+                              <li class=" tp-static">
+                                 <a class="tp-static" href="https://jamiajuniorcolleges.com/contact">Contact Us</a>
+                              </li>
+                           </ul>
+                        </nav>
+                     </div>
+                  </div>
+                <div class="col-xxl-1 col-xl-1 col-lg-6 col-md-6 col-6">
+                     <div class="tp-header-contact d-flex align-items-center justify-content-end">
+                
+                      <!--   <div class="tp-header-4-btn d-none d-md-block ml-30">
+                           <a href="https://jamiajuniorcolleges.com/login">Login</a>
+                        </div> -->
+                        <div class="tp-header-bar d-xl-none ml-30">
+                           <button class="offcanvas-open-btn"><i class="fa-solid fa-bars"></i></button>
+                        </div>
+                     </div>
+                  </div> 
+               </div>
+            </div>
+         </div>
+      </header>
+      <!-- header-area-end -->
+
+
+      <!-- offcanvas area start -->
+      <div class="offcanvas__area">
+         <div class="offcanvas__wrapper">
+            <div class="offcanvas__close">
+               <button class="offcanvas__close-btn offcanvas-close-btn">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                     <path d="M1 1L11 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+               </button>
+            </div>
+            <div class="offcanvas__content">
+               <div class="offcanvas__top mb-90 d-flex justify-content-between align-items-center">
+                  <div class="offcanvas__logo tp-header-logo">
+                     <a href="index.html">
+                        <img src="https://jamiajuniorcolleges.com/assets/img/logo/logo-black-1.png" alt="logo">
+                     </a>
+                  </div>
+               </div>
+               <div class="offcanvas-main">
+                  <div class="tp-main-menu-mobile d-xl-none"></div>
+                  <div class="offcanvas-social">
+                     <h3 class="offcanvas-title sm">Follow Us</h3>
+                     <ul>
+                        <li>
+                           <a href="#">
+                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                 <path d="M11.25 1.5H4.75C2.95507 1.5 1.5 2.95507 1.5 4.75V11.25C1.5 13.0449 2.95507 14.5 4.75 14.5H11.25C13.0449 14.5 14.5 13.0449 14.5 11.25V4.75C14.5 2.95507 13.0449 1.5 11.25 1.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                 <path d="M10.6016 7.5907C10.6818 8.13166 10.5894 8.68414 10.3375 9.16955C10.0856 9.65497 9.68711 10.0486 9.19862 10.2945C8.71014 10.5404 8.15656 10.6259 7.61663 10.5391C7.0767 10.4522 6.57791 10.1972 6.19121 9.81055C5.80451 9.42385 5.54959 8.92506 5.46271 8.38513C5.37583 7.8452 5.46141 7.29163 5.70728 6.80314C5.95315 6.31465 6.34679 5.91613 6.83221 5.66425C7.31763 5.41238 7.87011 5.31998 8.41107 5.4002C8.96287 5.48202 9.47372 5.73915 9.86817 6.1336C10.2626 6.52804 10.5197 7.0389 10.6016 7.5907Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                 <path d="M11.5742 4.42578H11.5842" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                              </svg>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#">
+                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                 <path d="M2.50589 12.7494C4.57662 16.336 9.16278 17.5648 12.7494 15.4941C14.2113 14.65 15.2816 13.388 15.8962 11.9461C16.7895 9.85066 16.7208 7.37526 15.4941 5.25063C14.2674 3.12599 12.1581 1.82872 9.89669 1.55462C8.34063 1.366 6.71259 1.66183 5.25063 2.50589C1.66403 4.57662 0.435172 9.16278 2.50589 12.7494Z" stroke="currentColor" stroke-width="1.5"></path>
+                                 <path d="M12.7127 15.4292C12.7127 15.4292 12.0086 10.4867 10.5011 7.87559C8.99362 5.26451 5.28935 2.57155 5.28935 2.57155M5.68449 15.6124C6.79553 12.2606 12.34 8.54524 16.3975 9.43537M12.311 2.4082C11.1953 5.72344 5.75732 9.38453 1.71875 8.58915" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                              </svg>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#">
+                              <svg width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                 <path d="M1 5.5715H6.33342C7.62867 5.5715 8.61917 6.56199 8.61917 7.85725C8.61917 9.15251 7.62867 10.143 6.33342 10.143H1.76192C1.30477 10.143 1 9.83823 1 9.38108V1.76192C1 1.30477 1.30477 1 1.76192 1H5.5715C6.86676 1 7.85725 1.99049 7.85725 3.28575C7.85725 4.58101 6.86676 5.5715 5.5715 5.5715H1Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></path>
+                                 <path d="M10.9062 7.09454H17.0016C17.0016 5.41832 15.6301 4.04688 13.9539 4.04688C12.2777 4.04688 10.9062 5.41832 10.9062 7.09454ZM10.9062 7.09454C10.9062 8.77076 12.2777 10.1422 13.9539 10.1422H15.2492" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                                 <path d="M16.1125 1.44434H11.668" stroke="currentColor" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                              </svg>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#">
+                              <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                 <path d="M12.75 13H5.25C3 13 1.5 11.5 1.5 9.25V4.75C1.5 2.5 3 1 5.25 1H12.75C15 1 16.5 2.5 16.5 4.75V9.25C16.5 11.5 15 13 12.75 13Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                                 <path d="M8.70676 5.14837L10.8006 6.40465C11.5543 6.90716 11.5543 7.66093 10.8006 8.16344L8.70676 9.41972C7.86923 9.92224 7.19922 9.50348 7.19922 8.5822V6.06964C7.19922 4.98086 7.86923 4.64585 8.70676 5.14837Z" fill="currentColor"></path>
+                              </svg>
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
-      <div class="news-ticker">
-        <span class="ticker-item">2025-26 വാർഷിക പരീക്ഷ: ജനുവരി 31, ഫെബ്രുവരി 1,2,10,11,12</span>
-        <span class="ticker-item">സമസ്ത നൂറാം വാർഷികം: ഫെബ്രുവരി 4-8 കാസർഗോഡ് കുണിയയിൽ</span>
-        <span class="ticker-item"> പുതുമകളോടെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജ് വെബ്‌സൈറ്റ് ലോഞ്ച് ചെയ്തു.</span>
-      </div>
-    </div>
-  </div>
-</div>  
-<!-- Flash Notice -->
-<div class="alert alert-warning alert-dismissible fade show rounded-0 text-center mb-0" style="background: linear-gradient(90deg, var(--islamic-gold), #e6b800); color: var(--islamic-green); margin-top: 80px;">
-  <div class="container">
-    <strong><i class="fas fa-bullhorn me-2"></i> Admission Open:</strong> 2025-26 academic year. Apply before December 31, 2025.
-    <a href="admission.html" class="btn btn-sm btn-outline-dark ms-3">Apply Now</a>
-    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-  </div>
+      <div class="body-overlay"></div>
+      <!-- offcanvas area end --><main>
+<!-- checkout area start -->
+<section class="tp-checkout-area pt-20">
+<div class="container">
+<div class="row">
+<div class="tp-checkout-verify text-center">
+<h3><b>CO-ORDINATION OF JAMIA JUNIOR COLLEGES</b></h3>
+       <h5><b>Jamia Nooriyya Arabiyya-Faizabad,Pattikkad,679325</b></h5>
+       <h5>jamiajuniorcolleges.com | jjcexamboard@gmail.com | jamiajuniorcolleges@gmail.com</h5>
 </div>
-<!-- ABOUT SECTION -->
-<section id="about" class="py-5">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="display-5 fw-bold">About the Institution</h2>
+<div class="tp-checkout-bill-area">
+<h3 class="tp-checkout-bill-title">Start Regisration Process Here</h3>
+<div class="tp-checkout-bill-form">
+   <form action="https://jamiajuniorcolleges.com/saveadmission" method="POST"  onsubmit="disableButton()">
+      <div class="tp-checkout-bill-inner">
+         <div class="row">
+           <div class="col-md-12">
+            <div class="tp-checkout-input">
+               <label>Mobile Number<span>*</span></label>
+            <input type="text" placeholder="മൊബൈൽ നമ്പർ" name="phone" id="phone" required maxlength="10" minlength="10" onkeyup="PhoneCount(this.value)">
+                <span id="countphone" style="color: red;"></span>
+            </div>
+         </div>
+         <div class="col-md-12">
+            <div class="tp-checkout-input">
+               <label>Full Name With Initial<span>*</span></label>
+               <input type="text" placeholder="വിദ്യാർത്ഥിയുടെ പേര്" name="name" required>
+            </div>
+         </div>
+       <div class="col-md-12">
+    <div class="tp-checkout-input">
+        <label>Selection to which admission is sought<span>*</span></label>
+        <!-- പ്രവേശനം തേടുന്ന വിഭാഗം -->
+        <select name="category" class="nice-select wide" required>
+            <option value="" style="display:none;">SELECT</option>
+
+                            <option value="SECONDARY">SECONDARY</option>
+            
+            <option value="HIGHER SECONDARY">HIGHER SECONDARY</option>
+        </select>
     </div>
-    
-    <div class="row gy-4 align-items-center">
-      <div class="col-md-8">
-         <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-             alt="College Students" 
-             class="img-fluid about-img">       
-        <p class="lead malayalam-font mb-4" style="text-align: justify;">
-          ദാറുന്നജാത്ത് ശാരീഅത്ത് & ആർട്സ് കോളേജ് വിശ്വാസവും വിജ്ഞാനവും ഒന്നിച്ചു വളരുന്ന വിദ്യാലയം.
-            പട്ടിക്കാട് ജാമിഅ നൂരിയ്യ അറബിയ്യ കോളേജിന്റെ അംഗീകൃത എ പ്ലസ് ജൂനിയർ കോളേജായ ദാറുന്നജാത്ത്, സമസ്ത കേരള ജംഇയ്യത്തുൽ ഉലമയുടെ കർശന മാർഗനിർദേശത്തിൽ പ്രവർത്തിക്കുന്നു.
-            പ്രശസ്ത പണ്ഡിതനും വിദ്യാഭ്യാസ പ്രവർത്തകനുമായ കെ.ടി. മാനു മുസ്‌ലിയാർ സ്ഥാപിച്ച ഈ സ്ഥാപനം, ഏഴാം ക്ലാസ് മുതൽ തന്നെ ഇസ്‌ലാമികവും ലൗകികവുമായ വിദ്യാഭ്യാസത്തെ ഒരേ ക്യാമ്പസിൽ സമന്വയിപ്പിച്ച് നൽകുന്ന അപൂർവ സൗകര്യമാണ്.
-            <br><br>
-            ഇവിടെ വിദ്യാർത്ഥികൾക്ക് ഒരേ സമയം: ഉന്നത നിലവാരമുള്ള പൊതുവിദ്യാഭ്യാസം (എസ്.എസ്.എൽ.സി., പ്ലസ് ടു, ബിരുദം, പി.ജി. വരെ) ആധികാരികമായ ആറുവർഷ നജവി ബിരുദം, ഹാഫിളുകൾക്ക് ദൗറ എന്നിവ ലഭിക്കുന്നു.
-            മികച്ച അധ്യാപക വൃന്ദവും ആധുനിക ഹോസ്റ്റൽ സൗകര്യങ്ങളും ശാന്തമായ പഠനാന്തരീക്ഷവും ഈ ക്യാമ്പസിന്റെ പ്രത്യേകതയാണ്. എസ്.എസ്.എൽ.സി. കഴിഞ്ഞാൽ മറ്റൊരു പ്രവേശന പരീക്ഷയും കാത്തുനിൽക്കേണ്ടതില്ല; നേരേ ആറുവർഷത്തെ ഉന്നത ഇസ്‌ലാമിക ബിരുദ പഠനത്തിലേക്ക് പ്രവേശിക്കാം.
-            അതോടൊപ്പം ബി.എ., എം.എ. പോലുള്ള ലൗകിക ബിരുദങ്ങളും പൂർത്തിയാക്കാം.
-            <br><br>
-            ദാറുന്നജാത്ത് എന്നാൽ ഒരു കോളേജ് മാത്രമല്ല; ഇസ്‌ലാമിക മൂല്യങ്ങളിൽ അധിഷ്ഠിതമായ ആധുനിക വിദ്യാഭ്യാസം സ്വീകരിച്ച് സമൂഹത്തിന് മാതൃകയാകുന്ന തലമുറയെ വാർത്തെടുക്കുന്ന ഒരു ജീവിതദർശനമാണ്.
-            വിശ്വാസം ഉറപ്പിച്ച് വിജ്ഞാനം നേടി, ലോകത്തിന് പ്രയോജനപ്പെടുന്ന വ്യക്തിത്വമാകാൻ ആഗ്രഹിക്കുന്നവർക്ക് ദാറുന്നജാത്ത് തുറന്നുകൊടുക്കുന്നത് സ്വർഗീയവും ഭൗതികവുമായ വിജയത്തിന്റെ ഇരട്ടിവാതിലാണ്.
-            ദാറുന്നജാത്തിലേക്ക് സ്വാഗതം; ഇവിടെ നിങ്ങളുടെ ഭാവി തിളങ്ങുന്നു!
-        </p>
-        
-        <div class="row mt-4">
-          <div class="col-6 mb-3">
-            <div class="feature-box">
-              <div class="feature-icon">
-                <i class="fas fa-book-open"></i>
-              </div>
-              <div>
-                <h6 class="mb-0">Quranic Studies</h6>
-                <small class="text-muted">Hifz & Tafseer</small>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 mb-3">
-            <div class="feature-box">
-              <div class="feature-icon">
-                <i class="fas fa-graduation-cap"></i>
-              </div>
-              <div>
-                <h6 class="mb-0">Modern Education</h6>
-                <small class="text-muted"> Arts Subjects</small>
-              </div>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="feature-box">
-              <div class="feature-icon">
-                <i class="fas fa-users"></i>
-              </div>
-              <div>
-                <h6 class="mb-0">Islamic Values</h6>
-                <small class="text-muted">Character Building</small>
-              </div>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="feature-box">
-              <div class="feature-icon">
-                <i class="fas fa-hands-helping"></i>
-              </div>
-              <div>
-                <h6 class="mb-0">Community Service</h6>
-                <small class="text-muted">Social Responsibility</small>
-              </div>
-            </div>
-          </div>
-        </div>
+</div>
+
+         <div class="text-center">
+            <button  class="blue " id="submitButton">Submit and Continue</button>
+         </div>
+         
       </div>
-    </div>
-  </div>
+   </div>
+</form>
+</div>
+</div>
+</div>
+</div>
 </section>
+<!-- checkout area end -->
+</main>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+<script type="text/javascript">
+       function disableButton() {
+        document.getElementById('submitButton').disabled = true;
+    }
+        function PhoneCount(str) {
+        var lng = str.length;
+        document.getElementById("countphone").innerHTML = lng + ' out of 10 characters';
+    }
 
-<!-- YOUTUBE HIGHLIGHTS -->
-<section id="highlights" class="py-5 highlights-section" style="background: var(--islamic-light);">
-  <div class="container">
-    
-    <!-- SECTION HEADER -->
-    <div class="section-header text-center mb-5">
-      <h2 class="display-5 fw-bold">College Highlights</h2>
-      <p class="text-muted">Memorable Moments & Events</p>
-    </div>
 
-    <!-- VIDEOS ROW -->
-    <div class="row g-4">
 
-      <!-- VIDEO 1 -->
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-        <div class="video-card h-100">
-          <div class="video-thumbnail ratio ratio-16x9">
-            <iframe 
-              src="https://www.youtube.com/embed/EMgzRUdoiWk"
-              title="First Convocation Ceremony"
-              allowfullscreen>
-            </iframe>
-          </div>
-          <div class="p-3">
-            <h5 class="fw-bold" style="color: var(--islamic-green);">
-              <i class="fas fa-video me-2 text-warning"></i>
-              First Convocation Ceremony
-            </h5>
-            <p class="text-muted small">
-              The historic first convocation ceremony of our college
-            </p>
-            <div class="d-flex justify-content-between align-items-center mt-3">
-              <small class="text-muted">
-                <i class="far fa-calendar me-1"></i> Dec 12, 2024
-              </small>
-              <a href="https://www.youtube.com/watch?v=EMgzRUdoiWk" target="_blank"
-                 class="btn btn-sm btn-outline-success">
-                <i class="fab fa-youtube me-1"></i> Watch
-              </a>
+
+
+</script>      <!-- footer-area-start -->
+      <footer >
+         <div class="tp-footer-main grey-bg pt-80 pb-55"style="background-image: url(https://jamiajuniorcolleges.com/assets/img/footer/footer.jpg);">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xl-4 col-lg-3 col-sm-6">
+                     <div class="tp-footer-widget tp-footer-col-1 mb-30">
+                        <div class="tp-footer-widget-logo mb-20 tp-header-logo">
+                           <a href="index.html"><img src="https://jamiajuniorcolleges.com/assets/img/logo/logo.png" alt="" style="width:177px;"></a>
+                        </div>
+                        <div class="tp-footer-widget-content">
+                           <p>Faizabad, Pattikkad PO, Malappuram Kerala 679325 India</p>
+                        </div>
+                        <div class="tp-footer-contact">
+                           <span>Got Questions? Call us</span>
+                           <a href="tel:+919288951564">+91 9288951564</a>
+                        </div>
+                        <div class="tp-footer-contact-mail">
+                           <a href="mailto:jamiajuniorcolleges@gmail.com">
+                              <span>
+                                 <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 5C1 2.2 2.6 1 5 1H13C15.4 1 17 2.2 17 5V10.6C17 13.4 15.4 14.6 13 14.6H5" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M13 5.40039L10.496 7.40015C9.672 8.05607 8.32 8.05607 7.496 7.40015L5 5.40039" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M1 11.4004H5.8" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M1 8.19922H3.4" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                 </svg>
+                              </span> 
+                          jamiajuniorcolleges@gmail.com </a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-xl-2 col-lg-3 col-sm-6">
+                     <div class="tp-footer-widget tp-footer-col-2 mb-30">
+                        <h4 class="tp-footer-widget-title mb-20">About</h4>
+                        <div class="tp-footer-widget-link">
+                           <ul>
+                              <li><a href="about.html">About Us</a></li>
+                              <li><a href="#">Courses</a></li>
+                              <li><a href="#">News & Blogs</a></li>
+                              <li><a href="#">Gallery</a></li>
+                              <li><a href="#">Admission</a></li>
+                              <li><a href="#">Contact</a></li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-xl-2 col-lg-2 col-sm-4">
+                     <div class="tp-footer-widget tp-footer-col-3 mb-30">
+                        <h4 class="tp-footer-widget-title mb-20">Quick links</h4>
+                        <div class="tp-footer-widget-link">
+                           <ul>
+                              <li><a href="#">Students</a></li>
+                              <li><a href="#">Addmition</a></li>
+                              <li><a href="#">Faculty & Staffs</a></li>
+                              <li><a href="#">Media Relations</a></li>
+                              <li><a href="#">Alumni</a></li>
+                              <li><a href="#">Visit</a></li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-xl-4 col-lg-4 col-sm-8">
+                     <div class="p-footer-widget tp-footer-col-4 mb-30">
+                        <h4 class="tp-footer-widget-title mb-20">Address</h4>
+                        <div class="tp-footer-newsletter-wrap">
+                           <p class="text-white">The concept of Junior Colleges was put forward on 9th February 2010 in the wake of a series of negotiations from the part of Samastha. The system runs under the aegis of Co-ordination of Jamia junior colleges. </p>
+                    
+                           <div class="tp-footer-newsletter-social">
+                              <a class="social-fb" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                              <a class="social-twit" href="#"><i class="fa-brands fa-twitter"></i></a>
+                              <a class="social-lnkd" href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                              <a class="social-yout" href="#"><i class="fa-brands fa-youtube"></i></a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- VIDEO 2 -->
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-        <div class="video-card h-100">
-          <div class="video-thumbnail ratio ratio-16x9">
-            <iframe 
-              src="https://www.youtube.com/embed/uGe4yT6RU70"
-              title="Golden Jubilee Inaugural Conference"
-              allowfullscreen>
-            </iframe>
-          </div>
-          <div class="p-3">
-            <h5 class="fw-bold" style="color: var(--islamic-green);">
-              <i class="fas fa-award me-2 text-warning"></i>
-              Golden Jubilee Inaugural Conference
-            </h5>
-            <p class="text-muted small">
-              50 Years of Legacy & Light
-            </p>
-            <div class="d-flex justify-content-between align-items-center mt-3">
-              <small class="text-muted">
-                <i class="far fa-calendar me-1"></i> Jan 10, 2025
-              </small>
-              <a href="https://www.youtube.com/watch?v=uGe4yT6RU70" target="_blank"
-                 class="btn btn-sm btn-outline-success">
-                <i class="fab fa-youtube me-1"></i> Watch
-              </a>
+         </div>
+         <div class="tp-footer-bottom">
+            <div class="container">
+               <div class="row">
+                  <div class="col-lg-12">
+                     <div class="tp-footer-copyright text-center">
+                        <span>Copyright ©2024 JJC - Coordination of Jamia Junior Collages</span>
+                     </div>
+                  </div>
+               </div>
             </div>
-          </div>
-        </div>
-      </div>
+         </div>
+      </footer>
+      <!-- footer-area-end -->
 
-      <!-- VIDEO 3 -->
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-        <div class="video-card h-100">
-          <div class="video-thumbnail ratio ratio-16x9">
-            <iframe 
-              src="https://www.youtube.com/embed/vNfz0ExArPg"
-              title="49th Anniversary Celebration"
-              allowfullscreen>
-            </iframe>
-          </div>
-          <div class="p-3">
-            <h5 class="fw-bold" style="color: var(--islamic-green);">
-              <i class="fas fa-birthday-cake me-2 text-warning"></i>
-              49th Anniversary Celebration
-            </h5>
-            <p class="text-muted small">
-              Commemorating 49 years of educational excellence
-            </p>
-            <div class="d-flex justify-content-between align-items-center mt-3">
-              <small class="text-muted">
-                <i class="far fa-calendar me-1"></i> Oct 15, 2024
-              </small>
-              <a href="https://www.youtube.com/watch?v=vNfz0ExArPg" target="_blank"
-                 class="btn btn-sm btn-outline-success">
-                <i class="fab fa-youtube me-1"></i> Watch
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- JS here -->
+      <script src="https://jamiajuniorcolleges.com/assets/js/vendor/jquery.js"></script>
+      <script src="https://jamiajuniorcolleges.com/assets/js/vendor/waypoints.js"></script>
+      <script src="https://jamiajuniorcolleges.com/assets/js/bootstrap-bundle.js"></script>
+      <script src="https://jamiajuniorcolleges.com/assets/js/swiper-bundle.js"></script>
+      <script src="https://jamiajuniorcolleges.com/assets/js/slick.js"></script>
+      <script src="https://jamiajuniorcolleges.com/assets/js/magnific-popup.js"></script>
+      <script src="https://jamiajuniorcolleges.com/assets/js/nice-select.js"></script>
+      <script src="https://jamiajuniorcolleges.com/assets/js/purecounter.js"></script>
+      <script src="https://jamiajuniorcolleges.com/assets/js/wow.js"></script>
+      <script src="https://jamiajuniorcolleges.com/assets/js/isotope-pkgd.js"></script>
+      <script src="https://jamiajuniorcolleges.com/assets/js/hover-reveal.js"></script>
+      <script src="https://jamiajuniorcolleges.com/assets/js/tween-max.js"></script>
+      <script src="https://jamiajuniorcolleges.com/assets/js/imagesloaded-pkgd.js"></script>
+      <script src="https://jamiajuniorcolleges.com/assets/js/flatpickr.js"></script>   
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    </div>
+      <script src="https://jamiajuniorcolleges.com/assets/js/ajax-form.js"></script>
+      <script src="https://jamiajuniorcolleges.com/assets/js/main.js"></script>
 
-    <!-- VIEW MORE -->
-    <div class="text-center mt-5" data-aos="fade-up">
-      <a href="youtube.html" class="btn btn-primary px-5 py-3">
-        <i class="fab fa-youtube me-2"></i> View More on YouTube
-      </a>
-    </div>
-
-  </div>
-</section>
-
-<!-- NOTIFICATIONS -->
-<section id="notifications" class="py-5">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="display-5 fw-bold">Important Notifications</h2>
-    </div>
-    
-    <div class="row">
-      <div class="col-lg-8 mx-auto">
-        <div class="list-group">
-          <a href="forms.html" class="list-group-item list-group-item-action notification-item">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <div class="fw-bold text-success">Admission Open 2025-26</div>
-                <small class="text-muted">Apply now for all classes (1st to 10th)</small>
-              </div>
-              <span class="badge bg-success">NEW</span>
-            </div>
-          </a>
-          
-          <a href="#" class="list-group-item list-group-item-action notification-item">
-            <div>
-              <div class="fw-bold text-success">مولد النبي صلى الله عليه وسلم</div>
-              <small class="text-muted">December 20, 2025 — All are invited</small>
-            </div>
-          </a>
-          
-          <a href="#" class="list-group-item list-group-item-action notification-item">
-            <div>
-              <div class="fw-bold text-success">Holiday Notice</div>
-              <small class="text-muted">Closed Feb 15-28, 2026 after exams</small>
-            </div>
-          </a>
-          
-          <a href="result.html" class="list-group-item list-group-item-action notification-item">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <div class="fw-bold text-success">Results Published</div>
-                <small class="text-muted">Half-yearly results available online</small>
-              </div>
-              <span class="btn btn-success btn-sm">View</span>
-            </div>
-          </a>
-          
-          <a href="#" class="list-group-item list-group-item-action notification-item">
-            <div>
-              <div class="fw-bold text-success">Parent-Teacher Meeting</div>
-              <small class="text-muted">Dec 15, 2025 at 10:00 AM</small>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="py-5">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4 mb-4">
-        <h5 class="text-white mb-4">
-          <i class="fas fa-mosque me-2 text-warning"></i>
-          Darunnajath Shareeath & Arts College
-        </h5>
-        <p class="text-light" style="opacity: 0.8;">
-          Under Darunnajath Islamic Centre<br>
-          Punnakkad, Karuvarakundu PO<br>
-          Malappuram District, Kerala
-        </p>
-        <div class="mt-3">
-          <a href="mailto:najathshareea@gmail.com" class="text-warning text-decoration-none">
-            <i class="fas fa-envelope me-2"></i> najathshareea@gmail.com
-          </a>
-        </div>
-      </div>
       
-      <div class="col-lg-4 mb-4">
-        <h5 class="text-white mb-4">Quick Links</h5>
-        <div class="row">
-          <div class="col-6">
-            <ul class="list-unstyled">
-              <li class="mb-2"><a href="faculties.html" class="text-light text-decoration-none">Staff</a></li>
-              <li class="mb-2"><a href="pta.html" class="text-light text-decoration-none">PTA</a></li>
-              <li class="mb-2"><a href="result.html" class="text-light text-decoration-none">Results</a></li>
-              <li class="mb-2"><a href="gallery.html" class="text-light text-decoration-none">Gallery</a></li>
-            </ul>
-          </div>
-          <div class="col-6">
-            <ul class="list-unstyled">
-              <li class="mb-2"><a href="library.html" class="text-light text-decoration-none">Library</a></li>
-              <li class="mb-2"><a href="alumni.html" class="text-light text-decoration-none">Alumni</a></li>
-              <li class="mb-2"><a href="downloads.html" class="text-light text-decoration-none">Downloads</a></li>
-              <li class="mb-2"><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-lg-4 mb-4">
-        <h5 class="text-white mb-4">Connect With Us</h5>
-        <div class="d-flex gap-3 mb-4">
-          <a href="#" class="social-icon" style="background:#1877f2;">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" class="social-icon" style="background:#e4405f;">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="#" class="social-icon" style="background:#1da1f2;">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#" class="social-icon" style="background:#25d366;">
-            <i class="fab fa-whatsapp"></i>
-          </a>
-          <a href="#" class="social-icon" style="background:#ff0000;">
-            <i class="fab fa-youtube"></i>
-          </a>
-        </div>
-        
-        <div class="border-top border-warning pt-3 mt-3">
-          <p class="text-light mb-0" style="font-size: 0.9rem; opacity: 0.8;">
-            <i class="fas fa-quote-left text-warning me-1"></i>
-            Knowledge is light that guides to the right path
-          </p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="row mt-4 pt-4 border-top border-secondary">
-      <div class="col-md-6 text-center text-md-start">
-        <small class="text-light" style="opacity: 0.7;">
-          © <span id="year"></span> Darunnajath Shareeath & Arts College. All rights reserved.
-        </small>
-      </div>
-      <div class="col-md-6 text-center text-md-end">
-        <small class="text-light" style="opacity: 0.7;">
-          Developed with <i class="fas fa-heart text-danger"></i> by <strong class="text-warning">Rafi Wafi</strong>
-        </small>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<!-- WhatsApp Button -->
-<a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20and%20Arts%20College!" class="whatsapp-float">
-  <i class="fab fa-whatsapp"></i>
-</a>
-
-<!-- JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>
-  // Initialize AOS
-  AOS.init({
-    duration: 1000,
-    once: true,
-    offset: 100
-  });
-  
-  // Navbar scroll effect
-  window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
-  });
-  
-  // Update year in footer
-  document.getElementById('year').textContent = new Date().getFullYear();
-  
-  // Scroll to top button
-  const scrollBtn = document.createElement('button');
-  scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-  scrollBtn.className = 'btn btn-warning rounded-circle shadow-lg';
-  scrollBtn.style.cssText = 'position:fixed;bottom:90px;right:20px;width:50px;height:50px;z-index:1000;display:none;';
-  scrollBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-  document.body.appendChild(scrollBtn);
-  
-  window.addEventListener('scroll', () => {
-    scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
-  });
-  
-  // News ticker hover pause
-  const ticker = document.querySelector('.news-ticker');
-  if (ticker) {
-    ticker.addEventListener('mouseenter', () => ticker.style.animationPlayState = 'paused');
-    ticker.addEventListener('mouseleave', () => ticker.style.animationPlayState = 'running');
-  }
-</script>
-
-</body>
+   </body>
 </html>
