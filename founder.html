@@ -1,48 +1,229 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ml">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DSAC | Founder</title>
+  <title>DSAC | സ്ഥാപകൻ</title>
+  
+  <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
+  
   <style>
-    body {
-      font-family: "Inter", sans-serif;
-      background-color: #f8f9fa;
-      overflow-x: hidden;
+    /* CSS VARIABLES */
+    :root {
+      --islamic-green: #0a5c36;
+      --islamic-gold: #c19a3f;
+      --islamic-cream: #f8f3e6;
+      --dark-green: #064e3b;
+      --transition: all 0.3s ease;
     }
 
-    header {
-      background: linear-gradient(90deg, #0b5ed7, #2b9ed7);
+    body {
+      font-family: 'Anek Malayalam', sans-serif;
+      background-color: var(--islamic-cream);
+      color: #333;
+      overflow-x: hidden;
+      padding-top: 80px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* HEADER */
+    .founder-header {
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
+      color: white;
+      padding: 3rem 0;
+      text-align: center;
+      border-bottom: 5px solid var(--islamic-gold);
+      margin-bottom: 0;
+    }
+
+    .founder-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--islamic-gold);
+    }
+
+    .founder-header .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    /* CONTENT SECTIONS */
+    .founder-content {
+      padding: 4rem 0;
+      background: var(--islamic-cream);
+    }
+
+    .founder-image-section {
+      margin-bottom: 3rem;
+    }
+
+    .founder-main-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 15px;
+      border: 5px solid var(--islamic-gold);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .founder-title {
+      color: var(--islamic-green);
+      font-weight: 700;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 3px solid var(--islamic-gold);
+      font-size: 2rem;
+    }
+
+    .founder-bio {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      text-align: justify;
+      color: #444;
+    }
+
+    .highlight-quote {
+      background: linear-gradient(135deg, rgba(10, 92, 54, 0.1), rgba(193, 154, 63, 0.1));
+      border-left: 5px solid var(--islamic-gold);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 8px;
+      font-style: italic;
+      font-size: 1.2rem;
+    }
+
+    /* GALLERY */
+    .gallery-section {
+      padding: 4rem 0;
+      background: white;
+    }
+
+    .section-title {
+      color: var(--islamic-green);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: var(--islamic-gold);
     }
 
     .gallery-item img {
       transition: transform 0.4s ease, box-shadow 0.4s ease;
       cursor: pointer;
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 3px solid transparent;
     }
 
     .gallery-item:hover img {
       transform: scale(1.05);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      border-color: var(--islamic-gold);
     }
 
-    .btn-outline-primary {
-      border-color: #0b5ed7;
-      color: #0b5ed7;
-      border-radius: 25px;
-      transition: all 0.3s ease;
+    /* VIDEOS */
+    .video-section {
+      padding: 4rem 0;
+      background: var(--islamic-cream);
     }
 
-    .btn-outline-primary:hover {
-      background: #0b5ed7;
+    .video-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: var(--transition);
+      border: 3px solid transparent;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      height: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .video-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--islamic-gold);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-title {
+      color: var(--islamic-green);
+      font-weight: 600;
+      padding: 1rem;
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    /* BUTTONS */
+    .btn-gold {
+      background: linear-gradient(135deg, var(--islamic-gold), #d4af37);
+      border: none;
+      color: var(--islamic-green);
+      font-weight: 600;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3);
+      transition: var(--transition);
+      padding: 0.75rem 2rem;
+      font-size: 1.1rem;
+    }
+
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #d4af37, var(--islamic-gold));
+      box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4);
+      transform: translateY(-2px);
+      color: var(--islamic-green);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
+      border-top: 3px solid var(--islamic-gold);
+      padding: 2rem 0;
       color: white;
+      text-align: center;
     }
 
-    footer {
-      background: #0b5ed7;
-    }
-
-    /* Lightbox */
+    /* LIGHTBOX */
     #lightbox {
       display: none;
       position: fixed;
@@ -61,7 +242,7 @@
       max-width: 95%;
       max-height: 90%;
       border-radius: 10px;
-      transition: opacity 0.5s ease;
+      border: 3px solid var(--islamic-gold);
     }
 
     #lightbox .controls {
@@ -75,131 +256,283 @@
     }
 
     #lightbox button {
-      background: none;
+      background: var(--islamic-gold);
       border: none;
-      color: white;
-      font-size: 2rem;
+      color: var(--islamic-green);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 1.5rem;
       cursor: pointer;
-      transition: 0.3s;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     #lightbox button:hover {
-      color: #0b5ed7;
+      background: var(--islamic-green);
+      color: var(--islamic-gold);
+      transform: scale(1.1);
     }
 
     #closeBtn {
       position: absolute;
       top: 20px;
       right: 30px;
-      font-size: 2rem;
+      font-size: 2.5rem;
       color: white;
       cursor: pointer;
-      transition: 0.3s;
+      transition: var(--transition);
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
     }
 
     #closeBtn:hover {
-      color: #0b5ed7;
+      color: var(--islamic-gold);
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(90deg);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px;
+      }
+      
+      .founder-header {
+        padding: 2rem 0;
+      }
+      
+      .founder-header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .founder-header .subtitle {
+        font-size: 1rem;
+      }
+      
+      .founder-content, .gallery-section, .video-section {
+        padding: 2.5rem 0;
+      }
+      
+      .founder-title {
+        font-size: 1.6rem;
+      }
+      
+      .founder-bio {
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: left;
+      }
+      
+      .gallery-item img {
+        height: 150px;
+      }
+      
+      #lightbox button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+      
+      #closeBtn {
+        width: 40px;
+        height: 40px;
+        font-size: 2rem;
+        top: 15px;
+        right: 15px;
+      }
     }
 
     @media (max-width: 576px) {
-      header h2 { font-size: 1.4rem; }
-      header p { font-size: 0.9rem; }
+      .founder-header h1 {
+        font-size: 1.5rem;
+      }
+      
+      .founder-title {
+        font-size: 1.4rem;
+      }
+      
+      .btn-gold {
+        padding: 0.6rem 1.5rem;
+        font-size: 1rem;
+      }
+      
+      .gallery-item img {
+        height: 120px;
+      }
     }
   </style>
 </head>
 <body>
 
   <!-- HEADER -->
-  <header class="text-white text-center py-4 shadow-sm">
-    <h2>DARUNNAJATH SHAREEATH AND ARTS COLLEGE — FOUNDER</h2>
-    <p>Memorable moments OF our Founder</p>
+  <header class="founder-header">
+    <div class="container">
+      <h1>ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജ് — സ്ഥാപകൻ</h1>
+      <p class="subtitle">വന്ദ്യരായ കെ.ടി. മാനു മുസ്‌ലിയാർ</p>
+    </div>
   </header>
 
-  <!-- GALLERY -->
-  <section id="gallery" class="py-5">
+  <!-- MAIN CONTENT -->
+  <section class="founder-content">
     <div class="container">
-      <div class="row g-3">
-
-        <!-- Gallery Images -->
-        <div class="col-6 col-md-4 col-lg-3 gallery-item">
-          <img src="https://i.ibb.co/vvw9dqs0/6f4db8d24f060a981562408c706db268.png" class="img-fluid rounded shadow-sm" alt="">
+      <div class="row align-items-center">
+        <div class="col-lg-4 founder-image-section">
+          <img src="https://islamonweb.net/ml/uploads/muslim_article_images/e0534a59bb4bfd175b45a7503c9a57dbe24ecd6bkt-manu-ustd.jpg" 
+               class="founder-main-image" 
+               alt="കെ.ടി. മാനു മുസ്‌ലിയാർ">
         </div>
-        <div class="col-6 col-md-4 col-lg-3 gallery-item">
-          <img src="https://i.ibb.co/RGCXB7T4/IMG-20170916-WA0063.jpg" class="img-fluid rounded shadow-sm" alt="">
-        </div>
-        <div class="col-6 col-md-4 col-lg-3 gallery-item">
-          <img src="https://i.ibb.co/gL6hVNbd/IMG-20170916-WA0086.jpg" class="img-fluid rounded shadow-sm" alt="">
-        </div>
-        <div class="col-6 col-md-4 col-lg-3 gallery-item">
-          <img src="https://i.ibb.co/cXhw9PMC/IMG-20171003-WA0066.jpg" class="img-fluid rounded shadow-sm" alt="">
-        </div>
-        <div class="col-6 col-md-4 col-lg-3 gallery-item">
-          <img src="https://i.ibb.co/RkbN2km0/IMG20180721105002.jpg" class="img-fluid rounded shadow-sm" alt="">
-        </div>
-        <div class="col-6 col-md-4 col-lg-3 gallery-item">
-          <img src="https://i.ibb.co/wFjMkbL6/IMG20180721105535.jpg" class="img-fluid rounded shadow-sm" alt="">
-        </div>
-        <div class="col-6 col-md-4 col-lg-3 gallery-item">
-          <img src="https://i.ibb.co/zWjx6SYS/IMG20180721110046.jpg" class="img-fluid rounded shadow-sm" alt="">
-        </div>
-        <div class="col-6 col-md-4 col-lg-3 gallery-item">
-          <img src="https://i.ibb.co/hJ7VtpqV/IMG20180721113521.jpg" class="img-fluid rounded shadow-sm" alt="">
+        
+        <div class="col-lg-8">
+          <h2 class="founder-title">ജീവിത രേഖ</h2>
+          
+          <div class="founder-bio">
+            <p>
+              സമസ്തയുടെ ജോയിന്റ് സെക്രട്ടറിയായിരുന്ന കെ.ടി മാനു മുസ്‌ലിയാർ മലപ്പുറം ജില്ലയിൽ
+              പെടുന്ന കരുവാരക്കുണ്ടിലെ കണ്ണത്ത് കുഞ്ഞാറയുടെയും ഇത്തിക്കുട്ടിയുടെയും മകനായി 1932 ൽ ജനിച്ചു. കെ.ടി മുഹമ്മദ് മുസ്‌ലിയാർ എന്നാണ് യഥാർത്ഥ നാമം.
+            </p>
+            
+            <div class="highlight-quote">
+              "വിജ്ഞാനം വിശ്വാസിക്ക് കൈമോശം വന്ന സമ്പത്താണ്. അത് എവിടെ കണ്ടുമുട്ടിയാലും സ്വായത്തമാക്കണം"
+            </div>
+            
+            <p>
+              നന്നേ ചെറുപ്പത്തിലേ പിതാവ് മരണപ്പെട്ടിരുന്നു. ദരിദ്രവും കഷ്ടപ്പാടും നറഞ്ഞതായിരുന്നു മാനു 
+              മുസ്‌ലിയാരുടെ കുട്ടിക്കാലം. അതിനാൽ നാലാം ക്ലാസ് വരെ മാത്രമേ ഉസ്താദിന് സ്കൂൾ വിദ്യാഭ്യാസം നേടാൻ കഴിഞ്ഞുള്ളൂ. കരുവാരക്കുണ്ടിലെ പള്ളിൽ ദർസിൽ പഠനം പൂർത്തിയാക്കിയ കെ.ടി ഉസ്താദ് 1957 ൽ വെല്ലൂരിലെ ബാഖിയതു സ്വാലിഹാത്തിൽ വെച്ച് ഉപരി പഠനം പൂർത്തിയാക്കി.
+            </p>
+            
+            <p>
+              തുടർന്ന് ഇരിങ്ങാട്ടിരിയിൽ ഖാസിയും മുദർരിസ്സുമായി സേവനമനുഷ്ഠിച്ചു. സമസ്ത കേരള ജംഇയ്യത്തുൽ ഉലമാ ജോയിൻ സെക്രട്ടറിയായും സമസ്ത വിദ്യാഭ്യാസ ബോർഡിന്റെ ജനറൽ സെക്രട്ടറിയുമായും പെരിന്തൽമണ്ണയിലെ സമസ്ത സ്ഥാപനമായ എം.ഇ.എ എൻജിനീയറിംഗ് കോളേജിൻ്റെ ജനറൽ കൺവീനറുമൊക്കെയായി ഉസ്താദ് സേവന പാതയിൽ നിറഞ്ഞു നിന്നു.
+            </p>
+          </div>
         </div>
       </div>
       
-      <!-- HIGHLIGHTS -->
-      <section id="highlights" class="py-5 bg-light">
-        <div class="container">
-          <h2 class="text-center mb-5 section-header" style="color:var(--secondary);">Highlights</h2>
-          <div class="row g-4">
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-              <div class="card h-100 border-0 shadow-sm hover-lift">
-                <div class="ratio ratio-16x9">
-                  <iframe width="560" height="315" src="https://www.youtube.com/embed/QaakeGo8tUU?si=XZdp3vPWKTjGdFp_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title" style="color:var(--secondary);"></h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-              <div class="card h-100 border-0 shadow-sm hover-lift">
-                <div class="ratio ratio-16x9">
-                  <iframe width="560" height="315" src="https://www.youtube.com/embed/f4TJORdjI9w?si=5lXtkjnce2Wa6GwQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title" style="color:var(--secondary);"></h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-              <div class="card h-100 border-0 shadow-sm hover-lift">
-                <div class="ratio ratio-16x9">
-                  <iframe width="560" height="315" src="https://www.youtube.com/embed/hKjVe5gSSjU?si=sktl4b357Rdjhh4o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title" style="color:var(--secondary);"></h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-              <div class="card h-100 border-0 shadow-sm hover-lift">
-                <div class="ratio ratio-16x9">
-                  <iframe width="560" height="315" src="https://www.youtube.com/embed/gY8k_Slatao?si=NhO1ugsd7z2vICj4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title" style="color:var(--secondary);"></h5>
-                </div>
-              </div>
-            </div>
+      <!-- ADDITIONAL BIO -->
+      <div class="row mt-5">
+        <div class="col-12">
+          <div class="founder-bio">
+            <p>
+              ഭിന്ന വീക്ഷണം പുലർത്തുന്ന പണ്ഡിതന്മാരെ ബഹുമാനത്തോടെയാണ് അദ്ദേഹം കണ്ടത്. 
+              ഒരു നല്ല കവിയും ഗ്രന്ഥകാരനും കൂടിയിരുന്നു വന്ദ്യരായ മാനു മുസ്‌ലിയാർ. "ജീവിതത്തിന്റെ കയ്യൊപ്പുകൾ" എന്ന പേരിൽ ആത്മകഥയും അദ്ദേഹം എഴുതിയിട്ടുണ്ട്.
+            </p>
             
+            <p>
+              കരുവാരക്കുണ്ടിലെ ദാറുന്നജാത്ത് ഇസ്‌ലാമിക് സെൻ്റർ എന്ന വിജ്ഞാന സമുച്ചയം കെ.ടി ഉസ്താദിൻ്റെ നേതൃത്വത്തിൽ വളർന്ന ഒരു സ്ഥാപനമാണ്. ഒരു നേതാവിനുണ്ടായിരിക്കേണ്ട വിനയം, വിശാല മനസ്‌കത, ദീർഘ വീക്ഷണം, ഭൂതകാല വിശകലനം, ഭാവി ചിന്ത, നിഷ്കളങ്കത, നിസ്വാർത്ഥത തുടങ്ങിയ വിശേഷണങ്ങളിലെല്ലാം മികച്ചു നിൽക്കുന്ന ഒരു വ്യക്തിത്വമായിരുന്നു കെ.ടി ഉസ്താദിൻ്റേത്.
+            </p>
+            
+            <p>
+              ഒരു പണ്ഡിതനുമപ്പുറം പ്രഗത്ഭനായ ഒരു പ്രഭാഷകനും എഴുത്തുകാരനും സംഘാടകനുമായിരുന്ന ബഹുവന്ദ്യർ സത്യപാതയിൽ യാതൊരു വിട്ടുവീഴ്ചക്കും തയ്യാറായിരുന്നില്ല. ഏറെ കർക്കഷമായ തിരുമാനങ്ങൾ പലതും കൈക്കൊണ്ടിരുക്കുമ്പോഴും വ്യക്തി ശുദ്ധിയും മഹാമനസ്കതയും അദ്ദേഹത്തിൻ്റെ സമീപനങ്ങളിൽ നിന്നും വായിച്ചെടുക്കാമായിരുന്നു.
+            </p>
+            
+            <p>
+              അദ്ദേഹം ചവിട്ടിക്കയറിയ സ്ഥാനങ്ങളുടെ രഹസ്യവും ഇതു തന്നെയായിരുന്നു. എല്ലാറ്റിനും പുറമെ ജല്യ ബോധമുള്ള, പ്രാപ്തനായ ഒരു സംഘാടകനായിരുന്നു ഉസ്താദ്. മൂത്ത കൊമ്പുകൾ കൊഴിഞ്ഞു പോകുമ്പോൾ ഇളം കൊമ്പുകൾ വരേണ്ടതുണ്ടെന്ന തിരച്ചറിവോടെ പ്രവർത്തിക്കേണ്ടത് സംഘാടകരായ നേതാക്കളുടെ കടമയാണെന്ന് മനസ്സിലാക്കി അത് ശരിക്കും ഉൾക്കൊണ്ട് പ്രവർത്തിച്ച ഉത്തരവാദിത്വമുള്ള ഒരു നേതാവും കൂടിയായിരുന്നു ശൈഖുനാ കെ.ടി മാനു മുസ്‌ലിയാർ.
+            </p>
+            
+            <p>
+              ജ്ഞാനിയങ്ങളുടെ ഉന്നത സോപാനങ്ങളിലാണ് താൻ ഇരിക്കുന്നതെങ്കിലും ഏതൊരാളിലെയും വിജ്ഞാനങ്ങളെ അംഗീകരിച്ചു കൊടുക്കാനുള്ള അദ്ദേഹത്തിനുണ്ടായിരുന്നു. വൈജ്ഞാനിക ലോകത്തെ മഹാപ്രതിഭയായിരുന്നിട്ടും താഴ്‌മയും വിനയവും മുഖമുദ്രയാക്കിയായിരുന്നു ബഹുമാന്യർ കഴിച്ചു കൂട്ടിയിരുന്നത്.
+            </p>
+            
+            <p>
+              കെ.ടി ഉസ്താദ് സ്വാഗത സംഘം ചെയർമാനായി കോഴിക്കട് കടപ്പുറത്ത് വെച്ച് നടന്ന സമസ്ത കേരളാ ജംഇയ്യത്തുൽ മുഅല്ലിമിന്റെ സുവർണ്ണ ജൂബിലി മഹാ സമ്മേളനത്തിൻ സമാപന പൊതുസമ്മളനത്തിനിടെ
+              ദേഹാസ്വസ്തം അനുഭവപ്പെട്ടാണ് ഉസ്താദ് വഫാതാകുന്നത്. താൻ വിളിച്ച ചേർത്ത ദശലക്ഷത്തോളം വരുന്ന അനുയായികളോട് നേരിട്ട് യാത്ര പറഞ്ഞ് ഇഹലോകവാസം വെടിയാൻ വരെ ഉസ്താദിന് സാധിച്ചു എന്നതാണ് യാഥാർത്ഥ്യം. 2009 ഫെബ്രുവരി 1 നായിരുന്നു ഈ മഹാ വിയോഗത്തിന് കേരളം സാക്ഷ്യം വഹിച്ചത്.
+            </p>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
+  <!-- GALLERY SECTION -->
+  <section class="gallery-section">
+    <div class="container">
+      <h2 class="section-title">ഫോട്ടോ ഗാലറി</h2>
+      
+      <div class="row g-3">
+        <!-- Gallery Images -->
+        <div class="col-6 col-md-4 col-lg-3 gallery-item">
+          <img src="https://islamonweb.net/ml/uploads/muslim_article_images/e0534a59bb4bfd175b45a7503c9a57dbe24ecd6bkt-manu-ustd.jpg" class="img-fluid" alt="കെ.ടി. മാനു മുസ്‌ലിയാർ">
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 gallery-item">
+          <img src="https://i.ibb.co/RGCXB7T4/IMG-20170916-WA0063.jpg" class="img-fluid" alt="മാനു മുസ്‌ലിയാർ">
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 gallery-item">
+          <img src="https://i.ibb.co/gL6hVNbd/IMG-20170916-WA0086.jpg" class="img-fluid" alt="മാനു മുസ്‌ലിയാർ">
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 gallery-item">
+          <img src="https://i.ibb.co/cXhw9PMC/IMG-20171003-WA0066.jpg" class="img-fluid" alt="മാനു മുസ്‌ലിയാർ">
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 gallery-item">
+          <img src="https://i.ibb.co/RkbN2km0/IMG20180721105002.jpg" class="img-fluid" alt="മാനു മുസ്‌ലിയാർ">
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 gallery-item">
+          <img src="https://i.ibb.co/wFjMkbL6/IMG20180721105535.jpg" class="img-fluid" alt="മാനു മുസ്‌ലിയാർ">
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 gallery-item">
+          <img src="https://i.ibb.co/zWjx6SYS/IMG20180721110046.jpg" class="img-fluid" alt="മാനു മുസ്‌ലിയാർ">
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 gallery-item">
+          <img src="https://i.ibb.co/hJ7VtpqV/IMG20180721113521.jpg" class="img-fluid" alt="മാനു മുസ്‌ലിയാർ">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO SECTION -->
+  <section class="video-section">
+    <div class="container">
+      <h2 class="section-title">വീഡിയോ ഹൈലൈറ്റ്സ്</h2>
+      
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="video-card">
+            <div class="video-container">
+              <iframe src="https://www.youtube.com/embed/QaakeGo8tUU" title="കെ.ടി. മാനു മുസ്‌ലിയാർ" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <h5 class="video-title">കെ.ടി. മാനു മുസ്‌ലിയാർ</h5>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="video-card">
+            <div class="video-container">
+              <iframe src="https://www.youtube.com/embed/f4TJORdjI9w" title="മാനു മുസ്‌ലിയാർ പ്രഭാഷണം" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <h5 class="video-title">മാനു മുസ്‌ലിയാർ പ്രഭാഷണം</h5>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="video-card">
+            <div class="video-container">
+              <iframe src="https://www.youtube.com/embed/hKjVe5gSSjU" title="മാനു മുസ്‌ലിയാർ ഓർമകൾ" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <h5 class="video-title">മാനു മുസ്‌ലിയാർ ഓർമകൾ</h5>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="video-card">
+            <div class="video-container">
+              <iframe src="https://www.youtube.com/embed/gY8k_Slatao" title="മാനു മുസ്‌ലിയാർ വിശേഷങ്ങൾ" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <h5 class="video-title">മാനു മുസ്‌ലിയാർ വിശേഷങ്ങൾ</h5>
+          </div>
+        </div>
+      </div>
+      
       <!-- Back to Home -->
       <div class="text-center mt-5">
-        <a href="index.html" class="btn btn-outline-primary px-4">← Back to Home</a>
+        <a href="index.html" class="btn-gold">
+          <i class="fas fa-home me-2"></i>മുഖ്യ പേജിലേക്ക് മടങ്ങുക
+        </a>
       </div>
     </div>
   </section>
@@ -215,11 +548,14 @@
   </div>
 
   <!-- FOOTER -->
-  <footer class="text-white text-center py-3 mt-4">
-    <small>© 2025 DARUNNAJATH SHAREEATH AND ARTS COLLEGE. All rights reserved.</small>
+  <footer class="footer">
+    <div class="container">
+      <small>© 2025 ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജ്. എല്ലാ അവകാശങ്ങളും നിക്ഷിപ്തം.</small>
+    </div>
   </footer>
 
   <script>
+    // Lightbox functionality
     const images = document.querySelectorAll('.gallery-item img');
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightboxImage');
@@ -227,7 +563,6 @@
     const nextBtn = document.getElementById('nextBtn');
     const prevBtn = document.getElementById('prevBtn');
     let currentIndex = 0;
-    let autoSlide;
 
     images.forEach((img, index) => {
       img.addEventListener('click', () => {
@@ -238,12 +573,7 @@
 
     function showImage() {
       lightbox.style.display = 'flex';
-      lightboxImage.style.opacity = 0;
-      setTimeout(() => {
-        lightboxImage.src = images[currentIndex].src;
-        lightboxImage.style.opacity = 1;
-      }, 150);
-      startAutoSlide();
+      lightboxImage.src = images[currentIndex].src;
     }
 
     function nextImage() {
@@ -256,41 +586,54 @@
       showImage();
     }
 
-    nextBtn.addEventListener('click', () => {
-      nextImage();
-      stopAutoSlide();
-    });
-
-    prevBtn.addEventListener('click', () => {
-      prevImage();
-      stopAutoSlide();
-    });
-
+    // Event Listeners
+    nextBtn.addEventListener('click', nextImage);
+    prevBtn.addEventListener('click', prevImage);
+    
     closeBtn.addEventListener('click', () => {
       lightbox.style.display = 'none';
-      stopAutoSlide();
     });
 
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) {
         lightbox.style.display = 'none';
-        stopAutoSlide();
       }
     });
 
-    // Auto slideshow
-    function startAutoSlide() {
-      stopAutoSlide();
-      autoSlide = setInterval(nextImage, 4000);
-    }
-
-    function stopAutoSlide() {
-      clearInterval(autoSlide);
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.style.display === 'flex') {
+        if (e.key === 'ArrowRight') nextImage();
+        if (e.key === 'ArrowLeft') prevImage();
+        if (e.key === 'Escape') lightbox.style.display = 'none';
+      }
+    });
+    
+    // Mobile touch swipe
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    lightbox.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    lightbox.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+    
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const difference = touchStartX - touchEndX;
+      
+      if (Math.abs(difference) > swipeThreshold) {
+        if (difference > 0) {
+          nextImage(); // Swipe left
+        } else {
+          prevImage(); // Swipe right
+        }
+      }
     }
   </script>
 </body>
 </html>
-
-
-
-
