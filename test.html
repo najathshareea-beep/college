@@ -18,9 +18,6 @@
   <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-  <!-- Islamic Calligraphy CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/arabic-fonts@1.0.3/css/arabic-fonts.css">
-
   <style>
     :root {
       --islamic-green: #0a5c36;
@@ -144,6 +141,129 @@
       z-index: 1;
     }
 
+    /* News Ticker */
+    .news-ticker-container {
+      background: linear-gradient(90deg, var(--dark-green), var(--islamic-green));
+      color: white;
+      padding: 15px 0;
+      overflow: hidden;
+      position: relative;
+      border-bottom: 2px solid var(--islamic-gold);
+      border-top: 2px solid var(--islamic-gold);
+    }
+
+    .news-ticker-label {
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
+      padding: 8px 20px;
+      font-weight: 700;
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      box-shadow: 3px 0 10px rgba(0,0,0,0.2);
+    }
+
+    .news-ticker {
+      white-space: nowrap;
+      display: inline-block;
+      animation: ticker 40s linear infinite;
+      padding-left: 20px;
+    }
+
+    .news-ticker:hover {
+      animation-play-state: paused;
+    }
+
+    .ticker-item {
+      display: inline-block;
+      padding: 0 40px;
+      font-size: 1.1rem;
+      position: relative;
+    }
+
+    .ticker-item:after {
+      content: "•";
+      color: var(--islamic-gold);
+      position: absolute;
+      right: -10px;
+      font-size: 1.5rem;
+    }
+
+    .ticker-item:last-child:after {
+      display: none;
+    }
+
+    @keyframes ticker {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* YouTube Highlights */
+    .video-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 3px solid transparent;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .video-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--islamic-gold);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+
+    .video-thumbnail {
+      position: relative;
+      overflow: hidden;
+      height: 200px;
+    }
+
+    .video-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .video-card:hover .video-thumbnail img {
+      transform: scale(1.1);
+    }
+
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(193, 154, 63, 0.9);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      opacity: 0.9;
+      transition: all 0.3s ease;
+    }
+
+    .video-card:hover .play-button {
+      background: var(--islamic-gold);
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
     /* About */
     #about {
       background: var(--islamic-cream);
@@ -165,31 +285,6 @@
 
     #about img:hover {
       transform: scale(1.03);
-    }
-
-    /* News */
-    #news {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      color: white;
-      position: relative;
-    }
-
-    #news .card {
-      border: none;
-      border-radius: 15px;
-      background: rgba(255,255,255,0.95);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      overflow: hidden;
-    }
-
-    #news .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-    }
-
-    #news .card-title {
-      color: var(--islamic-green);
-      font-weight: 600;
     }
 
     /* Notifications */
@@ -242,32 +337,47 @@
       margin: 2rem 0;
     }
 
-    /* Islamic Geometric Pattern */
-    .geometric-pattern {
-      position: absolute;
-      width: 100%;
-      height: 100px;
-      background: 
-        repeating-linear-gradient(
-          45deg,
-          transparent,
-          transparent 10px,
-          rgba(193, 154, 63, 0.1) 10px,
-          rgba(193, 154, 63, 0.1) 20px
-        );
-      opacity: 0.5;
-      z-index: 0;
-    }
-
     /* Responsive */
     @media (max-width: 768px) {
+      .news-ticker-label {
+        position: relative;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+      
+      .news-ticker {
+        padding-left: 0;
+        animation: ticker-mobile 60s linear infinite;
+      }
+      
+      @keyframes ticker-mobile {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+      
+      .ticker-item {
+        padding: 0 20px;
+        font-size: 1rem;
+      }
+      
+      .video-card {
+        margin-bottom: 30px;
+      }
+      
       .hero h1 {
         font-size: 1.8rem;
       }
+      
       .btn-lg {
         font-size: 1rem;
         padding: 0.6rem 1rem;
       }
+      
       .arabic-calligraphy {
         font-size: 1.4rem;
       }
@@ -313,8 +423,6 @@
 
 <!-- Islamic Hero Section -->
 <section id="hero" class="py-5" style="background: linear-gradient(135deg, rgba(10, 92, 54, 0.9), rgba(6, 78, 59, 0.9)), url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; position: relative; overflow: hidden;">
-  <div class="geometric-pattern" style="top: 0;"></div>
-  
   <div class="container position-relative z-2">
     <div class="row align-items-center">
       <div class="col-lg-6 text-white" data-aos="fade-right">
@@ -374,8 +482,6 @@
       </div>
     </div>
   </div>
-  
-  <div class="geometric-pattern" style="bottom: 0; transform: rotate(180deg);"></div>
 </section>
 
 <!-- Flash Notice -->
@@ -386,6 +492,32 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
   </div>
 </div>
+
+<!-- NEWS TICKER -->
+<section class="news-ticker-container">
+  <div class="container-fluid px-0">
+    <div class="d-flex align-items-center position-relative">
+      <div class="news-ticker-label">
+        <i class="fas fa-bullhorn me-2"></i> LATEST NEWS
+      </div>
+      <div class="news-ticker">
+        <!-- Original Items -->
+        <span class="ticker-item">2025-26 വർഷത്തിലെ വാർഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1, 2, 10, 11, 12 തിയ്യതികളിൽ</span>
+        <span class="ticker-item">സമസ്ത നൂറാം വാർഷികം 2026 ഫെബ്രുവരി 4, 5, 6, 7, 8 തിയ്യതികളിൽ കാസർഗോഡ് കുണിയയിൽ നടക്കും</span>
+        <span class="ticker-item">പുതുമകളോടെ നൂറുസ്സലാം മദ്‌റസ വെബ്‌സൈറ്റ് റെയ്ഞ്ച് സെക്രട്ടറി സഫീർ അൻസ്വരി സോഫ്റ്റ് ലോഞ്ച് ചെയ്തു</span>
+        <span class="ticker-item">പെരുന്തൽ മാസത്തിലെ വിശേഷദിന പരിപാടികൾ ഡിസംബർ 15 ന് തുടങ്ങും</span>
+        <span class="ticker-item">PTA മീറ്റിംഗ് ഡിസംബർ 16 ന് ഉച്ചയ്ക്ക് 2 മണിക്ക് മുഖ്യ ഹാളിൽ</span>
+        
+        <!-- Duplicate for seamless loop -->
+        <span class="ticker-item">2025-26 വർഷത്തിലെ വാർഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1, 2, 10, 11, 12 തിയ്യതികളിൽ</span>
+        <span class="ticker-item">സമസ്ത നൂറാം വാർഷികം 2026 ഫെബ്രുവരി 4, 5, 6, 7, 8 തിയ്യതികളിൽ കാസർഗോഡ് കുണിയയിൽ നടക്കും</span>
+        <span class="ticker-item">പുതുമകളോടെ നൂറുസ്സലാം മദ്‌റസ വെബ്‌സൈറ്റ് റെയ്ഞ്ച് സെക്രട്ടറി സഫീർ അൻസ്വരി സോഫ്റ്റ് ലോഞ്ച് ചെയ്തു</span>
+        <span class="ticker-item">പെരുന്തൽ മാസത്തിലെ വിശേഷദിന പരിപാടികൾ ഡിസംബർ 15 ന് തുടങ്ങും</span>
+        <span class="ticker-item">PTA മീറ്റിംഗ് ഡിസംബർ 16 ന് ഉച്ചയ്ക്ക് 2 മണിക്ക് മുഖ്യ ഹാളിൽ</span>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ABOUT SECTION -->
 <section id="about" class="py-5">
@@ -487,64 +619,95 @@
   </div>
 </section>
 
-<!-- NEWS SECTION -->
-<section id="news" class="py-5">
+<!-- COLLEGE HIGHLIGHTS - YOUTUBE SECTION -->
+<section id="highlights" class="py-5" style="background: var(--islamic-light);">
   <div class="container">
     <div class="section-header mb-5">
-      <h2 class="display-5 fw-bold text-white">Latest News & Announcements</h2>
+      <h2 class="display-5 fw-bold">College Highlights</h2>
+      <p class="text-muted">Watch our latest events and activities</p>
     </div>
     
     <div class="row g-4">
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-        <div class="card h-100">
-          <div class="position-relative">
-            <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="Annual Exam">
-            <span class="position-absolute top-0 start-0 bg-warning text-dark px-3 py-1 m-3 rounded">NEW</span>
+      <!-- Video 1 -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up">
+        <div class="video-card h-100">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_1/maxresdefault.jpg" alt="Meelad u nabi Highlights">
+            <div class="play-button">
+              <i class="fas fa-play"></i>
+            </div>
           </div>
-          <div class="card-body">
-            <h5 class="card-title text-success">വാർഷിക പരീക്ഷ 2025-26</h5>
-            <p class="card-text">2025-26 വർഷത്തിലെ വാർഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1, 2, 10, 11, 12 തിയ്യതികളിൽ നടക്കും.</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <small class="text-muted"><i class="far fa-calendar me-1"></i> Nov 27, 2025</small>
-              <a href="#" class="btn btn-sm btn-outline-success">Read More</a>
+          <div class="p-3">
+            <h5 class="fw-bold" style="color: var(--islamic-green);">
+              <i class="fas fa-video me-2 text-warning"></i>
+              Meelad u nabi Celebration
+            </h5>
+            <p class="text-muted small">Annual celebration of Prophet Muhammad's (PBUH) birthday with students' performances</p>
+            <div class="d-flex justify-content-between align-items-center mt-3">
+              <small class="text-muted"><i class="far fa-calendar me-1"></i> Dec 12, 2024</small>
+              <a href="https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_1" target="_blank" class="btn btn-sm btn-outline-success">
+                <i class="fab fa-youtube me-1"></i> Watch
+              </a>
             </div>
           </div>
         </div>
       </div>
       
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-        <div class="card h-100">
-          <div class="position-relative">
-            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="Samastha">
-            <span class="position-absolute top-0 start-0 bg-danger text-white px-3 py-1 m-3 rounded">IMPORTANT</span>
+      <!-- Video 2 -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="video-card h-100">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_2/maxresdefault.jpg" alt="Parents Programme">
+            <div class="play-button">
+              <i class="fas fa-play"></i>
+            </div>
           </div>
-          <div class="card-body">
-            <h5 class="card-title text-success">സമസ്ത നൂറാം വാർഷികം</h5>
-            <p class="card-text">സമസ്ത നൂറാം വാർഷികം 2026 ഫെബ്രുവരി 4, 5, 6, 7, 8 തിയ്യതികളിൽ കാസർഗോഡ് കുണിയയിൽ നടക്കും.</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <small class="text-muted"><i class="far fa-calendar me-1"></i> Nov 27, 2025</small>
-              <a href="#" class="btn btn-sm btn-outline-success">Read More</a>
+          <div class="p-3">
+            <h5 class="fw-bold" style="color: var(--islamic-green);">
+              <i class="fas fa-users me-2 text-warning"></i>
+              Annual Parents Meet
+            </h5>
+            <p class="text-muted small">Interactive session with parents to discuss student progress and future plans</p>
+            <div class="d-flex justify-content-between align-items-center mt-3">
+              <small class="text-muted"><i class="far fa-calendar me-1"></i> Nov 25, 2024</small>
+              <a href="https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_2" target="_blank" class="btn btn-sm btn-outline-success">
+                <i class="fab fa-youtube me-1"></i> Watch
+              </a>
             </div>
           </div>
         </div>
       </div>
       
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-        <div class="card h-100">
-          <div class="position-relative">
-            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="Website Launch">
-            <span class="position-absolute top-0 start-0 bg-info text-white px-3 py-1 m-3 rounded">UPDATE</span>
+      <!-- Video 3 -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="video-card h-100">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_3/maxresdefault.jpg" alt="Students' Achievements">
+            <div class="play-button">
+              <i class="fas fa-play"></i>
+            </div>
           </div>
-          <div class="card-body">
-            <h5 class="card-title text-success">പുതിയ വെബ്‌സൈറ്റ്</h5>
-            <p class="card-text">പുതുമകളോടെ നൂറുസ്സലാം മദ്‌റസ വെബ്‌സൈറ്റ് റെയ്ഞ്ച് സെക്രട്ടറി സഫീർ അൻസ്വരി സോഫ്റ്റ് ലോഞ്ച് ചെയ്തു.</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <small class="text-muted"><i class="far fa-calendar me-1"></i> Nov 27, 2025</small>
-              <a href="#" class="btn btn-sm btn-outline-success">Visit Site</a>
+          <div class="p-3">
+            <h5 class="fw-bold" style="color: var(--islamic-green);">
+              <i class="fas fa-trophy me-2 text-warning"></i>
+              Award Ceremony 2024
+            </h5>
+            <p class="text-muted small">Celebrating academic excellence and extracurricular achievements of our students</p>
+            <div class="d-flex justify-content-between align-items-center mt-3">
+              <small class="text-muted"><i class="far fa-calendar me-1"></i> Oct 15, 2024</small>
+              <a href="https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_3" target="_blank" class="btn btn-sm btn-outline-success">
+                <i class="fab fa-youtube me-1"></i> Watch
+              </a>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    
+    <div class="text-center mt-5">
+      <a href="youtube.html" class="btn btn-primary px-5 py-3">
+        <i class="fab fa-youtube me-2"></i> View More on YouTube
+      </a>
     </div>
   </div>
 </section>
@@ -727,6 +890,18 @@
   window.addEventListener('scroll', () => {
     scrollToTopBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
   });
+  
+  // News Ticker Pause on Hover
+  const ticker = document.querySelector('.news-ticker');
+  if (ticker) {
+    ticker.addEventListener('mouseenter', () => {
+      ticker.style.animationPlayState = 'paused';
+    });
+    
+    ticker.addEventListener('mouseleave', () => {
+      ticker.style.animationPlayState = 'running';
+    });
+  }
 </script>
 
 <!-- WhatsApp Chat Button -->
