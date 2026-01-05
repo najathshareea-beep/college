@@ -8,27 +8,29 @@
   <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
-  <!-- Islamic Fonts -->
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
 
   <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <style>
+    /* ===== CSS VARIABLES ===== */
     :root {
       --islamic-green: #0a5c36;
       --islamic-gold: #c19a3f;
-      --islamic-blue: #0a194f;
       --islamic-cream: #f8f3e6;
-      --islamic-maroon: #8b0000;
       --islamic-light: #e9f5e9;
       --dark-green: #064e3b;
+      --light-gold: #ffd24d;
     }
 
+    /* ===== BASE STYLES ===== */
     body {
       font-family: 'Poppins', sans-serif;
       background-color: var(--islamic-cream);
@@ -37,11 +39,19 @@
       overflow-x: hidden;
     }
 
-    /* Islamic Patterns Background */
-    .islamic-pattern-bg {
+    .arabic-font {
+      font-family: 'Scheherazade New', serif;
+    }
+
+    .malayalam-font {
+      font-family: 'Anek Malayalam', sans-serif;
+    }
+
+    /* ===== PATTERN BACKGROUND ===== */
+    .pattern-bg {
       background-image: 
-        radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.05) 2px, transparent 2px),
-        radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.05) 2px, transparent 2px);
+        radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px),
+        radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px);
       background-size: 50px 50px;
       position: absolute;
       top: 0;
@@ -51,11 +61,11 @@
       z-index: -1;
     }
 
-    /* Navbar */
+    /* ===== NAVBAR ===== */
     .navbar {
       background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      transition: background 0.4s ease;
       border-bottom: 3px solid var(--islamic-gold);
+      transition: all 0.4s ease;
     }
 
     .navbar.scrolled {
@@ -65,16 +75,16 @@
 
     .navbar-brand img {
       border-radius: 8px;
-      transition: transform 0.3s ease;
       border: 2px solid var(--islamic-gold);
+      transition: transform 0.3s ease;
     }
 
     .navbar-brand:hover img {
       transform: scale(1.05);
     }
 
-    .navbar-nav .nav-link {
-      color: #f8f9fa !important;
+    .nav-link {
+      color: #fff !important;
       font-weight: 500;
       transition: all 0.3s ease;
       padding: 0.5rem 1rem;
@@ -82,17 +92,18 @@
       margin: 0 2px;
     }
 
-    .navbar-nav .nav-link:hover {
+    .nav-link:hover {
       color: var(--islamic-gold) !important;
       background: rgba(255, 255, 255, 0.1);
     }
 
+    /* ===== BUTTONS ===== */
     .btn-primary {
       background: linear-gradient(135deg, var(--islamic-gold), #d4af37);
       border: none;
       color: var(--islamic-green);
-      border-radius: 8px;
       font-weight: 600;
+      border-radius: 8px;
       box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3);
       transition: all 0.3s ease;
     }
@@ -103,17 +114,17 @@
       transform: translateY(-2px);
     }
 
-    .btn-outline-secondary {
-      color: var(--islamic-gold);
+    .btn-outline-light {
       border: 2px solid var(--islamic-gold);
+      color: var(--islamic-gold);
     }
 
-    .btn-outline-secondary:hover {
+    .btn-outline-light:hover {
       background: var(--islamic-gold);
       color: var(--islamic-green);
     }
 
-    /* Islamic Section Headers */
+    /* ===== SECTIONS ===== */
     .section-header {
       text-align: center;
       margin-bottom: 3rem;
@@ -141,7 +152,7 @@
       z-index: 1;
     }
 
-    /* News Ticker */
+    /* ===== NEWS TICKER ===== */
     .news-ticker-container {
       background: linear-gradient(90deg, var(--dark-green), var(--islamic-green));
       color: white;
@@ -149,7 +160,6 @@
       overflow: hidden;
       position: relative;
       border-bottom: 2px solid var(--islamic-gold);
-      border-top: 2px solid var(--islamic-gold);
     }
 
     .news-ticker-label {
@@ -157,7 +167,6 @@
       color: var(--islamic-green);
       padding: 8px 20px;
       font-weight: 700;
-      display: inline-block;
       position: absolute;
       left: 0;
       top: 0;
@@ -175,10 +184,6 @@
       padding-left: 20px;
     }
 
-    .news-ticker:hover {
-      animation-play-state: paused;
-    }
-
     .ticker-item {
       display: inline-block;
       padding: 0 40px;
@@ -194,20 +199,64 @@
       font-size: 1.5rem;
     }
 
-    .ticker-item:last-child:after {
-      display: none;
-    }
-
     @keyframes ticker {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
-    /* YouTube Highlights */
+    /* ===== HERO SECTION ===== */
+    .hero-section {
+      background: linear-gradient(135deg, rgba(10, 92, 54, 0.9), rgba(6, 78, 59, 0.9));
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content h1 {
+      color: var(--islamic-gold);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .arabic-calligraphy {
+      font-size: 1.8rem;
+      color: var(--islamic-gold);
+      margin: 2rem 0;
+    }
+
+    /* ===== ABOUT SECTION ===== */
+    .about-img {
+      border-radius: 15px;
+      border: 5px solid var(--islamic-gold);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease;
+    }
+
+    .about-img:hover {
+      transform: scale(1.03);
+    }
+
+    .feature-box {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-icon {
+      background: var(--islamic-gold);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+
+    /* ===== YOUTUBE SECTION ===== */
     .video-card {
       background: white;
       border-radius: 15px;
@@ -224,9 +273,9 @@
     }
 
     .video-thumbnail {
-      position: relative;
-      overflow: hidden;
       height: 200px;
+      overflow: hidden;
+      position: relative;
     }
 
     .video-thumbnail img {
@@ -234,10 +283,6 @@
       height: 100%;
       object-fit: cover;
       transition: transform 0.5s ease;
-    }
-
-    .video-card:hover .video-thumbnail img {
-      transform: scale(1.1);
     }
 
     .play-button {
@@ -264,80 +309,42 @@
       transform: translate(-50%, -50%) scale(1.1);
     }
 
-    /* About */
-    #about {
-      background: var(--islamic-cream);
-      color: #333;
-      position: relative;
-    }
-
-    #about h2 {
-      color: var(--islamic-green);
-      font-family: 'Amiri', serif;
-    }
-
-    #about img {
-      border-radius: 16px;
-      transition: transform 0.4s ease;
-      border: 5px solid var(--islamic-gold);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-
-    #about img:hover {
-      transform: scale(1.03);
-    }
-
-    /* Notifications */
-    #notifications {
-      background: var(--islamic-light);
-      color: #333;
-    }
-
-    #notifications h3 {
-      color: var(--islamic-green);
-      font-family: 'Amiri', serif;
-    }
-
-    #notifications .list-group-item {
+    /* ===== NOTIFICATIONS ===== */
+    .notification-item {
       border-left: 5px solid var(--islamic-gold);
-      transition: all 0.2s ease;
       border-radius: 8px;
       margin-bottom: 10px;
+      transition: all 0.2s ease;
     }
 
-    #notifications .list-group-item:hover {
+    .notification-item:hover {
       background-color: #fff;
       transform: translateX(5px);
     }
 
-    /* Footer */
+    /* ===== FOOTER ===== */
     footer {
       background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
-      color: #fff;
       border-top: 3px solid var(--islamic-gold);
     }
 
-    footer a {
-      color: var(--islamic-gold);
-      font-weight: 500;
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
       text-decoration: none;
+      transition: all 0.3s ease;
     }
 
-    footer a:hover {
-      color: #fff;
-      text-decoration: underline;
+    .social-icon:hover {
+      transform: translateY(-5px);
     }
 
-    /* Arabic Calligraphy */
-    .arabic-calligraphy {
-      font-family: 'Scheherazade New', serif;
-      font-size: 1.8rem;
-      color: var(--islamic-gold);
-      text-align: center;
-      margin: 2rem 0;
-    }
-
-    /* Responsive */
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .news-ticker-label {
         position: relative;
@@ -352,12 +359,8 @@
       }
       
       @keyframes ticker-mobile {
-        0% {
-          transform: translateX(0);
-        }
-        100% {
-          transform: translateX(-100%);
-        }
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
       }
       
       .ticker-item {
@@ -365,37 +368,53 @@
         font-size: 1rem;
       }
       
-      .video-card {
-        margin-bottom: 30px;
-      }
-      
-      .hero h1 {
+      .hero-content h1 {
         font-size: 1.8rem;
-      }
-      
-      .btn-lg {
-        font-size: 1rem;
-        padding: 0.6rem 1rem;
       }
       
       .arabic-calligraphy {
         font-size: 1.4rem;
       }
     }
+
+    /* ===== WHATSAPP BUTTON ===== */
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 20px;
+      left: 20px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50px;
+      text-align: center;
+      font-size: 30px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.4);
+    }
   </style>
 </head>
 <body>
 
-<!-- Islamic Background Pattern -->
-<div class="islamic-pattern-bg"></div>
+<!-- Pattern Background -->
+<div class="pattern-bg"></div>
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark shadow-sm sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center gap-2" href="#">
       <img src="https://i.ibb.co/GmW5YpC/LOGO-NSM-copy.png" alt="NSM Logo" width="50">
       <div>
-        <div class="fw-bold text-uppercase text-white">Noorussalam Madrasa</div>
+        <div class="fw-bold text-uppercase">Noorussalam Madrasa</div>
         <small class="text-light">Kambippalam, Kerala Estate</small>
       </div>
     </a>
@@ -404,69 +423,94 @@
     </button>
     <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="faculties.html" target="_blank"><i class="fas fa-users me-1"></i> Staff</a></li>
-        <li class="nav-item"><a class="nav-link" href="pta.html" target="_blank"><i class="fas fa-handshake me-1"></i> PTA</a></li>
-        <li class="nav-item"><a class="nav-link" href="result.html" target="_blank"><i class="fas fa-chart-line me-1"></i> Result</a></li>
-        <li class="nav-item"><a class="nav-link" href="idcard.html" target="_blank"><i class="fas fa-id-card me-1"></i> ID Card</a></li>
+        <li class="nav-item"><a class="nav-link" href="faculties.html"><i class="fas fa-users me-1"></i> Staff</a></li>
+        <li class="nav-item"><a class="nav-link" href="pta.html"><i class="fas fa-handshake me-1"></i> PTA</a></li>
+        <li class="nav-item"><a class="nav-link" href="result.html"><i class="fas fa-chart-line me-1"></i> Result</a></li>
+        <li class="nav-item"><a class="nav-link" href="idcard.html"><i class="fas fa-id-card me-1"></i> ID Card</a></li>
         <li class="nav-item"><a class="nav-link" href="https://samastha.info/"><i class="fas fa-university me-1"></i> Samastha</a></li>
-        <li class="nav-item"><a class="nav-link" href="downloads.html" target="_blank"><i class="fas fa-download me-1"></i> Downloads</a></li>
-        <li class="nav-item"><a class="nav-link" href="gallery.html" target="_blank"><i class="fas fa-images me-1"></i> Gallery</a></li>
-        <li class="nav-item"><a class="nav-link" href="login.html" target="_blank"><i class="fas fa-sign-in-alt me-1"></i> Login</a></li>
-        <li class="nav-item"><a class="nav-link" href="library.html" target="_blank"><i class="fas fa-book me-1"></i> Library</a></li>
-        <li class="nav-item"><a class="nav-link active" href="alumni.html"><i class="fas fa-graduation-cap me-1"></i> Alumni</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.html" target="_blank"><i class="fas fa-phone me-1"></i> Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="downloads.html"><i class="fas fa-download me-1"></i> Downloads</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html"><i class="fas fa-images me-1"></i> Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt me-1"></i> Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="library.html"><i class="fas fa-book me-1"></i> Library</a></li>
+        <li class="nav-item"><a class="nav-link" href="alumni.html"><i class="fas fa-graduation-cap me-1"></i> Alumni</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><i class="fas fa-phone me-1"></i> Contact</a></li>
       </ul>
       <a href="student-zone.html" class="btn btn-primary ms-lg-3"><i class="fas fa-graduation-cap me-1"></i> Student Zone</a>
     </div>
   </div>
 </nav>
 
-<!-- Islamic Hero Section -->
-<section id="hero" class="py-5" style="background: linear-gradient(135deg, rgba(10, 92, 54, 0.9), rgba(6, 78, 59, 0.9)), url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; position: relative; overflow: hidden;">
-  <div class="container position-relative z-2">
+<!-- Flash Notice -->
+<div class="alert alert-warning alert-dismissible fade show rounded-0 text-center mb-0" style="background: linear-gradient(90deg, var(--islamic-gold), #e6b800); color: var(--islamic-green);">
+  <div class="container">
+    <strong><i class="fas fa-bullhorn me-2"></i> Admission Open:</strong> 2025-26 academic year. Apply before December 31, 2025.
+    <a href="forms.html" class="btn btn-sm btn-outline-dark ms-3">Apply Now</a>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+</div>
+
+<!-- NEWS TICKER -->
+<div class="news-ticker-container">
+  <div class="container-fluid px-0">
+    <div class="d-flex align-items-center position-relative">
+      <div class="news-ticker-label">
+        <i class="fas fa-bullhorn me-2"></i> LATEST NEWS
+      </div>
+      <div class="news-ticker">
+        <span class="ticker-item">2025-26 വാർഷിക പരീക്ഷ: ജനുവരി 31, ഫെബ്രുവരി 1,2,10,11,12</span>
+        <span class="ticker-item">സമസ്ത നൂറാം വാർഷികം: ഫെബ്രുവരി 4-8 കാസർഗോഡ് കുണിയയിൽ</span>
+        <span class="ticker-item">പുതിയ വെബ്‌സൈറ്റ് ലോഞ്ച്: സെക്രട്ടറി സഫീർ അൻസ്വരി</span>
+        <span class="ticker-item">പെരുന്തൽ മാസ പരിപാടികൾ: ഡിസംബർ 15 മുതൽ</span>
+        <span class="ticker-item">PTA മീറ്റിംഗ്: ഡിസംബർ 16, 2 PM മുഖ്യ ഹാളിൽ</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO SECTION -->
+<section class="hero-section py-5">
+  <div class="container">
     <div class="row align-items-center">
-      <div class="col-lg-6 text-white" data-aos="fade-right">
-        <!-- Arabic Bismillah -->
-        <div class="arabic-calligraphy mb-4">
+      <div class="col-lg-6 text-white">
+        <div class="arabic-font arabic-calligraphy text-center">
           بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
         </div>
         
-        <h1 class="display-4 fw-bold mb-3" style="color: var(--islamic-gold);">
-          نور السلام مدرسة
-          <br>
-          <span class="text-white">Noorussalam Madrasa</span>
-        </h1>
-        
-        <p class="lead mb-4" style="font-size: 1.2rem;">
-          <i class="fas fa-quote-left text-warning me-2"></i>
-          Combining traditional Islamic knowledge with modern education to nurture students for both Deen and Dunya.
-          <i class="fas fa-quote-right text-warning ms-2"></i>
-        </p>
-        
-        <div class="d-flex flex-wrap gap-3 mt-4">
-          <a href="forms.html" class="btn btn-primary btn-lg px-4 py-3">
-            <i class="fas fa-user-plus me-2"></i> Admission 2025
-          </a>
-          <a href="#about" class="btn btn-outline-light btn-lg px-4 py-3">
-            <i class="fas fa-info-circle me-2"></i> Learn More
-          </a>
-          <a href="result.html" class="btn btn-outline-warning btn-lg px-4 py-3">
-            <i class="fas fa-chart-line me-2"></i> View Results
-          </a>
-        </div>
-        
-        <!-- Islamic Quote -->
-        <div class="mt-5 pt-3 border-top border-warning">
-          <p class="mb-0" style="font-style: italic;">
-            <i class="fas fa-star text-warning me-2"></i>
-            "Seeking knowledge is obligatory upon every Muslim." - Prophet Muhammad (PBUH)
+        <div class="hero-content">
+          <h1 class="display-4">
+            نور السلام مدرسة<br>
+            <span class="text-white">Noorussalam Madrasa</span>
+          </h1>
+          
+          <p class="lead mb-4">
+            <i class="fas fa-quote-left text-warning me-2"></i>
+            Combining traditional Islamic knowledge with modern education to nurture students for both Deen and Dunya.
+            <i class="fas fa-quote-right text-warning ms-2"></i>
           </p>
+          
+          <div class="d-flex flex-wrap gap-3">
+            <a href="forms.html" class="btn btn-primary btn-lg px-4">
+              <i class="fas fa-user-plus me-2"></i> Admission 2025
+            </a>
+            <a href="#about" class="btn btn-outline-light btn-lg px-4">
+              <i class="fas fa-info-circle me-2"></i> Learn More
+            </a>
+            <a href="result.html" class="btn btn-outline-light btn-lg px-4">
+              <i class="fas fa-chart-line me-2"></i> View Results
+            </a>
+          </div>
+          
+          <div class="mt-5 pt-3 border-top border-warning">
+            <p class="mb-0" style="font-style: italic;">
+              <i class="fas fa-star text-warning me-2"></i>
+              "Seeking knowledge is obligatory upon every Muslim." - Prophet Muhammad (PBUH)
+            </p>
+          </div>
         </div>
       </div>
       
-      <div class="col-lg-6 text-center" data-aos="fade-left">
+      <div class="col-lg-6 text-center">
         <div class="position-relative">
-          <!-- Crescent and Star -->
           <div class="position-absolute" style="top: -20px; right: 50px; z-index: 1;">
             <svg width="80" height="80" viewBox="0 0 100 100">
               <path d="M50 15 A35 35 0 1 0 50 85 A35 35 0 1 1 50 15 Z" fill="var(--islamic-gold)"/>
@@ -476,44 +520,8 @@
           
           <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
                alt="Islamic School" 
-               class="img-fluid rounded-3 shadow-lg" 
-               style="border: 5px solid var(--islamic-gold); max-height: 400px;">
+               class="img-fluid about-img">
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Flash Notice -->
-<div class="alert alert-warning alert-dismissible fade show rounded-0 text-center mb-0" style="background: linear-gradient(90deg, var(--islamic-gold), #e6b800); color: var(--islamic-green); border: none;">
-  <div class="container">
-    <strong><i class="fas fa-bullhorn me-2"></i> Important Notice:</strong> Admission for 2025-26 academic year is now open! Apply before December 31, 2025.
-    <a href="forms.html" class="btn btn-sm btn-outline-dark ms-3">Apply Now</a>
-    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-  </div>
-</div>
-
-<!-- NEWS TICKER -->
-<section class="news-ticker-container">
-  <div class="container-fluid px-0">
-    <div class="d-flex align-items-center position-relative">
-      <div class="news-ticker-label">
-        <i class="fas fa-bullhorn me-2"></i> LATEST NEWS
-      </div>
-      <div class="news-ticker">
-        <!-- Original Items -->
-        <span class="ticker-item">2025-26 വർഷത്തിലെ വാർഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1, 2, 10, 11, 12 തിയ്യതികളിൽ</span>
-        <span class="ticker-item">സമസ്ത നൂറാം വാർഷികം 2026 ഫെബ്രുവരി 4, 5, 6, 7, 8 തിയ്യതികളിൽ കാസർഗോഡ് കുണിയയിൽ നടക്കും</span>
-        <span class="ticker-item">പുതുമകളോടെ നൂറുസ്സലാം മദ്‌റസ വെബ്‌സൈറ്റ് റെയ്ഞ്ച് സെക്രട്ടറി സഫീർ അൻസ്വരി സോഫ്റ്റ് ലോഞ്ച് ചെയ്തു</span>
-        <span class="ticker-item">പെരുന്തൽ മാസത്തിലെ വിശേഷദിന പരിപാടികൾ ഡിസംബർ 15 ന് തുടങ്ങും</span>
-        <span class="ticker-item">PTA മീറ്റിംഗ് ഡിസംബർ 16 ന് ഉച്ചയ്ക്ക് 2 മണിക്ക് മുഖ്യ ഹാളിൽ</span>
-        
-        <!-- Duplicate for seamless loop -->
-        <span class="ticker-item">2025-26 വർഷത്തിലെ വാർഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1, 2, 10, 11, 12 തിയ്യതികളിൽ</span>
-        <span class="ticker-item">സമസ്ത നൂറാം വാർഷികം 2026 ഫെബ്രുവരി 4, 5, 6, 7, 8 തിയ്യതികളിൽ കാസർഗോഡ് കുണിയയിൽ നടക്കും</span>
-        <span class="ticker-item">പുതുമകളോടെ നൂറുസ്സലാം മദ്‌റസ വെബ്‌സൈറ്റ് റെയ്ഞ്ച് സെക്രട്ടറി സഫീർ അൻസ്വരി സോഫ്റ്റ് ലോഞ്ച് ചെയ്തു</span>
-        <span class="ticker-item">പെരുന്തൽ മാസത്തിലെ വിശേഷദിന പരിപാടികൾ ഡിസംബർ 15 ന് തുടങ്ങും</span>
-        <span class="ticker-item">PTA മീറ്റിംഗ് ഡിസംബർ 16 ന് ഉച്ചയ്ക്ക് 2 മണിക്ക് മുഖ്യ ഹാളിൽ</span>
       </div>
     </div>
   </div>
@@ -522,28 +530,27 @@
 <!-- ABOUT SECTION -->
 <section id="about" class="py-5">
   <div class="container">
-    <div class="section-header mb-5">
+    <div class="section-header">
       <h2 class="display-5 fw-bold">About Our Madrasa</h2>
     </div>
     
     <div class="row gy-4 align-items-center">
-      <!-- LEFT TEXT -->
-      <div class="col-md-6" data-aos="fade-right">
+      <div class="col-md-6">
         <h3 class="mb-4" style="color: var(--islamic-green);">
           <i class="fas fa-mosque text-warning me-2"></i>
           نور السلام مدرسة - نور من الله
         </h3>
         
-        <p class="lead mb-4" style="font-family: 'Anek Malayalam', sans-serif; text-align: justify;">
+        <p class="lead malayalam-font mb-4" style="text-align: justify;">
           മലപ്പുറം ജില്ലയിലെ കരുവാരകുണ്ട് പശ്ചിമഘട്ട താഴ്വരയുടെ മടിത്തട്ടിൽ, താളാത്മകമായൊഴുകുന്ന കല്ലൻപുഴയുടെ തീരത്ത് സ്ഥിതിചെയ്യുന്ന പ്രകൃതിരമണീയമായ ഗ്രാമമാണ് മഞ്ഞൾപ്പാറ. 
           കർഷകരും തോട്ടം തൊഴിലാളികളും തിങ്ങിപ്പാർക്കുന്ന ഈ ഗ്രാമത്തിന് അതിന്റെ പേര് ലഭിച്ചത് ചരിത്രത്തിൽ ഇടംനേടിയ ഒരു നിർമ്മിതിയിൽ നിന്നാണ്.
         </p>
         
         <div class="row mt-4">
-          <div class="col-6">
-            <div class="d-flex align-items-center mb-3">
-              <div class="bg-warning rounded-circle p-2 me-3">
-                <i class="fas fa-book-open text-white"></i>
+          <div class="col-6 mb-3">
+            <div class="feature-box">
+              <div class="feature-icon">
+                <i class="fas fa-book-open"></i>
               </div>
               <div>
                 <h6 class="mb-0">Quranic Studies</h6>
@@ -551,10 +558,10 @@
               </div>
             </div>
           </div>
-          <div class="col-6">
-            <div class="d-flex align-items-center mb-3">
-              <div class="bg-success rounded-circle p-2 me-3">
-                <i class="fas fa-graduation-cap text-white"></i>
+          <div class="col-6 mb-3">
+            <div class="feature-box">
+              <div class="feature-icon">
+                <i class="fas fa-graduation-cap"></i>
               </div>
               <div>
                 <h6 class="mb-0">Modern Education</h6>
@@ -563,9 +570,9 @@
             </div>
           </div>
           <div class="col-6">
-            <div class="d-flex align-items-center">
-              <div class="bg-primary rounded-circle p-2 me-3">
-                <i class="fas fa-users text-white"></i>
+            <div class="feature-box">
+              <div class="feature-icon">
+                <i class="fas fa-users"></i>
               </div>
               <div>
                 <h6 class="mb-0">Islamic Values</h6>
@@ -574,9 +581,9 @@
             </div>
           </div>
           <div class="col-6">
-            <div class="d-flex align-items-center">
-              <div class="bg-danger rounded-circle p-2 me-3">
-                <i class="fas fa-hands-helping text-white"></i>
+            <div class="feature-box">
+              <div class="feature-icon">
+                <i class="fas fa-hands-helping"></i>
               </div>
               <div>
                 <h6 class="mb-0">Community Service</h6>
@@ -587,27 +594,17 @@
         </div>
       </div>
 
-      <!-- RIGHT IMAGE -->
-      <div class="col-md-6 text-center" data-aos="fade-left">
-        <div class="position-relative">
-          <div class="position-absolute top-0 start-0 translate-middle">
-            <div class="bg-warning text-white rounded-circle p-2 shadow">
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-          <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-               alt="Madrasa Students" 
-               class="img-fluid rounded-3 shadow-lg"
-               style="border: 5px solid var(--islamic-gold);">
-        </div>
+      <div class="col-md-6 text-center">
+        <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+             alt="Madrasa Students" 
+             class="img-fluid about-img">
       </div>
     </div>
     
-    <!-- Islamic Quote -->
     <div class="row mt-5 pt-4">
       <div class="col-12">
         <div class="bg-light p-4 rounded-3 text-center border-start border-5 border-warning">
-          <p class="mb-2" style="font-family: 'Scheherazade New', serif; font-size: 1.5rem; color: var(--islamic-green);">
+          <p class="mb-2 arabic-font" style="font-size: 1.5rem; color: var(--islamic-green);">
             وَقُل رَّبِّ زِدْنِي عِلْمًا
           </p>
           <p class="mb-0 text-muted">
@@ -619,20 +616,19 @@
   </div>
 </section>
 
-<!-- COLLEGE HIGHLIGHTS - YOUTUBE SECTION -->
+<!-- YOUTUBE HIGHLIGHTS -->
 <section id="highlights" class="py-5" style="background: var(--islamic-light);">
   <div class="container">
-    <div class="section-header mb-5">
+    <div class="section-header">
       <h2 class="display-5 fw-bold">College Highlights</h2>
       <p class="text-muted">Watch our latest events and activities</p>
     </div>
     
     <div class="row g-4">
-      <!-- Video 1 -->
-      <div class="col-lg-4 col-md-6" data-aos="fade-up">
+      <div class="col-lg-4 col-md-6">
         <div class="video-card h-100">
           <div class="video-thumbnail">
-            <img src="https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_1/maxresdefault.jpg" alt="Meelad u nabi Highlights">
+            <img src="https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_1/maxresdefault.jpg" alt="Meelad Celebration">
             <div class="play-button">
               <i class="fas fa-play"></i>
             </div>
@@ -640,9 +636,9 @@
           <div class="p-3">
             <h5 class="fw-bold" style="color: var(--islamic-green);">
               <i class="fas fa-video me-2 text-warning"></i>
-              Meelad u nabi Celebration
+              Meelad u nabi
             </h5>
-            <p class="text-muted small">Annual celebration of Prophet Muhammad's (PBUH) birthday with students' performances</p>
+            <p class="text-muted small">Annual celebration of Prophet Muhammad's (PBUH) birthday</p>
             <div class="d-flex justify-content-between align-items-center mt-3">
               <small class="text-muted"><i class="far fa-calendar me-1"></i> Dec 12, 2024</small>
               <a href="https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_1" target="_blank" class="btn btn-sm btn-outline-success">
@@ -653,8 +649,7 @@
         </div>
       </div>
       
-      <!-- Video 2 -->
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+      <div class="col-lg-4 col-md-6">
         <div class="video-card h-100">
           <div class="video-thumbnail">
             <img src="https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_2/maxresdefault.jpg" alt="Parents Programme">
@@ -665,9 +660,9 @@
           <div class="p-3">
             <h5 class="fw-bold" style="color: var(--islamic-green);">
               <i class="fas fa-users me-2 text-warning"></i>
-              Annual Parents Meet
+              Parents Programme
             </h5>
-            <p class="text-muted small">Interactive session with parents to discuss student progress and future plans</p>
+            <p class="text-muted small">Interactive session with parents about student progress</p>
             <div class="d-flex justify-content-between align-items-center mt-3">
               <small class="text-muted"><i class="far fa-calendar me-1"></i> Nov 25, 2024</small>
               <a href="https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_2" target="_blank" class="btn btn-sm btn-outline-success">
@@ -678,11 +673,10 @@
         </div>
       </div>
       
-      <!-- Video 3 -->
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+      <div class="col-lg-4 col-md-6">
         <div class="video-card h-100">
           <div class="video-thumbnail">
-            <img src="https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_3/maxresdefault.jpg" alt="Students' Achievements">
+            <img src="https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_3/maxresdefault.jpg" alt="Award Ceremony">
             <div class="play-button">
               <i class="fas fa-play"></i>
             </div>
@@ -690,9 +684,9 @@
           <div class="p-3">
             <h5 class="fw-bold" style="color: var(--islamic-green);">
               <i class="fas fa-trophy me-2 text-warning"></i>
-              Award Ceremony 2024
+              Award Ceremony
             </h5>
-            <p class="text-muted small">Celebrating academic excellence and extracurricular achievements of our students</p>
+            <p class="text-muted small">Celebrating academic excellence and achievements</p>
             <div class="d-flex justify-content-between align-items-center mt-3">
               <small class="text-muted"><i class="far fa-calendar me-1"></i> Oct 15, 2024</small>
               <a href="https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_3" target="_blank" class="btn btn-sm btn-outline-success">
@@ -715,47 +709,51 @@
 <!-- NOTIFICATIONS -->
 <section id="notifications" class="py-5">
   <div class="container">
-    <div class="section-header mb-5">
+    <div class="section-header">
       <h2 class="display-5 fw-bold">Important Notifications</h2>
     </div>
     
     <div class="row">
       <div class="col-lg-8 mx-auto">
         <div class="list-group">
-          <a href="forms.html" class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
-              <div class="fw-bold text-success">Admission Open for 2025-26 Academic Year</div>
-              <small class="text-muted">Apply now for all classes from 1st to 10th standard</small>
+          <a href="forms.html" class="list-group-item list-group-item-action notification-item">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <div class="fw-bold text-success">Admission Open 2025-26</div>
+                <small class="text-muted">Apply now for all classes (1st to 10th)</small>
+              </div>
+              <span class="badge bg-success">NEW</span>
             </div>
-            <span class="badge bg-success rounded-pill">NEW</span>
           </a>
           
-          <a href="#" class="list-group-item list-group-item-action">
-            <div class="ms-2 me-auto">
+          <a href="#" class="list-group-item list-group-item-action notification-item">
+            <div>
               <div class="fw-bold text-success">مولد النبي صلى الله عليه وسلم</div>
-              <small class="text-muted">December 20, 2025 — All parents and guardians are invited for the Meelad celebration</small>
+              <small class="text-muted">December 20, 2025 — All are invited</small>
             </div>
           </a>
           
-          <a href="#" class="list-group-item list-group-item-action">
-            <div class="ms-2 me-auto">
+          <a href="#" class="list-group-item list-group-item-action notification-item">
+            <div>
               <div class="fw-bold text-success">Holiday Notice</div>
-              <small class="text-muted">Madrasa will be closed after yearly examinations from February 15-28, 2026</small>
+              <small class="text-muted">Closed Feb 15-28, 2026 after exams</small>
             </div>
           </a>
           
-          <a href="result.html" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-            <div class="ms-2 me-auto">
-              <div class="fw-bold text-success">Results Published</div>
-              <small class="text-muted">Half-yearly examination results are now available online</small>
+          <a href="result.html" class="list-group-item list-group-item-action notification-item">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <div class="fw-bold text-success">Results Published</div>
+                <small class="text-muted">Half-yearly results available online</small>
+              </div>
+              <span class="btn btn-success btn-sm">View</span>
             </div>
-            <span class="btn btn-success btn-sm">View Results</span>
           </a>
           
-          <a href="#" class="list-group-item list-group-item-action">
-            <div class="ms-2 me-auto">
+          <a href="#" class="list-group-item list-group-item-action notification-item">
+            <div>
               <div class="fw-bold text-success">Parent-Teacher Meeting</div>
-              <small class="text-muted">Scheduled for December 15, 2025 at 10:00 AM in the main hall</small>
+              <small class="text-muted">Dec 15, 2025 at 10:00 AM</small>
             </div>
           </a>
         </div>
@@ -827,7 +825,6 @@
           </a>
         </div>
         
-        <!-- Islamic Quote in Footer -->
         <div class="border-top border-warning pt-3 mt-3">
           <p class="text-light mb-0" style="font-size: 0.9rem; opacity: 0.8;">
             <i class="fas fa-quote-left text-warning me-1"></i>
@@ -852,6 +849,11 @@
   </div>
 </footer>
 
+<!-- WhatsApp Button -->
+<a href="https://wa.me/917034678818?text=Hello%20Noorussalam%20Madrasa!" class="whatsapp-float" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
 <!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
@@ -872,87 +874,25 @@
   // Update year in footer
   document.getElementById('year').textContent = new Date().getFullYear();
   
-  // Add scroll to top button
-  const scrollToTopBtn = document.createElement('button');
-  scrollToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-  scrollToTopBtn.className = 'btn btn-warning rounded-circle shadow-lg';
-  scrollToTopBtn.style.position = 'fixed';
-  scrollToTopBtn.style.bottom = '20px';
-  scrollToTopBtn.style.right = '20px';
-  scrollToTopBtn.style.width = '50px';
-  scrollToTopBtn.style.height = '50px';
-  scrollToTopBtn.style.zIndex = '1000';
-  scrollToTopBtn.style.display = 'none';
-  scrollToTopBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-  
-  document.body.appendChild(scrollToTopBtn);
+  // Scroll to top button
+  const scrollBtn = document.createElement('button');
+  scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+  scrollBtn.className = 'btn btn-warning rounded-circle shadow-lg';
+  scrollBtn.style.cssText = 'position:fixed;bottom:90px;right:20px;width:50px;height:50px;z-index:1000;display:none;';
+  scrollBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.body.appendChild(scrollBtn);
   
   window.addEventListener('scroll', () => {
-    scrollToTopBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
   });
   
-  // News Ticker Pause on Hover
+  // News ticker hover pause
   const ticker = document.querySelector('.news-ticker');
   if (ticker) {
-    ticker.addEventListener('mouseenter', () => {
-      ticker.style.animationPlayState = 'paused';
-    });
-    
-    ticker.addEventListener('mouseleave', () => {
-      ticker.style.animationPlayState = 'running';
-    });
+    ticker.addEventListener('mouseenter', () => ticker.style.animationPlayState = 'paused');
+    ticker.addEventListener('mouseleave', () => ticker.style.animationPlayState = 'running');
   }
 </script>
-
-<!-- WhatsApp Chat Button -->
-<a href="https://wa.me/917034678818?text=Hello%20Noorussalam%20Madrasa!" 
-   class="whatsapp-float" target="_blank" 
-   title="Chat with us on WhatsApp">
-  <i class="fab fa-whatsapp"></i>
-</a>
-
-<style>
-  .whatsapp-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 20px;
-    left: 20px;
-    background-color: #25d366;
-    color: white;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease;
-  }
-
-  .whatsapp-float:hover {
-    transform: scale(1.1);
-    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.4);
-  }
-  
-  /* Social icons in footer */
-  .social-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-  
-  .social-icon:hover {
-    transform: translateY(-5px);
-  }
-</style>
 
 </body>
 </html>
