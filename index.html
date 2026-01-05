@@ -4,616 +4,460 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DSAC | Home</title>
- 
+
   <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
- 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@300;400;500;600;700&display=swap" rel="stylesheet">
- 
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
+
   <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
- 
+
   <style>
-    /* ===== ISLAMIC THEME ===== */
+    /* ===== CSS VARIABLES ===== */
     :root {
-      --primary-green: #0d5c3e;
-      --dark-green: #0a3524;
-      --gold: #c19a3c;
-      --light-gold: #e6c878;
-      --cream: #f8f6f0;
-      --white: #ffffff;
-      --light-bg: #fefefe;
-      --shadow: rgba(13, 92, 62, 0.1);
-      --gradient-green: linear-gradient(135deg, #0d5c3e 0%, #0a3524 100%);
-      --gradient-gold: linear-gradient(135deg, #c19a3c 0%, #e6c878 100%);
-      --transition: all 0.3s ease;
+      --islamic-green: #0a5c36;
+      --islamic-gold: #c19a3f;
+      --islamic-cream: #f8f3e6;
+      --islamic-light: #e9f5e9;
+      --dark-green: #064e3b;
+      --light-gold: #ffd24d;
     }
-   
+
     /* ===== BASE STYLES ===== */
-    a {
-      text-decoration: none !important;
-    }
-   
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: var(--cream);
+      background-color: var(--islamic-cream);
       color: #333;
+      scroll-behavior: smooth;
       overflow-x: hidden;
-      line-height: 1.6;
+      padding-top: 80px; /* Added padding for fixed navbar */
     }
-   
-    /* ===== PREVENT HORIZONTAL SCROLLBAR ===== */
-    html, body {
-      width: 100% !important;
-      max-width: 100% !important;
-      overflow-x: hidden !important;
-      position: relative;
+
+    .arabic-font {
+      font-family: 'Scheherazade New', serif;
     }
-   
-    *, *::before, *::after {
-      box-sizing: border-box !important;
+
+    .malayalam-font {
+      font-family: 'Anek Malayalam', sans-serif;
     }
-   
-    /* ===== TYPOGRAPHY ===== */
-    .malayalam {
-      font-family: 'Noto Sans Malayalam', sans-serif;
-      line-height: 1.8;
+
+    /* ===== PATTERN BACKGROUND ===== */
+    .pattern-bg {
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px),
+        radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px);
+      background-size: 50px 50px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
     }
-   
-    .arabic-text {
-      font-family: 'Amiri', serif;
-      font-size: 1.2rem;
-      background: var(--gradient-gold);
-      color: var(--dark-green);
-      padding: 0.5rem 1.5rem;
-      border-radius: 30px;
-      display: inline-block;
-      text-align: center;
-      direction: rtl;
-      margin-bottom: 1.6rem;
-      animation: pulse 2s infinite;
-    }
-   
-    /* ===== LAYOUT ===== */
-    .container-fluid {
-      padding: 0 2rem;
-      max-width: 100% !important;
-      width: 100% !important;
-    }
-   
-    /* ===== PATTERNS & BACKGROUNDS ===== */
-    .islamic-pattern {
-      background-image:
-        radial-gradient(circle at 15% 50%, rgba(193, 154, 60, 0.03) 0%, transparent 55%),
-        radial-gradient(circle at 85% 30%, rgba(13, 92, 62, 0.03) 0%, transparent 55%);
-    }
-   
-    /* ===== ANIMATIONS ===== */
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(5deg); }
-    }
-   
-    @keyframes smoothTicker {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-   
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-   
-    @keyframes shine {
-      0% { background-position: -200% center; }
-      100% { background-position: 200% center; }
-    }
-   
+
     /* ===== NAVBAR ===== */
-    .navbar-optimized {
-      background: rgba(13, 92, 62, 0.98);
-      backdrop-filter: blur(10px);
-      border-bottom: 3px solid var(--gold);
-      padding: 0.8rem 0;
-      transition: var(--transition);
-      max-width: 100vw !important;
-      width: 100vw !important;
-      left: 0 !important;
-      right: 0 !important;
+    .navbar {
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
+      border-bottom: 3px solid var(--islamic-gold);
+      transition: all 0.4s ease;
+      padding: 0.5rem 0;
+      height: 80px; /* Fixed height */
     }
-   
-    .navbar-optimized.scrolled {
-      padding: 0.6rem 0;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+
+    .navbar.scrolled {
+      background: rgba(10, 92, 54, 0.98);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      height: 70px;
     }
-   
-    .navbar-brand-compact {
-      padding: 0.3rem 0.8rem;
-      background: rgba(255, 255, 255, 0.1);
+
+    /* FIXED LOGO SIZE */
+    .navbar-brand img {
       border-radius: 8px;
-      border: 2px solid var(--gold);
+      border: 2px solid var(--islamic-gold);
+      transition: transform 0.3s ease;
+      width: 60px; /* Fixed width */
+      height: 60px; /* Fixed height */
+      object-fit: contain; /* Ensure image fits properly */
     }
-   
-    .navbar-brand-compact img {
+
+    .navbar.scrolled .navbar-brand img {
       width: 50px;
       height: 50px;
-      object-fit: contain;
-      max-width: 100% !important;
     }
-   
-    .brand-text { font-size: 1.6rem; line-height: 1; margin-bottom: 0.1rem; }
-    .brand-subtext { font-size: 0.7rem; opacity: 0.9; }
-    .nav-container { flex-wrap: nowrap; }
-    .nav-item-optimized { margin: 0 0.15rem !important; }
-   
-    .nav-link-optimized {
-      color: white !important;
+
+    .navbar-brand:hover img {
+      transform: scale(1.05);
+    }
+
+    .navbar-brand {
+      padding: 0;
+      margin-right: 15px;
+    }
+
+    .nav-link {
+      color: #fff !important;
       font-weight: 500;
-      font-size: 0.85rem !important;
-      padding: 0.5rem 0.7rem !important;
-      margin: 0 !important;
-      border-radius: 6px;
-      transition: var(--transition);
-      white-space: nowrap;
-    }
-   
-    .nav-link-optimized.active,
-    .nav-link-optimized:hover {
-      background: rgba(193, 154, 60, 0.2);
-      color: var(--light-gold) !important;
-    }
-   
-    .nav-link-optimized:hover { transform: translateY(-1px); }
-   
-    /* Dropdown */
-    .dropdown-menu-optimized {
-      background: rgba(13, 92, 62, 0.98);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--gold);
-      border-radius: 8px;
-      min-width: 180px;
-      padding: 0.5rem 0;
-      margin-top: 0.5rem;
-      max-width: 100% !important;
-    }
-   
-    .dropdown-item-optimized {
-      color: white;
-      font-size: 0.85rem;
+      transition: all 0.3s ease;
       padding: 0.5rem 1rem;
-      transition: var(--transition);
+      border-radius: 5px;
+      margin: 0 2px;
+      white-space: nowrap;
     }
-   
-    .dropdown-item-optimized:hover {
-      background: rgba(193, 154, 60, 0.2);
-      color: var(--light-gold);
-      padding-left: 1.3rem;
+
+    .nav-link:hover {
+      color: var(--islamic-gold) !important;
+      background: rgba(255, 255, 255, 0.1);
     }
-   
-    .dropdown-toggle::after {
-      margin-left: 0.2em;
-      vertical-align: 0.15em;
-      border-width: 0.3em;
+
+    /* Navbar dropdown fixes */
+    .dropdown-menu {
+      background: var(--islamic-green);
+      border: 1px solid var(--islamic-gold);
     }
-   
-    /* Navbar Toggle */
-    .navbar-toggler {
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      padding: 0.3rem 0.6rem;
-    }
-   
-    .navbar-toggler:focus {
-      box-shadow: 0 0 0 2px rgba(193, 154, 60, 0.5);
-    }
-   
-    .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-      width: 1.2em;
-      height: 1.2em;
-    }
-   
-    /* ===== NEWS TICKER ===== */
-    .ticker-container {
-      background: linear-gradient(90deg, var(--primary-green), var(--dark-green));
-      border-top: 2px solid var(--gold);
-      border-bottom: 2px solid var(--gold);
-      overflow: hidden;
-      position: relative;
-      width: 100%;
-      max-width: 100vw !important;
-      height: 60px;
-    }
-   
-    .ticker-wrapper {
-      display: flex;
-      align-items: center;
-      height: 100%;
-      width: max-content;
-      will-change: transform;
-      transform: translate3d(0,0,0);
-      animation: smoothTicker 40s linear infinite;
-    }
-   
-    .ticker-wrapper:hover { animation-play-state: paused; }
-   
-    .ticker-item {
-      padding: 0 2rem;
+
+    .dropdown-item {
       color: white;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      height: 100%;
-      white-space: nowrap;
-      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.5rem 1rem;
     }
-   
-    .ticker-badge {
-      background: var(--gradient-gold);
-      color: var(--dark-green);
-      padding: 0.25rem 1rem;
-      border-radius: 20px;
+
+    .dropdown-item:hover {
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-primary {
+      background: linear-gradient(135deg, var(--islamic-gold), #d4af37);
+      border: none;
+      color: var(--islamic-green);
       font-weight: 600;
-      margin-right: 1rem;
-      white-space: nowrap;
-      font-size: 0.9rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3);
+      transition: all 0.3s ease;
     }
-   
-    /* ===== HERO SECTION ===== */
-    .hero-section {
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #d4af37, var(--islamic-gold));
+      box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline-light {
+      border: 2px solid var(--islamic-gold);
+      color: var(--islamic-gold);
+    }
+
+    .btn-outline-light:hover {
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
+    }
+
+    /* ===== SECTIONS ===== */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
       position: relative;
-      min-height: 90vh;
-      display: flex;
-      align-items: center;
-      background: var(--gradient-green), url('https://i.ibb.co/rf3Sp41S/COLLEGE-2.png');
-      background-blend-mode: overlay;
-      background-size: cover;
-      background-position: center;
-      overflow: hidden;
-      width: 100% !important;
-      max-width: 100vw !important;
     }
-   
-    .hero-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(10, 53, 36, 0.7);
-    }
-   
-    .hero-content {
+
+    .section-header h2 {
+      color: var(--islamic-green);
+      font-weight: 700;
+      display: inline-block;
+      padding: 0 2rem;
+      background: var(--islamic-cream);
       position: relative;
       z-index: 2;
-      width: 100% !important;
-      max-width: 100% !important;
     }
-   
-    .hero-title {
-      font-size: 3.5rem;
-      font-weight: 700;
-      color: white;
-      margin-bottom: 1.5rem;
-      line-height: 1.2;
-      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-    }
-   
-    .hero-subtitle {
-      font-size: 1.3rem;
-      color: var(--light-gold);
-      margin-bottom: 2rem;
-      line-height: 1.6;
-    }
-   
-    /* Ornaments */
-    .islamic-ornament {
-      position: absolute;
-      font-size: 3rem;
-      color: rgba(193, 154, 60, 0.2);
-      animation: float 10s infinite ease-in-out;
-    }
-   
-    .ornament-1 { top: 20%; left: 10%; animation-delay: 0s; }
-    .ornament-2 { top: 60%; right: 15%; animation-delay: 2s; }
-    .ornament-3 { bottom: 30%; left: 20%; animation-delay: 4s; }
-   
-    /* ===== BUTTONS ===== */
-    .btn-gold, .btn-outline-gold {
-      font-weight: 600;
-      padding: 0.75rem 2rem;
-      border-radius: 50px;
-      transition: var(--transition);
-    }
-   
-    .btn-gold {
-      background: var(--gradient-gold);
-      border: none;
-      color: var(--dark-green);
-      position: relative;
-      overflow: hidden;
-    }
-   
-    .btn-gold::after {
+
+    .section-header::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: 0.5s;
-    }
-   
-    .btn-gold:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(193, 154, 60, 0.4);
-    }
-   
-    .btn-gold:hover::after { left: 100%; }
-   
-    .btn-outline-gold {
-      border: 2px solid var(--gold);
-      color: var(--gold);
-      background: transparent;
-    }
-   
-    .btn-outline-gold:hover {
-      background: var(--gold);
-      color: var(--dark-green);
-      transform: translateY(-3px);
-    }
-   
-    /* ===== SECTIONS ===== */
-    .section {
-      padding: 5rem 0;
-      position: relative;
-      width: 100% !important;
-      max-width: 100% !important;
-    }
-   
-    .section-header {
-      position: relative;
-      margin-bottom: 3rem;
-      text-align: center;
-    }
-   
-    .section-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--primary-green);
-      margin-bottom: 1rem;
-      position: relative;
-      display: inline-block;
-    }
-   
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: var(--gradient-gold);
-      border-radius: 2px;
-    }
-   
-    /* ===== COMPONENTS ===== */
-    .about-image {
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 20px 40px rgba(13, 92, 62, 0.1);
-      transition: var(--transition);
-    }
-   
-    .about-image:hover {
-      transform: scale(1.02);
-      box-shadow: 0 30px 60px rgba(13, 92, 62, 0.2);
-    }
-   
-    .milestone-card {
-      background: var(--gradient-green);
-      color: white;
-      padding: 2rem;
-      border-radius: 15px;
-      position: relative;
-      overflow: hidden;
-      height: 100%;
-    }
-   
-    .milestone-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%);
-      background-size: 200% 200%;
-      animation: shine 3s infinite linear;
-    }
-   
-    .milestone-icon {
-      font-size: 2.5rem;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-   
-    .highlight-card,
-    .news-card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px var(--shadow);
-      transition: var(--transition);
-      height: 100%;
-      border: 1px solid rgba(13, 92, 62, 0.1);
-    }
-   
-    .highlight-card:hover,
-    .news-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(13, 92, 62, 0.15);
-    }
-   
-    .news-card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-   
-    .news-card:hover {
-      background: rgba(255, 255, 255, 0.15);
-    }
-   
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      max-width: 100% !important;
-    }
-   
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-      max-width: 100% !important;
-    }
-   
-    .news-image {
-      height: 200px;
-      object-fit: cover;
-      width: 100%;
-      transition: transform 0.5s ease;
-      max-width: 100% !important;
-    }
-   
-    .news-card:hover .news-image {
-      transform: scale(1.1);
-    }
-   
-    .news-date {
-      color: var(--gold);
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-   
-    .notification-card {
-      background: var(--light-bg);
-      border-left: 4px solid var(--gold);
-      border-radius: 10px;
-      padding: 1.5rem;
-      margin-bottom: 1rem;
-      transition: var(--transition);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    }
-   
-    .notification-card:hover {
-      transform: translateX(10px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
-   
-    .notification-badge,
-    .ticker-badge {
-      background: var(--gradient-gold);
-      color: var(--dark-green);
-      padding: 0.25rem 1rem;
-      border-radius: 20px;
-      font-weight: 600;
-    }
-   
-    .notification-badge {
-      font-size: 0.8rem;
-      animation: pulse 2s infinite;
-    }
-   
-    /* ===== FOOTER ===== */
-    .footer {
-      background: var(--gradient-green);
-      color: white;
-      padding: 3rem 0 1rem;
-      position: relative;
-      overflow: hidden;
-      width: 100% !important;
-      max-width: 100vw !important;
-    }
-   
-    .footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
+      top: 50%;
       left: 0;
       right: 0;
       height: 3px;
-      background: var(--gradient-gold);
-      animation: shine 3s infinite linear;
+      background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent);
+      z-index: 1;
     }
-   
-    .footer-brand {
-      font-size: 2rem;
+
+    /* ===== NEWS TICKER ===== */
+    .news-ticker-container {
+      background: linear-gradient(90deg, var(--dark-green), var(--islamic-green));
+      color: white;
+      padding: 15px 0;
+      overflow: hidden;
+      position: relative;
+      border-bottom: 2px solid var(--islamic-gold);
+      margin-top: 80px; /* Added margin to account for fixed navbar */
+    }
+
+    .news-ticker-label {
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
+      padding: 8px 20px;
       font-weight: 700;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-   
-    .social-links {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 2;
       display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
+      align-items: center;
+      box-shadow: 3px 0 10px rgba(0,0,0,0.2);
     }
-   
+
+    .news-ticker {
+      white-space: nowrap;
+      display: inline-block;
+      animation: ticker 30s linear infinite;
+      padding-left: 20px;
+    }
+
+    .ticker-item {
+      display: inline-block;
+      padding: 0 40px;
+      font-size: 1.1rem;
+      position: relative;
+    }
+
+    .ticker-item:after {
+      content: "•";
+      color: var(--islamic-gold);
+      position: absolute;
+      right: -10px;
+      font-size: 1.5rem;
+    }
+
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero-section {
+      background: linear-gradient(135deg, rgba(10, 92, 54, 0.9), rgba(6, 78, 59, 0.9));
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+      padding: 4rem 0;
+    }
+
+    .hero-content h1 {
+      color: var(--islamic-gold);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .arabic-calligraphy {
+      font-size: 1.4rem;
+      color: var(--islamic-gold);
+      margin: 2rem 0;
+    }
+
+    /* ===== ABOUT SECTION ===== */
+    .about-img {
+      border-radius: 15px;
+      border: 5px solid var(--islamic-gold);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .about-img:hover {
+      transform: scale(1.03);
+    }
+
+    .feature-box {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-icon {
+      background: var(--islamic-gold);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+
+    /* ===== YOUTUBE SECTION ===== */
+    .video-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 3px solid transparent;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .video-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--islamic-gold);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+
+    .video-thumbnail {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .video-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .video-thumbnail iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(193, 154, 63, 0.9);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      opacity: 0.9;
+      transition: all 0.3s ease;
+    }
+
+    .video-card:hover .play-button {
+      background: var(--islamic-gold);
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    /* ===== NOTIFICATIONS ===== */
+    .notification-item {
+      border-left: 5px solid var(--islamic-gold);
+      border-radius: 8px;
+      margin-bottom: 10px;
+      transition: all 0.2s ease;
+    }
+
+    .notification-item:hover {
+      background-color: #fff;
+      transform: translateX(5px);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
+      border-top: 3px solid var(--islamic-gold);
+    }
+
     .social-icon {
-      width: 45px;
-      height: 45px;
-      background: rgba(255, 255, 255, 0.1);
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       text-decoration: none;
-      transition: var(--transition);
-      font-size: 1.2rem;
+      transition: all 0.3s ease;
     }
-   
+
     .social-icon:hover {
-      background: var(--gold);
-      color: var(--dark-green);
       transform: translateY(-5px);
     }
-   
-    .footer-links h5 {
-      color: var(--light-gold);
-      margin-bottom: 1.5rem;
-      font-size: 1.2rem;
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px;
+      }
+      
+      .navbar {
+        height: 70px;
+      }
+      
+      .news-ticker-container {
+        margin-top: 70px;
+      }
+      
+      .news-ticker-label {
+        position: relative;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+      
+      .news-ticker {
+        padding-left: 0;
+        animation: ticker-mobile 40s linear infinite;
+      }
+      
+      @keyframes ticker-mobile {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+      }
+      
+      .ticker-item {
+        padding: 0 20px;
+        font-size: 1rem;
+      }
+      
+      .hero-content h1 {
+        font-size: 1.8rem;
+      }
+      
+      .arabic-calligraphy {
+        font-size: 1.4rem;
+      }
+      
+      .navbar-brand img {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .navbar-collapse {
+        background: var(--dark-green);
+        padding: 1rem;
+        border-radius: 0 0 10px 10px;
+        border: 1px solid var(--islamic-gold);
+      }
     }
-   
-    .footer-links a {
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      margin-bottom: 0.75rem;
-      display: block;
-      transition: var(--transition);
+
+    @media (max-width: 992px) {
+      .navbar-nav {
+        text-align: center;
+      }
+      
+      .nav-link {
+        padding: 0.5rem;
+        margin: 0.2rem 0;
+      }
     }
-   
-    .footer-links a:hover {
-      color: var(--gold);
-      padding-left: 10px;
-    }
-   
-    /* ===== WHATSAPP BUTTON ===== */
+
+        /* ===== WHATSAPP BUTTON ===== */
     .whatsapp-float {
       position: fixed;
       bottom: 30px;
@@ -638,287 +482,11 @@
       transform: scale(1.1) rotate(10deg);
       box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
     }
-   
-    /* ===== UTILITIES ===== */
-    .gold-text { color: var(--gold); }
-    .green-text { color: var(--primary-green); }
-    .text-shadow { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); }
-    .hover-lift { transition: transform 0.3s ease; }
-    .hover-lift:hover { transform: translateY(-5px); }
-    .text-light { color: rgba(255, 255, 255, 0.9) !important; }
-   
-    /* Fix for all images */
-    img {
-      max-width: 100% !important;
-      height: auto !important;
-    }
-   
-    /* Fix for Bootstrap rows */
-    .row {
-      margin-left: 0 !important;
-      margin-right: 0 !important;
-    }
-   
-    /* Scrollbar */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-   
-    ::-webkit-scrollbar-track {
-      background: var(--cream);
-    }
-   
-    ::-webkit-scrollbar-thumb {
-      background: var(--gradient-gold);
-      border-radius: 5px;
-    }
-   
-    ::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(135deg, #e6c878 0%, #c19a3c 100%);
-    }
-   
-    /* ===== RESPONSIVE DESIGN ===== */
-    /* Tablet (992px and below) */
-    @media (max-width: 992px) {
-      .navbar-optimized { padding: 0.5rem 0; }
-      .nav-link-optimized { padding: 0.75rem 1rem !important; font-size: 0.9rem !important; margin: 0.15rem 0 !important; }
-      .dropdown-menu-optimized { background: rgba(13, 92, 62, 0.95); border: none; border-left: 3px solid var(--gold); margin: 0; padding-left: 1rem; }
-      .nav-container { flex-wrap: wrap; justify-content: flex-start; }
-     
-      .hero-title { font-size: 2.5rem; }
-      .hero-subtitle { font-size: 1.1rem; }
-      .section-title { font-size: 2rem; }
-      .section { padding: 3rem 0; }
-      .btn-gold, .btn-outline-gold { padding: 0.6rem 1.5rem; font-size: 0.9rem; }
-      .milestone-card { margin-top: 2rem; }
-    }
 
-    @media (max-width: 768px) {
-      .islamic-ornament,
-      .btn-gold::after,
-      .milestone-card::before,
-      .arabic-text,
-      .notification-badge {
-        animation: none !important;
-      }
-
-      [data-aos] {
-        opacity: 1 !important;
-        transform: none !important;
-      }
-      ::-webkit-scrollbar { display: none; }
-    }
-    /* MOBILE FIX (768px and below) */
-    @media (max-width: 768px) {
-      .container-fluid {
-        padding: 0 1rem !important;
-        width: 100% !important;
-        max-width: 100% !important;
-      }
-     
-      /* NAVBAR MOBILE FIX - MENU IN FIRST COLUMN */
-      .navbar-optimized .container-fluid {
-        padding: 0 0.75rem !important;
-        width: 100% !important;
-        max-width: 100vw !important;
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-      }
-      
-      /* FIX: Force navbar collapse content to align left */
-      .navbar-collapse {
-        position: absolute !important;
-        top: 100% !important;
-        left: 0 !important;
-        right: 0 !important;
-        background: rgba(13, 92, 62, 0.98) !important;
-        backdrop-filter: blur(10px) !important;
-        padding: 1rem !important;
-        border-top: 2px solid var(--gold) !important;
-        z-index: 1050 !important;
-      }
-      
-      /* FIX: Make navbar-nav take full width and align left */
-      .navbar-nav {
-        width: 100% !important;
-        align-items: flex-start !important;
-        padding-left: 0 !important;
-        margin-left: 0 !important;
-      }
-      
-      /* FIX: Remove any right margin/padding */
-      .nav-container {
-        width: 100% !important;
-        margin-left: 0 !important;
-        padding-left: 0 !important;
-      }
-      
-      /* FIX: Ensure nav items start from left */
-      .nav-item-optimized {
-        margin-left: 0 !important;
-        padding-left: 0 !important;
-        width: 100% !important;
-      }
-      
-      .nav-link-optimized {
-        padding-left: 0.5rem !important;
-        width: 100% !important;
-        text-align: left !important;
-      }
-      
-      /* Dropdown menu fix for mobile */
-      .dropdown-menu-optimized {
-        position: static !important;
-        float: none !important;
-        width: 100% !important;
-        margin: 0.5rem 0 0 0 !important;
-        background: rgba(255, 255, 255, 0.05) !important;
-        border: none !important;
-        border-left: 3px solid var(--gold) !important;
-      }
-      
-      .navbar-brand-compact {
-        padding: 0.2rem 0.5rem !important;
-        max-width: 70% !important;
-        flex-shrink: 1 !important;
-      }
-     
-      .navbar-brand-compact img {
-        width: 40px !important;
-        height: 40px !important;
-      }
-     
-      .brand-text {
-        font-size: 1.2rem !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-        max-width: 100px !important;
-      }
-     
-      .brand-subtext {
-        font-size: 0.6rem !important;
-      }
-     
-      .navbar-toggler {
-        padding: 0.2rem 0.4rem !important;
-        margin-left: auto !important;
-      }
-     
-      /* TICKER SPEED FIX FOR MOBILE */
-      .ticker-wrapper { will-change: transform; animation: smoothTicker 25s linear infinite !important; }
-      .ticker-container { height: 50px; }
-      .ticker-item { padding: 0 1.5rem; font-size: 0.9rem; }
-      .ticker-badge { padding: 0.2rem 0.8rem; font-size: 0.8rem; margin-right: 0.8rem; }
-     
-      .hero-title { font-size: 2rem; }
-      .hero-section { min-height: 70vh; padding: 4rem 0; }
-      .section-title { font-size: 1.8rem; }
-      .about-image { margin-bottom: 2rem; }
-      .highlight-card, .news-card { margin-bottom: 1.5rem; }
-      .whatsapp-float {
-        width: 55px;
-        height: 55px;
-        bottom: 20px;
-        right: 15px;
-        font-size: 1.5rem;
-      }
-     
-      /* Prevent horizontal scroll on mobile */
-      body {
-        position: relative;
-        overflow-x: hidden !important;
-      }
-     
-      * {
-        max-width: 100% !important;
-      }
-    }
-   
-    /* Small Mobile (576px and below) */
-    @media (max-width: 576px) {
-      .container-fluid {
-        padding: 0 0.5rem !important;
-      }
-      .arabic-text {
-        font-size: 0.9rem !important;
-        padding: 0.3rem 1rem !important;
-      }
-     
-      /* Extra small navbar fix */
-      .navbar-optimized .container-fluid {
-        padding: 0 0.5rem !important;
-      }
-     
-      .navbar-brand-compact {
-        padding: 0.15rem 0.4rem !important;
-        max-width: 65% !important;
-      }
-     
-      .navbar-brand-compact img {
-        width: 35px !important;
-        height: 35px !important;
-      }
-     
-      .brand-text {
-        font-size: 1rem !important;
-        max-width: 80px !important;
-      }
-     
-      .brand-subtext {
-        font-size: 0.55rem !important;
-      }
-     
-      /* TICKER SPEED FIX FOR SMALL MOBILE */
-      .ticker-wrapper { will-change: transform; animation: smoothTicker 20s linear infinite !important; }
-      .ticker-container { height: 45px; }
-      .ticker-item { padding: 0 1.2rem; font-size: 0.85rem; }
-      .ticker-badge { padding: 0.15rem 0.6rem; font-size: 0.75rem; margin-right: 0.6rem; }
-     
-      .hero-title { font-size: 1.6rem; }
-      .hero-subtitle { font-size: 1rem; }
-      .section-title { font-size: 1.5rem; }
-      .btn-gold, .btn-outline-gold { padding: 0.5rem 1.2rem; font-size: 0.85rem; }
-     
-      .footer { padding: 2rem 0 1rem; }
-      .social-icon { width: 40px; height: 40px; font-size: 1rem; }
-     
-      /* Ultra small devices */
-      .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        bottom: 15px;
-        right: 10px;
-        font-size: 1.3rem;
-      }
-    }
-   
-    /* Emergency horizontal scroll fix */
-    @media (max-width: 768px) {
-      .navbar-optimized {
-        width: 100vw !important;
-        max-width: 100vw !important;
-        left: 0 !important;
-        right: 0 !important;
-        margin: 0 !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-      }
-     
-      .navbar-optimized .container-fluid {
-        min-width: 0 !important;
-        flex-wrap: nowrap !important;
-      }
-     
-      .navbar-brand-compact {
-        min-width: 0 !important;
-        flex-shrink: 1 !important;
-      }
-    }
   </style>
 </head>
-<body class="islamic-pattern">
+<body>
+
 <!-- Floating Islamic Ornaments -->
 <div class="islamic-ornament ornament-1">✸</div>
 <div class="islamic-ornament ornament-2">✸</div>
@@ -1436,6 +1004,7 @@
 </script>
 </body>
 </html>
+
 
 
 
