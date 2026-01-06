@@ -11,10 +11,6 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- PDF Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
@@ -25,163 +21,12 @@
             --accent-green: #2E7D32;
             --dark-red: #800000;
             --light-bg: #f8f9fa;
-            --white: #ffffff;
-            --shadow: rgba(0, 0, 0, 0.1);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
         }
         
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, var(--light-bg) 0%, #e3f2fd 100%);
+            background: var(--light-bg);
             min-height: 100vh;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        .main-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .header-card {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px var(--shadow);
-            border: 3px solid var(--primary-blue);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-blue), var(--accent-green));
-        }
-        
-        .college-logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--primary-blue);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-        }
-        
-        .college-name {
-            color: var(--primary-blue);
-            font-family: 'Impact', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-        }
-        
-        .college-subtitle {
-            color: var(--accent-green);
-            font-weight: 600;
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-        
-        .portal-title {
-            color: var(--dark-red);
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 2px dashed #ddd;
-        }
-        
-        .form-container {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px var(--shadow);
-        }
-        
-        .form-title {
-            color: var(--primary-blue);
-            margin-bottom: 25px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-align: center;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-label {
-            font-weight: 600;
-            color: #444;
-            margin-bottom: 8px;
-            display: block;
-            font-size: 1rem;
-        }
-        
-        .form-label.required::after {
-            content: " *";
-            color: #dc3545;
-        }
-        
-        .form-control {
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            width: 100%;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 0.25rem rgba(29, 41, 214, 0.25);
-            outline: none;
-        }
-        
-        .btn-submit {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
-            color: var(--white);
-            border: none;
-            border-radius: 10px;
-            padding: 14px 30px;
-            font-weight: 600;
-            font-size: 16px;
-            width: 100%;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(29, 41, 214, 0.2);
-        }
-        
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 7px 15px rgba(29, 41, 214, 0.3);
-        }
-        
-        .btn-submit:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none !important;
-            box-shadow: none !important;
         }
         
         .loading-overlay {
@@ -205,7 +50,6 @@
             border-top: 5px solid var(--primary-blue);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin-bottom: 20px;
         }
         
         @keyframes spin {
@@ -217,214 +61,18 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background: var(--white);
+            background: white;
             border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             z-index: 9998;
             display: none;
             max-width: 400px;
             border-left: 5px solid var(--primary-blue);
-            transform: translateX(100%);
-            animation: slideIn 0.3s ease forwards;
         }
         
-        @keyframes slideIn {
-            to { transform: translateX(0); }
-        }
-        
-        .instructions-box {
-            background: #e8f4ff;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
-            border: 2px solid #cfe2ff;
-        }
-        
-        .instructions-title {
-            color: var(--primary-blue);
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .radio-group {
-            display: flex;
-            gap: 20px;
-            margin-top: 10px;
-        }
-        
-        .radio-option {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-        }
-        
-        @media (max-width: 768px) {
-            .main-container {
-                padding: 15px;
-            }
-            
-            .header-card {
-                padding: 20px;
-            }
-            
-            .college-name {
-                font-size: 1.8rem;
-            }
-        }
-        
-        .section-divider {
-            border-top: 2px solid #e0e0e0;
-            margin: 30px 0;
-            padding-top: 20px;
-        }
-        
-        .section-title {
-            color: var(--primary-blue);
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .language-toggle {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            justify-content: center;
-        }
-        
-        .lang-btn {
-            padding: 8px 20px;
-            border: 2px solid var(--primary-blue);
-            background: transparent;
-            color: var(--primary-blue);
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .lang-btn.active {
-            background: var(--primary-blue);
-            color: white;
-        }
-        
-        /* Photo preview */
-        .photo-preview {
-            margin-top: 10px;
-            text-align: center;
-        }
-        
-        .photo-preview img {
-            max-width: 200px;
-            max-height: 200px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            padding: 5px;
-            background: #f9f9f9;
-        }
-        
-        /* NEW: Additional Services Section */
-        .services-container {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px var(--shadow);
-        }
-        
-        .services-title {
-            color: var(--primary-blue);
-            margin-bottom: 25px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-align: center;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .service-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 8px 25px var(--shadow);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            cursor: pointer;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-blue);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        }
-        
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 24px;
-            margin: 0 auto 15px;
-            box-shadow: 0 5px 15px rgba(29, 41, 214, 0.3);
-        }
-        
-        .service-title {
-            color: var(--primary-blue);
-            font-weight: 600;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-        
-        .service-desc {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-        
-        /* NEW: Print Layout for PDF */
-        @media print {
-            body {
-                background: white !important;
-                padding: 0 !important;
-                margin: 0 !important;
-            }
-            
-            .main-container {
-                padding: 0 !important;
-                max-width: 100% !important;
-            }
-            
-            .header-card, .form-container, .services-container, 
-            .instructions-box, .language-toggle, .btn-submit,
-            .notification, .loading-overlay, #applicationResult,
-            .photo-preview button, footer, .no-print {
-                display: none !important;
-            }
-            
-            .print-only {
-                display: block !important;
-            }
+        .printable-content {
+            display: none;
         }
     </style>
 </head>
@@ -432,1259 +80,134 @@
     <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="spinner"></div>
-        <div class="loading-text">Please wait...</div>
+        <div class="loading-text mt-3">Please wait...</div>
     </div>
     
     <!-- Notification -->
     <div class="notification" id="notification">
-        <div class="notification-content">
-            <i class="fas fa-info-circle notification-icon"></i>
-            <div class="notification-message" id="notificationMessage"></div>
-            <button class="notification-close" onclick="hideNotification()">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
+        <div id="notificationMessage"></div>
     </div>
     
-    <!-- Main Container -->
-    <div class="main-container">
+    <!-- Printable Content Container (hidden) -->
+    <div id="printableContent" class="printable-content"></div>
+    
+    <!-- Main Dashboard Container -->
+    <div id="mainDashboard" class="container py-4">
         <!-- Header -->
-        <div class="header-card text-center">
-            <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="college-logo">
-            <h1 class="college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</h1>
-            <h2 class="college-subtitle">Affiliated to Jamia Nooriyya Arabiyya</h2>
-            <h2 class="college-subtitle">Under Darunnajath Islamic Centre</h2>
-            <p>Punnakkad, Karuvarakundu PO, Malappuram 676523</p>
-            <h3 class="portal-title">Admission Registration Portal</h3>
+        <div class="text-center mb-5">
+            <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" 
+                 class="rounded-circle border border-4 border-primary" style="width: 120px; height: 120px;">
+            <h1 class="text-primary mt-3">DARUNNAJATH SHAREEATH & ARTS COLLEGE</h1>
+            <p class="text-muted">Punnakkad, Karuvarakundu, Malappuram District</p>
         </div>
         
-        <!-- NEW: Additional Services Section -->
-        <div class="services-container" id="servicesView">
-            <h2 class="services-title">
-                <i class="fas fa-tools me-2"></i>
-                Additional Services
-            </h2>
-            
-            <div class="services-grid">
-                <div class="service-card" onclick="showForm('downloadApplication')">
-                    <div class="service-icon">
-                        <i class="fas fa-file-download"></i>
-                    </div>
-                    <h3 class="service-title">Download Application</h3>
-                    <p class="service-desc">Download your submitted application form</p>
-                    <small>Enter mobile number and date of birth</small>
-                </div>
-                
-                <div class="service-card" onclick="showForm('hallTicket')">
-                    <div class="service-icon">
-                        <i class="fas fa-ticket-alt"></i>
-                    </div>
-                    <h3 class="service-title">Hall Ticket</h3>
-                    <p class="service-desc">Download entrance exam hall ticket</p>
-                    <small>For registered students only</small>
-                </div>
-                
-                <div class="service-card" onclick="showForm('checkResult')">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="service-title">Check Result</h3>
-                    <p class="service-desc">Check entrance exam results</p>
-                    <small>After exam completion</small>
-                </div>
-                
-                <div class="service-card" onclick="showMainForm()">
-                    <div class="service-icon">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <h3 class="service-title">New Application</h3>
-                    <p class="service-desc">Submit new admission application</p>
-                    <small>Start new admission process</small>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Language Toggle -->
-        <div class="language-toggle">
-            <button class="lang-btn active" onclick="setLanguage('malayalam')">മലയാളം</button>
-            <button class="lang-btn" onclick="setLanguage('english')">English</button>
-        </div>
-        
-        <!-- Instructions - Loaded from Google Sheets -->
-        <div class="instructions-box" id="instructionsBox">
-            <h3 class="instructions-title">
-                <i class="fas fa-info-circle"></i>
-                <span id="instructionsTitle">പ്രവേശന നിർദ്ദേശങ്ങൾ | Admission Instructions</span>
-            </h3>
-            <ul class="instructions-list" id="instructionsList">
-                <li id="instruction1">* എല്ലാ വിവരങ്ങളും കൃത്യമായി പൂരിപ്പിക്കുക</li>
-                <li id="instruction2">* മൊബൈൽ നമ്പർ 10 അക്കങ്ങൾ മാത്രം</li>
-                <li id="instruction3">* അഡ്മിഷൻ ഫോം സമർപ്പിച്ച ശേഷം അഡ്മിഷൻ ID ലഭിക്കും</li>
-                <li id="instruction4">* പ്രവേശന പരീക്ഷയുടെ തീയതി പിന്നീട് അറിയിപ്പ് നൽകും</li>
-            </ul>
-        </div>
-        
-        <!-- Main Admission Form -->
-        <div class="form-container" id="admissionFormView">
-            <h2 class="form-title">
-                <i class="fas fa-file-alt me-2"></i>
-                <span id="formTitle">പ്രവേശന അപേക്ഷാ ഫോം | Admission Application Form</span>
-            </h2>
-            
-            <form id="admissionForm">
-                <!-- Section 1: Basic Information -->
-                <div class="section-title">
-                    <i class="fas fa-user-circle"></i>
-                    <span id="section1Title">പ്രാഥമിക വിവരങ്ങൾ | Basic Information</span>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label required">
-                        <span id="mobileLabel">മൊബൈൽ നമ്പർ | Mobile Number</span>
-                    </label>
-                    <input type="tel" class="form-control" name="phone" 
-                           pattern="\d{10}"
-                           placeholder="9876543210"
-                           required
-                           oninput="validatePhone(this)">
-                    <small class="text-muted" id="mobileHelp">10 അക്കങ്ങൾ മാത്രം | 10 digits only</small>
-                    <span id="phoneCount" class="text-muted"></span>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label required">
-                        <span id="nameLabel">പൂർണ്ണ പേര് | Full Name</span>
-                    </label>
-                    <input type="text" class="form-control" name="name" 
-                           placeholder="പൂർണ്ണ പേര് | Full Name"
-                           required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label required">
-                        <span id="categoryLabel">പ്രവേശനം തേടുന്ന വിഭാഗം | Admission Category</span>
-                    </label>
-                    <select class="form-control" name="category" required>
-                        <option value="" disabled selected>
-                            <span id="selectCategory">തിരഞ്ഞെടുക്കുക | Select</span>
-                        </option>
-                        <option value="SECONDARY">SECONDARY (8th-10th)</option>
-                        <option value="HIGHER SECONDARY">HIGHER SECONDARY (+1/+2)</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label required">
-                        <span id="dobLabel">ജനന തിയ്യതി | Date of Birth</span>
-                    </label>
-                    <input type="date" class="form-control" name="dob" required>
-                </div>
-                
-                <div class="section-divider"></div>
-                
-                <!-- Section 2: Family Details -->
-                <div class="section-title">
-                    <i class="fas fa-home"></i>
-                    <span id="section2Title">വീട്ടുവിവരങ്ങൾ | Family Details</span>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label required">
-                        <span id="houseLabel">വീട്ടു പേര് | House Name</span>
-                    </label>
-                    <input type="text" class="form-control" name="houseName" 
-                           placeholder="വീട്ടു പേര് | House Name"
-                           required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label required">
-                        <span id="addressLabel">പൂർണ്ണ വിലാസം | Complete Address</span>
-                    </label>
-                    <textarea class="form-control" name="address" 
-                              placeholder="വീട്ടുനമ്പർ, സ്ഥലം, പിൻകോഡ് | House no, Place, Pincode"
-                              rows="3"
-                              required></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label required">
-                        <span id="aadhaarLabel">ആധാർ നമ്പർ | Aadhaar Number</span>
-                    </label>
-                    <input type="text" class="form-control" name="aadhaarNumber" 
-                           pattern="\d{12}"
-                           placeholder="12 അക്ക ആധാർ നമ്പർ | 12 digit Aadhaar number"
-                           required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">
-                        <span id="whatsappLabel">വാട്സ്ആപ്പ് നമ്പർ | WhatsApp Number</span>
-                    </label>
-                    <input type="tel" class="form-control" name="whatsappNumber" 
-                           pattern="\d{10}"
-                           placeholder="9876543210 (വ്യത്യാസമെങ്കിൽ | If different)">
-                </div>
-                
-                <div class="section-divider"></div>
-                
-                <!-- Section 3: Parent/Guardian Details -->
-                <div class="section-title">
-                    <i class="fas fa-users"></i>
-                    <span id="section3Title">രക്ഷിതാവിന്റെ വിവരങ്ങൾ | Guardian Details</span>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label required">
-                        <span id="fatherLabel">പിതാവിന്റെ പേര് | Father's Name</span>
-                    </label>
-                    <input type="text" class="form-control" name="fatherName" 
-                           placeholder="പിതാവിന്റെ പൂർണ്ണ പേര് | Father's Full Name"
-                           required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label required">
-                        <span id="fatherJobLabel">പിതാവിന്റെ ജോലി | Father's Occupation</span>
-                    </label>
-                    <input type="text" class="form-control" name="fatherOccupation" 
-                           placeholder="ജോലി | Occupation"
-                           required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label required">
-                        <span id="guardianLabel">രക്ഷിതാവിന്റെ പേര് | Guardian's Name</span>
-                    </label>
-                    <input type="text" class="form-control" name="guardianName" 
-                           placeholder="രക്ഷിതാവിന്റെ പേര് | Guardian's Name"
-                           required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label required">
-                        <span id="relationLabel">രക്ഷിതാവുമായുള്ള ബന്ധം | Relationship with Guardian</span>
-                    </label>
-                    <select class="form-control" name="relationshipWithGuardian" required>
-                        <option value="" disabled selected>
-                            <span id="selectRelation">തിരഞ്ഞെടുക്കുക | Select</span>
-                        </option>
-                        <option value="Father">പിതാവ് | Father</option>
-                        <option value="Mother">മാതാവ് | Mother</option>
-                        <option value="Brother">സഹോദരൻ | Brother</option>
-                        <option value="Sister">സഹോദരി | Sister</option>
-                        <option value="Other">മറ്റുള്ളവർ | Other</option>
-                    </select>
-                </div>
-                
-                <div class="form-group" id="otherRelationGroup" style="display: none;">
-                    <label class="form-label required">
-                        <span id="otherRelationLabel">മറ്റ് ബന്ധം വിവരിക്കുക | Specify Other Relationship</span>
-                    </label>
-                    <input type="text" class="form-control" name="otherRelationship" 
-                           placeholder="ബന്ധം വിവരിക്കുക | Describe Relationship">
-                </div>
-                
-                <div class="section-divider"></div>
-                
-                <!-- Section 4: Educational Background -->
-                <div class="section-title">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span id="section4Title">വിദ്യാഭ്യാസ പശ്ചാത്തലം | Educational Background</span>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label required">
-                                <span id="madrasaLabel">മദ്രസ | Madrasa</span>
-                            </label>
-                            <input type="text" class="form-control" name="madrasa" 
-                                   placeholder="മദ്രസയുടെ പേര് | Madrasa Name"
-                                   required>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label required">
-                                <span id="madrasaClassLabel">മദ്രസ ക്ലാസ് | Madrasa Class</span>
-                            </label>
-                            <select class="form-control" name="madrasaclass" required>
-                                <option value="" disabled selected>
-                                    <span id="selectMadrasaClass">തിരഞ്ഞെടുക്കുക | Select</span>
-                                </option>
-                                <option value="II">II</option>
-                                <option value="III">III</option>
-                                <option value="IV">IV</option>
-                                <option value="V">V</option>
-                                <option value="VI">VI</option>
-                                <option value="VII">VII</option>
-                                <option value="VIII">VIII</option>
-                                <option value="IX">IX</option>
-                                <option value="X">X</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label required">
-                                <span id="schoolLabel">സ്കൂൾ | School</span>
-                            </label>
-                            <input type="text" class="form-control" name="school" 
-                                   placeholder="സ്കൂളിന്റെ പേര് | School Name"
-                                   required>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="form-label required">
-                                <span id="schoolClassLabel">സ്കൂൾ ക്ലാസ് | School Class</span>
-                            </label>
-                            <select class="form-control" name="schoolclass" required>
-                                <option value="" disabled selected>
-                                    <span id="selectSchoolClass">തിരഞ്ഞെടുക്കുക | Select</span>
-                                </option>
-                                <option value="V">V</option>
-                                <option value="VI">VI</option>
-                                <option value="VII">VII</option>
-                                <option value="VIII">VIII</option>
-                                <option value="IX">IX</option>
-                                <option value="X">X</option>
-                                <option value="+1">+1</option>
-                                <option value="+2">+2</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label required">
-                        <span id="previousStudyLabel">മുമ്പ് ഹിഫ്സ്/ദർസ് കോളേജിൽ പഠിച്ചിട്ടുണ്ടോ? | Previously studied at Hifz/Dars College?</span>
-                    </label>
-                    <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="previousStudy" value="No" required> 
-                            <span id="previousNo">ഇല്ല | No</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="previousStudy" value="Yes"> 
-                            <span id="previousYes">ഉണ്ട് | Yes</span>
-                        </label>
-                    </div>
-                </div>
-                
-                <div id="previous-study-section" style="display: none; background: #f8f9fa; padding: 15px; border-radius: 10px; margin: 10px 0;">
-                    <div class="form-group">
-                        <label class="form-label required">
-                            <span id="previousInstitutionLabel">ഏത് സ്ഥാപനത്തിൽ? | Which Institution?</span>
-                        </label>
-                        <input type="text" class="form-control" name="previousInstitution" 
-                               placeholder="സ്ഥാപനത്തിന്റെ പേര് | Institution Name">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">
-                            <span id="durationLabel">എത്ര കാലം? | Duration?</span>
-                        </label>
-                        <input type="text" class="form-control" name="studyDuration" 
-                               placeholder="പഠന കാലം | Study Duration">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">
-                            <span id="juzLabel">എത്ര ജുസുഅ്? | How many Juz?</span>
-                        </label>
-                        <input type="text" class="form-control" name="juzCount" 
-                               placeholder="ജുസുഅ് എണ്ണം | Number of Juz">
-                    </div>
-                </div>
-                
-                <div class="section-divider"></div>
-                
-                <!-- Section 5: Additional Information -->
-                <div class="section-title">
-                    <i class="fas fa-plus-circle"></i>
-                    <span id="section5Title">കൂടുതൽ വിവരങ്ങൾ | Additional Information</span>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label required">
-                        <span id="identificationLabel">കുട്ടിയെ തിരിച്ചറിയാനുള്ള അടയാളം | Identification Mark</span>
-                    </label>
-                    <input type="text" class="form-control" name="identificationMark" 
-                           placeholder="ഉദാ: മുഖത്ത് മറുക്, കൈയിൽ മുദ്ര മുതലായവ | Eg: Mole on face, scar on hand etc."
-                           required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label required">
-                        <span id="healthLabel">ശാരീരിക ആരോഗ്യം | Physical Health</span>
-                    </label>
-                    <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="physicalFitness" value="Healthy" required> 
-                            <span id="healthHealthy">ആരോഗ്യവാൻ | Healthy</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="physicalFitness" value="Medication"> 
-                            <span id="healthMedication">സ്ഥിരമായി ഗുളിക കഴിക്കുന്നു | Regular Medication</span>
-                        </label>
-                    </div>
-                </div>
-                
-                <div id="illness-section" style="display: none; background: #f8f9fa; padding: 15px; border-radius: 10px; margin: 10px 0;">
-                    <div class="form-group">
-                        <label class="form-label required">
-                            <span id="illnessLabel">രോഗത്തിന്റെ വിവരങ്ങൾ | Illness Details</span>
-                        </label>
-                        <textarea class="form-control" name="illness" 
-                                  placeholder="രോഗം വിവരിക്കുക | Describe illness"
-                                  rows="2"></textarea>
-                    </div>
-                </div>
-                
-                <!-- Photo Upload -->
-                <div class="form-group">
-                    <label class="form-label">
-                        <span id="photoLabel">കുട്ടിയുടെ ഫോട്ടോ | Student's Photo</span>
-                    </label>
-                    <input type="file" class="form-control" id="photoInput" accept="image/*" capture="environment">
-                    <small class="text-muted" id="photoHelp">Optional - Max size: 5MB | Formats: JPG, PNG</small>
-                    
-                    <!-- Photo Preview -->
-                    <div class="photo-preview" id="photoPreview" style="display: none;">
-                        <img id="previewImage" src="" alt="Photo Preview">
-                        <button type="button" class="btn btn-sm btn-danger mt-2" onclick="removePhoto()">
-                            <i class="fas fa-trash"></i> Remove Photo
+        <!-- Services Dashboard -->
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="card h-100 text-center border-primary">
+                    <div class="card-body">
+                        <i class="fas fa-file-alt fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Apply Now</h5>
+                        <p class="card-text">Submit new admission application</p>
+                        <button class="btn btn-primary w-100" onclick="showApplyForm()">
+                            <i class="fas fa-pen me-2"></i> Apply
                         </button>
                     </div>
                 </div>
-                
-                <!-- Declaration -->
-                <div class="instructions-box mt-4">
-                    <h4 class="instructions-title">
-                        <i class="fas fa-file-contract"></i>
-                        <span id="declarationTitle">പ്രഖ്യാപനം | Declaration</span>
-                    </h4>
-                    <p id="declarationText" style="line-height: 1.8;">
-                        എന്റെ കുട്ടിയും ഞാനും ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജുകളുടെ എല്ലാ നിയമങ്ങളും നിർദ്ദേശങ്ങളും പാലിക്കാൻ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്റെ ഈ കുട്ടിയെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജിൽ ചേർക്കുന്നതിന് അപേക്ഷിക്കുന്നു.<br><br>
-                        I hereby declare that my child and I agree to abide by all the rules and regulations of Darunnajath Shareeath & Arts College and apply for admission of my child to Darunnajath Shareeath & Arts College.
-                    </p>
-                    <div class="form-group mt-3" style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                        <div class="form-check" style="display: flex; align-items: flex-start;">
-                            <input class="form-check-input" type="checkbox" id="declarationCheckbox" required
-                                   style="width: 20px; height: 20px; margin-top: 3px; margin-right: 10px; flex-shrink: 0;">
-                            <label class="form-check-label" for="declarationCheckbox"
-                                   style="font-size: 16px; color: #333; line-height: 1.5;">
-                                <span id="declarationAgree">മുകളിലുള്ള പ്രഖ്യാപനം ഞാൻ വായിച്ചിരിക്കുന്നു, മനസ്സിലാക്കിയിരിക്കുന്നു, അംഗീകരിക്കുന്നു | I have read, understood and agree to the above declaration</span>
-                            </label>
-                        </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card h-100 text-center border-primary">
+                    <div class="card-body">
+                        <i class="fas fa-file-download fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Application Download</h5>
+                        <p class="card-text">Download submitted application form</p>
+                        <button class="btn btn-primary w-100" onclick="showSearchForm('application')">
+                            <i class="fas fa-download me-2"></i> Download
+                        </button>
                     </div>
                 </div>
-                
-                <!-- Submit Button -->
-                <button type="submit" class="btn-submit" id="submitBtn" disabled>
-                    <i class="fas fa-paper-plane me-2"></i>
-                    <span id="submitText">അപേക്ഷ സമർപ്പിക്കുക | Submit Application</span>
-                </button>
-                
-                <!-- Generated Application ID (will be shown after submission) -->
-                <div id="applicationResult" style="display: none; margin-top: 30px; text-align: center;">
-                    <div class="alert alert-success">
-                        <h4><i class="fas fa-check-circle"></i> <span id="successTitle">അപേക്ഷ വിജയകരമായി സമർപ്പിച്ചു!</span></h4>
-                        <p id="successMessage">Your application has been submitted successfully!</p>
-                        <h3 id="applicationIdDisplay" style="color: var(--primary-blue);"></h3>
-                        <p class="mt-3">
-                            <span id="saveNote">ദയവായി ഈ അപ്ലിക്കേഷൻ ID ഓർക്കുക / സ്ക്രീൻഷോട്ട് എടുക്കുക</span><br>
-                            <small id="saveNoteEn">Please remember this Application ID / take screenshot</small>
-                        </p>
-                        <div class="button-group mt-3">
-                            <button type="button" class="btn btn-primary me-2" onclick="printApplication()">
-                                <i class="fas fa-print me-2"></i> <span id="printText">പ്രിന്റ് ചെയ്യുക | Print</span>
-                            </button>
-                            <button type="button" class="btn btn-success" onclick="saveAsPDF()">
-                                <i class="fas fa-file-pdf me-2"></i> <span id="pdfText">PDF സേവ് ചെയ്യുക | Save PDF</span>
-                            </button>
-                        </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card h-100 text-center border-primary">
+                    <div class="card-body">
+                        <i class="fas fa-ticket-alt fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Hall Ticket</h5>
+                        <p class="card-text">Download exam hall ticket</p>
+                        <button class="btn btn-primary w-100" onclick="showSearchForm('hallticket')">
+                            <i class="fas fa-ticket-alt me-2"></i> Hall Ticket
+                        </button>
                     </div>
                 </div>
-            </form>
-        </div>
-        
-        <!-- NEW: Download Application Form -->
-        <div class="form-container" id="downloadApplicationForm" style="display: none;">
-            <h2 class="form-title">
-                <i class="fas fa-file-download me-2"></i>
-                Download Application
-            </h2>
-            
-            <div class="instructions-box mb-4">
-                <h4 class="instructions-title">
-                    <i class="fas fa-info-circle"></i>
-                    Instructions
-                </h4>
-                <p>Enter the mobile number and date of birth used during application submission to download your application.</p>
             </div>
             
-            <form id="downloadForm">
-                <div class="form-group">
-                    <label class="form-label required">Mobile Number</label>
-                    <input type="tel" class="form-control" id="downloadMobile" 
-                           pattern="\d{10}"
-                           placeholder="Enter 10-digit mobile number"
-                           required>
+            <div class="col-md-3">
+                <div class="card h-100 text-center border-primary">
+                    <div class="card-body">
+                        <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Check Result</h5>
+                        <p class="card-text">Check examination results</p>
+                        <button class="btn btn-primary w-100" onclick="showSearchForm('result')">
+                            <i class="fas fa-search me-2"></i> Result
+                        </button>
+                    </div>
                 </div>
-                
-                <div class="form-group">
-                    <label class="form-label required">Date of Birth</label>
-                    <input type="date" class="form-control" id="downloadDOB" required>
-                </div>
-                
-                <button type="submit" class="btn-submit">
-                    <i class="fas fa-download me-2"></i> Download Application
-                </button>
-                
-                <button type="button" class="btn btn-secondary mt-3 w-100" onclick="showServices()">
-                    <i class="fas fa-arrow-left me-2"></i> Back to Services
-                </button>
-            </form>
+            </div>
         </div>
         
-        <!-- NEW: Hall Ticket Form -->
-        <div class="form-container" id="hallTicketForm" style="display: none;">
-            <h2 class="form-title">
-                <i class="fas fa-ticket-alt me-2"></i>
-                Hall Ticket Download
-            </h2>
-            
-            <div class="instructions-box mb-4">
-                <h4 class="instructions-title">
-                    <i class="fas fa-info-circle"></i>
-                    Instructions
-                </h4>
-                <p>Enter the mobile number and date of birth to download your hall ticket.</p>
-            </div>
-            
-            <form id="hallTicketDownloadForm">
-                <div class="form-group">
-                    <label class="form-label required">Mobile Number</label>
-                    <input type="tel" class="form-control" id="hallTicketMobile" 
-                           pattern="\d{10}"
-                           placeholder="Enter 10-digit mobile number"
-                           required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label required">Date of Birth</label>
-                    <input type="date" class="form-control" id="hallTicketDOB" required>
-                </div>
-                
-                <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);">
-                    <i class="fas fa-download me-2"></i> Download Hall Ticket
-                </button>
-                
-                <button type="button" class="btn btn-secondary mt-3 w-100" onclick="showServices()">
-                    <i class="fas fa-arrow-left me-2"></i> Back to Services
-                </button>
-            </form>
-        </div>
-        
-        <!-- NEW: Check Result Form -->
-        <div class="form-container" id="checkResultForm" style="display: none;">
-            <h2 class="form-title">
-                <i class="fas fa-chart-line me-2"></i>
-                Check Result
-            </h2>
-            
-            <div class="instructions-box mb-4">
-                <h4 class="instructions-title">
-                    <i class="fas fa-info-circle"></i>
-                    Instructions
-                </h4>
-                <p>Enter the mobile number and date of birth to check your result.</p>
-            </div>
-            
-            <form id="resultCheckForm">
-                <div class="form-group">
-                    <label class="form-label required">Mobile Number</label>
-                    <input type="tel" class="form-control" id="resultMobile" 
-                           pattern="\d{10}"
-                           placeholder="Enter 10-digit mobile number"
-                           required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label required">Date of Birth</label>
-                    <input type="date" class="form-control" id="resultDOB" required>
-                </div>
-                
-                <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);">
-                    <i class="fas fa-search me-2"></i> Check Result
-                </button>
-                
-                <button type="button" class="btn btn-secondary mt-3 w-100" onclick="showServices()">
-                    <i class="fas fa-arrow-left me-2"></i> Back to Services
-                </button>
-            </form>
+        <!-- Ticker -->
+        <div class="alert alert-info mt-4" id="tickerAlert">
+            <marquee id="tickerContent">Loading information...</marquee>
         </div>
     </div>
     
-    <!-- Footer -->
-    <footer class="text-center py-4">
-        <p>© <span id="currentYear"></span> Darunnajath Islamic Centre</p>
-        <p class="mt-2">
-            <small>najathshareea.com | najathshareea@gmail.com | +91 9048020243</small>
-        </p>
-    </footer>
+    <!-- Apply Now Form -->
+    <div id="applyForm" class="container py-4" style="display: none;">
+        <button class="btn btn-secondary mb-3" onclick="showDashboard()">
+            <i class="fas fa-arrow-left me-2"></i> Back to Dashboard
+        </button>
+        
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><i class="fas fa-file-alt me-2"></i> New Admission Application</h4>
+            </div>
+            <div class="card-body">
+                <div id="applyFormContent">
+                    <!-- Form will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
     
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Search Form -->
+    <div id="searchForm" class="container py-4" style="display: none;">
+        <button class="btn btn-secondary mb-3" onclick="showDashboard()">
+            <i class="fas fa-arrow-left me-2"></i> Back to Dashboard
+        </button>
+        
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0" id="searchFormTitle"></h4>
+            </div>
+            <div class="card-body">
+                <form id="searchFormContent">
+                    <!-- Search form will be loaded here -->
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Configuration
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwwnyeoRYlF-Biayja_QWSbJhnWUMHHalPcXEi_ypuiSRzzeP_sYVDJDVQsVjBXgjez/exec";
-        const ADVANCED_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwwnyeoRYlF-Biayja_QWSbJhnWUMHHalPcXEi_ypuiSRzzeP_sYVDJDVQsVjBXgjez/exec";
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzxvEmah1PmDZfm_m_4beLBG7Iu291Lq_U3NLN0WrhphmDwNXH_XZr2lscBMgPcVY6knQ/exec';
         
-        let currentLanguage = 'malayalam';
-        let submittedData = null; // Store submitted data for PDF generation
-        
-        // Language translations
-        const translations = {
-            malayalam: {
-                instructionsTitle: "പ്രവേശന നിർദ്ദേശങ്ങൾ",
-                instruction1: "* എല്ലാ വിവരങ്ങളും കൃത്യമായി പൂരിപ്പിക്കുക",
-                instruction2: "* മൊബൈൽ നമ്പർ 10 അക്കങ്ങൾ മാത്രം",
-                instruction3: "* അഡ്മിഷൻ ഫോം സമർപ്പിച്ച ശേഷം അഡ്മിഷൻ ID ലഭിക്കും",
-                instruction4: "* പ്രവേശന പരീക്ഷയുടെ തീയതി പിന്നീട് അറിയിപ്പ് നൽകും",
-                formTitle: "പ്രവേശന അപേക്ഷാ ഫോം",
-                section1Title: "പ്രാഥമിക വിവരങ്ങൾ",
-                mobileLabel: "മൊബൈൽ നമ്പർ",
-                mobileHelp: "10 അക്കങ്ങൾ മാത്രം",
-                nameLabel: "പൂർണ്ണ പേര്",
-                categoryLabel: "പ്രവേശനം തേടുന്ന വിഭാഗം",
-                selectCategory: "തിരഞ്ഞെടുക്കുക",
-                dobLabel: "ജനന തിയ്യതി",
-                section2Title: "വീട്ടുവിവരങ്ങൾ",
-                houseLabel: "വീട്ടു പേര്",
-                addressLabel: "പൂർണ്ണ വിലാസം",
-                aadhaarLabel: "ആധാർ നമ്പർ",
-                whatsappLabel: "വാട്സ്ആപ്പ് നമ്പർ",
-                section3Title: "രക്ഷിതാവിന്റെ വിവരങ്ങൾ",
-                fatherLabel: "പിതാവിന്റെ പേര്",
-                fatherJobLabel: "പിതാവിന്റെ ജോലി",
-                guardianLabel: "രക്ഷിതാവിന്റെ പേര്",
-                relationLabel: "രക്ഷിതാവുമായുള്ള ബന്ധം",
-                selectRelation: "തിരഞ്ഞെടുക്കുക",
-                otherRelationLabel: "മറ്റ് ബന്ധം വിവരിക്കുക",
-                section4Title: "വിദ്യാഭ്യാസ പശ്ചാത്തലം",
-                madrasaLabel: "മദ്രസ",
-                madrasaClassLabel: "മദ്രസ ക്ലാസ്",
-                selectMadrasaClass: "തിരഞ്ഞെടുക്കുക",
-                schoolLabel: "സ്കൂൾ",
-                schoolClassLabel: "സ്കൂൾ ക്ലാസ്",
-                selectSchoolClass: "തിരഞ്ഞെടുക്കുക",
-                previousStudyLabel: "മുമ്പ് ഹിഫ്സ്/ദർസ് കോളേജിൽ പഠിച്ചിട്ടുണ്ടോ?",
-                previousNo: "ഇല്ല",
-                previousYes: "ഉണ്ട്",
-                previousInstitutionLabel: "ഏത് സ്ഥാപനത്തിൽ?",
-                durationLabel: "എത്ര കാലം?",
-                juzLabel: "എത്ര ജുസുഅ്?",
-                section5Title: "കൂടുതൽ വിവരങ്ങൾ",
-                identificationLabel: "കുട്ടിയെ തിരിച്ചറിയാനുള്ള അടയാളം",
-                healthLabel: "ശാരീരിക ആരോഗ്യം",
-                healthHealthy: "ആരോഗ്യവാൻ",
-                healthMedication: "സ്ഥിരമായി ഗുളിക കഴിക്കുന്നു",
-                illnessLabel: "രോഗത്തിന്റെ വിവരങ്ങൾ",
-                photoLabel: "കുട്ടിയുടെ ഫോട്ടോ",
-                photoHelp: "Optional - Max size: 5MB | Formats: JPG, PNG",
-                declarationTitle: "പ്രഖ്യാപനം",
-                declarationAgree: "മുകളിലുള്ള പ്രഖ്യാപനം ഞാൻ വായിച്ചിരിക്കുന്നു, മനസ്സിലാക്കിയിരിക്കുന്നു, അംഗീകരിക്കുന്നു",
-                submitText: "അപേക്ഷ സമർപ്പിക്കുക",
-                successTitle: "അപേക്ഷ വിജയകരമായി സമർപ്പിച്ചു!",
-                saveNote: "ദയവായി ഈ അപ്ലിക്കേഷൻ ID ഓർക്കുക / സ്ക്രീൻഷോട്ട് എടുക്കുക",
-                printText: "പ്രിന്റ് ചെയ്യുക",
-                pdfText: "PDF സേവ് ചെയ്യുക"
-            },
-            english: {
-                instructionsTitle: "Admission Instructions",
-                instruction1: "* Fill all details accurately",
-                instruction2: "* Mobile number must be 10 digits only",
-                instruction3: "* Admission ID will be generated after form submission",
-                instruction4: "* Admission exam date will be notified later",
-                formTitle: "Admission Application Form",
-                section1Title: "Basic Information",
-                mobileLabel: "Mobile Number",
-                mobileHelp: "10 digits only",
-                nameLabel: "Full Name",
-                categoryLabel: "Admission Category",
-                selectCategory: "Select",
-                dobLabel: "Date of Birth",
-                section2Title: "Family Details",
-                houseLabel: "House Name",
-                addressLabel: "Complete Address",
-                aadhaarLabel: "Aadhaar Number",
-                whatsappLabel: "WhatsApp Number",
-                section3Title: "Guardian Details",
-                fatherLabel: "Father's Name",
-                fatherJobLabel: "Father's Occupation",
-                guardianLabel: "Guardian's Name",
-                relationLabel: "Relationship with Guardian",
-                selectRelation: "Select",
-                otherRelationLabel: "Specify Other Relationship",
-                section4Title: "Educational Background",
-                madrasaLabel: "Madrasa",
-                madrasaClassLabel: "Madrasa Class",
-                selectMadrasaClass: "Select",
-                schoolLabel: "School",
-                schoolClassLabel: "School Class",
-                selectSchoolClass: "Select",
-                previousStudyLabel: "Previously studied at Hifz/Dars College?",
-                previousNo: "No",
-                previousYes: "Yes",
-                previousInstitutionLabel: "Which Institution?",
-                durationLabel: "Duration?",
-                juzLabel: "How many Juz?",
-                section5Title: "Additional Information",
-                identificationLabel: "Identification Mark",
-                healthLabel: "Physical Health",
-                healthHealthy: "Healthy",
-                healthMedication: "Regular Medication",
-                illnessLabel: "Illness Details",
-                photoLabel: "Student's Photo",
-                photoHelp: "Optional - Max size: 5MB | Formats: JPG, PNG",
-                declarationTitle: "Declaration",
-                declarationAgree: "I have read, understood and agree to the above declaration",
-                submitText: "Submit Application",
-                successTitle: "Application Submitted Successfully!",
-                saveNote: "Please remember this Application ID / take screenshot",
-                printText: "Print",
-                pdfText: "Save PDF"
-            }
-        };
+        let currentSearchType = '';
+        let collegeInfo = {};
         
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
-            
-            // Set max date for DOB (at least 5 years old)
-            const today = new Date();
-            const maxDate = new Date(today.getFullYear() - 5, today.getMonth(), today.getDate());
-            document.querySelector('input[name="dob"]').setAttribute('max', maxDate.toISOString().split('T')[0]);
-            
-            // Event listeners
-            initializeEventListeners();
-            
-            // Set initial language
-            setLanguage('malayalam');
-            
-            // Load dynamic instructions from Google Sheets
-            loadDynamicInstructions();
-            
-            // Hide admission form initially, show services
-            showServices();
+            loadCollegeInfo();
         });
-        
-        function initializeEventListeners() {
-            // Phone number validation
-            document.querySelector('input[name="phone"]').addEventListener('input', function(e) {
-                validatePhone(this);
-            });
-            
-            // Relationship toggle
-            document.querySelector('select[name="relationshipWithGuardian"]').addEventListener('change', function() {
-                if (this.value === 'Other') {
-                    document.getElementById('otherRelationGroup').style.display = 'block';
-                    document.querySelector('input[name="otherRelationship"]').required = true;
-                } else {
-                    document.getElementById('otherRelationGroup').style.display = 'none';
-                    document.querySelector('input[name="otherRelationship"]').required = false;
-                }
-            });
-            
-            // Previous study toggle
-            document.querySelectorAll('input[name="previousStudy"]').forEach(radio => {
-                radio.addEventListener('change', function() {
-                    const section = document.getElementById('previous-study-section');
-                    if (this.value === 'Yes') {
-                        section.style.display = 'block';
-                        section.querySelectorAll('input').forEach(input => input.required = true);
-                    } else {
-                        section.style.display = 'none';
-                        section.querySelectorAll('input').forEach(input => {
-                            input.required = false;
-                            input.value = '';
-                        });
-                    }
-                });
-            });
-            
-            // Physical fitness toggle
-            document.querySelectorAll('input[name="physicalFitness"]').forEach(radio => {
-                radio.addEventListener('change', function() {
-                    const section = document.getElementById('illness-section');
-                    if (this.value === 'Medication') {
-                        section.style.display = 'block';
-                        section.querySelector('textarea').required = true;
-                    } else {
-                        section.style.display = 'none';
-                        const textarea = section.querySelector('textarea');
-                        textarea.required = false;
-                        textarea.value = '';
-                    }
-                });
-            });
-            
-            // Declaration checkbox
-            document.getElementById('declarationCheckbox').addEventListener('change', function() {
-                const submitBtn = document.getElementById('submitBtn');
-                submitBtn.disabled = !this.checked;
-                submitBtn.style.opacity = this.checked ? '1' : '0.7';
-            });
-            
-            // Form submission
-            document.getElementById('admissionForm').addEventListener('submit', handleFormSubmit);
-            
-            // Photo upload preview
-            document.getElementById('photoInput').addEventListener('change', handlePhotoUpload);
-            
-            // Additional forms submission
-            document.getElementById('downloadForm').addEventListener('submit', handleDownloadApplication);
-            document.getElementById('hallTicketDownloadForm').addEventListener('submit', handleHallTicketDownload);
-            document.getElementById('resultCheckForm').addEventListener('submit', handleResultCheck);
-        }
-        
-        async function loadDynamicInstructions() {
-            try {
-                const response = await fetch(`${ADVANCED_SCRIPT_URL}?action=getCollegeInfo`);
-                const data = await response.json();
-                
-                if (data.status === 'success') {
-                    const info = data.data;
-                    
-                    // Update instructions box with data from Home sheet B9:B23
-                    const instructionsBox = document.getElementById('instructionsBox');
-                    let instructionsHTML = `
-                        <h3 class="instructions-title">
-                            <i class="fas fa-info-circle"></i>
-                            Important Information
-                        </h3>
-                        <div class="instructions-list">
-                    `;
-                    
-                    // Add notes from B9:B13
-                    for (let i = 1; i <= 5; i++) {
-                        const note = info[`note${i}`];
-                        if (note && note.trim()) {
-                            instructionsHTML += `<li>${note}</li>`;
-                        }
-                    }
-                    
-                    // Add exam dates from B14:B18
-                    for (let i = 1; i <= 5; i++) {
-                        const date = info[`b${i}Data`];
-                        if (date && date.trim()) {
-                            instructionsHTML += `<li><strong>${date}</strong></li>`;
-                        }
-                    }
-                    
-                    // Add ticker messages from B19:B23
-                    for (let i = 1; i <= 5; i++) {
-                        const ticker = info[`ticker${i}`];
-                        if (ticker && ticker.trim()) {
-                            instructionsHTML += `<li><em>${ticker}</em></li>`;
-                        }
-                    }
-                    
-                    instructionsHTML += `
-                        </div>
-                        <div class="mt-3">
-                            <p><strong>For more information, please contact:</strong> ${info.contactPhone || '9048020243'}</p>
-                            <p><strong>Email:</strong> ${info.contactEmail || 'najathshareea@gmail.com'}</p>
-                        </div>
-                    `;
-                    
-                    instructionsBox.innerHTML = instructionsHTML;
-                }
-            } catch (error) {
-                console.error('Error loading dynamic instructions:', error);
-            }
-        }
-        
-        // NEW: View management functions
-        function showServices() {
-            document.getElementById('servicesView').style.display = 'block';
-            document.getElementById('admissionFormView').style.display = 'none';
-            document.getElementById('downloadApplicationForm').style.display = 'none';
-            document.getElementById('hallTicketForm').style.display = 'none';
-            document.getElementById('checkResultForm').style.display = 'none';
-            document.querySelector('.language-toggle').style.display = 'block';
-            document.querySelector('.instructions-box').style.display = 'block';
-        }
-        
-        function showMainForm() {
-            document.getElementById('servicesView').style.display = 'none';
-            document.getElementById('admissionFormView').style.display = 'block';
-            document.getElementById('downloadApplicationForm').style.display = 'none';
-            document.getElementById('hallTicketForm').style.display = 'none';
-            document.getElementById('checkResultForm').style.display = 'none';
-        }
-        
-        function showForm(formType) {
-            document.getElementById('servicesView').style.display = 'none';
-            document.getElementById('admissionFormView').style.display = 'none';
-            document.querySelector('.language-toggle').style.display = 'none';
-            document.querySelector('.instructions-box').style.display = 'none';
-            
-            switch(formType) {
-                case 'downloadApplication':
-                    document.getElementById('downloadApplicationForm').style.display = 'block';
-                    break;
-                case 'hallTicket':
-                    document.getElementById('hallTicketForm').style.display = 'block';
-                    break;
-                case 'checkResult':
-                    document.getElementById('checkResultForm').style.display = 'block';
-                    break;
-            }
-        }
-        
-        // NEW: Additional service handlers
-        async function handleDownloadApplication(e) {
-            e.preventDefault();
-            const mobile = document.getElementById('downloadMobile').value.trim();
-            const dob = document.getElementById('downloadDOB').value;
-            
-            if (!/^\d{10}$/.test(mobile)) {
-                showNotification('Please enter 10 digit mobile number', 'error');
-                return;
-            }
-            
-            if (!dob) {
-                showNotification('Please select date of birth', 'error');
-                return;
-            }
-            
-            showLoading();
-            try {
-                const url = `${ADVANCED_SCRIPT_URL}?type=application&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`;
-                const response = await fetch(url);
-                const html = await response.text();
-                
-                const newWindow = window.open('', '_blank');
-                newWindow.document.write(html);
-                newWindow.document.close();
-                
-                showNotification('Application opened in new window', 'success');
-                e.target.reset();
-                showServices();
-            } catch (error) {
-                console.error('Error:', error);
-                showNotification('Error occurred. Please try again.', 'error');
-            } finally {
-                hideLoading();
-            }
-        }
-        
-        async function handleHallTicketDownload(e) {
-            e.preventDefault();
-            const mobile = document.getElementById('hallTicketMobile').value.trim();
-            const dob = document.getElementById('hallTicketDOB').value;
-            
-            if (!/^\d{10}$/.test(mobile)) {
-                showNotification('Please enter 10 digit mobile number', 'error');
-                return;
-            }
-            
-            if (!dob) {
-                showNotification('Please select date of birth', 'error');
-                return;
-            }
-            
-            showLoading();
-            try {
-                const url = `${ADVANCED_SCRIPT_URL}?type=hallticket&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`;
-                const response = await fetch(url);
-                const html = await response.text();
-                
-                const newWindow = window.open('', '_blank');
-                newWindow.document.write(html);
-                newWindow.document.close();
-                
-                showNotification('Hall ticket opened in new window', 'success');
-                e.target.reset();
-                showServices();
-            } catch (error) {
-                console.error('Error:', error);
-                showNotification('Error occurred. Please try again.', 'error');
-            } finally {
-                hideLoading();
-            }
-        }
-        
-        async function handleResultCheck(e) {
-            e.preventDefault();
-            const mobile = document.getElementById('resultMobile').value.trim();
-            const dob = document.getElementById('resultDOB').value;
-            
-            if (!/^\d{10}$/.test(mobile)) {
-                showNotification('Please enter 10 digit mobile number', 'error');
-                return;
-            }
-            
-            if (!dob) {
-                showNotification('Please select date of birth', 'error');
-                return;
-            }
-            
-            showLoading();
-            try {
-                const url = `${ADVANCED_SCRIPT_URL}?type=result&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`;
-                const response = await fetch(url);
-                const html = await response.text();
-                
-                const newWindow = window.open('', '_blank');
-                newWindow.document.write(html);
-                newWindow.document.close();
-                
-                showNotification('Result opened in new window', 'success');
-                e.target.reset();
-                showServices();
-            } catch (error) {
-                console.error('Error:', error);
-                showNotification('Error occurred. Please try again.', 'error');
-            } finally {
-                hideLoading();
-            }
-        }
-        
-        // Existing functions (keep all your existing functions as they are)
-        function validatePhone(input) {
-            const value = input.value.replace(/\D/g, '');
-            input.value = value;
-            const count = document.getElementById('phoneCount');
-            if (value.length <= 10) {
-                count.textContent = `${value.length}/10`;
-                count.style.color = value.length === 10 ? 'green' : '#666';
-            } else {
-                input.value = value.slice(0, 10);
-            }
-        }
-        
-        function handlePhotoUpload(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            
-            // Validate file
-            if (!file.type.startsWith('image/')) {
-                showNotification('Please upload only image files (JPG, PNG)', 'error');
-                e.target.value = '';
-                return;
-            }
-            
-            if (file.size > 5 * 1024 * 1024) {
-                showNotification('File size must be less than 5MB', 'error');
-                e.target.value = '';
-                return;
-            }
-            
-            // Show preview
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const preview = document.getElementById('photoPreview');
-                const previewImage = document.getElementById('previewImage');
-                previewImage.src = event.target.result;
-                preview.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        }
-        
-        function removePhoto() {
-            document.getElementById('photoInput').value = '';
-            document.getElementById('photoPreview').style.display = 'none';
-        }
-        
-        async function handleFormSubmit(e) {
-            e.preventDefault();
-            
-            // Validate form
-            if (!validateForm()) return;
-            
-            // Collect form data
-            const formData = new FormData(e.target);
-            const data = {};
-            
-            for (let [key, value] of formData.entries()) {
-                data[key] = value;
-            }
-            
-            // Add metadata
-            data.timestamp = new Date().toISOString();
-            data.applicationId = 'DSAC' + Date.now().toString().slice(-8);
-            
-            // Handle photo
-            const photoFile = document.getElementById('photoInput').files[0];
-            if (photoFile) {
-                try {
-                    data.photo = await convertImageToBase64(photoFile);
-                    data.photoName = photoFile.name;
-                } catch (error) {
-                    console.error('Error converting photo:', error);
-                }
-            }
-            
-            // Store data for PDF generation
-            submittedData = data;
-            
-            // Submit to Google Sheets
-            await submitToGoogleSheets(data);
-        }
-        
-        function validateForm() {
-            const phone = document.querySelector('input[name="phone"]').value;
-            const whatsapp = document.querySelector('input[name="whatsappNumber"]').value;
-            const aadhaar = document.querySelector('input[name="aadhaarNumber"]').value;
-            
-            if (!/^\d{10}$/.test(phone)) {
-                showNotification('Mobile number must be 10 digits', 'error');
-                return false;
-            }
-            
-            if (whatsapp && !/^\d{10}$/.test(whatsapp)) {
-                showNotification('WhatsApp number must be 10 digits if provided', 'error');
-                return false;
-            }
-            
-            if (!/^\d{12}$/.test(aadhaar)) {
-                showNotification('Aadhaar number must be 12 digits', 'error');
-                return false;
-            }
-            
-            return true;
-        }
-        
-        async function submitToGoogleSheets(data) {
-            showLoading();
-            
-            try {
-                // Convert data to URL parameters
-                const params = new URLSearchParams();
-                for (const key in data) {
-                    if (data[key] !== null && data[key] !== undefined) {
-                        params.append(key, data[key]);
-                    }
-                }
-                
-                // Send to Google Sheets
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: params
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    // Show success message
-                    showSuccessMessage(data.applicationId);
-                    
-                    // Reset form
-                    resetForm();
-                    
-                    showNotification('Application submitted successfully!', 'success');
-                } else {
-                    throw new Error(result.error || 'Submission failed');
-                }
-            } catch (error) {
-                console.error('Submission error:', error);
-                showNotification('Error submitting application. Please try again.', 'error');
-            } finally {
-                hideLoading();
-            }
-        }
-        
-        function showSuccessMessage(applicationId) {
-            document.getElementById('applicationResult').style.display = 'block';
-            document.getElementById('applicationIdDisplay').textContent = `Application ID: ${applicationId}`;
-            document.getElementById('applicationResult').scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        function resetForm() {
-            document.getElementById('admissionForm').reset();
-            document.getElementById('declarationCheckbox').checked = false;
-            document.getElementById('submitBtn').disabled = true;
-            document.getElementById('submitBtn').style.opacity = '0.7';
-            document.getElementById('previous-study-section').style.display = 'none';
-            document.getElementById('illness-section').style.display = 'none';
-            document.getElementById('otherRelationGroup').style.display = 'none';
-            document.getElementById('photoPreview').style.display = 'none';
-        }
-        
-        function convertImageToBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = reject;
-                reader.readAsDataURL(file);
-            });
-        }
-        
-        function setLanguage(lang) {
-            currentLanguage = lang;
-            
-            // Update language buttons
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Update all text elements
-            for (const [key, value] of Object.entries(translations[lang])) {
-                const element = document.getElementById(key);
-                if (element) {
-                    element.textContent = value;
-                }
-            }
-        }
-        
-        function showNotification(message, type = 'info') {
-            const notification = document.getElementById('notification');
-            const messageEl = document.getElementById('notificationMessage');
-            const icon = notification.querySelector('.notification-icon');
-            
-            switch(type) {
-                case 'success':
-                    icon.className = 'fas fa-check-circle notification-icon';
-                    notification.style.borderLeftColor = '#28a745';
-                    icon.style.color = '#28a745';
-                    break;
-                case 'error':
-                    icon.className = 'fas fa-exclamation-circle notification-icon';
-                    notification.style.borderLeftColor = '#dc3545';
-                    icon.style.color = '#dc3545';
-                    break;
-                case 'warning':
-                    icon.className = 'fas fa-exclamation-triangle notification-icon';
-                    notification.style.borderLeftColor = '#ffc107';
-                    icon.style.color = '#ffc107';
-                    break;
-                default:
-                    icon.className = 'fas fa-info-circle notification-icon';
-                    notification.style.borderLeftColor = '#1d29d6';
-                    icon.style.color = '#1d29d6';
-            }
-            
-            messageEl.textContent = message;
-            notification.style.display = 'block';
-            setTimeout(() => notification.style.display = 'none', 5000);
-        }
-        
-        function hideNotification() {
-            document.getElementById('notification').style.display = 'none';
-        }
         
         function showLoading() {
             document.getElementById('loadingOverlay').style.display = 'flex';
@@ -1694,400 +217,415 @@
             document.getElementById('loadingOverlay').style.display = 'none';
         }
         
-        // PDF Generation Functions - UPDATED FOR SINGLE PAGE WITH TWO COLUMNS
-        async function generatePrintableApplication() {
-            if (!submittedData) {
-                showNotification('No application data available', 'error');
-                return null;
-            }
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            const messageEl = document.getElementById('notificationMessage');
             
-            const data = submittedData;
-            const dob = data.dob ? new Date(data.dob).toLocaleDateString('en-IN') : '';
+            notification.style.borderLeftColor = type === 'error' ? '#dc3545' : 
+                                                type === 'success' ? '#28a745' : 
+                                                type === 'warning' ? '#ffc107' : '#1d29d6';
             
-            // Calculate student age
-            let age = '';
-            if (data.dob) {
-                const birthDate = new Date(data.dob);
-                const today = new Date();
-                age = today.getFullYear() - birthDate.getFullYear();
-                const m = today.getMonth() - birthDate.getMonth();
-                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-                    age--;
+            messageEl.innerHTML = message;
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        }
+        
+        async function loadCollegeInfo() {
+            try {
+                showLoading();
+                const response = await fetch(`${SCRIPT_URL}?action=getCollegeInfo`);
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    collegeInfo = data.data;
+                    
+                    // Update ticker
+                    const tickerItems = [];
+                    for (let i = 1; i <= 5; i++) {
+                        if (collegeInfo[`note${i}`]) {
+                            tickerItems.push(collegeInfo[`note${i}`]);
+                        }
+                    }
+                    
+                    if (tickerItems.length > 0) {
+                        document.getElementById('tickerContent').innerHTML = 
+                            tickerItems.join(' &nbsp;&nbsp;•&nbsp;&nbsp; ');
+                    }
                 }
+            } catch (error) {
+                console.error('Error loading college info:', error);
+            } finally {
+                hideLoading();
             }
+        }
+        
+        function showDashboard() {
+            document.getElementById('mainDashboard').style.display = 'block';
+            document.getElementById('applyForm').style.display = 'none';
+            document.getElementById('searchForm').style.display = 'none';
+        }
+        
+        function showApplyForm() {
+            document.getElementById('mainDashboard').style.display = 'none';
+            document.getElementById('applyForm').style.display = 'block';
+            document.getElementById('searchForm').style.display = 'none';
             
-            // Handle photo for printing
-            let photoHtml = '<div style="color: #666; font-style: italic; font-size: 9pt;">No photo uploaded</div>';
-            if (data.photo) {
-                photoHtml = `<img src="${data.photo}" style="width: 120px; height: 150px; object-fit: cover; border: 1px solid #ccc; padding: 2px;">`;
-            }
+            loadApplyForm();
+        }
+        
+        function showSearchForm(type) {
+            currentSearchType = type;
+            document.getElementById('mainDashboard').style.display = 'none';
+            document.getElementById('applyForm').style.display = 'none';
+            document.getElementById('searchForm').style.display = 'block';
             
-            return `
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <title>DSAC Admission Application - ${data.applicationId}</title>
-                    <style>
-                        @media print {
-                            @page { 
-                                size: A4; 
-                                margin: 10mm 15mm; 
-                            }
-                            body { 
-                                font-family: 'Poppins', Arial, sans-serif; 
-                                font-size: 10pt; 
-                                line-height: 1.3; 
-                                margin: 0; 
-                                padding: 0;
-                            }
-                            .container { 
-                                max-width: 100%; 
-                                margin: 0 auto; 
-                            }
-                            .header { 
-                                text-align: center; 
-                                margin-bottom: 15px; 
-                                border-bottom: 2px solid #1d29d6; 
-                                padding-bottom: 8px; 
-                                position: relative;
-                                display: flex;
-                                justify-content: space-between;
-                                align-items: flex-start;
-                            }
-                            .college-info {
-                                flex: 1;
-                                text-align: left;
-                                padding-right: 20px;
-                            }
-                            .photo-container {
-                                flex-shrink: 0;
-                                text-align: center;
-                                margin-top: 10px;
-                            }
-                            .college-name { 
-                                font-size: 16pt; 
-                                font-weight: bold; 
-                                color: #1d29d6; 
-                                margin-bottom: 5px;
-                            }
-                            .application-title { 
-                                font-weight: bold; 
-                                margin: 8px 0 15px 0; 
-                                color: #800000; 
-                                font-size: 14pt;
-                                text-align: center;
-                                width: 100%;
-                                border-top: 1px solid #ccc;
-                                border-bottom: 1px solid #ccc;
-                                padding: 5px 0;
-                            }
-                            .application-id { 
-                                background: #f0f0f0; 
-                                padding: 5px; 
-                                text-align: center; 
-                                font-size: 12pt; 
-                                margin: 10px 0 15px 0; 
-                                border: 1px solid #666;
-                                font-weight: bold;
-                            }
-                            .two-columns {
-                                display: grid;
-                                grid-template-columns: 1fr 1fr;
-                                gap: 15px;
-                                margin-bottom: 15px;
-                            }
-                            .section { 
-                                margin: 12px 0; 
-                                page-break-inside: avoid; 
-                            }
-                            .section-title { 
-                                font-weight: bold; 
-                                background: #e8f4ff; 
-                                padding: 5px 8px; 
-                                border-left: 4px solid #1d29d6; 
-                                margin-bottom: 6px; 
-                                font-size: 11pt;
-                            }
-                            .data-row { 
-                                display: flex; 
-                                margin-bottom: 4px; 
-                                align-items: flex-start;
-                            }
-                            .label { 
-                                flex: 0 0 140px; 
-                                font-weight: bold; 
-                                min-width: 140px; 
-                                padding-right: 5px;
-                            }
-                            .value { 
-                                flex: 1; 
-                                border-bottom: 1px dotted #ccc; 
-                                padding-left: 5px;
-                                padding-bottom: 2px;
-                            }
-                            .full-width {
-                                grid-column: 1 / -1;
-                            }
-                            .declaration { 
-                                margin-top: 20px; 
-                                padding: 12px; 
-                                border: 1px solid #000; 
-                                font-size: 9pt; 
-                                background: #f9f9f9;
-                            }
-                            .signature { 
-                                margin-top: 30px; 
-                                text-align: right; 
-                            }
-                            .signature-line { 
-                                width: 200px; 
-                                border-top: 1px solid #000; 
-                                margin-top: 25px; 
-                                display: inline-block; 
-                            }
-                            .footer { 
-                                text-align: center; 
-                                margin-top: 20px; 
-                                font-size: 8pt; 
-                                color: #666; 
-                                border-top: 1px solid #ccc;
-                                padding-top: 8px;
-                            }
-                            .photo-label {
-                                font-weight: bold;
-                                font-size: 9pt;
-                                margin-bottom: 5px;
-                            }
-                            .page-break {
-                                page-break-before: always;
-                            }
-                        }
-                        @media screen {
-                            body {
-                                font-family: Arial, sans-serif;
-                                font-size: 12pt;
-                                line-height: 1.4;
-                                padding: 20px;
-                            }
-                            .container {
-                                max-width: 800px;
-                                margin: 0 auto;
-                                border: 1px solid #ccc;
-                                padding: 20px;
-                                background: white;
-                            }
-                        }
-                    </style>
-                </head>
-                <body>
-                    <div class="container">
-                        <div class="header">
-                            <div class="college-info">
-                                <div class="college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div>
-                                <div style="font-size: 9pt;">Affiliated to Jamia Nooriyya Arabiyya</div>
-                                <div style="font-size: 9pt;">Under Darunnajath Islamic Centre</div>
-                                <div style="font-size: 9pt;">Punnakkad, Karuvarakundu PO, Malappuram 676523</div>
-                            </div>
-                            <div class="photo-container">
-                                <div class="photo-label">STUDENT'S PHOTO</div>
-                                ${photoHtml}
-                            </div>
+            loadSearchForm(type);
+        }
+        
+        function loadApplyForm() {
+            const formContent = `
+                <div class="alert alert-info">
+                    <h5><i class="fas fa-info-circle me-2"></i>Important Notes</h5>
+                    <p>${collegeInfo.note1 || ''}</p>
+                    ${collegeInfo.note2 ? `<p>${collegeInfo.note2}</p>` : ''}
+                </div>
+                
+                <form id="newApplicationForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Student's Name *</label>
+                            <input type="text" class="form-control" name="studentName" required>
                         </div>
-                        
-                        <div class="application-title">
-                            ADMISSION APPLICATION FORM
-                        </div>
-                        
-                        <div class="application-id">
-                            APPLICATION ID: ${data.applicationId}
-                        </div>
-                        
-                        <div class="two-columns">
-                            <div class="section">
-                                <div class="section-title">1. BASIC INFORMATION</div>
-                                <div class="data-row"><div class="label">Mobile Number:</div><div class="value">${data.phone}</div></div>
-                                <div class="data-row"><div class="label">Full Name:</div><div class="value">${data.name}</div></div>
-                                <div class="data-row"><div class="label">Admission Category:</div><div class="value">${data.category}</div></div>
-                                <div class="data-row"><div class="label">Date of Birth:</div><div class="value">${dob} (Age: ${age} years)</div></div>
-                            </div>
-                            
-                            <div class="section">
-                                <div class="section-title">2. FAMILY DETAILS</div>
-                                <div class="data-row"><div class="label">House Name:</div><div class="value">${data.houseName}</div></div>
-                                <div class="data-row"><div class="label">Aadhaar Number:</div><div class="value">${data.aadhaarNumber}</div></div>
-                                <div class="data-row"><div class="label">WhatsApp Number:</div><div class="value">${data.whatsappNumber || 'N/A'}</div></div>
-                            </div>
-                        </div>
-                        
-                        <div class="section full-width">
-                            <div class="section-title">ADDRESS</div>
-                            <div class="value" style="border: none; padding: 5px; background: #f5f5f5;">${data.address}</div>
-                        </div>
-                        
-                        <div class="two-columns">
-                            <div class="section">
-                                <div class="section-title">3. GUARDIAN DETAILS</div>
-                                <div class="data-row"><div class="label">Father's Name:</div><div class="value">${data.fatherName}</div></div>
-                                <div class="data-row"><div class="label">Father's Occupation:</div><div class="value">${data.fatherOccupation}</div></div>
-                                <div class="data-row"><div class="label">Guardian's Name:</div><div class="value">${data.guardianName}</div></div>
-                                <div class="data-row"><div class="label">Relationship:</div><div class="value">${data.relationshipWithGuardian} ${data.otherRelationship ? '(' + data.otherRelationship + ')' : ''}</div></div>
-                            </div>
-                            
-                            <div class="section">
-                                <div class="section-title">4. EDUCATIONAL BACKGROUND</div>
-                                <div class="data-row"><div class="label">Madrasa:</div><div class="value">${data.madrasa}</div></div>
-                                <div class="data-row"><div class="label">Madrasa Class:</div><div class="value">${data.madrasaclass}</div></div>
-                                <div class="data-row"><div class="label">School:</div><div class="value">${data.school}</div></div>
-                                <div class="data-row"><div class="label">School Class:</div><div class="value">${data.schoolclass}</div></div>
-                                <div class="data-row"><div class="label">Previous Study:</div><div class="value">${data.previousStudy}</div></div>
-                            </div>
-                        </div>
-                        
-                        ${data.previousStudy === 'Yes' ? `
-                        <div class="two-columns">
-                            <div class="data-row"><div class="label">Previous Institution:</div><div class="value">${data.previousInstitution}</div></div>
-                            <div class="data-row"><div class="label">Study Duration:</div><div class="value">${data.studyDuration}</div></div>
-                            <div class="data-row"><div class="label">Juz Count:</div><div class="value">${data.juzCount}</div></div>
-                        </div>
-                        ` : ''}
-                        
-                        <div class="two-columns">
-                            <div class="section">
-                                <div class="section-title">5. ADDITIONAL INFORMATION</div>
-                                <div class="data-row"><div class="label">Identification Mark:</div><div class="value">${data.identificationMark}</div></div>
-                                <div class="data-row"><div class="label">Physical Health:</div><div class="value">${data.physicalFitness}</div></div>
-                            </div>
-                            
-                            <div class="section">
-                                <div class="section-title">APPLICATION DETAILS</div>
-                                <div class="data-row"><div class="label">Submitted On:</div><div class="value">${new Date().toLocaleString('en-IN')}</div></div>
-                                <div class="data-row"><div class="label">Photo Uploaded:</div><div class="value">${data.photo ? 'Yes' : 'No'}</div></div>
-                            </div>
-                        </div>
-                        
-                        ${data.physicalFitness === 'Medication' ? `
-                        <div class="section full-width">
-                            <div class="section-title">ILLNESS DETAILS</div>
-                            <div class="value" style="border: none; padding: 5px; background: #f5f5f5;">${data.illness}</div>
-                        </div>
-                        ` : ''}
-                        
-                        <div class="declaration">
-                            <div style="font-weight: bold; text-align: center; margin-bottom: 8px; font-size: 10pt;">DECLARATION</div>
-                            <p style="margin-bottom: 10px;">
-                                I hereby declare that all information provided in this application is true and correct to the best of my knowledge. 
-                                My child and I agree to abide by all the rules and regulations of Darunnajath Shareeath & Arts College.
-                            </p>
-                            
-                            <div class="signature">
-                                <div style="font-weight: bold;">Signature of Parent/Guardian</div>
-                                <div class="signature-line"></div>
-                                <div style="margin-top: 5px;">Date: ${new Date().toLocaleDateString('en-IN')}</div>
-                            </div>
-                        </div>
-                        
-                        <div class="footer">
-                            <p>© ${new Date().getFullYear()} Darunnajath Islamic Centre</p>
-                            <p>najathshareea.com | najathshareea@gmail.com | +91 9048020243</p>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">House Name *</label>
+                            <input type="text" class="form-control" name="houseName" required>
                         </div>
                     </div>
-                </body>
-                </html>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Date of Birth *</label>
+                            <input type="date" class="form-control" name="dob" required max="${new Date().toISOString().split('T')[0]}">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Aadhaar Number *</label>
+                            <input type="text" class="form-control" name="aadhaarNumber" pattern="\\d{12}" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Address *</label>
+                        <textarea class="form-control" name="address" rows="3" required></textarea>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Phone Number *</label>
+                            <input type="tel" class="form-control" name="phoneNumber" pattern="\\d{10}" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">WhatsApp Number</label>
+                            <input type="tel" class="form-control" name="whatsappNumber" pattern="\\d{10}">
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Father's Name *</label>
+                            <input type="text" class="form-control" name="fatherName" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Father's Occupation *</label>
+                            <input type="text" class="form-control" name="fatherOccupation" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Guardian's Name *</label>
+                        <input type="text" class="form-control" name="guardianName" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Relationship with Guardian *</label>
+                        <select class="form-control" name="relationshipWithGuardian" required>
+                            <option value="">Select Relationship</option>
+                            <option value="Father">Father</option>
+                            <option value="Mother">Mother</option>
+                            <option value="Brother">Brother</option>
+                            <option value="Sister">Sister</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Madrasa & Location *</label>
+                        <input type="text" class="form-control" name="madrasa" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Madrasa Class *</label>
+                        <select class="form-control" name="madrasaclass" required>
+                            <option value="">Select Class</option>
+                            <option value="II">II</option>
+                            <option value="III">III</option>
+                            <option value="IV">IV</option>
+                            <option value="V">V</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">School & Location *</label>
+                        <input type="text" class="form-control" name="school" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">School Class *</label>
+                        <select class="form-control" name="schoolclass" required>
+                            <option value="">Select Class</option>
+                            <option value="II">II</option>
+                            <option value="III">III</option>
+                            <option value="IV">IV</option>
+                            <option value="V">V</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Identification Mark *</label>
+                        <input type="text" class="form-control" name="identificationMark" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Physical Fitness *</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="physicalFitness" value="Healthy" required>
+                                <label class="form-check-label">Healthy</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="physicalFitness" value="Medication">
+                                <label class="form-check-label">Regular Medication</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Student Photo</label>
+                        <input type="file" class="form-control" id="photoInput" accept="image/*">
+                    </div>
+                    
+                    <div class="alert alert-warning">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="declarationCheckbox" required>
+                            <label class="form-check-label">
+                                I hereby declare that all information provided is true and correct.
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success btn-lg w-100">
+                        <i class="fas fa-paper-plane me-2"></i> Submit Application
+                    </button>
+                </form>
             `;
+            
+            document.getElementById('applyFormContent').innerHTML = formContent;
+            
+            // Add form submit handler
+            document.getElementById('newApplicationForm').addEventListener('submit', handleNewApplication);
         }
         
-        async function printApplication() {
+        function loadSearchForm(type) {
+            const titles = {
+                'application': 'Application Download',
+                'hallticket': 'Hall Ticket Download',
+                'result': 'Check Result'
+            };
+            
+            document.getElementById('searchFormTitle').innerHTML = 
+                `<i class="fas fa-${type === 'application' ? 'download' : type === 'hallticket' ? 'ticket-alt' : 'chart-line'} me-2"></i>${titles[type]}`;
+            
+            const formContent = `
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Mobile Number *</label>
+                        <input type="tel" class="form-control" id="searchMobile" pattern="\\d{10}" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Date of Birth *</label>
+                        <input type="date" class="form-control" id="searchDob" required max="${new Date().toISOString().split('T')[0]}">
+                    </div>
+                </div>
+                
+                <button type="button" class="btn btn-primary btn-lg w-100" onclick="searchData('${type}')">
+                    <i class="fas fa-search me-2"></i> Search
+                </button>
+            `;
+            
+            document.getElementById('searchFormContent').innerHTML = formContent;
+        }
+        
+        async function searchData(type) {
+            const mobile = document.getElementById('searchMobile').value;
+            const dob = document.getElementById('searchDob').value;
+            
+            if (!/^\d{10}$/.test(mobile)) {
+                showNotification('Please enter valid 10-digit mobile number', 'error');
+                return;
+            }
+            
+            if (!dob) {
+                showNotification('Please select date of birth', 'error');
+                return;
+            }
+            
             try {
-                const printContent = await generatePrintableApplication();
-                if (!printContent) return;
+                showLoading();
+                const response = await fetch(`${SCRIPT_URL}?action=getData&type=${type}&mobile=${mobile}&dob=${dob}`);
+                const data = await response.json();
                 
-                const printWindow = window.open('', '_blank');
-                printWindow.document.write(printContent);
-                printWindow.document.close();
-                
-                // Wait for content to load before printing
-                setTimeout(() => {
-                    printWindow.print();
-                    printWindow.onafterprint = () => printWindow.close();
-                }, 500);
-                
+                if (data.status === 'success') {
+                    // Generate HTML based on type
+                    let html = '';
+                    if (type === 'application') {
+                        html = generateApplicationHtml(data.data.data, collegeInfo);
+                    } else if (type === 'hallticket') {
+                        html = generateHallticketHtml(data.data.data, collegeInfo, dob);
+                    } else if (type === 'result') {
+                        html = generateResultHtml(data.data.data, collegeInfo);
+                    }
+                    
+                    // Show in new window
+                    const newWindow = window.open('', '_blank');
+                    newWindow.document.write(html);
+                    newWindow.document.close();
+                    
+                    showNotification('Document generated successfully', 'success');
+                } else {
+                    showNotification(data.message, 'error');
+                }
             } catch (error) {
-                console.error('Print error:', error);
-                showNotification('Error generating print view', 'error');
+                console.error('Error:', error);
+                showNotification('Error occurred. Please try again.', 'error');
+            } finally {
+                hideLoading();
             }
         }
         
-        async function saveAsPDF() {
-            try {
-                const printContent = await generatePrintableApplication();
-                if (!printContent) return;
+        async function handleNewApplication(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const formData = new FormData(form);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            // Handle photo
+            const photoFile = document.getElementById('photoInput').files[0];
+            
+            const submit = (photoObj = null) => {
+                if (photoObj) {
+                    data.photo = photoObj;
+                }
                 
                 showLoading();
                 
-                // Create a temporary iframe to render the content
-                const iframe = document.createElement('iframe');
-                iframe.style.position = 'fixed';
-                iframe.style.width = '210mm';
-                iframe.style.height = '297mm';
-                iframe.style.left = '-9999px';
-                iframe.style.top = '0';
-                iframe.style.border = 'none';
-                document.body.appendChild(iframe);
+                // Convert data to URL encoded format
+                const params = new URLSearchParams();
+                for (const key in data) {
+                    if (key === 'photo' && data.photo) {
+                        params.append('photo', JSON.stringify(data.photo));
+                    } else {
+                        params.append(key, data[key]);
+                    }
+                }
                 
-                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                iframeDoc.write(printContent);
-                iframeDoc.close();
-                
-                // Wait for content to load
-                await new Promise(resolve => setTimeout(resolve, 500));
-                
-                html2canvas(iframeDoc.body, {
-                    scale: 2,
-                    useCORS: true,
-                    logging: false,
-                    backgroundColor: '#ffffff',
-                    windowWidth: 794, // A4 width in pixels at 96 DPI
-                    windowHeight: 1123 // A4 height in pixels at 96 DPI
-                }).then(canvas => {
-                    const imgData = canvas.toDataURL('image/png', 1.0);
-                    const pdf = new jspdf.jsPDF({
-                        orientation: 'portrait',
-                        unit: 'mm',
-                        format: 'a4',
-                        compress: true
-                    });
-                    
-                    const imgWidth = 210;
-                    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-                    
-                    // Add page background
-                    pdf.setFillColor(255, 255, 255);
-                    pdf.rect(0, 0, 210, 297, 'F');
-                    
-                    // Add image to PDF
-                    pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-                    
-                    // Save PDF
-                    pdf.save(`DSAC_Application_${submittedData.applicationId}.pdf`);
-                    
-                    // Clean up
-                    document.body.removeChild(iframe);
-                    hideLoading();
-                    
-                    showNotification('PDF downloaded successfully!', 'success');
-                    
-                }).catch(error => {
-                    console.error('PDF generation error:', error);
-                    showNotification('Error generating PDF', 'error');
-                    document.body.removeChild(iframe);
+                fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: params,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.status === 'success') {
+                        // Show confirmation
+                        const html = generateConfirmationHtml(result.data);
+                        const newWindow = window.open('', '_blank');
+                        newWindow.document.write(html);
+                        newWindow.document.close();
+                        
+                        showNotification('Application submitted successfully!', 'success');
+                        form.reset();
+                        showDashboard();
+                    } else {
+                        showNotification(result.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showNotification('Error occurred. Please try again.', 'error');
+                })
+                .finally(() => {
                     hideLoading();
                 });
-                
-            } catch (error) {
-                console.error('PDF save error:', error);
-                showNotification('Error saving PDF', 'error');
-                hideLoading();
+            };
+            
+            if (photoFile) {
+                // Convert photo to base64
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const photoObj = {
+                        name: photoFile.name,
+                        mimeType: photoFile.type,
+                        data: e.target.result.split(',')[1]
+                    };
+                    submit(photoObj);
+                };
+                reader.onerror = () => {
+                    showNotification('Error reading photo file', 'error');
+                    hideLoading();
+                };
+                reader.readAsDataURL(photoFile);
+            } else {
+                submit();
             }
+        }
+        
+        // ==================== HTML GENERATION FUNCTIONS ====================
+        // These functions generate HTML for different documents
+        // They should be included in the frontend HTML file
+        
+        function generateApplicationHtml(row, metadata) {
+            // Your existing generateApplicationHtml function code here
+            // Copy from your original code but update to use parameters
+        }
+        
+        function generateHallticketHtml(row, metadata, dob) {
+            // Your existing generateHallticketHtml function code here
+        }
+        
+        function generateResultHtml(row, metadata) {
+            // Your existing generateResultHtml function code here
+        }
+        
+        function generateConfirmationHtml(data) {
+            // Your existing generateApplicationConfirmationHtml function code here
+        }
+        
+        function escapeHtml(text) {
+            if (!text) return "";
+            return text.toString()
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
         }
     </script>
 </body>
