@@ -11,9 +11,6 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
     <style>
         :root {
             --primary-blue: #1d29d6;
@@ -24,7 +21,7 @@
         }
         
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             background: var(--light-bg);
             min-height: 100vh;
         }
@@ -63,16 +60,37 @@
             right: 20px;
             background: white;
             border-radius: 10px;
-            padding: 15px;
+            padding: 15px 20px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             z-index: 9998;
             display: none;
             max-width: 400px;
             border-left: 5px solid var(--primary-blue);
+            animation: slideIn 0.3s ease;
         }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+        
+        .notification.success { border-left-color: #28a745; }
+        .notification.error { border-left-color: #dc3545; }
+        .notification.warning { border-left-color: #ffc107; }
         
         .printable-content {
             display: none;
+        }
+        
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            border-color: var(--primary-blue);
         }
     </style>
 </head>
@@ -80,7 +98,7 @@
     <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="spinner"></div>
-        <div class="loading-text mt-3">Please wait...</div>
+        <div class="loading-text mt-3 fw-bold text-primary">Processing...</div>
     </div>
     
     <!-- Notification -->
@@ -88,28 +106,29 @@
         <div id="notificationMessage"></div>
     </div>
     
-    <!-- Printable Content Container (hidden) -->
-    <div id="printableContent" class="printable-content"></div>
-    
     <!-- Main Dashboard Container -->
     <div id="mainDashboard" class="container py-4">
         <!-- Header -->
         <div class="text-center mb-5">
             <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" 
-                 class="rounded-circle border border-4 border-primary" style="width: 120px; height: 120px;">
-            <h1 class="text-primary mt-3">DARUNNAJATH SHAREEATH & ARTS COLLEGE</h1>
+                 class="rounded-circle border border-4 border-primary shadow" 
+                 style="width: 120px; height: 120px; object-fit: cover;">
+            <h1 class="text-primary mt-3 fw-bold">DARUNNAJATH SHAREEATH & ARTS COLLEGE</h1>
             <p class="text-muted">Punnakkad, Karuvarakundu, Malappuram District</p>
+            <div class="alert alert-info mt-3">
+                <marquee class="fw-bold" id="tickerContent">Loading information...</marquee>
+            </div>
         </div>
         
         <!-- Services Dashboard -->
         <div class="row g-4">
             <div class="col-md-3">
-                <div class="card h-100 text-center border-primary">
+                <div class="card h-100 text-center border-primary service-card">
                     <div class="card-body">
                         <i class="fas fa-file-alt fa-3x text-primary mb-3"></i>
-                        <h5 class="card-title">Apply Now</h5>
-                        <p class="card-text">Submit new admission application</p>
-                        <button class="btn btn-primary w-100" onclick="showApplyForm()">
+                        <h5 class="card-title fw-bold">Apply Now</h5>
+                        <p class="card-text text-muted">Submit new admission application</p>
+                        <button class="btn btn-primary w-100 fw-bold" onclick="showApplyForm()">
                             <i class="fas fa-pen me-2"></i> Apply
                         </button>
                     </div>
@@ -117,12 +136,12 @@
             </div>
             
             <div class="col-md-3">
-                <div class="card h-100 text-center border-primary">
+                <div class="card h-100 text-center border-primary service-card">
                     <div class="card-body">
                         <i class="fas fa-file-download fa-3x text-primary mb-3"></i>
-                        <h5 class="card-title">Application Download</h5>
-                        <p class="card-text">Download submitted application form</p>
-                        <button class="btn btn-primary w-100" onclick="showSearchForm('application')">
+                        <h5 class="card-title fw-bold">Application Download</h5>
+                        <p class="card-text text-muted">Download submitted application form</p>
+                        <button class="btn btn-primary w-100 fw-bold" onclick="showSearchForm('application')">
                             <i class="fas fa-download me-2"></i> Download
                         </button>
                     </div>
@@ -130,12 +149,12 @@
             </div>
             
             <div class="col-md-3">
-                <div class="card h-100 text-center border-primary">
+                <div class="card h-100 text-center border-primary service-card">
                     <div class="card-body">
                         <i class="fas fa-ticket-alt fa-3x text-primary mb-3"></i>
-                        <h5 class="card-title">Hall Ticket</h5>
-                        <p class="card-text">Download exam hall ticket</p>
-                        <button class="btn btn-primary w-100" onclick="showSearchForm('hallticket')">
+                        <h5 class="card-title fw-bold">Hall Ticket</h5>
+                        <p class="card-text text-muted">Download exam hall ticket</p>
+                        <button class="btn btn-primary w-100 fw-bold" onclick="showSearchForm('hallticket')">
                             <i class="fas fa-ticket-alt me-2"></i> Hall Ticket
                         </button>
                     </div>
@@ -143,22 +162,17 @@
             </div>
             
             <div class="col-md-3">
-                <div class="card h-100 text-center border-primary">
+                <div class="card h-100 text-center border-primary service-card">
                     <div class="card-body">
                         <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
-                        <h5 class="card-title">Check Result</h5>
-                        <p class="card-text">Check examination results</p>
-                        <button class="btn btn-primary w-100" onclick="showSearchForm('result')">
+                        <h5 class="card-title fw-bold">Check Result</h5>
+                        <p class="card-text text-muted">Check examination results</p>
+                        <button class="btn btn-primary w-100 fw-bold" onclick="showSearchForm('result')">
                             <i class="fas fa-search me-2"></i> Result
                         </button>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Ticker -->
-        <div class="alert alert-info mt-4" id="tickerAlert">
-            <marquee id="tickerContent">Loading information...</marquee>
         </div>
     </div>
     
@@ -168,9 +182,9 @@
             <i class="fas fa-arrow-left me-2"></i> Back to Dashboard
         </button>
         
-        <div class="card">
+        <div class="card shadow">
             <div class="card-header bg-primary text-white">
-                <h4 class="mb-0"><i class="fas fa-file-alt me-2"></i> New Admission Application</h4>
+                <h4 class="mb-0 fw-bold"><i class="fas fa-file-alt me-2"></i> New Admission Application</h4>
             </div>
             <div class="card-body">
                 <div id="applyFormContent">
@@ -186,12 +200,12 @@
             <i class="fas fa-arrow-left me-2"></i> Back to Dashboard
         </button>
         
-        <div class="card">
+        <div class="card shadow">
             <div class="card-header bg-primary text-white">
-                <h4 class="mb-0" id="searchFormTitle"></h4>
+                <h4 class="mb-0 fw-bold" id="searchFormTitle"></h4>
             </div>
             <div class="card-body">
-                <form id="searchFormContent">
+                <form id="searchFormContent" onsubmit="return false;">
                     <!-- Search form will be loaded here -->
                 </form>
             </div>
@@ -199,17 +213,27 @@
     </div>
 
     <script>
-        // Configuration
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzxvEmah1PmDZfm_m_4beLBG7Iu291Lq_U3NLN0WrhphmDwNXH_XZr2lscBMgPcVY6knQ/exec';
+        // Configuration - UPDATE THIS WITH YOUR DEPLOYED SCRIPT URL
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyDgpmHAOrpdnf46ne0SMun8UN1pCCqdk5KrIb2w2J0WPanm6k1hOvZimsnj0_kfoB_8w/exec';
         
         let currentSearchType = '';
         let collegeInfo = {};
         
         document.addEventListener('DOMContentLoaded', function() {
+            console.log("Page loaded");
             loadCollegeInfo();
+            
+            // Set max date for all date inputs
+            const today = new Date().toISOString().split('T')[0];
+            document.addEventListener('input', function(e) {
+                if (e.target.type === 'date') {
+                    e.target.max = today;
+                }
+            });
         });
         
-        function showLoading() {
+        function showLoading(message = 'Processing...') {
+            document.getElementById('loadingOverlay').querySelector('.loading-text').textContent = message;
             document.getElementById('loadingOverlay').style.display = 'flex';
         }
         
@@ -221,11 +245,8 @@
             const notification = document.getElementById('notification');
             const messageEl = document.getElementById('notificationMessage');
             
-            notification.style.borderLeftColor = type === 'error' ? '#dc3545' : 
-                                                type === 'success' ? '#28a745' : 
-                                                type === 'warning' ? '#ffc107' : '#1d29d6';
-            
-            messageEl.innerHTML = message;
+            notification.className = 'notification ' + type;
+            messageEl.innerHTML = `<strong>${type.toUpperCase()}:</strong> ${message}`;
             notification.style.display = 'block';
             
             setTimeout(() => {
@@ -235,7 +256,7 @@
         
         async function loadCollegeInfo() {
             try {
-                showLoading();
+                showLoading('Loading college information...');
                 const response = await fetch(`${SCRIPT_URL}?action=getCollegeInfo`);
                 const data = await response.json();
                 
@@ -245,7 +266,7 @@
                     // Update ticker
                     const tickerItems = [];
                     for (let i = 1; i <= 5; i++) {
-                        if (collegeInfo[`note${i}`]) {
+                        if (collegeInfo[`note${i}`] && collegeInfo[`note${i}`].trim()) {
                             tickerItems.push(collegeInfo[`note${i}`]);
                         }
                     }
@@ -254,9 +275,13 @@
                         document.getElementById('tickerContent').innerHTML = 
                             tickerItems.join(' &nbsp;&nbsp;•&nbsp;&nbsp; ');
                     }
+                    console.log("College info loaded:", collegeInfo);
+                } else {
+                    showNotification(data.message, 'warning');
                 }
             } catch (error) {
                 console.error('Error loading college info:', error);
+                showNotification('Could not load college information', 'error');
             } finally {
                 hideLoading();
             }
@@ -287,117 +312,139 @@
         
         function loadApplyForm() {
             const formContent = `
-                <div class="alert alert-info">
-                    <h5><i class="fas fa-info-circle me-2"></i>Important Notes</h5>
-                    <p>${collegeInfo.note1 || ''}</p>
+                <div class="alert alert-info mb-4">
+                    <h5 class="fw-bold"><i class="fas fa-info-circle me-2"></i>Important Notes</h5>
+                    <p>${collegeInfo.note1 || 'Please fill all required fields carefully'}</p>
                     ${collegeInfo.note2 ? `<p>${collegeInfo.note2}</p>` : ''}
                 </div>
                 
-                <form id="newApplicationForm">
+                <form id="newApplicationForm" onsubmit="return false;">
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Student's Name *</label>
-                            <input type="text" class="form-control" name="studentName" required>
+                            <label class="form-label fw-bold">Student's Name *</label>
+                            <input type="text" class="form-control" name="studentName" required 
+                                   placeholder="Enter full name">
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">House Name *</label>
-                            <input type="text" class="form-control" name="houseName" required>
+                            <label class="form-label fw-bold">House Name *</label>
+                            <input type="text" class="form-control" name="houseName" required 
+                                   placeholder="Enter house name">
                         </div>
                     </div>
                     
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Date of Birth *</label>
-                            <input type="date" class="form-control" name="dob" required max="${new Date().toISOString().split('T')[0]}">
+                            <label class="form-label fw-bold">Date of Birth *</label>
+                            <input type="date" class="form-control" name="dob" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Aadhaar Number *</label>
-                            <input type="text" class="form-control" name="aadhaarNumber" pattern="\\d{12}" required>
+                            <label class="form-label fw-bold">Aadhaar Number *</label>
+                            <input type="text" class="form-control" name="aadhaarNumber" 
+                                   pattern="\\d{12}" required maxlength="12"
+                                   placeholder="12-digit Aadhaar number">
                         </div>
                     </div>
                     
                     <div class="mb-3">
-                        <label class="form-label">Address *</label>
-                        <textarea class="form-control" name="address" rows="3" required></textarea>
+                        <label class="form-label fw-bold">Address *</label>
+                        <textarea class="form-control" name="address" rows="3" required 
+                                  placeholder="Complete postal address"></textarea>
                     </div>
                     
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Phone Number *</label>
-                            <input type="tel" class="form-control" name="phoneNumber" pattern="\\d{10}" required>
+                            <label class="form-label fw-bold">Phone Number *</label>
+                            <input type="tel" class="form-control" name="phoneNumber" 
+                                   pattern="\\d{10}" required maxlength="10"
+                                   placeholder="10-digit mobile number">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label">WhatsApp Number</label>
-                            <input type="tel" class="form-control" name="whatsappNumber" pattern="\\d{10}">
+                            <input type="tel" class="form-control" name="whatsappNumber" 
+                                   pattern="\\d{10}" maxlength="10"
+                                   placeholder="10-digit WhatsApp number (if different)">
                         </div>
                     </div>
                     
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Father's Name *</label>
-                            <input type="text" class="form-control" name="fatherName" required>
+                            <label class="form-label fw-bold">Father's Name *</label>
+                            <input type="text" class="form-control" name="fatherName" required 
+                                   placeholder="Enter father's name">
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Father's Occupation *</label>
-                            <input type="text" class="form-control" name="fatherOccupation" required>
+                            <label class="form-label fw-bold">Father's Occupation *</label>
+                            <input type="text" class="form-control" name="fatherOccupation" required 
+                                   placeholder="Enter occupation">
                         </div>
                     </div>
                     
                     <div class="mb-3">
-                        <label class="form-label">Guardian's Name *</label>
-                        <input type="text" class="form-control" name="guardianName" required>
+                        <label class="form-label fw-bold">Guardian's Name *</label>
+                        <input type="text" class="form-control" name="guardianName" required 
+                               placeholder="Enter guardian's name">
                     </div>
                     
                     <div class="mb-3">
-                        <label class="form-label">Relationship with Guardian *</label>
+                        <label class="form-label fw-bold">Relationship with Guardian *</label>
                         <select class="form-control" name="relationshipWithGuardian" required>
                             <option value="">Select Relationship</option>
                             <option value="Father">Father</option>
                             <option value="Mother">Mother</option>
                             <option value="Brother">Brother</option>
                             <option value="Sister">Sister</option>
+                            <option value="Uncle">Uncle</option>
+                            <option value="Aunt">Aunt</option>
+                            <option value="Grandfather">Grandfather</option>
+                            <option value="Grandmother">Grandmother</option>
                         </select>
                     </div>
                     
                     <div class="mb-3">
-                        <label class="form-label">Madrasa & Location *</label>
-                        <input type="text" class="form-control" name="madrasa" required>
+                        <label class="form-label fw-bold">Madrasa & Location *</label>
+                        <input type="text" class="form-control" name="madrasa" required 
+                               placeholder="Madrasa name and location">
                     </div>
                     
                     <div class="mb-3">
-                        <label class="form-label">Madrasa Class *</label>
+                        <label class="form-label fw-bold">Madrasa Class *</label>
                         <select class="form-control" name="madrasaclass" required>
                             <option value="">Select Class</option>
-                            <option value="II">II</option>
-                            <option value="III">III</option>
-                            <option value="IV">IV</option>
-                            <option value="V">V</option>
+                            <option value="II">Class II</option>
+                            <option value="III">Class III</option>
+                            <option value="IV">Class IV</option>
+                            <option value="V">Class V</option>
+                            <option value="VI">Class VI</option>
                         </select>
                     </div>
                     
                     <div class="mb-3">
-                        <label class="form-label">School & Location *</label>
-                        <input type="text" class="form-control" name="school" required>
+                        <label class="form-label fw-bold">School & Location *</label>
+                        <input type="text" class="form-control" name="school" required 
+                               placeholder="School name and location">
                     </div>
                     
                     <div class="mb-3">
-                        <label class="form-label">School Class *</label>
+                        <label class="form-label fw-bold">School Class *</label>
                         <select class="form-control" name="schoolclass" required>
                             <option value="">Select Class</option>
-                            <option value="II">II</option>
-                            <option value="III">III</option>
-                            <option value="IV">IV</option>
-                            <option value="V">V</option>
+                            <option value="II">Class II</option>
+                            <option value="III">Class III</option>
+                            <option value="IV">Class IV</option>
+                            <option value="V">Class V</option>
+                            <option value="VI">Class VI</option>
+                            <option value="VII">Class VII</option>
                         </select>
                     </div>
                     
                     <div class="mb-3">
-                        <label class="form-label">Identification Mark *</label>
-                        <input type="text" class="form-control" name="identificationMark" required>
+                        <label class="form-label fw-bold">Identification Mark *</label>
+                        <input type="text" class="form-control" name="identificationMark" required 
+                               placeholder="Visible identification mark">
                     </div>
                     
                     <div class="mb-3">
-                        <label class="form-label">Physical Fitness *</label>
+                        <label class="form-label fw-bold">Physical Fitness *</label>
                         <div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="physicalFitness" value="Healthy" required>
@@ -411,67 +458,87 @@
                     </div>
                     
                     <div class="mb-3">
-                        <label class="form-label">Student Photo</label>
+                        <label class="form-label">Student Photo (Optional)</label>
                         <input type="file" class="form-control" id="photoInput" accept="image/*">
+                        <small class="text-muted">Max size: 5MB | Formats: JPG, PNG</small>
                     </div>
                     
-                    <div class="alert alert-warning">
+                    <div class="alert alert-warning mt-4">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="declarationCheckbox" required>
-                            <label class="form-check-label">
-                                I hereby declare that all information provided is true and correct.
+                            <label class="form-check-label fw-bold">
+                                I hereby declare that all information provided above is true and correct to the best of my knowledge.
                             </label>
                         </div>
                     </div>
                     
-                    <button type="submit" class="btn btn-success btn-lg w-100">
+                    <button type="button" class="btn btn-success btn-lg w-100 mt-3 fw-bold" 
+                            onclick="submitNewApplication()">
                         <i class="fas fa-paper-plane me-2"></i> Submit Application
                     </button>
                 </form>
             `;
             
             document.getElementById('applyFormContent').innerHTML = formContent;
-            
-            // Add form submit handler
-            document.getElementById('newApplicationForm').addEventListener('submit', handleNewApplication);
         }
         
         function loadSearchForm(type) {
             const titles = {
-                'application': 'Application Download',
-                'hallticket': 'Hall Ticket Download',
+                'application': '<i class="fas fa-file-download me-2"></i>Download Application',
+                'hallticket': '<i class="fas fa-ticket-alt me-2"></i>Download Hall Ticket',
+                'result': '<i class="fas fa-chart-line me-2"></i>Check Result'
+            };
+            
+            const buttonTexts = {
+                'application': 'Download Application',
+                'hallticket': 'Download Hall Ticket',
                 'result': 'Check Result'
             };
             
-            document.getElementById('searchFormTitle').innerHTML = 
-                `<i class="fas fa-${type === 'application' ? 'download' : type === 'hallticket' ? 'ticket-alt' : 'chart-line'} me-2"></i>${titles[type]}`;
+            const buttonIcons = {
+                'application': 'download',
+                'hallticket': 'ticket-alt',
+                'result': 'search'
+            };
+            
+            document.getElementById('searchFormTitle').innerHTML = titles[type];
             
             const formContent = `
+                <div class="alert alert-info mb-4">
+                    <h6 class="fw-bold"><i class="fas fa-info-circle me-2"></i>Instructions</h6>
+                    <p class="mb-0">Enter your registered mobile number and date of birth to proceed.</p>
+                </div>
+                
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label class="form-label">Mobile Number *</label>
-                        <input type="tel" class="form-control" id="searchMobile" pattern="\\d{10}" required>
+                        <label class="form-label fw-bold">Mobile Number *</label>
+                        <input type="tel" class="form-control" id="searchMobile" 
+                               pattern="\\d{10}" required maxlength="10"
+                               placeholder="10-digit mobile number">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label class="form-label">Date of Birth *</label>
-                        <input type="date" class="form-control" id="searchDob" required max="${new Date().toISOString().split('T')[0]}">
+                        <label class="form-label fw-bold">Date of Birth *</label>
+                        <input type="date" class="form-control" id="searchDob" required>
                     </div>
                 </div>
                 
-                <button type="button" class="btn btn-primary btn-lg w-100" onclick="searchData('${type}')">
-                    <i class="fas fa-search me-2"></i> Search
-                </button>
+                <div class="d-grid">
+                    <button type="button" class="btn btn-primary btn-lg fw-bold" 
+                            onclick="searchData('${type}')">
+                        <i class="fas fa-${buttonIcons[type]} me-2"></i> ${buttonTexts[type]}
+                    </button>
+                </div>
             `;
             
             document.getElementById('searchFormContent').innerHTML = formContent;
         }
         
         async function searchData(type) {
-            const mobile = document.getElementById('searchMobile').value;
+            const mobile = document.getElementById('searchMobile').value.trim();
             const dob = document.getElementById('searchDob').value;
             
             if (!/^\d{10}$/.test(mobile)) {
-                showNotification('Please enter valid 10-digit mobile number', 'error');
+                showNotification('Please enter a valid 10-digit mobile number', 'error');
                 return;
             }
             
@@ -481,19 +548,26 @@
             }
             
             try {
-                showLoading();
-                const response = await fetch(`${SCRIPT_URL}?action=getData&type=${type}&mobile=${mobile}&dob=${dob}`);
+                showLoading('Searching...');
+                console.log(`Searching for ${type} with mobile: ${mobile}, dob: ${dob}`);
+                
+                const url = `${SCRIPT_URL}?type=${type}&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`;
+                console.log("Request URL:", url);
+                
+                const response = await fetch(url);
                 const data = await response.json();
+                
+                console.log("Response data:", data);
                 
                 if (data.status === 'success') {
                     // Generate HTML based on type
                     let html = '';
                     if (type === 'application') {
-                        html = generateApplicationHtml(data.data.data, collegeInfo);
+                        html = generateApplicationHtml(data.data.rowData, data.data.collegeInfo);
                     } else if (type === 'hallticket') {
-                        html = generateHallticketHtml(data.data.data, collegeInfo, dob);
+                        html = generateHallticketHtml(data.data.rowData, data.data.collegeInfo, dob);
                     } else if (type === 'result') {
-                        html = generateResultHtml(data.data.data, collegeInfo);
+                        html = generateResultHtml(data.data.rowData, data.data.collegeInfo);
                     }
                     
                     // Show in new window
@@ -503,7 +577,7 @@
                     
                     showNotification('Document generated successfully', 'success');
                 } else {
-                    showNotification(data.message, 'error');
+                    showNotification(data.message || 'No data found', 'error');
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -513,34 +587,65 @@
             }
         }
         
-        async function handleNewApplication(e) {
-            e.preventDefault();
+        async function submitNewApplication() {
+            const form = document.getElementById('newApplicationForm');
             
-            const form = e.target;
+            // Basic validation
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
+            // Check declaration
+            if (!document.getElementById('declarationCheckbox').checked) {
+                showNotification('Please agree to the declaration', 'error');
+                return;
+            }
+            
+            // Collect form data
             const formData = new FormData(form);
             const data = {};
             
             for (let [key, value] of formData.entries()) {
-                data[key] = value;
+                data[key] = value.trim();
             }
+            
+            console.log("Form data collected:", data);
             
             // Handle photo
             const photoFile = document.getElementById('photoInput').files[0];
             
-            const submit = (photoObj = null) => {
-                if (photoObj) {
-                    data.photo = photoObj;
+            if (photoFile) {
+                // Validate photo
+                if (!photoFile.type.startsWith('image/')) {
+                    showNotification('Please upload only image files', 'error');
+                    return;
                 }
                 
-                showLoading();
+                if (photoFile.size > 5 * 1024 * 1024) {
+                    showNotification('Photo size must be less than 5MB', 'error');
+                    return;
+                }
+            }
+            
+            showLoading('Submitting application...');
+            
+            const submitApplication = (photoObj = null) => {
+                const submissionData = { ...data };
                 
-                // Convert data to URL encoded format
+                if (photoObj) {
+                    submissionData.photo = photoObj;
+                }
+                
+                console.log("Submitting data:", submissionData);
+                
+                // Convert to URL encoded format
                 const params = new URLSearchParams();
-                for (const key in data) {
-                    if (key === 'photo' && data.photo) {
-                        params.append('photo', JSON.stringify(data.photo));
+                for (const key in submissionData) {
+                    if (key === 'photo' && submissionData.photo) {
+                        params.append(key, JSON.stringify(submissionData.photo));
                     } else {
-                        params.append(key, data[key]);
+                        params.append(key, submissionData[key]);
                     }
                 }
                 
@@ -553,6 +658,8 @@
                 })
                 .then(response => response.json())
                 .then(result => {
+                    console.log("Submission result:", result);
+                    
                     if (result.status === 'success') {
                         // Show confirmation
                         const html = generateConfirmationHtml(result.data);
@@ -564,12 +671,12 @@
                         form.reset();
                         showDashboard();
                     } else {
-                        showNotification(result.message, 'error');
+                        showNotification(result.message || 'Submission failed', 'error');
                     }
                 })
                 .catch(error => {
-                    console.error('Error:', error);
-                    showNotification('Error occurred. Please try again.', 'error');
+                    console.error('Submission error:', error);
+                    showNotification('Network error. Please check your connection and try again.', 'error');
                 })
                 .finally(() => {
                     hideLoading();
@@ -585,7 +692,7 @@
                         mimeType: photoFile.type,
                         data: e.target.result.split(',')[1]
                     };
-                    submit(photoObj);
+                    submitApplication(photoObj);
                 };
                 reader.onerror = () => {
                     showNotification('Error reading photo file', 'error');
@@ -593,30 +700,11 @@
                 };
                 reader.readAsDataURL(photoFile);
             } else {
-                submit();
+                submitApplication();
             }
         }
         
         // ==================== HTML GENERATION FUNCTIONS ====================
-        // These functions generate HTML for different documents
-        // They should be included in the frontend HTML file
-        
-        function generateApplicationHtml(row, metadata) {
-            // Your existing generateApplicationHtml function code here
-            // Copy from your original code but update to use parameters
-        }
-        
-        function generateHallticketHtml(row, metadata, dob) {
-            // Your existing generateHallticketHtml function code here
-        }
-        
-        function generateResultHtml(row, metadata) {
-            // Your existing generateResultHtml function code here
-        }
-        
-        function generateConfirmationHtml(data) {
-            // Your existing generateApplicationConfirmationHtml function code here
-        }
         
         function escapeHtml(text) {
             if (!text) return "";
@@ -626,6 +714,254 @@
                 .replace(/>/g, '&gt;')
                 .replace(/"/g, '&quot;')
                 .replace(/'/g, '&#39;');
+        }
+        
+        function formatDate(dateString) {
+            if (!dateString) return "";
+            try {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('en-IN', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+            } catch (e) {
+                return dateString;
+            }
+        }
+        
+        function generateApplicationHtml(rowData, metadata) {
+            const studentData = {
+                submissionDate: formatDate(rowData[0]),
+                studentName: rowData[1] || "-",
+                houseName: rowData[2] || "-",
+                dob: rowData[3] || "-",
+                guardianName: rowData[4] || "-",
+                address: rowData[5] || "-",
+                phoneNumber: rowData[6] || "-",
+                whatsappNumber: rowData[7] || "-",
+                madrasa: rowData[8] || "-",
+                school: rowData[9] || "-",
+                aadhaarNumber: rowData[10] || "-",
+                fatherName: rowData[11] || "-",
+                fatherOccupation: rowData[12] || "-",
+                relationshipWithGuardian: rowData[13] || "-",
+                guardianReason: rowData[14] || "-",
+                madrasaclass: rowData[15] || "-",
+                schoolclass: rowData[16] || "-",
+                previousStudy: rowData[17] || "-",
+                previousInstitution: rowData[18] || "-",
+                studyDuration: rowData[19] || "-",
+                juzCount: rowData[20] || "-",
+                reasonForLeaving: rowData[21] || "-",
+                headTeacherPhone: rowData[22] || "-",
+                identificationMark: rowData[23] || "-",
+                physicalFitness: rowData[24] || "-",
+                illness: rowData[25] || "-",
+                photoUrl: rowData[26] || "",
+                applicationId: rowData[30] || "-"
+            };
+            
+            return `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Application - ${escapeHtml(studentData.studentName)}</title>
+                <style>
+                    body { font-family: Arial, sans-serif; padding: 20px; }
+                    .header { text-align: center; margin-bottom: 30px; }
+                    .logo { width: 100px; height: auto; }
+                    .section { margin-bottom: 20px; border: 1px solid #ddd; padding: 15px; border-radius: 5px; }
+                    .section-title { background: #f0f0f0; padding: 10px; margin: -15px -15px 15px -15px; border-radius: 5px 5px 0 0; font-weight: bold; }
+                    .row { display: flex; margin-bottom: 10px; }
+                    .label { width: 200px; font-weight: bold; }
+                    .value { flex: 1; }
+                    @media print { .no-print { display: none; } }
+                </style>
+            </head>
+            <body>
+                <div class="header">
+                    <h1>${escapeHtml(metadata.collegeName)}</h1>
+                    <h3>Admission Application</h3>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">Personal Information</div>
+                    <div class="row">
+                        <div class="label">Application ID:</div>
+                        <div class="value">${escapeHtml(studentData.applicationId)}</div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Student Name:</div>
+                        <div class="value">${escapeHtml(studentData.studentName)}</div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Date of Birth:</div>
+                        <div class="value">${escapeHtml(studentData.dob)}</div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Aadhaar Number:</div>
+                        <div class="value">${escapeHtml(studentData.aadhaarNumber)}</div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Phone Number:</div>
+                        <div class="value">${escapeHtml(studentData.phoneNumber)}</div>
+                    </div>
+                </div>
+                
+                <div class="no-print" style="text-align: center; margin-top: 30px;">
+                    <button onclick="window.print()" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                        Print Application
+                    </button>
+                    <button onclick="window.close()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">
+                        Close Window
+                    </button>
+                </div>
+            </body>
+            </html>`;
+        }
+        
+        function generateHallticketHtml(rowData, metadata, dob) {
+            // Simplified hall ticket HTML
+            const studentData = {
+                studentName: rowData[1] || "-",
+                registerNo: rowData[31] || "-",
+                phoneNumber: rowData[6] || "-"
+            };
+            
+            return `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Hall Ticket - ${escapeHtml(studentData.studentName)}</title>
+                <style>
+                    body { font-family: Arial, sans-serif; padding: 20px; }
+                    .ticket { border: 2px solid #000; padding: 20px; max-width: 600px; margin: 0 auto; }
+                    .header { text-align: center; margin-bottom: 20px; }
+                    .info { margin-bottom: 15px; }
+                    .label { font-weight: bold; }
+                </style>
+            </head>
+            <body>
+                <div class="ticket">
+                    <div class="header">
+                        <h2>${escapeHtml(metadata.collegeName)}</h2>
+                        <h3>ENTRANCE EXAM HALL TICKET</h3>
+                    </div>
+                    
+                    <div class="info">
+                        <div class="label">Register Number:</div>
+                        <div>${escapeHtml(studentData.registerNo)}</div>
+                    </div>
+                    
+                    <div class="info">
+                        <div class="label">Student Name:</div>
+                        <div>${escapeHtml(studentData.studentName)}</div>
+                    </div>
+                    
+                    <div class="info">
+                        <div class="label">Date of Birth:</div>
+                        <div>${escapeHtml(dob)}</div>
+                    </div>
+                    
+                    <div class="info">
+                        <div class="label">Exam Date:</div>
+                        <div>${escapeHtml(metadata.note1 || 'To be announced')}</div>
+                    </div>
+                    
+                    <div class="no-print" style="text-align: center; margin-top: 30px;">
+                        <button onclick="window.print()" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            Print Hall Ticket
+                        </button>
+                    </div>
+                </div>
+            </body>
+            </html>`;
+        }
+        
+        function generateResultHtml(rowData, metadata) {
+            const result = rowData[3] || "PENDING";
+            const rank = rowData[4] || "-";
+            
+            return `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Result</title>
+                <style>
+                    body { font-family: Arial, sans-serif; padding: 20px; }
+                    .result-card { border: 2px solid #007bff; padding: 30px; max-width: 600px; margin: 0 auto; border-radius: 10px; text-align: center; }
+                    .status { font-size: 24px; font-weight: bold; color: ${result === 'QUALIFIED' ? 'green' : result === 'WAITING' ? 'orange' : 'red'}; margin: 20px 0; }
+                </style>
+            </head>
+            <body>
+                <div class="result-card">
+                    <h2>${escapeHtml(metadata.collegeName)}</h2>
+                    <h3>ENTRANCE EXAM RESULT</h3>
+                    
+                    <div class="status">
+                        RESULT: ${escapeHtml(result)}
+                    </div>
+                    
+                    ${rank !== "-" ? `<div style="font-size: 18px; margin: 15px 0;">Rank: ${escapeHtml(rank)}</div>` : ''}
+                    
+                    <div class="no-print" style="margin-top: 30px;">
+                        <button onclick="window.print()" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            Print Result
+                        </button>
+                        <button onclick="window.close()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </body>
+            </html>`;
+        }
+        
+        function generateConfirmationHtml(data) {
+            return `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Application Submitted</title>
+                <style>
+                    body { font-family: Arial, sans-serif; padding: 40px; text-align: center; }
+                    .success-icon { font-size: 60px; color: green; margin-bottom: 20px; }
+                    .confirmation-box { border: 2px solid green; padding: 30px; max-width: 600px; margin: 0 auto; border-radius: 10px; }
+                </style>
+            </head>
+            <body>
+                <div class="success-icon">✓</div>
+                <h1 style="color: green;">Application Submitted Successfully!</h1>
+                
+                <div class="confirmation-box">
+                    <h3>Application Details</h3>
+                    <p><strong>Application ID:</strong> ${escapeHtml(data.applicationId)}</p>
+                    <p><strong>Student Name:</strong> ${escapeHtml(data.studentName)}</p>
+                    <p><strong>Phone Number:</strong> ${escapeHtml(data.phoneNumber)}</p>
+                    <p><strong>Date of Birth:</strong> ${escapeHtml(data.dob)}</p>
+                    <p><strong>Submission Time:</strong> ${escapeHtml(data.submissionTime)}</p>
+                    
+                    <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 5px; text-align: left;">
+                        <h4>Next Steps:</h4>
+                        <ol>
+                            <li>Save your Application ID for future reference</li>
+                            <li>You can download your application using your mobile number and date of birth</li>
+                            <li>Contact college for any queries</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <button onclick="window.print()" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                        Print Confirmation
+                    </button>
+                    <button onclick="window.close()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">
+                        Close
+                    </button>
+                </div>
+            </body>
+            </html>`;
         }
     </script>
 </body>
