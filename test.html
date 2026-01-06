@@ -11,6 +11,10 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- PDF Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
@@ -313,6 +317,21 @@
             background: var(--primary-blue);
             color: white;
         }
+        
+        /* Photo preview */
+        .photo-preview {
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .photo-preview img {
+            max-width: 200px;
+            max-height: 200px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            padding: 5px;
+            background: #f9f9f9;
+        }
     </style>
 </head>
 <body>
@@ -423,7 +442,7 @@
                 
                 <div class="section-divider"></div>
                 
-                <!-- Section 2: From DSAC Form -->
+                <!-- Section 2: Family Details -->
                 <div class="section-title">
                     <i class="fas fa-home"></i>
                     <span id="section2Title">വീട്ടുവിവരങ്ങൾ | Family Details</span>
@@ -687,12 +706,21 @@
                     </div>
                 </div>
                 
+                <!-- Photo Upload -->
                 <div class="form-group">
                     <label class="form-label">
                         <span id="photoLabel">കുട്ടിയുടെ ഫോട്ടോ | Student's Photo</span>
                     </label>
-                    <input type="file" class="form-control" id="photoInput" accept="image/*">
-                    <small class="text-muted" id="photoHelp">ഓപ്ഷണൽ - പരമാവധി സൈസ്: 2MB | Optional - Max size: 2MB</small>
+                    <input type="file" class="form-control" id="photoInput" accept="image/*" capture="environment">
+                    <small class="text-muted" id="photoHelp">Optional - Max size: 5MB | Formats: JPG, PNG</small>
+                    
+                    <!-- Photo Preview -->
+                    <div class="photo-preview" id="photoPreview" style="display: none;">
+                        <img id="previewImage" src="" alt="Photo Preview">
+                        <button type="button" class="btn btn-sm btn-danger mt-2" onclick="removePhoto()">
+                            <i class="fas fa-trash"></i> Remove Photo
+                        </button>
+                    </div>
                 </div>
                 
                 <!-- Declaration -->
@@ -733,9 +761,14 @@
                             <span id="saveNote">ദയവായി ഈ അപ്ലിക്കേഷൻ ID ഓർക്കുക / സ്ക്രീൻഷോട്ട് എടുക്കുക</span><br>
                             <small id="saveNoteEn">Please remember this Application ID / take screenshot</small>
                         </p>
-                        <button type="button" class="btn btn-primary mt-3" onclick="printApplication()">
-                            <i class="fas fa-print me-2"></i> <span id="printText">പ്രിന്റ് / സേവ് ചെയ്യുക | Print/Save</span>
-                        </button>
+                        <div class="button-group mt-3">
+                            <button type="button" class="btn btn-primary me-2" onclick="printApplication()">
+                                <i class="fas fa-print me-2"></i> <span id="printText">പ്രിന്റ് ചെയ്യുക | Print</span>
+                            </button>
+                            <button type="button" class="btn btn-success" onclick="saveAsPDF()">
+                                <i class="fas fa-file-pdf me-2"></i> <span id="pdfText">PDF സേവ് ചെയ്യുക | Save PDF</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -744,7 +777,7 @@
     
     <!-- Footer -->
     <footer class="text-center py-4">
-        <p>© <span id="currentYear"></span>Darunnajath Islamic Centre</p>
+        <p>© <span id="currentYear"></span> Darunnajath Islamic Centre</p>
         <p class="mt-2">
             <small>najathshareea.com | najathshareea@gmail.com | +91 9048020243</small>
         </p>
@@ -753,12 +786,12 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Configuration - Google Sheets Web App URL
-        // Use the CORRECT URL (the one you deployed)
+        // Configuration
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwT1wPVqaPRacT7eLNADnEMMPYmsewdDyZPYIUrx7o4TghzI53xetowL7chNBygi4Qr/exec";
-        
-        // Language settings
         let currentLanguage = 'malayalam';
+        let submittedData = null; // Store submitted data for PDF generation
+        
+        // Language translations
         const translations = {
             malayalam: {
                 instructionsTitle: "പ്രവേശന നിർദ്ദേശങ്ങൾ",
@@ -806,13 +839,14 @@
                 healthMedication: "സ്ഥിരമായി ഗുളിക കഴിക്കുന്നു",
                 illnessLabel: "രോഗത്തിന്റെ വിവരങ്ങൾ",
                 photoLabel: "കുട്ടിയുടെ ഫോട്ടോ",
-                photoHelp: "ഓപ്ഷണൽ - പരമാവധി സൈസ്: 2MB",
+                photoHelp: "Optional - Max size: 5MB | Formats: JPG, PNG",
                 declarationTitle: "പ്രഖ്യാപനം",
                 declarationAgree: "മുകളിലുള്ള പ്രഖ്യാപനം ഞാൻ വായിച്ചിരിക്കുന്നു, മനസ്സിലാക്കിയിരിക്കുന്നു, അംഗീകരിക്കുന്നു",
                 submitText: "അപേക്ഷ സമർപ്പിക്കുക",
                 successTitle: "അപേക്ഷ വിജയകരമായി സമർപ്പിച്ചു!",
                 saveNote: "ദയവായി ഈ അപ്ലിക്കേഷൻ ID ഓർക്കുക / സ്ക്രീൻഷോട്ട് എടുക്കുക",
-                printText: "പ്രിന്റ് / സേവ് ചെയ്യുക"
+                printText: "പ്രിന്റ് ചെയ്യുക",
+                pdfText: "PDF സേവ് ചെയ്യുക"
             },
             english: {
                 instructionsTitle: "Admission Instructions",
@@ -828,8 +862,6 @@
                 categoryLabel: "Admission Category",
                 selectCategory: "Select",
                 dobLabel: "Date of Birth",
-                genderLabel: "Gender",
-                selectGender: "Select",
                 section2Title: "Family Details",
                 houseLabel: "House Name",
                 addressLabel: "Complete Address",
@@ -862,17 +894,19 @@
                 healthMedication: "Regular Medication",
                 illnessLabel: "Illness Details",
                 photoLabel: "Student's Photo",
-                photoHelp: "Optional - Max size: 2MB",
+                photoHelp: "Optional - Max size: 5MB | Formats: JPG, PNG",
                 declarationTitle: "Declaration",
                 declarationAgree: "I have read, understood and agree to the above declaration",
                 submitText: "Submit Application",
                 successTitle: "Application Submitted Successfully!",
                 saveNote: "Please remember this Application ID / take screenshot",
-                printText: "Print/Save"
+                printText: "Print",
+                pdfText: "Save PDF"
             }
         };
         
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize
             document.getElementById('currentYear').textContent = new Date().getFullYear();
             
             // Set max date for DOB (at least 5 years old)
@@ -880,6 +914,14 @@
             const maxDate = new Date(today.getFullYear() - 5, today.getMonth(), today.getDate());
             document.querySelector('input[name="dob"]').setAttribute('max', maxDate.toISOString().split('T')[0]);
             
+            // Event listeners
+            initializeEventListeners();
+            
+            // Set initial language
+            setLanguage('malayalam');
+        });
+        
+        function initializeEventListeners() {
             // Phone number validation
             document.querySelector('input[name="phone"]').addEventListener('input', function(e) {
                 validatePhone(this);
@@ -897,18 +939,15 @@
             });
             
             // Previous study toggle
-            const previousStudyRadios = document.querySelectorAll('input[name="previousStudy"]');
-            const previousStudySection = document.getElementById('previous-study-section');
-            previousStudyRadios.forEach(radio => {
+            document.querySelectorAll('input[name="previousStudy"]').forEach(radio => {
                 radio.addEventListener('change', function() {
+                    const section = document.getElementById('previous-study-section');
                     if (this.value === 'Yes') {
-                        previousStudySection.style.display = 'block';
-                        previousStudySection.querySelectorAll('input').forEach(input => {
-                            input.required = true;
-                        });
+                        section.style.display = 'block';
+                        section.querySelectorAll('input').forEach(input => input.required = true);
                     } else {
-                        previousStudySection.style.display = 'none';
-                        previousStudySection.querySelectorAll('input').forEach(input => {
+                        section.style.display = 'none';
+                        section.querySelectorAll('input').forEach(input => {
                             input.required = false;
                             input.value = '';
                         });
@@ -917,26 +956,24 @@
             });
             
             // Physical fitness toggle
-            const physicalFitnessRadios = document.querySelectorAll('input[name="physicalFitness"]');
-            const illnessSection = document.getElementById('illness-section');
-            physicalFitnessRadios.forEach(radio => {
+            document.querySelectorAll('input[name="physicalFitness"]').forEach(radio => {
                 radio.addEventListener('change', function() {
+                    const section = document.getElementById('illness-section');
                     if (this.value === 'Medication') {
-                        illnessSection.style.display = 'block';
-                        illnessSection.querySelector('textarea').required = true;
+                        section.style.display = 'block';
+                        section.querySelector('textarea').required = true;
                     } else {
-                        illnessSection.style.display = 'none';
-                        illnessSection.querySelector('textarea').required = false;
-                        illnessSection.querySelector('textarea').value = '';
+                        section.style.display = 'none';
+                        const textarea = section.querySelector('textarea');
+                        textarea.required = false;
+                        textarea.value = '';
                     }
                 });
             });
             
             // Declaration checkbox
-            const declarationCheckbox = document.getElementById('declarationCheckbox');
-            const submitBtn = document.getElementById('submitBtn');
-            
-            declarationCheckbox.addEventListener('change', function() {
+            document.getElementById('declarationCheckbox').addEventListener('change', function() {
+                const submitBtn = document.getElementById('submitBtn');
                 submitBtn.disabled = !this.checked;
                 submitBtn.style.opacity = this.checked ? '1' : '0.7';
             });
@@ -944,23 +981,181 @@
             // Form submission
             document.getElementById('admissionForm').addEventListener('submit', handleFormSubmit);
             
-            // Photo validation
-            document.getElementById('photoInput').addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    if (!file.type.startsWith('image/')) {
-                        showNotification('Please upload only image files (JPG, PNG)', 'error');
-                        e.target.value = '';
-                    } else if (file.size > 2 * 1024 * 1024) {
-                        showNotification('File size must be less than 2MB', 'error');
-                        e.target.value = '';
+            // Photo upload preview
+            document.getElementById('photoInput').addEventListener('change', handlePhotoUpload);
+        }
+        
+        function validatePhone(input) {
+            const value = input.value.replace(/\D/g, '');
+            input.value = value;
+            const count = document.getElementById('phoneCount');
+            if (value.length <= 10) {
+                count.textContent = `${value.length}/10`;
+                count.style.color = value.length === 10 ? 'green' : '#666';
+            } else {
+                input.value = value.slice(0, 10);
+            }
+        }
+        
+        function handlePhotoUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            // Validate file
+            if (!file.type.startsWith('image/')) {
+                showNotification('Please upload only image files (JPG, PNG)', 'error');
+                e.target.value = '';
+                return;
+            }
+            
+            if (file.size > 5 * 1024 * 1024) {
+                showNotification('File size must be less than 5MB', 'error');
+                e.target.value = '';
+                return;
+            }
+            
+            // Show preview
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const preview = document.getElementById('photoPreview');
+                const previewImage = document.getElementById('previewImage');
+                previewImage.src = event.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        function removePhoto() {
+            document.getElementById('photoInput').value = '';
+            document.getElementById('photoPreview').style.display = 'none';
+        }
+        
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            // Validate form
+            if (!validateForm()) return;
+            
+            // Collect form data
+            const formData = new FormData(e.target);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            // Add metadata
+            data.timestamp = new Date().toISOString();
+            data.applicationId = 'DSAC' + Date.now().toString().slice(-8);
+            
+            // Handle photo
+            const photoFile = document.getElementById('photoInput').files[0];
+            if (photoFile) {
+                try {
+                    data.photo = await convertImageToBase64(photoFile);
+                    data.photoName = photoFile.name;
+                } catch (error) {
+                    console.error('Error converting photo:', error);
+                }
+            }
+            
+            // Store data for PDF generation
+            submittedData = data;
+            
+            // Submit to Google Sheets
+            await submitToGoogleSheets(data);
+        }
+        
+        function validateForm() {
+            const phone = document.querySelector('input[name="phone"]').value;
+            const whatsapp = document.querySelector('input[name="whatsappNumber"]').value;
+            const aadhaar = document.querySelector('input[name="aadhaarNumber"]').value;
+            
+            if (!/^\d{10}$/.test(phone)) {
+                showNotification('Mobile number must be 10 digits', 'error');
+                return false;
+            }
+            
+            if (whatsapp && !/^\d{10}$/.test(whatsapp)) {
+                showNotification('WhatsApp number must be 10 digits if provided', 'error');
+                return false;
+            }
+            
+            if (!/^\d{12}$/.test(aadhaar)) {
+                showNotification('Aadhaar number must be 12 digits', 'error');
+                return false;
+            }
+            
+            return true;
+        }
+        
+        async function submitToGoogleSheets(data) {
+            showLoading();
+            
+            try {
+                // Convert data to URL parameters
+                const params = new URLSearchParams();
+                for (const key in data) {
+                    if (data[key] !== null && data[key] !== undefined) {
+                        params.append(key, data[key]);
                     }
                 }
+                
+                // Send to Google Sheets
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: params
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Show success message
+                    showSuccessMessage(data.applicationId);
+                    
+                    // Reset form
+                    resetForm();
+                    
+                    showNotification('Application submitted successfully!', 'success');
+                } else {
+                    throw new Error(result.error || 'Submission failed');
+                }
+            } catch (error) {
+                console.error('Submission error:', error);
+                showNotification('Error submitting application. Please try again.', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+        
+        function showSuccessMessage(applicationId) {
+            document.getElementById('applicationResult').style.display = 'block';
+            document.getElementById('applicationIdDisplay').textContent = `Application ID: ${applicationId}`;
+            document.getElementById('applicationResult').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function resetForm() {
+            document.getElementById('admissionForm').reset();
+            document.getElementById('declarationCheckbox').checked = false;
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('submitBtn').style.opacity = '0.7';
+            document.getElementById('previous-study-section').style.display = 'none';
+            document.getElementById('illness-section').style.display = 'none';
+            document.getElementById('otherRelationGroup').style.display = 'none';
+            document.getElementById('photoPreview').style.display = 'none';
+        }
+        
+        function convertImageToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
             });
-            
-            // Set initial language
-            setLanguage('malayalam');
-        });
+        }
         
         function setLanguage(lang) {
             currentLanguage = lang;
@@ -975,32 +1170,8 @@
             for (const [key, value] of Object.entries(translations[lang])) {
                 const element = document.getElementById(key);
                 if (element) {
-                    if (element.tagName === 'SPAN') {
-                        element.textContent = value;
-                    } else if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.placeholder = value;
-                    }
+                    element.textContent = value;
                 }
-            }
-            
-            // Update option placeholders
-            document.querySelectorAll('option[selected]').forEach(option => {
-                const key = option.id;
-                if (key && translations[lang][key]) {
-                    option.textContent = translations[lang][key];
-                }
-            });
-        }
-        
-        function validatePhone(input) {
-            const value = input.value.replace(/\D/g, '');
-            input.value = value;
-            const count = document.getElementById('phoneCount');
-            if (value.length <= 10) {
-                count.textContent = `${value.length}/10`;
-                count.style.color = value.length === 10 ? 'green' : '#666';
-            } else {
-                input.value = value.slice(0, 10);
             }
         }
         
@@ -1033,7 +1204,7 @@
             
             messageEl.textContent = message;
             notification.style.display = 'block';
-            setTimeout(hideNotification, 5000);
+            setTimeout(() => notification.style.display = 'none', 5000);
         }
         
         function hideNotification() {
@@ -1048,204 +1219,205 @@
             document.getElementById('loadingOverlay').style.display = 'none';
         }
         
-        async function handleFormSubmit(e) {
-            e.preventDefault();
-            
-            // Validate form
-            const form = e.target;
-            const formData = new FormData(form);
-            
-            // Additional validations
-            const phone = formData.get('phone');
-            const whatsapp = formData.get('whatsappNumber');
-            const aadhaar = formData.get('aadhaarNumber');
-            
-            if (!/^\d{10}$/.test(phone)) {
-                showNotification('Mobile number must be 10 digits', 'error');
-                return;
+        // PDF Generation Functions
+        async function generatePrintableApplication() {
+            if (!submittedData) {
+                showNotification('No application data available', 'error');
+                return null;
             }
             
-            if (whatsapp && !/^\d{10}$/.test(whatsapp)) {
-                showNotification('WhatsApp number must be 10 digits if provided', 'error');
-                return;
+            const data = submittedData;
+            const dob = data.dob ? new Date(data.dob).toLocaleDateString('en-IN') : '';
+            
+            // Handle photo for printing
+            let photoHtml = '<div style="color: #666; font-style: italic;">No photo uploaded</div>';
+            if (data.photo) {
+                photoHtml = `<img src="${data.photo}" style="max-width: 200px; max-height: 200px; border: 1px solid #ccc; padding: 5px;">`;
             }
             
-            if (!/^\d{12}$/.test(aadhaar)) {
-                showNotification('Aadhaar number must be 12 digits', 'error');
-                return;
-            }
-            
-            // Check previous study section
-            const previousStudy = document.querySelector('input[name="previousStudy"]:checked');
-            if (previousStudy && previousStudy.value === 'Yes') {
-                const previousSection = document.getElementById('previous-study-section');
-                const requiredFields = previousSection.querySelectorAll('input');
-                for (let field of requiredFields) {
-                    if (!field.value.trim()) {
-                        showNotification('Please fill all previous study details', 'error');
-                        field.focus();
-                        return;
-                    }
-                }
-            }
-            
-            // Check physical fitness section
-            const physicalFitness = document.querySelector('input[name="physicalFitness"]:checked');
-            if (physicalFitness && physicalFitness.value === 'Medication') {
-                const illnessField = document.querySelector('textarea[name="illness"]');
-                if (!illnessField.value.trim()) {
-                    showNotification('Please describe the illness', 'error');
-                    illnessField.focus();
-                    return;
-                }
-            }
-            
-            // Prepare data for Google Sheets
-            const data = {};
-            for (let [key, value] of formData.entries()) {
-                data[key] = value;
-            }
-            
-            // Add timestamp
-            data.timestamp = new Date().toISOString();
-            
-            // Generate application ID
-            const applicationId = 'JJC' + Date.now().toString().slice(-8) + Math.random().toString(36).substr(2, 3).toUpperCase();
-            data.applicationId = applicationId;
-            
-            // Handle photo if uploaded
-            const photoFile = document.getElementById('photoInput').files[0];
-            let photoData = null;
-            
-            if (photoFile) {
-                photoData = await convertImageToBase64(photoFile);
-                data.photo = photoData;
-                data.photoName = photoFile.name;
-            }
-            
-            showLoading();
-            
-            try {
-                // Send data to Google Sheets via Google Apps Script
-                const response = await submitToGoogleSheets(data);
-                
-                if (response.success) {
-                    // Show success message
-                    document.getElementById('applicationResult').style.display = 'block';
-                    document.getElementById('applicationIdDisplay').textContent = `Application ID: ${applicationId}`;
-                    
-                    // Scroll to result
-                    document.getElementById('applicationResult').scrollIntoView({ behavior: 'smooth' });
-                    
-                    // Reset form
-                    form.reset();
-                    document.getElementById('declarationCheckbox').checked = false;
-                    document.getElementById('submitBtn').disabled = true;
-                    document.getElementById('submitBtn').style.opacity = '0.7';
-                    document.getElementById('previous-study-section').style.display = 'none';
-                    document.getElementById('illness-section').style.display = 'none';
-                    document.getElementById('otherRelationGroup').style.display = 'none';
-                    
-                    showNotification('Application submitted successfully!', 'success');
-                } else {
-                    throw new Error(response.error || 'Submission failed');
-                }
-            } catch (error) {
-                console.error('Submission error:', error);
-                showNotification('Error submitting application. Please try again.', 'error');
-            } finally {
-                hideLoading();
-            }
-        }
-        
-        function convertImageToBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = reject;
-                reader.readAsDataURL(file);
-            });
-        }
-        
-        // FIXED FUNCTION - Use the correct URL
-        async function submitToGoogleSheets(data) {
-          try {
-            // Convert data to URL parameters
-            const params = new URLSearchParams();
-
-            // Add all form data to parameters
-            for (const key in data) {
-              if (data[key] !== null && data[key] !== undefined) {
-                params.append(key, data[key]);
-              }
-            }
-
-            console.log('Sending data to Google Sheets:', data);
-
-            // Send data to your Google Apps Script - USE THE CONSTANT URL
-            const response = await fetch(GOOGLE_SCRIPT_URL, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              body: params
-            });
-
-            const result = await response.json();
-            console.log('Google Sheets response:', result);
-
-            return result;
-
-          } catch (error) {
-            console.error('Error submitting to Google Sheets:', error);
-            throw error;
-          }
-        }
-        
-        function printApplication() {
-            const printContent = `
+            return `
                 <!DOCTYPE html>
                 <html>
                 <head>
-                    <title>Darunnajath shareeath & Arts College - Application Receipt</title>
+                    <title>DSAC Admission Application - ${data.applicationId}</title>
                     <style>
-                        body { font-family: Arial, sans-serif; padding: 20px; }
-                        .receipt { max-width: 800px; margin: 0 auto; }
-                        .header { text-align: center; margin-bottom: 30px; }
-                        .college-name { color: #1d29d6; font-size: 24px; font-weight: bold; }
-                        .application-id { background: #f8f9fa; padding: 10px; text-align: center; font-size: 20px; margin: 20px 0; }
-                        .details { margin: 20px 0; }
-                        .detail-row { margin-bottom: 10px; }
-                        .label { font-weight: bold; color: #333; }
-                        .footer { margin-top: 40px; text-align: center; color: #666; }
+                        @media print {
+                            @page { size: A4; margin: 20mm; }
+                            body { font-family: Arial, sans-serif; font-size: 11pt; line-height: 1.4; }
+                            .header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid #000; padding-bottom: 10px; }
+                            .college-name { font-size: 20pt; font-weight: bold; color: #1d29d6; }
+                            .application-id { background: #f0f0f0; padding: 8px; text-align: center; font-size: 14pt; margin: 15px 0; border: 1px solid #666; }
+                            .section { margin: 15px 0; page-break-inside: avoid; }
+                            .section-title { font-weight: bold; background: #e8f4ff; padding: 6px; border-left: 4px solid #1d29d6; margin-bottom: 8px; }
+                            .data-row { display: flex; margin-bottom: 6px; }
+                            .label { flex: 1; font-weight: bold; min-width: 180px; }
+                            .value { flex: 2; border-bottom: 1px dotted #666; padding-left: 8px; }
+                            .photo-container { text-align: center; margin: 20px 0; padding: 10px; border: 1px solid #ccc; background: #f9f9f9; }
+                            .declaration { margin-top: 30px; padding: 15px; border: 1px solid #000; font-size: 10pt; }
+                            .signature { margin-top: 40px; text-align: right; }
+                            .signature-line { width: 250px; border-top: 1px solid #000; margin-top: 30px; display: inline-block; }
+                            .footer { text-align: center; margin-top: 30px; font-size: 9pt; color: #666; }
+                        }
                     </style>
                 </head>
                 <body>
-                    <div class="receipt">
-                        <div class="header">
-                            <h1 class="college-name">Darunnajath Shareeath & Arts College</h1>
-                            <h3>Admission Application Receipt</h3>
-                        </div>
+                    <div class="header">
+                        <div class="college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div>
+                        <div>Affiliated to Jamia Nooriyya Arabiyya</div>
+                        <div>Punnakkad, Karuvarakundu PO, Malappuram 676523</div>
+                        <div style="font-weight: bold; margin-top: 10px; color: #800000;">ADMISSION APPLICATION FORM</div>
+                    </div>
+                    
+                    <div class="application-id">
+                        APPLICATION ID: ${data.applicationId}
+                    </div>
+                    
+                    <div class="section">
+                        <div class="section-title">1. BASIC INFORMATION</div>
+                        <div class="data-row"><div class="label">Mobile Number:</div><div class="value">${data.phone}</div></div>
+                        <div class="data-row"><div class="label">Full Name:</div><div class="value">${data.name}</div></div>
+                        <div class="data-row"><div class="label">Admission Category:</div><div class="value">${data.category}</div></div>
+                        <div class="data-row"><div class="label">Date of Birth:</div><div class="value">${dob}</div></div>
+                    </div>
+                    
+                    <div class="section">
+                        <div class="section-title">2. FAMILY DETAILS</div>
+                        <div class="data-row"><div class="label">House Name:</div><div class="value">${data.houseName}</div></div>
+                        <div class="data-row"><div class="label">Address:</div><div class="value">${data.address}</div></div>
+                        <div class="data-row"><div class="label">Aadhaar Number:</div><div class="value">${data.aadhaarNumber}</div></div>
+                        <div class="data-row"><div class="label">WhatsApp Number:</div><div class="value">${data.whatsappNumber || 'N/A'}</div></div>
+                    </div>
+                    
+                    <div class="section">
+                        <div class="section-title">3. GUARDIAN DETAILS</div>
+                        <div class="data-row"><div class="label">Father's Name:</div><div class="value">${data.fatherName}</div></div>
+                        <div class="data-row"><div class="label">Father's Occupation:</div><div class="value">${data.fatherOccupation}</div></div>
+                        <div class="data-row"><div class="label">Guardian's Name:</div><div class="value">${data.guardianName}</div></div>
+                        <div class="data-row"><div class="label">Relationship:</div><div class="value">${data.relationshipWithGuardian} ${data.otherRelationship ? '(' + data.otherRelationship + ')' : ''}</div></div>
+                    </div>
+                    
+                    <div class="section">
+                        <div class="section-title">4. EDUCATIONAL BACKGROUND</div>
+                        <div class="data-row"><div class="label">Madrasa:</div><div class="value">${data.madrasa}</div></div>
+                        <div class="data-row"><div class="label">Madrasa Class:</div><div class="value">${data.madrasaclass}</div></div>
+                        <div class="data-row"><div class="label">School:</div><div class="value">${data.school}</div></div>
+                        <div class="data-row"><div class="label">School Class:</div><div class="value">${data.schoolclass}</div></div>
+                        <div class="data-row"><div class="label">Previous Hifz/Dars Study:</div><div class="value">${data.previousStudy}</div></div>
+                        ${data.previousStudy === 'Yes' ? `
+                        <div class="data-row"><div class="label">Previous Institution:</div><div class="value">${data.previousInstitution}</div></div>
+                        <div class="data-row"><div class="label">Study Duration:</div><div class="value">${data.studyDuration}</div></div>
+                        <div class="data-row"><div class="label">Juz Count:</div><div class="value">${data.juzCount}</div></div>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="section">
+                        <div class="section-title">5. ADDITIONAL INFORMATION</div>
+                        <div class="data-row"><div class="label">Identification Mark:</div><div class="value">${data.identificationMark}</div></div>
+                        <div class="data-row"><div class="label">Physical Health:</div><div class="value">${data.physicalFitness}</div></div>
+                        ${data.physicalFitness === 'Medication' ? `
+                        <div class="data-row"><div class="label">Illness Details:</div><div class="value">${data.illness}</div></div>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="photo-container">
+                        <div style="font-weight: bold; margin-bottom: 10px;">STUDENT'S PHOTO</div>
+                        ${photoHtml}
+                    </div>
+                    
+                    <div class="declaration">
+                        <div style="font-weight: bold; text-align: center; margin-bottom: 10px;">DECLARATION</div>
+                        <p>I hereby declare that all information provided in this application is true and correct to the best of my knowledge. I agree to abide by all rules and regulations of Darunnajath Shareeath & Arts College.</p>
                         
-                        <div class="application-id">
-                            Application ID: ${document.getElementById('applicationIdDisplay').textContent}
+                        <div class="signature">
+                            <div>Signature of Parent/Guardian</div>
+                            <div class="signature-line"></div>
+                            <div>Date: ${new Date().toLocaleDateString('en-IN')}</div>
                         </div>
-                        
-                        <div class="footer">
-                            <p>Thank you for your application!</p>
-                            <p>Admission test date will be notified later via SMS</p>
-                            <p>darunnajath.org | +91 9048020243</p>
-                        </div>
+                    </div>
+                    
+                    <div class="footer">
+                        <p>Application submitted on: ${new Date().toLocaleString('en-IN')}</p>
+                        <p>© ${new Date().getFullYear()} Darunnajath Islamic Centre | najathshareea.com | +91 9048020243</p>
                     </div>
                 </body>
                 </html>
             `;
-            
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write(printContent);
-            printWindow.document.close();
-            printWindow.focus();
-            printWindow.print();
+        }
+        
+        async function printApplication() {
+            try {
+                const printContent = await generatePrintableApplication();
+                if (!printContent) return;
+                
+                const printWindow = window.open('', '_blank');
+                printWindow.document.write(printContent);
+                printWindow.document.close();
+                
+                // Wait for content to load before printing
+                setTimeout(() => {
+                    printWindow.print();
+                    printWindow.onafterprint = () => printWindow.close();
+                }, 500);
+                
+            } catch (error) {
+                console.error('Print error:', error);
+                showNotification('Error generating print view', 'error');
+            }
+        }
+        
+        async function saveAsPDF() {
+            try {
+                const printContent = await generatePrintableApplication();
+                if (!printContent) return;
+                
+                // Create a temporary iframe to render the content
+                const iframe = document.createElement('iframe');
+                iframe.style.position = 'absolute';
+                iframe.style.width = '210mm';
+                iframe.style.height = '297mm';
+                iframe.style.border = 'none';
+                iframe.style.visibility = 'hidden';
+                document.body.appendChild(iframe);
+                
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                iframeDoc.write(printContent);
+                iframeDoc.close();
+                
+                // Wait for content to load
+                setTimeout(() => {
+                    html2canvas(iframeDoc.body, {
+                        scale: 2,
+                        useCORS: true,
+                        logging: false,
+                        backgroundColor: '#ffffff'
+                    }).then(canvas => {
+                        const imgData = canvas.toDataURL('image/png');
+                        const pdf = new jspdf.jsPDF({
+                            orientation: 'portrait',
+                            unit: 'mm',
+                            format: 'a4'
+                        });
+                        
+                        const imgWidth = 210;
+                        const pageHeight = 297;
+                        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                        
+                        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                        pdf.save(`DSAC_Application_${submittedData.applicationId}.pdf`);
+                        
+                        // Clean up
+                        document.body.removeChild(iframe);
+                    }).catch(error => {
+                        console.error('PDF generation error:', error);
+                        showNotification('Error generating PDF', 'error');
+                        document.body.removeChild(iframe);
+                    });
+                }, 1000);
+                
+            } catch (error) {
+                console.error('PDF save error:', error);
+                showNotification('Error saving PDF', 'error');
+            }
         }
     </script>
 </body>
