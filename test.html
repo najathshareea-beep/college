@@ -810,7 +810,10 @@
             
             <div class="instructions-box mb-4">
                 <h4 class="instructions-title"><i class="fas fa-lightbulb"></i> Important Notes</h4>
-                <div id="applyInstructions">Loading important notes...</div>
+                <div id="applyInstructions">യോഗ്യത: സ്കൂള്‍ 7-ാം ക്ലാസ്, സമസ്മതയുടെ മദ്റസ 6-ാം ക്ലാസ് / തത്തുല്യം, ആണ്‍ കുട്ടി</div>
+                <div id="applyInstructions">2025 ഫെബ്രുവരി 26  ബുധനാഴ്ചക്ക് മുമ്പ് അപേക്ഷ സമര്‍പ്പിക്കുക</div>
+                <div id="applyInstructions">സെലക്ഷന്‍ പരീക്ഷ: 2025-December-17, Wed, 10:00 AM</div>
+                <div id="applyInstructions">പ്രവേശന പരീക്ഷാദിനത്തില്‍ ആധാര് കോപ്പി, അപേക്ഷാ ഫീ 250 രൂപ എന്നിവ സ്ഥാപനത്തില്‍ സമർപ്പിക്കുക.</div>
             </div>
             
             <form id="newApplicationForm" onsubmit="return handleNewApplicationSubmit(event)">
@@ -986,16 +989,17 @@
                         <i class="fas fa-graduation-cap me-2"></i>Educational Information
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
+                        <div class="col-md-12">
+                            <!-- Madrasa Section (now full width, on top) -->
+                            <div class="form-group mb-4">
                                 <label class="form-label required">
                                     13. പഠിക്കുന്ന മദ്റസയും സ്ഥലവും | Madrasa & Location:
                                 </label>
-                                <input type="text" class="form-control" name="madrasa" 
-                                       placeholder="മദ്റസയും സ്ഥലവും രേഖപ്പെടുത്തുക | Enter Madrasa name and location" 
+                                <input type="text" class="form-control" name="madrasa"
+                                       placeholder="മദ്റസയും സ്ഥലവും രേഖപ്പെടുത്തുക | Enter Madrasa name and location"
                                        required>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mb-4">
                                 <label class="form-label required">
                                     ക്ലാസ് | Class:
                                 </label>
@@ -1007,17 +1011,16 @@
                                     <option value="V">V</option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
+
+                            <div class="form-group mb-4">
                                 <label class="form-label required">
                                     14. പഠിക്കുന്ന സ്കൂളും സ്ഥലവും | School & Location:
                                 </label>
-                                <input type="text" class="form-control" name="school" 
-                                       placeholder="സ്കൂളും സ്ഥലവും രേഖപ്പെടുത്തുക | Enter School name and location" 
+                                <input type="text" class="form-control" name="school"
+                                       placeholder="സ്കൂളും സ്ഥലവും രേഖപ്പെടുത്തുക | Enter School name and location"
                                        required>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mb-4">
                                 <label class="form-label required">
                                     ക്ലാസ് | Class:
                                 </label>
@@ -1045,7 +1048,7 @@
                         <div class="d-flex gap-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="previousStudy" 
-                                       id="previousNo" value="No" checked 
+                                       id="previousNo" value="No"
                                        onchange="togglePreviousStudy(false)">
                                 <label class="form-check-label" for="previousNo">
                                     ഇല്ല | No
@@ -1139,7 +1142,7 @@
                         <div class="d-flex gap-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="physicalFitness" 
-                                       id="fitnessHealthy" value="Healthy" checked 
+                                       id="fitnessHealthy" value="Healthy"
                                        onchange="toggleIllnessSection(false)">
                                 <label class="form-check-label" for="fitnessHealthy">
                                     ആരോഗ്യവാന്‍ | Healthy
@@ -1174,7 +1177,7 @@
                         <i class="fas fa-camera me-2"></i>Student Photograph
                     </div>
                     <div class="form-group">
-                        <label class="form-label">
+                        <label class="form-label required">
                             18. കുട്ടിയുടെ ഫോട്ടോ | Student's Photo:
                         </label>
                         <div class="file-upload-container" onclick="document.getElementById('photoInput').click()" 
@@ -1185,11 +1188,11 @@
                             <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
                             <h5>Click to upload or drag & drop</h5>
                             <p class="text-muted">JPG, PNG up to 5MB</p>
-                            <input type="file" class="d-none" id="photoInput" accept="image/*" 
+                            <input type="file" class="d-none" id="photoInput" name="student_photo" accept="image/jpeg,image/png" 
+                                   required
                                    onchange="handlePhotoUpload(event)">
                             <img id="photoPreview" class="file-preview" alt="Photo Preview">
                         </div>
-                        <small class="text-muted">Optional - Recommended for hall ticket</small>
                     </div>
                 </div>
                 
@@ -1200,7 +1203,7 @@
                         Declaration
                     </h4>
                     <p id="declarationText" class="mb-3">
-                        എന്‍റെ കുട്ടിയും ഞാനും അല്‍ ഹാഫിള് മമ്മു മുല്ല തഹ്ഫീളുല്‍ ഖുര്‍ആന്‍ കോളേജിന്‍റെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ അല്‍ ഹാഫിള് മമ്മു മുല്ല തഹ്ഫീളുല്‍ ഖുര്‍ആന്‍ കോളേജില്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.
+                        എന്‍റെ കുട്ടിയും ഞാനും ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജിന്‍റെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ അല്‍ ഹാഫിള് മമ്മു മുല്ല തഹ്ഫീളുല്‍ ഖുര്‍ആന്‍ കോളേജില്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.
                     </p>
                     
                     <div class="custom-checkbox">
