@@ -729,13 +729,6 @@
             <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="college-logo">
             <h2 class="college-subtitle">DARUNNAJATH SHAREEATH & ARTS COLLEGE</h2>
             <p class="college-address">Punnakkad, Karuvarakundu, Malappuram District</p>
-            <div class="d-flex justify-content-center align-items-center gap-3 mt-3">
-                <span class="status-indicator status-online" id="statusIndicator">
-                    <i class="fas fa-circle"></i>
-                    <span>System Online</span>
-                </span>
-                <span class="text-muted" id="lastUpdated">Last updated: Just now</span>
-            </div>
             <h3 class="portal-title">New Admission Portal</h3>
         </div>
         
@@ -805,38 +798,6 @@
                     <li>Keep your application ID safe for future reference</li>
                     <li>Hall tickets include QR code for quick verification</li>
                 </ul>
-            </div>
-            
-            <!-- Quick Stats -->
-            <div class="row mt-4">
-                <div class="col-md-3 col-6">
-                    <div class="text-center p-3 bg-light rounded">
-                        <div class="text-primary fs-4"><i class="fas fa-users"></i></div>
-                        <div class="fw-bold fs-5" id="totalApplications">--</div>
-                        <small class="text-muted">Total Applications</small>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <div class="text-center p-3 bg-light rounded">
-                        <div class="text-success fs-4"><i class="fas fa-check-circle"></i></div>
-                        <div class="fw-bold fs-5" id="verifiedApplications">--</div>
-                        <small class="text-muted">Verified</small>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <div class="text-center p-3 bg-light rounded">
-                        <div class="text-warning fs-4"><i class="fas fa-clock"></i></div>
-                        <div class="fw-bold fs-5" id="pendingApplications">--</div>
-                        <small class="text-muted">Pending</small>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <div class="text-center p-3 bg-light rounded">
-                        <div class="text-info fs-4"><i class="fas fa-ticket-alt"></i></div>
-                        <div class="fw-bold fs-5" id="hallTicketsIssued">--</div>
-                        <small class="text-muted">Hall Tickets</small>
-                    </div>
-                </div>
             </div>
         </div>
         
@@ -1404,17 +1365,6 @@
     <footer class="footer mt-5 py-4 text-center">
         <div class="container">
             <p class="mb-2">© <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All Rights Reserved.</p>
-            <div class="footer-links">
-                <a href="mailto:najathshareea@gmail.com" class="footer-link me-3">
-                    <i class="fas fa-envelope me-1"></i> Email
-                </a>
-                <a href="tel:9048020243" class="footer-link me-3">
-                    <i class="fas fa-phone me-1"></i> Contact
-                </a>
-                <span class="text-muted">
-                    <i class="fas fa-code me-1"></i> Powered by Google Apps Script
-                </span>
-            </div>
         </div>
     </footer>
     
@@ -1457,9 +1407,6 @@
             setTimeout(() => {
                 loadCollegeInfo(true);
             }, 1000);
-            
-            // Load quick stats
-            loadQuickStats();
             
             // Initialize QR code placeholder
             initializeQRCode();
@@ -1588,17 +1535,6 @@
             if (instructionsDiv) {
                 instructionsDiv.innerHTML = notes || '<p>Selection exam date will be announced later. Please ensure all information is accurate.</p>';
             }
-            
-            // Update last updated time
-            document.getElementById('lastUpdated').textContent = 'Last updated: ' + formatTime(new Date());
-        }
-        
-        async function loadQuickStats() {
-            // Mock stats for now - in production, fetch from API
-            document.getElementById('totalApplications').textContent = '125';
-            document.getElementById('verifiedApplications').textContent = '89';
-            document.getElementById('pendingApplications').textContent = '36';
-            document.getElementById('hallTicketsIssued').textContent = '78';
         }
         
         // View Management
