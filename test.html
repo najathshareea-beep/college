@@ -11,6 +11,9 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary-blue: #1d29d6;
@@ -19,93 +22,264 @@
             --dark-red: #800000;
         }
         
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f8f9fa;
+            font-family: 'Poppins', 'Noto Sans Malayalam', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
             min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .malayalam {
+            font-family: 'Noto Sans Malayalam', 'Poppins', sans-serif;
+        }
+        
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
         
         .header-card {
             background: white;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border: 2px solid var(--primary-blue);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 3px solid var(--primary-blue);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-green));
         }
         
         .college-logo {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            border: 3px solid var(--primary-blue);
-            margin-bottom: 15px;
+            object-fit: cover;
+            border: 5px solid var(--primary-blue);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+        
+        .college-name {
+            color: var(--primary-blue);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .college-subtitle {
+            color: var(--accent-green);
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .portal-title {
+            color: var(--dark-red);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px dashed #ddd;
         }
         
         .dashboard-container {
             background: white;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .ticker-container {
+            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            padding: 12px 0;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border-radius: 10px;
+        }
+        
+        .ticker-content {
+            display: inline-block;
+            white-space: nowrap;
+            padding-left: 100%;
+            animation: ticker 25s linear infinite;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
         }
         
         .service-card {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 15px;
+            padding: 25px;
             text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
-            border: 1px solid #dee2e6;
+            border: 2px solid transparent;
             height: 100%;
         }
         
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
             border-color: var(--primary-blue);
         }
         
         .service-icon {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 24px;
-            margin: 0 auto 15px;
+            font-size: 30px;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 15px rgba(29, 41, 214, 0.3);
+        }
+        
+        .service-title {
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .btn-service {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .btn-service:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(29, 41, 214, 0.3);
+            color: white;
         }
         
         .form-container {
             background: white;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             display: none;
         }
         
+        .form-title {
+            color: var(--primary-blue);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 1rem;
+        }
+        
+        .form-label.required::after {
+            content: " *";
+            color: #dc3545;
+        }
+        
         .form-control {
-            padding: 10px 15px;
+            padding: 12px 15px;
             border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 16px;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-family: 'Poppins', 'Noto Sans Malayalam', sans-serif;
         }
         
         .form-control:focus {
             border-color: var(--primary-blue);
-            box-shadow: 0 0 0 0.2rem rgba(29, 41, 214, 0.25);
+            box-shadow: 0 0 0 0.25rem rgba(29, 41, 214, 0.25);
+            outline: none;
         }
         
-        .btn-primary {
+        .btn-submit {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
             border: none;
-            padding: 12px 25px;
+            border-radius: 10px;
+            padding: 14px 30px;
             font-weight: 600;
-            border-radius: 8px;
+            font-size: 16px;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 15px rgba(29, 41, 214, 0.3);
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 14px 30px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 15px rgba(108, 117, 125, 0.3);
+            color: white;
         }
         
         .loading-overlay {
@@ -114,20 +288,22 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             display: none;
             justify-content: center;
             align-items: center;
             z-index: 9999;
+            flex-direction: column;
         }
         
         .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid var(--primary-blue);
+            width: 70px;
+            height: 70px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary-blue);
             border-radius: 50%;
             animation: spin 1s linear infinite;
+            margin-bottom: 20px;
         }
         
         @keyframes spin {
@@ -140,21 +316,75 @@
             top: 20px;
             right: 20px;
             background: white;
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             z-index: 9998;
             display: none;
             max-width: 400px;
-            border-left: 4px solid var(--primary-blue);
+            border-left: 5px solid var(--primary-blue);
+            animation: slideIn 0.3s ease forwards;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
         }
         
         .instructions-box {
             background: #e8f4ff;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
-            border: 1px solid #cfe2ff;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 2px solid #cfe2ff;
+        }
+        
+        .instructions-title {
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .instructions-list {
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+        
+        .instructions-list li {
+            margin-bottom: 10px;
+            color: #444;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 15px;
+            }
+            
+            .header-card {
+                padding: 20px;
+            }
+            
+            .college-name {
+                font-size: 1.5rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -162,42 +392,50 @@
     <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="spinner"></div>
-        <div class="mt-3">Please wait...</div>
+        <div class="loading-text">Please wait...</div>
     </div>
     
     <!-- Notification -->
     <div class="notification" id="notification">
-        <div class="d-flex align-items-center">
-            <i class="fas fa-info-circle me-3" style="color: #1d29d6; font-size: 20px;"></i>
-            <div id="notificationMessage"></div>
-            <button class="btn btn-sm btn-link ms-3" onclick="hideNotification()">
+        <div class="notification-content">
+            <i class="fas fa-info-circle notification-icon"></i>
+            <div class="notification-message" id="notificationMessage"></div>
+            <button class="notification-close" onclick="hideNotification()">
                 <i class="fas fa-times"></i>
             </button>
         </div>
     </div>
     
-    <div class="container py-4">
+    <!-- Main Container -->
+    <div class="main-container">
         <!-- Header -->
         <div class="header-card text-center">
             <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="college-logo">
-            <h3 class="text-primary mb-2">DARUNNAJATH SHAREEATH & ARTS COLLEGE</h3>
-            <p class="text-muted mb-1">Punnakkad, Karuvarakundu, Malappuram District</p>
-            <h5 class="text-danger mt-3">New Admission Portal</h5>
+            <h2 class="college-subtitle malayalam">ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജ്</h2>
+            <p class="college-address">പുന്നക്കാട്, കരുവരകുണ്ട്, മലപ്പുറം ജില്ല</p>
+            <h3 class="portal-title">പുതിയ പ്രവേശന പോർട്ടൽ</h3>
         </div>
         
         <!-- Dashboard -->
         <div class="dashboard-container" id="dashboardView">
-            <div class="row g-4">
+            <!-- News Ticker -->
+            <div class="ticker-container">
+                <div class="ticker-content" id="tickerContent">
+                    <!-- Ticker will be loaded here -->
+                </div>
+            </div>
+            
+            <div class="row g-4 mb-4">
                 <!-- Apply Now -->
                 <div class="col-md-6 col-lg-3">
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-file-alt"></i>
                         </div>
-                        <h5 class="mb-3">Apply Now</h5>
-                        <p class="text-muted small mb-3">Submit new admission application</p>
-                        <button class="btn btn-primary w-100" onclick="showForm('applyNowForm')">
-                            <i class="fas fa-pen me-2"></i>Apply
+                        <h3 class="service-title malayalam">അപേക്ഷിക്കുക</h3>
+                        <p class="service-desc malayalam">പുതിയ പ്രവേശന അപേക്ഷ സമർപ്പിക്കുക</p>
+                        <button class="btn-service" onclick="showForm('applyNowForm')">
+                            <i class="fas fa-pen me-2"></i> <span class="malayalam">അപേക്ഷിക്കുക</span>
                         </button>
                     </div>
                 </div>
@@ -208,10 +446,10 @@
                         <div class="service-icon">
                             <i class="fas fa-file-download"></i>
                         </div>
-                        <h5 class="mb-3">Download Application</h5>
-                        <p class="text-muted small mb-3">Download submitted application form</p>
-                        <button class="btn btn-primary w-100" onclick="showForm('applicationForm')">
-                            <i class="fas fa-download me-2"></i>Download
+                        <h3 class="service-title malayalam">അപേക്ഷ ഡൗൺലോഡ്</h3>
+                        <p class="service-desc malayalam">സമർപ്പിച്ച അപേക്ഷ ഫോം ഡൗൺലോഡ് ചെയ്യുക</p>
+                        <button class="btn-service" onclick="showForm('applicationForm')">
+                            <i class="fas fa-download me-2"></i> <span class="malayalam">ഡൗൺലോഡ്</span>
                         </button>
                     </div>
                 </div>
@@ -222,10 +460,10 @@
                         <div class="service-icon">
                             <i class="fas fa-ticket-alt"></i>
                         </div>
-                        <h5 class="mb-3">Hall Ticket</h5>
-                        <p class="text-muted small mb-3">Download exam hall ticket</p>
-                        <button class="btn btn-primary w-100" onclick="showForm('hallticketForm')">
-                            <i class="fas fa-ticket-alt me-2"></i>Hall Ticket
+                        <h3 class="service-title malayalam">ഹാൾ ടിക്കറ്റ്</h3>
+                        <p class="service-desc malayalam">പരീക്ഷ ഹാൾ ടിക്കറ്റ് ഡൗൺലോഡ് ചെയ്യുക</p>
+                        <button class="btn-service" onclick="showForm('hallticketForm')">
+                            <i class="fas fa-ticket-alt me-2"></i> <span class="malayalam">ഹാൾ ടിക്കറ്റ്</span>
                         </button>
                     </div>
                 </div>
@@ -236,228 +474,79 @@
                         <div class="service-icon">
                             <i class="fas fa-chart-line"></i>
                         </div>
-                        <h5 class="mb-3">Check Result</h5>
-                        <p class="text-muted small mb-3">Check examination results</p>
-                        <button class="btn btn-primary w-100" onclick="showForm('resultForm')">
-                            <i class="fas fa-search me-2"></i>Result
+                        <h3 class="service-title malayalam">ഫലം പരിശോധിക്കുക</h3>
+                        <p class="service-desc malayalam">പരീക്ഷാ ഫലങ്ങൾ പരിശോധിക്കുക</p>
+                        <button class="btn-service" onclick="showForm('resultForm')">
+                            <i class="fas fa-search me-2"></i> <span class="malayalam">ഫലം</span>
                         </button>
                     </div>
                 </div>
             </div>
             
             <!-- Instructions -->
-            <div class="instructions-box mt-4">
-                <h5 class="text-primary mb-3">
-                    <i class="fas fa-info-circle me-2"></i>
-                    Instructions
-                </h5>
-                <ul class="mb-0">
-                    <li>All services require <strong>registered mobile number</strong> and <strong>date of birth</strong></li>
-                    <li>Mobile number must be 10 digits</li>
-                    <li>For new applications, all fields marked with * are mandatory</li>
-                    <li>Application fee must be paid before downloading hall ticket</li>
+            <div class="instructions-box">
+                <h3 class="instructions-title">
+                    <i class="fas fa-info-circle"></i>
+                    <span class="malayalam">ഉപദേശങ്ങൾ</span>
+                </h3>
+                <ul class="instructions-list malayalam">
+                    <li>എല്ലാ സേവനങ്ങൾക്കും <strong>രജിസ്റ്റർ ചെയ്ത മൊബൈൽ നമ്പർ</strong> ഉം <strong>ജനന തീയതി</strong> ഉം ആവശ്യമാണ്</li>
+                    <li>മൊബൈൽ നമ്പർ 10 അക്കമായിരിക്കണം</li>
+                    <li>പുതിയ അപേക്ഷകൾക്ക്, * ചിഹ്നമുള്ള എല്ലാ ഫീൽഡുകളും നിർബന്ധമാണ്</li>
+                    <li>ഹാൾ ടിക്കറ്റ് ഡൗൺലോഡ് ചെയ്യുന്നതിന് മുമ്പ് അപേക്ഷ ഫീസ് നൽകണം</li>
                 </ul>
             </div>
         </div>
         
         <!-- Apply Now Form -->
         <div class="form-container" id="applyNowForm">
-            <h3 class="text-primary mb-4">
+            <h2 class="form-title">
                 <i class="fas fa-file-alt me-2"></i>
-                New Admission Application
-            </h3>
+                <span class="malayalam">പുതിയ പ്രവേശന അപേക്ഷ</span>
+            </h2>
             
             <form id="newApplicationForm">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label required">Student's Name</label>
-                            <input type="text" class="form-control" name="studentName" required>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label required">House Name</label>
-                            <input type="text" class="form-control" name="houseName" required>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label required">Date of Birth</label>
-                            <input type="date" class="form-control" name="dob" required>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label required">Aadhaar Number</label>
-                            <input type="text" class="form-control" name="aadhaarNumber" pattern="\d{12}" required>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="mb-3">
-                    <label class="form-label required">Address</label>
-                    <textarea class="form-control" name="address" rows="2" required></textarea>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label required">Phone Number</label>
-                            <input type="tel" class="form-control" name="phoneNumber" pattern="\d{10}" required>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label">WhatsApp Number</label>
-                            <input type="tel" class="form-control" name="whatsappNumber" pattern="\d{10}">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label required">Father's Name</label>
-                            <input type="text" class="form-control" name="fatherName" required>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label required">Father's Occupation</label>
-                            <input type="text" class="form-control" name="fatherOccupation" required>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="mb-3">
-                    <label class="form-label required">Guardian's Name</label>
-                    <input type="text" class="form-control" name="guardianName" required>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label required">Relationship with Guardian</label>
-                            <select class="form-control" name="relationshipWithGuardian" required>
-                                <option value="">Select</option>
-                                <option value="Father">Father</option>
-                                <option value="Mother">Mother</option>
-                                <option value="Brother">Brother</option>
-                                <option value="Sister">Sister</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label">Reason if Guardian is not Father</label>
-                            <input type="text" class="form-control" name="guardianReason">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label required">Madrasa & Location</label>
-                            <input type="text" class="form-control" name="madrasa" required>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label required">Madrasa Class</label>
-                            <select class="form-control" name="madrasaclass" required>
-                                <option value="">Select</option>
-                                <option value="II">II</option>
-                                <option value="III">III</option>
-                                <option value="IV">IV</option>
-                                <option value="V">V</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label required">School & Location</label>
-                            <input type="text" class="form-control" name="school" required>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label required">School Class</label>
-                            <select class="form-control" name="schoolclass" required>
-                                <option value="">Select</option>
-                                <option value="II">II</option>
-                                <option value="III">III</option>
-                                <option value="IV">IV</option>
-                                <option value="V">V</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="mb-3">
-                    <label class="form-label required">Identification Mark</label>
-                    <input type="text" class="form-control" name="identificationMark" required>
-                </div>
-                
-                <div class="mb-3">
-                    <label class="form-label">Student's Photo (Optional)</label>
-                    <input type="file" class="form-control" id="photoInput" accept="image/*">
-                    <small class="text-muted">Max size: 5MB</small>
-                </div>
-                
-                <div class="form-check mb-4">
-                    <input class="form-check-input" type="checkbox" id="declarationCheckbox" required>
-                    <label class="form-check-label">
-                        I agree to the terms and conditions
-                    </label>
-                </div>
-                
-                <div class="d-flex gap-3">
-                    <button type="submit" class="btn btn-primary flex-grow-1">
-                        <i class="fas fa-paper-plane me-2"></i>
-                        Submit Application
-                    </button>
-                    <button type="button" class="btn btn-secondary" onclick="showDashboard()">
-                        <i class="fas fa-arrow-left me-2"></i>
-                        Back
-                    </button>
-                </div>
+                <!-- Form fields will be loaded here -->
             </form>
         </div>
         
         <!-- Application Download Form -->
         <div class="form-container" id="applicationForm">
-            <h3 class="text-primary mb-4">
+            <h2 class="form-title">
                 <i class="fas fa-file-download me-2"></i>
-                Download Application
-            </h3>
+                <span class="malayalam">അപേക്ഷ ഡൗൺലോഡ്</span>
+            </h2>
             
             <form id="downloadApplicationForm">
-                <div class="mb-3">
-                    <label class="form-label required">Mobile Number</label>
-                    <input type="tel" class="form-control" id="appMobile" pattern="\d{10}" required>
+                <div class="form-group">
+                    <label class="form-label required malayalam">
+                        <i class="fas fa-mobile-alt me-2"></i>
+                        മൊബൈൽ നമ്പർ
+                    </label>
+                    <input type="tel" class="form-control" id="appMobile"
+                           pattern="\d{10}"
+                           placeholder="10 അക്ക മൊബൈൽ നമ്പർ"
+                           required>
+                    <small class="text-muted malayalam">അപേക്ഷ സമർപ്പിക്കുമ്പോൾ ഉപയോഗിച്ച മൊബൈൽ നമ്പർ</small>
                 </div>
                 
-                <div class="mb-3">
-                    <label class="form-label required">Date of Birth</label>
+                <div class="form-group">
+                    <label class="form-label required malayalam">
+                        <i class="fas fa-calendar-alt me-2"></i>
+                        ജനന തിയ്യതി
+                    </label>
                     <input type="date" class="form-control" id="appDob" required>
                 </div>
                 
-                <div class="d-flex gap-3">
-                    <button type="submit" class="btn btn-primary flex-grow-1">
-                        <i class="fas fa-search me-2"></i>
-                        Search Application
-                    </button>
-                    <button type="button" class="btn btn-secondary" onclick="showDashboard()">
+                <button type="submit" class="btn-submit" id="submitApplicationSearchBtn">
+                    <i class="fas fa-search me-2"></i>
+                    <span class="malayalam">അപേക്ഷ തിരയുക</span>
+                </button>
+                
+                <div class="button-group">
+                    <button type="button" class="btn-secondary" onclick="showDashboard()">
                         <i class="fas fa-arrow-left me-2"></i>
-                        Back
+                        <span class="malayalam">തിരികെ</span>
                     </button>
                 </div>
             </form>
@@ -465,30 +554,40 @@
         
         <!-- Hall Ticket Form -->
         <div class="form-container" id="hallticketForm">
-            <h3 class="text-primary mb-4">
+            <h2 class="form-title">
                 <i class="fas fa-ticket-alt me-2"></i>
-                Hall Ticket
-            </h3>
+                <span class="malayalam">ഹാൾ ടിക്കറ്റ്</span>
+            </h2>
             
             <form id="downloadHallticketForm">
-                <div class="mb-3">
-                    <label class="form-label required">Mobile Number</label>
-                    <input type="tel" class="form-control" id="ticketMobile" pattern="\d{10}" required>
+                <div class="form-group">
+                    <label class="form-label required malayalam">
+                        <i class="fas fa-mobile-alt me-2"></i>
+                        മൊബൈൽ നമ്പർ
+                    </label>
+                    <input type="tel" class="form-control" id="ticketMobile"
+                           pattern="\d{10}"
+                           placeholder="10 അക്ക മൊബൈൽ നമ്പർ"
+                           required>
                 </div>
                 
-                <div class="mb-3">
-                    <label class="form-label required">Date of Birth</label>
+                <div class="form-group">
+                    <label class="form-label required malayalam">
+                        <i class="fas fa-calendar-alt me-2"></i>
+                        ജനന തിയ്യതി
+                    </label>
                     <input type="date" class="form-control" id="ticketDob" required>
                 </div>
                 
-                <div class="d-flex gap-3">
-                    <button type="submit" class="btn btn-primary flex-grow-1">
-                        <i class="fas fa-download me-2"></i>
-                        Download Hall Ticket
-                    </button>
-                    <button type="button" class="btn btn-secondary" onclick="showDashboard()">
+                <button type="submit" class="btn-submit">
+                    <i class="fas fa-download me-2"></i>
+                    <span class="malayalam">ഹാൾ ടിക്കറ്റ് ഡൗൺലോഡ് ചെയ്യുക</span>
+                </button>
+                
+                <div class="button-group">
+                    <button type="button" class="btn-secondary" onclick="showDashboard()">
                         <i class="fas fa-arrow-left me-2"></i>
-                        Back
+                        <span class="malayalam">തിരികെ</span>
                     </button>
                 </div>
             </form>
@@ -496,118 +595,346 @@
         
         <!-- Result Form -->
         <div class="form-container" id="resultForm">
-            <h3 class="text-primary mb-4">
+            <h2 class="form-title">
                 <i class="fas fa-chart-line me-2"></i>
-                Check Result
-            </h3>
+                <span class="malayalam">ഫലം പരിശോധിക്കുക</span>
+            </h2>
             
             <form id="checkResultForm">
-                <div class="mb-3">
-                    <label class="form-label required">Mobile Number</label>
-                    <input type="tel" class="form-control" id="resultMobile" pattern="\d{10}" required>
+                <div class="form-group">
+                    <label class="form-label required malayalam">
+                        <i class="fas fa-mobile-alt me-2"></i>
+                        മൊബൈൽ നമ്പർ
+                    </label>
+                    <input type="tel" class="form-control" id="resultMobile"
+                           pattern="\d{10}"
+                           placeholder="10 അക്ക മൊബൈൽ നമ്പർ"
+                           required>
                 </div>
                 
-                <div class="mb-3">
-                    <label class="form-label required">Date of Birth</label>
+                <div class="form-group">
+                    <label class="form-label required malayalam">
+                        <i class="fas fa-calendar-alt me-2"></i>
+                        ജനന തിയ്യതി
+                    </label>
                     <input type="date" class="form-control" id="resultDob" required>
                 </div>
                 
-                <div class="d-flex gap-3">
-                    <button type="submit" class="btn btn-primary flex-grow-1">
-                        <i class="fas fa-search me-2"></i>
-                        Check Result
-                    </button>
-                    <button type="button" class="btn btn-secondary" onclick="showDashboard()">
+                <button type="submit" class="btn-submit">
+                    <i class="fas fa-search me-2"></i>
+                    <span class="malayalam">ഫലം പരിശോധിക്കുക</span>
+                </button>
+                
+                <div class="button-group">
+                    <button type="button" class="btn-secondary" onclick="showDashboard()">
                         <i class="fas fa-arrow-left me-2"></i>
-                        Back
+                        <span class="malayalam">തിരികെ</span>
                     </button>
                 </div>
             </form>
         </div>
     </div>
+    
+    <!-- Footer -->
+    <footer class="text-center py-4 mt-4">
+        <p>© <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All Rights Reserved.</p>
+    </footer>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Apps Script URL - Replace with your actual URL
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyG144xlMuoO1tEHhCfcCOEybgNDLSB6KP3GyHmR6CiehjPhXY6_6fxC2NGd7z9IGOm6Q/exec';
+        // Apps Script URL - REPLACE WITH YOUR ACTUAL URL
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyVsV6KvqsTdKowBwPrBBkiGLq4gt0YUtFQ6D5opg2TNf_Q5Nap1cfMuiQHFy18Aqljdw/exec';
         
+        // Application form template (Malayalam)
+        const APPLICATION_FORM_HTML = `
+            <div class="form-group">
+                <label class="form-label required malayalam">
+                    1. കുട്ടിയുടെ പേര് | Student's Name:
+                </label>
+                <input type="text" class="form-control" name="studentName" placeholder="പൂർണ്ണ പേര് രേഖപ്പെടുത്തുക" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required malayalam">
+                    2. വീട്ടു പേര് | House Name:
+                </label>
+                <input type="text" class="form-control" name="houseName" placeholder="വീട്ടു പേര് രേഖപ്പെടുത്തുക" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required malayalam">
+                    3. ജനന തിയ്യതി | Date of Birth:
+                </label>
+                <input type="date" class="form-control" name="dob" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required malayalam">
+                    4. ആധാര്‍ നമ്പര്‍ | Aadhaar Number:
+                </label>
+                <input type="text" class="form-control" name="aadhaarNumber" placeholder="12 അക്ക ആധാര്‍ നമ്പര്‍" required pattern="\\d{12}">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required malayalam">
+                    5. വിലാസം | Postal Address:
+                </label>
+                <textarea class="form-control" name="address" placeholder="പൂർണ്ണ വിലാസം രേഖപ്പെടുത്തുക" required rows="3"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required malayalam">
+                    6. ഫോണ്‍ നമ്പര്‍ | Phone Number:
+                </label>
+                <input type="tel" class="form-control" name="phoneNumber" placeholder="10 അക്ക ഫോണ്‍ നമ്പര്‍" required pattern="\\d{10}">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label malayalam">
+                    7. വാട്‌സ്ആപ്പ് നമ്പര്‍ | WhatsApp Number:
+                </label>
+                <input type="tel" class="form-control" name="whatsappNumber" placeholder="10 അക്ക വാട്‌സ്ആപ്പ് നമ്പര്‍" pattern="\\d{10}">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required malayalam">
+                    8. പിതാവിന്‍റെ പേര് | Father's Name:
+                </label>
+                <input type="text" class="form-control" name="fatherName" placeholder="പിതാവിന്‍റെ പേര്" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required malayalam">
+                    9. പിതാവിന്‍റെ ജോലി | Father's Occupation:
+                </label>
+                <input type="text" class="form-control" name="fatherOccupation" placeholder="പിതാവിന്‍റെ ജോലി" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required malayalam">
+                    10. രക്ഷിതാവിന്‍റെ പേര് | Guardian's Name:
+                </label>
+                <input type="text" class="form-control" name="guardianName" placeholder="രക്ഷിതാവിന്‍റെ പേര്" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required malayalam">
+                    11. വിദ്യാര്‍ത്ഥിക്ക് രക്ഷിതാവുമായുള്ള ബന്ധം | Relationship with Guardian:
+                </label>
+                <select class="form-control" name="relationshipWithGuardian" required>
+                    <option value="" disabled selected>തിരഞ്ഞെടുക്കുക</option>
+                    <option value="Father">പിതാവ് | Father</option>
+                    <option value="Mother">മാതാവ് | Mother</option>
+                    <option value="Brother">സഹോദരൻ | Brother</option>
+                    <option value="Sister">സഹോദരി | Sister</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label malayalam">
+                    12. രക്ഷിതാവ്, പിതാവല്ലെങ്കില്‍ കാരണം | Reason if Guardian is not Father:
+                </label>
+                <textarea class="form-control" name="guardianReason" placeholder="കാരണം" rows="2"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required malayalam">
+                    13. പഠിക്കുന്ന മദ്റസയും സ്ഥലവും | Madrasa & Location:
+                </label>
+                <input type="text" class="form-control" name="madrasa" placeholder="മദ്റസയും സ്ഥലവും" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required malayalam">
+                    ക്ലാസ് | Class:
+                </label>
+                <select class="form-control" name="madrasaclass" required>
+                    <option value="" disabled selected>തിരഞ്ഞെടുക്കുക</option>
+                    <option value="II">II</option>
+                    <option value="III">III</option>
+                    <option value="IV">IV</option>
+                    <option value="V">V</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required malayalam">
+                    14. പഠിക്കുന്ന സ്കൂളും സ്ഥലവും | School & Location:
+                </label>
+                <input type="text" class="form-control" name="school" placeholder="സ്കൂളും സ്ഥലവും" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required malayalam">
+                    ക്ലാസ് | Class:
+                </label>
+                <select class="form-control" name="schoolclass" required>
+                    <option value="" disabled selected>തിരഞ്ഞെടുക്കുക</option>
+                    <option value="II">II</option>
+                    <option value="III">III</option>
+                    <option value="IV">IV</option>
+                    <option value="V">V</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required malayalam">
+                    16. കുട്ടിയെ തിരിച്ചറിയാനുള്ള അടയാളം | Student's Identification Mark:
+                </label>
+                <input type="text" class="form-control" name="identificationMark" placeholder="തിരിച്ചറിയല്‍ അടയാളം" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label malayalam">
+                    18. കുട്ടിയുടെ ഫോട്ടോ | Student's Photo:
+                </label>
+                <input type="file" class="form-control" id="photoInput" accept="image/*">
+                <small class="text-muted">ഐച്ഛികം - പരമാവധി വലുപ്പം: 5MB</small>
+            </div>
+            
+            <div class="instructions-box">
+                <h4 class="instructions-title malayalam">
+                    <i class="fas fa-file-contract"></i>
+                    പ്രഖ്യാപനം
+                </h4>
+                <p class="malayalam">
+                    എന്‍റെ കുട്ടിയും ഞാനും അല്‍ ഹാഫിള് മമ്മു മുല്ല തഹ്ഫീളുല്‍ ഖുര്‍ആന്‍ കോളേജിന്‍റെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ അല്‍ ഹാഫിള് മമ്മു മുല്ല തഹ്ഫീളുല്‍ ഖുര്‍ആന്‍ കോളേജില്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.
+                </p>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="declarationCheckbox" required>
+                    <label class="form-check-label malayalam" for="declarationCheckbox">
+                        ഞാൻ മുകളിലുള്ള പ്രഖ്യാപനം അംഗീകരിക്കുന്നു
+                    </label>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn-submit" id="submitApplicationBtn">
+                <i class="fas fa-paper-plane me-2"></i>
+                <span class="malayalam">അപേക്ഷ സമർപ്പിക്കുക</span>
+            </button>
+            
+            <div class="button-group">
+                <button type="button" class="btn-secondary" onclick="showDashboard()">
+                    <i class="fas fa-arrow-left me-2"></i>
+                    <span class="malayalam">തിരികെ</span>
+                </button>
+            </div>
+        `;
+
         document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
             // Set max date for DOB inputs
             const today = new Date().toISOString().split('T')[0];
             document.querySelectorAll('input[type="date"]').forEach(input => {
                 input.setAttribute('max', today);
             });
             
-            // Initialize form submissions
+            // Load college info
+            loadCollegeInfo();
+            
+            // Initialize event listeners
             document.getElementById('downloadApplicationForm').addEventListener('submit', handleApplicationSearch);
             document.getElementById('downloadHallticketForm').addEventListener('submit', handleHallticketSearch);
             document.getElementById('checkResultForm').addEventListener('submit', handleResultSearch);
+            
+            // Load application form
+            document.getElementById('newApplicationForm').innerHTML = APPLICATION_FORM_HTML;
             document.getElementById('newApplicationForm').addEventListener('submit', handleNewApplication);
         });
-        
-        function showDashboard() {
-            document.querySelectorAll('.form-container').forEach(form => {
-                form.style.display = 'none';
-            });
-            document.getElementById('dashboardView').style.display = 'block';
+
+        async function loadCollegeInfo() {
+            try {
+                const response = await fetch(`${SCRIPT_URL}?action=getCollegeInfo`);
+                const data = await response.json();
+                if (data.status === 'success') {
+                    const college = data.data;
+                    const tickerItems = [
+                        college.ticker1,
+                        college.ticker2,
+                        college.ticker3,
+                        college.ticker4,
+                        college.ticker5
+                    ].filter(item => item && item.trim() !== '');
+                    
+                    if (tickerItems.length > 0) {
+                        document.getElementById('tickerContent').innerHTML = 
+                            tickerItems.join(' &nbsp;&nbsp;•&nbsp;&nbsp; ');
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading college info:', error);
+            }
         }
-        
+
+        function showDashboard() {
+            document.getElementById('dashboardView').style.display = 'block';
+            document.getElementById('applyNowForm').style.display = 'none';
+            document.getElementById('applicationForm').style.display = 'none';
+            document.getElementById('hallticketForm').style.display = 'none';
+            document.getElementById('resultForm').style.display = 'none';
+        }
+
         function showForm(formId) {
             document.getElementById('dashboardView').style.display = 'none';
-            document.querySelectorAll('.form-container').forEach(form => {
-                form.style.display = 'none';
-            });
+            document.getElementById('applyNowForm').style.display = 'none';
+            document.getElementById('applicationForm').style.display = 'none';
+            document.getElementById('hallticketForm').style.display = 'none';
+            document.getElementById('resultForm').style.display = 'none';
             document.getElementById(formId).style.display = 'block';
         }
-        
+
         function showNotification(message, type = 'info') {
             const notification = document.getElementById('notification');
             const messageEl = document.getElementById('notificationMessage');
-            const icon = notification.querySelector('i');
+            const icon = notification.querySelector('.notification-icon');
             
-            messageEl.textContent = message;
-            
-            // Set color based on type
-            if (type === 'success') {
-                notification.style.borderLeftColor = '#28a745';
-                icon.style.color = '#28a745';
-                icon.className = 'fas fa-check-circle me-3';
-            } else if (type === 'error') {
-                notification.style.borderLeftColor = '#dc3545';
-                icon.style.color = '#dc3545';
-                icon.className = 'fas fa-exclamation-circle me-3';
-            } else {
-                notification.style.borderLeftColor = '#1d29d6';
-                icon.style.color = '#1d29d6';
-                icon.className = 'fas fa-info-circle me-3';
+            switch(type) {
+                case 'success':
+                    icon.className = 'fas fa-check-circle notification-icon';
+                    notification.style.borderLeftColor = '#28a745';
+                    icon.style.color = '#28a745';
+                    break;
+                case 'error':
+                    icon.className = 'fas fa-exclamation-circle notification-icon';
+                    notification.style.borderLeftColor = '#dc3545';
+                    icon.style.color = '#dc3545';
+                    break;
+                default:
+                    icon.className = 'fas fa-info-circle notification-icon';
+                    notification.style.borderLeftColor = '#1d29d6';
+                    icon.style.color = '#1d29d6';
             }
             
+            messageEl.textContent = message;
             notification.style.display = 'block';
+            
             setTimeout(() => {
                 notification.style.display = 'none';
             }, 5000);
         }
-        
+
         function hideNotification() {
             document.getElementById('notification').style.display = 'none';
         }
-        
+
         function showLoading() {
             document.getElementById('loadingOverlay').style.display = 'flex';
         }
-        
+
         function hideLoading() {
             document.getElementById('loadingOverlay').style.display = 'none';
         }
-        
+
         async function handleApplicationSearch(e) {
             e.preventDefault();
             const mobile = document.getElementById('appMobile').value.trim();
             const dob = document.getElementById('appDob').value;
             
             if (!/^\d{10}$/.test(mobile)) {
-                showNotification('Please enter 10 digit mobile number', 'error');
+                showNotification('ദയവായി 10 അക്ക മൊബൈൽ നമ്പർ നൽകുക', 'error');
                 return;
             }
             
@@ -617,27 +944,32 @@
                 const response = await fetch(url);
                 const html = await response.text();
                 
-                const newWindow = window.open('', '_blank');
-                newWindow.document.write(html);
-                newWindow.document.close();
-                
-                showNotification('Application opened in new window', 'success');
-                showDashboard();
+                // Check if response contains error
+                if (html.includes('Error') || html.includes('No record found')) {
+                    showNotification('രേഖകൾ കണ്ടെത്തിയില്ല. ദയവായി വിവരങ്ങൾ പരിശോധിക്കുക', 'error');
+                } else {
+                    const newWindow = window.open('', '_blank');
+                    newWindow.document.write(html);
+                    newWindow.document.close();
+                    showNotification('അപേക്ഷ പുതിയ വിൻഡോയിൽ തുറന്നു', 'success');
+                    e.target.reset();
+                    showDashboard();
+                }
             } catch (error) {
                 console.error('Error:', error);
-                showNotification('Error occurred. Please try again.', 'error');
+                showNotification('പിശക് സംഭവിച്ചു. ദയവായി വീണ്ടും ശ്രമിക്കുക', 'error');
             } finally {
                 hideLoading();
             }
         }
-        
+
         async function handleHallticketSearch(e) {
             e.preventDefault();
             const mobile = document.getElementById('ticketMobile').value.trim();
             const dob = document.getElementById('ticketDob').value;
             
             if (!/^\d{10}$/.test(mobile)) {
-                showNotification('Please enter 10 digit mobile number', 'error');
+                showNotification('ദയവായി 10 അക്ക മൊബൈൽ നമ്പർ നൽകുക', 'error');
                 return;
             }
             
@@ -647,27 +979,31 @@
                 const response = await fetch(url);
                 const html = await response.text();
                 
-                const newWindow = window.open('', '_blank');
-                newWindow.document.write(html);
-                newWindow.document.close();
-                
-                showNotification('Hall ticket opened in new window', 'success');
-                showDashboard();
+                if (html.includes('Error') || html.includes('No record found') || html.includes('Please pay')) {
+                    showNotification('ഹാൾ ടിക്കറ്റ് ലഭ്യമല്ല. ദയവായി വിവരങ്ങൾ പരിശോധിക്കുക', 'error');
+                } else {
+                    const newWindow = window.open('', '_blank');
+                    newWindow.document.write(html);
+                    newWindow.document.close();
+                    showNotification('ഹാൾ ടിക്കറ്റ് പുതിയ വിൻഡോയിൽ തുറന്നു', 'success');
+                    e.target.reset();
+                    showDashboard();
+                }
             } catch (error) {
                 console.error('Error:', error);
-                showNotification('Error occurred. Please try again.', 'error');
+                showNotification('പിശക് സംഭവിച്ചു. ദയവായി വീണ്ടും ശ്രമിക്കുക', 'error');
             } finally {
                 hideLoading();
             }
         }
-        
+
         async function handleResultSearch(e) {
             e.preventDefault();
             const mobile = document.getElementById('resultMobile').value.trim();
             const dob = document.getElementById('resultDob').value;
             
             if (!/^\d{10}$/.test(mobile)) {
-                showNotification('Please enter 10 digit mobile number', 'error');
+                showNotification('ദയവായി 10 അക്ക മൊബൈൽ നമ്പർ നൽകുക', 'error');
                 return;
             }
             
@@ -677,34 +1013,69 @@
                 const response = await fetch(url);
                 const html = await response.text();
                 
-                const newWindow = window.open('', '_blank');
-                newWindow.document.write(html);
-                newWindow.document.close();
-                
-                showNotification('Result opened in new window', 'success');
-                showDashboard();
+                if (html.includes('Error') || html.includes('No record found')) {
+                    showNotification('ഫലങ്ങൾ കണ്ടെത്തിയില്ല. ദയവായി വിവരങ്ങൾ പരിശോധിക്കുക', 'error');
+                } else {
+                    const newWindow = window.open('', '_blank');
+                    newWindow.document.write(html);
+                    newWindow.document.close();
+                    showNotification('ഫലം പുതിയ വിൻഡോയിൽ തുറന്നു', 'success');
+                    e.target.reset();
+                    showDashboard();
+                }
             } catch (error) {
                 console.error('Error:', error);
-                showNotification('Error occurred. Please try again.', 'error');
+                showNotification('പിശക് സംഭവിച്ചു. ദയവായി വീണ്ടും ശ്രമിക്കുക', 'error');
             } finally {
                 hideLoading();
             }
         }
-        
-        // NEW APPLICATION SUBMISSION - SIMPLIFIED
+
+        // New application submission
         async function handleNewApplication(e) {
             e.preventDefault();
             
-            // Basic validation
+            // Validate required fields
+            const requiredFields = [
+                'studentName', 'houseName', 'dob', 'aadhaarNumber',
+                'address', 'phoneNumber', 'fatherName', 'fatherOccupation',
+                'guardianName', 'relationshipWithGuardian', 'madrasa',
+                'madrasaclass', 'school', 'schoolclass', 'identificationMark'
+            ];
+            
+            for (const fieldName of requiredFields) {
+                const field = e.target.querySelector(`[name="${fieldName}"]`);
+                if (field && !field.value.trim()) {
+                    showNotification(`ദയവായി ${fieldName} പൂരിപ്പിക്കുക`, 'error');
+                    field.focus();
+                    return;
+                }
+            }
+            
+            // Validate phone numbers
             const phone = e.target.querySelector('[name="phoneNumber"]').value;
             if (!/^\d{10}$/.test(phone)) {
-                showNotification('Phone number must be 10 digits', 'error');
+                showNotification('ഫോൺ നമ്പർ 10 അക്കമായിരിക്കണം', 'error');
                 return;
             }
             
+            const whatsapp = e.target.querySelector('[name="whatsappNumber"]').value;
+            if (whatsapp && !/^\d{10}$/.test(whatsapp)) {
+                showNotification('വാട്സ്ആപ്പ് നമ്പർ 10 അക്കമായിരിക്കണം', 'error');
+                return;
+            }
+            
+            // Validate Aadhaar
             const aadhaar = e.target.querySelector('[name="aadhaarNumber"]').value;
             if (!/^\d{12}$/.test(aadhaar)) {
-                showNotification('Aadhaar number must be 12 digits', 'error');
+                showNotification('ആധാർ നമ്പർ 12 അക്കമായിരിക്കണം', 'error');
+                return;
+            }
+            
+            // Check declaration
+            const declarationCheckbox = document.getElementById('declarationCheckbox');
+            if (!declarationCheckbox.checked) {
+                showNotification('ദയവായി പ്രഖ്യാപനം അംഗീകരിക്കുക', 'error');
                 return;
             }
             
@@ -712,7 +1083,7 @@
             const formData = new FormData(e.target);
             const data = {};
             for (let [key, value] of formData.entries()) {
-                data[key] = value;
+                data[key] = value.trim();
             }
             
             // Handle photo
@@ -729,7 +1100,7 @@
                     submitApplication(data);
                 };
                 reader.onerror = function() {
-                    showNotification('Error reading photo file', 'error');
+                    showNotification('ഫോട്ടോ ഫയൽ വായിക്കുന്നതിൽ പിശക്', 'error');
                     hideLoading();
                 };
                 reader.readAsDataURL(photoFile);
@@ -741,10 +1112,12 @@
                 // Create URL parameters
                 const params = new URLSearchParams();
                 for (const key in data) {
-                    params.append(key, data[key]);
+                    if (data[key]) {
+                        params.append(key, data[key]);
+                    }
                 }
                 
-                // Add timestamp to prevent caching
+                // Add timestamp
                 params.append('timestamp', Date.now());
                 
                 fetch(SCRIPT_URL, {
@@ -754,29 +1127,24 @@
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.text();
-                })
+                .then(response => response.text())
                 .then(html => {
-                    // Check if submission was successful
                     if (html.includes('Application Submitted') || html.includes('Successfully')) {
                         const win = window.open('', '_blank');
                         win.document.write(html);
                         win.document.close();
                         
-                        showNotification('Application submitted successfully!', 'success');
+                        showNotification('അപേക്ഷ വിജയകരമായി സമർപ്പിച്ചു!', 'success');
                         e.target.reset();
+                        declarationCheckbox.checked = false;
                         showDashboard();
                     } else {
-                        showNotification('Submission failed. Please try again.', 'error');
+                        showNotification('സമർപ്പിക്കുന്നതിൽ പിശക് സംഭവിച്ചു. ദയവായി വീണ്ടും ശ്രമിക്കുക', 'error');
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    showNotification('Network error. Please try again.', 'error');
+                    showNotification('നെറ്റ്വർക്ക് പിശക്. ദയവായി വീണ്ടും ശ്രമിക്കുക', 'error');
                 })
                 .finally(() => {
                     hideLoading();
