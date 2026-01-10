@@ -18,6 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     
     <style>
+        /* All your existing CSS styles remain here */
         :root {
             --primary-blue: #1d29d6;
             --secondary-blue: #0b5ed7;
@@ -722,8 +723,8 @@
         </div>
     </div>
     
-    <!-- Main Container -->
-    <div class="main-container">
+    <!-- Main Container (Dashboard View) -->
+    <div class="main-container" id="mainContainer">
         <!-- Header -->
         <div class="header-card text-center">
             <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="college-logo">
@@ -810,10 +811,7 @@
             
             <div class="instructions-box mb-4">
                 <h4 class="instructions-title"><i class="fas fa-lightbulb"></i> Important Notes</h4>
-                <div id="applyInstructions">യോഗ്യത: സ്കൂള്‍ 7-ാം ക്ലാസ്, സമസ്മതയുടെ മദ്റസ 6-ാം ക്ലാസ് / തത്തുല്യം, ആണ്‍ കുട്ടി</div>
-                <div id="applyInstructions">2025 ഫെബ്രുവരി 26  ബുധനാഴ്ചക്ക് മുമ്പ് അപേക്ഷ സമര്‍പ്പിക്കുക</div>
-                <div id="applyInstructions">സെലക്ഷന്‍ പരീക്ഷ: 2025-December-17, Wed, 10:00 AM</div>
-                <div id="applyInstructions">പ്രവേശന പരീക്ഷാദിനത്തില്‍ ആധാര് കോപ്പി, അപേക്ഷാ ഫീ 250 രൂപ എന്നിവ സ്ഥാപനത്തില്‍ സമർപ്പിക്കുക.</div>
+                <div id="applyInstructions">Loading college information...</div>
             </div>
             
             <form id="newApplicationForm" onsubmit="return handleNewApplicationSubmit(event)">
@@ -830,8 +828,7 @@
                                 </label>
                                 <input type="text" class="form-control" name="studentName" 
                                        placeholder="പൂർണ്ണ പേര് രേഖപ്പെടുത്തുക | Enter full name" 
-                                       required
-                                       oninput="validateField(this, 'name')">
+                                       required>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -853,7 +850,7 @@
                                     3. ജനന തിയ്യതി | Date of Birth:
                                 </label>
                                 <input type="date" class="form-control" name="dob" 
-                                       max="<?php echo date('Y-m-d'); ?>" 
+                                       max="2024-12-31" 
                                        required
                                        onchange="calculateAge(this.value)">
                                 <small class="text-muted" id="ageDisplay"></small>
@@ -868,8 +865,7 @@
                                        placeholder="ആധാര്‍ നമ്പര്‍ രേഖപ്പെടുത്തുക | Enter Aadhaar number" 
                                        required 
                                        pattern="\d{12}" 
-                                       title="Aadhaar number must be 12 digits"
-                                       oninput="validateAadhaar(this)">
+                                       title="Aadhaar number must be 12 digits">
                             </div>
                         </div>
                     </div>
@@ -892,8 +888,7 @@
                                        placeholder="9876543210 | Enter phone number" 
                                        required 
                                        pattern="\d{10}" 
-                                       title="Phone number must be 10 digits"
-                                       oninput="validatePhone(this)">
+                                       title="Phone number must be 10 digits">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -903,8 +898,7 @@
                                 </label>
                                 <input type="tel" class="form-control" name="whatsappNumber" 
                                        placeholder="വാട്‌സ്ആപ്പ് നമ്പര്‍ (വ്യത്യസ്തമെങ്കിൽ) | Enter WhatsApp number (if different)" 
-                                       pattern="\d{10}" 
-                                       title="WhatsApp number must be 10 digits">
+                                       pattern="\d{10}">
                             </div>
                         </div>
                     </div>
@@ -982,7 +976,6 @@
                         <i class="fas fa-graduation-cap me-2"></i>Educational Information
                     </div>
 
-                    <!-- Madrasa Row -->
                     <div class="row mb-4 align-items-end">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -1010,7 +1003,6 @@
                         </div>
                     </div>
 
-                    <!-- School Row -->
                     <div class="row align-items-end">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -1101,8 +1093,7 @@
                                     </label>
                                     <input type="tel" class="form-control" name="headTeacherPhone" 
                                            placeholder="9876543210 | Enter phone number" 
-                                           pattern="\d{10}" 
-                                           title="Phone number must be 10 digits">
+                                           pattern="\d{10}">
                                 </div>
                             </div>
                         </div>
@@ -1245,8 +1236,7 @@
                     <input type="tel" class="form-control" id="appMobile"
                            pattern="\d{10}"
                            placeholder="10 digit mobile number"
-                           required
-                           oninput="validatePhone(this)">
+                           required>
                 </div>
                 
                 <div class="form-group">
@@ -1278,11 +1268,6 @@
                 Hall Ticket Download
             </h2>
             
-            <div class="qrcode-container mb-4" id="qrcodePreview" style="display: none;">
-                <div id="qrcode"></div>
-                <small class="text-muted mt-2">QR Code will be generated with student details</small>
-            </div>
-            
             <form id="downloadHallticketForm" onsubmit="return handleHallticketSubmit(event)">
                 <div class="form-group">
                     <label class="form-label required">
@@ -1292,8 +1277,7 @@
                     <input type="tel" class="form-control" id="ticketMobile"
                            pattern="\d{10}"
                            placeholder="10 digit mobile number"
-                           required
-                           oninput="validatePhone(this)">
+                           required>
                 </div>
                 
                 <div class="form-group">
@@ -1334,8 +1318,7 @@
                     <input type="tel" class="form-control" id="resultMobile"
                            pattern="\d{10}"
                            placeholder="10 digit mobile number"
-                           required
-                           oninput="validatePhone(this)">
+                           required>
                 </div>
                 
                 <div class="form-group">
@@ -1372,19 +1355,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Configuration
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx6W_rJ8d2i_vcAOG9L9Ndl9QhV-mGbnfPUYCtn1WoaAfFb-3k4DY5CHUm08JVwHQuJeg/exec';
-        const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes cache
-        
-        // Cache for college info
-        let collegeInfoCache = {
-            data: null,
-            timestamp: 0
-        };
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxDUg3Pu9tWv9T3cnOxSFtJnGZnx1Ze09t2yZJQshEJmUKgnChkCO-6rzduHGJs2D8RUw/exec';
         
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             initializePage();
-            setupEventListeners();
         });
         
         function initializePage() {
@@ -1397,158 +1372,522 @@
                 input.setAttribute('max', today);
             });
             
-            // Check system status
-            checkSystemStatus();
-            
-            // Load cached college info first
-            loadCachedCollegeInfo();
-            
-            // Load fresh data in background
-            setTimeout(() => {
-                loadCollegeInfo(true);
-            }, 1000);
-            
-            // Initialize QR code placeholder
-            initializeQRCode();
+            // Load college info
+            loadCollegeInfo();
         }
         
-        function setupEventListeners() {
-            // Form submissions
-            document.getElementById('downloadApplicationForm').addEventListener('submit', handleApplicationSubmit);
-            document.getElementById('downloadHallticketForm').addEventListener('submit', handleHallticketSubmit);
-            document.getElementById('checkResultForm').addEventListener('submit', handleResultSubmit);
-            document.getElementById('newApplicationForm').addEventListener('submit', handleNewApplicationSubmit);
-            
-            // Mobile number validation
-            document.querySelectorAll('input[type="tel"]').forEach(input => {
-                input.addEventListener('input', function(e) {
-                    this.value = this.value.replace(/\D/g, '').slice(0, 10);
-                });
-            });
-            
-            // Prevent form submission on Enter key
-            document.querySelectorAll('form').forEach(form => {
-                form.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
-                        e.preventDefault();
-                    }
-                });
-            });
-        }
+        // ============ HTML TEMPLATE FUNCTIONS ============
         
-        // System Status Check
-        async function checkSystemStatus() {
-            try {
-                const response = await fetch(SCRIPT_URL, {
-                    method: 'HEAD',
-                    mode: 'no-cors'
-                });
-                // Update status indicator if exists
-                const statusIndicator = document.getElementById('statusIndicator');
-                if (statusIndicator) {
-                    statusIndicator.className = 'status-indicator status-online';
-                    statusIndicator.innerHTML = '<i class="fas fa-circle"></i><span>System Online</span>';
-                }
-            } catch (error) {
-                const statusIndicator = document.getElementById('statusIndicator');
-                if (statusIndicator) {
-                    statusIndicator.className = 'status-indicator status-offline';
-                    statusIndicator.innerHTML = '<i class="fas fa-circle"></i><span>System Offline - Using Cached Data</span>';
-                }
-            }
-        }
-        
-        // Load cached college info
-        function loadCachedCollegeInfo() {
-            const cached = localStorage.getItem('collegeInfo');
-            if (cached) {
-                try {
-                    const data = JSON.parse(cached);
-                    updateCollegeInfoUI(data);
-                } catch (e) {
-                    console.error('Error loading cached data:', e);
-                }
-            }
-        }
-        
-        // Load college info with cache
-        async function loadCollegeInfo(background = false) {
-            if (!background) showLoading();
+        function generateApplicationHtml(data) {
+            const { collegeInfo, studentData } = data;
+            const isValidPhotoUrl = studentData.photoUrl && studentData.photoUrl.includes('drive.google.com');
             
-            try {
-                // Check cache first
-                const now = Date.now();
-                if (collegeInfoCache.data && now - collegeInfoCache.timestamp < CACHE_DURATION) {
-                    updateCollegeInfoUI(collegeInfoCache.data);
-                    if (!background) hideLoading();
-                    return;
-                }
+            return `
+            <div class="a4-container">
+                <div class="watermark">APPLICATION</div>
+                <div class="document-header">
+                    <img src="${escapeHtml(collegeInfo.logo)}" alt="College Logo" class="document-logo">
+                    <div class="college-info">
+                        <div class="college-arabic">${escapeHtml(collegeInfo.contact)}</div>
+                        <div class="college-name">${escapeHtml(collegeInfo.collegeName)}</div>
+                        <div class="college-details">${escapeHtml(collegeInfo.underOrg)}</div>
+                        <div class="college-details">${escapeHtml(collegeInfo.affiliation)}</div>
+                        <div class="college-details">${escapeHtml(collegeInfo.address)}</div>
+                        <div class="form-title">Admission Application Form</div>
+                    </div>
+                </div>
+                <div class="document-content">
+                    ${isValidPhotoUrl ? `
+                    <div style="position:absolute;top:40px;right:40px;text-align:center;z-index:1;">
+                        <div style="width:150px;height:180px;border:2px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa;display:flex;align-items:center;justify-content:center;">
+                            <img src="${escapeHtml(studentData.photoUrl)}" style="max-width:100%;max-height:100%;object-fit:contain;" alt="Student Photo">
+                        </div>
+                        <div style="font-size:12px;color:#6c757d;margin-top:5px;font-weight:500;">Student Photograph</div>
+                    </div>
+                    ` : ''}
+                    
+                    <div class="section-title">Personal Information</div>
+                    <div class="info-grid" style="margin-right: ${isValidPhotoUrl ? '160px' : '0'};">
+                        <div class="info-item">
+                            <span class="info-label">Application Date:</span>
+                            <span class="info-value">${escapeHtml(studentData.submissionDate)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Application ID:</span>
+                            <span class="info-value">${escapeHtml(studentData.applicationId)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Student's Name:</span>
+                            <span class="info-value">${escapeHtml(studentData.studentName)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">House Name:</span>
+                            <span class="info-value">${escapeHtml(studentData.houseName)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Date of Birth:</span>
+                            <span class="info-value">${escapeHtml(studentData.dob)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Guardian's Name:</span>
+                            <span class="info-value">${escapeHtml(studentData.guardianName)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Address:</span>
+                            <span class="info-value">${escapeHtml(studentData.address)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Phone Number:</span>
+                            <span class="info-value">${escapeHtml(studentData.phoneNumber)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">WhatsApp Number:</span>
+                            <span class="info-value">${escapeHtml(studentData.whatsappNumber)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Aadhaar Number:</span>
+                            <span class="info-value">${escapeHtml(studentData.aadhaarNumber)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Father's Name:</span>
+                            <span class="info-value">${escapeHtml(studentData.fatherName)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Father's Occupation:</span>
+                            <span class="info-value">${escapeHtml(studentData.fatherOccupation)}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="section-title">Educational Information</div>
+                    <div class="info-grid" style="margin-right: ${isValidPhotoUrl ? '160px' : '0'};">
+                        <div class="info-item">
+                            <span class="info-label">Madrasa & Location:</span>
+                            <span class="info-value">${escapeHtml(studentData.madrasa)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Madrasa Class:</span>
+                            <span class="info-value">${escapeHtml(studentData.madrasaclass)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">School & Location:</span>
+                            <span class="info-value">${escapeHtml(studentData.school)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">School Class:</span>
+                            <span class="info-value">${escapeHtml(studentData.schoolclass)}</span>
+                        </div>
+                    </div>
+                    
+                    ${studentData.previousStudy === 'Yes' ? `
+                    <div class="section-title">Previous Study Details</div>
+                    <div class="info-grid" style="margin-right: ${isValidPhotoUrl ? '160px' : '0'};">
+                        <div class="info-item">
+                            <span class="info-label">Previous Institution:</span>
+                            <span class="info-value">${escapeHtml(studentData.previousInstitution)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Duration of Study:</span>
+                            <span class="info-value">${escapeHtml(studentData.studyDuration)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Number of Juz:</span>
+                            <span class="info-value">${escapeHtml(studentData.juzCount)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Head Teacher's Phone:</span>
+                            <span class="info-value">${escapeHtml(studentData.headTeacherPhone)}</span>
+                        </div>
+                    </div>
+                    ` : ''}
+                    
+                    <div class="section-title">Medical & Identification</div>
+                    <div class="info-grid" style="margin-right: ${isValidPhotoUrl ? '160px' : '0'};">
+                        <div class="info-item">
+                            <span class="info-label">Identification Mark:</span>
+                            <span class="info-value">${escapeHtml(studentData.identificationMark)}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Physical Fitness:</span>
+                            <span class="info-value">${escapeHtml(studentData.physicalFitness)}</span>
+                        </div>
+                        ${studentData.illness ? `
+                        <div class="info-item">
+                            <span class="info-label">Illness:</span>
+                            <span class="info-value">${escapeHtml(studentData.illness)}</span>
+                        </div>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="declaration">
+                        <h3 class="declaration-title">Declaration</h3>
+                        <p style="text-align: justify; line-height: 1.4; margin-bottom: 10px; font-size: 11px;">
+                            <strong>${escapeHtml(studentData.studentName)}</strong> S/o <strong>${escapeHtml(studentData.guardianName)}</strong>, 
+                            എന്ന എന്‍റെ കുട്ടിയും ഞാനും ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജിന്‍റെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജില്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.
+                        </p>
+                        
+                        <div class="signature-section">
+                            <div>
+                                <div class="signature-line"></div>
+                                <div style="font-size:10px;">Parent/Guardian's Name & Signature</div>
+                            </div>
+                            <div style="margin-top:10px;text-align:left;">
+                                <p style="font-size:9px;color:#6c757d;">
+                                    Date: ______________________________<br><br>
+                                    Place: _____________________________
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
-                const response = await fetch(`${SCRIPT_URL}?action=getCollegeInfo&t=${now}`);
-                if (!response.ok) throw new Error('Network response was not ok');
+                <div class="document-footer">
+                    <p style="color:#495057;font-size:10px;margin:0;">
+                        <strong>Contact:</strong> ${collegeInfo.phone} | 
+                        <strong>Email:</strong> ${collegeInfo.contactEmail || 'najathshareea@gmail.com'}
+                    </p>
+                </div>
+            </div>
+            
+            <div class="no-print" style="text-align:center;margin-top:10px;padding:10px;">
+                <button onclick="window.print()" style="background:#1d29d6;color:white;border:none;padding:6px 15px;border-radius:5px;font-size:11px;cursor:pointer;margin:2px;">
+                    <i class="fas fa-print"></i> Print
+                </button>
+                <button onclick="showDashboard()" style="background:#6c757d;color:white;border:none;padding:6px 15px;border-radius:5px;font-size:11px;cursor:pointer;margin:2px;">
+                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                </button>
+            </div>`;
+        }
+        
+        function generateHallticketHtml(data) {
+            const { collegeInfo, studentData } = data;
+            const isValidPhotoUrl = studentData.photoUrl && studentData.photoUrl.includes('drive.google.com');
+            
+            // Generate QR Code
+            const qrText = `Name: ${studentData.studentName}, Register No: ${studentData.registerNo}, DoB: ${studentData.dob}, Exam Date: ${collegeInfo.examDate}, Venue: ${collegeInfo.venue}`;
+            const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrText)}`;
+            
+            return `
+            <div class="a4-container">
+                <div class="watermark">HALL TICKET</div>
+                <div class="document-header">
+                    <img src="${escapeHtml(collegeInfo.logo)}" alt="College Logo" class="document-logo">
+                    <div class="college-info">
+                        <div class="college-arabic">${escapeHtml(collegeInfo.contact)}</div>
+                        <div class="college-name">${escapeHtml(collegeInfo.collegeName)}</div>
+                        <div class="college-details">${escapeHtml(collegeInfo.underOrg)}</div>
+                        <div class="college-details">${escapeHtml(collegeInfo.affiliation)}</div>
+                        <div class="college-details">${escapeHtml(collegeInfo.address)}</div>
+                        <div class="hallticket-title">Entrance Exam Hall Ticket</div>
+                    </div>
+                </div>
+                <div class="document-content">
+                    ${isValidPhotoUrl ? `
+                    <div style="position:absolute;top:20px;right:20px;text-align:center;z-index:1;">
+                        <div style="width:140px;height:170px;border:2px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa;display:flex;align-items:center;justify-content:center;">
+                            <img src="${escapeHtml(studentData.photoUrl)}" style="max-width:100%;max-height:100%;object-fit:contain;" alt="Student Photo">
+                        </div>
+                        <div style="font-size:11px;color:#6c757d;margin-top:5px;font-weight:500;">Student Photo</div>
+                    </div>
+                    ` : ''}
+                    
+                    <div class="student-info" style="margin-right: ${isValidPhotoUrl ? '150px' : '0'};">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">Register Number:</span>
+                                <span class="info-value">${escapeHtml(studentData.registerNo)}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Student Name:</span>
+                                <span class="info-value">${escapeHtml(studentData.studentName)}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Date of Birth:</span>
+                                <span class="info-value">${escapeHtml(studentData.dob)}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Age:</span>
+                                <span class="info-value">${escapeHtml(studentData.age)}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">House Name:</span>
+                                <span class="info-value">${escapeHtml(studentData.houseName)}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Address:</span>
+                                <span class="info-value">${escapeHtml(studentData.address)}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Phone Number:</span>
+                                <span class="info-value">${escapeHtml(studentData.phoneNumber)}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exam-wrapper">
+                        <div class="exam-details">
+                            <div class="exam-title">Examination Details</div>
+                            <div class="exam-info">
+                                <div class="exam-item">
+                                    <div class="exam-label">Exam Date</div>
+                                    <div class="exam-value">${escapeHtml(collegeInfo.examDate)}</div>
+                                </div>
+                                <div class="exam-item">
+                                    <div class="exam-label">Reporting Time</div>
+                                    <div class="exam-value">${escapeHtml(collegeInfo.reportingTime)}</div>
+                                </div>
+                                <div class="exam-item">
+                                    <div class="exam-label">Exam Duration</div>
+                                    <div class="exam-value">${escapeHtml(collegeInfo.examDuration)}</div>
+                                </div>
+                                <div class="exam-item">
+                                    <div class="exam-label">Venue</div>
+                                    <div class="exam-value">${escapeHtml(collegeInfo.venue)}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="position:absolute;top:210px;right:20px;text-align:center;z-index:1;">
+                            <div style="width:150px;height:150px;border:2px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa;display:flex;align-items:center;justify-content:center;padding:10px;">
+                                <img src="${qrCodeUrl}" style="max-width:100%;max-height:100%;" alt="QR Code">
+                            </div>
+                            <div style="font-size:11px;color:#6c757d;margin-top:5px;font-weight:500;">QR Code Verification</div>
+                        </div>
+                    </div>
+                    
+                    <table class="signing-table">
+                        <thead>
+                            <tr>
+                                <th>Quran Test</th>
+                                <th>Hifz Test</th>
+                                <th>General Knowledge</th>
+                                <th>Memory Test</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><div style="font-size:10px;color:#6c757d;">Examiner Signature</div></td>
+                                <td><div style="font-size:10px;color:#6c757d;">Examiner Signature</div></td>
+                                <td><div style="font-size:10px;color:#6c757d;">Examiner Signature</div></td>
+                                <td><div style="font-size:10px;color:#6c757d;">Examiner Signature</div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="instructions">
+                        <div class="instructions-title">Important Instructions</div>
+                        <ul class="instructions-list">
+                            <li>Bring this hall ticket to the exam center</li>
+                            <li>Carry any original ID proof (Aadhaar card)</li>
+                            <li>Report at the exam center 30 minutes before exam time</li>
+                            <li>No electronic devices allowed inside exam hall</li>
+                            <li>Only blue/black ballpoint pens are allowed</li>
+                            <li>Follow all instructions given by invigilators</li>
+                            <li>QR code can be scanned for quick verification</li>
+                        </ul>
+                    </div>
+                </div>
                 
-                const data = await response.json();
-                if (data.status === 'success') {
-                    // Update cache
-                    collegeInfoCache = {
-                        data: data.data,
-                        timestamp: now
-                    };
-                    
-                    // Save to localStorage for offline use
-                    localStorage.setItem('collegeInfo', JSON.stringify(data.data));
-                    
-                    updateCollegeInfoUI(data.data);
-                    
-                    if (!background) {
-                        showNotification('Data loaded successfully', 'success');
-                    }
-                }
-            } catch (error) {
-                console.error('Error loading college info:', error);
-                if (!background) {
-                    showNotification('Using cached data. Some features may be limited.', 'warning');
-                }
-            } finally {
-                if (!background) hideLoading();
-            }
+                <div class="document-footer">
+                    <p style="color:#495057;font-size:10px;margin:0;">
+                        <strong>College Contact:</strong> ${collegeInfo.phone} | 
+                        <strong>Email:</strong> ${collegeInfo.contactEmail || 'najathshareea@gmail.com'}
+                    </p>
+                    <p style="color:#6c757d;font-size:9px;margin-top:3px;">
+                        QR Code contains: Name, Register No, DOB, Exam Date, Venue
+                    </p>
+                </div>
+            </div>
+            
+            <div class="no-print" style="text-align:center;margin-top:10px;padding:10px;">
+                <button onclick="window.print()" style="background:#1d29d6;color:white;border:none;padding:6px 15px;border-radius:5px;font-size:11px;cursor:pointer;margin:2px;">
+                    <i class="fas fa-print"></i> Print
+                </button>
+                <button onclick="showDashboard()" style="background:#6c757d;color:white;border:none;padding:6px 15px;border-radius:5px;font-size:11px;cursor:pointer;margin:2px;">
+                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                </button>
+            </div>`;
         }
         
-        function updateCollegeInfoUI(college) {
-            // Update ticker
-            const tickerItems = [
-                college.ticker1, college.ticker2, college.ticker3, 
-                college.ticker4, college.ticker5
-            ].filter(item => item).join(' &nbsp;&nbsp;•&nbsp;&nbsp; ');
+        function generateResultHtml(data) {
+            const { collegeInfo, studentData } = data;
             
-            // Create ticker if not exists
-            let tickerContainer = document.querySelector('.ticker-container');
-            if (!tickerContainer && tickerItems) {
-                tickerContainer = document.createElement('div');
-                tickerContainer.className = 'ticker-container';
-                tickerContainer.innerHTML = `<div class="ticker-content">${tickerItems}</div>`;
-                document.getElementById('dashboardView').prepend(tickerContainer);
-            } else if (tickerContainer) {
-                tickerContainer.innerHTML = `<div class="ticker-content">${tickerItems || '📢 College Admissions Open'}</div>`;
-            }
+            let statusText = "NOT QUALIFIED", statusColor = "#dc3545";
+            if (studentData.result === "QUALIFIED") { statusText = "QUALIFIED"; statusColor = "#28a745"; }
+            else if (studentData.result === "WAITING LIST") { statusText = "WAITING LIST"; statusColor = "#007bff"; }
             
-            // Update instructions
-            const notes = [
-                college.note1, college.note2, college.note3, 
-                college.note4, college.note5
-            ].filter(note => note).join('<br>');
+            const isQualified = studentData.result === "QUALIFIED";
+            const isWaitingList = studentData.result === "WAITING LIST";
+            const isQualifiedOrWaiting = isQualified || isWaitingList;
             
-            const instructionsDiv = document.getElementById('applyInstructions');
-            if (instructionsDiv) {
-                instructionsDiv.innerHTML = notes || '<p>Selection exam date will be announced later. Please ensure all information is accurate.</p>';
-            }
+            return `
+            <div class="a4-container">
+                <div class="watermark">${statusText}</div>
+                <div class="document-header">
+                    <img src="${escapeHtml(collegeInfo.logo)}" alt="College Logo" class="document-logo">
+                    <div class="college-info">
+                        <div class="college-arabic">${escapeHtml(collegeInfo.contact)}</div>
+                        <div class="college-name">${escapeHtml(collegeInfo.collegeName)}</div>
+                        <div class="college-details">${escapeHtml(collegeInfo.underOrg)}</div>
+                        <div class="college-details">${escapeHtml(collegeInfo.affiliation)}</div>
+                        <div class="college-details">${escapeHtml(collegeInfo.address)}</div>
+                        <div class="result-title">Entrance Exam Result</div>
+                    </div>
+                </div>
+                <div class="document-content">
+                    <div class="student-info">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">Student Name:</span>
+                                <span class="info-value">${escapeHtml(studentData.name)}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Mobile Number:</span>
+                                <span class="info-value">${escapeHtml(studentData.mobile)}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Date of Birth:</span>
+                                <span class="info-value">${escapeHtml(studentData.dob)}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Result Status:</span>
+                                <span class="info-value" style="color:${statusColor};font-weight:bold;">${statusText}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-section" style="border-color: ${statusColor};">
+                        <div class="result-status" style="color: ${statusColor};">${statusText}</div>
+                        ${isQualifiedOrWaiting ? `
+                            <div class="result-rank">Rank: ${escapeHtml(studentData.rank)}</div>
+                        ` : ''}
+                        
+                        ${isQualified ? `
+                            <div class="admission-info">
+                                <div class="admission-title">Admission Details</div>
+                                ${collegeInfo.b1Data ? `
+                                    <div class="admission-row">
+                                        <span class="admission-label">Admission Starts:</span>
+                                        <span class="admission-value">${escapeHtml(collegeInfo.b1Data)}</span>
+                                    </div>
+                                ` : ''}
+                                ${collegeInfo.b2Data ? `
+                                    <div class="admission-row">
+                                        <span class="admission-label">Class Starts:</span>
+                                        <span class="admission-value">${escapeHtml(collegeInfo.b2Data)}</span>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        ` : ''}
+                        
+                        ${isQualified && collegeInfo.b4Data ? `
+                            <div class="note-section" style="text-align:left;background:#fff3cd;border-left:4px solid #ffc107;">
+                                <div class="note-title">NB: ${escapeHtml(collegeInfo.b4Data)}</div>
+                                <div class="note-content">${escapeHtml(collegeInfo.b3Data)}</div>
+                            </div>
+                        ` : ''}
+                        
+                        ${isWaitingList && collegeInfo.b5Data ? `
+                            <div class="note-section" style="background:#e8f4ff;border-left:4px solid #007bff;">
+                                <div class="note-title">Note:</div>
+                                <div class="note-content">${escapeHtml(collegeInfo.b3Data)}</div>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+                
+                <div class="document-footer">
+                    <p style="color:#495057;font-size:10px;margin:0;">
+                        <strong>College Contact:</strong> ${collegeInfo.phone} | 
+                        <strong>Email:</strong> ${collegeInfo.contactEmail || 'najathshareea@gmail.com'}
+                    </p>
+                    <p style="color:#6c757d;font-size:9px;margin-top:3px;">
+                        Document ID: RES${new Date().getTime()}
+                    </p>
+                </div>
+            </div>
+            
+            <div class="no-print" style="text-align:center;margin-top:10px;padding:10px;">
+                <button onclick="window.print()" style="background:#1d29d6;color:white;border:none;padding:6px 15px;border-radius:5px;font-size:11px;cursor:pointer;margin:2px;">
+                    <i class="fas fa-print"></i> Print
+                </button>
+                <button onclick="showDashboard()" style="background:#6c757d;color:white;border:none;padding:6px 15px;border-radius:5px;font-size:11px;cursor:pointer;margin:2px;">
+                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                </button>
+            </div>`;
         }
         
-        // View Management
+        function generateConfirmationHtml(response) {
+            const submissionTime = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+            
+            return `
+            <div style="font-family:Arial,sans-serif;padding:20px;background:linear-gradient(135deg,#f8f9fa 0%,#e3f2fd 100%);min-height:100vh;display:flex;justify-content:center;align-items:center;">
+                <div style="background:white;border-radius:20px;padding:40px;box-shadow:0 10px 30px rgba(0,0,0,0.1);border:3px solid #28a745;text-align:center;max-width:700px;width:100%;">
+                    <div style="font-size:60px;color:#28a745;margin-bottom:20px;">✓</div>
+                    <h1 style="color:#28a745;margin-bottom:15px;">Application Submitted Successfully!</h1>
+                    <p style="font-size:18px;color:#666;margin-bottom:20px;">Your admission application has been received and saved to our database.</p>
+                    <div style="font-size:24px;font-weight:bold;color:#1d29d6;background:#f8f9fa;padding:15px;border-radius:10px;margin:20px 0;border:2px dashed #1d29d6;">
+                        Application ID: ${escapeHtml(response.applicationId)}
+                    </div>
+                    <div style="background:#e8f4ff;border-radius:15px;padding:25px;margin:25px 0;text-align:left;border:2px solid #cfe2ff;">
+                        <h3 style="color:#1d29d6;margin-bottom:20px;">Application Details</h3>
+                        <div style="display:flex;margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed #dee2e6;">
+                            <span style="font-weight:bold;width:200px;color:#495057;">Student Name:</span>
+                            <span style="color:#212529;flex:1;">${escapeHtml(response.studentName)}</span>
+                        </div>
+                        <div style="display:flex;margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed #dee2e6;">
+                            <span style="font-weight:bold;width:200px;color:#495057;">Phone Number:</span>
+                            <span style="color:#212529;flex:1;">${escapeHtml(response.phoneNumber)}</span>
+                        </div>
+                        <div style="display:flex;margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed #dee2e6;">
+                            <span style="font-weight:bold;width:200px;color:#495057;">Date of Birth:</span>
+                            <span style="color:#212529;flex:1;">${escapeHtml(response.dob)}</span>
+                        </div>
+                        <div style="display:flex;margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed #dee2e6;">
+                            <span style="font-weight:bold;width:200px;color:#495057;">Father's Name:</span>
+                            <span style="color:#212529;flex:1;">${escapeHtml(response.fatherName)}</span>
+                        </div>
+                        <div style="display:flex;margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed #dee2e6;">
+                            <span style="font-weight:bold;width:200px;color:#495057;">Submission Date:</span>
+                            <span style="color:#212529;flex:1;">${escapeHtml(submissionTime)}</span>
+                        </div>
+                    </div>
+                    <div style="background:#fff3cd;border:1px solid #ffeaa7;padding:15px;border-radius:10px;margin-top:30px;text-align:left;">
+                        <h4 style="color:#856404;margin-bottom:15px;">Important Instructions:</h4>
+                        <ul style="padding-left:20px;margin:0;">
+                            <li style="margin-bottom:8px;">Pay the application fee.</li>
+                            <li style="margin-bottom:8px;">Submit a copy of the Aadhaar card to the institution on the entrance examination day.</li>
+                            <li style="margin-bottom:8px;">You can download your application using your phone number and date of birth</li>
+                            <li>For any queries, contact college office</li>
+                        </ul>
+                    </div>
+                    <button onclick="window.print()" style="background:#0b5ed7;color:white;border:none;padding:12px 30px;border-radius:10px;cursor:pointer;font-size:16px;margin-top:20px;transition:all 0.3s;">
+                        <i class="fas fa-print" style="margin-right:8px;"></i>Print Confirmation
+                    </button>
+                    <div style="text-align:center;margin-top:15px;">
+                        <button onclick="showDashboard()" style="background:#6c757d;color:white;border:none;padding:8px 20px;border-radius:5px;cursor:pointer;font-size:14px;">
+                            <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+                        </button>
+                    </div>
+                </div>
+            </div>`;
+        }
+        
+        // ============ HELPER FUNCTIONS ============
+        
+        function escapeHtml(text) {
+            if (!text) return '';
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return String(text).replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+        
         function showDashboard() {
-            hideAllForms();
-            document.getElementById('dashboardView').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('mainContainer').innerHTML = document.getElementById('mainContainer').getAttribute('data-original-html');
+            initializePage();
         }
         
         function showForm(formId) {
@@ -1556,55 +1895,212 @@
             const form = document.getElementById(formId);
             form.style.display = 'block';
             window.scrollTo({ top: form.offsetTop - 20, behavior: 'smooth' });
-            
-            // Clear QR code when showing hall ticket form
-            if (formId === 'hallticketForm') {
-                clearQRCode();
-            }
         }
         
         function hideAllForms() {
-            document.getElementById('dashboardView').style.display = 'none';
-            document.getElementById('applyNowForm').style.display = 'none';
-            document.getElementById('applicationForm').style.display = 'none';
-            document.getElementById('hallticketForm').style.display = 'none';
-            document.getElementById('resultForm').style.display = 'none';
+            const forms = ['dashboardView', 'applyNowForm', 'applicationForm', 'hallticketForm', 'resultForm'];
+            forms.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.style.display = 'none';
+            });
         }
         
-        // Form Field Validation
-        function validateField(input, type) {
-            const value = input.value.trim();
-            let isValid = true;
+        // ============ API CALL FUNCTIONS ============
+        
+        async function loadCollegeInfo() {
+            try {
+                const response = await fetch(`${SCRIPT_URL}?action=getCollegeInfo`);
+                const data = await response.json();
+                if (data.status === 'success') {
+                    // Update instructions
+                    const notes = [
+                        data.data.note1, data.data.note2, data.data.note3, 
+                        data.data.note4, data.data.note5
+                    ].filter(note => note).join('<br>');
+                    
+                    const instructionsDiv = document.getElementById('applyInstructions');
+                    if (instructionsDiv) {
+                        instructionsDiv.innerHTML = notes || 'Loading college information...';
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading college info:', error);
+            }
+        }
+        
+        async function handleApplicationSubmit(e) {
+            e.preventDefault();
+            showLoading('Searching for application...');
             
-            switch(type) {
-                case 'name':
-                    isValid = value.length >= 3 && /^[a-zA-Z\s\.\-']+$/.test(value);
-                    break;
-                case 'phone':
-                    isValid = /^\d{10}$/.test(value);
-                    break;
-                case 'aadhaar':
-                    isValid = /^\d{12}$/.test(value);
-                    break;
+            const mobile = document.getElementById('appMobile').value.trim();
+            const dob = document.getElementById('appDob').value;
+            
+            try {
+                const response = await fetch(`${SCRIPT_URL}?type=application&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    const html = generateApplicationHtml(data);
+                    document.getElementById('mainContainer').setAttribute('data-original-html', document.getElementById('mainContainer').innerHTML);
+                    document.getElementById('mainContainer').innerHTML = html;
+                    showNotification('Application loaded successfully', 'success');
+                } else {
+                    showNotification(data.message || 'No record found', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('Error occurred. Please try again.', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+        
+        async function handleHallticketSubmit(e) {
+            e.preventDefault();
+            showLoading('Generating hall ticket...');
+            
+            const mobile = document.getElementById('ticketMobile').value.trim();
+            const dob = document.getElementById('ticketDob').value;
+            
+            try {
+                const response = await fetch(`${SCRIPT_URL}?type=hallticket&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    const html = generateHallticketHtml(data);
+                    document.getElementById('mainContainer').setAttribute('data-original-html', document.getElementById('mainContainer').innerHTML);
+                    document.getElementById('mainContainer').innerHTML = html;
+                    showNotification('Hall ticket generated successfully', 'success');
+                } else {
+                    showNotification(data.message || 'No record found or payment pending', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('Error occurred. Please try again.', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+        
+        async function handleResultSubmit(e) {
+            e.preventDefault();
+            showLoading('Fetching results...');
+            
+            const mobile = document.getElementById('resultMobile').value.trim();
+            const dob = document.getElementById('resultDob').value;
+            
+            try {
+                const response = await fetch(`${SCRIPT_URL}?type=result&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    const html = generateResultHtml(data);
+                    document.getElementById('mainContainer').setAttribute('data-original-html', document.getElementById('mainContainer').innerHTML);
+                    document.getElementById('mainContainer').innerHTML = html;
+                    showNotification('Result loaded successfully', 'success');
+                } else {
+                    showNotification(data.message || 'No record found', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('Error occurred. Please try again.', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+        
+        async function handleNewApplicationSubmit(e) {
+            e.preventDefault();
+            showLoading('Submitting application...');
+            
+            const form = e.target;
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Handle photo upload
+            const photoFile = document.getElementById('photoInput').files[0];
+            if (photoFile) {
+                const photoData = await readFileAsBase64(photoFile);
+                data.photo = JSON.stringify({
+                    name: photoFile.name,
+                    mimeType: photoFile.type,
+                    data: photoData.split(',')[1]
+                });
             }
             
-            if (isValid) {
-                input.classList.remove('is-invalid');
-                input.classList.add('is-valid');
-            } else {
-                input.classList.remove('is-valid');
-                input.classList.add('is-invalid');
+            // Submit data
+            const submitData = new URLSearchParams();
+            for (const [key, value] of Object.entries(data)) {
+                if (value !== undefined && value !== null) {
+                    submitData.append(key, value);
+                }
             }
             
-            return isValid;
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: submitData,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    const html = generateConfirmationHtml(result.data);
+                    document.getElementById('mainContainer').setAttribute('data-original-html', document.getElementById('mainContainer').innerHTML);
+                    document.getElementById('mainContainer').innerHTML = html;
+                    showNotification('Application submitted successfully!', 'success');
+                } else {
+                    showNotification(result.message || 'Submission failed', 'error');
+                }
+            } catch (error) {
+                console.error('Submission error:', error);
+                showNotification('Submission failed. Please try again.', 'error');
+            } finally {
+                hideLoading();
+            }
         }
         
-        function validatePhone(input) {
-            return validateField(input, 'phone');
+        // ============ UI HELPER FUNCTIONS ============
+        
+        function showLoading(text = 'Loading...') {
+            document.getElementById('loadingText').textContent = text;
+            document.getElementById('loadingOverlay').style.display = 'flex';
         }
         
-        function validateAadhaar(input) {
-            return validateField(input, 'aadhaar');
+        function hideLoading() {
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }
+        
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            const messageEl = document.getElementById('notificationMessage');
+            const icon = document.getElementById('notificationIcon');
+            
+            notification.className = `notification ${type}`;
+            
+            const icons = {
+                success: 'fa-check-circle',
+                error: 'fa-exclamation-circle',
+                warning: 'fa-exclamation-triangle',
+                info: 'fa-info-circle'
+            };
+            icon.className = `fas ${icons[type]} notification-icon`;
+            
+            messageEl.textContent = message;
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                if (notification.style.display === 'block') {
+                    hideNotification();
+                }
+            }, 5000);
+        }
+        
+        function hideNotification() {
+            document.getElementById('notification').style.display = 'none';
         }
         
         function calculateAge(dobString) {
@@ -1633,35 +2129,28 @@
         
         function togglePreviousStudy(show) {
             const section = document.getElementById('previous-study-section');
-            const inputs = section.querySelectorAll('input, textarea, select');
-            
             if (show) {
                 section.style.display = 'block';
-                inputs.forEach(input => input.required = true);
             } else {
                 section.style.display = 'none';
-                inputs.forEach(input => {
-                    input.required = false;
-                    input.value = '';
-                });
             }
         }
         
         function toggleIllnessSection(show) {
             const section = document.getElementById('illness-section');
-            const textarea = section.querySelector('textarea');
-            
             if (show) {
                 section.style.display = 'block';
-                textarea.required = true;
             } else {
                 section.style.display = 'none';
-                textarea.required = false;
-                textarea.value = '';
             }
         }
         
-        // File Upload Handling
+        function toggleSubmitButton(enabled) {
+            const btn = document.getElementById('submitApplicationBtn');
+            btn.disabled = !enabled;
+        }
+        
+        // File handling functions
         function handleDragOver(e) {
             e.preventDefault();
             e.stopPropagation();
@@ -1693,7 +2182,6 @@
         }
         
         function handleFile(file) {
-            // Validate file
             if (!file.type.startsWith('image/')) {
                 showNotification('Please upload only image files (JPG, PNG)', 'error');
                 return;
@@ -1704,7 +2192,6 @@
                 return;
             }
             
-            // Preview image
             const reader = new FileReader();
             reader.onload = function(e) {
                 const preview = document.getElementById('photoPreview');
@@ -1716,184 +2203,6 @@
             showNotification('Photo uploaded successfully', 'success');
         }
         
-        function toggleSubmitButton(enabled) {
-            const btn = document.getElementById('submitApplicationBtn');
-            btn.disabled = !enabled;
-        }
-        
-        // QR Code Functions
-        function initializeQRCode() {
-            const qrcodeContainer = document.createElement('div');
-            qrcodeContainer.id = 'qrcode';
-            document.getElementById('qrcodePreview').appendChild(qrcodeContainer);
-        }
-        
-        function generateQRCode(data) {
-            clearQRCode();
-            
-            const qrcodeContainer = document.getElementById('qrcodePreview');
-            qrcodeContainer.style.display = 'block';
-            
-            // Create QR code with student data
-            const qrData = JSON.stringify({
-                name: data.studentName,
-                registerNo: data.registerNo,
-                dob: data.dob,
-                examDate: data.examDate,
-                venue: data.venue
-            });
-            
-            new QRCode(document.getElementById("qrcode"), {
-                text: qrData,
-                width: 180,
-                height: 180,
-                colorDark: "#1d29d6",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.H
-            });
-            
-            showNotification('QR Code generated successfully', 'success');
-        }
-        
-        function clearQRCode() {
-            const qrcodeDiv = document.getElementById('qrcode');
-            qrcodeDiv.innerHTML = '';
-            document.getElementById('qrcodePreview').style.display = 'none';
-        }
-        
-        // Form Submission Handlers
-        async function handleApplicationSubmit(e) {
-            e.preventDefault();
-            
-            const mobile = document.getElementById('appMobile').value.trim();
-            const dob = document.getElementById('appDob').value;
-            
-            if (!validatePhone(document.getElementById('appMobile'))) {
-                showNotification('Please enter a valid 10-digit mobile number', 'error');
-                return false;
-            }
-            
-            if (!dob) {
-                showNotification('Please select date of birth', 'error');
-                return false;
-            }
-            
-            await fetchWithProgress(`${SCRIPT_URL}?type=application&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`, 
-                'Searching for application...',
-                'application');
-            
-            return false;
-        }
-        
-        async function handleHallticketSubmit(e) {
-            e.preventDefault();
-            
-            const mobile = document.getElementById('ticketMobile').value.trim();
-            const dob = document.getElementById('ticketDob').value;
-            
-            if (!validatePhone(document.getElementById('ticketMobile'))) {
-                showNotification('Please enter a valid 10-digit mobile number', 'error');
-                return false;
-            }
-            
-            if (!dob) {
-                showNotification('Please select date of birth', 'error');
-                return false;
-            }
-            
-            await fetchWithProgress(`${SCRIPT_URL}?type=hallticket&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`, 
-                'Generating hall ticket...',
-                'hallticket');
-            
-            return false;
-        }
-        
-        async function handleResultSubmit(e) {
-            e.preventDefault();
-            
-            const mobile = document.getElementById('resultMobile').value.trim();
-            const dob = document.getElementById('resultDob').value;
-            
-            if (!validatePhone(document.getElementById('resultMobile'))) {
-                showNotification('Please enter a valid 10-digit mobile number', 'error');
-                return false;
-            }
-            
-            if (!dob) {
-                showNotification('Please select date of birth', 'error');
-                return false;
-            }
-            
-            await fetchWithProgress(`${SCRIPT_URL}?type=result&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`, 
-                'Fetching results...',
-                'result');
-            
-            return false;
-        }
-        
-        async function handleNewApplicationSubmit(e) {
-            e.preventDefault();
-            
-            // Validate all required fields
-            const form = e.target;
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-            
-            // Additional validations
-            if (data.previousStudy === 'Yes') {
-                const requiredFields = ['previousInstitution', 'studyDuration', 'juzCount', 'reasonForLeaving', 'headTeacherPhone'];
-                for (const field of requiredFields) {
-                    if (!data[field] || data[field].trim() === '') {
-                        showNotification(`Please fill all previous study details`, 'error');
-                        return false;
-                    }
-                }
-            }
-            
-            if (data.physicalFitness === 'Medication' && (!data.illness || data.illness.trim() === '')) {
-                showNotification('Please describe the illness when selecting "Regular Medication"', 'error');
-                return false;
-            }
-            
-            if (data.whatsappNumber && !/^\d{10}$/.test(data.whatsappNumber)) {
-                showNotification('WhatsApp number must be 10 digits if provided', 'error');
-                return false;
-            }
-            
-            // Check declaration
-            if (!document.getElementById('declarationCheckbox').checked) {
-                showNotification('Please agree to the declaration by checking the box', 'error');
-                return false;
-            }
-            
-            // Handle photo upload
-            const photoFile = document.getElementById('photoInput').files[0];
-            let photoData = null;
-            
-            if (photoFile) {
-                photoData = await readFileAsBase64(photoFile);
-                data.photo = JSON.stringify({
-                    name: photoFile.name,
-                    mimeType: photoFile.type,
-                    data: photoData.split(',')[1]
-                });
-            }
-            
-            // Prepare data for submission
-            const submitData = new URLSearchParams();
-            for (const [key, value] of Object.entries(data)) {
-                if (value !== undefined && value !== null) {
-                    submitData.append(key, value);
-                }
-            }
-            
-            // Submit with progress tracking
-            await submitWithProgress(submitData, 'Submitting application...');
-            
-            return false;
-        }
-        
-        // File reading helper
         function readFileAsBase64(file) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
@@ -1902,206 +2211,6 @@
                 reader.readAsDataURL(file);
             });
         }
-        
-        // Enhanced fetch with progress and retry
-        async function fetchWithProgress(url, loadingText, type = 'generic') {
-            showLoading(loadingText);
-            
-            try {
-                const response = await fetch(url);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const html = await response.text();
-                
-                if (html.includes('Error') || html.includes('not found') || html.includes('Please pay')) {
-                    throw new Error('Record not found or payment pending');
-                }
-                
-                // Open in new window
-                const newWindow = window.open('', '_blank');
-                newWindow.document.write(html);
-                newWindow.document.close();
-                
-                showNotification(`${type.charAt(0).toUpperCase() + type.slice(1)} opened successfully`, 'success');
-                
-                // Reset form and show dashboard
-                document.querySelector(`#${type}Form`).reset();
-                showDashboard();
-                
-            } catch (error) {
-                console.error('Error:', error);
-                
-                if (error.message.includes('Record not found') || error.message.includes('payment pending')) {
-                    showNotification(error.message, 'warning');
-                } else if (error.message.includes('NetworkError')) {
-                    showNotification('Network error. Please check your connection and try again.', 'error');
-                } else {
-                    showNotification('Error occurred. Please try again.', 'error');
-                }
-                
-            } finally {
-                hideLoading();
-            }
-        }
-        
-        async function submitWithProgress(data, loadingText) {
-            showLoading(loadingText);
-            showProgress();
-            
-            try {
-                // Simulate progress for better UX
-                simulateProgress();
-                
-                const response = await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    body: data,
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    }
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const html = await response.text();
-                
-                if (html.includes('Application Submitted Successfully') || html.includes('Application ID:')) {
-                    // Complete progress
-                    document.getElementById('progressBar').style.width = '100%';
-                    
-                    setTimeout(() => {
-                        const win = window.open('', '_blank');
-                        win.document.write(html);
-                        win.document.close();
-                        
-                        showNotification('Application submitted successfully!', 'success');
-                        
-                        // Reset form
-                        document.getElementById('newApplicationForm').reset();
-                        document.getElementById('photoPreview').style.display = 'none';
-                        document.getElementById('declarationCheckbox').checked = false;
-                        toggleSubmitButton(false);
-                        
-                        // Hide previous sections
-                        togglePreviousStudy(false);
-                        toggleIllnessSection(false);
-                        
-                        showDashboard();
-                        
-                    }, 500);
-                } else {
-                    throw new Error('Submission failed');
-                }
-                
-            } catch (error) {
-                console.error('Submission error:', error);
-                
-                if (error.message.includes('NetworkError')) {
-                    showNotification('Network error. Your data was saved locally. Please try again later.', 'error');
-                    
-                    // Save data locally for retry
-                    const formData = new FormData(document.getElementById('newApplicationForm'));
-                    const localData = Object.fromEntries(formData.entries());
-                    localStorage.setItem('pendingApplication', JSON.stringify(localData));
-                    
-                } else {
-                    showNotification('Submission failed. Please try again.', 'error');
-                }
-                
-            } finally {
-                hideProgress();
-                hideLoading();
-            }
-        }
-        
-        // UI Helpers
-        function showLoading(text = 'Loading...') {
-            document.getElementById('loadingText').textContent = text;
-            document.getElementById('loadingOverlay').style.display = 'flex';
-        }
-        
-        function hideLoading() {
-            document.getElementById('loadingOverlay').style.display = 'none';
-        }
-        
-        function showProgress() {
-            document.getElementById('progressContainer').style.display = 'block';
-            document.getElementById('progressBar').style.width = '0%';
-        }
-        
-        function hideProgress() {
-            document.getElementById('progressContainer').style.display = 'none';
-        }
-        
-        function simulateProgress() {
-            let width = 0;
-            const interval = setInterval(() => {
-                if (width >= 90) {
-                    clearInterval(interval);
-                } else {
-                    width += Math.random() * 10;
-                    document.getElementById('progressBar').style.width = width + '%';
-                }
-            }, 300);
-        }
-        
-        function showNotification(message, type = 'info') {
-            const notification = document.getElementById('notification');
-            const messageEl = document.getElementById('notificationMessage');
-            const icon = document.getElementById('notificationIcon');
-            
-            // Set type
-            notification.className = `notification ${type}`;
-            
-            // Set icon
-            const icons = {
-                success: 'fa-check-circle',
-                error: 'fa-exclamation-circle',
-                warning: 'fa-exclamation-triangle',
-                info: 'fa-info-circle'
-            };
-            icon.className = `fas ${icons[type]} notification-icon`;
-            
-            // Set message
-            messageEl.textContent = message;
-            
-            // Show
-            notification.style.display = 'block';
-            
-            // Auto-hide after 5 seconds
-            setTimeout(() => {
-                if (notification.style.display === 'block') {
-                    hideNotification();
-                }
-            }, 5000);
-        }
-        
-        function hideNotification() {
-            document.getElementById('notification').style.display = 'none';
-        }
-        
-        function formatTime(date) {
-            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        }
-        
-        // Handle offline data submission
-        function checkPendingApplications() {
-            const pending = localStorage.getItem('pendingApplication');
-            if (pending) {
-                if (confirm('You have a pending application. Would you like to submit it now?')) {
-                    // Submit pending application
-                    const data = JSON.parse(pending);
-                    // Implementation for retrying submission
-                }
-            }
-        }
-        
-        // Check for pending applications on page load
-        setTimeout(checkPendingApplications, 2000);
     </script>
 </body>
 </html>
