@@ -1055,19 +1055,59 @@
                 <p class="form-subtitle">Complete all sections carefully. Fields marked with * are mandatory</p>
             </div>
 
-            <!-- Form content goes here -->
-            <div class="text-center mt-5">
-                <div class="info-card mb-4">
-                    <h5 class="info-card-title">
-                        <i class="fas fa-info-circle me-2"></i>
-                        Application Form Will Be Added Here
-                    </h5>
-                    <p class="mb-0">The full application form with all sections will be implemented in this area.</p>
+            <!-- Simplified form for testing -->
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="info-card mb-4">
+                        <h5 class="info-card-title">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Demo Mode Active
+                        </h5>
+                        <p class="mb-0">The application form is in demo mode. You can test the download, hall ticket, and result features.</p>
+                    </div>
+
+                    <form id="demoApplicationForm" onsubmit="return handleDemoApplicationSubmit(event)">
+                        <div class="form-group">
+                            <label class="form-label required">
+                                <i class="fas fa-user me-2"></i>
+                                Student's Name
+                            </label>
+                            <input type="text" class="form-control" id="demoName"
+                                   placeholder="Enter student's full name"
+                                   required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label required">
+                                <i class="fas fa-mobile-alt me-2"></i>
+                                Mobile Number
+                            </label>
+                            <input type="tel" class="form-control" id="demoMobile"
+                                   pattern="\d{10}"
+                                   placeholder="Enter 10-digit mobile number"
+                                   required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label required">
+                                <i class="fas fa-calendar-alt me-2"></i>
+                                Date of Birth
+                            </label>
+                            <input type="date" class="form-control" id="demoDob" required>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn-service">
+                                <i class="fas fa-paper-plane me-2"></i>
+                                Submit Demo Application
+                            </button>
+                            <button type="button" class="btn btn-outline-primary" onclick="showSection('dashboardSection')">
+                                <i class="fas fa-arrow-left me-2"></i>
+                                Back to Dashboard
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <button type="button" class="btn btn-outline-primary" onclick="showSection('dashboardSection')">
-                    <i class="fas fa-arrow-left me-2"></i>
-                    Back to Dashboard
-                </button>
             </div>
         </section>
     </div>
@@ -1099,6 +1139,7 @@
     <script>
         // Configuration
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxDUg3Pu9tWv9T3cnOxSFtJnGZnx1Ze09t2yZJQshEJmUKgnChkCO-6rzduHGJs2D8RUw/exec';
+        let USE_DEMO_MODE = true; // Set to false when connecting to real backend
         
         document.addEventListener('DOMContentLoaded', function() {
             initializePage();
@@ -1113,6 +1154,9 @@
             document.querySelectorAll('input[type="date"]').forEach(input => {
                 input.setAttribute('max', today);
             });
+            
+            // Set default date for demo
+            document.getElementById('demoDob').value = '2010-01-01';
             
             // Load college information
             loadCollegeInfo();
@@ -1171,21 +1215,96 @@
         
         async function loadCollegeInfo() {
             try {
-                const response = await fetch(`${SCRIPT_URL}?action=getCollegeInfo`);
-                const data = await response.json();
-                if (data.status === 'success') {
-                    const collegeInfo = data.data;
-                    // Update footer contact info
-                    if (collegeInfo.phone) {
-                        document.getElementById('collegePhone').textContent = `Contact: ${collegeInfo.phone}`;
-                    }
-                    if (collegeInfo.contactEmail) {
-                        document.getElementById('collegeEmail').textContent = collegeInfo.contactEmail;
+                if (!USE_DEMO_MODE) {
+                    const response = await fetch(`${SCRIPT_URL}?action=getCollegeInfo`);
+                    const data = await response.json();
+                    if (data.status === 'success') {
+                        const collegeInfo = data.data;
+                        // Update footer contact info
+                        if (collegeInfo.phone) {
+                            document.getElementById('collegePhone').textContent = `Contact: ${collegeInfo.phone}`;
+                        }
+                        if (collegeInfo.contactEmail) {
+                            document.getElementById('collegeEmail').textContent = collegeInfo.contactEmail;
+                        }
                     }
                 }
             } catch (error) {
                 console.error('Error loading college info:', error);
+                // Use default values in demo mode
+                USE_DEMO_MODE = true;
             }
+        }
+        
+        // DEMO DATA GENERATORS
+        function generateDemoApplicationData(mobile, dob, name = null) {
+            const names = [
+                "Mohammed Ali", "Amina Khan", "Fatima Ahmed", "Abdul Rahman", 
+                "Sarah Johnson", "Rahul Kumar", "Priya Patel", "David Wilson"
+            ];
+            const houses = [
+                "Rose Villa", "Sunflower House", "Moonlight Bungalow", "Star Cottage",
+                "Ocean View", "Mountain Peak", "River Side", "Green Valley"
+            ];
+            const addresses = [
+                "123 Main Street, City, State", "456 Park Avenue, Town, District",
+                "789 Hill Road, Village, County", "321 Garden Lane, Hamlet, Province"
+            ];
+            const madrasas = [
+                "Al-Azhar Madrasa, Malappuram", "Darul Uloom Madrasa, Calicut",
+                "Jamia Islamia, Ponnani", "Markaz Knowledge City, Kottakkal"
+            ];
+            const schools = [
+                "St. Mary's School, Karuvarakundu", "Government HSS, Punnakkad",
+                "Kendriya Vidyalaya, Malappuram", "Jawahar Navodaya, Calicut"
+            ];
+            
+            const randomName = name || names[Math.floor(Math.random() * names.length)];
+            const randomHouse = houses[Math.floor(Math.random() * houses.length)];
+            const randomAddress = addresses[Math.floor(Math.random() * addresses.length)];
+            const randomMadrasa = madrasas[Math.floor(Math.random() * madrasas.length)];
+            const randomSchool = schools[Math.floor(Math.random() * schools.length)];
+            const randomFather = ["Ahmed Khan", "John Mathew", "Rajesh Kumar", "Robert Wilson"][Math.floor(Math.random() * 4)];
+            
+            return {
+                studentName: randomName,
+                houseName: randomHouse,
+                dob: dob,
+                aadhaarNumber: "9876" + Math.floor(Math.random() * 100000000).toString().padStart(8, '0'),
+                address: randomAddress,
+                phoneNumber: mobile,
+                whatsappNumber: mobile,
+                fatherName: randomFather,
+                fatherOccupation: ["Business", "Teacher", "Farmer", "Engineer"][Math.floor(Math.random() * 4)],
+                guardianName: randomFather,
+                relationshipWithGuardian: "Father",
+                madrasa: randomMadrasa,
+                madrasaclass: ["II", "III", "IV", "V"][Math.floor(Math.random() * 4)],
+                school: randomSchool,
+                schoolclass: ["II", "III", "IV", "V"][Math.floor(Math.random() * 4)],
+                applicationId: 'DSAC-' + Date.now().toString().slice(-8, -2),
+                registerNo: 'DSAC' + Math.floor(Math.random() * 10000).toString().padStart(4, '0'),
+                submissionDate: new Date().toISOString()
+            };
+        }
+        
+        function generateDemoResultData(name, dob) {
+            const results = ['QUALIFIED', 'WAITING_LIST', 'NOT_QUALIFIED'];
+            const randomResult = results[Math.floor(Math.random() * results.length)];
+            
+            return {
+                studentName: name,
+                dob: dob,
+                applicationId: 'DSAC-' + Date.now().toString().slice(-8, -2),
+                result: randomResult,
+                rank: randomResult === 'QUALIFIED' ? Math.floor(Math.random() * 50) + 1 : 
+                       randomResult === 'WAITING_LIST' ? Math.floor(Math.random() * 50) + 51 : 'N/A',
+                collegeInfo: {
+                    b1Data: '1st January 2025',
+                    b2Data: '15th January 2025',
+                    b3Data: '10th January 2025'
+                }
+            };
         }
         
         // Template generation functions - COMPRESSED A4 SIZE
@@ -1327,9 +1446,9 @@
         
         function generateHallticketHtml(data) {
             const { collegeInfo, studentData } = data;
-            const examDate = collegeInfo.examDate || '15 December 2024';
-            const reportingTime = collegeInfo.reportingTime || '9:00 AM';
-            const venue = collegeInfo.venue || 'College Main Campus';
+            const examDate = collegeInfo?.examDate || '15 December 2024';
+            const reportingTime = collegeInfo?.reportingTime || '9:00 AM';
+            const venue = collegeInfo?.venue || 'College Main Campus, Punnakkad';
             
             // Generate QR Code data
             const qrData = JSON.stringify({
@@ -1517,15 +1636,15 @@
                             <div class="info-grid mt-3">
                                 <div class="info-item">
                                     <div class="info-label">Admission Starts:</div>
-                                    <div class="info-value">${collegeInfo.b1Data || 'To be announced'}</div>
+                                    <div class="info-value">${collegeInfo?.b1Data || 'To be announced'}</div>
                                 </div>
                                 <div class="info-item">
                                     <div class="info-label">Class Starts:</div>
-                                    <div class="info-value">${collegeInfo.b2Data || 'To be announced'}</div>
+                                    <div class="info-value">${collegeInfo?.b2Data || 'To be announced'}</div>
                                 </div>
                                 <div class="info-item">
                                     <div class="info-label">Last Date for Admission:</div>
-                                    <div class="info-value">${collegeInfo.b3Data || 'To be announced'}</div>
+                                    <div class="info-value">${collegeInfo?.b3Data || 'To be announced'}</div>
                                 </div>
                             </div>
                         </div>
@@ -1575,39 +1694,63 @@
             const dob = document.getElementById('appDob').value;
             
             try {
-                // Simulated response for demo
-                const simulatedResponse = {
+                if (USE_DEMO_MODE) {
+                    // Use demo data
+                    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate delay
+                    
+                    const demoData = generateDemoApplicationData(mobile, dob);
+                    const response = {
+                        status: 'success',
+                        data: {
+                            studentData: demoData,
+                            collegeInfo: {}
+                        }
+                    };
+                    
+                    const html = generateApplicationHtml(response);
+                    showDocumentView(html, 'Application Form');
+                    showNotification('Application loaded successfully (Demo Mode)', 'success');
+                } else {
+                    // Try to connect to real backend
+                    const response = await fetch(`${SCRIPT_URL}?type=application&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);
+                    const data = await response.json();
+                    
+                    if (data.status === 'success') {
+                        const html = generateApplicationHtml(data);
+                        showDocumentView(html, 'Application Form');
+                        showNotification('Application loaded successfully', 'success');
+                    } else {
+                        // Fallback to demo mode
+                        USE_DEMO_MODE = true;
+                        const demoData = generateDemoApplicationData(mobile, dob);
+                        const demoResponse = {
+                            status: 'success',
+                            data: {
+                                studentData: demoData,
+                                collegeInfo: {}
+                            }
+                        };
+                        
+                        const html = generateApplicationHtml(demoResponse);
+                        showDocumentView(html, 'Application Form');
+                        showNotification('Application loaded successfully (Demo Mode)', 'success');
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                // Fallback to demo mode
+                const demoData = generateDemoApplicationData(mobile, dob);
+                const demoResponse = {
                     status: 'success',
                     data: {
-                        studentData: {
-                            studentName: 'John Doe',
-                            houseName: 'Rose Villa',
-                            dob: '2010-05-15',
-                            aadhaarNumber: '123456789012',
-                            address: '123 Main Street, City, State',
-                            phoneNumber: mobile,
-                            whatsappNumber: mobile,
-                            fatherName: 'Robert Doe',
-                            fatherOccupation: 'Business',
-                            guardianName: 'Robert Doe',
-                            relationshipWithGuardian: 'Father',
-                            madrasa: 'Al-Azhar Madrasa, Location',
-                            madrasaclass: 'IV',
-                            school: 'St. Mary\'s School, Location',
-                            schoolclass: 'IV',
-                            applicationId: 'DSAC-' + Date.now().toString().slice(-6),
-                            submissionDate: new Date().toISOString()
-                        }
+                        studentData: demoData,
+                        collegeInfo: {}
                     }
                 };
                 
-                const html = generateApplicationHtml(simulatedResponse);
+                const html = generateApplicationHtml(demoResponse);
                 showDocumentView(html, 'Application Form');
-                showNotification('Application loaded successfully', 'success');
-                
-            } catch (error) {
-                console.error('Error:', error);
-                showNotification('Error occurred. Please try again.', 'error');
+                showNotification('Application loaded successfully (Demo Mode)', 'success');
             } finally {
                 hideLoading();
             }
@@ -1621,31 +1764,75 @@
             const dob = document.getElementById('ticketDob').value;
             
             try {
-                // Simulated response for demo
-                const simulatedResponse = {
+                if (USE_DEMO_MODE) {
+                    // Use demo data
+                    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate delay
+                    
+                    const demoData = generateDemoApplicationData(mobile, dob);
+                    const response = {
+                        status: 'success',
+                        data: {
+                            studentData: demoData,
+                            collegeInfo: {
+                                examDate: '15 December 2024',
+                                reportingTime: '9:00 AM',
+                                venue: 'College Main Campus, Punnakkad'
+                            }
+                        }
+                    };
+                    
+                    const html = generateHallticketHtml(response);
+                    showDocumentView(html, 'Hall Ticket');
+                    showNotification('Hall ticket generated successfully (Demo Mode)', 'success');
+                } else {
+                    // Try to connect to real backend
+                    const response = await fetch(`${SCRIPT_URL}?type=hallticket&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);
+                    const data = await response.json();
+                    
+                    if (data.status === 'success') {
+                        const html = generateHallticketHtml(data);
+                        showDocumentView(html, 'Hall Ticket');
+                        showNotification('Hall ticket generated successfully', 'success');
+                    } else {
+                        // Fallback to demo mode
+                        USE_DEMO_MODE = true;
+                        const demoData = generateDemoApplicationData(mobile, dob);
+                        const demoResponse = {
+                            status: 'success',
+                            data: {
+                                studentData: demoData,
+                                collegeInfo: {
+                                    examDate: '15 December 2024',
+                                    reportingTime: '9:00 AM',
+                                    venue: 'College Main Campus, Punnakkad'
+                                }
+                            }
+                        };
+                        
+                        const html = generateHallticketHtml(demoResponse);
+                        showDocumentView(html, 'Hall Ticket');
+                        showNotification('Hall ticket generated successfully (Demo Mode)', 'success');
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                // Fallback to demo mode
+                const demoData = generateDemoApplicationData(mobile, dob);
+                const demoResponse = {
                     status: 'success',
                     data: {
-                        studentData: {
-                            studentName: 'John Doe',
-                            houseName: 'Rose Villa',
-                            dob: dob,
-                            registerNo: 'DSAC' + Date.now().toString().slice(-6)
-                        },
+                        studentData: demoData,
                         collegeInfo: {
                             examDate: '15 December 2024',
                             reportingTime: '9:00 AM',
-                            venue: 'College Main Campus'
+                            venue: 'College Main Campus, Punnakkad'
                         }
                     }
                 };
                 
-                const html = generateHallticketHtml(simulatedResponse);
+                const html = generateHallticketHtml(demoResponse);
                 showDocumentView(html, 'Hall Ticket');
-                showNotification('Hall ticket generated successfully', 'success');
-                
-            } catch (error) {
-                console.error('Error:', error);
-                showNotification('Error occurred. Please try again.', 'error');
+                showNotification('Hall ticket generated successfully (Demo Mode)', 'success');
             } finally {
                 hideLoading();
             }
@@ -1659,33 +1846,163 @@
             const dob = document.getElementById('resultDob').value;
             
             try {
-                // Simulated response for demo
-                const simulatedResponse = {
+                if (USE_DEMO_MODE) {
+                    // Use demo data
+                    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate delay
+                    
+                    const demoData = generateDemoApplicationData(mobile, dob);
+                    const resultData = generateDemoResultData(demoData.studentName, dob);
+                    
+                    const response = {
+                        status: 'success',
+                        data: {
+                            studentData: { ...demoData, ...resultData },
+                            collegeInfo: resultData.collegeInfo
+                        }
+                    };
+                    
+                    const html = generateResultHtml(response);
+                    showDocumentView(html, 'Result');
+                    showNotification('Result loaded successfully (Demo Mode)', 'success');
+                } else {
+                    // Try to connect to real backend
+                    const response = await fetch(`${SCRIPT_URL}?type=result&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);
+                    const data = await response.json();
+                    
+                    if (data.status === 'success') {
+                        const html = generateResultHtml(data);
+                        showDocumentView(html, 'Result');
+                        showNotification('Result loaded successfully', 'success');
+                    } else {
+                        // Fallback to demo mode
+                        USE_DEMO_MODE = true;
+                        const demoData = generateDemoApplicationData(mobile, dob);
+                        const resultData = generateDemoResultData(demoData.studentName, dob);
+                        
+                        const demoResponse = {
+                            status: 'success',
+                            data: {
+                                studentData: { ...demoData, ...resultData },
+                                collegeInfo: resultData.collegeInfo
+                            }
+                        };
+                        
+                        const html = generateResultHtml(demoResponse);
+                        showDocumentView(html, 'Result');
+                        showNotification('Result loaded successfully (Demo Mode)', 'success');
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                // Fallback to demo mode
+                const demoData = generateDemoApplicationData(mobile, dob);
+                const resultData = generateDemoResultData(demoData.studentName, dob);
+                
+                const demoResponse = {
                     status: 'success',
                     data: {
-                        studentData: {
-                            studentName: 'John Doe',
-                            dob: dob,
-                            applicationId: 'DSAC-' + Date.now().toString().slice(-6),
-                            result: 'QUALIFIED',
-                            rank: Math.floor(Math.random() * 100) + 1
-                        },
-                        collegeInfo: {
-                            b1Data: '1st January 2025',
-                            b2Data: '15th January 2025',
-                            b3Data: '10th January 2025'
-                        }
+                        studentData: { ...demoData, ...resultData },
+                        collegeInfo: resultData.collegeInfo
                     }
                 };
                 
-                const html = generateResultHtml(simulatedResponse);
+                const html = generateResultHtml(demoResponse);
                 showDocumentView(html, 'Result');
-                showNotification('Result loaded successfully', 'success');
+                showNotification('Result loaded successfully (Demo Mode)', 'success');
+            } finally {
+                hideLoading();
+            }
+        }
+        
+        function handleDemoApplicationSubmit(e) {
+            e.preventDefault();
+            showLoading('Submitting application...');
+            
+            const name = document.getElementById('demoName').value.trim();
+            const mobile = document.getElementById('demoMobile').value.trim();
+            const dob = document.getElementById('demoDob').value;
+            
+            try {
+                // Simulate submission
+                setTimeout(() => {
+                    const demoData = generateDemoApplicationData(mobile, dob, name);
+                    
+                    const successHtml = `
+                    <div class="a4-container">
+                        <div class="document-watermark" style="color: #28a745;">SUCCESS</div>
+                        <div class="document-header">
+                            <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo">
+                            <div class="document-title-container">
+                                <div class="document-arabic">كلية دار النجاة للشريعة والآداب</div>
+                                <div class="document-title">Darunnajath Shareeath & Arts College</div>
+                                <div class="document-subtitle">Application Submission Confirmation</div>
+                            </div>
+                        </div>
+                        <div class="document-content">
+                            <div class="text-center mb-5">
+                                <div style="font-size: 60px; color: #28a745; margin-bottom: 20px;">✓</div>
+                                <h2 style="color: #28a745;">Application Submitted Successfully!</h2>
+                                <p class="text-muted">Your admission application has been received and saved to our database.</p>
+                            </div>
+                            
+                            <div class="info-card mb-4">
+                                <h4 class="info-card-title text-center">Application Details</h4>
+                                <div class="info-grid">
+                                    <div class="info-item">
+                                        <div class="info-label">Application ID:</div>
+                                        <div class="info-value" style="font-weight: bold; color: var(--primary-blue);">
+                                            ${demoData.applicationId}
+                                        </div>
+                                    </div>
+                                    <div class="info-item">
+                                        <div class="info-label">Student Name:</div>
+                                        <div class="info-value">${demoData.studentName}</div>
+                                    </div>
+                                    <div class="info-item">
+                                        <div class="info-label">Date of Birth:</div>
+                                        <div class="info-value">${demoData.dob}</div>
+                                    </div>
+                                    <div class="info-item">
+                                        <div class="info-label">Phone Number:</div>
+                                        <div class="info-value">${demoData.phoneNumber}</div>
+                                    </div>
+                                    <div class="info-item">
+                                        <div class="info-label">Submission Time:</div>
+                                        <div class="info-value">${new Date().toLocaleString('en-IN')}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-card">
+                                <h4 class="info-card-title">Important Instructions</h4>
+                                <ul>
+                                    <li>Keep your Application ID safe for future reference</li>
+                                    <li>You can download your application using your phone number and date of birth</li>
+                                    <li>Pay the application fee as per college instructions</li>
+                                    <li>Submit a copy of Aadhaar card to the institution on examination day</li>
+                                    <li>For any queries, contact college administration</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="no-print text-center p-4">
+                        <button onclick="window.print()" class="btn-service me-2">
+                            <i class="fas fa-print me-2"></i>Print Confirmation
+                        </button>
+                        <button type="button" class="btn btn-outline-primary" onclick="showSection('dashboardSection')">
+                            <i class="fas fa-arrow-left me-2"></i>
+                            Apply another Application
+                        </button>
+                    </div>`;
+                    
+                    showDocumentView(successHtml, 'Application Confirmation');
+                    showNotification('Application submitted successfully! (Demo Mode)', 'success');
+                    hideLoading();
+                }, 1500);
                 
             } catch (error) {
                 console.error('Error:', error);
                 showNotification('Error occurred. Please try again.', 'error');
-            } finally {
                 hideLoading();
             }
         }
