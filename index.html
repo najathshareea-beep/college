@@ -1306,7 +1306,7 @@
   });
  
   // Mobile menu close on click
-  document.querySelectorAll('.navbar-nav .nav-link-optimized').forEach(link => {
+  document.querySelectorAll('.navbar-nav .nav-link-optimized:not(.dropdown-toggle)').forEach(link => {
     link.addEventListener('click', () => {
       const navbarCollapse = document.querySelector('.navbar-collapse');
       if (navbarCollapse.classList.contains('show')) {
@@ -1387,3 +1387,4 @@
 </script>
 </body>
 </html>
+
