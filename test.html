@@ -704,6 +704,10 @@
             }
             
             .official-header,
+            .a4-container {
+                width: 21cm;
+                min-height: 29.7cm;
+
             .main-container .dashboard-card,
             .no-print,
             .btn-service,
@@ -790,15 +794,10 @@
                     </div>
                 </div>
                 <div class="col-md-8 text-center">
-                    <div class="college-name-arabic">دار النجاة الشريعة والفنون كلية</div>
+                    <div class="college-name-arabic">كلية دار النجاة للشريعة والآداب</div>
                     <div class="college-name-english">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div>
                     <div class="college-subtitle">Punnakkad, Karuvarakundu, Malappuram District</div>
                     <div class="college-subtitle">Official Admission Portal 2024-25</div>
-                </div>
-                <div class="col-md-2 text-end">
-                    <div class="status-indicator status-online">
-                        <i class="fas fa-circle fa-xs"></i> Portal Active
-                    </div>
                 </div>
             </div>
         </div>
@@ -868,7 +867,7 @@
                         <h3 class="service-title">Download Application</h3>
                         <p class="service-desc">Download submitted application form in official PDF format</p>
                         <button class="btn-service">
-                            <i class="fas fa-download me-2"></i> Download PDF
+                            <i class="fas fa-download me-2"></i> Download Application form
                         </button>
                     </div>
 
@@ -1421,9 +1420,6 @@
     <footer class="official-footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo-container">
-                    <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="footer-logo">
-                </div>
                 <div class="footer-info">
                     <p class="mb-1">© <span id="currentYear"></span> Darunnajath Shareeath & Arts College</p>
                     <p class="mb-1">All Rights Reserved | Official Admission Portal 2024-25</p>
@@ -1632,7 +1628,7 @@
                 <div class="document-watermark">APPLICATION</div>
                 <div class="document-header">
                     <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo">
-                    <div class="college-name-arabic">دار النجاة الشريعة والفنون كلية</div>
+                    <div class="college-name-arabic">كلية دار النجاة للشريعة والآداب</div>
                     <div class="document-title">Darunnajath Shareeath & Arts College</div>
                     <div class="document-subtitle">Punnakkad, Karuvarakundu, Malappuram District</div>
                     <div class="document-subtitle">Admission Application Form</div>
@@ -1758,8 +1754,9 @@
                 <button onclick="window.print()" class="btn-service me-2">
                     <i class="fas fa-print me-2"></i>Print Application
                 </button>
-                <button onclick="showSection('dashboardSection')" class="btn btn-outline-primary">
-                    <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+                <button type="button" class="btn btn-outline-primary" onclick="showSection('dashboardSection')">
+                    <i class="fas fa-arrow-left me-2"></i>
+                    Back to Dashboard
                 </button>
             </div>`;
         }
@@ -1784,7 +1781,7 @@
                 <div class="document-watermark">HALL TICKET</div>
                 <div class="document-header">
                     <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo">
-                    <div class="college-name-arabic">دار النجاة الشريعة والفنون كلية</div>
+                    <div class="college-name-arabic">كلية دار النجاة للشريعة والآداب</div>
                     <div class="document-title">Darunnajath Shareeath & Arts College</div>
                     <div class="document-subtitle">Entrance Examination Hall Ticket 2024-25</div>
                 </div>
@@ -1860,8 +1857,9 @@
                 <button onclick="window.print()" class="btn-service me-2">
                     <i class="fas fa-print me-2"></i>Print Hall Ticket
                 </button>
-                <button onclick="showSection('dashboardSection')" class="btn btn-outline-primary">
-                    <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+                <button type="button" class="btn btn-outline-primary" onclick="showSection('dashboardSection')">
+                    <i class="fas fa-arrow-left me-2"></i>
+                    Back to Dashboard
                 </button>
             </div>
             <script>
@@ -1900,7 +1898,7 @@
                 <div class="document-watermark" style="color: ${statusColor};">${statusText}</div>
                 <div class="document-header">
                     <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo">
-                    <div class="college-name-arabic">دار النجاة الشريعة والفنون كلية</div>
+                    <div class="college-name-arabic">كلية دار النجاة للشريعة والآداب</div>
                     <div class="document-title">Darunnajath Shareeath & Arts College</div>
                     <div class="document-subtitle">Entrance Examination Result 2024-25</div>
                 </div>
@@ -1993,8 +1991,9 @@
                 <button onclick="window.print()" class="btn-service me-2">
                     <i class="fas fa-print me-2"></i>Print Result
                 </button>
-                <button onclick="showSection('dashboardSection')" class="btn btn-outline-primary">
-                    <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+                <button type="button" class="btn btn-outline-primary" onclick="showSection('dashboardSection')">
+                    <i class="fas fa-arrow-left me-2"></i>
+                    Back to Dashboard
                 </button>
             </div>`;
         }
@@ -2145,7 +2144,7 @@
                 <div class="document-watermark" style="color: #28a745;">SUCCESS</div>
                 <div class="document-header">
                     <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo">
-                    <div class="college-name-arabic">دار النجاة الشريعة والفنون كلية</div>
+                    <div class="college-name-arabic">كلية دار النجاة للشريعة والآداب</div>
                     <div class="document-title">Darunnajath Shareeath & Arts College</div>
                     <div class="document-subtitle">Application Submission Confirmation</div>
                 </div>
@@ -2200,8 +2199,9 @@
                 <button onclick="window.print()" class="btn-service me-2">
                     <i class="fas fa-print me-2"></i>Print Confirmation
                 </button>
-                <button onclick="showSection('dashboardSection')" class="btn btn-outline-primary">
-                    <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+                <button type="button" class="btn btn-outline-primary" onclick="showSection('dashboardSection')">
+                    <i class="fas fa-arrow-left me-2"></i>
+                    Back to Dashboard
                 </button>
             </div>`;
         }
