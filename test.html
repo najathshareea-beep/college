@@ -813,7 +813,7 @@
                 <div id="applyInstructions">പ്രവേശന പരീക്ഷാദിനത്തില്‍ ആധാര് കോപ്പി, അപേക്ഷാ ഫീ 250 രൂപ എന്നിവ സ്ഥാപനത്തില്‍ സമർപ്പിക്കുക.</div>
             </div>
             
-            <form id="newApplicationForm" onsubmit="return handleNewApplicationSubmit(event)">
+            <form id="newApplicationForm">
                 <!-- Personal Information -->
                 <div class="form-step">
                     <div class="form-step-title">
@@ -848,9 +848,7 @@
                                 <label class="form-label required">
                                     3. ജനന തിയ്യതി | Date of Birth:
                                 </label>
-                                <input type="date" class="form-control" name="dob" 
-                                       max="<?php echo date('Y-m-d'); ?>" 
-                                       required>
+                                <input type="date" class="form-control" name="dob" required>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -1165,17 +1163,12 @@
                         <label class="form-label required">
                             18. കുട്ടിയുടെ ഫോട്ടോ | Student's Photo:
                         </label>
-                        <div class="file-upload-container" onclick="document.getElementById('photoInput').click()" 
-                             ondragover="handleDragOver(event)" 
-                             ondragleave="handleDragLeave(event)" 
-                             ondrop="handleDrop(event)"
-                             id="fileUploadContainer">
+                        <div class="file-upload-container" id="fileUploadContainer">
                             <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
                             <h5>Click to upload or drag & drop</h5>
                             <p class="text-muted">JPG, PNG up to 5MB</p>
                             <input type="file" class="d-none" id="photoInput" name="student_photo" accept="image/jpeg,image/png" 
-                                   required
-                                   onchange="handlePhotoUpload(event)">
+                                   required>
                             <img id="photoPreview" class="file-preview" alt="Photo Preview">
                         </div>
                     </div>
@@ -1358,6 +1351,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <!-- Main JavaScript -->
     <script src="app.js"></script>
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby7zHcn0dQbXxd2KBG56D3mf6DHJFrOefAlBSRJ5WydwIs1YLu41GLC-Qf6vJ38-5R6_A/exec';
 </body>
 </html>
