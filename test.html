@@ -698,6 +698,84 @@
             margin-top: 10px;
             display: none;
         }
+
+        /* A4 Document Styles */
+        .a4-container {
+            width: 21cm;
+            min-height: 29.7cm;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .document-header {
+            background: linear-gradient(135deg, #1d29d6 0%, #0b5ed7 100%);
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .document-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            background: white;
+            padding: 3px;
+            flex-shrink: 0;
+        }
+        
+        .document-content {
+            padding: 25px;
+            position: relative;
+        }
+        
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 60px;
+            color: rgba(0,0,0,0.03);
+            font-weight: bold;
+            z-index: 0;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+        
+        .document-footer {
+            text-align: center;
+            padding: 10px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-top: 1px solid #dee2e6;
+            margin-top: 20px;
+        }
+        
+        @media print {
+            body { 
+                padding: 0; 
+                background: white;
+            }
+            .a4-container {
+                width: 21cm;
+                min-height: 29.7cm;
+                box-shadow: none;
+                border-radius: 0;
+                margin: 0;
+            }
+            .no-print { 
+                display: none !important; 
+            }
+        }
     </style>
 </head>
 <body>
