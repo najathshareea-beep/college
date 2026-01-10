@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSAC | Admission Portal</title>
+    <title>DSAC | Official Admission Portal 2024-25</title>
     
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -13,7 +13,7 @@
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- QR Code Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -31,6 +31,7 @@
             --warning: #ffc107;
             --danger: #dc3545;
             --gold: #FFD700;
+            --light-blue: #e3f2fd;
         }
         
         * {
@@ -161,7 +162,7 @@
             border-radius: 2px;
         }
         
-        /* Services Grid - Enhanced */
+        /* Services Grid */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -281,7 +282,7 @@
             left: 100%;
         }
         
-        /* Form Containers - Enhanced */
+        /* Form Sections */
         .form-section {
             background: var(--white);
             border-radius: 16px;
@@ -423,28 +424,7 @@
             background: white;
         }
         
-        /* File Upload Enhanced */
-        .file-upload-container {
-            border: 2px dashed #dee2e6;
-            border-radius: 12px;
-            padding: 40px 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: #fafafa;
-        }
-        
-        .file-upload-container:hover {
-            border-color: var(--primary-blue);
-            background: #f8f9fa;
-        }
-        
-        .file-upload-container.dragover {
-            border-color: var(--success);
-            background: #f0fff4;
-        }
-        
-        /* Cards for Download/Result/Hallticket */
+        /* Info Cards */
         .info-card {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             border-radius: 12px;
@@ -474,10 +454,6 @@
             z-index: 9999;
             flex-direction: column;
             backdrop-filter: blur(5px);
-        }
-        
-        .spinner-container {
-            text-align: center;
         }
         
         .spinner {
@@ -516,6 +492,18 @@
             to { transform: translateX(0); }
         }
         
+        .notification.success {
+            border-left-color: var(--success);
+        }
+        
+        .notification.error {
+            border-left-color: var(--danger);
+        }
+        
+        .notification.warning {
+            border-left-color: var(--warning);
+        }
+        
         /* Official Footer */
         .official-footer {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
@@ -548,7 +536,7 @@
             text-align: right;
         }
         
-        /* A4 Document Styles - Enhanced */
+        /* A4 Document Styles */
         .document-container {
             background: white;
             border-radius: 12px;
@@ -686,6 +674,27 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
         
+        /* File Upload */
+        .file-upload-container {
+            border: 2px dashed #dee2e6;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+        
+        .file-upload-container:hover {
+            border-color: var(--primary-blue);
+            background: #f8f9fa;
+        }
+        
+        .file-upload-container.dragover {
+            border-color: var(--success);
+            background: #f0fff4;
+        }
+        
         /* Print Styles */
         @media print {
             body { 
@@ -698,7 +707,7 @@
             .main-container .dashboard-card,
             .no-print,
             .btn-service,
-            .footer {
+            .official-footer {
                 display: none !important;
             }
             
@@ -758,6 +767,15 @@
                 min-width: auto;
                 margin-bottom: 5px;
             }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-contact {
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -775,7 +793,7 @@
                     <div class="college-name-arabic">دار النجاة الشريعة والفنون كلية</div>
                     <div class="college-name-english">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div>
                     <div class="college-subtitle">Punnakkad, Karuvarakundu, Malappuram District</div>
-                    <div class="college-subtitle">New Admission Portal 2024-25</div>
+                    <div class="college-subtitle">Official Admission Portal 2024-25</div>
                 </div>
                 <div class="col-md-2 text-end">
                     <div class="status-indicator status-online">
@@ -808,7 +826,7 @@
     <!-- Main Container -->
     <div class="main-container">
         <!-- Dashboard Section -->
-        <section id="dashboardSection" class="dashboard-section active">
+        <section id="dashboardSection" class="form-section active">
             <div class="dashboard-card">
                 <h2 class="dashboard-title">
                     <i class="fas fa-tachometer-alt me-2"></i>
@@ -819,11 +837,11 @@
                     <div class="col-md-12">
                         <div class="info-card">
                             <h4 class="info-card-title">
-                                <i class="fas fa-info-circle me-2"></i>
+                                <i class="fas fa-bullhorn me-2"></i>
                                 Important Announcement
                             </h4>
                             <p id="announcementText" class="mb-0">
-                                Admission for the academic year 2024-25 is now open. All applications must be submitted before the deadline.
+                                Admission for the academic year 2024-25 is now open. Last date for application submission is 30th November 2024. Entrance examination will be conducted on 15th December 2024.
                             </p>
                         </div>
                     </div>
@@ -835,7 +853,7 @@
                         <div class="service-icon-wrapper">
                             <i class="fas fa-file-alt"></i>
                         </div>
-                        <h3 class="service-title">Apply Now</h3>
+                        <h3 class="service-title">New Application</h3>
                         <p class="service-desc">Submit your admission application online with secure form submission</p>
                         <button class="btn-service">
                             <i class="fas fa-pen me-2"></i> Start Application
@@ -845,10 +863,10 @@
                     <!-- Application Download Card -->
                     <div class="service-card" onclick="showSection('applicationDownloadSection')">
                         <div class="service-icon-wrapper">
-                            <i class="fas fa-file-download"></i>
+                            <i class="fas fa-file-pdf"></i>
                         </div>
                         <h3 class="service-title">Download Application</h3>
-                        <p class="service-desc">Download submitted application form in official format</p>
+                        <p class="service-desc">Download submitted application form in official PDF format</p>
                         <button class="btn-service">
                             <i class="fas fa-download me-2"></i> Download PDF
                         </button>
@@ -891,6 +909,7 @@
                                 <li>Keep your application ID safe for future reference</li>
                                 <li>Hall tickets include QR code for quick verification</li>
                                 <li>Results will be published on the scheduled date</li>
+                                <li>For technical support, contact college administration</li>
                             </ul>
                         </div>
                     </div>
@@ -902,10 +921,10 @@
         <section id="applicationDownloadSection" class="form-section">
             <div class="form-header">
                 <h2 class="form-title">
-                    <i class="fas fa-file-download me-2"></i>
+                    <i class="fas fa-file-pdf me-2"></i>
                     Download Application Form
                 </h2>
-                <p class="form-subtitle">Enter your details to download the submitted application form</p>
+                <p class="form-subtitle">Enter your details to download the submitted application form in PDF format</p>
             </div>
 
             <div class="row justify-content-center">
@@ -922,18 +941,18 @@
                         <div class="form-group">
                             <label class="form-label required">
                                 <i class="fas fa-mobile-alt me-2"></i>
-                                Mobile Number
+                                Registered Mobile Number
                             </label>
                             <input type="tel" class="form-control" id="appMobile"
                                    pattern="\d{10}"
-                                   placeholder="Enter 10-digit mobile number"
+                                   placeholder="Enter 10-digit registered mobile number"
                                    required>
                         </div>
                         
                         <div class="form-group">
                             <label class="form-label required">
                                 <i class="fas fa-calendar-alt me-2"></i>
-                                Date of Birth
+                                Student's Date of Birth
                             </label>
                             <input type="date" class="form-control" id="appDob" required>
                         </div>
@@ -960,7 +979,7 @@
                     <i class="fas fa-ticket-alt me-2"></i>
                     Download Hall Ticket
                 </h2>
-                <p class="form-subtitle">Generate and download your official entrance exam hall ticket</p>
+                <p class="form-subtitle">Generate and download your official entrance examination hall ticket</p>
             </div>
 
             <div class="row justify-content-center">
@@ -970,14 +989,14 @@
                             <i class="fas fa-info-circle me-2"></i>
                             Important
                         </h5>
-                        <p class="mb-0">Hall ticket includes QR code for verification. Bring printed copy to exam center.</p>
+                        <p class="mb-0">Hall ticket includes QR code for verification. Bring printed copy to exam center along with original ID proof.</p>
                     </div>
 
                     <form id="downloadHallticketForm" onsubmit="return handleHallticketSubmit(event)">
                         <div class="form-group">
                             <label class="form-label required">
                                 <i class="fas fa-mobile-alt me-2"></i>
-                                Mobile Number
+                                Registered Mobile Number
                             </label>
                             <input type="tel" class="form-control" id="ticketMobile"
                                    pattern="\d{10}"
@@ -988,7 +1007,7 @@
                         <div class="form-group">
                             <label class="form-label required">
                                 <i class="fas fa-calendar-alt me-2"></i>
-                                Date of Birth
+                                Student's Date of Birth
                             </label>
                             <input type="date" class="form-control" id="ticketDob" required>
                         </div>
@@ -1025,14 +1044,14 @@
                             <i class="fas fa-info-circle me-2"></i>
                             Result Information
                         </h5>
-                        <p class="mb-0">Results include admission status, rank (if qualified), and important dates.</p>
+                        <p class="mb-0">Results include admission status, rank (if qualified), and important dates for admission process.</p>
                     </div>
 
                     <form id="checkResultForm" onsubmit="return handleResultSubmit(event)">
                         <div class="form-group">
                             <label class="form-label required">
                                 <i class="fas fa-mobile-alt me-2"></i>
-                                Mobile Number
+                                Registered Mobile Number
                             </label>
                             <input type="tel" class="form-control" id="resultMobile"
                                    pattern="\d{10}"
@@ -1043,7 +1062,7 @@
                         <div class="form-group">
                             <label class="form-label required">
                                 <i class="fas fa-calendar-alt me-2"></i>
-                                Date of Birth
+                                Student's Date of Birth
                             </label>
                             <input type="date" class="form-control" id="resultDob" required>
                         </div>
@@ -1063,10 +1082,338 @@
             </div>
         </section>
 
-        <!-- Apply Now Section (Keep your existing form structure here) -->
+        <!-- Apply Now Section -->
         <section id="applyNowSection" class="form-section">
-            <!-- Your existing application form goes here -->
-            <!-- Keep the same structure but update classes to match new styling -->
+            <div class="form-header">
+                <h2 class="form-title">
+                    <i class="fas fa-file-alt me-2"></i>
+                    New Admission Application
+                </h2>
+                <p class="form-subtitle">Complete all sections carefully. Fields marked with * are mandatory</p>
+            </div>
+
+            <div class="form-steps">
+                <div class="step active">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Personal Info</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Parent Info</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Education</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Medical & Photo</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-label">Submit</div>
+                </div>
+            </div>
+
+            <div class="info-card mb-4">
+                <h5 class="info-card-title">
+                    <i class="fas fa-lightbulb me-2"></i>
+                    Important Notes
+                </h5>
+                <div id="applyInstructions">
+                    <p class="mb-2">1. Please fill all details carefully as they cannot be changed later</p>
+                    <p class="mb-2">2. Upload clear recent photograph of the student</p>
+                    <p class="mb-0">3. After submission, download and keep the application for future reference</p>
+                </div>
+            </div>
+
+            <form id="newApplicationForm" onsubmit="return handleNewApplicationSubmit(event)">
+                <!-- Step 1: Personal Information -->
+                <div class="document-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-user me-2"></i>
+                        Personal Information
+                    </h3>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label required">
+                                    1. കുട്ടിയുടെ പേര് | Student's Name:
+                                </label>
+                                <input type="text" class="form-control" name="studentName" 
+                                       placeholder="പൂർണ്ണ പേര് രേഖപ്പെടുത്തുക | Enter full name" 
+                                       required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label required">
+                                    2. വീട്ടു പേര് | House Name:
+                                </label>
+                                <input type="text" class="form-control" name="houseName" 
+                                       placeholder="വീട്ടു പേര് രേഖപ്പെടുത്തുക | House name" 
+                                       required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label required">
+                                    3. ജനന തിയ്യതി | Date of Birth:
+                                </label>
+                                <input type="date" class="form-control" name="dob" 
+                                       max="2024-12-31" 
+                                       required
+                                       onchange="calculateAge(this.value)">
+                                <small class="text-muted" id="ageDisplay"></small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label required">
+                                    4. ആധാര്‍ നമ്പര്‍ | Aadhaar Number:
+                                </label>
+                                <input type="text" class="form-control" name="aadhaarNumber" 
+                                       placeholder="ആധാര്‍ നമ്പര്‍ രേഖപ്പെടുത്തുക | Enter Aadhaar number" 
+                                       required 
+                                       pattern="\d{12}" 
+                                       title="Aadhaar number must be 12 digits">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label required">
+                            5. വിലാസം | Postal Address:
+                        </label>
+                        <textarea class="form-control" name="address" 
+                                  placeholder="പൂർണ്ണ വിലാസം രേഖപ്പെടുത്തുക | Enter full address" 
+                                  required rows="3"></textarea>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label required">
+                                    6. ഫോണ്‍ നമ്പര്‍ | Phone Number:
+                                </label>
+                                <input type="tel" class="form-control" name="phoneNumber" 
+                                       placeholder="9876543210 | Enter phone number" 
+                                       required 
+                                       pattern="\d{10}" 
+                                       title="Phone number must be 10 digits">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    7. വാട്‌സ്ആപ്പ് നമ്പര്‍ | WhatsApp Number:
+                                </label>
+                                <input type="tel" class="form-control" name="whatsappNumber" 
+                                       placeholder="വാട്‌സ്ആപ്പ് നമ്പര്‍ (വ്യത്യസ്തമെങ്കിൽ) | Enter WhatsApp number (if different)" 
+                                       pattern="\d{10}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Parent/Guardian Information -->
+                <div class="document-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-users me-2"></i>
+                        Parent/Guardian Information
+                    </h3>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label required">
+                                    8. പിതാവിന്‍റെ പേര് | Father's Name:
+                                </label>
+                                <input type="text" class="form-control" name="fatherName" 
+                                       placeholder="പിതാവിന്‍റെ പേര് രേഖപ്പെടുത്തുക | Enter father's name" 
+                                       required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label required">
+                                    9. പിതാവിന്‍റെ ജോലി | Father's Occupation:
+                                </label>
+                                <input type="text" class="form-control" name="fatherOccupation" 
+                                       placeholder="പിതാവിന്‍റെ ജോലി രേഖപ്പെടുത്തുക | Enter father's occupation" 
+                                       required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label required">
+                                    10. രക്ഷിതാവിന്‍റെ പേര് | Guardian's Name:
+                                </label>
+                                <input type="text" class="form-control" name="guardianName" 
+                                       placeholder="രക്ഷിതാവിന്‍റെ പേര് | Guardian's name" 
+                                       required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label required">
+                                    11. വിദ്യാര്‍ത്ഥിക്ക് രക്ഷിതാവുമായുള്ള ബന്ധം | Relationship with Guardian:
+                                </label>
+                                <select class="form-control" name="relationshipWithGuardian" required>
+                                    <option value="" disabled selected>രക്ഷിതാവുമായുള്ള ബന്ധം തിരഞ്ഞെടുക്കുക | Select Relationship</option>
+                                    <option value="Father">പിതാവ് | Father</option>
+                                    <option value="Mother">മാതാവ് | Mother</option>
+                                    <option value="Brother">സഹോദരൻ | Brother</option>
+                                    <option value="Sister">സഹോദരി | Sister</option>
+                                    <option value="Other">മറ്റുള്ളവർ | Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Educational Information -->
+                <div class="document-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-graduation-cap me-2"></i>
+                        Educational Information
+                    </h3>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label required">
+                                    12. പഠിക്കുന്ന മദ്റസയും സ്ഥലവും | Madrasa & Location:
+                                </label>
+                                <input type="text" class="form-control" name="madrasa"
+                                       placeholder="മദ്റസയും സ്ഥലവും രേഖപ്പെടുത്തുക | Enter Madrasa name and location"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label required">
+                                    മദ്റസ ക്ലാസ് | Madrasa Class:
+                                </label>
+                                <select class="form-control" name="madrasaclass" required>
+                                    <option value="" disabled selected>മദ്റസ ക്ലാസ് തിരഞ്ഞെടുക്കുക | Select Madrasa class</option>
+                                    <option value="II">II</option>
+                                    <option value="III">III</option>
+                                    <option value="IV">IV</option>
+                                    <option value="V">V</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label required">
+                                    13. പഠിക്കുന്ന സ്കൂളും സ്ഥലവും | School & Location:
+                                </label>
+                                <input type="text" class="form-control" name="school"
+                                       placeholder="സ്കൂളും സ്ഥലവും രേഖപ്പെടുത്തുക | Enter School name and location"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label required">
+                                    സ്കൂള്‍ ക്ലാസ് | School Class:
+                                </label>
+                                <select class="form-control" name="schoolclass" required>
+                                    <option value="" disabled selected>സ്കൂള്‍ ക്ലാസ് തിരഞ്ഞെടുക്കുക | Select School class</option>
+                                    <option value="II">II</option>
+                                    <option value="III">III</option>
+                                    <option value="IV">IV</option>
+                                    <option value="V">V</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Medical & Photo -->
+                <div class="document-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-heartbeat me-2"></i>
+                        Medical Information & Photograph
+                    </h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label required">
+                            14. കുട്ടിയെ തിരിച്ചറിയാനുള്ള അടയാളം | Student's Identification Mark:
+                        </label>
+                        <input type="text" class="form-control" name="identificationMark" 
+                               placeholder="തിരിച്ചറിയല്‍ അടയാളം രേഖപ്പെടുത്തുക | Enter identification mark" 
+                               required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label required">
+                            15. കുട്ടിയുടെ ഫോട്ടോ | Student's Photo:
+                        </label>
+                        <div class="file-upload-container" onclick="document.getElementById('photoInput').click()" 
+                             ondragover="handleDragOver(event)" 
+                             ondragleave="handleDragLeave(event)" 
+                             ondrop="handleDrop(event)"
+                             id="fileUploadContainer">
+                            <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
+                            <h5>Click to upload or drag & drop</h5>
+                            <p class="text-muted">JPG or PNG, Max 5MB</p>
+                            <input type="file" class="d-none" id="photoInput" name="student_photo" accept="image/jpeg,image/png" 
+                                   required
+                                   onchange="handlePhotoUpload(event)">
+                            <img id="photoPreview" class="file-preview mt-3" alt="Photo Preview" style="max-width: 200px; display: none;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Declaration and Submit -->
+                <div class="document-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-file-contract me-2"></i>
+                        Declaration & Submission
+                    </h3>
+                    
+                    <div class="info-card">
+                        <h5 class="info-card-title">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            Declaration
+                        </h5>
+                        <p class="mb-3">
+                            എന്‍റെ കുട്ടിയും ഞാനും ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജിന്‍റെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ അല്‍ ഹാഫിള് മമ്മു മുല്ല തഹ്ഫീളുല്‍ ഖുര്‍ആന്‍ കോളേജില്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.
+                        </p>
+                        
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="declarationCheckbox" required>
+                            <label class="form-check-label" for="declarationCheckbox">
+                                I hereby declare that all information provided is true and correct to the best of my knowledge. 
+                                I agree to abide by all rules and regulations of the college.
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 mt-4">
+                    <button type="submit" class="btn-service" id="submitApplicationBtn">
+                        <i class="fas fa-paper-plane me-2"></i>
+                        Submit Application
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" onclick="showSection('dashboardSection')">
+                        <i class="fas fa-arrow-left me-2"></i>
+                        Back to Dashboard
+                    </button>
+                </div>
+            </form>
         </section>
     </div>
 
@@ -1079,13 +1426,13 @@
                 </div>
                 <div class="footer-info">
                     <p class="mb-1">© <span id="currentYear"></span> Darunnajath Shareeath & Arts College</p>
-                    <p class="mb-1">All Rights Reserved | Official Admission Portal</p>
-                    <p class="mb-0">Punnakkad, Karuvarakundu, Malappuram District</p>
+                    <p class="mb-1">All Rights Reserved | Official Admission Portal 2024-25</p>
+                    <p class="mb-0">Punnakkad, Karuvarakundu, Malappuram District, Kerala</p>
                 </div>
                 <div class="footer-contact">
                     <p class="mb-1">
                         <i class="fas fa-phone me-2"></i>
-                        <span id="collegePhone">Contact: +91 XXXXX XXXXX</span>
+                        <span id="collegePhone">Contact: +91 99999 99999</span>
                     </p>
                     <p class="mb-0">
                         <i class="fas fa-envelope me-2"></i>
@@ -1106,129 +1453,33 @@
         });
         
         function initializePage() {
+            // Set current year in footer
             document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Set max date for DOB fields
             const today = new Date().toISOString().split('T')[0];
             document.querySelectorAll('input[type="date"]').forEach(input => {
                 input.setAttribute('max', today);
             });
+            
+            // Load college information
             loadCollegeInfo();
         }
         
         function showSection(sectionId) {
-            document.querySelectorAll('.form-section, .dashboard-section').forEach(section => {
+            // Hide all sections
+            document.querySelectorAll('.form-section').forEach(section => {
                 section.classList.remove('active');
             });
+            
+            // Show selected section
             document.getElementById(sectionId).classList.add('active');
+            
+            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
-        // Keep your existing JavaScript functions for form handling,
-        // but update the show/hide functions to use the new section system
-        
-        async function handleApplicationSubmit(e) {
-            e.preventDefault();
-            showLoading('Searching for application...');
-            
-            const mobile = document.getElementById('appMobile').value.trim();
-            const dob = document.getElementById('appDob').value;
-            
-            try {
-                const response = await fetch(`${SCRIPT_URL}?type=application&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);
-                const data = await response.json();
-                
-                if (data.status === 'success') {
-                    const html = generateApplicationHtml(data);
-                    showDocumentView(html, 'Application Form');
-                    showNotification('Application loaded successfully', 'success');
-                } else {
-                    showNotification(data.message || 'No record found', 'error');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                showNotification('Error occurred. Please try again.', 'error');
-            } finally {
-                hideLoading();
-            }
-        }
-        
-        async function handleHallticketSubmit(e) {
-            e.preventDefault();
-            showLoading('Generating hall ticket...');
-            
-            const mobile = document.getElementById('ticketMobile').value.trim();
-            const dob = document.getElementById('ticketDob').value;
-            
-            try {
-                const response = await fetch(`${SCRIPT_URL}?type=hallticket&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);
-                const data = await response.json();
-                
-                if (data.status === 'success') {
-                    const html = generateHallticketHtml(data);
-                    showDocumentView(html, 'Hall Ticket');
-                    showNotification('Hall ticket generated successfully', 'success');
-                } else {
-                    showNotification(data.message || 'No record found or payment pending', 'error');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                showNotification('Error occurred. Please try again.', 'error');
-            } finally {
-                hideLoading();
-            }
-        }
-        
-        async function handleResultSubmit(e) {
-            e.preventDefault();
-            showLoading('Fetching results...');
-            
-            const mobile = document.getElementById('resultMobile').value.trim();
-            const dob = document.getElementById('resultDob').value;
-            
-            try {
-                const response = await fetch(`${SCRIPT_URL}?type=result&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);
-                const data = await response.json();
-                
-                if (data.status === 'success') {
-                    const html = generateResultHtml(data);
-                    showDocumentView(html, 'Result');
-                    showNotification('Result loaded successfully', 'success');
-                } else {
-                    showNotification(data.message || 'No record found', 'error');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                showNotification('Error occurred. Please try again.', 'error');
-            } finally {
-                hideLoading();
-            }
-        }
-        
-        function showDocumentView(html, title) {
-            const container = document.createElement('div');
-            container.className = 'document-container';
-            container.innerHTML = html;
-            
-            // Add print and back buttons
-            const actionBar = document.createElement('div');
-            actionBar.className = 'no-print text-center p-4 border-top';
-            actionBar.innerHTML = `
-                <button onclick="window.print()" class="btn-service me-2">
-                    <i class="fas fa-print me-2"></i>Print ${title}
-                </button>
-                <button onclick="showSection('dashboardSection')" class="btn btn-outline-primary">
-                    <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
-                </button>
-            `;
-            
-            container.appendChild(actionBar);
-            
-            // Replace main container content
-            const mainContainer = document.querySelector('.main-container');
-            mainContainer.innerHTML = '';
-            mainContainer.appendChild(container);
-        }
-        
-        function showLoading(text) {
+        function showLoading(text = 'Processing...') {
             document.getElementById('loadingText').textContent = text;
             document.getElementById('loadingOverlay').style.display = 'flex';
         }
@@ -1266,9 +1517,91 @@
             document.getElementById('notification').style.display = 'none';
         }
         
-        // Keep your existing template generation functions
-        // (generateApplicationHtml, generateHallticketHtml, generateResultHtml)
-        // but update them to use the new CSS classes
+        function calculateAge(dobString) {
+            if (!dobString) return;
+            
+            const birthDate = new Date(dobString);
+            const today = new Date();
+            
+            let years = today.getFullYear() - birthDate.getFullYear();
+            let months = today.getMonth() - birthDate.getMonth();
+            let days = today.getDate() - birthDate.getDate();
+            
+            if (days < 0) {
+                months--;
+                days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+            }
+            
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            
+            document.getElementById('ageDisplay').textContent = 
+                `Age: ${years} years ${months} months ${days} days`;
+        }
+        
+        // File handling functions
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            document.getElementById('fileUploadContainer').classList.add('dragover');
+        }
+        
+        function handleDragLeave(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            document.getElementById('fileUploadContainer').classList.remove('dragover');
+        }
+        
+        function handleDrop(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            document.getElementById('fileUploadContainer').classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        }
+        
+        function handlePhotoUpload(e) {
+            const file = e.target.files[0];
+            if (file) {
+                handleFile(file);
+            }
+        }
+        
+        function handleFile(file) {
+            if (!file.type.startsWith('image/')) {
+                showNotification('Please upload only image files (JPG, PNG)', 'error');
+                return;
+            }
+            
+            if (file.size > 5 * 1024 * 1024) {
+                showNotification('File size must be less than 5MB', 'error');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('photoPreview');
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+            
+            showNotification('Photo uploaded successfully', 'success');
+        }
+        
+        function readFileAsBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
         
         async function loadCollegeInfo() {
             try {
@@ -1287,6 +1620,604 @@
             } catch (error) {
                 console.error('Error loading college info:', error);
             }
+        }
+        
+        // Template generation functions
+        function generateApplicationHtml(data) {
+            const { collegeInfo, studentData } = data;
+            const submissionDate = new Date(studentData.submissionDate || new Date()).toLocaleDateString('en-IN');
+            
+            return `
+            <div class="document-container">
+                <div class="document-watermark">APPLICATION</div>
+                <div class="document-header">
+                    <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo">
+                    <div class="college-name-arabic">دار النجاة الشريعة والفنون كلية</div>
+                    <div class="document-title">Darunnajath Shareeath & Arts College</div>
+                    <div class="document-subtitle">Punnakkad, Karuvarakundu, Malappuram District</div>
+                    <div class="document-subtitle">Admission Application Form</div>
+                </div>
+                <div class="document-content">
+                    <div class="document-section">
+                        <h3 class="section-title">Application Details</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="info-label">Application ID:</div>
+                                <div class="info-value">${studentData.applicationId || 'DSAC-' + Date.now().toString().slice(-6)}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Submission Date:</div>
+                                <div class="info-value">${submissionDate}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="document-section">
+                        <h3 class="section-title">Personal Information</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="info-label">Student's Name:</div>
+                                <div class="info-value">${studentData.studentName || 'Not provided'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">House Name:</div>
+                                <div class="info-value">${studentData.houseName || 'Not provided'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Date of Birth:</div>
+                                <div class="info-value">${studentData.dob || 'Not provided'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Aadhaar Number:</div>
+                                <div class="info-value">${studentData.aadhaarNumber || 'Not provided'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Address:</div>
+                                <div class="info-value">${studentData.address || 'Not provided'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Phone Number:</div>
+                                <div class="info-value">${studentData.phoneNumber || 'Not provided'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">WhatsApp Number:</div>
+                                <div class="info-value">${studentData.whatsappNumber || 'Not provided'}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="document-section">
+                        <h3 class="section-title">Parent/Guardian Information</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="info-label">Father's Name:</div>
+                                <div class="info-value">${studentData.fatherName || 'Not provided'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Father's Occupation:</div>
+                                <div class="info-value">${studentData.fatherOccupation || 'Not provided'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Guardian's Name:</div>
+                                <div class="info-value">${studentData.guardianName || 'Not provided'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Relationship with Guardian:</div>
+                                <div class="info-value">${studentData.relationshipWithGuardian || 'Not provided'}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="document-section">
+                        <h3 class="section-title">Educational Information</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="info-label">Madrasa & Location:</div>
+                                <div class="info-value">${studentData.madrasa || 'Not provided'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Madrasa Class:</div>
+                                <div class="info-value">${studentData.madrasaclass || 'Not provided'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">School & Location:</div>
+                                <div class="info-value">${studentData.school || 'Not provided'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">School Class:</div>
+                                <div class="info-value">${studentData.schoolclass || 'Not provided'}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="document-section">
+                        <h3 class="section-title">Medical Information</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="info-label">Identification Mark:</div>
+                                <div class="info-value">${studentData.identificationMark || 'Not provided'}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="document-section">
+                        <h3 class="section-title">Declaration</h3>
+                        <div class="info-card">
+                            <p>
+                                എന്‍റെ കുട്ടിയും ഞാനും ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജിന്‍റെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ അല്‍ ഹാഫിള് മമ്മു മുല്ല തഹ്ഫീളുല്‍ ഖുര്‍ആന്‍ കോളേജില്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.
+                            </p>
+                            <div class="mt-4">
+                                <div style="border-top: 1px solid #666; width: 300px; margin: 30px 0 10px;"></div>
+                                <div>Parent/Guardian's Signature</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="no-print text-center p-4">
+                <button onclick="window.print()" class="btn-service me-2">
+                    <i class="fas fa-print me-2"></i>Print Application
+                </button>
+                <button onclick="showSection('dashboardSection')" class="btn btn-outline-primary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+                </button>
+            </div>`;
+        }
+        
+        function generateHallticketHtml(data) {
+            const { collegeInfo, studentData } = data;
+            const examDate = collegeInfo.examDate || '15 December 2024';
+            const reportingTime = collegeInfo.reportingTime || '9:00 AM';
+            const venue = collegeInfo.venue || 'College Main Campus';
+            
+            // Generate QR Code data
+            const qrData = JSON.stringify({
+                name: studentData.studentName,
+                registerNo: studentData.registerNo || 'DSAC' + Date.now().toString().slice(-6),
+                dob: studentData.dob,
+                examDate: examDate,
+                venue: venue
+            });
+            
+            return `
+            <div class="document-container">
+                <div class="document-watermark">HALL TICKET</div>
+                <div class="document-header">
+                    <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo">
+                    <div class="college-name-arabic">دار النجاة الشريعة والفنون كلية</div>
+                    <div class="document-title">Darunnajath Shareeath & Arts College</div>
+                    <div class="document-subtitle">Entrance Examination Hall Ticket 2024-25</div>
+                </div>
+                <div class="document-content">
+                    <div class="document-section">
+                        <h3 class="section-title">Candidate Information</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="info-label">Register Number:</div>
+                                <div class="info-value">${studentData.registerNo || 'DSAC' + Date.now().toString().slice(-6)}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Candidate Name:</div>
+                                <div class="info-value">${studentData.studentName || 'Not provided'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Date of Birth:</div>
+                                <div class="info-value">${studentData.dob || 'Not provided'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">House Name:</div>
+                                <div class="info-value">${studentData.houseName || 'Not provided'}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="document-section">
+                        <h3 class="section-title">Examination Details</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="info-label">Examination Date:</div>
+                                <div class="info-value">${examDate}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Reporting Time:</div>
+                                <div class="info-value">${reportingTime}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Examination Time:</div>
+                                <div class="info-value">10:00 AM to 12:30 PM</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Venue:</div>
+                                <div class="info-value">${venue}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="qrcode-section">
+                        <h4 class="section-title">QR Code Verification</h4>
+                        <div class="qrcode-container">
+                            <div id="qrcode"></div>
+                        </div>
+                        <p class="mt-3">Scan this QR code at the examination center for verification</p>
+                    </div>
+                    
+                    <div class="document-section">
+                        <h3 class="section-title">Important Instructions</h3>
+                        <div class="info-card">
+                            <ul>
+                                <li>Bring this hall ticket to the examination center</li>
+                                <li>Carry original Aadhaar card for verification</li>
+                                <li>Report at the examination center 30 minutes before exam time</li>
+                                <li>No electronic devices allowed inside examination hall</li>
+                                <li>Use only blue or black ballpoint pens</li>
+                                <li>Follow all instructions given by invigilators</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="no-print text-center p-4">
+                <button onclick="window.print()" class="btn-service me-2">
+                    <i class="fas fa-print me-2"></i>Print Hall Ticket
+                </button>
+                <button onclick="showSection('dashboardSection')" class="btn btn-outline-primary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+                </button>
+            </div>
+            <script>
+                // Generate QR Code
+                new QRCode(document.getElementById("qrcode"), {
+                    text: '${qrData}',
+                    width: 150,
+                    height: 150
+                });
+            <\/script>`;
+        }
+        
+        function generateResultHtml(data) {
+            const { collegeInfo, studentData } = data;
+            const result = studentData.result || 'PENDING';
+            const rank = studentData.rank || 'N/A';
+            const resultDate = new Date().toLocaleDateString('en-IN', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+            
+            let statusColor = '#dc3545';
+            let statusText = 'Not Qualified';
+            
+            if (result === 'QUALIFIED') {
+                statusColor = '#28a745';
+                statusText = 'Qualified';
+            } else if (result === 'WAITING_LIST') {
+                statusColor = '#ffc107';
+                statusText = 'Waiting List';
+            }
+            
+            return `
+            <div class="document-container">
+                <div class="document-watermark" style="color: ${statusColor};">${statusText}</div>
+                <div class="document-header">
+                    <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo">
+                    <div class="college-name-arabic">دار النجاة الشريعة والفنون كلية</div>
+                    <div class="document-title">Darunnajath Shareeath & Arts College</div>
+                    <div class="document-subtitle">Entrance Examination Result 2024-25</div>
+                </div>
+                <div class="document-content">
+                    <div class="document-section">
+                        <h3 class="section-title">Candidate Information</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="info-label">Candidate Name:</div>
+                                <div class="info-value">${studentData.studentName || 'Not provided'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Date of Birth:</div>
+                                <div class="info-value">${studentData.dob || 'Not provided'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Application ID:</div>
+                                <div class="info-value">${studentData.applicationId || 'N/A'}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="document-section">
+                        <h3 class="section-title">Result Details</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="info-label">Result Status:</div>
+                                <div class="info-value" style="color: ${statusColor}; font-weight: bold; font-size: 1.2rem;">
+                                    ${statusText}
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Rank:</div>
+                                <div class="info-value">${rank}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Result Published On:</div>
+                                <div class="info-value">${resultDate}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    ${result === 'QUALIFIED' ? `
+                    <div class="document-section">
+                        <h3 class="section-title">Admission Details</h3>
+                        <div class="info-card">
+                            <h5 class="info-card-title">Congratulations! You have been selected for admission.</h5>
+                            <div class="info-grid mt-3">
+                                <div class="info-item">
+                                    <div class="info-label">Admission Starts:</div>
+                                    <div class="info-value">${collegeInfo.b1Data || 'To be announced'}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Class Starts:</div>
+                                    <div class="info-value">${collegeInfo.b2Data || 'To be announced'}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Last Date for Admission:</div>
+                                    <div class="info-value">${collegeInfo.b3Data || 'To be announced'}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    ` : ''}
+                    
+                    ${result === 'WAITING_LIST' ? `
+                    <div class="document-section">
+                        <h3 class="section-title">Waiting List Information</h3>
+                        <div class="info-card">
+                            <h5 class="info-card-title">Your application is on waiting list</h5>
+                            <p class="mt-2">You are placed in the waiting list at rank ${rank}. Admission will be offered based on vacancy after the first round of admissions.</p>
+                        </div>
+                    </div>
+                    ` : ''}
+                    
+                    <div class="document-section">
+                        <h3 class="section-title">Important Notes</h3>
+                        <div class="info-card">
+                            <ul>
+                                <li>Bring all original documents for verification during admission</li>
+                                <li>Admission fee must be paid within the specified deadline</li>
+                                <li>For any queries, contact college administration</li>
+                                <li>Keep this result for future reference</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="no-print text-center p-4">
+                <button onclick="window.print()" class="btn-service me-2">
+                    <i class="fas fa-print me-2"></i>Print Result
+                </button>
+                <button onclick="showSection('dashboardSection')" class="btn btn-outline-primary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+                </button>
+            </div>`;
+        }
+        
+        // Form submission handlers
+        async function handleApplicationSubmit(e) {
+            e.preventDefault();
+            showLoading('Searching for application...');
+            
+            const mobile = document.getElementById('appMobile').value.trim();
+            const dob = document.getElementById('appDob').value;
+            
+            try {
+                const response = await fetch(`${SCRIPT_URL}?type=application&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    const html = generateApplicationHtml(data);
+                    showDocumentView(html, 'Application Form');
+                    showNotification('Application loaded successfully', 'success');
+                } else {
+                    showNotification(data.message || 'No application found with these details', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('Error occurred. Please try again.', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+        
+        async function handleHallticketSubmit(e) {
+            e.preventDefault();
+            showLoading('Generating hall ticket...');
+            
+            const mobile = document.getElementById('ticketMobile').value.trim();
+            const dob = document.getElementById('ticketDob').value;
+            
+            try {
+                const response = await fetch(`${SCRIPT_URL}?type=hallticket&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    const html = generateHallticketHtml(data);
+                    showDocumentView(html, 'Hall Ticket');
+                    showNotification('Hall ticket generated successfully', 'success');
+                } else {
+                    showNotification(data.message || 'No application found or hall ticket not available', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('Error occurred. Please try again.', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+        
+        async function handleResultSubmit(e) {
+            e.preventDefault();
+            showLoading('Fetching results...');
+            
+            const mobile = document.getElementById('resultMobile').value.trim();
+            const dob = document.getElementById('resultDob').value;
+            
+            try {
+                const response = await fetch(`${SCRIPT_URL}?type=result&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    const html = generateResultHtml(data);
+                    showDocumentView(html, 'Result');
+                    showNotification('Result loaded successfully', 'success');
+                } else {
+                    showNotification(data.message || 'No result found with these details', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('Error occurred. Please try again.', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+        
+        async function handleNewApplicationSubmit(e) {
+            e.preventDefault();
+            showLoading('Submitting application...');
+            
+            const form = e.target;
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Handle photo upload
+            const photoFile = document.getElementById('photoInput').files[0];
+            if (photoFile) {
+                const photoData = await readFileAsBase64(photoFile);
+                data.photo = JSON.stringify({
+                    name: photoFile.name,
+                    mimeType: photoFile.type,
+                    data: photoData.split(',')[1]
+                });
+            }
+            
+            // Submit data
+            const submitData = new URLSearchParams();
+            for (const [key, value] of Object.entries(data)) {
+                if (value !== undefined && value !== null) {
+                    submitData.append(key, value);
+                }
+            }
+            
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: submitData,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    // Show success message and application ID
+                    const html = generateSuccessHtml(result.data);
+                    showDocumentView(html, 'Application Confirmation');
+                    showNotification('Application submitted successfully!', 'success');
+                } else {
+                    showNotification(result.message || 'Submission failed', 'error');
+                }
+            } catch (error) {
+                console.error('Submission error:', error);
+                showNotification('Submission failed. Please try again.', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+        
+        function generateSuccessHtml(responseData) {
+            const applicationId = responseData.applicationId || 'DSAC-' + Date.now().toString().slice(-6);
+            const submissionTime = new Date().toLocaleString('en-IN', {
+                timeZone: 'Asia/Kolkata',
+                dateStyle: 'full',
+                timeStyle: 'medium'
+            });
+            
+            return `
+            <div class="document-container">
+                <div class="document-watermark" style="color: #28a745;">SUCCESS</div>
+                <div class="document-header">
+                    <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo">
+                    <div class="college-name-arabic">دار النجاة الشريعة والفنون كلية</div>
+                    <div class="document-title">Darunnajath Shareeath & Arts College</div>
+                    <div class="document-subtitle">Application Submission Confirmation</div>
+                </div>
+                <div class="document-content">
+                    <div class="text-center mb-5">
+                        <div style="font-size: 60px; color: #28a745; margin-bottom: 20px;">✓</div>
+                        <h2 style="color: #28a745;">Application Submitted Successfully!</h2>
+                        <p class="text-muted">Your admission application has been received and saved to our database.</p>
+                    </div>
+                    
+                    <div class="info-card mb-4">
+                        <h4 class="info-card-title text-center">Application Details</h4>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="info-label">Application ID:</div>
+                                <div class="info-value" style="font-weight: bold; color: var(--primary-blue);">
+                                    ${applicationId}
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Student Name:</div>
+                                <div class="info-value">${responseData.studentName || 'Not provided'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Date of Birth:</div>
+                                <div class="info-value">${responseData.dob || 'Not provided'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Phone Number:</div>
+                                <div class="info-value">${responseData.phoneNumber || 'Not provided'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Submission Time:</div>
+                                <div class="info-value">${submissionTime}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h4 class="info-card-title">Important Instructions</h4>
+                        <ul>
+                            <li>Keep your Application ID safe for future reference</li>
+                            <li>You can download your application using your phone number and date of birth</li>
+                            <li>Pay the application fee as per college instructions</li>
+                            <li>Submit a copy of Aadhaar card to the institution on examination day</li>
+                            <li>For any queries, contact college administration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="no-print text-center p-4">
+                <button onclick="window.print()" class="btn-service me-2">
+                    <i class="fas fa-print me-2"></i>Print Confirmation
+                </button>
+                <button onclick="showSection('dashboardSection')" class="btn btn-outline-primary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+                </button>
+            </div>`;
+        }
+        
+        function showDocumentView(html, title) {
+            // Create a new container for the document
+            const container = document.createElement('div');
+            container.innerHTML = html;
+            
+            // Replace main container content
+            const mainContainer = document.querySelector('.main-container');
+            mainContainer.innerHTML = '';
+            mainContainer.appendChild(container);
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
