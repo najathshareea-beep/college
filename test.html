@@ -3,49 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DSAC - Admission Portal</title>
+  <title>DSAC Admission Portal</title>
   
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
+  <!-- For QR code in hallticket -->
   <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 
   <style>
-    :root {
-      --primary: #1d29d6;
-      --light: #f8f9fa;
-      --dark: #212529;
+    body { 
+      background: linear-gradient(135deg, #f8f9fa, #e3f2fd); 
+      min-height: 100vh; 
+      font-family: 'Segoe UI', system-ui, sans-serif;
     }
-    body {
-      background: linear-gradient(135deg, var(--light), #e3f2fd);
-      min-height: 100vh;
-      font-family: system-ui, -apple-system, sans-serif;
+    .card { border-radius: 16px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+    #loading { 
+      position: fixed; inset: 0; background: rgba(255,255,255,0.94); 
+      backdrop-filter: blur(5px); z-index: 9999; display: none; 
+      flex-direction: column; align-items: center; justify-content: center;
     }
-    .card-hover:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.15) !important;
-      transition: all 0.3s ease;
-    }
-    #loading {
-      position: fixed;
-      inset: 0;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(4px);
-      z-index: 9999;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .spinner {
-      width: 64px;
-      height: 64px;
-      border: 6px solid #e0e0e0;
-      border-top: 6px solid var(--primary);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
+    .spinner { 
+      width: 70px; height: 70px; border: 7px solid #e0e0e0; 
+      border-top: 7px solid #1d29d6; border-radius: 50%; animation: spin 1s linear infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
+    .print-btn { margin: 15px 8px; padding: 10px 24px; font-size: 1.1rem; }
   </style>
 </head>
 <body>
@@ -53,123 +36,98 @@
 <!-- Loading Overlay -->
 <div id="loading">
   <div class="spinner mb-4"></div>
-  <h4 class="text-dark">Please wait...</h4>
+  <h4 class="text-primary fw-bold">Loading... Please wait</h4>
 </div>
 
 <div class="container py-5">
   <!-- Header -->
-  <div class="card text-center mb-5 shadow-lg border-0 rounded-4 overflow-hidden">
+  <div class="card text-center mb-5">
     <div class="card-body py-5 bg-white">
-      <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" 
-           alt="College Logo" 
-           style="width:140px;height:140px;object-fit:contain;border-radius:50%;border:5px solid var(--primary);">
-      <h2 class="mt-4 mb-2 fw-bold text-primary">دار النجاة للشريعة والآداب</h2>
-      <h4 class="text-muted">Darunnajath Shareeath & Arts College</h4>
-      <p class="text-secondary mt-2">Punnakkad, Karuvarakundu, Malappuram Dist.</p>
+      <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="Logo" 
+           style="width:130px; height:130px; object-fit:contain; border-radius:50%; border:5px solid #1d29d6;">
+      <h2 class="mt-4 fw-bold text-primary">دار النجاة للشريعة والآداب</h2>
+      <h4>Darunnajath Shareeath & Arts College</h4>
     </div>
   </div>
 
-  <!-- Services Grid -->
-  <div class="row g-4 mb-5">
+  <!-- Service Cards -->
+  <div class="row g-4 text-center">
     <div class="col-md-6 col-lg-3">
-      <div class="card h-100 shadow card-hover text-center p-4 cursor-pointer" onclick="showForm('apply')">
+      <div class="card p-4 h-100 shadow-sm" style="cursor:pointer;" onclick="window.location='#'">
         <i class="fas fa-file-signature fa-3x text-primary mb-3"></i>
-        <h5 class="fw-bold">New Application</h5>
-        <p class="text-muted small">Start fresh admission process</p>
+        <h5>New Application</h5>
       </div>
     </div>
     <div class="col-md-6 col-lg-3">
-      <div class="card h-100 shadow card-hover text-center p-4 cursor-pointer" onclick="showForm('download')">
+      <div class="card p-4 h-100 shadow-sm" style="cursor:pointer;" onclick="showSearchForm('application')">
         <i class="fas fa-file-arrow-down fa-3x text-primary mb-3"></i>
-        <h5 class="fw-bold">Download Application</h5>
-        <p class="text-muted small">View / Print submitted form</p>
+        <h5>Download Application</h5>
       </div>
     </div>
     <div class="col-md-6 col-lg-3">
-      <div class="card h-100 shadow card-hover text-center p-4 cursor-pointer" onclick="showForm('hallticket')">
+      <div class="card p-4 h-100 shadow-sm" style="cursor:pointer;" onclick="showSearchForm('hallticket')">
         <i class="fas fa-ticket-alt fa-3x text-primary mb-3"></i>
-        <h5 class="fw-bold">Hall Ticket</h5>
-        <p class="text-muted small">Get exam admission ticket</p>
+        <h5>Hall Ticket</h5>
       </div>
     </div>
     <div class="col-md-6 col-lg-3">
-      <div class="card h-100 shadow card-hover text-center p-4 cursor-pointer" onclick="showForm('result')">
+      <div class="card p-4 h-100 shadow-sm" style="cursor:pointer;" onclick="showSearchForm('result')">
         <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
-        <h5 class="fw-bold">Check Result</h5>
-        <p class="text-muted small">View entrance exam result</p>
+        <h5>Check Result</h5>
       </div>
     </div>
   </div>
 
-  <!-- Dynamic form area -->
-  <div id="mainFormArea" class="card shadow p-0 overflow-hidden" style="min-height:300px;"></div>
+  <!-- Search Form Area -->
+  <div id="searchFormArea" class="mt-5"></div>
 </div>
 
 <script>
-// Change this to your real deployed web app URL!
-const API_URL = "https://script.google.com/macros/s/YOUR_DEPLOYED_WEB_APP_ID/exec";
+// === CHANGE THIS TO YOUR REAL WEB APP URL ===
+const SCRIPT_URL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID_HERE/exec";
 
 function showLoading(show = true) {
-  document.getElementById('loading').style.display = show ? 'flex' : 'none';
+  document.getElementById("loading").style.display = show ? "flex" : "none";
 }
 
-function showForm(mode) {
-  const container = document.getElementById('mainFormArea');
-  container.innerHTML = '';
-
-  if (mode === 'apply') {
-    container.innerHTML = `
+function showSearchForm(type) {
+  const area = document.getElementById("searchFormArea");
+  area.innerHTML = `
+    <div class="card shadow-lg">
       <div class="card-body p-5">
-        <h3 class="text-center mb-4 fw-bold text-primary">New Admission Application</h3>
-        <p class="text-center text-muted mb-5">Please fill all required fields carefully</p>
-        <!-- 
-          →→→ You need to put your COMPLETE application form here ←←←
-          (all 18+ fields, photo upload, validation, declaration checkbox etc.)
-        -->
-        <div class="alert alert-info">
-          <strong>Note:</strong> Full application form implementation is missing in this skeleton.<br>
-          You need to add it (similar to your original long HTML form)
-        </div>
-      </div>
-    `;
-    return;
-  }
-
-  // Search forms (download / hallticket / result)
-  container.innerHTML = `
-    <div class="card-body p-5">
-      <h3 class="text-center mb-4 fw-bold text-primary">
-        ${mode === 'download' ? 'Download Application' : 
-          mode === 'hallticket' ? 'Hall Ticket' : 'Result'}
-      </h3>
-      
-      <div class="row g-4 justify-content-center">
-        <div class="col-md-8 col-lg-6">
-          <div class="mb-3">
-            <label class="form-label fw-bold">Mobile Number</label>
-            <input type="tel" class="form-control form-control-lg" 
-                   id="searchMobile" maxlength="10" placeholder="10 digit number" required>
+        <h3 class="text-center mb-4 fw-bold text-primary">
+          ${type === 'application' ? 'Download Application' : 
+            type === 'hallticket' ? 'Entrance Exam Hall Ticket' : 'Entrance Exam Result'}
+        </h3>
+        
+        <div class="row justify-content-center">
+          <div class="col-md-8 col-lg-6">
+            <div class="mb-4">
+              <label class="form-label fw-bold">Mobile Number</label>
+              <input type="tel" class="form-control form-control-lg" id="mobileInput" maxlength="10" placeholder="Enter 10 digit mobile" required>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-bold">Date of Birth</label>
+              <input type="date" class="form-control form-control-lg" id="dobInput" required>
+            </div>
+            <button class="btn btn-primary btn-lg w-100" onclick="fetchRecord('${type}')">
+              <i class="fas fa-${type==='application'?'download':type==='hallticket'?'ticket-alt':'search'} me-2"></i>
+              ${type === 'application' ? 'Download Application' : 
+                type === 'hallticket' ? 'Get Hall Ticket' : 'View Result'}
+            </button>
           </div>
-          <div class="mb-4">
-            <label class="form-label fw-bold">Date of Birth</label>
-            <input type="date" class="form-control form-control-lg" id="searchDob" required>
-          </div>
-          <button class="btn btn-primary btn-lg w-100" onclick="searchRecord('${mode}')">
-            <i class="fas fa-${mode==='download'?'download':mode==='hallticket'?'ticket-alt':'search'} me-2"></i>
-            ${mode === 'download' ? 'Download' : mode === 'hallticket' ? 'Get Hall Ticket' : 'Check Result'}
-          </button>
         </div>
       </div>
     </div>
   `;
 }
 
-async function searchRecord(type) {
-  const mobile = document.getElementById('searchMobile')?.value.trim();
-  const dob = document.getElementById('searchDob')?.value;
+async function fetchRecord(type) {
+  const mobile = document.getElementById("mobileInput")?.value.trim();
+  const dob = document.getElementById("dobInput")?.value;
 
   if (!mobile || mobile.length !== 10 || !/^\d{10}$/.test(mobile)) {
-    alert("Please enter valid 10 digit mobile number");
+    alert("Please enter valid 10-digit mobile number");
     return;
   }
   if (!dob) {
@@ -180,122 +138,251 @@ async function searchRecord(type) {
   showLoading(true);
 
   try {
-    const url = `${API_URL}?type=${type}&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`;
-    const response = await fetch(url);
-    const result = await response.json();
+    const url = `${SCRIPT_URL}?type=${type}&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`;
+    const res = await fetch(url);
+    const json = await res.json();
 
-    if (!result || result.status === 'error' || !result.data) {
-      alert(result?.error || "No record found for this mobile number and date of birth");
+    if (json.status !== "success" || !json.data) {
+      alert(json.error || "No record found for this mobile number and date of birth.");
       return;
     }
 
+    // Open result in new tab with formatted HTML
     const win = window.open("", "_blank");
     if (!win) {
-      alert("Please allow popups for this site");
+      alert("Please allow pop-ups for this website");
       return;
     }
 
-    if (type === 'application') {
-      win.document.write(generateApplicationPage(result.data));
-    } else if (type === 'hallticket') {
-      win.document.write(generateHallTicketPage(result.data));
-    } else if (type === 'result') {
-      win.document.write(generateResultPage(result.data));
+    let htmlContent;
+    if (type === "application") {
+      htmlContent = generateApplicationHTML(json.data.data);
+    } else if (type === "hallticket") {
+      htmlContent = generateHallticketHTML(json.data.data);
+    } else if (type === "result") {
+      htmlContent = generateResultHTML(json.data.data);
     }
 
+    win.document.write(htmlContent);
     win.document.close();
+
   } catch (err) {
-    alert("Connection error: " + err.message);
+    alert("Error connecting to server: " + err.message);
   } finally {
     showLoading(false);
   }
 }
 
-// ── You should implement these three functions properly ─────────────
+// ──────────────── PRINTABLE LAYOUTS (restored & working) ────────────────
 
-function generateApplicationPage(data) {
-  // data.data is the array of values from spreadsheet row
-  return `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>Application</title>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    </head>
-    <body class="bg-light p-4">
-      <div class="container">
-        <div class="card shadow">
-          <div class="card-header bg-primary text-white text-center py-4">
-            <h3>Admission Application</h3>
-          </div>
-          <div class="card-body">
-            <pre>${JSON.stringify(data.data, null, 2)}</pre>
-            <!-- 
-              → Replace this with your beautiful formatted application layout
-            -->
-          </div>
-        </div>
-      </div>
-    </body>
-    </html>`;
+function escapeHtml(unsafe) {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
-function generateHallTicketPage(data) {
-  return `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>Hall Ticket</title>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    </head>
-    <body class="bg-light p-4">
-      <div class="container">
-        <div class="card shadow">
-          <div class="card-header bg-primary text-white text-center py-4">
-            <h3>Entrance Exam Hall Ticket</h3>
-          </div>
-          <div class="card-body">
-            <pre>${JSON.stringify(data.data, null, 2)}</pre>
-            <!-- 
-              → Replace with your full hall ticket layout + QR code generation
-            -->
-          </div>
-        </div>
-      </div>
-    </body>
-    </html>`;
+function generateApplicationHTML(row) {
+  const [
+    timestamp, studentName, houseName, dobRaw, guardianName, address, phoneNumber,
+    whatsappNumber, madrasa, school, aadhaarNumber, fatherName, fatherOccupation,
+    relationshipWithGuardian, guardianReason, madrasaclass, schoolclass,
+    previousStudy, previousInstitution, studyDuration, juzCount, reasonForLeaving,
+    headTeacherPhone, identificationMark, physicalFitness, illness, photoUrl
+    // ... more columns if needed
+  ] = row;
+
+  const dob = dobRaw ? new Date(dobRaw).toLocaleDateString('en-GB') : "-";
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admission Application - ${escapeHtml(studentName || 'Student')}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background:#f8f9fa; padding:20px; }
+    .a4 { width: 210mm; min-height: 297mm; background:white; margin:auto; box-shadow:0 0 20px rgba(0,0,0,0.15); padding:30px; position:relative; }
+    .header { background: linear-gradient(135deg, #1d29d6, #0b5ed7); color:white; padding:20px; text-align:center; border-radius:12px 12px 0 0; }
+    .photo-frame { position:absolute; top:40px; right:40px; width:160px; height:190px; border:3px solid #dee2e6; border-radius:10px; overflow:hidden; background:#f8f9fa; }
+    .photo-frame img { width:100%; height:100%; object-fit:cover; }
+    h4 { color:#1d29d6; border-bottom:2px solid #1d29d6; padding-bottom:8px; margin:30px 0 20px; }
+    .info-row { display:flex; margin:12px 0; font-size:1.05rem; }
+    .label { width:240px; font-weight:600; color:#444; }
+    .value { flex:1; }
+    @media print {
+      body { background:white; padding:0; }
+      .a4 { box-shadow:none; margin:0; width:100%; }
+      .no-print { display:none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="a4">
+    <div class="header">
+      <h2 class="mb-1">DARUNNAJATH SHAREEATH & ARTS COLLEGE</h2>
+      <p class="mb-1">Punnakkad, Karuvarakundu, Malappuram Dist., Kerala</p>
+      <h5>Admission Application Form</h5>
+    </div>
+
+    ${photoUrl ? `
+    <div class="photo-frame">
+      <img src="${escapeHtml(photoUrl)}" alt="Student Photo">
+    </div>` : ''}
+
+    <h4>Personal Information</h4>
+    <div class="info-row"><span class="label">Student Name:</span><span class="value">${escapeHtml(studentName || '-')}</span></div>
+    <div class="info-row"><span class="label">House Name:</span><span class="value">${escapeHtml(houseName || '-')}</span></div>
+    <div class="info-row"><span class="label">Date of Birth:</span><span class="value">${dob}</span></div>
+    <div class="info-row"><span class="label">Guardian Name:</span><span class="value">${escapeHtml(guardianName || '-')}</span></div>
+    <div class="info-row"><span class="label">Address:</span><span class="value">${escapeHtml(address || '-')}</span></div>
+    <div class="info-row"><span class="label">Phone / WhatsApp:</span><span class="value">${escapeHtml(phoneNumber || '-')} ${whatsappNumber ? `(${escapeHtml(whatsappNumber)})` : ''}</span></div>
+
+    <h4>Educational Information</h4>
+    <div class="info-row"><span class="label">Madrasa:</span><span class="value">${escapeHtml(madrasa || '-')} (${escapeHtml(madrasaclass || '-')})</span></div>
+    <div class="info-row"><span class="label">School:</span><span class="value">${escapeHtml(school || '-')} (${escapeHtml(schoolclass || '-')})</span></div>
+
+    <h4>Other Details</h4>
+    <div class="info-row"><span class="label">Aadhaar Number:</span><span class="value">${escapeHtml(aadhaarNumber || '-')}</span></div>
+    <div class="info-row"><span class="label">Father's Name & Occupation:</span><span class="value">${escapeHtml(fatherName || '-')} (${escapeHtml(fatherOccupation || '-')})</span></div>
+    <div class="info-row"><span class="label">Identification Mark:</span><span class="value">${escapeHtml(identificationMark || '-')}</span></div>
+
+    <div class="text-center mt-5 no-print">
+      <button class="btn btn-primary btn-lg print-btn" onclick="window.print()">Print Application</button>
+      <button class="btn btn-secondary btn-lg print-btn" onclick="window.close()">Close</button>
+    </div>
+  </div>
+</body>
+</html>`;
 }
 
-function generateResultPage(data) {
-  return `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>Result</title>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    </head>
-    <body class="bg-light p-4">
-      <div class="container">
-        <div class="card shadow">
-          <div class="card-header bg-primary text-white text-center py-4">
-            <h3>Entrance Exam Result</h3>
-          </div>
-          <div class="card-body">
-            <pre>${JSON.stringify(data.data, null, 2)}</pre>
-            <!-- 
-              → Replace with beautiful result display
-            -->
-          </div>
-        </div>
-      </div>
-    </body>
-    </html>`;
+function generateHallticketHTML(row) {
+  const [
+    , studentName, houseName, dobRaw, , address, phoneNumber,
+    , , , , , , , , , , previousStudy, , , , , , , , , photoUrl
+    // adjust indices according to your sheet
+  ] = row;
+
+  const dob = dobRaw ? new Date(dobRaw).toLocaleDateString('en-GB') : "-";
+  const qrText = `Name: ${studentName}\nPhone: ${phoneNumber}\nDOB: ${dob}\nCollege: Darunnajath Shareeath`;
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hall Ticket - ${escapeHtml(studentName || 'Student')}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background:#f8f9fa; padding:20px; }
+    .a4 { width: 210mm; min-height: 297mm; background:white; margin:auto; box-shadow:0 0 20px rgba(0,0,0,0.15); padding:30px; }
+    .header { background: linear-gradient(135deg, #1d29d6, #0b5ed7); color:white; padding:20px; text-align:center; border-radius:12px 12px 0 0; }
+    .photo { position:absolute; top:50px; right:50px; width:140px; height:170px; border:3px solid #dee2e6; border-radius:8px; overflow:hidden; }
+    .photo img { width:100%; height:100%; object-fit:cover; }
+    .qr { position:absolute; top:240px; right:50px; width:140px; height:140px; border:3px solid #dee2e6; border-radius:8px; background:#fff; padding:5px; }
+    h4 { color:#1d29d6; border-bottom:2px solid #1d29d6; padding-bottom:8px; margin:25px 0 15px; }
+    .info-row { display:flex; margin:10px 0; font-size:1.1rem; }
+    .label { width:220px; font-weight:600; }
+    @media print { 
+      body { background:white; padding:0; }
+      .a4 { box-shadow:none; margin:0; width:100%; }
+      .no-print { display:none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="a4">
+    <div class="header">
+      <h2>DARUNNAJATH SHAREEATH & ARTS COLLEGE</h2>
+      <h5>Entrance Exam Hall Ticket</h5>
+    </div>
+
+    ${photoUrl ? `<div class="photo"><img src="${escapeHtml(photoUrl)}" alt="Photo"></div>` : ''}
+    <div class="qr" id="qrContainer"></div>
+
+    <h4>Student Details</h4>
+    <div class="info-row"><span class="label">Name:</span><span>${escapeHtml(studentName || '-')}</span></div>
+    <div class="info-row"><span class="label">House Name:</span><span>${escapeHtml(houseName || '-')}</span></div>
+    <div class="info-row"><span class="label">Date of Birth:</span><span>${dob}</span></div>
+    <div class="info-row"><span class="label">Mobile:</span><span>${escapeHtml(phoneNumber || '-')}</span></div>
+    <div class="info-row"><span class="label">Address:</span><span>${escapeHtml(address || '-')}</span></div>
+
+    <div class="text-center mt-5 no-print">
+      <button class="btn btn-primary btn-lg print-btn" onclick="window.print()">Print Hall Ticket</button>
+      <button class="btn btn-secondary btn-lg print-btn" onclick="window.close()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    new QRCode(document.getElementById("qrContainer"), {
+      text: "${escapeHtml(qrText)}",
+      width: 130,
+      height: 130,
+      colorDark: "#1d29d6",
+      colorLight: "#ffffff"
+    });
+  </script>
+</body>
+</html>`;
+}
+
+function generateResultHTML(row) {
+  // Adjust columns based on your Result sheet structure
+  const [mobile, dobRaw, studentName, resultStatus = "Pending", rank = "-"] = row;
+  const dob = dobRaw ? new Date(dobRaw).toLocaleDateString('en-GB') : "-";
+
+  let color = "#dc3545", text = "NOT QUALIFIED";
+  if (resultStatus.toUpperCase().includes("QUALIFIED")) {
+    color = "#28a745";
+    text = "QUALIFIED";
+  } else if (resultStatus.toUpperCase().includes("WAITING")) {
+    color = "#007bff";
+    text = "WAITING LIST";
+  }
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Result - ${escapeHtml(studentName || 'Student')}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background:#f8f9fa; padding:30px; }
+    .result-box { max-width:700px; margin:auto; background:white; border-radius:16px; overflow:hidden; box-shadow:0 10px 40px rgba(0,0,0,0.15); }
+    .header { background: linear-gradient(135deg, #1d29d6, #0b5ed7); color:white; padding:40px 20px; text-align:center; }
+    .status { font-size:3rem; font-weight:bold; margin:30px 0; color:${color}; }
+    .detail { font-size:1.4rem; margin:15px 0; }
+    @media print {
+      body { background:white; padding:0; }
+      .result-box { box-shadow:none; border-radius:0; }
+      .no-print { display:none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="result-box">
+    <div class="header">
+      <h2>DARUNNAJATH SHAREEATH & ARTS COLLEGE</h2>
+      <h4>Entrance Exam Result</h4>
+    </div>
+    <div class="p-5 text-center">
+      <div class="status">${text}</div>
+      <div class="detail fw-bold">Student: ${escapeHtml(studentName || '-')}</div>
+      <div class="detail">Mobile: ${escapeHtml(mobile || '-')}</div>
+      <div class="detail">Date of Birth: ${dob}</div>
+      ${rank !== "-" ? `<div class="detail">Rank: <strong>${escapeHtml(rank)}</strong></div>` : ''}
+    </div>
+    <div class="text-center pb-5 no-print">
+      <button class="btn btn-primary btn-lg print-btn" onclick="window.print()">Print Result</button>
+      <button class="btn btn-secondary btn-lg print-btn" onclick="window.close()">Close</button>
+    </div>
+  </div>
+</body>
+</html>`;
 }
 
 </script>
