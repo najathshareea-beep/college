@@ -14,9 +14,6 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- QR Code Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    
     <style>
         :root {
             --primary-blue: #1d29d6;
@@ -830,8 +827,7 @@
                                 </label>
                                 <input type="text" class="form-control" name="studentName" 
                                        placeholder="പൂർണ്ണ പേര് രേഖപ്പെടുത്തുക | Enter full name" 
-                                       required
-                                       oninput="validateField(this, 'name')">
+                                       required>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -854,9 +850,7 @@
                                 </label>
                                 <input type="date" class="form-control" name="dob" 
                                        max="<?php echo date('Y-m-d'); ?>" 
-                                       required
-                                       onchange="calculateAge(this.value)">
-                                <small class="text-muted" id="ageDisplay"></small>
+                                       required>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -868,8 +862,7 @@
                                        placeholder="ആധാര്‍ നമ്പര്‍ രേഖപ്പെടുത്തുക | Enter Aadhaar number" 
                                        required 
                                        pattern="\d{12}" 
-                                       title="Aadhaar number must be 12 digits"
-                                       oninput="validateAadhaar(this)">
+                                       title="Aadhaar number must be 12 digits">
                             </div>
                         </div>
                     </div>
@@ -892,8 +885,7 @@
                                        placeholder="9876543210 | Enter phone number" 
                                        required 
                                        pattern="\d{10}" 
-                                       title="Phone number must be 10 digits"
-                                       oninput="validatePhone(this)">
+                                       title="Phone number must be 10 digits">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -1045,16 +1037,14 @@
                         <div class="d-flex gap-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="previousStudy" 
-                                       id="previousNo" value="No"
-                                       onchange="togglePreviousStudy(false)">
+                                       id="previousNo" value="No">
                                 <label class="form-check-label" for="previousNo">
                                     ഇല്ല | No
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="previousStudy" 
-                                       id="previousYes" value="Yes" 
-                                       onchange="togglePreviousStudy(true)">
+                                       id="previousYes" value="Yes">
                                 <label class="form-check-label" for="previousYes">
                                     ഉണ്ട് | Yes
                                 </label>
@@ -1139,16 +1129,14 @@
                         <div class="d-flex gap-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="physicalFitness" 
-                                       id="fitnessHealthy" value="Healthy"
-                                       onchange="toggleIllnessSection(false)">
+                                       id="fitnessHealthy" value="Healthy">
                                 <label class="form-check-label" for="fitnessHealthy">
                                     ആരോഗ്യവാന്‍ | Healthy
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="physicalFitness" 
-                                       id="fitnessMedication" value="Medication" 
-                                       onchange="toggleIllnessSection(true)">
+                                       id="fitnessMedication" value="Medication">
                                 <label class="form-check-label" for="fitnessMedication">
                                     സ്ഥിരമായി ഗുളിക കഴിക്കാറുണ്ട് | Regular Medication
                                 </label>
@@ -1204,8 +1192,7 @@
                     </p>
                     
                     <div class="custom-checkbox">
-                        <input type="checkbox" id="declarationCheckbox" required
-                               onchange="toggleSubmitButton(this.checked)">
+                        <input type="checkbox" id="declarationCheckbox" required>
                         <label class="custom-checkbox-label" for="declarationCheckbox">
                             I hereby declare that all information provided is true and correct to the best of my knowledge. 
                             I agree to abide by all rules and regulations of the college.
@@ -1236,7 +1223,7 @@
                 Download Application
             </h2>
             
-            <form id="downloadApplicationForm" onsubmit="return handleApplicationSubmit(event)">
+            <form id="downloadApplicationForm">
                 <div class="form-group">
                     <label class="form-label required">
                         <i class="fas fa-mobile-alt me-2"></i>
@@ -1245,8 +1232,7 @@
                     <input type="tel" class="form-control" id="appMobile"
                            pattern="\d{10}"
                            placeholder="10 digit mobile number"
-                           required
-                           oninput="validatePhone(this)">
+                           required>
                 </div>
                 
                 <div class="form-group">
@@ -1283,7 +1269,7 @@
                 <small class="text-muted mt-2">QR Code will be generated with student details</small>
             </div>
             
-            <form id="downloadHallticketForm" onsubmit="return handleHallticketSubmit(event)">
+            <form id="downloadHallticketForm">
                 <div class="form-group">
                     <label class="form-label required">
                         <i class="fas fa-mobile-alt me-2"></i>
@@ -1292,8 +1278,7 @@
                     <input type="tel" class="form-control" id="ticketMobile"
                            pattern="\d{10}"
                            placeholder="10 digit mobile number"
-                           required
-                           oninput="validatePhone(this)">
+                           required>
                 </div>
                 
                 <div class="form-group">
@@ -1325,7 +1310,7 @@
                 Check Result
             </h2>
             
-            <form id="checkResultForm" onsubmit="return handleResultSubmit(event)">
+            <form id="checkResultForm">
                 <div class="form-group">
                     <label class="form-label required">
                         <i class="fas fa-mobile-alt me-2"></i>
@@ -1334,8 +1319,7 @@
                     <input type="tel" class="form-control" id="resultMobile"
                            pattern="\d{10}"
                            placeholder="10 digit mobile number"
-                           required
-                           oninput="validatePhone(this)">
+                           required>
                 </div>
                 
                 <div class="form-group">
@@ -1370,731 +1354,10 @@
     
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Configuration
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxtW3LQ6Da9H21yuEZqLLx31MiTPzgzlEotaK5YYvdLIS91324TZsj0fWOaJOmBIgVbpw/exec';
-        const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes cache
-        
-        // Cache for college info
-        let collegeInfoCache = {
-            data: null,
-            timestamp: 0
-        };
-        
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            initializePage();
-            setupEventListeners();
-        });
-        
-        function initializePage() {
-            // Set current year
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
-            
-            // Set max date for DOB fields
-            const today = new Date().toISOString().split('T')[0];
-            document.querySelectorAll('input[type="date"]').forEach(input => {
-                input.setAttribute('max', today);
-            });
-            
-            // Check system status
-            checkSystemStatus();
-            
-            // Load cached college info first
-            loadCachedCollegeInfo();
-            
-            // Load fresh data in background
-            setTimeout(() => {
-                loadCollegeInfo(true);
-            }, 1000);
-            
-            // Initialize QR code placeholder
-            initializeQRCode();
-        }
-        
-        function setupEventListeners() {
-            // Form submissions
-            document.getElementById('downloadApplicationForm').addEventListener('submit', handleApplicationSubmit);
-            document.getElementById('downloadHallticketForm').addEventListener('submit', handleHallticketSubmit);
-            document.getElementById('checkResultForm').addEventListener('submit', handleResultSubmit);
-            document.getElementById('newApplicationForm').addEventListener('submit', handleNewApplicationSubmit);
-            
-            // Mobile number validation
-            document.querySelectorAll('input[type="tel"]').forEach(input => {
-                input.addEventListener('input', function(e) {
-                    this.value = this.value.replace(/\D/g, '').slice(0, 10);
-                });
-            });
-            
-            // Prevent form submission on Enter key
-            document.querySelectorAll('form').forEach(form => {
-                form.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
-                        e.preventDefault();
-                    }
-                });
-            });
-        }
-        
-        // System Status Check
-        async function checkSystemStatus() {
-            try {
-                const response = await fetch(SCRIPT_URL, {
-                    method: 'HEAD',
-                    mode: 'no-cors'
-                });
-                document.getElementById('statusIndicator').className = 'status-indicator status-online';
-                document.getElementById('statusIndicator').innerHTML = '<i class="fas fa-circle"></i><span>System Online</span>';
-            } catch (error) {
-                document.getElementById('statusIndicator').className = 'status-indicator status-offline';
-                document.getElementById('statusIndicator').innerHTML = '<i class="fas fa-circle"></i><span>System Offline - Using Cached Data</span>';
-            }
-        }
-        
-        // Load cached college info
-        function loadCachedCollegeInfo() {
-            const cached = localStorage.getItem('collegeInfo');
-            if (cached) {
-                try {
-                    const data = JSON.parse(cached);
-                    updateCollegeInfoUI(data);
-                } catch (e) {
-                    console.error('Error loading cached data:', e);
-                }
-            }
-        }
-        
-        // Load college info with cache
-        async function loadCollegeInfo(background = false) {
-            if (!background) showLoading();
-            
-            try {
-                // Check cache first
-                const now = Date.now();
-                if (collegeInfoCache.data && now - collegeInfoCache.timestamp < CACHE_DURATION) {
-                    updateCollegeInfoUI(collegeInfoCache.data);
-                    if (!background) hideLoading();
-                    return;
-                }
-                
-                const response = await fetch(`${SCRIPT_URL}?action=getCollegeInfo&t=${now}`);
-                if (!response.ok) throw new Error('Network response was not ok');
-                
-                const data = await response.json();
-                if (data.status === 'success') {
-                    // Update cache
-                    collegeInfoCache = {
-                        data: data.data,
-                        timestamp: now
-                    };
-                    
-                    // Save to localStorage for offline use
-                    localStorage.setItem('collegeInfo', JSON.stringify(data.data));
-                    
-                    updateCollegeInfoUI(data.data);
-                    
-                    if (!background) {
-                        showNotification('Data loaded successfully', 'success');
-                    }
-                }
-            } catch (error) {
-                console.error('Error loading college info:', error);
-                if (!background) {
-                    showNotification('Using cached data. Some features may be limited.', 'warning');
-                }
-            } finally {
-                if (!background) hideLoading();
-            }
-        }
-        
-        function updateCollegeInfoUI(college) {
-            // Update ticker
-            const tickerItems = [
-                college.ticker1, college.ticker2, college.ticker3, 
-                college.ticker4, college.ticker5
-            ].filter(item => item).join(' &nbsp;&nbsp;•&nbsp;&nbsp; ');
-            
-            // Create ticker if not exists
-            let tickerContainer = document.querySelector('.ticker-container');
-            if (!tickerContainer && tickerItems) {
-                tickerContainer = document.createElement('div');
-                tickerContainer.className = 'ticker-container';
-                tickerContainer.innerHTML = `<div class="ticker-content">${tickerItems}</div>`;
-                document.getElementById('dashboardView').prepend(tickerContainer);
-            } else if (tickerContainer) {
-                tickerContainer.innerHTML = `<div class="ticker-content">${tickerItems || '📢 College Admissions Open'}</div>`;
-            }
-            
-            // Update instructions
-            const notes = [
-                college.note1, college.note2, college.note3, 
-                college.note4, college.note5
-            ].filter(note => note).join('<br>');
-            
-            const instructionsDiv = document.getElementById('applyInstructions');
-            if (instructionsDiv) {
-                instructionsDiv.innerHTML = notes || '<p>Selection exam date will be announced later. Please ensure all information is accurate.</p>';
-            }
-        }
-        
-        // View Management
-        function showDashboard() {
-            hideAllForms();
-            document.getElementById('dashboardView').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        
-        function showForm(formId) {
-            hideAllForms();
-            const form = document.getElementById(formId);
-            form.style.display = 'block';
-            window.scrollTo({ top: form.offsetTop - 20, behavior: 'smooth' });
-            
-            // Clear QR code when showing hall ticket form
-            if (formId === 'hallticketForm') {
-                clearQRCode();
-            }
-        }
-        
-        function hideAllForms() {
-            document.getElementById('dashboardView').style.display = 'none';
-            document.getElementById('applyNowForm').style.display = 'none';
-            document.getElementById('applicationForm').style.display = 'none';
-            document.getElementById('hallticketForm').style.display = 'none';
-            document.getElementById('resultForm').style.display = 'none';
-        }
-        
-        // Form Field Validation
-        function validateField(input, type) {
-            const value = input.value.trim();
-            let isValid = true;
-            
-            switch(type) {
-                case 'name':
-                    isValid = value.length >= 3 && /^[a-zA-Z\s\.\-']+$/.test(value);
-                    break;
-                case 'phone':
-                    isValid = /^\d{10}$/.test(value);
-                    break;
-                case 'aadhaar':
-                    isValid = /^\d{12}$/.test(value);
-                    break;
-            }
-            
-            if (isValid) {
-                input.classList.remove('is-invalid');
-                input.classList.add('is-valid');
-            } else {
-                input.classList.remove('is-valid');
-                input.classList.add('is-invalid');
-            }
-            
-            return isValid;
-        }
-        
-        function validatePhone(input) {
-            return validateField(input, 'phone');
-        }
-        
-        function validateAadhaar(input) {
-            return validateField(input, 'aadhaar');
-        }
-        
-        function calculateAge(dobString) {
-            if (!dobString) return;
-            
-            const birthDate = new Date(dobString);
-            const today = new Date();
-            
-            let years = today.getFullYear() - birthDate.getFullYear();
-            let months = today.getMonth() - birthDate.getMonth();
-            let days = today.getDate() - birthDate.getDate();
-            
-            if (days < 0) {
-                months--;
-                days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-            }
-            
-            if (months < 0) {
-                years--;
-                months += 12;
-            }
-            
-            document.getElementById('ageDisplay').textContent = 
-                `Age: ${years} years ${months} months ${days} days`;
-        }
-        
-        function togglePreviousStudy(show) {
-            const section = document.getElementById('previous-study-section');
-            const inputs = section.querySelectorAll('input, textarea, select');
-            
-            if (show) {
-                section.style.display = 'block';
-                inputs.forEach(input => input.required = true);
-            } else {
-                section.style.display = 'none';
-                inputs.forEach(input => {
-                    input.required = false;
-                    input.value = '';
-                });
-            }
-        }
-        
-        function toggleIllnessSection(show) {
-            const section = document.getElementById('illness-section');
-            const textarea = section.querySelector('textarea');
-            
-            if (show) {
-                section.style.display = 'block';
-                textarea.required = true;
-            } else {
-                section.style.display = 'none';
-                textarea.required = false;
-                textarea.value = '';
-            }
-        }
-        
-        // File Upload Handling
-        function handleDragOver(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            document.getElementById('fileUploadContainer').classList.add('dragover');
-        }
-        
-        function handleDragLeave(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            document.getElementById('fileUploadContainer').classList.remove('dragover');
-        }
-        
-        function handleDrop(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            document.getElementById('fileUploadContainer').classList.remove('dragover');
-            
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                handleFile(files[0]);
-            }
-        }
-        
-        function handlePhotoUpload(e) {
-            const file = e.target.files[0];
-            if (file) {
-                handleFile(file);
-            }
-        }
-        
-        function handleFile(file) {
-            // Validate file
-            if (!file.type.startsWith('image/')) {
-                showNotification('Please upload only image files (JPG, PNG)', 'error');
-                return;
-            }
-            
-            if (file.size > 5 * 1024 * 1024) {
-                showNotification('File size must be less than 5MB', 'error');
-                return;
-            }
-            
-            // Preview image
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const preview = document.getElementById('photoPreview');
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-            
-            showNotification('Photo uploaded successfully', 'success');
-        }
-        
-        function toggleSubmitButton(enabled) {
-            const btn = document.getElementById('submitApplicationBtn');
-            btn.disabled = !enabled;
-        }
-        
-        // QR Code Functions
-        function initializeQRCode() {
-            const qrcodeContainer = document.createElement('div');
-            qrcodeContainer.id = 'qrcode';
-            document.getElementById('qrcodePreview').appendChild(qrcodeContainer);
-        }
-        
-        function generateQRCode(data) {
-            clearQRCode();
-            
-            const qrcodeContainer = document.getElementById('qrcodePreview');
-            qrcodeContainer.style.display = 'block';
-            
-            // Create QR code with student data
-            const qrData = JSON.stringify({
-                name: data.studentName,
-                registerNo: data.registerNo,
-                dob: data.dob,
-                examDate: data.examDate,
-                venue: data.venue
-            });
-            
-            new QRCode(document.getElementById("qrcode"), {
-                text: qrData,
-                width: 180,
-                height: 180,
-                colorDark: "#1d29d6",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.H
-            });
-            
-            showNotification('QR Code generated successfully', 'success');
-        }
-        
-        function clearQRCode() {
-            const qrcodeDiv = document.getElementById('qrcode');
-            qrcodeDiv.innerHTML = '';
-            document.getElementById('qrcodePreview').style.display = 'none';
-        }
-        
-        // Form Submission Handlers
-        async function handleApplicationSubmit(e) {
-            e.preventDefault();
-            
-            const mobile = document.getElementById('appMobile').value.trim();
-            const dob = document.getElementById('appDob').value;
-            
-            if (!validatePhone(document.getElementById('appMobile'))) {
-                showNotification('Please enter a valid 10-digit mobile number', 'error');
-                return false;
-            }
-            
-            if (!dob) {
-                showNotification('Please select date of birth', 'error');
-                return false;
-            }
-            
-            await fetchWithProgress(`${SCRIPT_URL}?type=application&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`, 
-                'Searching for application...',
-                'application');
-            
-            return false;
-        }
-        
-        async function handleHallticketSubmit(e) {
-            e.preventDefault();
-            
-            const mobile = document.getElementById('ticketMobile').value.trim();
-            const dob = document.getElementById('ticketDob').value;
-            
-            if (!validatePhone(document.getElementById('ticketMobile'))) {
-                showNotification('Please enter a valid 10-digit mobile number', 'error');
-                return false;
-            }
-            
-            if (!dob) {
-                showNotification('Please select date of birth', 'error');
-                return false;
-            }
-            
-            await fetchWithProgress(`${SCRIPT_URL}?type=hallticket&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`, 
-                'Generating hall ticket...',
-                'hallticket');
-            
-            return false;
-        }
-        
-        async function handleResultSubmit(e) {
-            e.preventDefault();
-            
-            const mobile = document.getElementById('resultMobile').value.trim();
-            const dob = document.getElementById('resultDob').value;
-            
-            if (!validatePhone(document.getElementById('resultMobile'))) {
-                showNotification('Please enter a valid 10-digit mobile number', 'error');
-                return false;
-            }
-            
-            if (!dob) {
-                showNotification('Please select date of birth', 'error');
-                return false;
-            }
-            
-            await fetchWithProgress(`${SCRIPT_URL}?type=result&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`, 
-                'Fetching results...',
-                'result');
-            
-            return false;
-        }
-        
-        async function handleNewApplicationSubmit(e) {
-            e.preventDefault();
-            
-            // Validate all required fields
-            const form = e.target;
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-            
-            // Additional validations
-            if (data.previousStudy === 'Yes') {
-                const requiredFields = ['previousInstitution', 'studyDuration', 'juzCount', 'reasonForLeaving', 'headTeacherPhone'];
-                for (const field of requiredFields) {
-                    if (!data[field] || data[field].trim() === '') {
-                        showNotification(`Please fill all previous study details`, 'error');
-                        return false;
-                    }
-                }
-            }
-            
-            if (data.physicalFitness === 'Medication' && (!data.illness || data.illness.trim() === '')) {
-                showNotification('Please describe the illness when selecting "Regular Medication"', 'error');
-                return false;
-            }
-            
-            if (data.whatsappNumber && !/^\d{10}$/.test(data.whatsappNumber)) {
-                showNotification('WhatsApp number must be 10 digits if provided', 'error');
-                return false;
-            }
-            
-            // Check declaration
-            if (!document.getElementById('declarationCheckbox').checked) {
-                showNotification('Please agree to the declaration by checking the box', 'error');
-                return false;
-            }
-            
-            // Handle photo upload
-            const photoFile = document.getElementById('photoInput').files[0];
-            let photoData = null;
-            
-            if (photoFile) {
-                photoData = await readFileAsBase64(photoFile);
-                data.photo = JSON.stringify({
-                    name: photoFile.name,
-                    mimeType: photoFile.type,
-                    data: photoData.split(',')[1]
-                });
-            }
-            
-            // Prepare data for submission
-            const submitData = new URLSearchParams();
-            for (const [key, value] of Object.entries(data)) {
-                if (value !== undefined && value !== null) {
-                    submitData.append(key, value);
-                }
-            }
-            
-            // Submit with progress tracking
-            await submitWithProgress(submitData, 'Submitting application...');
-            
-            return false;
-        }
-        
-        // File reading helper
-        function readFileAsBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = reject;
-                reader.readAsDataURL(file);
-            });
-        }
-        
-        // Enhanced fetch with progress and retry
-        async function fetchWithProgress(url, loadingText, type = 'generic') {
-            showLoading(loadingText);
-            
-            try {
-                const response = await fetch(url);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const html = await response.text();
-                
-                if (html.includes('Error') || html.includes('not found') || html.includes('Please pay')) {
-                    throw new Error('Record not found or payment pending');
-                }
-                
-                // Open in new window
-                const newWindow = window.open('', '_blank');
-                newWindow.document.write(html);
-                newWindow.document.close();
-                
-                showNotification(`${type.charAt(0).toUpperCase() + type.slice(1)} opened successfully`, 'success');
-                
-                // Reset form and show dashboard
-                document.querySelector(`#${type}Form`).reset();
-                showDashboard();
-                
-            } catch (error) {
-                console.error('Error:', error);
-                
-                if (error.message.includes('Record not found') || error.message.includes('payment pending')) {
-                    showNotification(error.message, 'warning');
-                } else if (error.message.includes('NetworkError')) {
-                    showNotification('Network error. Please check your connection and try again.', 'error');
-                } else {
-                    showNotification('Error occurred. Please try again.', 'error');
-                }
-                
-            } finally {
-                hideLoading();
-            }
-        }
-        
-        async function submitWithProgress(data, loadingText) {
-            showLoading(loadingText);
-            showProgress();
-            
-            try {
-                // Simulate progress for better UX
-                simulateProgress();
-                
-                const response = await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    body: data,
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    }
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const html = await response.text();
-                
-                if (html.includes('Application Submitted Successfully') || html.includes('Application ID:')) {
-                    // Complete progress
-                    document.getElementById('progressBar').style.width = '100%';
-                    
-                    setTimeout(() => {
-                        const win = window.open('', '_blank');
-                        win.document.write(html);
-                        win.document.close();
-                        
-                        showNotification('Application submitted successfully!', 'success');
-                        
-                        // Reset form
-                        document.getElementById('newApplicationForm').reset();
-                        document.getElementById('photoPreview').style.display = 'none';
-                        document.getElementById('declarationCheckbox').checked = false;
-                        toggleSubmitButton(false);
-                        
-                        // Hide previous sections
-                        togglePreviousStudy(false);
-                        toggleIllnessSection(false);
-                        
-                        showDashboard();
-                        
-                    }, 500);
-                } else {
-                    throw new Error('Submission failed');
-                }
-                
-            } catch (error) {
-                console.error('Submission error:', error);
-                
-                if (error.message.includes('NetworkError')) {
-                    showNotification('Network error. Your data was saved locally. Please try again later.', 'error');
-                    
-                    // Save data locally for retry
-                    const formData = new FormData(document.getElementById('newApplicationForm'));
-                    const localData = Object.fromEntries(formData.entries());
-                    localStorage.setItem('pendingApplication', JSON.stringify(localData));
-                    
-                } else {
-                    showNotification('Submission failed. Please try again.', 'error');
-                }
-                
-            } finally {
-                hideProgress();
-                hideLoading();
-            }
-        }
-        
-        // UI Helpers
-        function showLoading(text = 'Loading...') {
-            document.getElementById('loadingText').textContent = text;
-            document.getElementById('loadingOverlay').style.display = 'flex';
-        }
-        
-        function hideLoading() {
-            document.getElementById('loadingOverlay').style.display = 'none';
-        }
-        
-        function showProgress() {
-            document.getElementById('progressContainer').style.display = 'block';
-            document.getElementById('progressBar').style.width = '0%';
-        }
-        
-        function hideProgress() {
-            document.getElementById('progressContainer').style.display = 'none';
-        }
-        
-        function simulateProgress() {
-            let width = 0;
-            const interval = setInterval(() => {
-                if (width >= 90) {
-                    clearInterval(interval);
-                } else {
-                    width += Math.random() * 10;
-                    document.getElementById('progressBar').style.width = width + '%';
-                }
-            }, 300);
-        }
-        
-        function showNotification(message, type = 'info') {
-            const notification = document.getElementById('notification');
-            const messageEl = document.getElementById('notificationMessage');
-            const icon = document.getElementById('notificationIcon');
-            
-            // Set type
-            notification.className = `notification ${type}`;
-            
-            // Set icon
-            const icons = {
-                success: 'fa-check-circle',
-                error: 'fa-exclamation-circle',
-                warning: 'fa-exclamation-triangle',
-                info: 'fa-info-circle'
-            };
-            icon.className = `fas ${icons[type]} notification-icon`;
-            
-            // Set message
-            messageEl.textContent = message;
-            
-            // Show
-            notification.style.display = 'block';
-            
-            // Auto-hide after 5 seconds
-            setTimeout(() => {
-                if (notification.style.display === 'block') {
-                    hideNotification();
-                }
-            }, 5000);
-        }
-        
-        function hideNotification() {
-            document.getElementById('notification').style.display = 'none';
-        }
-        
-        function formatTime(date) {
-            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        }
-        
-        // Handle offline data submission
-        function checkPendingApplications() {
-            const pending = localStorage.getItem('pendingApplication');
-            if (pending) {
-                if (confirm('You have a pending application. Would you like to submit it now?')) {
-                    // Submit pending application
-                    const data = JSON.parse(pending);
-                    // Implementation for retrying submission
-                }
-            }
-        }
-        
-        // Check for pending applications on page load
-        setTimeout(checkPendingApplications, 2000);
-    </script>
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Main JavaScript -->
+    <script src="app.js"></script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby7zHcn0dQbXxd2KBG56D3mf6DHJFrOefAlBSRJ5WydwIs1YLu41GLC-Qf6vJ38-5R6_A/exec';
 </body>
 </html>
