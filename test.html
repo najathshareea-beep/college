@@ -1,2100 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSAC | Admission Portal</title>
-    
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- QR Code Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    
-    <style>
-        :root {
-            --primary-blue: #1d29d6;
-            --secondary-blue: #0b5ed7;
-            --accent-green: #2E7D32;
-            --dark-red: #800000;
-            --light-bg: #f8f9fa;
-            --white: #ffffff;
-            --shadow: rgba(0, 0, 0, 0.1);
-            --success: #28a745;
-            --warning: #ffc107;
-            --danger: #dc3545;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, var(--light-bg) 0%, #e3f2fd 100%);
-            min-height: 100vh;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        /* Main Container */
-        .main-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Header Card */
-        .header-card {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px var(--shadow);
-            border: 3px solid var(--primary-blue);
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-        
-        .header-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .header-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-blue), var(--accent-green));
-        }
-        
-        .college-logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--primary-blue);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-        }
-        
-        .college-logo:hover {
-            transform: scale(1.05) rotate(5deg);
-        }
-        
-        .college-name {
-            color: var(--primary-blue);
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-        }
-        
-        .college-subtitle {
-            color: var(--accent-green);
-            font-weight: 600;
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-        
-        .college-address {
-            color: #555;
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-        
-        .portal-title {
-            color: var(--dark-red);
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 2px dashed #ddd;
-        }
-        
-        /* Dashboard */
-        .dashboard-container {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px var(--shadow);
-            animation: slideUp 0.5s ease;
-        }
-        
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .dashboard-title {
-            text-align: center;
-            color: var(--primary-blue);
-            margin-bottom: 30px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .dashboard-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-blue), var(--accent-green));
-            border-radius: 2px;
-        }
-        
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-        
-        .service-card {
-            background: linear-gradient(135deg, var(--white) 0%, #f8f9fa 100%);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 8px 25px var(--shadow);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-blue), var(--accent-green));
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            border-color: var(--primary-blue);
-        }
-        
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 30px;
-            margin: 0 auto 20px;
-            box-shadow: 0 5px 15px rgba(29, 41, 214, 0.3);
-            transition: transform 0.3s ease;
-        }
-        
-        .service-card:hover .service-icon {
-            transform: scale(1.1) rotate(10deg);
-        }
-        
-        .service-title {
-            color: var(--primary-blue);
-            font-weight: 600;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-            min-height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .service-desc {
-            color: #666;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-        
-        /* Buttons */
-        .btn-service {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
-            color: var(--white);
-            border: none;
-            border-radius: 50px;
-            padding: 12px 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            width: 100%;
-            box-shadow: 0 4px 10px rgba(29, 41, 214, 0.2);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        
-        .btn-service::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .btn-service:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 15px rgba(29, 41, 214, 0.3);
-            color: var(--white);
-        }
-        
-        .btn-service:hover::before {
-            left: 100%;
-        }
-        
-        .btn-service:active {
-            transform: translateY(-1px);
-        }
-        
-        /* Form Containers */
-        .form-container {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px var(--shadow);
-            display: none;
-            animation: slideIn 0.3s ease;
-        }
-        
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        
-        .form-title {
-            color: var(--primary-blue);
-            margin-bottom: 25px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-align: center;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-label {
-            font-weight: 600;
-            color: #444;
-            margin-bottom: 8px;
-            display: block;
-            font-size: 1rem;
-        }
-        
-        .form-label.required::after {
-            content: " *";
-            color: var(--danger);
-        }
-        
-        .form-control {
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            width: 100%;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 0.25rem rgba(29, 41, 214, 0.15);
-            outline: none;
-        }
-        
-        .form-control:disabled {
-            background-color: #f8f9fa;
-            cursor: not-allowed;
-        }
-        
-        /* Submit Button */
-        .btn-submit {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
-            color: var(--white);
-            border: none;
-            border-radius: 10px;
-            padding: 14px 30px;
-            font-weight: 600;
-            font-size: 16px;
-            width: 100%;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(29, 41, 214, 0.2);
-        }
-        
-        .btn-submit:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 7px 15px rgba(29, 41, 214, 0.3);
-        }
-        
-        .btn-submit:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-        
-        /* Loading Spinner */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            flex-direction: column;
-            backdrop-filter: blur(5px);
-        }
-        
-        .spinner-container {
-            text-align: center;
-        }
-        
-        .spinner {
-            width: 70px;
-            height: 70px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid var(--primary-blue);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
-        }
-        
-        .spinner-text {
-            color: var(--primary-blue);
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-top: 10px;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Progress Bar */
-        .progress-container {
-            width: 200px;
-            height: 6px;
-            background: #e0e0e0;
-            border-radius: 3px;
-            margin-top: 20px;
-            overflow: hidden;
-            display: none;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-blue), var(--accent-green));
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-        
-        /* Notification */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--white);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            z-index: 9998;
-            display: none;
-            max-width: 400px;
-            border-left: 5px solid var(--primary-blue);
-            transform: translateX(100%);
-            animation: slideInRight 0.3s ease forwards;
-        }
-        
-        @keyframes slideInRight {
-            to { transform: translateX(0); }
-        }
-        
-        .notification.success {
-            border-left-color: var(--success);
-        }
-        
-        .notification.error {
-            border-left-color: var(--danger);
-        }
-        
-        .notification.warning {
-            border-left-color: var(--warning);
-        }
-        
-        .notification-content {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .notification-icon {
-            font-size: 24px;
-            flex-shrink: 0;
-        }
-        
-        .notification.success .notification-icon {
-            color: var(--success);
-        }
-        
-        .notification.error .notification-icon {
-            color: var(--danger);
-        }
-        
-        .notification.warning .notification-icon {
-            color: var(--warning);
-        }
-        
-        .notification.info .notification-icon {
-            color: var(--primary-blue);
-        }
-        
-        .notification-message {
-            flex: 1;
-            color: #333;
-            font-size: 14px;
-        }
-        
-        .notification-close {
-            background: none;
-            border: none;
-            color: #999;
-            cursor: pointer;
-            font-size: 20px;
-            padding: 0;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-        }
-        
-        .notification-close:hover {
-            background: #f8f9fa;
-            color: #333;
-        }
-        
-        /* Instructions */
-        .instructions-box {
-            background: #e8f4ff;
-            border-radius: 15px;
-            padding: 25px;
-            margin-top: 30px;
-            border: 2px solid #cfe2ff;
-        }
-        
-        .instructions-title {
-            color: var(--primary-blue);
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .instructions-list {
-            padding-left: 20px;
-            margin-bottom: 0;
-        }
-        
-        .instructions-list li {
-            margin-bottom: 10px;
-            color: #444;
-        }
-        
-        /* Status Indicators */
-        .status-indicator {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-        
-        .status-online {
-            background: #d4edda;
-            color: #155724;
-        }
-        
-        .status-offline {
-            background: #f8d7da;
-            color: #721c24;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .main-container {
-                padding: 15px;
-            }
-            
-            .header-card {
-                padding: 20px;
-            }
-            
-            .college-name {
-                font-size: 1.8rem;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            .service-card {
-                padding: 20px;
-            }
-            
-            .notification {
-                left: 20px;
-                right: 20px;
-                max-width: none;
-            }
-        }
-        
-        /* QR Code Container */
-        .qrcode-container {
-            text-align: center;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border: 2px dashed #dee2e6;
-            margin: 20px 0;
-        }
-        
-        .qrcode-placeholder {
-            width: 200px;
-            height: 200px;
-            background: white;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #6c757d;
-            font-size: 14px;
-            margin: 0 auto;
-            border: 2px solid #e9ecef;
-        }
-        
-        /* Enhanced Form Styling */
-        .form-step {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--primary-blue);
-        }
-        
-        .form-step-title {
-            color: var(--primary-blue);
-            font-weight: 600;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-        
-        /* Custom Checkbox */
-        .custom-checkbox {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            cursor: pointer;
-        }
-        
-        .custom-checkbox input {
-            width: 20px;
-            height: 20px;
-            flex-shrink: 0;
-            margin-top: 3px;
-        }
-        
-        .custom-checkbox-label {
-            color: #333;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-        
-        /* File Upload */
-        .file-upload-container {
-            border: 2px dashed #dee2e6;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .file-upload-container:hover {
-            border-color: var(--primary-blue);
-            background: #f8f9fa;
-        }
-        
-        .file-upload-container.dragover {
-            border-color: var(--success);
-            background: #d4edda;
-        }
-        
-        .file-preview {
-            max-width: 200px;
-            max-height: 200px;
-            border-radius: 10px;
-            margin-top: 10px;
-            display: none;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DSAC - Admission Portal</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+
+  <style>
+    :root {
+      --primary: #1d29d6;
+      --light: #f8f9fa;
+      --dark: #212529;
+    }
+    body {
+      background: linear-gradient(135deg, var(--light), #e3f2fd);
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .card-hover:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.15) !important;
+      transition: all 0.3s ease;
+    }
+    #loading {
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .spinner {
+      width: 64px;
+      height: 64px;
+      border: 6px solid #e0e0e0;
+      border-top: 6px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
 </head>
 <body>
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="spinner-container">
-            <div class="spinner"></div>
-            <div class="spinner-text" id="loadingText">Loading...</div>
-            <div class="progress-container" id="progressContainer">
-                <div class="progress-bar" id="progressBar"></div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Notification -->
-    <div class="notification" id="notification">
-        <div class="notification-content">
-            <i class="fas fa-info-circle notification-icon" id="notificationIcon"></i>
-            <div class="notification-message" id="notificationMessage"></div>
-            <button class="notification-close" onclick="hideNotification()">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-    
-    <!-- Main Container -->
-    <div class="main-container">
-        <!-- Header -->
-        <div class="header-card text-center">
-            <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="college-logo">
-            <h2 class="college-subtitle">DARUNNAJATH SHAREEATH & ARTS COLLEGE</h2>
-            <p class="college-address">Punnakkad, Karuvarakundu, Malappuram District</p>
-            <h3 class="portal-title">New Admission Portal</h3>
-        </div>
-        
-        <!-- Dashboard -->
-        <div class="dashboard-container" id="dashboardView">
-            <!-- Services Grid -->
-            <div class="services-grid">
-                <!-- Apply Now -->
-                <div class="service-card" onclick="showForm('applyNowForm')">
-                    <div class="service-icon">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <h3 class="service-title">Apply Now</h3>
-                    <p class="service-desc">Submit new admission application online</p>
-                    <button class="btn-service">
-                        <i class="fas fa-pen me-2"></i> Start Application
-                    </button>
-                </div>
-                
-                <!-- Application Download -->
-                <div class="service-card" onclick="showForm('applicationForm')">
-                    <div class="service-icon">
-                        <i class="fas fa-file-download"></i>
-                    </div>
-                    <h3 class="service-title">Download Application</h3>
-                    <p class="service-desc">View and download submitted application</p>
-                    <button class="btn-service">
-                        <i class="fas fa-download me-2"></i> Download
-                    </button>
-                </div>
-                
-                <!-- Hall Ticket -->
-                <div class="service-card" onclick="showForm('hallticketForm')">
-                    <div class="service-icon">
-                        <i class="fas fa-ticket-alt"></i>
-                    </div>
-                    <h3 class="service-title">Hall Ticket</h3>
-                    <p class="service-desc">Download exam hall ticket with QR code</p>
-                    <button class="btn-service">
-                        <i class="fas fa-ticket-alt me-2"></i> Get Hall Ticket
-                    </button>
-                </div>
-                
-                <!-- Result Check -->
-                <div class="service-card" onclick="showForm('resultForm')">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="service-title">Check Result</h3>
-                    <p class="service-desc">Check examination results online</p>
-                    <button class="btn-service">
-                        <i class="fas fa-search me-2"></i> Check Result
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Instructions -->
-            <div class="instructions-box">
-                <h3 class="instructions-title">
-                    <i class="fas fa-info-circle"></i>
-                    Important Instructions
-                </h3>
-                <ul class="instructions-list" id="instructionsList">
-                    <li>All services require <strong>registered mobile number</strong> and <strong>date of birth</strong></li>
-                    <li>Mobile number must be 10 digits</li>
-                    <li>For new applications, all fields marked with * are mandatory</li>
-                    <li>Keep your application ID safe for future reference</li>
-                    <li>Hall tickets include QR code for quick verification</li>
-                </ul>
-            </div>
-        </div>
-        
-        <!-- Apply Now Form -->
-        <div class="form-container" id="applyNowForm">
-            <h2 class="form-title">
-                <i class="fas fa-file-alt me-2"></i>
-                New Admission Application
-            </h2>
-            
-            <div class="instructions-box mb-4">
-                <h4 class="instructions-title"><i class="fas fa-lightbulb"></i> Important Notes</h4>
-                <div id="applyInstructions">യോഗ്യത: സ്കൂള്‍ 7-ാം ക്ലാസ്, സമസ്മതയുടെ മദ്റസ 6-ാം ക്ലാസ് / തത്തുല്യം, ആണ്‍ കുട്ടി</div>
-                <div id="applyInstructions">2025 ഫെബ്രുവരി 26  ബുധനാഴ്ചക്ക് മുമ്പ് അപേക്ഷ സമര്‍പ്പിക്കുക</div>
-                <div id="applyInstructions">സെലക്ഷന്‍ പരീക്ഷ: 2025-December-17, Wed, 10:00 AM</div>
-                <div id="applyInstructions">പ്രവേശന പരീക്ഷാദിനത്തില്‍ ആധാര് കോപ്പി, അപേക്ഷാ ഫീ 250 രൂപ എന്നിവ സ്ഥാപനത്തില്‍ സമർപ്പിക്കുക.</div>
-            </div>
-            
-            <form id="newApplicationForm" onsubmit="return handleNewApplicationSubmit(event)">
-                <!-- Personal Information -->
-                <div class="form-step">
-                    <div class="form-step-title">
-                        <i class="fas fa-user me-2"></i>Personal Information
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label required">
-                                    1. കുട്ടിയുടെ പേര് | Student's Name:
-                                </label>
-                                <input type="text" class="form-control" name="studentName" 
-                                       placeholder="പൂർണ്ണ പേര് രേഖപ്പെടുത്തുക | Enter full name" 
-                                       required
-                                       oninput="validateField(this, 'name')">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label required">
-                                    2. വീട്ടു പേര് | House Name:
-                                </label>
-                                <input type="text" class="form-control" name="houseName" 
-                                       placeholder="വീട്ടു പേര് രേഖപ്പെടുത്തുക | House name" 
-                                       required>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label required">
-                                    3. ജനന തിയ്യതി | Date of Birth:
-                                </label>
-                                <input type="date" class="form-control" name="dob" 
-                                       max="<?php echo date('Y-m-d'); ?>" 
-                                       required
-                                       onchange="calculateAge(this.value)">
-                                <small class="text-muted" id="ageDisplay"></small>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label required">
-                                    4. ആധാര്‍ നമ്പര്‍ | Aadhaar Number:
-                                </label>
-                                <input type="text" class="form-control" name="aadhaarNumber" 
-                                       placeholder="ആധാര്‍ നമ്പര്‍ രേഖപ്പെടുത്തുക | Enter Aadhaar number" 
-                                       required 
-                                       pattern="\d{12}" 
-                                       title="Aadhaar number must be 12 digits"
-                                       oninput="validateAadhaar(this)">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">
-                            5. വിലാസം | Postal Address:
-                        </label>
-                        <textarea class="form-control" name="address" 
-                                  placeholder="പൂർണ്ണ വിലാസം രേഖപ്പെടുത്തുക | Enter full address" 
-                                  required rows="3"></textarea>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label required">
-                                    6. ഫോണ്‍ നമ്പര്‍ | Phone Number:
-                                </label>
-                                <input type="tel" class="form-control" name="phoneNumber" 
-                                       placeholder="9876543210 | Enter phone number" 
-                                       required 
-                                       pattern="\d{10}" 
-                                       title="Phone number must be 10 digits"
-                                       oninput="validatePhone(this)">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">
-                                    7. വാട്‌സ്ആപ്പ് നമ്പര്‍ | WhatsApp Number:
-                                </label>
-                                <input type="tel" class="form-control" name="whatsappNumber" 
-                                       placeholder="വാട്‌സ്ആപ്പ് നമ്പര്‍ (വ്യത്യസ്തമെങ്കിൽ) | Enter WhatsApp number (if different)" 
-                                       pattern="\d{10}" 
-                                       title="WhatsApp number must be 10 digits">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Parent/Guardian Information -->
-                <div class="form-step">
-                    <div class="form-step-title">
-                        <i class="fas fa-users me-2"></i>Parent/Guardian Information
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label required">
-                                    8. പിതാവിന്‍റെ പേര് | Father's Name:
-                                </label>
-                                <input type="text" class="form-control" name="fatherName" 
-                                       placeholder="പിതാവിന്‍റെ പേര് രേഖപ്പെടുത്തുക | Enter father's name" 
-                                       required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label required">
-                                    9. പിതാവിന്‍റെ ജോലി | Father's Occupation:
-                                </label>
-                                <input type="text" class="form-control" name="fatherOccupation" 
-                                       placeholder="പിതാവിന്‍റെ ജോലി രേഖപ്പെടുത്തുക | Enter father's occupation" 
-                                       required>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label required">
-                                    10. രക്ഷിതാവിന്‍റെ പേര് | Guardian's Name:
-                                </label>
-                                <input type="text" class="form-control" name="guardianName" 
-                                       placeholder="രക്ഷിതാവിന്‍റെ പേര് | Guardian's name" 
-                                       required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label required">
-                                    11. വിദ്യാര്‍ത്ഥിക്ക് രക്ഷിതാവുമായുള്ള ബന്ധം | Relationship with Guardian:
-                                </label>
-                                <select class="form-control" name="relationshipWithGuardian" required>
-                                    <option value="" disabled selected>രക്ഷിതാവുമായുള്ള ബന്ധം തിരഞ്ഞെടുക്കുക | Select Relationship</option>
-                                    <option value="Father">പിതാവ് | Father</option>
-                                    <option value="Mother">മാതാവ് | Mother</option>
-                                    <option value="Brother">സഹോദരൻ | Brother</option>
-                                    <option value="Sister">സഹോദരി | Sister</option>
-                                    <option value="Other">മറ്റുള്ളവർ | Other</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">
-                            12. രക്ഷിതാവ്, പിതാവല്ലെങ്കില്‍ കാരണം | Reason if Guardian is not Father:
-                        </label>
-                        <textarea class="form-control" name="guardianReason" 
-                                  placeholder="രക്ഷിതാവ് പിതാവല്ലെങ്കില്‍ കാരണം | Enter reason if guardian is not father" 
-                                  rows="2"></textarea>
-                    </div>
-                </div>
-                
-                <!-- Educational Information -->
-                <div class="form-step">
-                    <div class="form-step-title">
-                        <i class="fas fa-graduation-cap me-2"></i>Educational Information
-                    </div>
 
-                    <!-- Madrasa Row -->
-                    <div class="row mb-4 align-items-end">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label required">
-                                    13. പഠിക്കുന്ന മദ്റസയും സ്ഥലവും | Madrasa & Location:
-                                </label>
-                                <input type="text" class="form-control" name="madrasa"
-                                       placeholder="മദ്റസയും സ്ഥലവും രേഖപ്പെടുത്തുക | Enter Madrasa name and location"
-                                       required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label required">
-                                    ക്ലാസ് | Class:
-                                </label>
-                                <select class="form-control" name="madrasaclass" required>
-                                    <option value="" disabled selected>മദ്റസ ക്ലാസ് തിരഞ്ഞെടുക്കുക | Select Madrasa class</option>
-                                    <option value="II">II</option>
-                                    <option value="III">III</option>
-                                    <option value="IV">IV</option>
-                                    <option value="V">V</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+<!-- Loading Overlay -->
+<div id="loading">
+  <div class="spinner mb-4"></div>
+  <h4 class="text-dark">Please wait...</h4>
+</div>
 
-                    <!-- School Row -->
-                    <div class="row align-items-end">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label required">
-                                    14. പഠിക്കുന്ന സ്കൂളും സ്ഥലവും | School & Location:
-                                </label>
-                                <input type="text" class="form-control" name="school"
-                                       placeholder="സ്കൂളും സ്ഥലവും രേഖപ്പെടുത്തുക | Enter School name and location"
-                                       required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label required">
-                                    ക്ലാസ് | Class:
-                                </label>
-                                <select class="form-control" name="schoolclass" required>
-                                    <option value="" disabled selected>സ്കൂള്‍ ക്ലാസ് തിരഞ്ഞെടുക്കുക | Select School class</option>
-                                    <option value="II">II</option>
-                                    <option value="III">III</option>
-                                    <option value="IV">IV</option>
-                                    <option value="V">V</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label required">
-                            15. മുമ്പ് ഏതെങ്കിലും ഹിഫ്ള് കോളേജ്, ദര്‍സ്, കോളേജ് പഠിച്ചിട്ടുണ്ടോ | Previously Studied at Hifz College/Dars/College:
-                        </label>
-                        <div class="d-flex gap-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="previousStudy" 
-                                       id="previousNo" value="No"
-                                       onchange="togglePreviousStudy(false)">
-                                <label class="form-check-label" for="previousNo">
-                                    ഇല്ല | No
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="previousStudy" 
-                                       id="previousYes" value="Yes" 
-                                       onchange="togglePreviousStudy(true)">
-                                <label class="form-check-label" for="previousYes">
-                                    ഉണ്ട് | Yes
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div id="previous-study-section" style="display: none;">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label">
-                                        ഏത് സ്ഥാപനത്തില്‍ | Which Institution:
-                                    </label>
-                                    <input type="text" class="form-control" name="previousInstitution" 
-                                           placeholder="സ്ഥാപനത്തിന്റെ പേര് രേഖപ്പെടുത്തുക | Enter institution name">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label">
-                                        എത്ര കാലം | Duration of Study:
-                                    </label>
-                                    <input type="text" class="form-control" name="studyDuration" 
-                                           placeholder="പഠന കാലം രേഖപ്പെടുത്തുക | Enter duration">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label">
-                                        എത്ര ജുസുഅ് | Number of Juz:
-                                    </label>
-                                    <input type="text" class="form-control" name="juzCount" 
-                                           placeholder="ജുസുഅിന്റെ എണ്ണം രേഖപ്പെടുത്തുക | Enter number of Juz">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label">
-                                        പ്രധാന അദ്ധ്യാപകന്‍റെ ഫോണ്‍ നമ്പര്‍ | Head Teacher's Phone Number:
-                                    </label>
-                                    <input type="tel" class="form-control" name="headTeacherPhone" 
-                                           placeholder="9876543210 | Enter phone number" 
-                                           pattern="\d{10}" 
-                                           title="Phone number must be 10 digits">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">
-                                പോരാനുള്ള കാരണം | Reason for Leaving:
-                            </label>
-                            <textarea class="form-control" name="reasonForLeaving" 
-                                      placeholder="പോരാനുള്ള കാരണം രേഖപ്പെടുത്തുക | Enter reason for leaving" 
-                                      rows="2"></textarea>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Medical Information -->
-                <div class="form-step">
-                    <div class="form-step-title">
-                        <i class="fas fa-heartbeat me-2"></i>Medical & Identification
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label required">
-                            16. കുട്ടിയെ തിരിച്ചറിയാനുള്ള അടയാളം | Student's Identification Mark:
-                        </label>
-                        <input type="text" class="form-control" name="identificationMark" 
-                               placeholder="തിരിച്ചറിയല്‍ അടയാളം രേഖപ്പെടുത്തുക | Enter identification mark" 
-                               required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label required">
-                            17. കുട്ടിയുടെ ശാരീരിക ക്ഷമത | Student's Physical Fitness:
-                        </label>
-                        <div class="d-flex gap-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="physicalFitness" 
-                                       id="fitnessHealthy" value="Healthy"
-                                       onchange="toggleIllnessSection(false)">
-                                <label class="form-check-label" for="fitnessHealthy">
-                                    ആരോഗ്യവാന്‍ | Healthy
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="physicalFitness" 
-                                       id="fitnessMedication" value="Medication" 
-                                       onchange="toggleIllnessSection(true)">
-                                <label class="form-check-label" for="fitnessMedication">
-                                    സ്ഥിരമായി ഗുളിക കഴിക്കാറുണ്ട് | Regular Medication
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div id="illness-section" style="display: none;">
-                        <div class="form-group">
-                            <label class="form-label">
-                                രോഗം | Illness:
-                            </label>
-                            <textarea class="form-control" name="illness" 
-                                      placeholder="രോഗത്തിന്റെ വിശദാംശങ്ങൾ രേഖപ്പെടുത്തുക | Enter details of illness" 
-                                      rows="2"></textarea>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Photo Upload -->
-                <div class="form-step">
-                    <div class="form-step-title">
-                        <i class="fas fa-camera me-2"></i>Student Photograph
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label required">
-                            18. കുട്ടിയുടെ ഫോട്ടോ | Student's Photo:
-                        </label>
-                        <div class="file-upload-container" onclick="document.getElementById('photoInput').click()" 
-                             ondragover="handleDragOver(event)" 
-                             ondragleave="handleDragLeave(event)" 
-                             ondrop="handleDrop(event)"
-                             id="fileUploadContainer">
-                            <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
-                            <h5>Click to upload or drag & drop</h5>
-                            <p class="text-muted">JPG, PNG up to 5MB</p>
-                            <input type="file" class="d-none" id="photoInput" name="student_photo" accept="image/jpeg,image/png" 
-                                   required
-                                   onchange="handlePhotoUpload(event)">
-                            <img id="photoPreview" class="file-preview" alt="Photo Preview">
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Declaration -->
-                <div class="instructions-box mt-4">
-                    <h4 class="instructions-title">
-                        <i class="fas fa-file-contract"></i>
-                        Declaration
-                    </h4>
-                    <p id="declarationText" class="mb-3">
-                        എന്‍റെ കുട്ടിയും ഞാനും ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജിന്‍റെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ അല്‍ ഹാഫിള് മമ്മു മുല്ല തഹ്ഫീളുല്‍ ഖുര്‍ആന്‍ കോളേജില്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.
-                    </p>
-                    
-                    <div class="custom-checkbox">
-                        <input type="checkbox" id="declarationCheckbox" required
-                               onchange="toggleSubmitButton(this.checked)">
-                        <label class="custom-checkbox-label" for="declarationCheckbox">
-                            I hereby declare that all information provided is true and correct to the best of my knowledge. 
-                            I agree to abide by all rules and regulations of the college.
-                        </label>
-                    </div>
-                </div>
-                
-                <!-- Submit Button -->
-                <button type="submit" class="btn-submit mt-4" id="submitApplicationBtn" disabled>
-                    <i class="fas fa-paper-plane me-2"></i>
-                    Submit Application
-                </button>
-                
-                <!-- Back Button -->
-                <div class="text-center mt-3">
-                    <button type="button" class="btn btn-outline-primary" onclick="showDashboard()">
-                        <i class="fas fa-arrow-left me-2"></i>
-                        Back to Dashboard
-                    </button>
-                </div>
-            </form>
-        </div>
-        
-        <!-- Application Download Form -->
-        <div class="form-container" id="applicationForm">
-            <h2 class="form-title">
-                <i class="fas fa-file-download me-2"></i>
-                Download Application
-            </h2>
-            
-            <form id="downloadApplicationForm" onsubmit="return handleApplicationSubmit(event)">
-                <div class="form-group">
-                    <label class="form-label required">
-                        <i class="fas fa-mobile-alt me-2"></i>
-                        Mobile Number
-                    </label>
-                    <input type="tel" class="form-control" id="appMobile"
-                           pattern="\d{10}"
-                           placeholder="10 digit mobile number"
-                           required
-                           oninput="validatePhone(this)">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label required">
-                        <i class="fas fa-calendar-alt me-2"></i>
-                        Date of Birth
-                    </label>
-                    <input type="date" class="form-control" id="appDob" required>
-                </div>
-                
-                <button type="submit" class="btn-submit" id="submitApplicationSearchBtn">
-                    <i class="fas fa-search me-2"></i>
-                    Search & Download
-                </button>
-                
-                <div class="text-center mt-3">
-                    <button type="button" class="btn btn-outline-primary" onclick="showDashboard()">
-                        <i class="fas fa-arrow-left me-2"></i>
-                        Back to Dashboard
-                    </button>
-                </div>
-            </form>
-        </div>
-        
-        <!-- Hall Ticket Form -->
-        <div class="form-container" id="hallticketForm">
-            <h2 class="form-title">
-                <i class="fas fa-ticket-alt me-2"></i>
-                Hall Ticket Download
-            </h2>
-            
-            <div class="qrcode-container mb-4" id="qrcodePreview" style="display: none;">
-                <div id="qrcode"></div>
-                <small class="text-muted mt-2">QR Code will be generated with student details</small>
-            </div>
-            
-            <form id="downloadHallticketForm" onsubmit="return handleHallticketSubmit(event)">
-                <div class="form-group">
-                    <label class="form-label required">
-                        <i class="fas fa-mobile-alt me-2"></i>
-                        Mobile Number
-                    </label>
-                    <input type="tel" class="form-control" id="ticketMobile"
-                           pattern="\d{10}"
-                           placeholder="10 digit mobile number"
-                           required
-                           oninput="validatePhone(this)">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label required">
-                        <i class="fas fa-calendar-alt me-2"></i>
-                        Date of Birth
-                    </label>
-                    <input type="date" class="form-control" id="ticketDob" required>
-                </div>
-                
-                <button type="submit" class="btn-submit" id="submitTicketBtn">
-                    <i class="fas fa-download me-2"></i>
-                    Generate & Download Hall Ticket
-                </button>
-                
-                <div class="text-center mt-3">
-                    <button type="button" class="btn btn-outline-primary" onclick="showDashboard()">
-                        <i class="fas fa-arrow-left me-2"></i>
-                        Back to Dashboard
-                    </button>
-                </div>
-            </form>
-        </div>
-        
-        <!-- Result Form -->
-        <div class="form-container" id="resultForm">
-            <h2 class="form-title">
-                <i class="fas fa-chart-line me-2"></i>
-                Check Result
-            </h2>
-            
-            <form id="checkResultForm" onsubmit="return handleResultSubmit(event)">
-                <div class="form-group">
-                    <label class="form-label required">
-                        <i class="fas fa-mobile-alt me-2"></i>
-                        Mobile Number
-                    </label>
-                    <input type="tel" class="form-control" id="resultMobile"
-                           pattern="\d{10}"
-                           placeholder="10 digit mobile number"
-                           required
-                           oninput="validatePhone(this)">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label required">
-                        <i class="fas fa-calendar-alt me-2"></i>
-                        Date of Birth
-                    </label>
-                    <input type="date" class="form-control" id="resultDob" required>
-                </div>
-                
-                <button type="submit" class="btn-submit" id="submitResultBtn">
-                    <i class="fas fa-search me-2"></i>
-                    Check Result
-                </button>
-                
-                <div class="text-center mt-3">
-                    <button type="button" class="btn btn-outline-primary" onclick="showDashboard()">
-                        <i class="fas fa-arrow-left me-2"></i>
-                        Back to Dashboard
-                    </button>
-                </div>
-            </form>
-        </div>
+<div class="container py-5">
+  <!-- Header -->
+  <div class="card text-center mb-5 shadow-lg border-0 rounded-4 overflow-hidden">
+    <div class="card-body py-5 bg-white">
+      <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" 
+           alt="College Logo" 
+           style="width:140px;height:140px;object-fit:contain;border-radius:50%;border:5px solid var(--primary);">
+      <h2 class="mt-4 mb-2 fw-bold text-primary">دار النجاة للشريعة والآداب</h2>
+      <h4 class="text-muted">Darunnajath Shareeath & Arts College</h4>
+      <p class="text-secondary mt-2">Punnakkad, Karuvarakundu, Malappuram Dist.</p>
     </div>
-    
-    <!-- Footer -->
-    <footer class="footer mt-5 py-4 text-center">
-        <div class="container">
-            <p class="mb-2">© <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All Rights Reserved.</p>
+  </div>
+
+  <!-- Services Grid -->
+  <div class="row g-4 mb-5">
+    <div class="col-md-6 col-lg-3">
+      <div class="card h-100 shadow card-hover text-center p-4 cursor-pointer" onclick="showForm('apply')">
+        <i class="fas fa-file-signature fa-3x text-primary mb-3"></i>
+        <h5 class="fw-bold">New Application</h5>
+        <p class="text-muted small">Start fresh admission process</p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="card h-100 shadow card-hover text-center p-4 cursor-pointer" onclick="showForm('download')">
+        <i class="fas fa-file-arrow-down fa-3x text-primary mb-3"></i>
+        <h5 class="fw-bold">Download Application</h5>
+        <p class="text-muted small">View / Print submitted form</p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="card h-100 shadow card-hover text-center p-4 cursor-pointer" onclick="showForm('hallticket')">
+        <i class="fas fa-ticket-alt fa-3x text-primary mb-3"></i>
+        <h5 class="fw-bold">Hall Ticket</h5>
+        <p class="text-muted small">Get exam admission ticket</p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="card h-100 shadow card-hover text-center p-4 cursor-pointer" onclick="showForm('result')">
+        <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
+        <h5 class="fw-bold">Check Result</h5>
+        <p class="text-muted small">View entrance exam result</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamic form area -->
+  <div id="mainFormArea" class="card shadow p-0 overflow-hidden" style="min-height:300px;"></div>
+</div>
+
+<script>
+// Change this to your real deployed web app URL!
+const API_URL = "https://script.google.com/macros/s/YOUR_DEPLOYED_WEB_APP_ID/exec";
+
+function showLoading(show = true) {
+  document.getElementById('loading').style.display = show ? 'flex' : 'none';
+}
+
+function showForm(mode) {
+  const container = document.getElementById('mainFormArea');
+  container.innerHTML = '';
+
+  if (mode === 'apply') {
+    container.innerHTML = `
+      <div class="card-body p-5">
+        <h3 class="text-center mb-4 fw-bold text-primary">New Admission Application</h3>
+        <p class="text-center text-muted mb-5">Please fill all required fields carefully</p>
+        <!-- 
+          →→→ You need to put your COMPLETE application form here ←←←
+          (all 18+ fields, photo upload, validation, declaration checkbox etc.)
+        -->
+        <div class="alert alert-info">
+          <strong>Note:</strong> Full application form implementation is missing in this skeleton.<br>
+          You need to add it (similar to your original long HTML form)
         </div>
-    </footer>
-    
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Configuration - UPDATE THIS WITH YOUR SCRIPT URL
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzZRBtj5qmufM_3HFavFXER5_sQ5eBV1cb4Ci3upxfgrUKFjrqRoIRX8aSmbVAiiM-O9w/exec';
-        const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes cache
-        
-        // Cache for college info
-        let collegeInfoCache = {
-            data: null,
-            timestamp: 0
-        };
-        
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            initializePage();
-            setupEventListeners();
-        });
-        
-        function initializePage() {
-            // Set current year
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
-            
-            // Set max date for DOB fields
-            const today = new Date().toISOString().split('T')[0];
-            document.querySelectorAll('input[type="date"]').forEach(input => {
-                input.setAttribute('max', today);
-            });
-            
-            // Check system status
-            checkSystemStatus();
-            
-            // Load cached college info first
-            loadCachedCollegeInfo();
-            
-            // Load fresh data in background
-            setTimeout(() => {
-                loadCollegeInfo(true);
-            }, 1000);
-            
-            // Initialize QR code placeholder
-            initializeQRCode();
-        }
-        
-        function setupEventListeners() {
-            // Form submissions
-            document.getElementById('downloadApplicationForm').addEventListener('submit', handleApplicationSubmit);
-            document.getElementById('downloadHallticketForm').addEventListener('submit', handleHallticketSubmit);
-            document.getElementById('checkResultForm').addEventListener('submit', handleResultSubmit);
-            document.getElementById('newApplicationForm').addEventListener('submit', handleNewApplicationSubmit);
-            
-            // Mobile number validation
-            document.querySelectorAll('input[type="tel"]').forEach(input => {
-                input.addEventListener('input', function(e) {
-                    this.value = this.value.replace(/\D/g, '').slice(0, 10);
-                });
-            });
-            
-            // Prevent form submission on Enter key
-            document.querySelectorAll('form').forEach(form => {
-                form.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
-                        e.preventDefault();
-                    }
-                });
-            });
-        }
-        
-        // System Status Check
-        async function checkSystemStatus() {
-            try {
-                const response = await fetch(SCRIPT_URL, {
-                    method: 'HEAD',
-                    mode: 'no-cors'
-                });
-                document.getElementById('statusIndicator').className = 'status-indicator status-online';
-                document.getElementById('statusIndicator').innerHTML = '<i class="fas fa-circle"></i><span>System Online</span>';
-            } catch (error) {
-                document.getElementById('statusIndicator').className = 'status-indicator status-offline';
-                document.getElementById('statusIndicator').innerHTML = '<i class="fas fa-circle"></i><span>System Offline - Using Cached Data</span>';
-            }
-        }
-        
-        // Load cached college info
-        function loadCachedCollegeInfo() {
-            const cached = localStorage.getItem('collegeInfo');
-            if (cached) {
-                try {
-                    const data = JSON.parse(cached);
-                    updateCollegeInfoUI(data);
-                } catch (e) {
-                    console.error('Error loading cached data:', e);
-                }
-            }
-        }
-        
-        // Load college info with cache
-        async function loadCollegeInfo(background = false) {
-            if (!background) showLoading();
-            
-            try {
-                // Check cache first
-                const now = Date.now();
-                if (collegeInfoCache.data && now - collegeInfoCache.timestamp < CACHE_DURATION) {
-                    updateCollegeInfoUI(collegeInfoCache.data);
-                    if (!background) hideLoading();
-                    return;
-                }
-                
-                const response = await fetch(`${SCRIPT_URL}?action=getCollegeInfo&t=${now}`);
-                if (!response.ok) throw new Error('Network response was not ok');
-                
-                const data = await response.json();
-                if (data.status === 'success') {
-                    // Update cache
-                    collegeInfoCache = {
-                        data: data.data,
-                        timestamp: now
-                    };
-                    
-                    // Save to localStorage for offline use
-                    localStorage.setItem('collegeInfo', JSON.stringify(data.data));
-                    
-                    updateCollegeInfoUI(data.data);
-                    
-                    if (!background) {
-                        showNotification('Data loaded successfully', 'success');
-                    }
-                }
-            } catch (error) {
-                console.error('Error loading college info:', error);
-                if (!background) {
-                    showNotification('Using cached data. Some features may be limited.', 'warning');
-                }
-            } finally {
-                if (!background) hideLoading();
-            }
-        }
-        
-        function updateCollegeInfoUI(college) {
-            // Update ticker
-            const tickerItems = [
-                college.ticker1, college.ticker2, college.ticker3, 
-                college.ticker4, college.ticker5
-            ].filter(item => item).join(' &nbsp;&nbsp;•&nbsp;&nbsp; ');
-            
-            // Create ticker if not exists
-            let tickerContainer = document.querySelector('.ticker-container');
-            if (!tickerContainer && tickerItems) {
-                tickerContainer = document.createElement('div');
-                tickerContainer.className = 'ticker-container';
-                tickerContainer.innerHTML = `<div class="ticker-content">${tickerItems}</div>`;
-                document.getElementById('dashboardView').prepend(tickerContainer);
-            } else if (tickerContainer) {
-                tickerContainer.innerHTML = `<div class="ticker-content">${tickerItems || '📢 College Admissions Open'}</div>`;
-            }
-            
-            // Update instructions
-            const notes = [
-                college.note1, college.note2, college.note3, 
-                college.note4, college.note5
-            ].filter(note => note).join('<br>');
-            
-            const instructionsDiv = document.getElementById('applyInstructions');
-            if (instructionsDiv) {
-                instructionsDiv.innerHTML = notes || '<p>Selection exam date will be announced later. Please ensure all information is accurate.</p>';
-            }
-        }
-        
-        // View Management
-        function showDashboard() {
-            hideAllForms();
-            document.getElementById('dashboardView').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        
-        function showForm(formId) {
-            hideAllForms();
-            const form = document.getElementById(formId);
-            form.style.display = 'block';
-            window.scrollTo({ top: form.offsetTop - 20, behavior: 'smooth' });
-            
-            // Clear QR code when showing hall ticket form
-            if (formId === 'hallticketForm') {
-                clearQRCode();
-            }
-        }
-        
-        function hideAllForms() {
-            document.getElementById('dashboardView').style.display = 'none';
-            document.getElementById('applyNowForm').style.display = 'none';
-            document.getElementById('applicationForm').style.display = 'none';
-            document.getElementById('hallticketForm').style.display = 'none';
-            document.getElementById('resultForm').style.display = 'none';
-        }
-        
-        // Form Field Validation
-        function validateField(input, type) {
-            const value = input.value.trim();
-            let isValid = true;
-            
-            switch(type) {
-                case 'name':
-                    isValid = value.length >= 3 && /^[a-zA-Z\s\.\-']+$/.test(value);
-                    break;
-                case 'phone':
-                    isValid = /^\d{10}$/.test(value);
-                    break;
-                case 'aadhaar':
-                    isValid = /^\d{12}$/.test(value);
-                    break;
-            }
-            
-            if (isValid) {
-                input.classList.remove('is-invalid');
-                input.classList.add('is-valid');
-            } else {
-                input.classList.remove('is-valid');
-                input.classList.add('is-invalid');
-            }
-            
-            return isValid;
-        }
-        
-        function validatePhone(input) {
-            return validateField(input, 'phone');
-        }
-        
-        function validateAadhaar(input) {
-            return validateField(input, 'aadhaar');
-        }
-        
-        function calculateAge(dobString) {
-            if (!dobString) return;
-            
-            const birthDate = new Date(dobString);
-            const today = new Date();
-            
-            let years = today.getFullYear() - birthDate.getFullYear();
-            let months = today.getMonth() - birthDate.getMonth();
-            let days = today.getDate() - birthDate.getDate();
-            
-            if (days < 0) {
-                months--;
-                days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-            }
-            
-            if (months < 0) {
-                years--;
-                months += 12;
-            }
-            
-            document.getElementById('ageDisplay').textContent = 
-                `Age: ${years} years ${months} months ${days} days`;
-        }
-        
-        function togglePreviousStudy(show) {
-            const section = document.getElementById('previous-study-section');
-            const inputs = section.querySelectorAll('input, textarea, select');
-            
-            if (show) {
-                section.style.display = 'block';
-                inputs.forEach(input => input.required = true);
-            } else {
-                section.style.display = 'none';
-                inputs.forEach(input => {
-                    input.required = false;
-                    input.value = '';
-                });
-            }
-        }
-        
-        function toggleIllnessSection(show) {
-            const section = document.getElementById('illness-section');
-            const textarea = section.querySelector('textarea');
-            
-            if (show) {
-                section.style.display = 'block';
-                textarea.required = true;
-            } else {
-                section.style.display = 'none';
-                textarea.required = false;
-                textarea.value = '';
-            }
-        }
-        
-        // File Upload Handling
-        function handleDragOver(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            document.getElementById('fileUploadContainer').classList.add('dragover');
-        }
-        
-        function handleDragLeave(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            document.getElementById('fileUploadContainer').classList.remove('dragover');
-        }
-        
-        function handleDrop(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            document.getElementById('fileUploadContainer').classList.remove('dragover');
-            
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                handleFile(files[0]);
-            }
-        }
-        
-        function handlePhotoUpload(e) {
-            const file = e.target.files[0];
-            if (file) {
-                handleFile(file);
-            }
-        }
-        
-        function handleFile(file) {
-            // Validate file
-            if (!file.type.startsWith('image/')) {
-                showNotification('Please upload only image files (JPG, PNG)', 'error');
-                return;
-            }
-            
-            if (file.size > 5 * 1024 * 1024) {
-                showNotification('File size must be less than 5MB', 'error');
-                return;
-            }
-            
-            // Preview image
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const preview = document.getElementById('photoPreview');
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-            
-            showNotification('Photo uploaded successfully', 'success');
-        }
-        
-        function toggleSubmitButton(enabled) {
-            const btn = document.getElementById('submitApplicationBtn');
-            btn.disabled = !enabled;
-        }
-        
-        // QR Code Functions
-        function initializeQRCode() {
-            const qrcodeContainer = document.createElement('div');
-            qrcodeContainer.id = 'qrcode';
-            document.getElementById('qrcodePreview').appendChild(qrcodeContainer);
-        }
-        
-        function generateQRCode(data) {
-            clearQRCode();
-            
-            const qrcodeContainer = document.getElementById('qrcodePreview');
-            qrcodeContainer.style.display = 'block';
-            
-            // Create QR code with student data
-            const qrData = JSON.stringify({
-                name: data.studentName,
-                registerNo: data.registerNo,
-                dob: data.dob,
-                examDate: data.examDate,
-                venue: data.venue
-            });
-            
-            new QRCode(document.getElementById("qrcode"), {
-                text: qrData,
-                width: 180,
-                height: 180,
-                colorDark: "#1d29d6",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.H
-            });
-            
-            showNotification('QR Code generated successfully', 'success');
-        }
-        
-        function clearQRCode() {
-            const qrcodeDiv = document.getElementById('qrcode');
-            qrcodeDiv.innerHTML = '';
-            document.getElementById('qrcodePreview').style.display = 'none';
-        }
-        
-        // Form Submission Handlers
-        async function handleApplicationSubmit(e) {
-            e.preventDefault();
-            
-            const mobile = document.getElementById('appMobile').value.trim();
-            const dob = document.getElementById('appDob').value;
-            
-            if (!validatePhone(document.getElementById('appMobile'))) {
-                showNotification('Please enter a valid 10-digit mobile number', 'error');
-                return false;
-            }
-            
-            if (!dob) {
-                showNotification('Please select date of birth', 'error');
-                return false;
-            }
-            
-            await fetchWithProgress(`${SCRIPT_URL}?type=application&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`, 
-                'Searching for application...',
-                'application');
-            
-            return false;
-        }
-        
-        async function handleHallticketSubmit(e) {
-            e.preventDefault();
-            
-            const mobile = document.getElementById('ticketMobile').value.trim();
-            const dob = document.getElementById('ticketDob').value;
-            
-            if (!validatePhone(document.getElementById('ticketMobile'))) {
-                showNotification('Please enter a valid 10-digit mobile number', 'error');
-                return false;
-            }
-            
-            if (!dob) {
-                showNotification('Please select date of birth', 'error');
-                return false;
-            }
-            
-            await fetchWithProgress(`${SCRIPT_URL}?type=hallticket&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`, 
-                'Generating hall ticket...',
-                'hallticket');
-            
-            return false;
-        }
-        
-        async function handleResultSubmit(e) {
-            e.preventDefault();
-            
-            const mobile = document.getElementById('resultMobile').value.trim();
-            const dob = document.getElementById('resultDob').value;
-            
-            if (!validatePhone(document.getElementById('resultMobile'))) {
-                showNotification('Please enter a valid 10-digit mobile number', 'error');
-                return false;
-            }
-            
-            if (!dob) {
-                showNotification('Please select date of birth', 'error');
-                return false;
-            }
-            
-            await fetchWithProgress(`${SCRIPT_URL}?type=result&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`, 
-                'Fetching results...',
-                'result');
-            
-            return false;
-        }
-        
-        async function handleNewApplicationSubmit(e) {
-            e.preventDefault();
-            
-            // Validate all required fields
-            const form = e.target;
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-            
-            // Additional validations
-            if (data.previousStudy === 'Yes') {
-                const requiredFields = ['previousInstitution', 'studyDuration', 'juzCount', 'reasonForLeaving', 'headTeacherPhone'];
-                for (const field of requiredFields) {
-                    if (!data[field] || data[field].trim() === '') {
-                        showNotification(`Please fill all previous study details`, 'error');
-                        return false;
-                    }
-                }
-            }
-            
-            if (data.physicalFitness === 'Medication' && (!data.illness || data.illness.trim() === '')) {
-                showNotification('Please describe the illness when selecting "Regular Medication"', 'error');
-                return false;
-            }
-            
-            if (data.whatsappNumber && !/^\d{10}$/.test(data.whatsappNumber)) {
-                showNotification('WhatsApp number must be 10 digits if provided', 'error');
-                return false;
-            }
-            
-            // Check declaration
-            if (!document.getElementById('declarationCheckbox').checked) {
-                showNotification('Please agree to the declaration by checking the box', 'error');
-                return false;
-            }
-            
-            // Handle photo upload
-            const photoFile = document.getElementById('photoInput').files[0];
-            let photoData = null;
-            
-            if (photoFile) {
-                photoData = await readFileAsBase64(photoFile);
-                data.photo = JSON.stringify({
-                    name: photoFile.name,
-                    mimeType: photoFile.type,
-                    data: photoData.split(',')[1]
-                });
-            }
-            
-            // Prepare data for submission
-            const submitData = new URLSearchParams();
-            for (const [key, value] of Object.entries(data)) {
-                if (value !== undefined && value !== null) {
-                    submitData.append(key, value);
-                }
-            }
-            
-            // Submit with progress tracking
-            await submitWithProgress(submitData, 'Submitting application...');
-            
-            return false;
-        }
-        
-        // File reading helper
-        function readFileAsBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = reject;
-                reader.readAsDataURL(file);
-            });
-        }
-        
-        // Enhanced fetch with progress and retry
-        async function fetchWithProgress(url, loadingText, type = 'generic') {
-            showLoading(loadingText);
-            
-            try {
-                const response = await fetch(url);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const html = await response.text();
-                
-                if (html.includes('Error') || html.includes('not found') || html.includes('Please pay')) {
-                    throw new Error('Record not found or payment pending');
-                }
-                
-                // Open in new window
-                const newWindow = window.open('', '_blank');
-                newWindow.document.write(html);
-                newWindow.document.close();
-                
-                showNotification(`${type.charAt(0).toUpperCase() + type.slice(1)} opened successfully`, 'success');
-                
-                // Reset form and show dashboard
-                document.querySelector(`#${type}Form`).reset();
-                showDashboard();
-                
-            } catch (error) {
-                console.error('Error:', error);
-                
-                if (error.message.includes('Record not found') || error.message.includes('payment pending')) {
-                    showNotification(error.message, 'warning');
-                } else if (error.message.includes('NetworkError')) {
-                    showNotification('Network error. Please check your connection and try again.', 'error');
-                } else {
-                    showNotification('Error occurred. Please try again.', 'error');
-                }
-                
-            } finally {
-                hideLoading();
-            }
-        }
-        
-        async function submitWithProgress(data, loadingText) {
-            showLoading(loadingText);
-            showProgress();
-            
-            try {
-                // Simulate progress for better UX
-                simulateProgress();
-                
-                const response = await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    body: data,
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    }
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const html = await response.text();
-                
-                if (html.includes('Application Submitted Successfully') || html.includes('Application ID:')) {
-                    // Complete progress
-                    document.getElementById('progressBar').style.width = '100%';
-                    
-                    setTimeout(() => {
-                        const win = window.open('', '_blank');
-                        win.document.write(html);
-                        win.document.close();
-                        
-                        showNotification('Application submitted successfully!', 'success');
-                        
-                        // Reset form
-                        document.getElementById('newApplicationForm').reset();
-                        document.getElementById('photoPreview').style.display = 'none';
-                        document.getElementById('declarationCheckbox').checked = false;
-                        toggleSubmitButton(false);
-                        
-                        // Hide previous sections
-                        togglePreviousStudy(false);
-                        toggleIllnessSection(false);
-                        
-                        showDashboard();
-                        
-                    }, 500);
-                } else {
-                    throw new Error('Submission failed');
-                }
-                
-            } catch (error) {
-                console.error('Submission error:', error);
-                
-                if (error.message.includes('NetworkError')) {
-                    showNotification('Network error. Your data was saved locally. Please try again later.', 'error');
-                    
-                    // Save data locally for retry
-                    const formData = new FormData(document.getElementById('newApplicationForm'));
-                    const localData = Object.fromEntries(formData.entries());
-                    localStorage.setItem('pendingApplication', JSON.stringify(localData));
-                    
-                } else {
-                    showNotification('Submission failed. Please try again.', 'error');
-                }
-                
-            } finally {
-                hideProgress();
-                hideLoading();
-            }
-        }
-        
-        // UI Helpers
-        function showLoading(text = 'Loading...') {
-            document.getElementById('loadingText').textContent = text;
-            document.getElementById('loadingOverlay').style.display = 'flex';
-        }
-        
-        function hideLoading() {
-            document.getElementById('loadingOverlay').style.display = 'none';
-        }
-        
-        function showProgress() {
-            document.getElementById('progressContainer').style.display = 'block';
-            document.getElementById('progressBar').style.width = '0%';
-        }
-        
-        function hideProgress() {
-            document.getElementById('progressContainer').style.display = 'none';
-        }
-        
-        function simulateProgress() {
-            let width = 0;
-            const interval = setInterval(() => {
-                if (width >= 90) {
-                    clearInterval(interval);
-                } else {
-                    width += Math.random() * 10;
-                    document.getElementById('progressBar').style.width = width + '%';
-                }
-            }, 300);
-        }
-        
-        function showNotification(message, type = 'info') {
-            const notification = document.getElementById('notification');
-            const messageEl = document.getElementById('notificationMessage');
-            const icon = document.getElementById('notificationIcon');
-            
-            // Set type
-            notification.className = `notification ${type}`;
-            
-            // Set icon
-            const icons = {
-                success: 'fa-check-circle',
-                error: 'fa-exclamation-circle',
-                warning: 'fa-exclamation-triangle',
-                info: 'fa-info-circle'
-            };
-            icon.className = `fas ${icons[type]} notification-icon`;
-            
-            // Set message
-            messageEl.textContent = message;
-            
-            // Show
-            notification.style.display = 'block';
-            
-            // Auto-hide after 5 seconds
-            setTimeout(() => {
-                if (notification.style.display === 'block') {
-                    hideNotification();
-                }
-            }, 5000);
-        }
-        
-        function hideNotification() {
-            document.getElementById('notification').style.display = 'none';
-        }
-        
-        function formatTime(date) {
-            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        }
-        
-        // Handle offline data submission
-        function checkPendingApplications() {
-            const pending = localStorage.getItem('pendingApplication');
-            if (pending) {
-                if (confirm('You have a pending application. Would you like to submit it now?')) {
-                    // Submit pending application
-                    const data = JSON.parse(pending);
-                    // Implementation for retrying submission
-                }
-            }
-        }
-        
-        // Check for pending applications on page load
-        setTimeout(checkPendingApplications, 2000);
-    </script>
+      </div>
+    `;
+    return;
+  }
+
+  // Search forms (download / hallticket / result)
+  container.innerHTML = `
+    <div class="card-body p-5">
+      <h3 class="text-center mb-4 fw-bold text-primary">
+        ${mode === 'download' ? 'Download Application' : 
+          mode === 'hallticket' ? 'Hall Ticket' : 'Result'}
+      </h3>
+      
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="mb-3">
+            <label class="form-label fw-bold">Mobile Number</label>
+            <input type="tel" class="form-control form-control-lg" 
+                   id="searchMobile" maxlength="10" placeholder="10 digit number" required>
+          </div>
+          <div class="mb-4">
+            <label class="form-label fw-bold">Date of Birth</label>
+            <input type="date" class="form-control form-control-lg" id="searchDob" required>
+          </div>
+          <button class="btn btn-primary btn-lg w-100" onclick="searchRecord('${mode}')">
+            <i class="fas fa-${mode==='download'?'download':mode==='hallticket'?'ticket-alt':'search'} me-2"></i>
+            ${mode === 'download' ? 'Download' : mode === 'hallticket' ? 'Get Hall Ticket' : 'Check Result'}
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+async function searchRecord(type) {
+  const mobile = document.getElementById('searchMobile')?.value.trim();
+  const dob = document.getElementById('searchDob')?.value;
+
+  if (!mobile || mobile.length !== 10 || !/^\d{10}$/.test(mobile)) {
+    alert("Please enter valid 10 digit mobile number");
+    return;
+  }
+  if (!dob) {
+    alert("Please select date of birth");
+    return;
+  }
+
+  showLoading(true);
+
+  try {
+    const url = `${API_URL}?type=${type}&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`;
+    const response = await fetch(url);
+    const result = await response.json();
+
+    if (!result || result.status === 'error' || !result.data) {
+      alert(result?.error || "No record found for this mobile number and date of birth");
+      return;
+    }
+
+    const win = window.open("", "_blank");
+    if (!win) {
+      alert("Please allow popups for this site");
+      return;
+    }
+
+    if (type === 'application') {
+      win.document.write(generateApplicationPage(result.data));
+    } else if (type === 'hallticket') {
+      win.document.write(generateHallTicketPage(result.data));
+    } else if (type === 'result') {
+      win.document.write(generateResultPage(result.data));
+    }
+
+    win.document.close();
+  } catch (err) {
+    alert("Connection error: " + err.message);
+  } finally {
+    showLoading(false);
+  }
+}
+
+// ── You should implement these three functions properly ─────────────
+
+function generateApplicationPage(data) {
+  // data.data is the array of values from spreadsheet row
+  return `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Application</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body class="bg-light p-4">
+      <div class="container">
+        <div class="card shadow">
+          <div class="card-header bg-primary text-white text-center py-4">
+            <h3>Admission Application</h3>
+          </div>
+          <div class="card-body">
+            <pre>${JSON.stringify(data.data, null, 2)}</pre>
+            <!-- 
+              → Replace this with your beautiful formatted application layout
+            -->
+          </div>
+        </div>
+      </div>
+    </body>
+    </html>`;
+}
+
+function generateHallTicketPage(data) {
+  return `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Hall Ticket</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body class="bg-light p-4">
+      <div class="container">
+        <div class="card shadow">
+          <div class="card-header bg-primary text-white text-center py-4">
+            <h3>Entrance Exam Hall Ticket</h3>
+          </div>
+          <div class="card-body">
+            <pre>${JSON.stringify(data.data, null, 2)}</pre>
+            <!-- 
+              → Replace with your full hall ticket layout + QR code generation
+            -->
+          </div>
+        </div>
+      </div>
+    </body>
+    </html>`;
+}
+
+function generateResultPage(data) {
+  return `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Result</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body class="bg-light p-4">
+      <div class="container">
+        <div class="card shadow">
+          <div class="card-header bg-primary text-white text-center py-4">
+            <h3>Entrance Exam Result</h3>
+          </div>
+          <div class="card-body">
+            <pre>${JSON.stringify(data.data, null, 2)}</pre>
+            <!-- 
+              → Replace with beautiful result display
+            -->
+          </div>
+        </div>
+      </div>
+    </body>
+    </html>`;
+}
+
+</script>
 </body>
 </html>
