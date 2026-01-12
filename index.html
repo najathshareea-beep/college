@@ -89,6 +89,7 @@
       width: 60px;
       height: 60px;
       object-fit: contain;
+      color: white;
     }
 
     .navbar-optimized.scrolled .navbar-brand-compact img {
@@ -231,7 +232,7 @@
     .ticker-wrapper {
       white-space: nowrap;
       display: inline-flex;
-      animation: ticker 40s linear infinite;
+      animation: ticker 50s linear infinite;
       padding-left: 100%;
     }
 
@@ -632,7 +633,7 @@
       }
       
       .ticker-wrapper {
-        animation-duration: 30s;
+        animation-duration: 40s;
         padding-left: 100%;
       }
       
@@ -995,7 +996,6 @@
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">About the Institution</h2>
-      <p class="text-muted">വിശ്വാസവും വിജ്ഞാനവും ഒന്നിച്ചു വളരുന്ന വിദ്യാലയം</p>
     </div>
  
     <div class="row align-items-center">
@@ -1050,6 +1050,10 @@
             <div>
               <h5 class="gold-text mb-1">🌟 21-06-2023</h5>
               <p class="text-light mb-0">ഒന്നാം ബിരുദ ദാനം : 56 നജവികള്‍</p>
+            </div>
+            <div>
+              <h5 class="gold-text mb-1">🌟 10-01-2026</h5>
+              <p class="text-light mb-0">ബെസ്റ്റ് യൂണിയന്‍ റണ്ണറപ്പ്</p>
             </div>
           </div>
         </div>
@@ -1125,24 +1129,9 @@
           <a href="admission.html" class="list-group-item list-group-item-action notification-item">
             <div class="d-flex justify-content-between align-items-center">
               <div>
-                <div class="fw-bold text-success">Admission Open 2025-26</div>
-                <small class="text-muted">Apply now for all classes (1st to 10th)</small>
+                <div class="fw-bold text-success">Admission Booking Open 2026-27</div>
+                <small class="text-muted">Apply now for Secondary (after 7th STD) and Higher secondary (after SSLC)</small>
               </div>
-              <span class="badge bg-success">NEW</span>
-            </div>
-          </a>
-          
-          <a href="#" class="list-group-item list-group-item-action notification-item">
-            <div>
-              <div class="fw-bold text-success">مولد النبي صلى الله عليه وسلم</div>
-              <small class="text-muted">December 20, 2025 — All are invited</small>
-            </div>
-          </a>
-          
-          <a href="#" class="list-group-item list-group-item-action notification-item">
-            <div>
-              <div class="fw-bold text-success">Holiday Notice</div>
-              <small class="text-muted">Closed Feb 15-28, 2026 after exams</small>
             </div>
           </a>
           
@@ -1150,7 +1139,7 @@
             <div class="d-flex justify-content-between align-items-center">
               <div>
                 <div class="fw-bold text-success">Results Published</div>
-                <small class="text-muted">Half-yearly results available online</small>
+                <small class="text-muted">2025-26 First semester result published</small>
               </div>
               <span class="btn btn-success btn-sm">View</span>
             </div>
@@ -1158,8 +1147,8 @@
           
           <a href="#" class="list-group-item list-group-item-action notification-item">
             <div>
-              <div class="fw-bold text-success">Parent-Teacher Meeting</div>
-              <small class="text-muted">Dec 15, 2025 at 10:00 AM</small>
+              <div class="fw-bold text-success">Parent Meeting</div>
+              <small class="text-muted">Jan 11, 2026 at 10:00 AM @MEA Engineering College</small>
             </div>
           </a>
         </div>
@@ -1234,7 +1223,7 @@
         © <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.
       </p>
       <small class="text-light opacity-75">
-        Hosted by <span class="gold-text">Rafi Wafi</span> • Designed with Islamic Inspiration
+        Hosted by <span class="gold-text">Rafi Wafi</span>
       </small>
     </div>
   </div>
@@ -1334,9 +1323,9 @@
     if (!tickerWrapper) return;
     
     if (window.innerWidth <= 768) {
-      tickerWrapper.style.animationDuration = '30s';
-    } else {
       tickerWrapper.style.animationDuration = '40s';
+    } else {
+      tickerWrapper.style.animationDuration = '50s';
     }
   }
   
@@ -1387,6 +1376,7 @@
 </script>
 </body>
 </html>
+
 
 
 
