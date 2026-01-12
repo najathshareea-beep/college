@@ -38,7 +38,7 @@
       color: #333;
       scroll-behavior: smooth;
       overflow-x: hidden;
-      padding-top: 80px;
+      padding-top: 130px; /* Increased for navbar + ticker */
     }
     a {
       text-decoration: none;
@@ -149,6 +149,64 @@
       color: var(--islamic-green);
     }
 
+    /* ===== NEWS TICKER ===== */
+    /* MOVED TICKER TO TOP - Just below navbar */
+    .ticker-container {
+      background: linear-gradient(90deg, var(--dark-green), var(--islamic-green));
+      color: white;
+      padding: 0;
+      overflow: hidden;
+      position: fixed; /* Changed to fixed */
+      top: 80px; /* Position below navbar */
+      left: 0;
+      right: 0;
+      border-bottom: 2px solid var(--islamic-gold);
+      height: 50px;
+      display: flex;
+      align-items: center;
+      z-index: 9; /* Below navbar but above content */
+      margin: 0;
+    }
+
+    .ticker-wrapper {
+      white-space: nowrap;
+      display: inline-flex;
+      animation: ticker 50s linear infinite;
+      padding-left: 100%;
+    }
+
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      padding: 0 30px;
+      font-size: 1rem;
+      position: relative;
+    }
+
+    .ticker-badge {
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-right: 10px;
+      white-space: nowrap;
+    }
+
+    .ticker-item:after {
+      content: "•";
+      color: var(--islamic-gold);
+      position: absolute;
+      right: -10px;
+      font-size: 1.2rem;
+    }
+
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
     /* ===== BUTTONS ===== */
     .btn-gold {
       background: linear-gradient(135deg, var(--islamic-gold), #d4af37);
@@ -214,61 +272,8 @@
       z-index: 1;
     }
 
-    /* ===== NEWS TICKER ===== */
-    .ticker-container {
-      background: linear-gradient(90deg, var(--dark-green), var(--islamic-green));
-      color: white;
-      padding: 0;
-      overflow: hidden;
-      position: relative;
-      border-bottom: 2px solid var(--islamic-gold);
-      height: 50px;
-      display: flex;
-      align-items: center;
-      margin-top: 0;
-      z-index: 10;
-    }
-
-    .ticker-wrapper {
-      white-space: nowrap;
-      display: inline-flex;
-      animation: ticker 50s linear infinite;
-      padding-left: 100%;
-    }
-
-    .ticker-item {
-      display: inline-flex;
-      align-items: center;
-      padding: 0 30px;
-      font-size: 1rem;
-      position: relative;
-    }
-
-    .ticker-badge {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-      padding: 3px 8px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      margin-right: 10px;
-      white-space: nowrap;
-    }
-
-    .ticker-item:after {
-      content: "•";
-      color: var(--islamic-gold);
-      position: absolute;
-      right: -10px;
-      font-size: 1.2rem;
-    }
-
-    @keyframes ticker {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
-
     /* ===== HERO SECTION ===== */
+    /* Adjusted for ticker at top */
     .hero-section {
       background: 
         linear-gradient(rgba(10, 92, 54, 0.85), rgba(6, 78, 59, 0.85)),
@@ -283,7 +288,7 @@
       min-height: 85vh;
       display: flex;
       align-items: center;
-      margin-bottom: 0;
+      margin-top: 0; /* Removed margin since ticker is now above */
     }
 
     .hero-overlay {
@@ -549,12 +554,34 @@
     /* ===== MOBILE OPTIMIZATION ===== */
     @media (max-width: 768px) {
       body {
-        padding-top: 70px;
+        padding-top: 120px; /* Adjusted for mobile */
       }
       
       .navbar-optimized {
         height: 70px;
         padding: 0.3rem 0;
+      }
+      
+      /* Adjust ticker for mobile */
+      .ticker-container {
+        top: 70px; /* Below mobile navbar */
+        height: 40px;
+      }
+      
+      .ticker-wrapper {
+        animation-duration: 40s;
+        padding-left: 100%;
+      }
+      
+      .ticker-item {
+        padding: 0 15px;
+        font-size: 0.85rem;
+      }
+      
+      .ticker-badge {
+        font-size: 0.65rem;
+        padding: 2px 6px;
+        margin-right: 8px;
       }
       
       .navbar-brand-compact img {
@@ -624,28 +651,6 @@
       
       .d-flex.justify-content-center.gap-3 {
         gap: 0.5rem !important;
-      }
-      
-      /* TICKER MOBILE */
-      .ticker-container {
-        height: auto;
-        padding: 8px 0;
-      }
-      
-      .ticker-wrapper {
-        animation-duration: 40s;
-        padding-left: 100%;
-      }
-      
-      .ticker-item {
-        padding: 0 15px;
-        font-size: 0.85rem;
-      }
-      
-      .ticker-badge {
-        font-size: 0.65rem;
-        padding: 2px 6px;
-        margin-right: 8px;
       }
       
       /* SECTIONS MOBILE */
@@ -735,6 +740,15 @@
     }
 
     @media (max-width: 576px) {
+      body {
+        padding-top: 110px; /* Adjusted for small mobile */
+      }
+      
+      .ticker-container {
+        top: 60px;
+        height: 35px;
+      }
+      
       .hero-title {
         font-size: 1.6rem;
       }
@@ -928,6 +942,46 @@
     </div>
   </div>
 </nav>
+
+<!-- NEWS TICKER - MOVED HERE (Right below navbar) -->
+<div class="ticker-container">
+  <div class="ticker-wrapper">
+    <!-- First set of items -->
+    <div class="ticker-item">
+      <span class="ticker-badge">⚠ IMPORTANT</span>
+      Admission started! Apply now.
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-badge">📢 NEWS</span>
+      2025-26 വര്‍ഷത്തിലെ വാര്‍ഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1, 2, 10, 11, 12 തിയ്യതികളില്‍.
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-badge">🎉 EVENT</span>
+      സമസ്ത നൂറാം വാര്‍ഷികം 2026 ഫെബ്രുവരി 4-8 തിയ്യതികളില്‍ കാസര്‍ഗോഡ് കുണിയയില്‍ നടക്കും.
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-badge">✨ UPDATED</span>
+      <strong>പുതുമകളോടെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജ് വെബ്‌സൈറ്റ് ലോഞ്ച് ചെയ്തു.</strong>
+    </div>
+    <!-- Duplicate set for seamless loop -->
+    <div class="ticker-item">
+      <span class="ticker-badge">⚠ IMPORTANT</span>
+      Admission started! Apply now.
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-badge">📢 NEWS</span>
+      2025-26 വര്‍ഷത്തിലെ വാര്‍ഷിക പരീക്ഷ 2026 ജനുവരി 31, ഫെബ്രുവരി 1, 2, 10, 11, 12 തിയ്യതികളില്‍.
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-badge">🎉 EVENT</span>
+      സമസ്ത നൂറാം വാര്‍ഷികം 2026 ഫെബ്രുവരി 4-8 തിയ്യതികളില്‍ കാസര്‍ഗോഡ് കുണിയയില്‍ നടക്കും.
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-badge">✨ UPDATED</span>
+      <strong>പുതുമകളോടെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജ് വെബ്‌സൈറ്റ് ലോഞ്ച് ചെയ്തു.</strong>
+    </div>
+  </div>
+</div>  
 
 <!-- HERO SECTION -->
 <section class="hero-section">
@@ -1376,6 +1430,7 @@
 </script>
 </body>
 </html>
+
 
 
 
