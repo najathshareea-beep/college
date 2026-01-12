@@ -30,72 +30,45 @@
     body {
       background-color: var(--light-beige);
       font-family: 'Poppins', sans-serif;
-      background-image: 
-        radial-gradient(circle at 15% 50%, rgba(10, 92, 54, 0.05) 0%, transparent 20%),
-        radial-gradient(circle at 85% 30%, rgba(193, 154, 83, 0.05) 0%, transparent 20%);
       min-height: 100vh;
       position: relative;
-      overflow-x: hidden;
     }
     
     .islamic-header {
       background: linear-gradient(135deg, var(--union-blue) 0%, var(--islamic-green) 100%);
       color: white;
-      padding: 35px 0;
-      margin-bottom: 40px;
+      padding: 30px 0;
       text-align: center;
       position: relative;
       overflow: hidden;
       border-bottom: 5px solid var(--islamic-gold);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-    }
-    
-    .islamic-header::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('https://images.unsplash.com/photo-1516549655669-df565b2e8e9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-      background-size: cover;
-      opacity: 0.1;
     }
     
     .islamic-header h1 {
       font-family: 'El Messiri', sans-serif;
-      font-size: 3.8rem;
+      font-size: 3.5rem;
       font-weight: 700;
       margin-bottom: 10px;
       position: relative;
       letter-spacing: 1px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
     
     .islamic-header h2 {
       font-family: 'El Messiri', sans-serif;
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: 600;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
       position: relative;
       color: var(--islamic-gold);
     }
     
-    .islamic-header h3 {
-      font-family: 'El Messiri', sans-serif;
-      font-size: 2.4rem;
-      font-weight: 700;
-      margin-bottom: 15px;
-      position: relative;
-    }
-    
     .section-title {
       font-family: 'El Messiri', sans-serif;
-      font-size: 2.5rem;
+      font-size: 2.3rem;
       font-weight: 700;
       color: var(--union-blue);
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       position: relative;
       padding-bottom: 15px;
     }
@@ -106,7 +79,7 @@
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 120px;
+      width: 100px;
       height: 4px;
       background: linear-gradient(to right, var(--union-red), var(--islamic-gold));
       border-radius: 2px;
@@ -116,7 +89,7 @@
     .executive-card {
       background: white;
       border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
       padding: 30px 20px;
       transition: all 0.4s ease;
       text-align: center;
@@ -126,29 +99,19 @@
       border-top: 5px solid var(--union-red);
     }
     
-    .executive-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(to right, var(--union-blue), var(--union-red));
-    }
-    
     .executive-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(214, 40, 40, 0.2);
+      box-shadow: 0 15px 35px rgba(214, 40, 40, 0.15);
     }
     
     .executive-img {
-      width: 160px;
-      height: 160px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       object-fit: cover;
-      border: 5px solid var(--union-blue);
+      border: 4px solid var(--union-blue);
       margin: 0 auto 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
     }
     
@@ -159,7 +122,7 @@
     
     .executive-name {
       font-family: 'El Messiri', sans-serif;
-      font-size: 1.7rem;
+      font-size: 1.5rem;
       font-weight: 700;
       color: var(--union-blue);
       margin-bottom: 10px;
@@ -174,14 +137,8 @@
       border-radius: 30px;
       font-weight: 600;
       font-size: 1.1rem;
-      margin-bottom: 15px;
-      box-shadow: 0 5px 15px rgba(0, 48, 73, 0.25);
-    }
-    
-    .executive-contact {
-      font-size: 0.9rem;
-      color: #666;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 10px rgba(0, 48, 73, 0.2);
     }
     
     /* Committee Cards */
@@ -189,7 +146,7 @@
       background: white;
       border-radius: 12px;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-      padding: 20px;
+      padding: 25px 20px;
       transition: all 0.3s ease;
       text-align: center;
       height: 100%;
@@ -223,65 +180,50 @@
       color: var(--union-red);
       font-weight: 600;
       font-size: 1rem;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
     
-    /* Organizational Chart */
-    .org-chart {
+    /* Union Info Card */
+    .union-info-card {
       background: white;
       border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      padding: 30px;
-      margin-bottom: 40px;
-      position: relative;
-    }
-    
-    .chart-level {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      padding: 25px;
       margin-bottom: 30px;
+      border-left: 5px solid var(--union-red);
+      height: 100%;
     }
     
-    .chart-node {
-      background: white;
-      border-radius: 10px;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-      border: 2px solid var(--union-blue);
-      transition: all 0.3s ease;
-      min-width: 200px;
-      position: relative;
+    .union-info-card h3 {
+      color: var(--union-blue);
+      font-family: 'El Messiri', sans-serif;
+      margin-bottom: 20px;
+      font-size: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     
-    .chart-node:hover {
-      transform: scale(1.05);
-      border-color: var(--union-red);
+    .union-info-card ul {
+      padding-left: 20px;
+      margin-bottom: 0;
     }
     
-    .chart-img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--union-blue);
-      margin-bottom: 10px;
+    .union-info-card li {
+      margin-bottom: 12px;
+      color: #444;
+      line-height: 1.5;
     }
     
-    .chart-node-title {
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin-bottom: 5px;
-      color: var(--union-red);
+    .union-info-card li strong {
+      color: var(--union-blue);
     }
     
     /* Footer */
     .footer {
       background: linear-gradient(135deg, var(--union-blue) 0%, #0c2d52 100%);
       color: white;
-      padding: 30px 0;
+      padding: 25px 0;
       margin-top: 60px;
       text-align: center;
       font-family: 'El Messiri', sans-serif;
@@ -291,30 +233,25 @@
     /* Responsive */
     @media (max-width: 768px) {
       .islamic-header h1 {
-        font-size: 2.8rem;
+        font-size: 2.5rem;
       }
       
-      .islamic-header h3 {
-        font-size: 1.8rem;
+      .islamic-header h2 {
+        font-size: 1.5rem;
       }
       
       .section-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
       }
       
       .executive-img {
-        width: 140px;
-        height: 140px;
+        width: 130px;
+        height: 130px;
       }
       
       .committee-img {
         width: 100px;
         height: 100px;
-      }
-      
-      .chart-level {
-        flex-direction: column;
-        align-items: center;
       }
     }
   </style>
@@ -326,14 +263,15 @@
     <div class="container">
       <h1>NISSA</h1>
       <h2>Najath Institution for Shareea Students Association</h2>
+      <h3 style="font-size: 2rem;">Executive Committee 2026-27</h3>
     </div>
   </header>
 
-  <!-- Executive Committee -->
-  <section class="container py-5">
-    <h2 class="section-title">Executive Committee 2026-27</h2>
+  <!-- Top Row: President, Secretary, Treasurer -->
+  <section class="container py-4">
+    <h2 class="section-title">Executive Leadership</h2>
     
-    <div class="row g-4">
+    <div class="row g-4 justify-content-center">
       <!-- President -->
       <div class="col-lg-4 col-md-6">
         <div class="executive-card">
@@ -360,9 +298,14 @@
           <div class="executive-position">TREASURER</div>
         </div>
       </div>
-      
+    </div>
+  </section>
+
+  <!-- Second Row: 2 Vice Presidents and 2 Joint Secretaries -->
+  <section class="container py-4">
+    <div class="row g-4 justify-content-center">
       <!-- Vice President 1 -->
-      <div class="col-lg-4 col-md-6">
+      <div class="col-lg-3 col-md-6">
         <div class="executive-card">
           <img src="https://i.ibb.co/ZpR7tR31/faiz.jpg" class="executive-img" alt="Vice President">
           <div class="executive-name">MUHAMMED FAIZ N</div>
@@ -371,7 +314,7 @@
       </div>
       
       <!-- Vice President 2 -->
-      <div class="col-lg-4 col-md-6">
+      <div class="col-lg-3 col-md-6">
         <div class="executive-card">
           <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="executive-img" alt="Vice President 2">
           <div class="executive-name">ABDUL HAMEED</div>
@@ -380,7 +323,7 @@
       </div>
       
       <!-- Joint Secretary 1 -->
-      <div class="col-lg-4 col-md-6">
+      <div class="col-lg-3 col-md-6">
         <div class="executive-card">
           <img src="https://i.ibb.co/m5YmhhyX/muhsin.jpg" class="executive-img" alt="Joint Secretary">
           <div class="executive-name">MOHAMED MUHSIN K</div>
@@ -389,11 +332,58 @@
       </div>
 
       <!-- Joint Secretary 2 -->
-      <div class="col-lg-4 col-md-6">
+      <div class="col-lg-3 col-md-6">
         <div class="executive-card">
-          <img src="https://i.ibb.co/m5YmhhyX/muhsin.jpg" class="executive-img" alt="Joint Secretary">
-          <div class="executive-name">MOHAMED MUHSIN K</div>
+          <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="executive-img" alt="Joint Secretary 2">
+          <div class="executive-name">SAIDALAVI M</div>
           <div class="executive-position">JOINT SECRETARY</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Union Information -->
+  <section class="container py-4">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="union-info-card">
+          <h3><i class="fas fa-calendar-alt union-red-text"></i> Union Activities</h3>
+          <ul>
+            <li><strong>Annual College Fest</strong> - Cultural & Academic</li>
+            <li><strong>Academic Seminars</strong> - Subject specific</li>
+            <li><strong>Community Service</strong> - Social outreach</li>
+            <li><strong>Cultural Programs</strong> - Arts & Talent shows</li>
+            <li><strong>Debate Competitions</strong> - Intra & Inter college</li>
+            <li><strong>Educational Trips</strong> - Learning expeditions</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="col-lg-4">
+        <div class="union-info-card">
+          <h3><i class="fas fa-tasks union-red-text"></i> Executive Functions</h3>
+          <ul>
+            <li><strong>Monthly Meetings</strong> - Regular committee sessions</li>
+            <li><strong>Budget Planning</strong> - Financial management</li>
+            <li><strong>Event Organization</strong> - Student activities</li>
+            <li><strong>Student Representation</strong> - Voice of students</li>
+            <li><strong>College Liaison</strong> - Administration coordination</li>
+            <li><strong>Leadership Development</strong> - Student growth</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="col-lg-4">
+        <div class="union-info-card">
+          <h3><i class="fas fa-users union-red-text"></i> Committee Structure</h3>
+          <ul>
+            <li><strong>10 Sub-Committees</strong> - Specialized departments</li>
+            <li><strong>Monthly Activities</strong> - Regular programs</li>
+            <li><strong>Student Participation</strong> - Volunteer opportunities</li>
+            <li><strong>Event Management</strong> - Program organization</li>
+            <li><strong>Skill Development</strong> - Leadership training</li>
+            <li><strong>Campus Engagement</strong> - Student involvement</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -402,6 +392,7 @@
   <!-- Sub-Committee Conveners -->
   <section class="container py-5">
     <h2 class="section-title">Sub-Committee Conveners</h2>
+    <p class="text-center text-muted mb-4">Specialized committees handling various student activities</p>
     
     <div class="row g-4">
       <!-- Academic Committee -->
@@ -452,7 +443,7 @@
       <!-- Media & Publicity Committee -->
       <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="committee-card">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="committee-img" alt="Media Convener">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="committee-img" alt="Media Convener">
           <div class="committee-name">Media & Publicity</div>
           <div class="committee-title">ANSAR ALI</div>
         </div>
@@ -504,7 +495,7 @@
         © <span id="currentYear"></span> Najath Institution for Shareea Students Association
       </p>
       <small class="text-light opacity-75">
-        Darunnajath Shareeath & Arts College, Karuvarakundu • Complete Organizational Structure
+        Darunnajath Shareeath & Arts College, Karuvarakundu • Executive Committee 2026-27
       </small>
     </div>
   </footer>
