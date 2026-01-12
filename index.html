@@ -555,7 +555,7 @@
     /* ===== MOBILE OPTIMIZATION ===== */
     @media (max-width: 768px) {
       body {
-        padding-top: 120px; /* Adjusted for mobile */
+        padding-top: 110px; /* Adjusted for mobile */
       }
       
       .navbar-optimized {
@@ -565,8 +565,10 @@
       
       /* Adjust ticker for mobile */
       .ticker-container {
-        top: 80px; /* Below mobile navbar */
+        top: 70px; /* Below mobile navbar */
         height: 40px;
+        position: fixed;
+        z-index: 9;
       }
       
       .ticker-wrapper {
@@ -603,22 +605,30 @@
         margin-top: 10px;
         max-height: 70vh;
         overflow-y: auto;
+        text-align: left;
       }
       
       .nav-item-optimized {
         margin: 0.1rem 0;
+        width: 100%;
+        text-align: left;
       }
       
       .nav-link-optimized {
         padding: 0.6rem 0.8rem;
         font-size: 0.95rem;
         margin: 0.1rem 0;
+        display: block;
+        text-align: left;
+        width: 100%;
       }
       
       .dropdown-menu-optimized {
         background: var(--dark-green);
         border: 1px solid var(--islamic-gold);
         margin-top: 0;
+        text-align: left;
+        width: 100%;
       }
       
       /* HERO SECTION MOBILE */
@@ -775,7 +785,8 @@
 
     @media (max-width: 992px) {
       .navbar-nav {
-        text-align: center;
+        text-align: left; 
+        align-items: flex-start;
       }
       
       .nav-link-optimized {
@@ -1431,6 +1442,7 @@
 </script>
 </body>
 </html>
+
 
 
 
