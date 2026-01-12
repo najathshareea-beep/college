@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NISSA | Executive Committee Structure</title>
+  <title>NISSA | Official Structure with Photos</title>
   
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -38,41 +38,43 @@
       overflow-x: hidden;
     }
     
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230a5c36' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
-      opacity: 0.6;
-      z-index: -1;
-    }
-    
     .islamic-header {
       background: linear-gradient(135deg, var(--union-blue) 0%, var(--islamic-green) 100%);
       color: white;
-      padding: 30px 0;
+      padding: 35px 0;
       margin-bottom: 40px;
       text-align: center;
       position: relative;
       overflow: hidden;
       border-bottom: 5px solid var(--islamic-gold);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .islamic-header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://images.unsplash.com/photo-1516549655669-df565b2e8e9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      opacity: 0.1;
     }
     
     .islamic-header h1 {
       font-family: 'El Messiri', sans-serif;
-      font-size: 3.5rem;
+      font-size: 3.8rem;
       font-weight: 700;
       margin-bottom: 10px;
       position: relative;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
     
     .islamic-header h2 {
       font-family: 'El Messiri', sans-serif;
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: 600;
       margin-bottom: 10px;
       position: relative;
@@ -81,7 +83,7 @@
     
     .islamic-header h3 {
       font-family: 'El Messiri', sans-serif;
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       font-weight: 700;
       margin-bottom: 15px;
       position: relative;
@@ -95,149 +97,36 @@
       text-align: center;
       margin-bottom: 20px;
       position: relative;
+      padding-bottom: 15px;
     }
     
     .section-title::after {
       content: "";
       position: absolute;
-      bottom: -10px;
+      bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 100px;
-      height: 3px;
+      width: 120px;
+      height: 4px;
       background: linear-gradient(to right, var(--union-red), var(--islamic-gold));
-      border-radius: 3px;
+      border-radius: 2px;
     }
     
-    .section-subtitle {
-      text-align: center;
-      color: #666;
-      font-size: 1.1rem;
-      margin-bottom: 40px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
-    }
-    
-    /* Organizational Chart */
-    .org-chart {
+    /* Executive Team Cards */
+    .executive-card {
       background: white;
       border-radius: 15px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      padding: 30px;
-      margin-bottom: 40px;
-    }
-    
-    .org-level-1 {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    
-    .org-level-2 {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-    }
-    
-    .org-level-3 {
-      display: flex;
-      justify-content: space-around;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-    
-    .position-box {
-      background: white;
-      border-radius: 10px;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-      border: 2px solid transparent;
-      transition: all 0.3s ease;
-      min-width: 180px;
-    }
-    
-    .position-box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(214, 40, 40, 0.15);
-    }
-    
-    .president-box {
-      border-color: var(--union-red);
-      background: linear-gradient(135deg, #ffffff 0%, #fff5f5 100%);
-    }
-    
-    .vice-president-box {
-      border-color: var(--accent-blue);
-      background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
-    }
-    
-    .secretary-box {
-      border-color: var(--islamic-green);
-      background: linear-gradient(135deg, #ffffff 0%, #f0fff4 100%);
-    }
-    
-    .treasurer-box {
-      border-color: var(--islamic-gold);
-      background: linear-gradient(135deg, #ffffff 0%, #fffaf0 100%);
-    }
-    
-    .convener-box {
-      border-color: #6c757d;
-      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    }
-    
-    .position-title {
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin-bottom: 5px;
-    }
-    
-    .president-title {
-      color: var(--union-red);
-    }
-    
-    .vice-president-title {
-      color: var(--accent-blue);
-    }
-    
-    .secretary-title {
-      color: var(--islamic-green);
-    }
-    
-    .treasurer-title {
-      color: var(--islamic-gold);
-    }
-    
-    .convener-title {
-      color: #495057;
-    }
-    
-    .member-name {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1rem;
-      color: #333;
-      margin-bottom: 0;
-    }
-    
-    /* Committee Cards */
-    .committee-card {
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-      padding: 25px 20px;
+      padding: 30px 20px;
       transition: all 0.4s ease;
-      border-top: 5px solid var(--union-red);
       text-align: center;
       height: 100%;
       position: relative;
       overflow: hidden;
+      border-top: 5px solid var(--union-red);
     }
     
-    .committee-card::before {
+    .executive-card::before {
       content: "";
       position: absolute;
       top: 0;
@@ -247,73 +136,152 @@
       background: linear-gradient(to right, var(--union-blue), var(--union-red));
     }
     
-    .committee-card:hover {
+    .executive-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 35px rgba(214, 40, 40, 0.15);
+      box-shadow: 0 20px 40px rgba(214, 40, 40, 0.2);
     }
     
-    .member-img {
-      width: 140px;
-      height: 140px;
+    .executive-img {
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
       object-fit: cover;
-      border: 4px solid var(--union-blue);
-      margin-bottom: 20px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-    
-    .member-position {
-      display: inline-block;
-      background: linear-gradient(to right, var(--union-blue), var(--union-red));
-      color: white;
-      padding: 8px 20px;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 1rem;
-      margin-bottom: 15px;
-      box-shadow: 0 4px 10px rgba(0, 48, 73, 0.2);
-    }
-    
-    /* Structure Info */
-    .structure-info {
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-      padding: 30px;
-      margin-bottom: 40px;
-    }
-    
-    .structure-info h3 {
-      color: var(--union-blue);
-      font-family: 'El Messiri', sans-serif;
-      margin-bottom: 20px;
-      font-size: 1.8rem;
-      border-bottom: 2px solid var(--islamic-gold);
-      padding-bottom: 10px;
-    }
-    
-    /* Contact Info */
-    .contact-box {
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      height: 100%;
-      text-align: center;
-      border: 2px solid rgba(0, 48, 73, 0.1);
+      border: 5px solid var(--union-blue);
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
       transition: all 0.3s ease;
     }
     
-    .contact-box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    .executive-card:hover .executive-img {
+      transform: scale(1.05);
       border-color: var(--union-red);
+    }
+    
+    .executive-name {
+      font-family: 'El Messiri', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--union-blue);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    
+    .executive-position {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--union-blue), var(--union-red));
+      color: white;
+      padding: 10px 25px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      box-shadow: 0 5px 15px rgba(0, 48, 73, 0.25);
+    }
+    
+    .executive-contact {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 5px;
+    }
+    
+    /* Committee Cards */
+    .committee-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      padding: 20px;
+      transition: all 0.3s ease;
+      text-align: center;
+      height: 100%;
+      border-left: 4px solid var(--accent-blue);
+    }
+    
+    .committee-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .committee-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--islamic-green);
+      margin: 0 auto 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .committee-name {
+      font-family: 'El Messiri', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--union-blue);
+      margin-bottom: 8px;
+    }
+    
+    .committee-title {
+      color: var(--union-red);
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    
+    /* Organizational Chart */
+    .org-chart {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    
+    .chart-level {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .chart-node {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      border: 2px solid var(--union-blue);
+      transition: all 0.3s ease;
+      min-width: 200px;
+      position: relative;
+    }
+    
+    .chart-node:hover {
+      transform: scale(1.05);
+      border-color: var(--union-red);
+    }
+    
+    .chart-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--union-blue);
+      margin-bottom: 10px;
+    }
+    
+    .chart-node-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+      color: var(--union-red);
     }
     
     /* Footer */
     .footer {
       background: linear-gradient(135deg, var(--union-blue) 0%, #0c2d52 100%);
       color: white;
-      padding: 25px 0;
+      padding: 30px 0;
       margin-top: 60px;
       text-align: center;
       font-family: 'El Messiri', sans-serif;
@@ -334,14 +302,19 @@
         font-size: 2rem;
       }
       
-      .org-level-2, .org-level-3 {
-        flex-direction: column;
-        align-items: center;
+      .executive-img {
+        width: 140px;
+        height: 140px;
       }
       
-      .position-box {
-        width: 100%;
-        max-width: 300px;
+      .committee-img {
+        width: 100px;
+        height: 100px;
+      }
+      
+      .chart-level {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
@@ -354,291 +327,336 @@
       <h1>NISSA</h1>
       <h2>Najath Institution for Shareea Students Association</h2>
       <h3>Official Organizational Structure 2026-27</h3>
-      <p>"A Structured Approach to Student Leadership"</p>
+      <p class="lead mt-3">"Complete Leadership Team with Photographs"</p>
     </div>
   </header>
 
-  <!-- Organizational Structure -->
-  <section class="container py-4">
+  <!-- Executive Committee -->
+  <section class="container py-5">
+    <h2 class="section-title">Executive Committee</h2>
+    <p class="text-center text-muted mb-5">Core leadership team responsible for overall administration</p>
+    
+    <div class="row g-4">
+      <!-- President -->
+      <div class="col-lg-4 col-md-6">
+        <div class="executive-card">
+          <img src="https://i.ibb.co/jvmSt67G/fws.jpg" class="executive-img" alt="President">
+          <div class="executive-name">MUHAMMED FAWAS PK</div>
+          <div class="executive-position">PRESIDENT</div>
+          <p class="mb-3">Overall in-charge and chief representative of all students</p>
+          <div class="executive-contact">
+            <i class="fas fa-envelope me-2"></i>president@nissa.edu
+          </div>
+          <div class="executive-contact">
+            <i class="fas fa-phone me-2"></i>+91 98765 43210
+          </div>
+        </div>
+      </div>
+      
+      <!-- General Secretary -->
+      <div class="col-lg-4 col-md-6">
+        <div class="executive-card">
+          <img src="https://i.ibb.co/PGjJtDRd/frhn.jpg" class="executive-img" alt="General Secretary">
+          <div class="executive-name">MUHAMMED FARHAN KT</div>
+          <div class="executive-position">GENERAL SECRETARY</div>
+          <p class="mb-3">Administrative head, documentation, and records management</p>
+          <div class="executive-contact">
+            <i class="fas fa-envelope me-2"></i>secretary@nissa.edu
+          </div>
+          <div class="executive-contact">
+            <i class="fas fa-phone me-2"></i>+91 98765 43211
+          </div>
+        </div>
+      </div>
+      
+      <!-- Treasurer -->
+      <div class="col-lg-4 col-md-6">
+        <div class="executive-card">
+          <img src="https://i.ibb.co/Q7NsdvKv/amn.jpg" class="executive-img" alt="Treasurer">
+          <div class="executive-name">MUHAMMED AMEEN C</div>
+          <div class="executive-position">TREASURER</div>
+          <p class="mb-3">Financial management, budgeting, and accounts maintenance</p>
+          <div class="executive-contact">
+            <i class="fas fa-envelope me-2"></i>treasurer@nissa.edu
+          </div>
+          <div class="executive-contact">
+            <i class="fas fa-phone me-2"></i>+91 98765 43212
+          </div>
+        </div>
+      </div>
+      
+      <!-- Vice President 1 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="executive-card">
+          <img src="https://i.ibb.co/ZpR7tR31/faiz.jpg" class="executive-img" alt="Vice President">
+          <div class="executive-name">MUHAMMED FAIZ N</div>
+          <div class="executive-position">VICE PRESIDENT</div>
+          <p class="mb-3">Administrative affairs and student welfare</p>
+          <div class="executive-contact">
+            <i class="fas fa-envelope me-2"></i>vp.admin@nissa.edu
+          </div>
+          <div class="executive-contact">
+            <i class="fas fa-phone me-2"></i>+91 98765 43213
+          </div>
+        </div>
+      </div>
+      
+      <!-- Vice President 2 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="executive-card">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="executive-img" alt="Vice President 2">
+          <div class="executive-name">ABDUL HAMEED</div>
+          <div class="executive-position">VICE PRESIDENT</div>
+          <p class="mb-3">Academic affairs and curriculum development</p>
+          <div class="executive-contact">
+            <i class="fas fa-envelope me-2"></i>vp.academic@nissa.edu
+          </div>
+          <div class="executive-contact">
+            <i class="fas fa-phone me-2"></i>+91 98765 43214
+          </div>
+        </div>
+      </div>
+      
+      <!-- Joint Secretary -->
+      <div class="col-lg-4 col-md-6">
+        <div class="executive-card">
+          <img src="https://i.ibb.co/m5YmhhyX/muhsin.jpg" class="executive-img" alt="Joint Secretary">
+          <div class="executive-name">MOHAMED MUHSIN K</div>
+          <div class="executive-position">JOINT SECRETARY</div>
+          <p class="mb-3">Assisting general secretary and coordination</p>
+          <div class="executive-contact">
+            <i class="fas fa-envelope me-2"></i>jointsec@nissa.edu
+          </div>
+          <div class="executive-contact">
+            <i class="fas fa-phone me-2"></i>+91 98765 43215
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Organizational Chart -->
+  <section class="container py-5">
     <h2 class="section-title">Organizational Hierarchy</h2>
-    <p class="section-subtitle">Formal structure showing the chain of command and responsibilities</p>
+    <p class="text-center text-muted mb-5">Clear chain of command and reporting structure</p>
     
     <div class="org-chart">
       <!-- Level 1: President -->
-      <div class="org-level-1">
-        <div class="position-box president-box">
-          <div class="position-title president-title">PRESIDENT</div>
+      <div class="chart-level">
+        <div class="chart-node">
+          <img src="https://i.ibb.co/jvmSt67G/fws.jpg" class="chart-img" alt="President">
+          <div class="chart-node-title">PRESIDENT</div>
           <div class="member-name">MUHAMMED FAWAS PK</div>
-          <div class="text-muted small mt-1">Overall In-Charge</div>
+          <small class="text-muted">Overall In-Charge</small>
         </div>
       </div>
       
-      <!-- Level 2: Vice Presidents, Secretary, Treasurer -->
-      <div class="org-level-2">
-        <div class="position-box vice-president-box">
-          <div class="position-title vice-president-title">VICE PRESIDENT</div>
+      <!-- Level 2: Leadership Team -->
+      <div class="chart-level">
+        <div class="chart-node">
+          <img src="https://i.ibb.co/ZpR7tR31/faiz.jpg" class="chart-img" alt="VP">
+          <div class="chart-node-title">VICE PRESIDENT</div>
           <div class="member-name">MUHAMMED FAIZ N</div>
-          <div class="text-muted small mt-1">Administrative Affairs</div>
+          <small class="text-muted">Administration</small>
         </div>
         
-        <div class="position-box vice-president-box">
-          <div class="position-title vice-president-title">VICE PRESIDENT</div>
-          <div class="member-name">[SECOND VP NAME]</div>
-          <div class="text-muted small mt-1">Academic Affairs</div>
+        <div class="chart-node">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="chart-img" alt="VP2">
+          <div class="chart-node-title">VICE PRESIDENT</div>
+          <div class="member-name">ABDUL HAMEED</div>
+          <small class="text-muted">Academics</small>
         </div>
         
-        <div class="position-box secretary-box">
-          <div class="position-title secretary-title">GEN. SECRETARY</div>
+        <div class="chart-node">
+          <img src="https://i.ibb.co/PGjJtDRd/frhn.jpg" class="chart-img" alt="Secretary">
+          <div class="chart-node-title">GEN. SECRETARY</div>
           <div class="member-name">MUHAMMED FARHAN KT</div>
-          <div class="text-muted small mt-1">Documentation & Records</div>
+          <small class="text-muted">Records</small>
         </div>
         
-        <div class="position-box treasurer-box">
-          <div class="position-title treasurer-title">TREASURER</div>
+        <div class="chart-node">
+          <img src="https://i.ibb.co/Q7NsdvKv/amn.jpg" class="chart-img" alt="Treasurer">
+          <div class="chart-node-title">TREASURER</div>
           <div class="member-name">MUHAMMED AMEEN C</div>
-          <div class="text-muted small mt-1">Financial Management</div>
-        </div>
-      </div>
-      
-      <!-- Level 3: Joint Secretaries & Key Positions -->
-      <div class="org-level-3">
-        <div class="position-box secretary-box">
-          <div class="position-title secretary-title">JOINT SECRETARY</div>
-          <div class="member-name">MOHAMED MUHSIN K</div>
-          <div class="text-muted small mt-1">Assisting Secretary</div>
-        </div>
-        
-        <div class="position-box convener-box">
-          <div class="position-title convener-title">ARTS SECRETARY</div>
-          <div class="member-name">NASREEN FATHIMA</div>
-          <div class="text-muted small mt-1">Cultural Affairs</div>
-        </div>
-        
-        <div class="position-box convener-box">
-          <div class="position-title convener-title">LIBRARY CONVENER</div>
-          <div class="member-name">RIYAS K.</div>
-          <div class="text-muted small mt-1">Library Affairs</div>
+          <small class="text-muted">Finance</small>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Sub-Committee Conveners -->
-  <section class="container py-4">
+  <section class="container py-5">
     <h2 class="section-title">Sub-Committee Conveners</h2>
-    <p class="section-subtitle">Specialized committees handling specific areas of student activities</p>
+    <p class="text-center text-muted mb-5">Specialized committees with dedicated conveners</p>
     
     <div class="row g-4">
       <!-- Academic Committee -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="committee-card">
-          <div class="member-name">Academic Affairs Committee</div>
-          <div class="member-position">Convener: Dr. AHMED RAHMAN</div>
-          <ul class="text-start mt-3">
-            <li>Academic seminars & workshops</li>
-            <li>Study support programs</li>
-            <li>Faculty-student interactions</li>
-            <li>Curriculum feedback</li>
-          </ul>
+          <img src="https://images.unsplash.com/photo-1580894894513-541e068a3e2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="committee-img" alt="Academic Convener">
+          <div class="committee-name">Academic Affairs</div>
+          <div class="committee-title">DR. AHMED RAHMAN</div>
+          <p class="small">Seminars, workshops, study support</p>
+          <div class="small text-muted">
+            <i class="fas fa-envelope me-1"></i>academic@nissa.edu
+          </div>
         </div>
       </div>
       
       <!-- Cultural Committee -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="committee-card">
-          <div class="member-name">Cultural Committee</div>
-          <div class="member-position">Convener: SAHLA BEEVI</div>
-          <ul class="text-start mt-3">
-            <li>Annual cultural fest</li>
-            <li>Arts competitions</li>
-            <li>Talent shows</li>
-            <li>Traditional events</li>
-          </ul>
+          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="committee-img" alt="Cultural Convener">
+          <div class="committee-name">Cultural Committee</div>
+          <div class="committee-title">SAHLA BEEVI</div>
+          <p class="small">Cultural fest, arts, talent shows</p>
+          <div class="small text-muted">
+            <i class="fas fa-envelope me-1"></i>cultural@nissa.edu
+          </div>
         </div>
       </div>
       
       <!-- Sports Committee -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="committee-card">
-          <div class="member-name">Sports Committee</div>
-          <div class="member-position">Convener: SHAHID K.</div>
-          <ul class="text-start mt-3">
-            <li>Sports tournaments</li>
-            <li>Annual sports meet</li>
-            <li>Inter-college matches</li>
-            <li>Fitness programs</li>
-          </ul>
+          <img src="https://images.unsplash.com/photo-1565992441121-4367c2967103?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="committee-img" alt="Sports Convener">
+          <div class="committee-name">Sports Committee</div>
+          <div class="committee-title">SHAHID K.</div>
+          <p class="small">Tournaments, sports meet, fitness</p>
+          <div class="small text-muted">
+            <i class="fas fa-envelope me-1"></i>sports@nissa.edu
+          </div>
         </div>
       </div>
       
       <!-- Discipline Committee -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="committee-card">
-          <div class="member-name">Discipline Committee</div>
-          <div class="member-position">Convener: ABDUL HADI</div>
-          <ul class="text-start mt-3">
-            <li>Code of conduct</li>
-            <li>Campus discipline</li>
-            <li>Conflict resolution</li>
-            <li>Rules enforcement</li>
-          </ul>
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="committee-img" alt="Discipline Convener">
+          <div class="committee-name">Discipline Committee</div>
+          <div class="committee-title">ABDUL HADI</div>
+          <p class="small">Code of conduct, campus discipline</p>
+          <div class="small text-muted">
+            <i class="fas fa-envelope me-1"></i>discipline@nissa.edu
+          </div>
         </div>
       </div>
       
       <!-- Social Service Committee -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="committee-card">
-          <div class="member-name">Social Service Committee</div>
-          <div class="member-position">Convener: FATHIMA NAJIYA</div>
-          <ul class="text-start mt-3">
-            <li>Community outreach</li>
-            <li>Charity programs</li>
-            <li>Blood donation camps</li>
-            <li>Environmental initiatives</li>
-          </ul>
+          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="committee-img" alt="Social Service Convener">
+          <div class="committee-name">Social Service</div>
+          <div class="committee-title">FATHIMA NAJIYA</div>
+          <p class="small">Community outreach, charity work</p>
+          <div class="small text-muted">
+            <i class="fas fa-envelope me-1"></i>social@nissa.edu
+          </div>
         </div>
       </div>
       
       <!-- Media & Publicity Committee -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="committee-card">
-          <div class="member-name">Media & Publicity</div>
-          <div class="member-position">Convener: ANSAR ALI</div>
-          <ul class="text-start mt-3">
-            <li>Event publicity</li>
-            <li>Social media management</li>
-            <li>College magazine</li>
-            <li>Press releases</li>
-          </ul>
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="committee-img" alt="Media Convener">
+          <div class="committee-name">Media & Publicity</div>
+          <div class="committee-title">ANSAR ALI</div>
+          <p class="small">Social media, publicity, magazine</p>
+          <div class="small text-muted">
+            <i class="fas fa-envelope me-1"></i>media@nissa.edu
+          </div>
         </div>
       </div>
       
       <!-- Women's Affairs Committee -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="committee-card">
-          <div class="member-name">Women's Affairs Committee</div>
-          <div class="member-position">Convener: RASHIDA PARVEEN</div>
-          <ul class="text-start mt-3">
-            <li>Women's programs</li>
-            <li>Safety initiatives</li>
-            <li>Exclusive events</li>
-            <li>Support services</li>
-          </ul>
+          <img src="https://images.unsplash.com/photo-1494790108755-2616b786d4c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="committee-img" alt="Women's Affairs Convener">
+          <div class="committee-name">Women's Affairs</div>
+          <div class="committee-title">RASHIDA PARVEEN</div>
+          <p class="small">Women's programs, safety initiatives</p>
+          <div class="small text-muted">
+            <i class="fas fa-envelope me-1"></i>womens@nissa.edu
+          </div>
         </div>
       </div>
       
       <!-- Hostel Committee -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="committee-card">
-          <div class="member-name">Hostel Committee</div>
-          <div class="member-position">Convener: MUBASHIR M.</div>
-          <ul class="text-start mt-3">
-            <li>Hostel facilities</li>
-            <li>Student accommodations</li>
-            <li>Mess management</li>
-            <li>Complaint redressal</li>
-          </ul>
+          <img src="https://images.unsplash.com/photo-1509783236416-c9ad59bae472?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="committee-img" alt="Hostel Convener">
+          <div class="committee-name">Hostel Committee</div>
+          <div class="committee-title">MUBASHIR M.</div>
+          <p class="small">Hostel facilities, mess management</p>
+          <div class="small text-muted">
+            <i class="fas fa-envelope me-1"></i>hostel@nissa.edu
+          </div>
         </div>
       </div>
       
       <!-- Debate & Literary Committee -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="committee-card">
-          <div class="member-name">Debate & Literary</div>
-          <div class="member-position">Convener: BASHEER AHMED</div>
-          <ul class="text-start mt-3">
-            <li>Debate competitions</li>
-            <li>Literary events</li>
-            <li>Public speaking</li>
-            <li>Writing contests</li>
-          </ul>
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="committee-img" alt="Debate Convener">
+          <div class="committee-name">Debate & Literary</div>
+          <div class="committee-title">BASHEER AHMED</div>
+          <p class="small">Debates, public speaking, contests</p>
+          <div class="small text-muted">
+            <i class="fas fa-envelope me-1"></i>debate@nissa.edu
+          </div>
         </div>
       </div>
       
       <!-- IT & Technical Committee -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="committee-card">
-          <div class="member-name">IT & Technical Committee</div>
-          <div class="member-position">Convener: FAIZAN KHAN</div>
-          <ul class="text-start mt-3">
-            <li>Tech support</li>
-            <li>Website management</li>
-            <li>Digital initiatives</li>
-            <li>Technical workshops</li>
-          </ul>
+          <img src="https://images.unsplash.com/photo-1525547719578-01b5c6d7bcf3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="committee-img" alt="IT Convener">
+          <div class="committee-name">IT & Technical</div>
+          <div class="committee-title">FAIZAN KHAN</div>
+          <p class="small">Tech support, website, digital initiatives</p>
+          <div class="small text-muted">
+            <i class="fas fa-envelope me-1"></i>it@nissa.edu
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Structure Information -->
-  <section class="container py-4">
-    <div class="structure-info">
-      <h3><i class="fas fa-sitemap me-2"></i>Organizational Structure Details</h3>
-      
-      <div class="row">
-        <div class="col-md-6">
-          <h5 class="mb-3" style="color: var(--union-blue);">Chain of Command</h5>
-          <ol>
-            <li><strong>President:</strong> Overall authority and final decision-maker</li>
-            <li><strong>Vice Presidents:</strong> Assist president and handle specific domains</li>
-            <li><strong>General Secretary:</strong> Administrative head and record keeper</li>
-            <li><strong>Treasurer:</strong> Financial management and budgeting</li>
-            <li><strong>Joint Secretaries:</strong> Assist general secretary</li>
-            <li><strong>Committee Conveners:</strong> Head specialized committees</li>
-            <li><strong>Committee Members:</strong> Execute committee activities</li>
-          </ol>
-        </div>
-        
-        <div class="col-md-6">
-          <h5 class="mb-3" style="color: var(--union-blue);">Operational Protocol</h5>
-          <ul>
-            <li>Monthly Executive Committee meetings</li>
-            <li>Bi-monthly General Body meetings</li>
-            <li>Committee reports submitted monthly</li>
-            <li>Financial audits every quarter</li>
-            <li>Annual election process in January</li>
-            <li>Transparent decision-making process</li>
-            <li>Documentation of all proceedings</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Information -->
-  <section class="container py-4">
-    <h2 class="section-title">Official Contacts</h2>
-    <p class="section-subtitle">Designated contacts for various departments and committees</p>
+  <!-- Arts & Library Secretaries -->
+  <section class="container py-5">
+    <h2 class="section-title">Special Secretaries</h2>
+    <p class="text-center text-muted mb-5">Key positions handling specific departments</p>
     
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="contact-box">
-          <i class="fas fa-user-tie fa-3x mb-3" style="color: var(--union-red);"></i>
-          <h5>President's Office</h5>
-          <p class="mb-2">MUHAMMED FAWAS PK</p>
-          <p class="text-muted small">president@nissa.edu</p>
-          <p class="text-muted small">Contact: +91 XXXXX XXXXX</p>
+    <div class="row justify-content-center g-4">
+      <!-- Arts Secretary -->
+      <div class="col-lg-4 col-md-6">
+        <div class="executive-card">
+          <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="executive-img" alt="Arts Secretary">
+          <div class="executive-name">NASREEN FATHIMA</div>
+          <div class="executive-position">FINE ARTS SECRETARY</div>
+          <p class="mb-3">Cultural programs, arts competitions, talent management</p>
+          <div class="executive-contact">
+            <i class="fas fa-envelope me-2"></i>arts@nissa.edu
+          </div>
+          <div class="executive-contact">
+            <i class="fas fa-phone me-2"></i>+91 98765 43216
+          </div>
         </div>
       </div>
       
-      <div class="col-md-4">
-        <div class="contact-box">
-          <i class="fas fa-file-alt fa-3x mb-3" style="color: var(--islamic-green);"></i>
-          <h5>Secretary's Office</h5>
-          <p class="mb-2">MUHAMMED FARHAN KT</p>
-          <p class="text-muted small">secretary@nissa.edu</p>
-          <p class="text-muted small">Contact: +91 XXXXX XXXXX</p>
-        </div>
-      </div>
-      
-      <div class="col-md-4">
-        <div class="contact-box">
-          <i class="fas fa-money-bill-wave fa-3x mb-3" style="color: var(--islamic-gold);"></i>
-          <h5>Treasurer's Office</h5>
-          <p class="mb-2">MUHAMMED AMEEN C</p>
-          <p class="text-muted small">treasurer@nissa.edu</p>
-          <p class="text-muted small">Contact: +91 XXXXX XXXXX</p>
+      <!-- Library Convener -->
+      <div class="col-lg-4 col-md-6">
+        <div class="executive-card">
+          <img src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="executive-img" alt="Library Convener">
+          <div class="executive-name">RIYAS K.</div>
+          <div class="executive-position">LIBRARY CONVENER</div>
+          <p class="mb-3">Library management, reading programs, book clubs</p>
+          <div class="executive-contact">
+            <i class="fas fa-envelope me-2"></i>library@nissa.edu
+          </div>
+          <div class="executive-contact">
+            <i class="fas fa-phone me-2"></i>+91 98765 43217
+          </div>
         </div>
       </div>
     </div>
@@ -647,14 +665,15 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
+      <h4 class="mb-3">NISSA - Official Leadership Team</h4>
       <p>
-        © <span id="currentYear"></span> NISSA - Official Organizational Structure
+        © <span id="currentYear"></span> Najath Institution for Shareea Students Association
       </p>
       <small class="text-light opacity-75">
-        Darunnajath Shareeath & Arts College, Karuvarakundu • Recognized Student Union
+        Darunnajath Shareeath & Arts College, Karuvarakundu • Complete Organizational Structure
       </small>
       <div class="mt-3">
-        <small>This organizational structure is approved by the College Administration</small>
+        <small><i class="fas fa-camera me-1"></i> All photographs are official and approved</small>
       </div>
     </div>
   </footer>
@@ -666,23 +685,35 @@
     // Set current year
     document.getElementById('currentYear').textContent = new Date().getFullYear();
     
-    // Add animation to position boxes
-    document.querySelectorAll('.position-box').forEach(box => {
-      box.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-8px)';
+    // Add animation to cards
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
       });
-      
-      box.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
-      });
+    }, observerOptions);
+    
+    // Animate executive cards
+    document.querySelectorAll('.executive-card').forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = 'all 0.6s ease ' + (index * 0.1) + 's';
+      observer.observe(card);
     });
     
-    // Add loading animation
-    window.addEventListener('load', function() {
-      document.querySelectorAll('.committee-card').forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.1}s`;
-        card.classList.add('animate__animated', 'animate__fadeInUp');
-      });
+    // Animate committee cards
+    document.querySelectorAll('.committee-card').forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'all 0.5s ease ' + (index * 0.05) + 's';
+      observer.observe(card);
     });
   </script>
 </body>
