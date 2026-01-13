@@ -4,21 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DSAC | Admission</title>
-
   <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
-
   <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
   <!-- STANDARD CSS -->
   <style>
     /* ===== CSS VARIABLES ===== */
@@ -31,7 +27,6 @@
       --light-gold: #ffd24d;
       --transition: all 0.3s ease;
     }
-
     /* ===== BASE STYLES ===== */
     body {
       font-family: 'Poppins', sans-serif;
@@ -41,22 +36,19 @@
       overflow-x: hidden;
       padding-top: 130px;
     }
-    
+   
     a {
       text-decoration: none;
     }
-
     .arabic-font {
       font-family: 'Scheherazade New', serif;
     }
-
     .malayalam-font {
       font-family: 'Anek Malayalam', sans-serif;
     }
-
     /* ===== PATTERN BACKGROUND ===== */
     .pattern-bg {
-      background-image: 
+      background-image:
         radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px),
         radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px);
       background-size: 50px 50px;
@@ -67,7 +59,6 @@
       height: 100%;
       z-index: -1;
     }
-
     /* ===== STANDARD NAVBAR ===== */
     .navbar-optimized {
       background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
@@ -77,25 +68,22 @@
       height: 80px;
       z-index: 1030 !important;
     }
-    
+   
     .navbar-toggler {
       border-color: rgba(255, 255, 255, 0.5);
     }
-    
+   
     .navbar-toggler:focus {
       box-shadow: 0 0 0 2px var(--islamic-gold);
     }
-
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
-
     .navbar-optimized.scrolled {
       background: rgba(10, 92, 54, 0.98);
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
       height: 70px;
     }
-
     /* LOGO */
     .navbar-brand-compact img {
       border-radius: 8px;
@@ -108,28 +96,23 @@
       box-shadow: 0 0 0 2px var(--islamic-gold);
       padding: 0;
     }
-
     .navbar-optimized.scrolled .navbar-brand-compact img {
       width: 50px;
       height: 50px;
       filter: brightness(0) invert(1);
       box-shadow: 0 0 0 2px var(--islamic-gold);
     }
-
     .navbar-brand-compact:hover img {
       transform: scale(1.05);
     }
-
     .brand-text {
       font-size: 1.2rem;
       line-height: 1.2;
     }
-
     .brand-subtext {
       font-size: 0.8rem;
       opacity: 0.9;
     }
-
     .nav-link-optimized {
       color: #fff !important;
       font-weight: 500;
@@ -140,16 +123,14 @@
       margin: 0 2px;
       white-space: nowrap;
     }
-    
+   
     .nav-item-optimized {
       margin: 0 2px;
     }
-
     .nav-link-optimized:hover {
       color: var(--islamic-gold) !important;
       background: rgba(255, 255, 255, 0.1);
     }
-
     /* Navbar dropdown */
     .dropdown-menu-optimized {
       background: var(--islamic-green);
@@ -157,18 +138,15 @@
       border-radius: 8px;
       padding: 0.5rem 0;
     }
-
     .dropdown-item-optimized {
       color: white;
       padding: 0.5rem 1rem;
       transition: var(--transition);
     }
-
     .dropdown-item-optimized:hover {
       background: var(--islamic-gold);
       color: var(--islamic-green);
     }
-
     /* ===== STANDARD PAGE HEADER ===== */
     .page-header {
       background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
@@ -180,7 +158,7 @@
       position: relative;
       overflow: hidden;
     }
-    
+   
     .page-header::before {
       content: '';
       position: absolute;
@@ -188,16 +166,16 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: 
+      background:
         radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
     }
-    
+   
     .page-header-content {
       position: relative;
       z-index: 2;
     }
-    
+   
     .page-title {
       font-family: 'Scheherazade New', serif;
       font-size: 3.5rem;
@@ -206,7 +184,7 @@
       color: var(--islamic-gold);
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
-    
+   
     .page-subtitle {
       font-size: 1.4rem;
       opacity: 0.95;
@@ -214,20 +192,18 @@
       margin: 0 auto;
       color: var(--islamic-cream);
     }
-
     /* ===== STANDARD CONTENT SECTION ===== */
     .content-section {
       padding: 4rem 0;
       background: var(--islamic-cream);
     }
-    
+   
     .section-header {
       text-align: center;
       margin-bottom: 3rem;
       position: relative;
       padding: 2rem 0;
     }
-
     .section-title {
       color: var(--islamic-green);
       font-weight: 700;
@@ -239,7 +215,6 @@
       margin-bottom: 0.5rem;
       font-size: 2.5rem;
     }
-
     .section-header::before {
       content: '';
       position: absolute;
@@ -250,14 +225,13 @@
       background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent);
       z-index: 1;
     }
-    
+   
     .section-subtitle {
       color: #666;
       font-size: 1.1rem;
       max-width: 700px;
       margin: 0 auto;
     }
-
     /* ===== STANDARD BUTTONS ===== */
     .btn-gold {
       background: linear-gradient(135deg, var(--islamic-gold), #d4af37);
@@ -269,14 +243,12 @@
       transition: var(--transition);
       padding: 0.75rem 1.5rem;
     }
-
     .btn-gold:hover {
       background: linear-gradient(135deg, #d4af37, var(--islamic-gold));
       box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4);
       transform: translateY(-2px);
       color: var(--islamic-green);
     }
-
     .btn-outline-gold {
       border: 2px solid var(--islamic-gold);
       color: var(--islamic-gold);
@@ -286,12 +258,10 @@
       font-weight: 600;
       transition: var(--transition);
     }
-
     .btn-outline-gold:hover {
       background: var(--islamic-gold);
       color: var(--islamic-green);
     }
-
     /* ===== STANDARD CARDS ===== */
     .islamic-card {
       background: white;
@@ -303,13 +273,12 @@
       height: 100%;
       margin-bottom: 1rem;
     }
-
     .islamic-card:hover {
       transform: translateY(-8px);
       border-color: var(--islamic-gold);
       box-shadow: 0 15px 30px rgba(0,0,0,0.15);
     }
-    
+   
     .islamic-card-header {
       background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
       color: white;
@@ -317,11 +286,10 @@
       text-align: center;
       border-bottom: 3px solid var(--islamic-gold);
     }
-    
+   
     .islamic-card-body {
       padding: 1.5rem;
     }
-
     /* ===== ADMISSION PORTAL STYLES ===== */
     .portal-card {
       background: white;
@@ -334,13 +302,11 @@
       position: relative;
       cursor: pointer;
     }
-
     .portal-card:hover {
       transform: translateY(-8px);
       border-color: var(--islamic-gold);
       box-shadow: 0 15px 30px rgba(0,0,0,0.15);
     }
-
     .portal-card .service-icon {
       width: 70px;
       height: 70px;
@@ -355,11 +321,9 @@
       box-shadow: 0 5px 15px rgba(10, 92, 54, 0.3);
       transition: var(--transition);
     }
-
     .portal-card:hover .service-icon {
       transform: scale(1.1) rotate(10deg);
     }
-
     .portal-card h4 {
       color: var(--islamic-green);
       margin-bottom: 5px;
@@ -370,14 +334,12 @@
       align-items: center;
       justify-content: center;
     }
-
     .portal-card .service-desc {
       color: #666;
       margin-bottom: 20px;
       font-size: 0.9rem;
       line-height: 1.5;
     }
-
     /* Form Styles */
     .form-container {
       background: white;
@@ -388,17 +350,14 @@
       border: 2px solid var(--islamic-gold);
       display: none;
     }
-
     .form-container.active {
       display: block;
       animation: slideIn 0.3s ease;
     }
-
     @keyframes slideIn {
       from { opacity: 0; transform: translateX(-20px); }
       to { opacity: 1; transform: translateX(0); }
     }
-
     .form-title {
       color: var(--islamic-green);
       margin-bottom: 25px;
@@ -408,7 +367,6 @@
       padding-bottom: 15px;
       border-bottom: 2px solid var(--islamic-cream);
     }
-
     .form-step {
       background: #f8f9fa;
       border-radius: 10px;
@@ -416,7 +374,6 @@
       margin-bottom: 20px;
       border-left: 4px solid var(--islamic-gold);
     }
-
     .form-step-title {
       color: var(--islamic-green);
       font-weight: 600;
@@ -426,7 +383,6 @@
       align-items: center;
       gap: 10px;
     }
-
     .form-label {
       font-weight: 600;
       color: #444;
@@ -434,12 +390,10 @@
       display: block;
       font-size: 1rem;
     }
-
     .form-label.required::after {
       content: " *";
       color: #dc3545;
     }
-
     .form-control {
       padding: 12px 15px;
       border: 2px solid #e0e0e0;
@@ -449,13 +403,11 @@
       width: 100%;
       font-family: 'Poppins', sans-serif;
     }
-
     .form-control:focus {
       border-color: var(--islamic-gold);
       box-shadow: 0 0 0 0.25rem rgba(193, 154, 63, 0.15);
       outline: none;
     }
-
     /* File Upload Styles */
     .file-upload-container {
       border: 2px dashed #dee2e6;
@@ -465,17 +417,14 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
-
     .file-upload-container:hover {
       border-color: var(--islamic-gold);
       background: #f8f9fa;
     }
-
     .file-upload-container.dragover {
       border-color: #28a745;
       background: #d4edda;
     }
-
     .file-preview {
       max-width: 200px;
       max-height: 200px;
@@ -483,7 +432,6 @@
       margin-top: 10px;
       display: none;
     }
-
     /* Instructions Box */
     .instructions-box {
       background: #e8f4ff;
@@ -492,7 +440,6 @@
       margin-top: 30px;
       border: 2px solid #cfe2ff;
     }
-
     .instructions-title {
       color: var(--islamic-green);
       font-size: 1.3rem;
@@ -502,17 +449,14 @@
       align-items: center;
       gap: 10px;
     }
-
     .instructions-list {
       padding-left: 20px;
       margin-bottom: 0;
     }
-
     .instructions-list li {
       margin-bottom: 10px;
       color: #444;
     }
-
     /* Loading Overlay */
     .loading-overlay {
       position: fixed;
@@ -528,11 +472,9 @@
       flex-direction: column;
       backdrop-filter: blur(5px);
     }
-
     .spinner-container {
       text-align: center;
     }
-
     .spinner {
       width: 70px;
       height: 70px;
@@ -542,19 +484,16 @@
       animation: spin 1s linear infinite;
       margin-bottom: 20px;
     }
-
     .spinner-text {
       color: var(--islamic-green);
       font-size: 1.2rem;
       font-weight: 600;
       margin-top: 10px;
     }
-
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
     /* Notification */
     .notification {
       position: fixed;
@@ -571,23 +510,18 @@
       transform: translateX(100%);
       animation: slideInRight 0.3s ease forwards;
     }
-
     @keyframes slideInRight {
       to { transform: translateX(0); }
     }
-
     .notification.success {
       border-left-color: #28a745;
     }
-
     .notification.error {
       border-left-color: #dc3545;
     }
-
     .notification.warning {
       border-left-color: #ffc107;
     }
-
     /* Document Styles */
     .a4-container {
       width: 21cm;
@@ -599,7 +533,7 @@
       margin: 0 auto;
       position: relative;
     }
-    
+   
     .document-header {
       background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
       color: white;
@@ -609,7 +543,7 @@
       align-items: center;
       gap: 20px;
     }
-    
+   
     .document-logo {
       width: 120px;
       height: 120px;
@@ -620,34 +554,34 @@
       padding: 3px;
       flex-shrink: 0;
     }
-    
+   
     .college-info {
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
-    
+   
     .college-info .college-arabic {
       font-family: 'Amiri', serif;
       font-size: 14px;
       font-weight: 600;
       margin-bottom: 2px;
     }
-    
+   
     .college-info .college-name {
       font-size: 16px;
       font-weight: 700;
       margin-bottom: 2px;
       color: white;
     }
-    
+   
     .college-info .college-address {
       font-size: 10px;
       margin-bottom: 2px;
       color: rgba(255, 255, 255, 0.9);
     }
-    
+   
     .document-title {
       font-size: 18px;
       font-weight: 700;
@@ -656,12 +590,12 @@
       border-top: 1px solid rgba(255, 255, 255, 0.3);
       padding-top: 8px;
     }
-    
+   
     .document-content {
       padding: 25px;
       position: relative;
     }
-    
+   
     .watermark {
       position: absolute;
       top: 50%;
@@ -674,32 +608,32 @@
       white-space: nowrap;
       pointer-events: none;
     }
-    
+   
     .info-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 8px;
     }
-    
+   
     .info-item {
       display: flex;
       padding: 5px 0;
       border-bottom: 1px dashed #dee2e6;
     }
-    
+   
     .info-label {
       font-weight: 600;
       color: #495057;
       width: 100px;
       font-size: 11px;
     }
-    
+   
     .info-value {
       color: #212529;
       font-size: 11px;
       flex: 1;
     }
-    
+   
     .section-title {
       font-size: 14px;
       font-weight: 600;
@@ -708,7 +642,7 @@
       padding-bottom: 3px;
       border-bottom: 1px solid #e9ecef;
     }
-    
+   
     .declaration {
       background: #f8f9fa;
       border-radius: 8px;
@@ -716,21 +650,20 @@
       margin-top: 20px;
       border: 1px solid #dee2e6;
     }
-    
+   
     .signature-section {
       text-align: right;
       margin-top: 20px;
       padding-top: 10px;
       border-top: 1px solid #ced4da;
     }
-    
+   
     .signature-line {
       display: inline-block;
       width: 250px;
       border-bottom: 1px solid #212529;
       margin-bottom: 3px;
     }
-
     /* ===== STANDARD FOOTER ===== */
     .footer {
       background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
@@ -738,20 +671,17 @@
       padding: 3rem 0 1.5rem;
       color: white;
     }
-
     .footer-brand {
       font-size: 1.8rem;
       font-weight: 700;
       color: var(--islamic-gold);
       margin-bottom: 1rem;
     }
-
     .social-links {
       display: flex;
       gap: 12px;
       margin-top: 1rem;
     }
-
     .social-icon {
       width: 40px;
       height: 40px;
@@ -765,20 +695,17 @@
       background: rgba(255, 255, 255, 0.1);
       font-size: 1.1rem;
     }
-
     .social-icon:hover {
       transform: translateY(-5px);
       background: var(--islamic-gold);
       color: var(--islamic-green);
     }
-
     .footer-links h5 {
       color: var(--islamic-gold);
       margin-bottom: 1.2rem;
       font-size: 1.1rem;
       font-weight: 600;
     }
-
     .footer-links a {
       display: block;
       color: rgba(255, 255, 255, 0.85);
@@ -787,12 +714,10 @@
       transition: var(--transition);
       font-size: 0.95rem;
     }
-
     .footer-links a:hover {
       color: var(--islamic-gold);
       padding-left: 5px;
     }
-
     /* ===== WHATSAPP BUTTON ===== */
     .whatsapp-float {
       position: fixed;
@@ -813,17 +738,14 @@
       transition: var(--transition);
       text-decoration: none;
     }
-
     .whatsapp-float:hover {
       transform: scale(1.1) rotate(10deg);
       box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
     }
-
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
     }
-
     /* ===== ISLAMIC ORNAMENTS ===== */
     .islamic-ornament {
       position: fixed;
@@ -833,56 +755,52 @@
       z-index: -1;
       pointer-events: none;
     }
-
     .ornament-1 {
       top: 20%;
       left: 5%;
       animation: float 6s ease-in-out infinite;
     }
-
     .ornament-2 {
       top: 60%;
       right: 5%;
       animation: float 8s ease-in-out infinite reverse;
     }
-
     .ornament-3 {
       bottom: 20%;
       left: 10%;
       animation: float 7s ease-in-out infinite;
     }
-
     /* ===== MOBILE RESPONSIVE ===== */
     @media (max-width: 768px) {
       body {
         padding-top: 110px !important;
       }
-      
+     
       .navbar-optimized {
         height: 70px;
         padding: 0.3rem 0;
       }
-      
+     
       .page-header {
         padding: 2.5rem 0;
       }
-      
+     
       .page-title {
         font-size: 2.2rem;
       }
-      
+     
       .page-subtitle {
         font-size: 1.1rem;
       }
-      
+     
       .content-section {
         padding: 2.5rem 0;
       }
-      
+     
       .section-title {
         font-size: 1.8rem;
       }
-      
+     
       .navbar-collapse {
         background: var(--dark-green);
         padding: 1rem;
@@ -892,47 +810,46 @@
         max-height: 70vh;
         overflow-y: auto;
       }
-      
+     
       .portal-card h4 {
         min-height: auto;
         font-size: 1.1rem;
       }
-      
+     
       .form-container {
         padding: 20px;
       }
-      
+     
       .a4-container {
         width: 100%;
         border-radius: 0;
         box-shadow: none;
       }
-      
+     
       .info-grid {
         grid-template-columns: 1fr;
       }
-      
+     
       .document-header {
         flex-direction: column;
         text-align: center;
         padding: 15px;
       }
-      
+     
       .document-logo {
         width: 80px;
         height: 80px;
       }
     }
-
     @media (max-width: 576px) {
       .page-title {
         font-size: 1.8rem;
       }
-      
+     
       .section-title {
         font-size: 1.5rem;
       }
-      
+     
       .form-step {
         padding: 15px;
       }
@@ -940,12 +857,10 @@
   </style>
 </head>
 <body>
-
 <!-- Floating Islamic Ornaments -->
 <div class="islamic-ornament ornament-1">✸</div>
 <div class="islamic-ornament ornament-2">✸</div>
 <div class="islamic-ornament ornament-3">✸</div>
-
 <!-- STANDARD NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-optimized fixed-top">
   <div class="container-fluid">
@@ -956,12 +871,10 @@
         <small class="text-light brand-subtext">Karuvarakundu</small>
       </div>
     </a>
- 
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
             aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
- 
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav ms-auto nav-container">
         <li class="nav-item nav-item-optimized">
@@ -970,10 +883,10 @@
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized" href="founder.html">Founder</a>
         </li>
-     
+    
         <!-- Board Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
-          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" 
+          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
              aria-haspopup="true" aria-expanded="false">
             Board
           </a>
@@ -985,7 +898,7 @@
             <li><a class="dropdown-item dropdown-item-optimized" href="students-union.html">Students Union</a></li>
           </ul>
         </li>
-     
+    
         <!-- Student Zone Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
           <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -998,7 +911,7 @@
             <li><a class="dropdown-item dropdown-item-optimized" href="fest.html">Fest Score</a></li>
           </ul>
         </li>
-     
+    
         <!-- Other Items -->
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized" href="https://jamianooriya.in/">Jamia</a>
@@ -1025,7 +938,6 @@
     </div>
   </div>
 </nav>
-
 <!-- PAGE HEADER -->
 <div class="page-header">
   <div class="container">
@@ -1035,7 +947,6 @@
     </div>
   </div>
 </div>
-
 <!-- MAIN CONTENT -->
 <section class="content-section">
   <div class="container">
@@ -1045,7 +956,6 @@
         <h2 class="section-title">Admission Services</h2>
         <p class="section-subtitle">Choose a service to begin your admission process</p>
       </div>
- 
       <!-- Services Grid -->
       <div class="row g-4">
         <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
@@ -1060,7 +970,7 @@
             </button>
           </div>
         </div>
-        
+       
         <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
           <div class="portal-card text-center p-4" onclick="showForm('applicationForm')">
             <div class="service-icon">
@@ -1073,7 +983,7 @@
             </button>
           </div>
         </div>
-        
+       
         <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
           <div class="portal-card text-center p-4" onclick="showForm('hallticketForm')">
             <div class="service-icon">
@@ -1086,7 +996,7 @@
             </button>
           </div>
         </div>
-        
+       
         <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
           <div class="portal-card text-center p-4" onclick="showForm('resultForm')">
             <div class="service-icon">
@@ -1100,7 +1010,6 @@
           </div>
         </div>
       </div>
- 
       <!-- Instructions -->
       <div class="instructions-box mt-5" data-aos="fade-up">
         <h3 class="instructions-title">
@@ -1116,19 +1025,19 @@
         </ul>
       </div>
     </div>
-    
+   
     <!-- Apply Now Form -->
     <div class="form-container" id="applyNowForm">
       <h2 class="form-title">
         <i class="fas fa-file-alt me-2"></i>
         New Admission Application
       </h2>
-      
+     
       <div class="instructions-box mb-4">
         <h4 class="instructions-title"><i class="fas fa-lightbulb"></i> Important Notes</h4>
         <div id="applyInstructions">പ്രവേശന പരീക്ഷ 17/12/2025 WED 10 AM</div>
       </div>
-      
+     
       <form id="newApplicationForm" onsubmit="return handleNewApplicationSubmit(event)">
         <!-- Personal Information -->
         <div class="form-step">
@@ -1141,8 +1050,8 @@
                 <label class="form-label required">
                   1. കുട്ടിയുടെ പേര് | Student's Name:
                 </label>
-                <input type="text" class="form-control" name="studentName" 
-                       placeholder="പൂർണ്ണ പേര് രേഖപ്പെടുത്തുക | Enter full name" 
+                <input type="text" class="form-control" name="studentName"
+                       placeholder="പൂർണ്ണ പേര് രേഖപ്പെടുത്തുക | Enter full name"
                        required>
               </div>
             </div>
@@ -1151,21 +1060,21 @@
                 <label class="form-label required">
                   2. വീട്ടു പേര് | House Name:
                 </label>
-                <input type="text" class="form-control" name="houseName" 
-                       placeholder="വീട്ടു പേര് രേഖപ്പെടുത്തുക | House name" 
+                <input type="text" class="form-control" name="houseName"
+                       placeholder="വീട്ടു പേര് രേഖപ്പെടുത്തുക | House name"
                        required>
               </div>
             </div>
           </div>
-          
+         
           <div class="row">
             <div class="col-md-6">
               <div class="mb-3">
                 <label class="form-label required">
                   3. ജനന തിയ്യതി | Date of Birth:
                 </label>
-                <input type="date" class="form-control" name="dob" 
-                       max="2024-12-31" 
+                <input type="date" class="form-control" name="dob"
+                       max="2024-12-31"
                        required
                        onchange="calculateAge(this.value)">
                 <small class="text-muted" id="ageDisplay"></small>
@@ -1176,34 +1085,34 @@
                 <label class="form-label required">
                   4. ആധാര്‍ നമ്പര്‍ | Aadhaar Number:
                 </label>
-                <input type="text" class="form-control" name="aadhaarNumber" 
-                       placeholder="ആധാര്‍ നമ്പര്‍ രേഖപ്പെടുത്തുക | Enter Aadhaar number" 
-                       required 
-                       pattern="\d{12}" 
+                <input type="text" class="form-control" name="aadhaarNumber"
+                       placeholder="ആധാര്‍ നമ്പര്‍ രേഖപ്പെടുത്തുക | Enter Aadhaar number"
+                       required
+                       pattern="\d{12}"
                        title="Aadhaar number must be 12 digits">
               </div>
             </div>
           </div>
-          
+         
           <div class="mb-3">
             <label class="form-label required">
               5. വിലാസം | Postal Address:
             </label>
-            <textarea class="form-control" name="address" 
-                      placeholder="പൂർണ്ണ വിലാസം രേഖപ്പെടുത്തുക | Enter full address" 
+            <textarea class="form-control" name="address"
+                      placeholder="പൂർണ്ണ വിലാസം രേഖപ്പെടുത്തുക | Enter full address"
                       required rows="3"></textarea>
           </div>
-          
+         
           <div class="row">
             <div class="col-md-6">
               <div class="mb-3">
                 <label class="form-label required">
                   6. ഫോണ്‍ നമ്പര്‍ | Phone Number:
                 </label>
-                <input type="tel" class="form-control" name="phoneNumber" 
-                       placeholder="9876543210 | Enter phone number" 
-                       required 
-                       pattern="\d{10}" 
+                <input type="tel" class="form-control" name="phoneNumber"
+                       placeholder="9876543210 | Enter phone number"
+                       required
+                       pattern="\d{10}"
                        title="Phone number must be 10 digits">
               </div>
             </div>
@@ -1212,14 +1121,14 @@
                 <label class="form-label">
                   7. വാട്‌സ്ആപ്പ് നമ്പര്‍ | WhatsApp Number:
                 </label>
-                <input type="tel" class="form-control" name="whatsappNumber" 
-                       placeholder="വാട്‌സ്ആപ്പ് നമ്പര്‍ (വ്യത്യസ്തമെങ്കിൽ) | Enter WhatsApp number (if different)" 
+                <input type="tel" class="form-control" name="whatsappNumber"
+                       placeholder="വാട്‌സ്ആപ്പ് നമ്പര്‍ (വ്യത്യസ്തമെങ്കിൽ) | Enter WhatsApp number (if different)"
                        pattern="\d{10}">
               </div>
             </div>
           </div>
         </div>
-        
+       
         <!-- Parent/Guardian Information -->
         <div class="form-step">
           <div class="form-step-title">
@@ -1231,8 +1140,8 @@
                 <label class="form-label required">
                   8. പിതാവിന്‍റെ പേര് | Father's Name:
                 </label>
-                <input type="text" class="form-control" name="fatherName" 
-                       placeholder="പിതാവിന്‍റെ പേര് രേഖപ്പെടുത്തുക | Enter father's name" 
+                <input type="text" class="form-control" name="fatherName"
+                       placeholder="പിതാവിന്‍റെ പേര് രേഖപ്പെടുത്തുക | Enter father's name"
                        required>
               </div>
             </div>
@@ -1241,21 +1150,21 @@
                 <label class="form-label required">
                   9. പിതാവിന്‍റെ ജോലി | Father's Occupation:
                 </label>
-                <input type="text" class="form-control" name="fatherOccupation" 
-                       placeholder="പിതാവിന്‍റെ ജോലി രേഖപ്പെടുത്തുക | Enter father's occupation" 
+                <input type="text" class="form-control" name="fatherOccupation"
+                       placeholder="പിതാവിന്‍റെ ജോലി രേഖപ്പെടുത്തുക | Enter father's occupation"
                        required>
               </div>
             </div>
           </div>
-          
+         
           <div class="row">
             <div class="col-md-6">
               <div class="mb-3">
                 <label class="form-label required">
                   10. രക്ഷിതാവിന്‍റെ പേര് | Guardian's Name:
                 </label>
-                <input type="text" class="form-control" name="guardianName" 
-                       placeholder="രക്ഷിതാവിന്‍റെ പേര് | Guardian's name" 
+                <input type="text" class="form-control" name="guardianName"
+                       placeholder="രക്ഷിതാവിന്‍റെ പേര് | Guardian's name"
                        required>
               </div>
             </div>
@@ -1275,23 +1184,22 @@
               </div>
             </div>
           </div>
-          
+         
           <div class="mb-3">
             <label class="form-label">
               12. രക്ഷിതാവ്, പിതാവല്ലെങ്കില്‍ കാരണം | Reason if Guardian is not Father:
             </label>
-            <textarea class="form-control" name="guardianReason" 
-                      placeholder="രക്ഷിതാവ് പിതാവല്ലെങ്കില്‍ കാരണം | Enter reason if guardian is not father" 
+            <textarea class="form-control" name="guardianReason"
+                      placeholder="രക്ഷിതാവ് പിതാവല്ലെങ്കില്‍ കാരണം | Enter reason if guardian is not father"
                       rows="2"></textarea>
           </div>
         </div>
-        
+       
         <!-- Educational Information -->
         <div class="form-step">
           <div class="form-step-title">
             <i class="fas fa-graduation-cap me-2"></i>Educational Information
           </div>
-
           <div class="row mb-4 align-items-end">
             <div class="col-md-6">
               <div class="mb-3">
@@ -1318,7 +1226,6 @@
               </div>
             </div>
           </div>
-
           <div class="row align-items-end">
             <div class="col-md-6">
               <div class="mb-3">
@@ -1345,14 +1252,13 @@
               </div>
             </div>
           </div>
-
           <div class="mb-3">
             <label class="form-label required">
               15. മുമ്പ് ഏതെങ്കിലും ഹിഫ്ള് കോളേജ്, ദര്‍സ്, കോളേജ് പഠിച്ചിട്ടുണ്ടോ | Previously Studied at Hifz College/Dars/College:
             </label>
             <div class="d-flex gap-4">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="previousStudy" 
+                <input class="form-check-input" type="radio" name="previousStudy"
                        id="previousNo" value="No"
                        onchange="togglePreviousStudy(false)" checked>
                 <label class="form-check-label" for="previousNo">
@@ -1360,8 +1266,8 @@
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="previousStudy" 
-                       id="previousYes" value="Yes" 
+                <input class="form-check-input" type="radio" name="previousStudy"
+                       id="previousYes" value="Yes"
                        onchange="togglePreviousStudy(true)">
                 <label class="form-check-label" for="previousYes">
                   ഉണ്ട് | Yes
@@ -1369,7 +1275,7 @@
               </div>
             </div>
           </div>
-          
+         
           <div id="previous-study-section" style="display: none;">
             <div class="row">
               <div class="col-md-6">
@@ -1377,7 +1283,7 @@
                   <label class="form-label">
                     ഏത് സ്ഥാപനത്തില്‍ | Which Institution:
                   </label>
-                  <input type="text" class="form-control" name="previousInstitution" 
+                  <input type="text" class="form-control" name="previousInstitution"
                          placeholder="സ്ഥാപനത്തിന്റെ പേര് രേഖപ്പെടുത്തുക | Enter institution name">
                 </div>
               </div>
@@ -1386,19 +1292,19 @@
                   <label class="form-label">
                     എത്ര കാലം | Duration of Study:
                   </label>
-                  <input type="text" class="form-control" name="studyDuration" 
+                  <input type="text" class="form-control" name="studyDuration"
                          placeholder="പഠന കാലം രേഖപ്പെടുത്തുക | Enter duration">
                 </div>
               </div>
             </div>
-            
+           
             <div class="row">
               <div class="col-md-6">
                 <div class="mb-3">
                   <label class="form-label">
                     എത്ര ജുസുഅ് | Number of Juz:
                   </label>
-                  <input type="text" class="form-control" name="juzCount" 
+                  <input type="text" class="form-control" name="juzCount"
                          placeholder="ജുസുഅിന്റെ എണ്ണം രേഖപ്പെടുത്തുക | Enter number of Juz">
                 </div>
               </div>
@@ -1407,24 +1313,24 @@
                   <label class="form-label">
                     പ്രധാന അദ്ധ്യാപകന്‍റെ ഫോണ്‍ നമ്പര്‍ | Head Teacher's Phone Number:
                   </label>
-                  <input type="tel" class="form-control" name="headTeacherPhone" 
-                         placeholder="9876543210 | Enter phone number" 
+                  <input type="tel" class="form-control" name="headTeacherPhone"
+                         placeholder="9876543210 | Enter phone number"
                          pattern="\d{10}">
                 </div>
               </div>
             </div>
-            
+           
             <div class="mb-3">
               <label class="form-label">
                 പോരാനുള്ള കാരണം | Reason for Leaving:
               </label>
-              <textarea class="form-control" name="reasonForLeaving" 
-                        placeholder="പോരാനുള്ള കാരണം രേഖപ്പെടുത്തുക | Enter reason for leaving" 
+              <textarea class="form-control" name="reasonForLeaving"
+                        placeholder="പോരാനുള്ള കാരണം രേഖപ്പെടുത്തുക | Enter reason for leaving"
                         rows="2"></textarea>
             </div>
           </div>
         </div>
-        
+       
         <!-- Medical Information -->
         <div class="form-step">
           <div class="form-step-title">
@@ -1434,18 +1340,18 @@
             <label class="form-label required">
               16. കുട്ടിയെ തിരിച്ചറിയാനുള്ള അടയാളം | Student's Identification Mark:
             </label>
-            <input type="text" class="form-control" name="identificationMark" 
-                   placeholder="തിരിച്ചറിയല്‍ അടയാളം രേഖപ്പെടുത്തുക | Enter identification mark" 
+            <input type="text" class="form-control" name="identificationMark"
+                   placeholder="തിരിച്ചറിയല്‍ അടയാളം രേഖപ്പെടുത്തുക | Enter identification mark"
                    required>
           </div>
-          
+         
           <div class="mb-3">
             <label class="form-label required">
               17. കുട്ടിയുടെ ശാരീരിക ക്ഷമത | Student's Physical Fitness:
             </label>
             <div class="d-flex gap-4">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="physicalFitness" 
+                <input class="form-check-input" type="radio" name="physicalFitness"
                        id="fitnessHealthy" value="Healthy"
                        onchange="toggleIllnessSection(false)" checked>
                 <label class="form-check-label" for="fitnessHealthy">
@@ -1453,8 +1359,8 @@
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="physicalFitness" 
-                       id="fitnessMedication" value="Medication" 
+                <input class="form-check-input" type="radio" name="physicalFitness"
+                       id="fitnessMedication" value="Medication"
                        onchange="toggleIllnessSection(true)">
                 <label class="form-check-label" for="fitnessMedication">
                   സ്ഥിരമായി ഗുളിക കഴിക്കാറുണ്ട് | Regular Medication
@@ -1462,19 +1368,19 @@
               </div>
             </div>
           </div>
-          
+         
           <div id="illness-section" style="display: none;">
             <div class="mb-3">
               <label class="form-label">
                 രോഗം | Illness:
               </label>
-              <textarea class="form-control" name="illness" 
-                        placeholder="രോഗത്തിന്റെ വിശദാംശങ്ങൾ രേഖപ്പെടുത്തുക | Enter details of illness" 
+              <textarea class="form-control" name="illness"
+                        placeholder="രോഗത്തിന്റെ വിശദാംശങ്ങൾ രേഖപ്പെടുത്തുക | Enter details of illness"
                         rows="2"></textarea>
             </div>
           </div>
         </div>
-        
+       
         <!-- Photo Upload -->
         <div class="form-step">
           <div class="form-step-title">
@@ -1484,22 +1390,22 @@
             <label class="form-label required">
               18. കുട്ടിയുടെ ഫോട്ടോ | Student's Photo:
             </label>
-            <div class="file-upload-container" onclick="document.getElementById('photoInput').click()" 
-                 ondragover="handleDragOver(event)" 
-                 ondragleave="handleDragLeave(event)" 
+            <div class="file-upload-container" onclick="document.getElementById('photoInput').click()"
+                 ondragover="handleDragOver(event)"
+                 ondragleave="handleDragLeave(event)"
                  ondrop="handleDrop(event)"
                  id="fileUploadContainer">
               <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
               <h5>Click to upload or drag & drop</h5>
               <p class="text-muted">JPG, PNG up to 5MB</p>
-              <input type="file" class="d-none" id="photoInput" name="student_photo" accept="image/jpeg,image/png" 
+              <input type="file" class="d-none" id="photoInput" name="student_photo" accept="image/jpeg,image/png"
                      required
                      onchange="handlePhotoUpload(event)">
               <img id="photoPreview" class="file-preview" alt="Photo Preview">
             </div>
           </div>
         </div>
-        
+       
         <!-- Declaration -->
         <div class="instructions-box mt-4">
           <h4 class="instructions-title">
@@ -1509,23 +1415,23 @@
           <p id="declarationText" class="mb-3">
             എന്‍റെ കുട്ടിയും ഞാനും ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജിന്‍റെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജില്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.
           </p>
-          
+         
           <div class="form-check">
             <input class="form-check-input" type="checkbox" id="declarationCheckbox" required
                    onchange="toggleSubmitButton(this.checked)">
             <label class="form-check-label" for="declarationCheckbox">
-              I hereby declare that all information provided is true and correct to the best of my knowledge. 
+              I hereby declare that all information provided is true and correct to the best of my knowledge.
               I agree to abide by all rules and regulations of the college.
             </label>
           </div>
         </div>
-        
+       
         <!-- Submit Button -->
         <button type="submit" class="btn-gold btn-lg w-100 mt-4" id="submitApplicationBtn" disabled>
           <i class="fas fa-paper-plane me-2"></i>
           Submit Application
         </button>
-        
+       
         <!-- Back Button -->
         <div class="text-center mt-3">
           <button type="button" class="btn-outline-gold btn-lg" onclick="showDashboard()">
@@ -1535,14 +1441,14 @@
         </div>
       </form>
     </div>
-    
+   
     <!-- Application Download Form -->
     <div class="form-container" id="applicationForm">
       <h2 class="form-title">
         <i class="fas fa-file-download me-2"></i>
         Download Application
       </h2>
-      
+     
       <form id="downloadApplicationForm" onsubmit="return handleApplicationSubmit(event)">
         <div class="mb-4">
           <label class="form-label required">
@@ -1554,7 +1460,7 @@
                  placeholder="10 digit mobile number"
                  required>
         </div>
-        
+       
         <div class="mb-4">
           <label class="form-label required">
             <i class="fas fa-calendar-alt me-2"></i>
@@ -1562,12 +1468,12 @@
           </label>
           <input type="date" class="form-control" id="appDob" required>
         </div>
-        
+       
         <button type="submit" class="btn-gold btn-lg w-100" id="submitApplicationSearchBtn">
           <i class="fas fa-search me-2"></i>
           Search & Download
         </button>
-        
+       
         <div class="text-center mt-3">
           <button type="button" class="btn-outline-gold btn-lg" onclick="showDashboard()">
             <i class="fas fa-arrow-left me-2"></i>
@@ -1576,14 +1482,14 @@
         </div>
       </form>
     </div>
-    
+   
     <!-- Hall Ticket Form -->
     <div class="form-container" id="hallticketForm">
       <h2 class="form-title">
         <i class="fas fa-ticket-alt me-2"></i>
         Hall Ticket Download
       </h2>
-      
+     
       <form id="downloadHallticketForm" onsubmit="return handleHallticketSubmit(event)">
         <div class="mb-4">
           <label class="form-label required">
@@ -1595,7 +1501,7 @@
                  placeholder="10 digit mobile number"
                  required>
         </div>
-        
+       
         <div class="mb-4">
           <label class="form-label required">
             <i class="fas fa-calendar-alt me-2"></i>
@@ -1603,12 +1509,12 @@
           </label>
           <input type="date" class="form-control" id="ticketDob" required>
         </div>
-        
+       
         <button type="submit" class="btn-gold btn-lg w-100" id="submitTicketBtn">
           <i class="fas fa-download me-2"></i>
           Generate & Download Hall Ticket
         </button>
-        
+       
         <div class="text-center mt-3">
           <button type="button" class="btn-outline-gold btn-lg" onclick="showDashboard()">
             <i class="fas fa-arrow-left me-2"></i>
@@ -1617,14 +1523,14 @@
         </div>
       </form>
     </div>
-    
+   
     <!-- Result Form -->
     <div class="form-container" id="resultForm">
       <h2 class="form-title">
         <i class="fas fa-chart-line me-2"></i>
         Check Result
       </h2>
-      
+     
       <form id="checkResultForm" onsubmit="return handleResultSubmit(event)">
         <div class="mb-4">
           <label class="form-label required">
@@ -1636,7 +1542,7 @@
                  placeholder="10 digit mobile number"
                  required>
         </div>
-        
+       
         <div class="mb-4">
           <label class="form-label required">
             <i class="fas fa-calendar-alt me-2"></i>
@@ -1644,12 +1550,12 @@
           </label>
           <input type="date" class="form-control" id="resultDob" required>
         </div>
-        
+       
         <button type="submit" class="btn-gold btn-lg w-100" id="submitResultBtn">
           <i class="fas fa-search me-2"></i>
           Check Result
         </button>
-        
+       
         <div class="text-center mt-3">
           <button type="button" class="btn-outline-gold btn-lg" onclick="showDashboard()">
             <i class="fas fa-arrow-left me-2"></i>
@@ -1660,7 +1566,6 @@
     </div>
   </div>
 </section>
-
 <!-- STANDARD FOOTER -->
 <footer class="footer">
   <div class="container">
@@ -1687,7 +1592,7 @@
           </a>
         </div>
       </div>
-   
+  
       <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
         <div class="footer-links">
           <h5>Quick Links</h5>
@@ -1698,7 +1603,7 @@
           <a href="contact.html">Contact</a>
         </div>
       </div>
-   
+  
       <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
         <div class="footer-links">
           <h5>Resources</h5>
@@ -1709,7 +1614,7 @@
           <a href="pta.html">PTA</a>
         </div>
       </div>
-   
+  
       <div class="col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
         <div class="footer-links">
           <h5>Contact Info</h5>
@@ -1721,7 +1626,6 @@
         </div>
       </div>
     </div>
- 
     <div class="text-center pt-4 mt-4 border-top border-light border-opacity-25">
       <p class="text-light mb-2">
         © <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.
@@ -1732,14 +1636,12 @@
     </div>
   </div>
 </footer>
-
 <!-- WHATSAPP BUTTON -->
 <a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!"
    class="whatsapp-float" target="_blank"
    title="Chat with us on WhatsApp" aria-label="WhatsApp Chat">
   <i class="fab fa-whatsapp"></i>
 </a>
-
 <!-- Loading Overlay -->
 <div class="loading-overlay" id="loadingOverlay">
   <div class="spinner-container">
@@ -1747,7 +1649,6 @@
     <div class="spinner-text" id="loadingText">Loading...</div>
   </div>
 </div>
-
 <!-- Notification -->
 <div class="notification" id="notification">
   <div class="notification-content">
@@ -1758,14 +1659,13 @@
     </button>
   </div>
 </div>
-
 <!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
   // Configuration
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyVMXRvVWqJTVrdkdWtloXYwYFGW9xXWkFOcleG_y_C-Lkx_JJDl1blOWZysdXsPtmDrA/exec';
-  
+ 
   // Initialize AOS
   AOS.init({
     duration: 800,
@@ -1773,25 +1673,24 @@
     offset: 50,
     disable: window.innerWidth < 768
   });
-
   // Initialize on page load
   document.addEventListener('DOMContentLoaded', function() {
     initializePage();
   });
-  
+ 
   function initializePage() {
     // Set current year
     document.getElementById('currentYear').textContent = new Date().getFullYear();
-    
+   
     // Set max date for DOB fields
     const today = new Date().toISOString().split('T')[0];
     document.querySelectorAll('input[type="date"]').forEach(input => {
       input.setAttribute('max', today);
     });
-    
+   
     // Load college info
     loadCollegeInfo();
-    
+   
     // Initialize navbar scroll effect
     window.addEventListener('scroll', function() {
       const navbar = document.querySelector('.navbar-optimized');
@@ -1799,20 +1698,20 @@
       navbar.classList.toggle('scrolled', scrollTop > 50);
     });
   }
-  
+ 
   function showDashboard() {
     hideAllForms();
     document.getElementById('dashboardView').style.display = 'block';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  
+ 
   function showForm(formId) {
     hideAllForms();
     const form = document.getElementById(formId);
     form.classList.add('active');
     window.scrollTo({ top: form.offsetTop - 80, behavior: 'smooth' });
   }
-  
+ 
   function hideAllForms() {
     const forms = ['dashboardView', 'applyNowForm', 'applicationForm', 'hallticketForm', 'resultForm'];
     forms.forEach(id => {
@@ -1823,31 +1722,31 @@
       }
     });
   }
-  
+ 
   function calculateAge(dobString) {
     if (!dobString) return;
-    
+   
     const birthDate = new Date(dobString);
     const today = new Date();
-    
+   
     let years = today.getFullYear() - birthDate.getFullYear();
     let months = today.getMonth() - birthDate.getMonth();
     let days = today.getDate() - birthDate.getDate();
-    
+   
     if (days < 0) {
       months--;
       days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
     }
-    
+   
     if (months < 0) {
       years--;
       months += 12;
     }
-    
-    document.getElementById('ageDisplay').textContent = 
+   
+    document.getElementById('ageDisplay').textContent =
       `Age: ${years} years ${months} months ${days} days`;
   }
-  
+ 
   function togglePreviousStudy(show) {
     const section = document.getElementById('previous-study-section');
     if (show) {
@@ -1864,7 +1763,7 @@
       });
     }
   }
-  
+ 
   function toggleIllnessSection(show) {
     const section = document.getElementById('illness-section');
     if (show) {
@@ -1875,54 +1774,54 @@
       document.querySelector('textarea[name="illness"]').required = false;
     }
   }
-  
+ 
   function toggleSubmitButton(enabled) {
     const btn = document.getElementById('submitApplicationBtn');
     btn.disabled = !enabled;
   }
-  
+ 
   // File handling functions
   function handleDragOver(e) {
     e.preventDefault();
     e.stopPropagation();
     document.getElementById('fileUploadContainer').classList.add('dragover');
   }
-  
+ 
   function handleDragLeave(e) {
     e.preventDefault();
     e.stopPropagation();
     document.getElementById('fileUploadContainer').classList.remove('dragover');
   }
-  
+ 
   function handleDrop(e) {
     e.preventDefault();
     e.stopPropagation();
     document.getElementById('fileUploadContainer').classList.remove('dragover');
-    
+   
     const files = e.dataTransfer.files;
     if (files.length > 0) {
       handleFile(files[0]);
     }
   }
-  
+ 
   function handlePhotoUpload(e) {
     const file = e.target.files[0];
     if (file) {
       handleFile(file);
     }
   }
-  
+ 
   function handleFile(file) {
     if (!file.type.startsWith('image/')) {
       showNotification('Please upload only image files (JPG, PNG)', 'error');
       return;
     }
-    
+   
     if (file.size > 5 * 1024 * 1024) {
       showNotification('File size must be less than 5MB', 'error');
       return;
     }
-    
+   
     const reader = new FileReader();
     reader.onload = function(e) {
       const preview = document.getElementById('photoPreview');
@@ -1930,10 +1829,10 @@
       preview.style.display = 'block';
     };
     reader.readAsDataURL(file);
-    
+   
     showNotification('Photo uploaded successfully', 'success');
   }
-  
+ 
   function readFileAsBase64(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -1942,7 +1841,7 @@
       reader.readAsDataURL(file);
     });
   }
-  
+ 
   async function loadCollegeInfo() {
     try {
       const response = await fetch(`${SCRIPT_URL}?action=getCollegeInfo`);
@@ -1950,10 +1849,10 @@
       if (data.status === 'success') {
         // Update instructions
         const notes = [
-          data.data.note1, data.data.note2, data.data.note3, 
+          data.data.note1, data.data.note2, data.data.note3,
           data.data.note4, data.data.note5
         ].filter(note => note).join('<br>');
-        
+       
         const instructionsDiv = document.getElementById('applyInstructions');
         if (instructionsDiv) {
           instructionsDiv.innerHTML = notes || 'Loading college information...';
@@ -1963,23 +1862,23 @@
       console.error('Error loading college info:', error);
     }
   }
-  
+ 
   function showLoading(text = 'Loading...') {
     document.getElementById('loadingText').textContent = text;
     document.getElementById('loadingOverlay').style.display = 'flex';
   }
-  
+ 
   function hideLoading() {
     document.getElementById('loadingOverlay').style.display = 'none';
   }
-  
+ 
   function showNotification(message, type = 'info') {
     const notification = document.getElementById('notification');
     const messageEl = document.getElementById('notificationMessage');
     const icon = document.getElementById('notificationIcon');
-    
+   
     notification.className = `notification ${type}`;
-    
+   
     const icons = {
       success: 'fa-check-circle',
       error: 'fa-exclamation-circle',
@@ -1987,23 +1886,23 @@
       info: 'fa-info-circle'
     };
     icon.className = `fas ${icons[type]} notification-icon`;
-    
+   
     messageEl.textContent = message;
     notification.style.display = 'block';
-    
+   
     setTimeout(() => {
       if (notification.style.display === 'block') {
         hideNotification();
       }
     }, 5000);
   }
-  
+ 
   function hideNotification() {
     document.getElementById('notification').style.display = 'none';
   }
-  
+ 
   // ============ HTML TEMPLATE FUNCTIONS ============
-  
+ 
   function escapeHtml(text) {
     if (!text) return '';
     const map = {
@@ -2015,27 +1914,35 @@
     };
     return String(text).replace(/[&<>"']/g, function(m) { return map[m]; });
   }
-  
+ 
   function generateApplicationHtml(data) {
     const { collegeInfo, studentData } = data;
-    
+    const isValidPhotoUrl = studentData.photoUrl && studentData.photoUrl.includes('drive.google.com');
     return `
     <div class="a4-container">
       <div class="watermark">APPLICATION</div>
       <div class="document-header">
-        <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo">
+        <img src="${escapeHtml(collegeInfo.logo)}" alt="College Logo" class="document-logo">
         <div class="college-info">
-          <div class="college-arabic">كلية دار النجاة للشريعة والآداب</div>
-          <div class="college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div>
-          <div class="college-address">Under Darunnajath Islamic Centre</div>
-          <div class="college-address">Affiliated to Jamia Nooriyya Arabiyya, Pattikkad</div>
-          <div class="college-address">Punnakkad, Karuvarakundu, Malappuram District</div>
+          <div class="college-arabic">${escapeHtml(collegeInfo.contact)}</div>
+          <div class="college-name">${escapeHtml(collegeInfo.collegeName)}</div>
+          <div class="college-address">${escapeHtml(collegeInfo.underOrg)}</div>
+          <div class="college-address">${escapeHtml(collegeInfo.affiliation)}</div>
+          <div class="college-address">${escapeHtml(collegeInfo.address)}</div>
           <div class="document-title">Admission Application Form</div>
         </div>
       </div>
       <div class="document-content">
+        ${isValidPhotoUrl ? `
+        <div style="position:absolute;top:40px;right:40px;text-align:center;z-index:1;">
+          <div style="width:140px;height:170px;border:2px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa;display:flex;align-items:center;justify-content:center;">
+            <img src="${escapeHtml(studentData.photoUrl)}" style="max-width:100%;max-height:100%;object-fit:contain;" alt="Student Photo">
+          </div>
+          <div style="font-size:11px;color:#6c757d;margin-top:5px;font-weight:500;">Student Photograph</div>
+        </div>
+        ` : ''}
         <div class="section-title">Personal Information</div>
-        <div class="info-grid">
+        <div class="info-grid" style="margin-right: ${isValidPhotoUrl ? '160px' : '0'};">
           <div class="info-item">
             <span class="info-label">Application Date:</span>
             <span class="info-value">${escapeHtml(studentData.submissionDate || new Date().toLocaleDateString())}</span>
@@ -2085,9 +1992,9 @@
             <span class="info-value">${escapeHtml(studentData.fatherOccupation)}</span>
           </div>
         </div>
-        
+       
         <div class="section-title">Educational Information</div>
-        <div class="info-grid">
+        <div class="info-grid" style="margin-right: ${isValidPhotoUrl ? '160px' : '0'};">
           <div class="info-item">
             <span class="info-label">Madrasa & Location:</span>
             <span class="info-value">${escapeHtml(studentData.madrasa)}</span>
@@ -2105,10 +2012,10 @@
             <span class="info-value">${escapeHtml(studentData.schoolclass)}</span>
           </div>
         </div>
-        
+       
         ${studentData.previousStudy === 'Yes' ? `
         <div class="section-title">Previous Study Details</div>
-        <div class="info-grid">
+        <div class="info-grid" style="margin-right: ${isValidPhotoUrl ? '160px' : '0'};">
           <div class="info-item">
             <span class="info-label">Previous Institution:</span>
             <span class="info-value">${escapeHtml(studentData.previousInstitution || 'Not provided')}</span>
@@ -2127,9 +2034,9 @@
           </div>
         </div>
         ` : ''}
-        
+       
         <div class="section-title">Medical & Identification</div>
-        <div class="info-grid">
+        <div class="info-grid" style="margin-right: ${isValidPhotoUrl ? '160px' : '0'};">
           <div class="info-item">
             <span class="info-label">Identification Mark:</span>
             <span class="info-value">${escapeHtml(studentData.identificationMark)}</span>
@@ -2145,14 +2052,14 @@
           </div>
           ` : ''}
         </div>
-        
+       
         <div class="declaration">
           <h3 class="declaration-title">Declaration</h3>
           <p style="text-align: justify; line-height: 1.4; margin-bottom: 10px; font-size: 11px;">
-            <strong>${escapeHtml(studentData.studentName)}</strong> S/o <strong>${escapeHtml(studentData.guardianName)}</strong>, 
+            <strong>${escapeHtml(studentData.studentName)}</strong> S/o <strong>${escapeHtml(studentData.guardianName)}</strong>,
             എന്ന എന്‍റെ കുട്ടിയും ഞാനും ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജിന്‍റെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജില്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.
           </p>
-          
+         
           <div class="signature-section">
             <div>
               <div class="signature-line"></div>
@@ -2168,7 +2075,7 @@
         </div>
       </div>
     </div>
-    
+   
     <div style="text-align:center;margin-top:10px;padding:10px;">
       <button onclick="window.print()" style="background:var(--islamic-green);color:white;border:none;padding:6px 15px;border-radius:5px;font-size:11px;cursor:pointer;margin:2px;">
         <i class="fas fa-print"></i> Print
@@ -2178,25 +2085,24 @@
       </button>
     </div>`;
   }
-  
+ 
   function generateHallticketHtml(data) {
     const { collegeInfo, studentData } = data;
-    
-    // Generate QR Code
     const qrText = `Name: ${studentData.studentName}, Phone: ${studentData.phoneNumber}, DoB: ${studentData.dob}, Exam Date: 17/12/2025`;
     const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrText)}`;
-    
+    const isValidPhotoUrl = studentData.photoUrl && studentData.photoUrl.includes('drive.google.com');
+   
     return `
     <div class="a4-container">
       <div class="watermark">HALL TICKET</div>
       <div class="document-header">
-        <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo">
+        <img src="${escapeHtml(collegeInfo.logo)}" alt="College Logo" class="document-logo">
         <div class="college-info">
-          <div class="college-arabic">كلية دار النجاة للشريعة والآداب</div>
-          <div class="college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div>
-          <div class="college-address">Under Darunnajath Islamic Centre</div>
-          <div class="college-address">Affiliated to Jamia Nooriyya Arabiyya, Pattikkad</div>
-          <div class="college-address">Punnakkad, Karuvarakundu, Malappuram District</div>
+          <div class="college-arabic">${escapeHtml(collegeInfo.contact)}</div>
+          <div class="college-name">${escapeHtml(collegeInfo.collegeName)}</div>
+          <div class="college-address">${escapeHtml(collegeInfo.underOrg)}</div>
+          <div class="college-address">${escapeHtml(collegeInfo.affiliation)}</div>
+          <div class="college-address">${escapeHtml(collegeInfo.address)}</div>
           <div class="document-title">Entrance Exam Hall Ticket</div>
         </div>
       </div>
@@ -2207,9 +2113,9 @@
           </div>
           <div style="font-size:11px;color:#6c757d;margin-top:5px;font-weight:500;">QR Code Verification</div>
         </div>
-        
+       
         <div class="section-title">Student Information</div>
-        <div class="info-grid" style="margin-right: 160px;">
+        <div class="info-grid">
           <div class="info-item">
             <span class="info-label">Application ID:</span>
             <span class="info-value">${escapeHtml(studentData.applicationId || 'APP' + Date.now())}</span>
@@ -2235,9 +2141,9 @@
             <span class="info-value">${escapeHtml(studentData.phoneNumber)}</span>
           </div>
         </div>
-        
+       
         <div class="section-title">Examination Details</div>
-        <div class="info-grid" style="margin-right: 160px;">
+        <div class="info-grid">
           <div class="info-item">
             <span class="info-label">Exam Date:</span>
             <span class="info-value">17/12/2025 (Wednesday)</span>
@@ -2255,8 +2161,8 @@
             <span class="info-value">Darunnajath Shareeath & Arts College, Karuvarakundu</span>
           </div>
         </div>
-        
-        <div class="declaration" style="margin-right: 160px;">
+       
+        <div class="declaration">
           <h3 class="declaration-title">Instructions</h3>
           <ul style="padding-left:20px;font-size:11px;margin-bottom:0;">
             <li>Bring this hall ticket to the exam center</li>
@@ -2269,7 +2175,7 @@
         </div>
       </div>
     </div>
-    
+   
     <div style="text-align:center;margin-top:10px;padding:10px;">
       <button onclick="window.print()" style="background:var(--islamic-green);color:white;border:none;padding:6px 15px;border-radius:5px;font-size:11px;cursor:pointer;margin:2px;">
         <i class="fas fa-print"></i> Print
@@ -2279,21 +2185,21 @@
       </button>
     </div>`;
   }
-  
+ 
   function generateResultHtml(data) {
     const { collegeInfo, studentData } = data;
-    
+   
     return `
     <div class="a4-container">
       <div class="watermark">RESULT</div>
       <div class="document-header">
-        <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo">
+        <img src="${escapeHtml(collegeInfo.logo)}" alt="College Logo" class="document-logo">
         <div class="college-info">
-          <div class="college-arabic">كلية دار النجاة للشريعة والآداب</div>
-          <div class="college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div>
-          <div class="college-address">Under Darunnajath Islamic Centre</div>
-          <div class="college-address">Affiliated to Jamia Nooriyya Arabiyya, Pattikkad</div>
-          <div class="college-address">Punnakkad, Karuvarakundu, Malappuram District</div>
+          <div class="college-arabic">${escapeHtml(collegeInfo.contact)}</div>
+          <div class="college-name">${escapeHtml(collegeInfo.collegeName)}</div>
+          <div class="college-address">${escapeHtml(collegeInfo.underOrg)}</div>
+          <div class="college-address">${escapeHtml(collegeInfo.affiliation)}</div>
+          <div class="college-address">${escapeHtml(collegeInfo.address)}</div>
           <div class="document-title">Entrance Exam Result 2025-26</div>
         </div>
       </div>
@@ -2317,7 +2223,7 @@
             <span class="info-value">${escapeHtml(studentData.phoneNumber)}</span>
           </div>
         </div>
-        
+       
         <div class="section-title">Result Status</div>
         <div style="text-align:center;padding:20px;background:#e8f4ff;border-radius:8px;margin:15px 0;border:2px solid var(--islamic-green);">
           <div style="font-size:24px;font-weight:700;color:var(--islamic-green);margin-bottom:10px;">
@@ -2327,7 +2233,7 @@
             ${escapeHtml(studentData.resultMessage || 'Results will be announced after the examination.')}
           </div>
         </div>
-        
+       
         <div class="declaration">
           <h3 class="declaration-title">Important Information</h3>
           <ul style="padding-left:20px;font-size:11px;margin-bottom:0;">
@@ -2339,7 +2245,7 @@
         </div>
       </div>
     </div>
-    
+   
     <div style="text-align:center;margin-top:10px;padding:10px;">
       <button onclick="window.print()" style="background:var(--islamic-green);color:white;border:none;padding:6px 15px;border-radius:5px;font-size:11px;cursor:pointer;margin:2px;">
         <i class="fas fa-print"></i> Print
@@ -2349,10 +2255,10 @@
       </button>
     </div>`;
   }
-  
+ 
   function generateConfirmationHtml(response) {
     const submissionTime = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
-    
+   
     return `
     <div style="font-family:Poppins,sans-serif;background:var(--islamic-cream);min-height:100vh;padding:40px 20px;display:flex;justify-content:center;align-items:center;">
       <div style="background:white;border-radius:20px;padding:40px;box-shadow:0 10px 30px rgba(0,0,0,0.1);border:3px solid var(--islamic-green);text-align:center;max-width:700px;width:100%;">
@@ -2401,43 +2307,25 @@
       </div>
     </div>`;
   }
-  
-  // Form submission handlers
+ 
   async function handleApplicationSubmit(e) {
     e.preventDefault();
     showLoading('Searching for application...');
-    
+   
     const mobile = document.getElementById('appMobile').value.trim();
     const dob = document.getElementById('appDob').value;
-    
+   
     try {
-      // Demo data for testing
-      const demoData = {
-        studentName: "Demo Student",
-        houseName: "Demo House",
-        dob: dob,
-        address: "Demo Address",
-        phoneNumber: mobile,
-        aadhaarNumber: "123456789012",
-        fatherName: "Demo Father",
-        fatherOccupation: "Business",
-        guardianName: "Demo Guardian",
-        madrasa: "Demo Madrasa",
-        madrasaclass: "V",
-        school: "Demo School",
-        schoolclass: "V",
-        previousStudy: "No",
-        identificationMark: "Demo Mark",
-        physicalFitness: "Healthy"
-      };
-      
-      const html = generateApplicationHtml({
-        collegeInfo: {},
-        studentData: demoData
-      });
-      
-      document.getElementById('dashboardView').innerHTML = html;
-      showNotification('Application loaded successfully (Demo)', 'success');
+      const response = await fetch(`${SCRIPT_URL}?type=application&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);
+      const data = await response.json();
+     
+      if (data.status === 'success') {
+        const html = generateApplicationHtml(data);
+        document.getElementById('dashboardView').innerHTML = html;
+        showNotification('Application loaded successfully', 'success');
+      } else {
+        showNotification(data.message || 'No record found', 'error');
+      }
     } catch (error) {
       console.error('Error:', error);
       showNotification('Error occurred. Please try again.', 'error');
@@ -2445,32 +2333,25 @@
       hideLoading();
     }
   }
-  
+ 
   async function handleHallticketSubmit(e) {
     e.preventDefault();
     showLoading('Generating hall ticket...');
-    
+   
     const mobile = document.getElementById('ticketMobile').value.trim();
     const dob = document.getElementById('ticketDob').value;
-    
+   
     try {
-      // Demo data for testing
-      const demoData = {
-        studentName: "Demo Student",
-        phoneNumber: mobile,
-        dob: dob,
-        houseName: "Demo House",
-        address: "Demo Address",
-        applicationId: "HT" + Date.now()
-      };
-      
-      const html = generateHallticketHtml({
-        collegeInfo: {},
-        studentData: demoData
-      });
-      
-      document.getElementById('dashboardView').innerHTML = html;
-      showNotification('Hall ticket generated successfully (Demo)', 'success');
+      const response = await fetch(`${SCRIPT_URL}?type=hallticket&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);
+      const data = await response.json();
+     
+      if (data.status === 'success') {
+        const html = generateHallticketHtml(data);
+        document.getElementById('dashboardView').innerHTML = html;
+        showNotification('Hall ticket generated successfully', 'success');
+      } else {
+        showNotification(data.message || 'No record found or payment pending', 'error');
+      }
     } catch (error) {
       console.error('Error:', error);
       showNotification('Error occurred. Please try again.', 'error');
@@ -2478,32 +2359,25 @@
       hideLoading();
     }
   }
-  
+ 
   async function handleResultSubmit(e) {
     e.preventDefault();
     showLoading('Fetching results...');
-    
+   
     const mobile = document.getElementById('resultMobile').value.trim();
     const dob = document.getElementById('resultDob').value;
-    
+   
     try {
-      // Demo data for testing
-      const demoData = {
-        studentName: "Demo Student",
-        phoneNumber: mobile,
-        dob: dob,
-        applicationId: "RS" + Date.now(),
-        resultStatus: "RESULT PENDING",
-        resultMessage: "Results will be announced after the examination on 17/12/2025"
-      };
-      
-      const html = generateResultHtml({
-        collegeInfo: {},
-        studentData: demoData
-      });
-      
-      document.getElementById('dashboardView').innerHTML = html;
-      showNotification('Result loaded successfully (Demo)', 'success');
+      const response = await fetch(`${SCRIPT_URL}?type=result&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);
+      const data = await response.json();
+     
+      if (data.status === 'success') {
+        const html = generateResultHtml(data);
+        document.getElementById('dashboardView').innerHTML = html;
+        showNotification('Result loaded successfully', 'success');
+      } else {
+        showNotification(data.message || 'No record found', 'error');
+      }
     } catch (error) {
       console.error('Error:', error);
       showNotification('Error occurred. Please try again.', 'error');
@@ -2511,15 +2385,15 @@
       hideLoading();
     }
   }
-  
+ 
   async function handleNewApplicationSubmit(e) {
     e.preventDefault();
     showLoading('Submitting application...');
-    
+   
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-    
+   
     // Handle photo upload
     const photoFile = document.getElementById('photoInput').files[0];
     if (photoFile) {
@@ -2530,23 +2404,36 @@
         console.error('Photo upload error:', error);
       }
     }
-    
+   
     try {
-      // Demo response
-      const response = {
-        applicationId: 'APP' + Date.now().toString().slice(-8),
-        studentName: data.studentName,
-        phoneNumber: data.phoneNumber,
-        dob: data.dob,
-        fatherName: data.fatherName
-      };
-      
-      const html = generateConfirmationHtml(response);
-      document.getElementById('dashboardView').innerHTML = html;
-      showNotification('Application submitted successfully! (Demo)', 'success');
+      const submitData = new URLSearchParams();
+      for (const [key, value] of Object.entries(data)) {
+        if (value !== undefined && value !== null) {
+          submitData.append(key, value);
+        }
+      }
+     
+      const response = await fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: submitData,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      });
+     
+      const result = await response.json();
+     
+      if (result.status === 'success') {
+        const html = generateConfirmationHtml(result.data);
+        document.getElementById('dashboardView').innerHTML = html;
+        showNotification('Application submitted successfully!', 'success');
+      } else {
+        showNotification(result.message || 'Submission failed', 'error');
+      }
     } catch (error) {
       console.error('Submission error:', error);
       showNotification('Submission failed. Please try again.', 'error');
+    } finally {
       hideLoading();
     }
   }
