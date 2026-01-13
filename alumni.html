@@ -4,24 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DSAC | Alumni</title>
-
   <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
-
   <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
-  <!-- STANDARD CSS -->
+  
   <style>
-    /* ===== CSS VARIABLES ===== */
     :root {
       --islamic-green: #0a5c36;
       --islamic-gold: #c19a3f;
@@ -32,7 +27,6 @@
       --transition: all 0.3s ease;
     }
 
-    /* ===== BASE STYLES ===== */
     body {
       font-family: 'Poppins', sans-serif;
       background-color: var(--islamic-cream);
@@ -41,34 +35,23 @@
       overflow-x: hidden;
       padding-top: 130px;
     }
-    
-    a {
-      text-decoration: none;
-    }
 
-    .arabic-font {
-      font-family: 'Scheherazade New', serif;
-    }
+    a { text-decoration: none; }
 
-    .malayalam-font {
-      font-family: 'Anek Malayalam', sans-serif;
-    }
+    .arabic-font { font-family: 'Scheherazade New', serif; }
+    .malayalam-font { font-family: 'Anek Malayalam', sans-serif; }
 
-    /* ===== PATTERN BACKGROUND ===== */
     .pattern-bg {
-      background-image: 
+      background-image:
         radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px),
         radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px);
       background-size: 50px 50px;
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       z-index: -1;
     }
 
-    /* ===== STANDARD NAVBAR ===== */
     .navbar-optimized {
       background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
       border-bottom: 3px solid var(--islamic-gold);
@@ -77,14 +60,9 @@
       height: 80px;
       z-index: 1030 !important;
     }
-    
-    .navbar-toggler {
-      border-color: rgba(255, 255, 255, 0.5);
-    }
-    
-    .navbar-toggler:focus {
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-    }
+
+    .navbar-toggler { border-color: rgba(255,255,255,0.5); }
+    .navbar-toggler:focus { box-shadow: 0 0 0 2px var(--islamic-gold); }
 
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
@@ -92,11 +70,10 @@
 
     .navbar-optimized.scrolled {
       background: rgba(10, 92, 54, 0.98);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
       height: 70px;
     }
 
-    /* LOGO */
     .navbar-brand-compact img {
       border-radius: 8px;
       transition: transform 0.3s ease;
@@ -116,19 +93,10 @@
       box-shadow: 0 0 0 2px var(--islamic-gold);
     }
 
-    .navbar-brand-compact:hover img {
-      transform: scale(1.05);
-    }
+    .navbar-brand-compact:hover img { transform: scale(1.05); }
 
-    .brand-text {
-      font-size: 1.2rem;
-      line-height: 1.2;
-    }
-
-    .brand-subtext {
-      font-size: 0.8rem;
-      opacity: 0.9;
-    }
+    .brand-text { font-size: 1.2rem; line-height: 1.2; }
+    .brand-subtext { font-size: 0.8rem; opacity: 0.9; }
 
     .nav-link-optimized {
       color: #fff !important;
@@ -140,17 +108,14 @@
       margin: 0 2px;
       white-space: nowrap;
     }
-    
-    .nav-item-optimized {
-      margin: 0 2px;
-    }
+
+    .nav-item-optimized { margin: 0 2px; }
 
     .nav-link-optimized:hover {
       color: var(--islamic-gold) !important;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255,255,255,0.1);
     }
 
-    /* Navbar dropdown */
     .dropdown-menu-optimized {
       background: var(--islamic-green);
       border: 1px solid var(--islamic-gold);
@@ -169,7 +134,6 @@
       color: var(--islamic-green);
     }
 
-    /* ===== STANDARD PAGE HEADER ===== */
     .page-header {
       background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
       color: white;
@@ -180,33 +144,27 @@
       position: relative;
       overflow: hidden;
     }
-    
+
     .page-header::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(193,154,63,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(10,92,54,0.1) 0%, transparent 50%);
     }
-    
-    .page-header-content {
-      position: relative;
-      z-index: 2;
-    }
-    
+
+    .page-header-content { position: relative; z-index: 2; }
+
     .page-title {
       font-family: 'Scheherazade New', serif;
       font-size: 3.5rem;
       font-weight: 700;
       margin-bottom: 1rem;
       color: var(--islamic-gold);
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
-    
+
     .page-subtitle {
       font-size: 1.4rem;
       opacity: 0.95;
@@ -215,12 +173,8 @@
       color: var(--islamic-cream);
     }
 
-    /* ===== STANDARD CONTENT SECTION ===== */
-    .content-section {
-      padding: 4rem 0;
-      background: var(--islamic-cream);
-    }
-    
+    .content-section { padding: 4rem 0; background: var(--islamic-cream); }
+
     .section-header {
       text-align: center;
       margin-bottom: 3rem;
@@ -243,14 +197,12 @@
     .section-header::before {
       content: '';
       position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
+      top: 50%; left: 0; right: 0;
       height: 3px;
       background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent);
       z-index: 1;
     }
-    
+
     .section-subtitle {
       color: #666;
       font-size: 1.1rem;
@@ -258,21 +210,20 @@
       margin: 0 auto;
     }
 
-    /* ===== STANDARD BUTTONS ===== */
     .btn-gold {
       background: linear-gradient(135deg, var(--islamic-gold), #d4af37);
       border: none;
       color: var(--islamic-green);
       font-weight: 600;
       border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3);
+      box-shadow: 0 4px 15px rgba(193,154,63,0.3);
       transition: var(--transition);
       padding: 0.75rem 1.5rem;
     }
 
     .btn-gold:hover {
       background: linear-gradient(135deg, #d4af37, var(--islamic-gold));
-      box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4);
+      box-shadow: 0 6px 20px rgba(193,154,63,0.4);
       transform: translateY(-2px);
       color: var(--islamic-green);
     }
@@ -292,37 +243,6 @@
       color: var(--islamic-green);
     }
 
-    /* ===== STANDARD CARDS ===== */
-    .islamic-card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      transition: var(--transition);
-      border: 3px solid transparent;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      height: 100%;
-      margin-bottom: 1rem;
-    }
-
-    .islamic-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--islamic-gold);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    }
-    
-    .islamic-card-header {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      color: white;
-      padding: 1.5rem;
-      text-align: center;
-      border-bottom: 3px solid var(--islamic-gold);
-    }
-    
-    .islamic-card-body {
-      padding: 1.5rem;
-    }
-
-    /* ===== ALUMNI SPECIFIC STYLES ===== */
     .alumni-card {
       background: white;
       border-radius: 15px;
@@ -344,10 +264,8 @@
     .alumni-card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
+      top: 0; left: 0;
+      width: 100%; height: 5px;
       background: linear-gradient(90deg, var(--islamic-green), var(--islamic-gold));
       border-radius: 15px 15px 0 0;
     }
@@ -361,20 +279,6 @@
       margin: 0 auto 1.5rem;
       padding: 3px;
       background: white;
-    }
-
-    .alumni-card .member-icon {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      font-size: 2.5rem;
-      border: 3px solid var(--islamic-gold);
     }
 
     .alumni-card h4 {
@@ -393,7 +297,7 @@
       font-weight: 600;
       font-size: 0.9rem;
       margin-bottom: 1rem;
-      box-shadow: 0 3px 10px rgba(10, 92, 54, 0.2);
+      box-shadow: 0 3px 10px rgba(10,92,54,0.2);
     }
 
     .position-divider {
@@ -408,9 +312,7 @@
     .position-divider::before {
       content: '';
       position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
+      top: 50%; left: 0; right: 0;
       height: 2px;
       background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent);
       z-index: 1;
@@ -442,8 +344,7 @@
     .testimonial-box::before {
       content: '"';
       position: absolute;
-      top: 1rem;
-      left: 1rem;
+      top: 1rem; left: 1rem;
       font-family: 'Scheherazade New', serif;
       font-size: 4rem;
       color: var(--islamic-gold);
@@ -480,10 +381,9 @@
       font-weight: 600;
       margin: 1rem 0;
       font-size: 1.2rem;
-      box-shadow: 0 5px 15px rgba(10, 92, 54, 0.3);
+      box-shadow: 0 5px 15px rgba(10,92,54,0.3);
     }
 
-    /* ===== STANDARD FOOTER ===== */
     .footer {
       background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
       border-top: 3px solid var(--islamic-gold);
@@ -505,8 +405,7 @@
     }
 
     .social-icon {
-      width: 40px;
-      height: 40px;
+      width: 40px; height: 40px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -514,7 +413,7 @@
       color: white;
       text-decoration: none;
       transition: var(--transition);
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255,255,255,0.1);
       font-size: 1.1rem;
     }
 
@@ -533,7 +432,7 @@
 
     .footer-links a {
       display: block;
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(255,255,255,0.85);
       text-decoration: none;
       margin-bottom: 0.6rem;
       transition: var(--transition);
@@ -545,7 +444,6 @@
       padding-left: 5px;
     }
 
-    /* ===== WHATSAPP BUTTON ===== */
     .whatsapp-float {
       position: fixed;
       bottom: 25px;
@@ -559,7 +457,7 @@
       align-items: center;
       justify-content: center;
       font-size: 1.6rem;
-      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+      box-shadow: 0 10px 25px rgba(37,211,102,0.3);
       z-index: 1000;
       animation: float 3s ease-in-out infinite;
       transition: var(--transition);
@@ -568,7 +466,7 @@
 
     .whatsapp-float:hover {
       transform: scale(1.1) rotate(10deg);
-      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+      box-shadow: 0 15px 30px rgba(37,211,102,0.4);
     }
 
     @keyframes float {
@@ -576,7 +474,6 @@
       50% { transform: translateY(-8px); }
     }
 
-    /* ===== ISLAMIC ORNAMENTS ===== */
     .islamic-ornament {
       position: fixed;
       color: var(--islamic-gold);
@@ -586,94 +483,35 @@
       pointer-events: none;
     }
 
-    .ornament-1 {
-      top: 20%;
-      left: 5%;
-      animation: float 6s ease-in-out infinite;
-    }
+    .ornament-1 { top: 20%; left: 5%; animation: float 6s ease-in-out infinite; }
+    .ornament-2 { top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse; }
+    .ornament-3 { bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite; }
 
-    .ornament-2 {
-      top: 60%;
-      right: 5%;
-      animation: float 8s ease-in-out infinite reverse;
-    }
-
-    .ornament-3 {
-      bottom: 20%;
-      left: 10%;
-      animation: float 7s ease-in-out infinite;
-    }
-
-    /* ===== MOBILE RESPONSIVE ===== */
     @media (max-width: 768px) {
-      body {
-        padding-top: 110px !important;
-      }
-      
-      .navbar-optimized {
-        height: 70px;
-        padding: 0.3rem 0;
-      }
-      
-      .page-header {
-        padding: 2.5rem 0;
-      }
-      
-      .page-title {
-        font-size: 2.2rem;
-      }
-      
-      .page-subtitle {
-        font-size: 1.1rem;
-      }
-      
-      .content-section {
-        padding: 2.5rem 0;
-      }
-      
-      .section-title {
-        font-size: 1.8rem;
-      }
-      
+      body { padding-top: 110px !important; }
+      .navbar-optimized { height: 70px; padding: 0.3rem 0; }
+      .page-header { padding: 2.5rem 0; }
+      .page-title { font-size: 2.2rem; }
+      .page-subtitle { font-size: 1.1rem; }
+      .content-section { padding: 2.5rem 0; }
+      .section-title { font-size: 1.8rem; }
       .navbar-collapse {
         background: var(--dark-green);
         padding: 1rem;
         border-radius: 0 0 10px 10px;
         border: 1px solid var(--islamic-gold);
-        margin-top: 0px;
         max-height: 70vh;
         overflow-y: auto;
       }
-      
-      .alumni-card .member-img,
-      .alumni-card .member-icon {
-        width: 100px;
-        height: 100px;
-      }
-      
-      .position-divider {
-        font-size: 1.5rem;
-        margin: 2rem 0 1.5rem;
-      }
-      
-      .testimonial-box {
-        padding: 2rem;
-      }
+      .alumni-card .member-img { width: 100px; height: 100px; }
+      .position-divider { font-size: 1.5rem; margin: 2rem 0 1.5rem; }
+      .testimonial-box { padding: 2rem; }
     }
 
     @media (max-width: 576px) {
-      .page-title {
-        font-size: 1.8rem;
-      }
-      
-      .section-title {
-        font-size: 1.5rem;
-      }
-      
-      .alumni-tagline {
-        font-size: 1rem;
-        padding: 0.8rem 1.5rem;
-      }
+      .page-title { font-size: 1.8rem; }
+      .section-title { font-size: 1.5rem; }
+      .alumni-tagline { font-size: 1rem; padding: 0.8rem 1.5rem; }
     }
   </style>
 </head>
@@ -694,27 +532,16 @@
         <small class="text-light brand-subtext">Karuvarakundu</small>
       </div>
     </a>
- 
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
             aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
- 
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav ms-auto nav-container">
-        <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized" href="index.html">Home</a>
-        </li>
-        <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized" href="founder.html">Founder</a>
-        </li>
-     
-        <!-- Board Dropdown -->
+        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="index.html">Home</a></li>
+        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="founder.html">Founder</a></li>
         <li class="nav-item dropdown nav-item-optimized">
-          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" 
-             aria-haspopup="true" aria-expanded="false">
-            Board
-          </a>
+          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Board</a>
           <ul class="dropdown-menu dropdown-menu-optimized">
             <li><a class="dropdown-item dropdown-item-optimized" href="management.html">Management</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="faculties.html">Faculty</a></li>
@@ -723,42 +550,21 @@
             <li><a class="dropdown-item dropdown-item-optimized" href="students-union.html">Students Union</a></li>
           </ul>
         </li>
-     
-        <!-- Student Zone Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
-          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-            Student Zone
-          </a>
+          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Student Zone</a>
           <ul class="dropdown-menu dropdown-menu-optimized">
             <li><a class="dropdown-item dropdown-item-optimized" href="idcard.html">ID Card</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="result.html">Exam Results</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="fest.html">Fest Score</a></li>
           </ul>
         </li>
-     
-        <!-- Other Items -->
-        <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized" href="https://jamianooriya.in/">Jamia</a>
-        </li>
-        <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized" href="downloads.html">Downloads</a>
-        </li>
-        <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized" href="gallery.html">Gallery</a>
-        </li>
-        <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized" href="library.html">Library</a>
-        </li>
-        <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized" href="admission.html">Admission</a>
-        </li>
-        <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized" href="test.html">Test</a>
-        </li>
-        <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized" href="contact.html">Contact</a>
-        </li>
+        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="https://jamianooriya.in/">Jamia</a></li>
+        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="downloads.html">Downloads</a></li>
+        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="gallery.html">Gallery</a></li>
+        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="library.html">Library</a></li>
+        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="admission.html">Admission</a></li>
+        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="test.html">Test</a></li>
+        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="contact.html">Contact</a></li>
       </ul>
     </div>
   </div>
@@ -785,122 +591,90 @@
       <p class="section-subtitle">Dedicated alumni leading our community forward with Islamic values</p>
     </div>
 
-    <!-- Core Executive Committee -->
+    <!-- Core Executive -->
     <div class="row g-4">
-      <!-- President -->
       <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
         <div class="alumni-card">
-          <img src="https://i.ibb.co/v4b5C5zb/irsad.jpg" class="member-img" alt="President" 
-               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
+          <img src="https://i.ibb.co/v4b5C5zb/irsad.jpg" class="member-img" alt="IRSHAD FAIZY NAJAWI" onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
           <h4>IRSHAD FAIZY NAJAWI</h4>
           <div class="member-position">President</div>
         </div>
       </div>
-
-      <!-- General Secretary -->
       <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="150">
         <div class="alumni-card">
-          <img src="https://i.ibb.co/y11WxSf/uvais.jpg" class="member-img" alt="General Secretary" 
-               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
+          <img src="https://i.ibb.co/y11WxSf/uvais.jpg" class="member-img" alt="UVAIS FAIZY NAJAWI" onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
           <h4>UVAIS FAIZY NAJAWI</h4>
           <div class="member-position">General Secretary</div>
         </div>
       </div>
-
-      <!-- Treasurer -->
       <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
         <div class="alumni-card">
-          <img src="https://i.ibb.co/b5j9MH3y/mujtaba.jpg" class="member-img" alt="Treasurer" 
-               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
+          <img src="https://i.ibb.co/b5j9MH3y/mujtaba.jpg" class="member-img" alt="MUJTHABA FAIZY NAJAWI" onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
           <h4>MUJTHABA FAIZY NAJAWI</h4>
           <div class="member-position">Treasurer</div>
         </div>
       </div>
-
-      <!-- Working Secretary -->
       <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="250">
         <div class="alumni-card">
-          <img src="https://i.ibb.co/bMMhMqNM/rashik.jpg" class="member-img" alt="Working Secretary" 
-               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
+          <img src="https://i.ibb.co/bMMhMqNM/rashik.jpg" class="member-img" alt="RASHIQUE FAIZY NAJAWI" onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
           <h4>RASHIQUE FAIZY NAJAWI</h4>
           <div class="member-position">Working Secretary</div>
         </div>
       </div>
     </div>
-    
-    <!-- Vice Presidents -->
-    <div class="position-divider">
-      <span>Vice Presidents</span>
-    </div>
-    
+
+    <div class="position-divider"><span>Vice Presidents</span></div>
+
     <div class="row g-4">
       <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
         <div class="alumni-card">
-          <div class="member-icon">
-            <img src="https://i.ibb.co/spG2KzSN/Whats-App-Image-2026-01-13-at-1-22-52-PM.jpg" class="member-img" alt="Vice President"
-          </div>
+          <img src="https://i.ibb.co/spG2KzSN/Whats-App-Image-2026-01-13-at-1-22-52-PM.jpg" class="member-img" alt="YASIR FAIZY NAJAWI" onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
           <h4>YASIR FAIZY NAJAWI</h4>
           <div class="member-position">Vice President</div>
         </div>
       </div>
-      
       <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="150">
         <div class="alumni-card">
-          <div class="member-icon">
-            <img src="https://i.ibb.co/67c5gRLp/Whats-App-Image-2026-01-13-at-1-31-08-PM.jpg" class="member-img" alt="Vice President"
-          </div>
+          <img src="https://i.ibb.co/67c5gRLp/Whats-App-Image-2026-01-13-at-1-31-08-PM.jpg" class="member-img" alt="ABDUL BARI FAIZY NAJAWI" onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
           <h4>ABDUL BARI FAIZY NAJAWI</h4>
           <div class="member-position">Vice President</div>
         </div>
       </div>
-      
       <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
         <div class="alumni-card">
-          <div class="member-icon">
-            <img src="https://i.ibb.co/G4v4D656/Whats-App-Image-2026-01-13-at-12-39-57-PM.jpg" class="member-img" alt="Vice President"
-          </div>
+          <img src="https://i.ibb.co/G4v4D656/Whats-App-Image-2026-01-13-at-12-39-57-PM.jpg" class="member-img" alt="RAFEEQ FAIZY NAJAWI" onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
           <h4>RAFEEQ FAIZY NAJAWI</h4>
           <div class="member-position">Vice President</div>
         </div>
       </div>
     </div>
-    
-    <!-- Joint Secretaries -->
-    <div class="position-divider">
-      <span>Joint Secretaries</span>
-    </div>
-    
+
+    <div class="position-divider"><span>Joint Secretaries</span></div>
+
     <div class="row g-4">
       <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
         <div class="alumni-card">
-          <div class="member-icon">
-            <img src="https://i.ibb.co/TDbFPCN4/Whats-App-Image-2026-01-13-at-12-25-37-PM.jpg" class="member-img" alt="Joint Secretary"
-          </div>
+          <img src="https://i.ibb.co/TDbFPCN4/Whats-App-Image-2026-01-13-at-12-25-37-PM.jpg" class="member-img" alt="NASIR FAIZY NAJAWI" onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
           <h4>NASIR FAIZY NAJAWI</h4>
           <div class="member-position">Joint Secretary</div>
         </div>
       </div>
-      
       <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="150">
         <div class="alumni-card">
-          <div class="member-icon">
-            <img src="https://i.ibb.co/SwJ8fDMq/Whats-App-Image-2026-01-13-at-1-22-40-PM.jpg" class="member-img" alt="Joint Secretary"
-          </div>
+          <img src="https://i.ibb.co/SwJ8fDMq/Whats-App-Image-2026-01-13-at-1-22-40-PM.jpg" class="member-img" alt="THAQIYUDHEEN FAIZY NAJAWI" onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
           <h4>THAQIYUDHEEN FAIZY NAJAWI</h4>
           <div class="member-position">Joint Secretary</div>
         </div>
       </div>
-      
       <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
         <div class="alumni-card">
-          <div class="member-icon">
-            <img src="https://i.ibb.co/bg3ZXqXL/Whats-App-Image-2026-01-13-at-12-46-14-PM.jpg" class="member-img" alt="Joint Secretary"
-          </div>
+          <img src="https://i.ibb.co/bg3ZXqXL/Whats-App-Image-2026-01-13-at-12-46-14-PM.jpg" class="member-img" alt="MASHHOOD FAIZY NAJAWI" onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
           <h4>MASHHOOD FAIZY NAJAWI</h4>
           <div class="member-position">Joint Secretary</div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -911,22 +685,16 @@
       <h2 class="section-title">Alumni Reflections</h2>
       <p class="section-subtitle">Hear from our alumni about their transformative experiences</p>
     </div>
-
     <div class="row g-4">
       <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
         <div class="testimonial-box">
-          <p class="quote">
-            "Darunnajath Shareeath and Arts College was more than an educational institution; it was a spiritual sanctuary that shaped my character and faith. The holistic approach to learning—integrating Islamic teachings with contemporary knowledge—equipped me for both this world and the hereafter."
-          </p>
+          <p class="quote">"Darunnajath Shareeath and Arts College was more than an educational institution; it was a spiritual sanctuary that shaped my character and faith. The holistic approach to learning—integrating Islamic teachings with contemporary knowledge—equipped me for both this world and the hereafter."</p>
           <p class="quote-author">— Sayyid <span>| Batch 2012 | Imam</span></p>
         </div>
       </div>
-
       <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
         <div class="testimonial-box">
-          <p class="quote">
-            "My years at Darunnajath Shareeath and Arts College instilled in me a profound sense of purpose and ethical responsibility. The dedicated teachers and nurturing environment helped me develop critical thinking while remaining grounded in my Islamic values—a balance that serves me in both my professional and personal life."
-          </p>
+          <p class="quote">"My years at Darunnajath Shareeath and Arts College instilled in me a profound sense of purpose and ethical responsibility. The dedicated teachers and nurturing environment helped me develop critical thinking while remaining grounded in my Islamic values—a balance that serves me in both my professional and personal life."</p>
           <p class="quote-author">— Hafiz <span>| Batch 2015 | Teacher</span></p>
         </div>
       </div>
@@ -946,21 +714,12 @@
           Affiliated to Jamia Nooriyya Arabiyya, Pattikkad
         </p>
         <div class="social-links">
-          <a href="https://facebook.com/" class="social-icon" target="_blank" aria-label="Facebook">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="https://instagram.com/" class="social-icon" target="_blank" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="https://x.com/" class="social-icon" target="_blank" aria-label="Twitter">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="https://youtube.com/" class="social-icon" target="_blank" aria-label="YouTube">
-            <i class="fab fa-youtube"></i>
-          </a>
+          <a href="https://facebook.com/" class="social-icon" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com/" class="social-icon" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://x.com/" class="social-icon" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="https://youtube.com/" class="social-icon" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
-   
       <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
         <div class="footer-links">
           <h5>Quick Links</h5>
@@ -971,7 +730,6 @@
           <a href="contact.html">Contact</a>
         </div>
       </div>
-   
       <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
         <div class="footer-links">
           <h5>Resources</h5>
@@ -982,7 +740,6 @@
           <a href="alumni.html">Alumni</a>
         </div>
       </div>
-   
       <div class="col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
         <div class="footer-links">
           <h5>Contact Info</h5>
@@ -994,31 +751,22 @@
         </div>
       </div>
     </div>
- 
     <div class="text-center pt-4 mt-4 border-top border-light border-opacity-25">
-      <p class="text-light mb-2">
-        © <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.
-      </p>
-      <small class="text-light opacity-75">
-        Hosted by <span>Rafi Wafi</span>
-      </small>
+      <p class="text-light mb-2">© <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.</p>
+      <small class="text-light opacity-75">Hosted by <span>Rafi Wafi</span></small>
     </div>
   </div>
 </footer>
 
-<!-- WHATSAPP BUTTON -->
-<a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!"
-   class="whatsapp-float" target="_blank"
-   title="Chat with us on WhatsApp" aria-label="WhatsApp Chat">
+<!-- WHATSAPP FLOAT BUTTON -->
+<a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp" aria-label="WhatsApp Chat">
   <i class="fab fa-whatsapp"></i>
 </a>
 
 <!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
 <script>
-  // Initialize AOS
   AOS.init({
     duration: 800,
     once: true,
@@ -1026,72 +774,52 @@
     disable: window.innerWidth < 768
   });
 
-  // Update current year
   document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-  // Navbar scroll effect
-  window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar-optimized');
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    navbar.classList.toggle('scrolled', scrollTop > 50);
+  window.addEventListener('scroll', () => {
+    document.querySelector('.navbar-optimized').classList.toggle('scrolled', window.scrollY > 50);
   });
 
-  // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      if(this.getAttribute('href') !== '#') {
+    anchor.addEventListener('click', e => {
+      if (anchor.getAttribute('href') !== '#') {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const target = document.querySelector(anchor.getAttribute('href'));
         if (target) {
           const offset = window.innerWidth <= 768 ? 70 : 80;
-          window.scrollTo({
-            top: target.offsetTop - offset,
-            behavior: 'smooth'
-          });
-          
-          // Close mobile menu if open
-          const navbarCollapse = document.querySelector('.navbar-collapse');
-          if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
-            bsCollapse.hide();
-          }
+          window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+          const collapse = document.querySelector('.navbar-collapse.show');
+          if (collapse) new bootstrap.Collapse(collapse).hide();
         }
       }
     });
   });
 
-  // Mobile menu close on click
   document.querySelectorAll('.navbar-nav .nav-link-optimized:not(.dropdown-toggle)').forEach(link => {
     link.addEventListener('click', () => {
-      const navbarCollapse = document.querySelector('.navbar-collapse');
-      if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-        const bsCollapse = new bootstrap.Collapse(navbarCollapse);
-        bsCollapse.hide();
-      }
+      const collapse = document.querySelector('.navbar-collapse.show');
+      if (collapse) new bootstrap.Collapse(collapse).hide();
     });
   });
 
-  // Parallax effect for floating ornaments
+  // Parallax ornaments (desktop only)
   window.addEventListener('scroll', () => {
     if (window.innerWidth > 768) {
       const scrolled = window.pageYOffset;
-      const ornaments = document.querySelectorAll('.islamic-ornament');
- 
-      ornaments.forEach((ornament, index) => {
-        const speed = 0.05 * (index + 1);
-        ornament.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.05}deg)`;
+      document.querySelectorAll('.islamic-ornament').forEach((el, i) => {
+        const speed = 0.05 * (i + 1);
+        el.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.05}deg)`;
       });
     }
   });
 
-  // Fade in effect
-  document.addEventListener('DOMContentLoaded', function() {
+  // Fade in
+  document.addEventListener('DOMContentLoaded', () => {
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity 0.3s ease';
-    setTimeout(() => {
-      document.body.style.opacity = '1';
-    }, 50);
+    setTimeout(() => document.body.style.opacity = '1', 50);
   });
 </script>
+
 </body>
 </html>
