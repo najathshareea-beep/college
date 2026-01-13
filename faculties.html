@@ -1,136 +1,351 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DSAC | Faculty</title>
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- STANDARD CSS -->
   <style>
+    /* ===== CSS VARIABLES ===== */
     :root {
-      --primary: #0a194f;
-      --secondary: #122f7a;
-      --accent: #f3c13a;
-      --light: #f8f9fa;
+      --islamic-green: #0a5c36;
+      --islamic-gold: #c19a3f;
+      --islamic-cream: #f8f3e6;
+      --islamic-light: #e9f5e9;
+      --dark-green: #064e3b;
+      --light-gold: #ffd24d;
+      --transition: all 0.3s ease;
     }
 
+    /* ===== BASE STYLES ===== */
     body {
-      background-color: var(--primary);
-      color: var(--light);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--islamic-cream);
+      color: #333;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      padding-top: 130px;
+    }
+    
+    a {
+      text-decoration: none;
     }
 
-    header {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      text-align: center;
-      padding: 30px 15px;
-      margin-bottom: 30px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    .arabic-font {
+      font-family: 'Scheherazade New', serif;
     }
 
-    header h1 {
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin: 0;
-      color: var(--accent);
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    .malayalam-font {
+      font-family: 'Anek Malayalam', sans-serif;
     }
 
-    header .subtitle {
-      color: rgba(255,255,255,0.9);
-      font-size: 1rem;
-      margin-top: 10px;
-    }
-
-    .container {
-      max-width: 1200px;
-      padding-bottom: 60px;
-    }
-
-    /* Search Box */
-    .search-box {
-      background: rgba(255,255,255,0.1);
-      border: 2px solid var(--accent);
-      border-radius: 50px;
-      padding: 12px 25px;
-      margin: 20px auto 30px;
-      max-width: 500px;
-      transition: all 0.3s ease;
-    }
-
-    .search-box:focus-within {
-      background: rgba(255,255,255,0.15);
-      box-shadow: 0 0 20px rgba(243,193,58,0.3);
-    }
-
-    .search-box input {
-      background: transparent;
-      border: none;
-      color: white;
+    /* ===== PATTERN BACKGROUND ===== */
+    .pattern-bg {
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px),
+        radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px);
+      background-size: 50px 50px;
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      outline: none;
-      font-size: 1rem;
+      height: 100%;
+      z-index: -1;
     }
 
-    .search-box input::placeholder {
-      color: rgba(255,255,255,0.6);
+    /* ===== STANDARD NAVBAR ===== */
+    .navbar-optimized {
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
+      border-bottom: 3px solid var(--islamic-gold);
+      transition: var(--transition);
+      padding: 0.5rem 0;
+      height: 80px;
+      z-index: 1030 !important;
+    }
+    
+    .navbar-toggler {
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .navbar-toggler:focus {
+      box-shadow: 0 0 0 2px var(--islamic-gold);
     }
 
-    /* Teacher Grid */
-    .teacher-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 25px;
-      margin: 30px 0;
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
 
-    .teacher-card {
-      background: rgba(255,255,255,0.05);
-      border-radius: 15px;
-      padding: 25px;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      border: 2px solid transparent;
+    .navbar-optimized.scrolled {
+      background: rgba(10, 92, 54, 0.98);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      height: 70px;
+    }
+
+    /* LOGO */
+    .navbar-brand-compact img {
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      border: none;
+      box-shadow: 0 0 0 2px var(--islamic-gold);
+      padding: 0;
+    }
+
+    .navbar-optimized.scrolled .navbar-brand-compact img {
+      width: 50px;
+      height: 50px;
+      filter: brightness(0) invert(1);
+      box-shadow: 0 0 0 2px var(--islamic-gold);
+    }
+
+    .navbar-brand-compact:hover img {
+      transform: scale(1.05);
+    }
+
+    .brand-text {
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }
+
+    .brand-subtext {
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+
+    .nav-link-optimized {
+      color: #fff !important;
+      font-weight: 500;
+      transition: var(--transition);
+      padding-left: 0.4rem;
+      padding-right: 0.4rem;
+      border-radius: 5px;
+      margin: 0 2px;
+      white-space: nowrap;
+    }
+    
+    .nav-item-optimized {
+      margin: 0 2px;
+    }
+
+    .nav-link-optimized:hover {
+      color: var(--islamic-gold) !important;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Navbar dropdown */
+    .dropdown-menu-optimized {
+      background: var(--islamic-green);
+      border: 1px solid var(--islamic-gold);
+      border-radius: 8px;
+      padding: 0.5rem 0;
+    }
+
+    .dropdown-item-optimized {
+      color: white;
+      padding: 0.5rem 1rem;
+      transition: var(--transition);
+    }
+
+    .dropdown-item-optimized:hover {
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
+    }
+
+    /* ===== STANDARD PAGE HEADER ===== */
+    .page-header {
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
+      color: white;
+      padding: 4rem 0;
       text-align: center;
+      margin-bottom: 3rem;
+      border-bottom: 5px solid var(--islamic-gold);
       position: relative;
       overflow: hidden;
-      backdrop-filter: blur(10px);
-      display: flex;
-      flex-direction: column;
-      min-height: 380px;
     }
-
-    .teacher-card::before {
+    
+    .page-header::before {
       content: '';
       position: absolute;
       top: 0;
-      left: -100%;
-      width: 100%;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
+    }
+    
+    .page-header-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .page-title {
+      font-family: 'Scheherazade New', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--islamic-gold);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .page-subtitle {
+      font-size: 1.4rem;
+      opacity: 0.95;
+      max-width: 800px;
+      margin: 0 auto;
+      color: var(--islamic-cream);
+    }
+
+    /* ===== STANDARD CONTENT SECTION ===== */
+    .content-section {
+      padding: 4rem 0;
+      background: var(--islamic-cream);
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    .section-title {
+      color: var(--islamic-green);
+      font-weight: 700;
+      display: inline-block;
+      padding: 0 1rem;
+      background: var(--islamic-cream);
+      position: relative;
+      z-index: 2;
+      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+    }
+
+    .section-header::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent);
+      z-index: 1;
+    }
+    
+    .section-subtitle {
+      color: #666;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* ===== STANDARD BUTTONS ===== */
+    .btn-gold {
+      background: linear-gradient(135deg, var(--islamic-gold), #d4af37);
+      border: none;
+      color: var(--islamic-green);
+      font-weight: 600;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3);
+      transition: var(--transition);
+      padding: 0.75rem 1.5rem;
+    }
+
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #d4af37, var(--islamic-gold));
+      box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4);
+      transform: translateY(-2px);
+      color: var(--islamic-green);
+    }
+
+    .btn-outline-gold {
+      border: 2px solid var(--islamic-gold);
+      color: var(--islamic-gold);
+      background: transparent;
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .btn-outline-gold:hover {
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
+    }
+
+    /* ===== STANDARD CARDS ===== */
+    .islamic-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: var(--transition);
+      border: 3px solid transparent;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(243,193,58,0.1), transparent);
-      transition: 0.6s;
+      margin-bottom: 1rem;
     }
 
-    .teacher-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 15px 30px rgba(243,193,58,0.2);
-      border-color: var(--accent);
-      background: rgba(255,255,255,0.08);
+    .islamic-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--islamic-gold);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .islamic-card-header {
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      border-bottom: 3px solid var(--islamic-gold);
+    }
+    
+    .islamic-card-body {
+      padding: 1.5rem;
     }
 
-    .teacher-card:hover::before {
-      left: 100%;
+    /* ===== FACULTY CARD STYLES ===== */
+    .faculty-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      height: 100%;
+      position: relative;
     }
 
-    .teacher-card .serial {
+    .faculty-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--islamic-gold);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .faculty-card .serial {
       position: absolute;
       top: 15px;
       right: 15px;
-      background: var(--accent);
-      color: var(--primary);
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
       width: 35px;
       height: 35px;
       border-radius: 50%;
@@ -139,74 +354,74 @@
       justify-content: center;
       font-weight: bold;
       font-size: 1rem;
+      z-index: 2;
     }
 
-    .teacher-card .profile-img {
-      width: 100px;
-      height: 100px;
+    .faculty-card .profile-img {
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid var(--accent);
+      border: 3px solid var(--islamic-gold);
       margin: 0 auto 15px;
       padding: 3px;
-      background: rgba(255,255,255,0.1);
+      background: white;
     }
 
-    .teacher-card h4 {
-      color: var(--accent);
+    .faculty-card h4 {
+      color: var(--islamic-green);
       margin-bottom: 5px;
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       line-height: 1.3;
     }
 
-    .teacher-card .designation {
-      color: #4dabf7;
+    .faculty-card .designation {
+      color: var(--islamic-gold);
       font-weight: 600;
       margin-bottom: 10px;
       font-size: 0.95rem;
     }
 
-    .teacher-card .phone {
-      color: #fff;
-      background: rgba(77, 171, 247, 0.2);
+    .faculty-card .phone {
+      color: var(--islamic-green);
+      background: rgba(193, 154, 63, 0.1);
       padding: 8px 15px;
       border-radius: 20px;
       display: inline-block;
       font-weight: 500;
       margin: 10px 0 15px 0;
-      transition: all 0.3s ease;
+      transition: var(--transition);
     }
 
-    .teacher-card:hover .phone {
-      background: rgba(77, 171, 247, 0.3);
+    .faculty-card:hover .phone {
+      background: rgba(193, 154, 63, 0.2);
       transform: scale(1.05);
     }
 
-    /* Social Icons - Front of card */
-    .social-icons-front {
+    .faculty-social-icons {
       display: flex;
       justify-content: center;
-      gap: 10px;
-      margin-top: auto;
+      gap: 8px;
+      margin-top: 15px;
       padding-top: 15px;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(0,0,0,0.1);
     }
 
-    .social-icons-front a {
-      width: 40px;
-      height: 40px;
+    .faculty-social-icons a {
+      width: 35px;
+      height: 35px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
+      font-size: 1rem;
+      transition: var(--transition);
       position: relative;
       overflow: hidden;
       text-decoration: none;
     }
 
-    .social-icons-front a::before {
+    .faculty-social-icons a::before {
       content: '';
       position: absolute;
       top: 0;
@@ -217,13 +432,13 @@
       transition: 0.5s;
     }
 
-    .social-icons-front a:hover::before {
+    .faculty-social-icons a:hover::before {
       left: 100%;
     }
 
-    .social-icons-front a:hover {
+    .faculty-social-icons a:hover {
       transform: translateY(-5px) scale(1.15);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 
     .whatsapp { background: #25D366; color: white; }
@@ -231,434 +446,733 @@
     .facebook { background: #1877F2; color: white; }
     .x { background: #000000; color: white; }
     .telegram { background: #0088cc; color: white; }
-    .email { background: #ff9800; color: white; }
+    .email { background: var(--islamic-gold); color: white; }
 
-    /* Contact Info Section */
-    .contact-info {
-      margin-top: 15px;
-      padding-top: 15px;
-      border-top: 1px solid rgba(255,255,255,0.1);
+    .search-box {
+      background: rgba(255,255,255,0.9);
+      border: 2px solid var(--islamic-gold);
+      border-radius: 50px;
+      padding: 12px 25px;
+      margin: 30px auto 40px;
+      max-width: 600px;
+      transition: var(--transition);
     }
 
-    .contact-info a {
-      color: #4dabf7;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      margin: 0 5px;
-      transition: all 0.3s ease;
+    .search-box:focus-within {
+      background: white;
+      box-shadow: 0 0 20px rgba(193, 154, 63, 0.3);
     }
 
-    .contact-info a:hover {
-      color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    /* Back Button */
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: linear-gradient(135deg, var(--accent), #ffda5c);
-      color: var(--primary);
-      text-decoration: none;
-      padding: 12px 30px;
-      border-radius: 30px;
-      font-weight: 600;
-      margin: 40px auto;
-      transition: all 0.3s ease;
+    .search-box input {
+      background: transparent;
       border: none;
-      box-shadow: 0 5px 20px rgba(243,193,58,0.4);
+      color: var(--islamic-green);
+      width: 100%;
+      outline: none;
+      font-size: 1rem;
     }
 
-    .back-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(243,193,58,0.6);
-      color: var(--primary);
+    .search-box input::placeholder {
+      color: rgba(10, 92, 54, 0.6);
     }
 
-    /* Footer */
-    footer {
-      background: var(--secondary);
-      color: rgba(255,255,255,0.8);
-      text-align: center;
-      padding: 25px;
-      margin-top: 40px;
-      font-size: 0.9rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
+    /* ===== STANDARD FOOTER ===== */
+    .footer {
+      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
+      border-top: 3px solid var(--islamic-gold);
+      padding: 3rem 0 1.5rem;
+      color: white;
     }
 
-    /* Responsive */
-    @media (max-width: 992px) {
-      .teacher-grid {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 20px;
-      }
+    .footer-brand {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--islamic-gold);
+      margin-bottom: 1rem;
     }
 
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 1rem;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: var(--transition);
+      background: rgba(255, 255, 255, 0.1);
+      font-size: 1.1rem;
+    }
+
+    .social-icon:hover {
+      transform: translateY(-5px);
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
+    }
+
+    .footer-links h5 {
+      color: var(--islamic-gold);
+      margin-bottom: 1.2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .footer-links a {
+      display: block;
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      margin-bottom: 0.6rem;
+      transition: var(--transition);
+      font-size: 0.95rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--islamic-gold);
+      padding-left: 5px;
+    }
+
+    /* ===== WHATSAPP BUTTON ===== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 15px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+      z-index: 1000;
+      animation: float 3s ease-in-out infinite;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1) rotate(10deg);
+      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ===== ISLAMIC ORNAMENTS ===== */
+    .islamic-ornament {
+      position: fixed;
+      color: var(--islamic-gold);
+      opacity: 0.08;
+      font-size: 1.8rem;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .ornament-1 {
+      top: 20%;
+      left: 5%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .ornament-2 {
+      top: 60%;
+      right: 5%;
+      animation: float 8s ease-in-out infinite reverse;
+    }
+
+    .ornament-3 {
+      bottom: 20%;
+      left: 10%;
+      animation: float 7s ease-in-out infinite;
+    }
+
+    /* ===== MOBILE RESPONSIVE ===== */
     @media (max-width: 768px) {
-      header h1 {
+      body {
+        padding-top: 110px !important;
+      }
+      
+      .navbar-optimized {
+        height: 70px;
+        padding: 0.3rem 0;
+      }
+      
+      .page-header {
+        padding: 2.5rem 0;
+      }
+      
+      .page-title {
+        font-size: 2.2rem;
+      }
+      
+      .page-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .content-section {
+        padding: 2.5rem 0;
+      }
+      
+      .section-title {
         font-size: 1.8rem;
       }
       
-      .teacher-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 15px;
+      .navbar-collapse {
+        background: var(--dark-green);
+        padding: 1rem;
+        border-radius: 0 0 10px 10px;
+        border: 1px solid var(--islamic-gold);
+        margin-top: 0px;
+        max-height: 70vh;
+        overflow-y: auto;
       }
       
-      .search-box {
-        margin: 15px auto 25px;
-        max-width: 90%;
-      }
-      
-      .teacher-card {
-        min-height: 350px;
-        padding: 20px;
+      .faculty-card .profile-img {
+        width: 100px;
+        height: 100px;
       }
     }
 
-    @media (max-width: 480px) {
-      .teacher-grid {
-        grid-template-columns: 1fr;
+    @media (max-width: 576px) {
+      .page-title {
+        font-size: 1.8rem;
       }
       
-      .teacher-card {
-        padding: 20px;
-        min-height: 320px;
-      }
-      
-      .social-icons-front a {
-        width: 35px;
-        height: 35px;
-        font-size: 1rem;
+      .section-title {
+        font-size: 1.5rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="container">
-      <h1>Our Faculties</h1>
-      <p class="subtitle">Meet our dedicated teaching staff - 13 experienced educators</p>
-    </div>
-  </header>
+<!-- Floating Islamic Ornaments -->
+<div class="islamic-ornament ornament-1">✸</div>
+<div class="islamic-ornament ornament-2">✸</div>
+<div class="islamic-ornament ornament-3">✸</div>
 
-  <!-- MAIN CONTENT -->
-  <main class="container">
+<!-- STANDARD NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-optimized fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center navbar-brand-compact" href="index.html">
+      <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="DSAC Logo" class="me-2">
+      <div class="d-flex flex-column">
+        <span class="text-white fw-bold brand-text">DSAC</span>
+        <small class="text-light brand-subtext">Karuvarakundu</small>
+      </div>
+    </a>
+ 
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
+            aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+ 
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ms-auto nav-container">
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="index.html">Home</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="founder.html">Founder</a>
+        </li>
+     
+        <!-- Board Dropdown -->
+        <li class="nav-item dropdown nav-item-optimized">
+          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" 
+             aria-haspopup="true" aria-expanded="false">
+            Board
+          </a>
+          <ul class="dropdown-menu dropdown-menu-optimized">
+            <li><a class="dropdown-item dropdown-item-optimized" href="management.html">Management</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="faculties.html">Faculty</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="maintenance.html">PTA</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="alumni.html">Alumni</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="students-union.html">Students Union</a></li>
+          </ul>
+        </li>
+     
+        <!-- Student Zone Dropdown -->
+        <li class="nav-item dropdown nav-item-optimized">
+          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            Student Zone
+          </a>
+          <ul class="dropdown-menu dropdown-menu-optimized">
+            <li><a class="dropdown-item dropdown-item-optimized" href="idcard.html">ID Card</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="result.html">Exam Results</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="fest.html">Fest Score</a></li>
+          </ul>
+        </li>
+     
+        <!-- Other Items -->
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="https://jamianooriya.in/">Jamia</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="downloads.html">Downloads</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="gallery.html">Gallery</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="library.html">Library</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="admission.html">Admission</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="test.html">Test</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="contact.html">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="container">
+    <div class="page-header-content">
+      <h1 class="page-title">Our Faculties</h1>
+      <p class="page-subtitle">Meet our dedicated teaching staff - 13 experienced educators guiding the next generation</p>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<section class="content-section">
+  <div class="container">
     <!-- Search Box -->
     <div class="search-box">
       <div class="d-flex align-items-center">
-        <i class="bi bi-search me-3" style="color: var(--accent);"></i>
-        <input type="text" id="searchInput" placeholder="Search faculty by name or designation...">
+        <i class="fas fa-search me-3" style="color: var(--islamic-gold);"></i>
+        <input type="text" id="searchInput" placeholder="Search faculty by name, designation or phone...">
       </div>
     </div>
 
-    <!-- Teacher Grid -->
-    <div class="teacher-grid" id="teacherGrid">
-      <!-- Teacher cards will be inserted by JavaScript -->
+    <!-- Faculty Grid -->
+    <div class="row g-4" id="facultyGrid">
+      <!-- Faculty cards will be loaded by JavaScript -->
     </div>
 
     <!-- No Results Message -->
     <div id="noResults" class="text-center py-5" style="display: none;">
-      <i class="bi bi-search display-4 mb-3" style="color: var(--accent);"></i>
-      <h4 style="color: var(--accent);">No Faculty Found</h4>
-      <p class="text-light">Try searching with different keywords</p>
+      <i class="fas fa-search display-4 mb-3" style="color: var(--islamic-gold);"></i>
+      <h4 style="color: var(--islamic-green);">No Faculty Found</h4>
+      <p class="text-muted">Try searching with different keywords</p>
     </div>
 
-    <!-- Back Button -->
-    <div class="text-center">
-      <a href="index.html" class="back-btn">
-        <i class="bi bi-arrow-left"></i> Back to Home
+    <!-- Back to Home Button -->
+    <div class="text-center mt-5" data-aos="fade-up">
+      <a href="index.html" class="btn-gold btn-lg px-5">
+        <i class="fas fa-home me-2"></i>Back to Home
       </a>
     </div>
-  </main>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <p style="margin: 0;">© 2025 All rights reserved. | DARUNNAJATH SHAREEATH AND ARTS COLLEGE</p>
-      <p style="margin: 5px 0 0; color: rgba(255,255,255,0.6); font-size: 0.85rem;">
-        Total Faculty Members: <strong>13</strong>
-      </p>
+<!-- STANDARD FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4" data-aos="fade-up">
+        <div class="footer-brand">DSAC</div>
+        <p class="text-light opacity-75">
+          Darunnajath Shareeath & Arts College<br>
+          Punnakkad, Karuvarakundu<br>
+          Affiliated to Jamia Nooriyya Arabiyya, Pattikkad
+        </p>
+        <div class="social-links">
+          <a href="https://facebook.com/" class="social-icon" target="_blank" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://instagram.com/" class="social-icon" target="_blank" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://x.com/" class="social-icon" target="_blank" aria-label="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://youtube.com/" class="social-icon" target="_blank" aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+   
+      <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="footer-links">
+          <h5>Quick Links</h5>
+          <a href="index.html">Home</a>
+          <a href="admission.html">Admissions</a>
+          <a href="result.html">Results</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+   
+      <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="footer-links">
+          <h5>Resources</h5>
+          <a href="downloads.html">Downloads</a>
+          <a href="library.html">Library</a>
+          <a href="faculties.html">Faculty</a>
+          <a href="management.html">Management</a>
+          <a href="pta.html">PTA</a>
+        </div>
+      </div>
+   
+      <div class="col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="footer-links">
+          <h5>Contact Info</h5>
+          <p class="text-light opacity-75">
+            <i class="fas fa-envelope me-2"></i>najathshareea@gmail.com<br>
+            <i class="fas fa-phone me-2"></i>+91 9048020243<br>
+            <i class="fas fa-map-marker-alt me-2"></i>Karuvarakundu, Kerala
+          </p>
+        </div>
+      </div>
     </div>
-  </footer>
+ 
+    <div class="text-center pt-4 mt-4 border-top border-light border-opacity-25">
+      <p class="text-light mb-2">
+        © <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.
+      </p>
+      <small class="text-light opacity-75">
+        Hosted by <span>Rafi Wafi</span>
+      </small>
+    </div>
+  </div>
+</footer>
 
-  <script>
-    // Faculty Data (Removed bio field)
-    const facultyData = [
-      {
-        id: 1,
-        name: "ABDUL AZEEZ FAIZEE A",
-        designation: "PRINCIPAL",
-        phone: "9744247124",
-        img: "https://i.ibb.co/S77QvZ07/Whats-App-Image-2025-10-25-at-8-38-50-AM.jpg",
-        social: {
-          whatsapp: "https://wa.me/919744247124",
-          email: "mailto:principal@darunnajath.edu",
-          instagram: "https://www.instagram.com/suhail_kerala_",
-          facebook: "https://www.facebook.com/darunnajath"
-        }
-      },
-      {
-        id: 2,
-        name: "ABDUL HAQUE HAITHAMI MP",
-        designation: "VICE PRINCIPAL",
-        phone: "9495563866",
-        img: "https://i.ibb.co/G4GLjBy0/B.jpg",
-        social: {
-          whatsapp: "https://wa.me/919495563866",
-          email: "mailto:viceprincipal@darunnajath.edu"
-        }
-      },
-      {
-        id: 3,
-        name: "ABDULLA DARIMI K",
-        designation: "TEACHER",
-        phone: "7994174910",
-        img: "https://i.ibb.co/7x8Xp395/C.jpg",
-        social: {
-          whatsapp: "https://wa.me/917994174910"
-        }
-      },
-      {
-        id: 4,
-        name: "MUHAMMED RAFI WAFI P",
-        designation: "TEACHER",
-        phone: "9048020243",
-        img: "https://i.ibb.co/xtQf8Ggv/D.jpg",
-        social: {
-          whatsapp: "https://wa.me/919048020243",
-          email: "mailto:rafi@darunnajath.edu"
-        }
-      },
-      {
-        id: 5,
-        name: "MOIDEENKUTTY HUDAWI IK",
-        designation: "TEACHER",
-        phone: "9847488515",
-        img: "https://i.ibb.co/svJ7cHcb/E.jpg",
-        social: {
-          whatsapp: "https://wa.me/919847488515"
-        }
-      },
-      {
-        id: 6,
-        name: "SUHAIL MASTER CP",
-        designation: "TEACHER",
-        phone: "9048445593",
-        img: "https://i.ibb.co/hFcBvjrV/G.jpg",
-        social: {
-          whatsapp: "https://wa.me/919048445593",
-          email: "mailto:suhail@darunnajath.edu"
-        }
-      },
-      {
-        id: 7,
-        name: "SHIHABUDHEEN WAFI K",
-        designation: "TEACHER",
-        phone: "9746701124",
-        img: "https://i.ibb.co/BHhMG1fp/H.jpg",
-        social: {
-          whatsapp: "https://wa.me/919746701124"
-        }
-      },
-      {
-        id: 8,
-        name: "MUHAMMED SAEED FAIZEE V",
-        designation: "TEACHER",
-        phone: "9496480098",
-        img: "https://i.ibb.co/QFbcMSRq/J.jpg",
-        social: {
-          whatsapp: "https://wa.me/919496480098"
-        }
-      },
-      {
-        id: 9,
-        name: "SHOUKATHALI FAIZEE OP",
-        designation: "TEACHER",
-        phone: "9495138882",
-        img: "https://i.ibb.co/3KDdM1z/L.jpg",
-        social: {
-          whatsapp: "https://wa.me/919495138882"
-        }
-      },
-      {
-        id: 10,
-        name: "JUBAIR FAIZEE TK",
-        designation: "TEACHER",
-        phone: "8589861025",
-        img: "https://i.ibb.co/hJGgC1tF/M.jpg",
-        social: {
-          whatsapp: "https://wa.me/918589861025"
-        }
-      },
-      {
-        id: 11,
-        name: "MUHAMMED SHABEEN MASTER V",
-        designation: "TEACHER",
-        phone: "8113917591",
-        img: "https://i.ibb.co/SXppK2sJ/K.jpg",
-        social: {
-          whatsapp: "https://wa.me/918113917591"
-        }
-      },
-      {
-        id: 12,
-        name: "MUHAMMED IQBAL BUSTHANI TA",
-        designation: "TEACHER",
-        phone: "8547591123",
-        img: "https://i.ibb.co/My6PK1fz/F.jpg",
-        social: {
-          whatsapp: "https://wa.me/918547591123"
-        }
-      },
-      {
-        id: 13,
-        name: "HASHIM MUNEEB MASTER T",
-        designation: "TEACHER",
-        phone: "9496365330",
-        img: "https://i.ibb.co/d0KdS7CW/N.jpg",
-        social: {
-          whatsapp: "https://wa.me/919496365330"
-        }
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!"
+   class="whatsapp-float" target="_blank"
+   title="Chat with us on WhatsApp" aria-label="WhatsApp Chat">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+  // Faculty Data
+  const facultyData = [
+    {
+      id: 1,
+      name: "ABDUL AZEEZ FAIZEE A",
+      designation: "PRINCIPAL",
+      phone: "9744247124",
+      img: "https://i.ibb.co/S77QvZ07/Whats-App-Image-2025-10-25-at-8-38-50-AM.jpg",
+      social: {
+        whatsapp: "https://wa.me/919744247124",
+        email: "mailto:principal@darunnajath.edu",
+        instagram: "https://www.instagram.com/suhail_kerala_",
+        facebook: "https://www.facebook.com/darunnajath"
       }
-    ];
+    },
+    {
+      id: 2,
+      name: "ABDUL HAQUE HAITHAMI MP",
+      designation: "VICE PRINCIPAL",
+      phone: "9495563866",
+      img: "https://i.ibb.co/G4GLjBy0/B.jpg",
+      social: {
+        whatsapp: "https://wa.me/919495563866",
+        email: "mailto:viceprincipal@darunnajath.edu"
+      }
+    },
+    {
+      id: 3,
+      name: "ABDULLA DARIMI K",
+      designation: "TEACHER",
+      phone: "7994174910",
+      img: "https://i.ibb.co/7x8Xp395/C.jpg",
+      social: {
+        whatsapp: "https://wa.me/917994174910"
+      }
+    },
+    {
+      id: 4,
+      name: "MUHAMMED RAFI WAFI P",
+      designation: "TEACHER",
+      phone: "9048020243",
+      img: "https://i.ibb.co/xtQf8Ggv/D.jpg",
+      social: {
+        whatsapp: "https://wa.me/919048020243",
+        email: "mailto:rafi@darunnajath.edu"
+      }
+    },
+    {
+      id: 5,
+      name: "MOIDEENKUTTY HUDAWI IK",
+      designation: "TEACHER",
+      phone: "9847488515",
+      img: "https://i.ibb.co/svJ7cHcb/E.jpg",
+      social: {
+        whatsapp: "https://wa.me/919847488515"
+      }
+    },
+    {
+      id: 6,
+      name: "SUHAIL MASTER CP",
+      designation: "TEACHER",
+      phone: "9048445593",
+      img: "https://i.ibb.co/hFcBvjrV/G.jpg",
+      social: {
+        whatsapp: "https://wa.me/919048445593",
+        email: "mailto:suhail@darunnajath.edu"
+      }
+    },
+    {
+      id: 7,
+      name: "SHIHABUDHEEN WAFI K",
+      designation: "TEACHER",
+      phone: "9746701124",
+      img: "https://i.ibb.co/BHhMG1fp/H.jpg",
+      social: {
+        whatsapp: "https://wa.me/919746701124"
+      }
+    },
+    {
+      id: 8,
+      name: "MUHAMMED SAEED FAIZEE V",
+      designation: "TEACHER",
+      phone: "9496480098",
+      img: "https://i.ibb.co/QFbcMSRq/J.jpg",
+      social: {
+        whatsapp: "https://wa.me/919496480098"
+      }
+    },
+    {
+      id: 9,
+      name: "SHOUKATHALI FAIZEE OP",
+      designation: "TEACHER",
+      phone: "9495138882",
+      img: "https://i.ibb.co/3KDdM1z/L.jpg",
+      social: {
+        whatsapp: "https://wa.me/919495138882"
+      }
+    },
+    {
+      id: 10,
+      name: "JUBAIR FAIZEE TK",
+      designation: "TEACHER",
+      phone: "8589861025",
+      img: "https://i.ibb.co/hJGgC1tF/M.jpg",
+      social: {
+        whatsapp: "https://wa.me/918589861025"
+      }
+    },
+    {
+      id: 11,
+      name: "MUHAMMED SHABEEN MASTER V",
+      designation: "TEACHER",
+      phone: "8113917591",
+      img: "https://i.ibb.co/SXppK2sJ/K.jpg",
+      social: {
+        whatsapp: "https://wa.me/918113917591"
+      }
+    },
+    {
+      id: 12,
+      name: "MUHAMMED IQBAL BUSTHANI TA",
+      designation: "TEACHER",
+      phone: "8547591123",
+      img: "https://i.ibb.co/My6PK1fz/F.jpg",
+      social: {
+        whatsapp: "https://wa.me/918547591123"
+      }
+    },
+    {
+      id: 13,
+      name: "HASHIM MUNEEB MASTER T",
+      designation: "TEACHER",
+      phone: "9496365330",
+      img: "https://i.ibb.co/d0KdS7CW/N.jpg",
+      social: {
+        whatsapp: "https://wa.me/919496365330"
+      }
+    }
+  ];
 
-    // DOM Elements
-    const teacherGrid = document.getElementById('teacherGrid');
-    const searchInput = document.getElementById('searchInput');
+  // Render faculty cards
+  function renderFaculty(teachers = facultyData) {
+    const grid = document.getElementById('facultyGrid');
     const noResults = document.getElementById('noResults');
-
-    // Render teacher cards with social media links
-    function renderTeachers(teachers = facultyData) {
-      teacherGrid.innerHTML = '';
-      noResults.style.display = 'none';
+    
+    grid.innerHTML = '';
+    noResults.style.display = 'none';
+    
+    if (teachers.length === 0) {
+      noResults.style.display = 'block';
+      return;
+    }
+    
+    teachers.forEach((teacher, index) => {
+      let socialIconsHTML = '';
       
-      if (teachers.length === 0) {
-        noResults.style.display = 'block';
-        return;
+      // Generate social icons
+      if (teacher.social.whatsapp) {
+        socialIconsHTML += `<a href="${teacher.social.whatsapp}" class="whatsapp" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>`;
+      }
+      if (teacher.social.email) {
+        socialIconsHTML += `<a href="${teacher.social.email}" class="email" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>`;
+      }
+      if (teacher.social.instagram) {
+        socialIconsHTML += `<a href="${teacher.social.instagram}" class="instagram" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>`;
+      }
+      if (teacher.social.facebook) {
+        socialIconsHTML += `<a href="${teacher.social.facebook}" class="facebook" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>`;
+      }
+      if (teacher.social.x) {
+        socialIconsHTML += `<a href="${teacher.social.x}" class="x" target="_blank" title="X/Twitter"><i class="fab fa-twitter"></i></a>`;
+      }
+      if (teacher.social.telegram) {
+        socialIconsHTML += `<a href="${teacher.social.telegram}" class="telegram" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>`;
       }
       
-      teachers.forEach(teacher => {
-        const card = document.createElement('div');
-        card.className = 'teacher-card';
-        card.dataset.id = teacher.id;
-        
-        // Generate social icons HTML
-        let socialIconsHTML = '';
-        
-        if (teacher.social.whatsapp) {
-          socialIconsHTML += `
-            <a href="${teacher.social.whatsapp}" class="whatsapp" target="_blank">
-              <i class="bi bi-whatsapp"></i>
-            </a>
-          `;
-        }
-        
-        if (teacher.social.email) {
-          socialIconsHTML += `
-            <a href="${teacher.social.email}" class="email" target="_blank">
-              <i class="bi bi-envelope-fill"></i>
-            </a>
-          `;
-        }
-        
-        if (teacher.social.instagram) {
-          socialIconsHTML += `
-            <a href="${teacher.social.instagram}" class="instagram" target="_blank">
-              <i class="bi bi-instagram"></i>
-            </a>
-          `;
-        }
-        
-        if (teacher.social.facebook) {
-          socialIconsHTML += `
-            <a href="${teacher.social.facebook}" class="facebook" target="_blank">
-              <i class="bi bi-facebook"></i>
-            </a>
-          `;
-        }
-        
-        if (teacher.social.x) {
-          socialIconsHTML += `
-            <a href="${teacher.social.x}" class="x" target="_blank">
-              <i class="bi bi-twitter-x"></i>
-            </a>
-          `;
-        }
-        
-        if (teacher.social.telegram) {
-          socialIconsHTML += `
-            <a href="${teacher.social.telegram}" class="telegram" target="_blank">
-              <i class="bi bi-telegram"></i>
-            </a>
-          `;
-        }
-        
-        card.innerHTML = `
-          <div class="serial">${teacher.id}</div>
-          <img src="${teacher.img}" alt="${teacher.name}" class="profile-img" onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
-          <h4>${teacher.name}</h4>
-          <div class="designation">${teacher.designation}</div>
-          <div class="phone">📞 ${teacher.phone}</div>
-          
-          ${socialIconsHTML ? `
-            <div class="social-icons-front">
-              ${socialIconsHTML}
-            </div>
-          ` : ''}
-          
-          <div class="contact-info">
-            <a href="tel:${teacher.phone}" class="phone-link">
-              <i class="bi bi-telephone"></i> Call
-            </a>
-            ${teacher.social.whatsapp ? `
-              <a href="${teacher.social.whatsapp}" class="whatsapp-link" target="_blank">
-                <i class="bi bi-whatsapp"></i> WhatsApp
-              </a>
+      const cardHTML = `
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="${index * 50}">
+          <div class="faculty-card p-4 text-center h-100">
+            <div class="serial">${teacher.id}</div>
+            <img src="${teacher.img}" alt="${teacher.name}" class="profile-img" 
+                 onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
+            <h4>${teacher.name}</h4>
+            <div class="designation">${teacher.designation}</div>
+            <div class="phone"><i class="fas fa-phone me-2"></i>${teacher.phone}</div>
+            
+            ${socialIconsHTML ? `
+              <div class="faculty-social-icons">
+                ${socialIconsHTML}
+              </div>
             ` : ''}
+            
+            <div class="mt-3">
+              <a href="tel:${teacher.phone}" class="btn btn-sm btn-outline-gold me-2">
+                <i class="fas fa-phone"></i> Call
+              </a>
+              ${teacher.social.whatsapp ? `
+                <a href="${teacher.social.whatsapp}" class="btn btn-sm btn-gold" target="_blank">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+              ` : ''}
+            </div>
           </div>
-        `;
-        
-        teacherGrid.appendChild(card);
+        </div>
+      `;
+      
+      grid.innerHTML += cardHTML;
+    });
+  }
+
+  // Search functionality
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase().trim();
+    
+    if (!searchTerm) {
+      renderFaculty();
+      return;
+    }
+    
+    const filtered = facultyData.filter(teacher => 
+      teacher.name.toLowerCase().includes(searchTerm) ||
+      teacher.designation.toLowerCase().includes(searchTerm) ||
+      teacher.phone.includes(searchTerm)
+    );
+    
+    renderFaculty(filtered);
+  });
+
+  // Initialize AOS
+  AOS.init({
+    duration: 800,
+    once: true,
+    offset: 50,
+    disable: window.innerWidth < 768
+  });
+
+  // Update current year
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar-optimized');
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    navbar.classList.toggle('scrolled', scrollTop > 50);
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      if(this.getAttribute('href') !== '#') {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offset = window.innerWidth <= 768 ? 70 : 80;
+          window.scrollTo({
+            top: target.offsetTop - offset,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu if open
+          const navbarCollapse = document.querySelector('.navbar-collapse');
+          if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+            bsCollapse.hide();
+          }
+        }
+      }
+    });
+  });
+
+  // Mobile menu close on click
+  document.querySelectorAll('.navbar-nav .nav-link-optimized:not(.dropdown-toggle)').forEach(link => {
+    link.addEventListener('click', () => {
+      const navbarCollapse = document.querySelector('.navbar-collapse');
+      if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+        const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+        bsCollapse.hide();
+      }
+    });
+  });
+
+  // Parallax effect for floating ornaments
+  window.addEventListener('scroll', () => {
+    if (window.innerWidth > 768) {
+      const scrolled = window.pageYOffset;
+      const ornaments = document.querySelectorAll('.islamic-ornament');
+ 
+      ornaments.forEach((ornament, index) => {
+        const speed = 0.05 * (index + 1);
+        ornament.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.05}deg)`;
       });
     }
+  });
 
-    // Search functionality
-    searchInput.addEventListener('input', function() {
-      const searchTerm = this.value.toLowerCase().trim();
-      
-      if (searchTerm === '') {
-        renderTeachers();
-        return;
-      }
-      
-      const filteredTeachers = facultyData.filter(teacher => 
-        teacher.name.toLowerCase().includes(searchTerm) ||
-        teacher.designation.toLowerCase().includes(searchTerm) ||
-        teacher.phone.includes(searchTerm)
-      );
-      
-      renderTeachers(filteredTeachers);
-    });
-
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function() {
-      renderTeachers();
-      
-      // Add animation to cards
-      const cards = document.querySelectorAll('.teacher-card');
-      cards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.1}s`;
-      });
-    });
-  </script>
+  // Initial render
+  document.addEventListener('DOMContentLoaded', function() {
+    renderFaculty();
+    
+    // Fade in effect
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.3s ease';
+    setTimeout(() => {
+      document.body.style.opacity = '1';
+    }, 50);
+  });
+</script>
 </body>
 </html>
-
-
-
-
