@@ -1,37 +1,186 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DSAC | Downloads</title>
+
+  <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- STANDARD CSS -->
   <style>
+    /* ===== CSS VARIABLES ===== */
     :root {
-      --primary-blue: #0b5ed7;
-      --dark-blue: #11468f;
-      --accent-yellow: #f3c13a;
-      --light-bg: #f9fafc;
-      --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-      --card-shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.15);
+      --islamic-green: #0a5c36;
+      --islamic-gold: #c19a3f;
+      --islamic-cream: #f8f3e6;
+      --islamic-light: #e9f5e9;
+      --dark-green: #064e3b;
+      --light-gold: #ffd24d;
+      --transition: all 0.3s ease;
     }
 
+    /* ===== BASE STYLES ===== */
     body {
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--light-bg);
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--islamic-cream);
       color: #333;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      padding-top: 130px;
+    }
+    
+    a {
+      text-decoration: none;
     }
 
-    /* Header Styles */
-    .page-header {
-      background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+    .arabic-font {
+      font-family: 'Scheherazade New', serif;
+    }
+
+    .malayalam-font {
+      font-family: 'Anek Malayalam', sans-serif;
+    }
+
+    /* ===== PATTERN BACKGROUND ===== */
+    .pattern-bg {
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px),
+        radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px);
+      background-size: 50px 50px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    /* ===== STANDARD NAVBAR ===== */
+    .navbar-optimized {
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
+      border-bottom: 3px solid var(--islamic-gold);
+      transition: var(--transition);
+      padding: 0.5rem 0;
+      height: 80px;
+      z-index: 1030 !important;
+    }
+    
+    .navbar-toggler {
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .navbar-toggler:focus {
+      box-shadow: 0 0 0 2px var(--islamic-gold);
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .navbar-optimized.scrolled {
+      background: rgba(10, 92, 54, 0.98);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      height: 70px;
+    }
+
+    /* LOGO */
+    .navbar-brand-compact img {
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      border: none;
+      box-shadow: 0 0 0 2px var(--islamic-gold);
+      padding: 0;
+    }
+
+    .navbar-optimized.scrolled .navbar-brand-compact img {
+      width: 50px;
+      height: 50px;
+      filter: brightness(0) invert(1);
+      box-shadow: 0 0 0 2px var(--islamic-gold);
+    }
+
+    .navbar-brand-compact:hover img {
+      transform: scale(1.05);
+    }
+
+    .brand-text {
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }
+
+    .brand-subtext {
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+
+    .nav-link-optimized {
+      color: #fff !important;
+      font-weight: 500;
+      transition: var(--transition);
+      padding-left: 0.4rem;
+      padding-right: 0.4rem;
+      border-radius: 5px;
+      margin: 0 2px;
+      white-space: nowrap;
+    }
+    
+    .nav-item-optimized {
+      margin: 0 2px;
+    }
+
+    .nav-link-optimized:hover {
+      color: var(--islamic-gold) !important;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Navbar dropdown */
+    .dropdown-menu-optimized {
+      background: var(--islamic-green);
+      border: 1px solid var(--islamic-gold);
+      border-radius: 8px;
+      padding: 0.5rem 0;
+    }
+
+    .dropdown-item-optimized {
       color: white;
-      padding: 80px 0 60px;
+      padding: 0.5rem 1rem;
+      transition: var(--transition);
+    }
+
+    .dropdown-item-optimized:hover {
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
+    }
+
+    /* ===== STANDARD PAGE HEADER ===== */
+    .page-header {
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
+      color: white;
+      padding: 4rem 0;
       text-align: center;
+      margin-bottom: 3rem;
+      border-bottom: 5px solid var(--islamic-gold);
       position: relative;
       overflow: hidden;
     }
-
+    
     .page-header::before {
       content: '';
       position: absolute;
@@ -39,318 +188,551 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
-      background-size: cover;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
     }
-
-    .page-header h1 {
+    
+    .page-header-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .page-title {
+      font-family: 'Scheherazade New', serif;
+      font-size: 3.5rem;
       font-weight: 700;
-      font-size: 3rem;
       margin-bottom: 1rem;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      color: var(--islamic-gold);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .page-subtitle {
+      font-size: 1.4rem;
+      opacity: 0.95;
+      max-width: 800px;
+      margin: 0 auto;
+      color: var(--islamic-cream);
     }
 
-    .page-header .lead {
-      font-size: 1.2rem;
-      opacity: 0.9;
+    /* ===== STANDARD CONTENT SECTION ===== */
+    .content-section {
+      padding: 4rem 0;
+      background: var(--islamic-cream);
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    .section-title {
+      color: var(--islamic-green);
+      font-weight: 700;
+      display: inline-block;
+      padding: 0 1rem;
+      background: var(--islamic-cream);
+      position: relative;
+      z-index: 2;
+      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+    }
+
+    .section-header::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent);
+      z-index: 1;
+    }
+    
+    .section-subtitle {
+      color: #666;
+      font-size: 1.1rem;
       max-width: 700px;
       margin: 0 auto;
     }
 
-    /* Card Styles */
-    .download-card {
+    /* ===== STANDARD BUTTONS ===== */
+    .btn-gold {
+      background: linear-gradient(135deg, var(--islamic-gold), #d4af37);
       border: none;
-      border-radius: 16px;
-      box-shadow: var(--card-shadow);
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      height: 100%;
+      color: var(--islamic-green);
+      font-weight: 600;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3);
+      transition: var(--transition);
+      padding: 0.75rem 1.5rem;
+    }
+
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #d4af37, var(--islamic-gold));
+      box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4);
+      transform: translateY(-2px);
+      color: var(--islamic-green);
+    }
+
+    .btn-outline-gold {
+      border: 2px solid var(--islamic-gold);
+      color: var(--islamic-gold);
+      background: transparent;
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .btn-outline-gold:hover {
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
+    }
+
+    /* ===== DOWNLOADS SPECIFIC STYLES ===== */
+    .download-card {
       background: white;
+      border-radius: 15px;
       overflow: hidden;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      height: 100%;
+      position: relative;
     }
 
     .download-card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--card-shadow-hover);
-    }
-
-    .download-card .card-body {
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      transform: translateY(-8px);
+      border-color: var(--islamic-gold);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
     }
 
     .download-icon-wrapper {
       width: 80px;
       height: 80px;
-      background: linear-gradient(135deg, rgba(11, 94, 215, 0.1), rgba(17, 70, 143, 0.05));
+      background: linear-gradient(135deg, rgba(10, 92, 54, 0.1), rgba(193, 154, 63, 0.05));
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1.5rem;
+      margin: 0 auto 1.5rem;
     }
 
     .download-icon {
       font-size: 2.5rem;
-      color: var(--primary-blue);
+      color: var(--islamic-green);
     }
 
-    .download-card h5 {
-      color: var(--dark-blue);
-      font-weight: 600;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-
-    .download-card p {
-      color: #666;
-      text-align: center;
-      line-height: 1.5;
-      margin-bottom: 1.5rem;
-    }
-
-    /* Button Styles */
-    .btn-download {
-      background: linear-gradient(135deg, var(--accent-yellow), #e0ae33);
-      color: #333;
-      font-weight: 600;
-      border: none;
-      border-radius: 50px;
-      padding: 10px 25px;
-      transition: all 0.3s ease;
-      min-width: 140px;
-    }
-
-    .btn-download:hover {
-      background: linear-gradient(135deg, #e0ae33, var(--accent-yellow));
-      transform: scale(1.05);
-      color: #333;
-      box-shadow: 0 5px 15px rgba(243, 193, 58, 0.4);
-    }
-
-    .btn-download.loading {
-      position: relative;
-      color: transparent;
-      pointer-events: none;
-    }
-
-    .btn-download.loading::after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border: 3px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top-color: white;
-      animation: spin 1s linear infinite;
-      left: calc(50% - 10px);
-      top: calc(50% - 10px);
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* File Info */
     .file-info {
-      background: #f8f9fa;
+      background: rgba(10, 92, 54, 0.05);
       border-radius: 10px;
-      padding: 0.75rem;
-      margin: 1rem 0;
-      width: 100%;
+      padding: 1rem;
+      margin: 1.5rem 0;
       font-size: 0.9rem;
     }
 
     .file-info i {
-      color: var(--primary-blue);
+      color: var(--islamic-gold);
       margin-right: 5px;
     }
 
-    /* Filter Section */
-    .filters-section {
+    .search-box {
       background: white;
-      border-bottom: 1px solid #eee;
-      padding: 2rem 0;
-    }
-
-    .input-group {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border: 2px solid var(--islamic-gold);
       border-radius: 50px;
-      overflow: hidden;
+      padding: 0.75rem 1.5rem;
+      transition: var(--transition);
     }
 
-    .input-group-text {
+    .search-box:focus-within {
+      box-shadow: 0 0 20px rgba(193, 154, 63, 0.3);
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      width: 100%;
+      background: transparent;
+    }
+
+    .category-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin: 0.25rem;
+    }
+
+    .badge-forms { background: rgba(10, 92, 54, 0.1); color: var(--islamic-green); }
+    .badge-applications { background: rgba(193, 154, 63, 0.1); color: var(--islamic-gold); }
+    .badge-documents { background: rgba(102, 16, 242, 0.1); color: #6610f2; }
+
+    .stats-card {
       background: white;
-      border: none;
-      padding-left: 1.5rem;
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     }
 
-    .form-control {
-      border: none;
-      padding: 0.75rem 1rem;
+    .stats-card:hover {
+      border-color: var(--islamic-gold);
+      transform: translateY(-5px);
     }
 
-    .form-control:focus {
-      box-shadow: none;
+    .stats-number {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--islamic-green);
     }
 
-    #searchButton {
-      border-radius: 0 50px 50px 0;
-      padding: 0.75rem 2rem;
-      background: var(--primary-blue);
+    .loader {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid var(--islamic-green);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* ===== STANDARD FOOTER ===== */
+    .footer {
+      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
+      border-top: 3px solid var(--islamic-gold);
+      padding: 3rem 0 1.5rem;
       color: white;
-      border: none;
     }
 
-    #searchButton:hover {
-      background: var(--dark-blue);
+    .footer-brand {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--islamic-gold);
+      margin-bottom: 1rem;
     }
 
-    .form-select {
-      border-radius: 50px;
-      padding: 0.75rem 2rem 0.75rem 1.5rem;
-      border: 2px solid #e0e0e0;
-      transition: all 0.3s ease;
-    }
-
-    .form-select:focus {
-      border-color: var(--primary-blue);
-      box-shadow: 0 0 0 0.25rem rgba(11, 94, 215, 0.25);
-    }
-
-    /* Alert */
-    .info-alert {
-      background: linear-gradient(135deg, rgba(23, 162, 184, 0.1), rgba(23, 162, 184, 0.05));
-      border: none;
-      border-radius: 12px;
-      border-left: 4px solid var(--primary-blue);
-    }
-
-    /* No Results */
-    .no-results {
-      min-height: 300px;
+    .social-links {
       display: flex;
-      flex-direction: column;
+      gap: 12px;
+      margin-top: 1rem;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    .no-results i {
-      font-size: 5rem;
-      color: #ddd;
-      margin-bottom: 1.5rem;
-    }
-
-    /* Counter */
-    .download-counter {
-      background: white;
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      border: 1px solid #e0e0e0;
-    }
-
-    /* Footer */
-    .main-footer {
-      background: linear-gradient(135deg, var(--dark-blue), #0a3d75);
       color: white;
-      padding: 3rem 0 2rem;
-      margin-top: 4rem;
+      text-decoration: none;
+      transition: var(--transition);
+      background: rgba(255, 255, 255, 0.1);
+      font-size: 1.1rem;
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .page-header {
-        padding: 60px 0 40px;
-      }
+    .social-icon:hover {
+      transform: translateY(-5px);
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
+    }
 
-      .page-header h1 {
+    .footer-links h5 {
+      color: var(--islamic-gold);
+      margin-bottom: 1.2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .footer-links a {
+      display: block;
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      margin-bottom: 0.6rem;
+      transition: var(--transition);
+      font-size: 0.95rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--islamic-gold);
+      padding-left: 5px;
+    }
+
+    /* ===== WHATSAPP BUTTON ===== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 15px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+      z-index: 1000;
+      animation: float 3s ease-in-out infinite;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1) rotate(10deg);
+      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ===== ISLAMIC ORNAMENTS ===== */
+    .islamic-ornament {
+      position: fixed;
+      color: var(--islamic-gold);
+      opacity: 0.08;
+      font-size: 1.8rem;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .ornament-1 {
+      top: 20%;
+      left: 5%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .ornament-2 {
+      top: 60%;
+      right: 5%;
+      animation: float 8s ease-in-out infinite reverse;
+    }
+
+    .ornament-3 {
+      bottom: 20%;
+      left: 10%;
+      animation: float 7s ease-in-out infinite;
+    }
+
+    /* ===== MOBILE RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 110px !important;
+      }
+      
+      .navbar-optimized {
+        height: 70px;
+        padding: 0.3rem 0;
+      }
+      
+      .page-header {
+        padding: 2.5rem 0;
+      }
+      
+      .page-title {
         font-size: 2.2rem;
       }
-
-      .download-card .card-body {
-        padding: 1.5rem;
+      
+      .page-subtitle {
+        font-size: 1.1rem;
       }
-
+      
+      .content-section {
+        padding: 2.5rem 0;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .navbar-collapse {
+        background: var(--dark-green);
+        padding: 1rem;
+        border-radius: 0 0 10px 10px;
+        border: 1px solid var(--islamic-gold);
+        margin-top: 0px;
+        max-height: 70vh;
+        overflow-y: auto;
+      }
+      
       .download-icon-wrapper {
         width: 70px;
         height: 70px;
       }
-
+      
       .download-icon {
         font-size: 2rem;
+      }
+      
+      .stats-number {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .page-title {
+        font-size: 1.8rem;
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-sm">
-    <div class="container">
-      <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
-        <i class="bi bi-building me-2"></i>
-        DSAC
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i> Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="forms.html"><i class="bi bi-file-earmark-text me-1"></i> Forms</a></li>
-          <li class="nav-item"><a class="nav-link active" href="downloads.html"><i class="bi bi-download me-1"></i> Downloads</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-telephone me-1"></i> Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<!-- Floating Islamic Ornaments -->
+<div class="islamic-ornament ornament-1">✸</div>
+<div class="islamic-ornament ornament-2">✸</div>
+<div class="islamic-ornament ornament-3">✸</div>
 
-  <!-- HEADER -->
-  <header class="page-header">
-    <div class="container position-relative">
-      <h1 class="fw-bold">Downloads Center</h1>
-      <p class="lead">Access all important forms, applications, and documents in one place</p>
+<!-- STANDARD NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-optimized fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center navbar-brand-compact" href="index.html">
+      <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="DSAC Logo" class="me-2">
+      <div class="d-flex flex-column">
+        <span class="text-white fw-bold brand-text">DSAC</span>
+        <small class="text-light brand-subtext">Karuvarakundu</small>
+      </div>
+    </a>
+ 
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
+            aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+ 
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ms-auto nav-container">
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="index.html">Home</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="founder.html">Founder</a>
+        </li>
+     
+        <!-- Board Dropdown -->
+        <li class="nav-item dropdown nav-item-optimized">
+          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" 
+             aria-haspopup="true" aria-expanded="false">
+            Board
+          </a>
+          <ul class="dropdown-menu dropdown-menu-optimized">
+            <li><a class="dropdown-item dropdown-item-optimized" href="management.html">Management</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="faculties.html">Faculty</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="maintenance.html">PTA</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="alumni.html">Alumni</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="students-union.html">Students Union</a></li>
+          </ul>
+        </li>
+     
+        <!-- Student Zone Dropdown -->
+        <li class="nav-item dropdown nav-item-optimized">
+          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            Student Zone
+          </a>
+          <ul class="dropdown-menu dropdown-menu-optimized">
+            <li><a class="dropdown-item dropdown-item-optimized" href="idcard.html">ID Card</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="result.html">Exam Results</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="fest.html">Fest Score</a></li>
+          </ul>
+        </li>
+     
+        <!-- Other Items -->
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="https://jamianooriya.in/">Jamia</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized active" href="downloads.html">Downloads</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="gallery.html">Gallery</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="library.html">Library</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="admission.html">Admission</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="test.html">Test</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="contact.html">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="container">
+    <div class="page-header-content">
+      <h1 class="page-title">Downloads Center</h1>
+      <p class="page-subtitle">Access all important forms, applications, and documents in one place</p>
       <div class="mt-4">
-        <span class="badge bg-light text-primary me-2 p-2">PDF Files</span>
-        <span class="badge bg-light text-primary me-2 p-2">Applications</span>
-        <span class="badge bg-light text-primary p-2">Official Documents</span>
+        <span class="badge badge-forms category-badge">PDF Files</span>
+        <span class="badge badge-applications category-badge">Applications</span>
+        <span class="badge badge-documents category-badge">Official Documents</span>
       </div>
     </div>
-  </header>
+  </div>
+</div>
 
-  <!-- SEARCH AND FILTER SECTION -->
-  <section class="filters-section">
-    <div class="container">
-      <div class="row align-items-center mb-4">
-        <div class="col-md-6 mb-3 mb-md-0">
+<!-- MAIN CONTENT -->
+<section class="content-section">
+  <div class="container">
+    <!-- Search and Filter Section -->
+    <div class="row mb-5" data-aos="fade-up">
+      <div class="col-lg-8 mb-3 mb-lg-0">
+        <div class="search-box">
           <div class="input-group">
-            <span class="input-group-text bg-white">
-              <i class="bi bi-search"></i>
+            <span class="input-group-text bg-white border-0">
+              <i class="fas fa-search" style="color: var(--islamic-gold);"></i>
             </span>
-            <input type="text" class="form-control" placeholder="Search for documents, forms, or files..." id="searchInput">
-            <button class="btn btn-primary" type="button" id="searchButton">
+            <input type="text" class="form-control border-0" id="searchInput" placeholder="Search for documents, forms, or files...">
+            <button class="btn-gold border-0" type="button" id="searchButton">
               Search
             </button>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="d-flex justify-content-md-end align-items-center">
-            <label class="me-2 d-none d-md-block">Filter by:</label>
-            <select class="form-select w-auto" id="categoryFilter">
-              <option value="all">All Categories</option>
-              <option value="forms">Forms</option>
-              <option value="applications">Applications</option>
-            </select>
-          </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="d-flex align-items-center h-100">
+          <label class="me-3 d-none d-lg-block" style="color: var(--islamic-green);">Filter by:</label>
+          <select class="form-select border-2" id="categoryFilter" style="border-color: var(--islamic-gold); border-radius: 8px;">
+            <option value="all">All Categories</option>
+            <option value="forms">Forms</option>
+            <option value="applications">Applications</option>
+            <option value="documents">Documents</option>
+          </select>
         </div>
       </div>
-      
-      <div class="row">
-        <div class="col-12">
-          <div class="alert info-alert d-flex align-items-center" role="alert">
-            <i class="bi bi-info-circle-fill fs-4 text-primary me-3"></i>
+    </div>
+    
+    <!-- Info Alert -->
+    <div class="row mb-5" data-aos="fade-up" data-aos-delay="100">
+      <div class="col-12">
+        <div class="alert" style="background: rgba(10, 92, 54, 0.1); border-left: 4px solid var(--islamic-gold); border-radius: 8px;">
+          <div class="d-flex align-items-center">
+            <i class="fas fa-info-circle fs-4 me-3" style="color: var(--islamic-green);"></i>
             <div>
               <strong>Note:</strong> Click the download button to get the file. All files open in a new window for your convenience.
             </div>
@@ -358,231 +740,435 @@
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- DOWNLOADS SECTION -->
-  <section class="py-5">
-    <div class="container">
-      <div class="row g-4" id="downloadsContainer">
-        <!-- Card 1: Application Form -->
-        <div class="col-md-6 col-lg-4 download-item" data-category="applications" data-name="application form">
-          <div class="download-card">
-            <div class="card-body">
-              <div class="download-icon-wrapper">
-                <i class="bi bi-file-earmark-text-fill download-icon"></i>
-              </div>
-              <h5 class="fw-bold">Application Form</h5>
-              <p>Complete application form for new admissions to Darunnajath Shareeath and Arts College.</p>
-              <div class="file-info">
-                <div class="d-flex justify-content-between">
-                  <span><i class="bi bi-filetype-pdf"></i> PDF Format</span>
-                  <span><i class="bi bi-download"></i> 121 KB</span>
-                </div>
-                <div class="text-center mt-2">
-                  <small class="text-muted"><i class="bi bi-calendar-check"></i> Updated: January 2026</small>
-                </div>
-              </div>
-              <a href="https://crimson-night-427.linkyhost.com/" 
-                 class="btn btn-download mt-2" 
-                 download="DSAC_Application_Form.pdf"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                <i class="bi bi-download me-2"></i>Download Form
-              </a>
+    <!-- Downloads Grid -->
+    <div class="row g-4" id="downloadsContainer" data-aos="fade-up" data-aos-delay="200">
+      <!-- Card 1: Application Form -->
+      <div class="col-md-6 col-lg-4 download-item" data-category="applications" data-name="application form">
+        <div class="download-card h-100">
+          <div class="p-4 text-center">
+            <div class="download-icon-wrapper">
+              <i class="fas fa-file-alt download-icon"></i>
             </div>
-          </div>
-        </div>
-
-        <!-- Placeholder for future downloads -->
-        <div class="col-md-6 col-lg-4">
-          <div class="download-card border-dashed" style="border: 2px dashed #dee2e6; background: transparent; box-shadow: none;">
-            <div class="card-body d-flex flex-column align-items-center justify-content-center" style="min-height: 350px;">
-              <div class="download-icon-wrapper mb-3" style="background: rgba(0,0,0,0.05);">
-                <i class="bi bi-plus-lg download-icon" style="color: #6c757d;"></i>
+            <h5 class="fw-bold mb-3" style="color: var(--islamic-green);">Application Form</h5>
+            <p class="text-muted mb-4">Complete application form for new admissions to Darunnajath Shareeath and Arts College.</p>
+            
+            <div class="file-info">
+              <div class="d-flex justify-content-between mb-2">
+                <span><i class="fas fa-file-pdf me-1"></i>PDF Format</span>
+                <span><i class="fas fa-download me-1"></i>121 KB</span>
               </div>
-              <h5 class="text-muted mb-3">More Downloads Coming Soon</h5>
-              <p class="text-center text-muted">We're preparing additional forms and documents for you.</p>
+              <div class="text-center">
+                <small class="text-muted"><i class="fas fa-calendar-alt me-1"></i>Updated: January 2026</small>
+              </div>
             </div>
+            
+            <a href="https://crimson-night-427.linkyhost.com/" 
+               class="btn-gold mt-2 w-100" 
+               download="DSAC_Application_Form.pdf"
+               target="_blank"
+               rel="noopener noreferrer">
+              <i class="fas fa-download me-2"></i>Download Form
+            </a>
           </div>
         </div>
       </div>
 
-      <!-- No Results Message -->
-      <div class="row mt-5 d-none" id="noResults">
-        <div class="col-12">
-          <div class="no-results">
-            <i class="bi bi-file-earmark-x"></i>
-            <h4 class="mb-3">No matching downloads found</h4>
-            <p class="text-muted mb-4">Try adjusting your search terms or select a different category</p>
-            <button class="btn btn-outline-primary" id="resetFilters">
-              <i class="bi bi-arrow-clockwise me-2"></i>Reset All Filters
+      <!-- Card 2: Admission Brochure -->
+      <div class="col-md-6 col-lg-4 download-item" data-category="documents" data-name="admission brochure">
+        <div class="download-card h-100">
+          <div class="p-4 text-center">
+            <div class="download-icon-wrapper">
+              <i class="fas fa-book download-icon"></i>
+            </div>
+            <h5 class="fw-bold mb-3" style="color: var(--islamic-green);">Admission Brochure</h5>
+            <p class="text-muted mb-4">Detailed information about courses, facilities, and admission process for the academic year 2026-27.</p>
+            
+            <div class="file-info">
+              <div class="d-flex justify-content-between mb-2">
+                <span><i class="fas fa-file-pdf me-1"></i>PDF Format</span>
+                <span><i class="fas fa-download me-1"></i>2.4 MB</span>
+              </div>
+              <div class="text-center">
+                <small class="text-muted"><i class="fas fa-calendar-alt me-1"></i>Updated: December 2025</small>
+              </div>
+            </div>
+            
+            <button class="btn-outline-gold mt-2 w-100" onclick="showComingSoon('Admission Brochure')">
+              <i class="fas fa-download me-2"></i>Coming Soon
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Download Counter -->
-      <div class="row mt-5">
-        <div class="col-12">
-          <div class="download-counter">
-            <div class="row align-items-center">
-              <div class="col-md-8">
-                <h5 class="mb-2"><i class="bi bi-graph-up me-2"></i>Download Statistics</h5>
-                <p class="text-muted mb-0">Track how many files have been downloaded in this session</p>
+      <!-- Card 3: Fee Structure -->
+      <div class="col-md-6 col-lg-4 download-item" data-category="documents" data-name="fee structure">
+        <div class="download-card h-100">
+          <div class="p-4 text-center">
+            <div class="download-icon-wrapper">
+              <i class="fas fa-money-bill-wave download-icon"></i>
+            </div>
+            <h5 class="fw-bold mb-3" style="color: var(--islamic-green);">Fee Structure</h5>
+            <p class="text-muted mb-4">Complete fee details for all courses including tuition, hostel, and other charges for 2026-27.</p>
+            
+            <div class="file-info">
+              <div class="d-flex justify-content-between mb-2">
+                <span><i class="fas fa-file-pdf me-1"></i>PDF Format</span>
+                <span><i class="fas fa-download me-1"></i>890 KB</span>
               </div>
-              <div class="col-md-4 text-md-end">
-                <div class="display-6 fw-bold text-primary" id="totalDownloads">0</div>
-                <small class="text-muted">Total Downloads</small>
+              <div class="text-center">
+                <small class="text-muted"><i class="fas fa-calendar-alt me-1"></i>Updated: November 2025</small>
               </div>
+            </div>
+            
+            <button class="btn-outline-gold mt-2 w-100" onclick="showComingSoon('Fee Structure')">
+              <i class="fas fa-download me-2"></i>Coming Soon
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Scholarship Form -->
+      <div class="col-md-6 col-lg-4 download-item" data-category="forms" data-name="scholarship form">
+        <div class="download-card h-100">
+          <div class="p-4 text-center">
+            <div class="download-icon-wrapper">
+              <i class="fas fa-award download-icon"></i>
+            </div>
+            <h5 class="fw-bold mb-3" style="color: var(--islamic-green);">Scholarship Form</h5>
+            <p class="text-muted mb-4">Application form for various scholarship programs available for meritorious students.</p>
+            
+            <div class="file-info">
+              <div class="d-flex justify-content-between mb-2">
+                <span><i class="fas fa-file-pdf me-1"></i>PDF Format</span>
+                <span><i class="fas fa-download me-1"></i>350 KB</span>
+              </div>
+              <div class="text-center">
+                <small class="text-muted"><i class="fas fa-calendar-alt me-1"></i>Updated: October 2025</small>
+              </div>
+            </div>
+            
+            <button class="btn-outline-gold mt-2 w-100" onclick="showComingSoon('Scholarship Form')">
+              <i class="fas fa-download me-2"></i>Coming Soon
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Hostel Application -->
+      <div class="col-md-6 col-lg-4 download-item" data-category="applications" data-name="hostel application">
+        <div class="download-card h-100">
+          <div class="p-4 text-center">
+            <div class="download-icon-wrapper">
+              <i class="fas fa-bed download-icon"></i>
+            </div>
+            <h5 class="fw-bold mb-3" style="color: var(--islamic-green);">Hostel Application</h5>
+            <p class="text-muted mb-4">Application form for hostel accommodation with rules and regulations.</p>
+            
+            <div class="file-info">
+              <div class="d-flex justify-content-between mb-2">
+                <span><i class="fas fa-file-pdf me-1"></i>PDF Format</span>
+                <span><i class="fas fa-download me-1"></i>560 KB</span>
+              </div>
+              <div class="text-center">
+                <small class="text-muted"><i class="fas fa-calendar-alt me-1"></i>Updated: September 2025</small>
+              </div>
+            </div>
+            
+            <button class="btn-outline-gold mt-2 w-100" onclick="showComingSoon('Hostel Application')">
+              <i class="fas fa-download me-2"></i>Coming Soon
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: More Coming Soon -->
+      <div class="col-md-6 col-lg-4">
+        <div class="download-card h-100" style="border: 2px dashed var(--islamic-gold); background: transparent; box-shadow: none;">
+          <div class="p-4 text-center d-flex flex-column align-items-center justify-content-center" style="min-height: 350px;">
+            <div class="download-icon-wrapper mb-3" style="background: rgba(10, 92, 54, 0.05);">
+              <i class="fas fa-plus download-icon" style="color: var(--islamic-gold);"></i>
+            </div>
+            <h5 class="text-muted mb-3">More Downloads Coming Soon</h5>
+            <p class="text-center text-muted">We're preparing additional forms and documents for you.</p>
+            <div class="mt-3">
+              <span class="badge badge-forms category-badge">Library Forms</span>
+              <span class="badge badge-applications category-badge">Leave Applications</span>
+              <span class="badge badge-documents category-badge">Certificates</span>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer class="main-footer">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-8">
-          <h5 class="fw-bold mb-3"><i class="bi bi-building me-2"></i>DARUNNAJATH SHAREEATH AND ARTS COLLEGE</h5>
-          <p class="mb-0" style="opacity: 0.8;">Official Downloads Portal | Providing easy access to college documents</p>
+    <!-- No Results Message -->
+    <div class="row mt-5 d-none" id="noResults">
+      <div class="col-12">
+        <div class="text-center py-5">
+          <div class="display-1 text-muted mb-4">
+            <i class="fas fa-file-alt"></i>
+          </div>
+          <h4 class="mb-3" style="color: var(--islamic-green);">No matching downloads found</h4>
+          <p class="text-muted mb-4">Try adjusting your search terms or select a different category</p>
+          <button class="btn-outline-gold" id="resetFilters">
+            <i class="fas fa-redo-alt me-2"></i>Reset All Filters
+          </button>
         </div>
-        <div class="col-md-4 text-md-end">
-          <p class="mb-0">
-            © <span id="year"></span> All rights reserved.<br>
-            <small>Last updated: January 2026</small>
+      </div>
+    </div>
+
+    <!-- Download Statistics -->
+    <div class="row mt-5" data-aos="fade-up" data-aos-delay="300">
+      <div class="col-12">
+        <div class="stats-card">
+          <div class="row align-items-center">
+            <div class="col-md-8">
+              <h5 class="mb-2" style="color: var(--islamic-green);"><i class="fas fa-chart-line me-2"></i>Download Statistics</h5>
+              <p class="text-muted mb-0">Track how many files have been downloaded in this session</p>
+            </div>
+            <div class="col-md-4 text-md-end">
+              <div class="stats-number" id="totalDownloads">0</div>
+              <small class="text-muted">Total Downloads</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STANDARD FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4" data-aos="fade-up">
+        <div class="footer-brand">DSAC</div>
+        <p class="text-light opacity-75">
+          Darunnajath Shareeath & Arts College<br>
+          Punnakkad, Karuvarakundu<br>
+          Affiliated to Jamia Nooriyya Arabiyya, Pattikkad
+        </p>
+        <div class="social-links">
+          <a href="https://facebook.com/" class="social-icon" target="_blank" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://instagram.com/" class="social-icon" target="_blank" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://x.com/" class="social-icon" target="_blank" aria-label="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://youtube.com/" class="social-icon" target="_blank" aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+   
+      <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="footer-links">
+          <h5>Quick Links</h5>
+          <a href="index.html">Home</a>
+          <a href="admission.html">Admissions</a>
+          <a href="result.html">Results</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+   
+      <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="footer-links">
+          <h5>Resources</h5>
+          <a href="downloads.html">Downloads</a>
+          <a href="library.html">Library</a>
+          <a href="faculties.html">Faculty</a>
+          <a href="management.html">Management</a>
+          <a href="pta.html">PTA</a>
+        </div>
+      </div>
+   
+      <div class="col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="footer-links">
+          <h5>Contact Info</h5>
+          <p class="text-light opacity-75">
+            <i class="fas fa-envelope me-2"></i>najathshareea@gmail.com<br>
+            <i class="fas fa-phone me-2"></i>+91 9048020243<br>
+            <i class="fas fa-map-marker-alt me-2"></i>Karuvarakundu, Kerala
           </p>
         </div>
       </div>
     </div>
-  </footer>
+ 
+    <div class="text-center pt-4 mt-4 border-top border-light border-opacity-25">
+      <p class="text-light mb-2">
+        © <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.
+      </p>
+      <small class="text-light opacity-75">
+        Hosted by <span>Rafi Wafi</span> | Downloads Portal
+      </small>
+    </div>
+  </div>
+</footer>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Set current year
-      document.getElementById('year').textContent = new Date().getFullYear();
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!"
+   class="whatsapp-float" target="_blank"
+   title="Chat with us on WhatsApp" aria-label="WhatsApp Chat">
+  <i class="fab fa-whatsapp"></i>
+</a>
 
-      // Initialize variables
-      const searchInput = document.getElementById('searchInput');
-      const searchButton = document.getElementById('searchButton');
-      const categoryFilter = document.getElementById('categoryFilter');
-      const noResults = document.getElementById('noResults');
-      const resetFiltersBtn = document.getElementById('resetFilters');
-      const totalDownloadsEl = document.getElementById('totalDownloads');
-      const downloadItems = document.querySelectorAll('.download-item');
-      
-      let downloadCount = 0;
-      
-      // Load download count from localStorage
-      const savedCount = localStorage.getItem('totalDownloads');
-      if (savedCount) {
-        downloadCount = parseInt(savedCount);
-        totalDownloadsEl.textContent = downloadCount;
-      }
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
-      // Filter function
-      function filterDownloads() {
-        const searchTerm = searchInput.value.toLowerCase().trim();
-        const selectedCategory = categoryFilter.value;
-        let visibleCount = 0;
-
-        downloadItems.forEach(item => {
-          const itemName = item.getAttribute('data-name').toLowerCase();
-          const itemCategory = item.getAttribute('data-category');
-          
-          const matchesSearch = itemName.includes(searchTerm);
-          const matchesCategory = selectedCategory === 'all' || itemCategory === selectedCategory;
-          
-          if (matchesSearch && matchesCategory) {
-            item.style.display = 'block';
-            visibleCount++;
-          } else {
-            item.style.display = 'none';
-          }
-        });
-
-        // Show/hide no results message
-        if (visibleCount === 0) {
-          noResults.classList.remove('d-none');
-        } else {
-          noResults.classList.add('d-none');
-        }
-      }
-
-      // Event listeners for filtering
-      searchInput.addEventListener('input', filterDownloads);
-      searchButton.addEventListener('click', filterDownloads);
-      categoryFilter.addEventListener('change', filterDownloads);
-
-      // Reset filters
-      resetFiltersBtn.addEventListener('click', function() {
-        searchInput.value = '';
-        categoryFilter.value = 'all';
-        filterDownloads();
-        searchInput.focus();
-      });
-
-      // Download tracking
-      document.querySelectorAll('.btn-download').forEach(button => {
-        button.addEventListener('click', function(e) {
-          const fileName = this.download || 'document';
-          
-          // Add loading animation
-          this.classList.add('loading');
-          this.innerHTML = '<span class="visually-hidden">Downloading...</span>';
-          
-          // Simulate download delay
-          setTimeout(() => {
-            this.classList.remove('loading');
-            this.innerHTML = '<i class="bi bi-download me-2"></i>Download Form';
-            
-            // Update download count
-            downloadCount++;
-            totalDownloadsEl.textContent = downloadCount;
-            localStorage.setItem('totalDownloads', downloadCount);
-            
-            // Show success notification
-            showNotification('Download started', 'Your file is being downloaded...', 'success');
-            
-            // Log for analytics
-            console.log(`Downloaded: ${fileName} | Total downloads: ${downloadCount}`);
-          }, 1500);
-        });
-      });
-
-      // Notification function
-      function showNotification(title, message, type) {
-        const toast = document.createElement('div');
-        toast.className = 'position-fixed bottom-0 end-0 p-3';
-        toast.style.zIndex = '1050';
-        toast.innerHTML = `
-          <div class="toast show" role="alert">
-            <div class="toast-header bg-${type === 'success' ? 'success' : 'info'} text-white">
-              <i class="bi bi-${type === 'success' ? 'check-circle' : 'info-circle'}-fill me-2"></i>
-              <strong class="me-auto">${title}</strong>
-              <button type="button" class="btn-close btn-close-white" onclick="this.parentElement.parentElement.parentElement.remove()"></button>
-            </div>
-            <div class="toast-body">
-              ${message}
-            </div>
-          </div>
-        `;
-        document.body.appendChild(toast);
-        
-        // Auto-remove after 4 seconds
-        setTimeout(() => {
-          if (toast.parentNode) {
-            toast.remove();
-          }
-        }, 4000);
-      }
-
-      // Initialize filters
-      filterDownloads();
+<script>
+  // Initialize
+  document.addEventListener('DOMContentLoaded', function() {
+    setupDownloads();
+    AOS.init({ duration: 800, once: true, offset: 50 });
+    
+    // Update current year
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar-optimized');
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      navbar.classList.toggle('scrolled', scrollTop > 50);
     });
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  });
+  
+  function setupDownloads() {
+    // Set current year
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Initialize variables
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const noResults = document.getElementById('noResults');
+    const resetFiltersBtn = document.getElementById('resetFilters');
+    const totalDownloadsEl = document.getElementById('totalDownloads');
+    const downloadItems = document.querySelectorAll('.download-item');
+    
+    let downloadCount = 0;
+    
+    // Load download count from localStorage
+    const savedCount = localStorage.getItem('totalDownloads');
+    if (savedCount) {
+      downloadCount = parseInt(savedCount);
+      totalDownloadsEl.textContent = downloadCount;
+    }
+
+    // Filter function
+    function filterDownloads() {
+      const searchTerm = searchInput.value.toLowerCase().trim();
+      const selectedCategory = categoryFilter.value;
+      let visibleCount = 0;
+
+      downloadItems.forEach(item => {
+        const itemName = item.getAttribute('data-name').toLowerCase();
+        const itemCategory = item.getAttribute('data-category');
+        
+        const matchesSearch = itemName.includes(searchTerm);
+        const matchesCategory = selectedCategory === 'all' || itemCategory === selectedCategory;
+        
+        if (matchesSearch && matchesCategory) {
+          item.style.display = 'block';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      // Show/hide no results message
+      if (visibleCount === 0) {
+        noResults.classList.remove('d-none');
+      } else {
+        noResults.classList.add('d-none');
+      }
+    }
+
+    // Event listeners for filtering
+    searchInput.addEventListener('input', filterDownloads);
+    searchButton.addEventListener('click', filterDownloads);
+    categoryFilter.addEventListener('change', filterDownloads);
+
+    // Reset filters
+    resetFiltersBtn.addEventListener('click', function() {
+      searchInput.value = '';
+      categoryFilter.value = 'all';
+      filterDownloads();
+      searchInput.focus();
+    });
+
+    // Download tracking
+    document.querySelectorAll('.btn-gold[href]').forEach(button => {
+      button.addEventListener('click', function(e) {
+        const fileName = this.download || 'document';
+        
+        // Add loading animation
+        const originalHTML = this.innerHTML;
+        this.innerHTML = '<span class="visually-hidden">Downloading...</span>';
+        this.classList.add('loading');
+        
+        // Simulate download delay
+        setTimeout(() => {
+          this.innerHTML = originalHTML;
+          this.classList.remove('loading');
+          
+          // Update download count
+          downloadCount++;
+          totalDownloadsEl.textContent = downloadCount;
+          localStorage.setItem('totalDownloads', downloadCount);
+          
+          // Show success notification
+          showNotification('Download started', 'Your file is being downloaded...', 'success');
+          
+          // Log for analytics
+          console.log(`Downloaded: ${fileName} | Total downloads: ${downloadCount}`);
+        }, 1500);
+      });
+    });
+
+    // Initialize filters
+    filterDownloads();
+  }
+
+  // Show coming soon notification
+  function showComingSoon(itemName) {
+    showNotification('Coming Soon', `${itemName} will be available soon.`, 'info');
+  }
+
+  // Notification function
+  function showNotification(title, message, type) {
+    const toast = document.createElement('div');
+    toast.className = 'position-fixed bottom-0 end-0 p-3';
+    toast.style.zIndex = '1050';
+    
+    const bgColor = type === 'success' ? 'var(--islamic-green)' : 'var(--islamic-gold)';
+    const icon = type === 'success' ? 'check-circle' : 'info-circle';
+    
+    toast.innerHTML = `
+      <div class="toast show" role="alert" style="background: white; border-left: 4px solid ${bgColor};">
+        <div class="toast-header" style="border-bottom: 1px solid #dee2e6;">
+          <i class="fas fa-${icon} me-2" style="color: ${bgColor};"></i>
+          <strong class="me-auto">${title}</strong>
+          <button type="button" class="btn-close" onclick="this.parentElement.parentElement.parentElement.remove()"></button>
+        </div>
+        <div class="toast-body">
+          ${message}
+        </div>
+      </div>
+    `;
+    document.body.appendChild(toast);
+    
+    // Auto-remove after 4 seconds
+    setTimeout(() => {
+      if (toast.parentNode) {
+        toast.remove();
+      }
+    }, 4000);
+  }
+</script>
 </body>
 </html>
