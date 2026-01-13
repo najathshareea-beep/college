@@ -403,12 +403,71 @@
       border: 3px solid var(--islamic-gold);
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       height: 400px;
+      margin-bottom: 1.5rem;
     }
 
     .map-container iframe {
       width: 100%;
       height: 100%;
       border: none;
+    }
+
+    /* QUICK INFORMATION BOX - RESIZED */
+    .quick-info-box {
+      background: white;
+      border-radius: 15px;
+      padding: 1.5rem;
+      border: 2px solid var(--islamic-gold);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      height: 100%;
+    }
+
+    .quick-info-box h3 {
+      color: var(--islamic-green);
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid rgba(193, 154, 63, 0.3);
+    }
+
+    .quick-info-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      padding: 0.5rem 0;
+    }
+
+    .quick-info-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .quick-info-icon {
+      flex-shrink: 0;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: rgba(10, 92, 54, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--islamic-gold);
+      margin-right: 0.75rem;
+      margin-top: 0.25rem;
+    }
+
+    .quick-info-content h6 {
+      color: var(--islamic-green);
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+    }
+
+    .quick-info-content p {
+      color: #666;
+      font-size: 0.85rem;
+      margin-bottom: 0;
+      line-height: 1.4;
     }
 
     /* Social Links */
@@ -654,6 +713,14 @@
       .map-container {
         height: 300px;
       }
+      
+      .quick-info-box {
+        padding: 1.25rem;
+      }
+      
+      .quick-info-box h3 {
+        font-size: 1.3rem;
+      }
     }
 
     @media (max-width: 576px) {
@@ -663,6 +730,17 @@
       
       .section-title {
         font-size: 1.5rem;
+      }
+      
+      .quick-info-item {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .quick-info-icon {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+        align-self: center;
       }
     }
   </style>
@@ -892,69 +970,63 @@
         </div>
       </div>
       
-      <!-- Map and Quick Contact -->
+      <!-- Map and Quick Information -->
       <div class="col-lg-6" data-aos="fade-left">
-        <!-- Google Map -->
-        <div class="mb-4">
-          <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.39123456789!2d76.12345678901234!3d10.98765432109876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDU5JzE1LjYiTiA3NsKwMDcnMjEuNiJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin" 
-                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
+        <!-- Google Map with Correct Location -->
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.248863200616!2d76.3228427!3d11.114692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba62c2905656f4d%3A0x7b677071ca68ea3e!2sK%20T%20Usthad%20Convention%20Centre!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         
-        <!-- Quick Contact Info -->
-        <div class="islamic-card p-4">
-          <h3 class="text-center mb-4" style="color: var(--islamic-green);">
-            <i class="fas fa-info-circle me-2"></i>Quick Information
-          </h3>
+        <!-- RESIZED QUICK INFORMATION BOX -->
+        <div class="quick-info-box">
+          <h3><i class="fas fa-info-circle me-2"></i>Quick Information</h3>
           
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <div class="d-flex align-items-start">
-                <i class="fas fa-user-graduate me-3" style="color: var(--islamic-gold); font-size: 1.2rem;"></i>
-                <div>
-                  <h6 style="color: var(--islamic-green);">Admission Queries</h6>
-                  <p class="small mb-0">For admission related questions, contact the admission office.</p>
-                </div>
-              </div>
+          <div class="quick-info-item">
+            <div class="quick-info-icon">
+              <i class="fas fa-user-graduate"></i>
             </div>
-            
-            <div class="col-md-6 mb-3">
-              <div class="d-flex align-items-start">
-                <i class="fas fa-book me-3" style="color: var(--islamic-gold); font-size: 1.2rem;"></i>
-                <div>
-                  <h6 style="color: var(--islamic-green);">Academic Queries</h6>
-                  <p class="small mb-0">For academic matters, contact the principal's office.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-6 mb-3">
-              <div class="d-flex align-items-start">
-                <i class="fas fa-home me-3" style="color: var(--islamic-gold); font-size: 1.2rem;"></i>
-                <div>
-                  <h6 style="color: var(--islamic-green);">Hostel Facilities</h6>
-                  <p class="small mb-0">Separate hostel facilities available for boys and girls.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-6 mb-3">
-              <div class="d-flex align-items-start">
-                <i class="fas fa-bus me-3" style="color: var(--islamic-gold); font-size: 1.2rem;"></i>
-                <div>
-                  <h6 style="color: var(--islamic-green);">Transportation</h6>
-                  <p class="small mb-0">College bus services available from major locations.</p>
-                </div>
-              </div>
+            <div class="quick-info-content">
+              <h6>Admission Queries</h6>
+              <p>For admission related questions, contact the admission office during working hours.</p>
             </div>
           </div>
           
-          <div class="text-center mt-3">
-            <a href="tel:+919048020243" class="btn btn-outline-gold me-2">
+          <div class="quick-info-item">
+            <div class="quick-info-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <div class="quick-info-content">
+              <h6>Academic Queries</h6>
+              <p>For academic matters and course information, contact the principal's office.</p>
+            </div>
+          </div>
+          
+          <div class="quick-info-item">
+            <div class="quick-info-icon">
+              <i class="fas fa-home"></i>
+            </div>
+            <div class="quick-info-content">
+              <h6>Hostel Facilities</h6>
+              <p>Separate hostel facilities available for boys and girls with modern amenities.</p>
+            </div>
+          </div>
+          
+          <div class="quick-info-item">
+            <div class="quick-info-icon">
+              <i class="fas fa-bus"></i>
+            </div>
+            <div class="quick-info-content">
+              <h6>Transportation</h6>
+              <p>College bus services available from major locations in and around Karuvarakundu.</p>
+            </div>
+          </div>
+          
+          <div class="text-center mt-4 pt-3 border-top">
+            <a href="tel:+919048020243" class="btn btn-outline-gold me-2 btn-sm">
               <i class="fas fa-phone me-1"></i> Call Now
             </a>
-            <a href="https://wa.me/919048020243" class="btn-gold" target="_blank">
+            <a href="https://wa.me/919048020243" class="btn-gold btn-sm" target="_blank">
               <i class="fab fa-whatsapp me-1"></i> WhatsApp
             </a>
           </div>
