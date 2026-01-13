@@ -332,6 +332,7 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.08);
       height: 100%;
       position: relative;
+      cursor: pointer;
     }
 
     .portal-card:hover {
@@ -455,6 +456,34 @@
       outline: none;
     }
 
+    /* File Upload Styles */
+    .file-upload-container {
+      border: 2px dashed #dee2e6;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .file-upload-container:hover {
+      border-color: var(--islamic-gold);
+      background: #f8f9fa;
+    }
+
+    .file-upload-container.dragover {
+      border-color: #28a745;
+      background: #d4edda;
+    }
+
+    .file-preview {
+      max-width: 200px;
+      max-height: 200px;
+      border-radius: 10px;
+      margin-top: 10px;
+      display: none;
+    }
+
     /* Instructions Box */
     .instructions-box {
       background: #e8f4ff;
@@ -557,6 +586,149 @@
 
     .notification.warning {
       border-left-color: #ffc107;
+    }
+
+    /* Document Styles */
+    .a4-container {
+      width: 21cm;
+      min-height: 29.7cm;
+      background: white;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .document-header {
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
+      color: white;
+      padding: 15px 25px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .document-logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      background: white;
+      padding: 3px;
+      flex-shrink: 0;
+    }
+    
+    .college-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .college-info .college-arabic {
+      font-family: 'Amiri', serif;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    
+    .college-info .college-name {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 2px;
+      color: white;
+    }
+    
+    .college-info .college-address {
+      font-size: 10px;
+      margin-bottom: 2px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .document-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 8px;
+      color: var(--islamic-gold);
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      padding-top: 8px;
+    }
+    
+    .document-content {
+      padding: 25px;
+      position: relative;
+    }
+    
+    .watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      font-size: 60px;
+      color: rgba(0,0,0,0.03);
+      font-weight: bold;
+      z-index: 0;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    
+    .info-item {
+      display: flex;
+      padding: 5px 0;
+      border-bottom: 1px dashed #dee2e6;
+    }
+    
+    .info-label {
+      font-weight: 600;
+      color: #495057;
+      width: 100px;
+      font-size: 11px;
+    }
+    
+    .info-value {
+      color: #212529;
+      font-size: 11px;
+      flex: 1;
+    }
+    
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--islamic-green);
+      margin: 15px 0 8px;
+      padding-bottom: 3px;
+      border-bottom: 1px solid #e9ecef;
+    }
+    
+    .declaration {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 20px;
+      border: 1px solid #dee2e6;
+    }
+    
+    .signature-section {
+      text-align: right;
+      margin-top: 20px;
+      padding-top: 10px;
+      border-top: 1px solid #ced4da;
+    }
+    
+    .signature-line {
+      display: inline-block;
+      width: 250px;
+      border-bottom: 1px solid #212529;
+      margin-bottom: 3px;
     }
 
     /* ===== STANDARD FOOTER ===== */
@@ -728,6 +900,27 @@
       
       .form-container {
         padding: 20px;
+      }
+      
+      .a4-container {
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .document-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+      }
+      
+      .document-logo {
+        width: 80px;
+        height: 80px;
       }
     }
 
@@ -1282,6 +1475,31 @@
           </div>
         </div>
         
+        <!-- Photo Upload -->
+        <div class="form-step">
+          <div class="form-step-title">
+            <i class="fas fa-camera me-2"></i>Student Photograph
+          </div>
+          <div class="mb-3">
+            <label class="form-label required">
+              18. കുട്ടിയുടെ ഫോട്ടോ | Student's Photo:
+            </label>
+            <div class="file-upload-container" onclick="document.getElementById('photoInput').click()" 
+                 ondragover="handleDragOver(event)" 
+                 ondragleave="handleDragLeave(event)" 
+                 ondrop="handleDrop(event)"
+                 id="fileUploadContainer">
+              <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
+              <h5>Click to upload or drag & drop</h5>
+              <p class="text-muted">JPG, PNG up to 5MB</p>
+              <input type="file" class="d-none" id="photoInput" name="student_photo" accept="image/jpeg,image/png" 
+                     required
+                     onchange="handlePhotoUpload(event)">
+              <img id="photoPreview" class="file-preview" alt="Photo Preview">
+            </div>
+          </div>
+        </div>
+        
         <!-- Declaration -->
         <div class="instructions-box mt-4">
           <h4 class="instructions-title">
@@ -1634,8 +1852,16 @@
     const section = document.getElementById('previous-study-section');
     if (show) {
       section.style.display = 'block';
+      // Make previous study fields required
+      document.querySelectorAll('#previous-study-section input, #previous-study-section textarea').forEach(field => {
+        field.required = true;
+      });
     } else {
       section.style.display = 'none';
+      // Remove required from previous study fields
+      document.querySelectorAll('#previous-study-section input, #previous-study-section textarea').forEach(field => {
+        field.required = false;
+      });
     }
   }
   
@@ -1643,14 +1869,78 @@
     const section = document.getElementById('illness-section');
     if (show) {
       section.style.display = 'block';
+      document.querySelector('textarea[name="illness"]').required = true;
     } else {
       section.style.display = 'none';
+      document.querySelector('textarea[name="illness"]').required = false;
     }
   }
   
   function toggleSubmitButton(enabled) {
     const btn = document.getElementById('submitApplicationBtn');
     btn.disabled = !enabled;
+  }
+  
+  // File handling functions
+  function handleDragOver(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    document.getElementById('fileUploadContainer').classList.add('dragover');
+  }
+  
+  function handleDragLeave(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    document.getElementById('fileUploadContainer').classList.remove('dragover');
+  }
+  
+  function handleDrop(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    document.getElementById('fileUploadContainer').classList.remove('dragover');
+    
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      handleFile(files[0]);
+    }
+  }
+  
+  function handlePhotoUpload(e) {
+    const file = e.target.files[0];
+    if (file) {
+      handleFile(file);
+    }
+  }
+  
+  function handleFile(file) {
+    if (!file.type.startsWith('image/')) {
+      showNotification('Please upload only image files (JPG, PNG)', 'error');
+      return;
+    }
+    
+    if (file.size > 5 * 1024 * 1024) {
+      showNotification('File size must be less than 5MB', 'error');
+      return;
+    }
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const preview = document.getElementById('photoPreview');
+      preview.src = e.target.result;
+      preview.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+    
+    showNotification('Photo uploaded successfully', 'success');
+  }
+  
+  function readFileAsBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
   }
   
   async function loadCollegeInfo() {
@@ -1712,6 +2002,406 @@
     document.getElementById('notification').style.display = 'none';
   }
   
+  // ============ HTML TEMPLATE FUNCTIONS ============
+  
+  function escapeHtml(text) {
+    if (!text) return '';
+    const map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#039;'
+    };
+    return String(text).replace(/[&<>"']/g, function(m) { return map[m]; });
+  }
+  
+  function generateApplicationHtml(data) {
+    const { collegeInfo, studentData } = data;
+    
+    return `
+    <div class="a4-container">
+      <div class="watermark">APPLICATION</div>
+      <div class="document-header">
+        <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo">
+        <div class="college-info">
+          <div class="college-arabic">كلية دار النجاة للشريعة والآداب</div>
+          <div class="college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div>
+          <div class="college-address">Under Darunnajath Islamic Centre</div>
+          <div class="college-address">Affiliated to Jamia Nooriyya Arabiyya, Pattikkad</div>
+          <div class="college-address">Punnakkad, Karuvarakundu, Malappuram District</div>
+          <div class="document-title">Admission Application Form</div>
+        </div>
+      </div>
+      <div class="document-content">
+        <div class="section-title">Personal Information</div>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Application Date:</span>
+            <span class="info-value">${escapeHtml(studentData.submissionDate || new Date().toLocaleDateString())}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Application ID:</span>
+            <span class="info-value">${escapeHtml(studentData.applicationId || 'APP' + Date.now())}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Student's Name:</span>
+            <span class="info-value">${escapeHtml(studentData.studentName)}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">House Name:</span>
+            <span class="info-value">${escapeHtml(studentData.houseName)}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Date of Birth:</span>
+            <span class="info-value">${escapeHtml(studentData.dob)}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Guardian's Name:</span>
+            <span class="info-value">${escapeHtml(studentData.guardianName)}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Address:</span>
+            <span class="info-value">${escapeHtml(studentData.address)}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Phone Number:</span>
+            <span class="info-value">${escapeHtml(studentData.phoneNumber)}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">WhatsApp Number:</span>
+            <span class="info-value">${escapeHtml(studentData.whatsappNumber || 'Not provided')}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Aadhaar Number:</span>
+            <span class="info-value">${escapeHtml(studentData.aadhaarNumber)}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Father's Name:</span>
+            <span class="info-value">${escapeHtml(studentData.fatherName)}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Father's Occupation:</span>
+            <span class="info-value">${escapeHtml(studentData.fatherOccupation)}</span>
+          </div>
+        </div>
+        
+        <div class="section-title">Educational Information</div>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Madrasa & Location:</span>
+            <span class="info-value">${escapeHtml(studentData.madrasa)}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Madrasa Class:</span>
+            <span class="info-value">${escapeHtml(studentData.madrasaclass)}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">School & Location:</span>
+            <span class="info-value">${escapeHtml(studentData.school)}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">School Class:</span>
+            <span class="info-value">${escapeHtml(studentData.schoolclass)}</span>
+          </div>
+        </div>
+        
+        ${studentData.previousStudy === 'Yes' ? `
+        <div class="section-title">Previous Study Details</div>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Previous Institution:</span>
+            <span class="info-value">${escapeHtml(studentData.previousInstitution || 'Not provided')}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Duration of Study:</span>
+            <span class="info-value">${escapeHtml(studentData.studyDuration || 'Not provided')}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Number of Juz:</span>
+            <span class="info-value">${escapeHtml(studentData.juzCount || 'Not provided')}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Head Teacher's Phone:</span>
+            <span class="info-value">${escapeHtml(studentData.headTeacherPhone || 'Not provided')}</span>
+          </div>
+        </div>
+        ` : ''}
+        
+        <div class="section-title">Medical & Identification</div>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Identification Mark:</span>
+            <span class="info-value">${escapeHtml(studentData.identificationMark)}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Physical Fitness:</span>
+            <span class="info-value">${escapeHtml(studentData.physicalFitness)}</span>
+          </div>
+          ${studentData.illness ? `
+          <div class="info-item">
+            <span class="info-label">Illness:</span>
+            <span class="info-value">${escapeHtml(studentData.illness)}</span>
+          </div>
+          ` : ''}
+        </div>
+        
+        <div class="declaration">
+          <h3 class="declaration-title">Declaration</h3>
+          <p style="text-align: justify; line-height: 1.4; margin-bottom: 10px; font-size: 11px;">
+            <strong>${escapeHtml(studentData.studentName)}</strong> S/o <strong>${escapeHtml(studentData.guardianName)}</strong>, 
+            എന്ന എന്‍റെ കുട്ടിയും ഞാനും ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജിന്‍റെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജില്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.
+          </p>
+          
+          <div class="signature-section">
+            <div>
+              <div class="signature-line"></div>
+              <div style="font-size:10px;">Parent/Guardian's Name & Signature</div>
+            </div>
+            <div style="margin-top:10px;text-align:left;">
+              <p style="font-size:9px;color:#6c757d;">
+                Date: ______________________________<br><br>
+                Place: _____________________________
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="text-align:center;margin-top:10px;padding:10px;">
+      <button onclick="window.print()" style="background:var(--islamic-green);color:white;border:none;padding:6px 15px;border-radius:5px;font-size:11px;cursor:pointer;margin:2px;">
+        <i class="fas fa-print"></i> Print
+      </button>
+      <button onclick="showDashboard()" style="background:#6c757d;color:white;border:none;padding:6px 15px;border-radius:5px;font-size:11px;cursor:pointer;margin:2px;">
+        <i class="fas fa-arrow-left"></i> Back to Dashboard
+      </button>
+    </div>`;
+  }
+  
+  function generateHallticketHtml(data) {
+    const { collegeInfo, studentData } = data;
+    
+    // Generate QR Code
+    const qrText = `Name: ${studentData.studentName}, Phone: ${studentData.phoneNumber}, DoB: ${studentData.dob}, Exam Date: 17/12/2025`;
+    const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrText)}`;
+    
+    return `
+    <div class="a4-container">
+      <div class="watermark">HALL TICKET</div>
+      <div class="document-header">
+        <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo">
+        <div class="college-info">
+          <div class="college-arabic">كلية دار النجاة للشريعة والآداب</div>
+          <div class="college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div>
+          <div class="college-address">Under Darunnajath Islamic Centre</div>
+          <div class="college-address">Affiliated to Jamia Nooriyya Arabiyya, Pattikkad</div>
+          <div class="college-address">Punnakkad, Karuvarakundu, Malappuram District</div>
+          <div class="document-title">Entrance Exam Hall Ticket</div>
+        </div>
+      </div>
+      <div class="document-content">
+        <div style="position:absolute;top:40px;right:40px;text-align:center;z-index:1;">
+          <div style="width:140px;height:140px;border:2px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa;display:flex;align-items:center;justify-content:center;padding:10px;">
+            <img src="${qrCodeUrl}" style="max-width:100%;max-height:100%;" alt="QR Code">
+          </div>
+          <div style="font-size:11px;color:#6c757d;margin-top:5px;font-weight:500;">QR Code Verification</div>
+        </div>
+        
+        <div class="section-title">Student Information</div>
+        <div class="info-grid" style="margin-right: 160px;">
+          <div class="info-item">
+            <span class="info-label">Application ID:</span>
+            <span class="info-value">${escapeHtml(studentData.applicationId || 'APP' + Date.now())}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Student Name:</span>
+            <span class="info-value">${escapeHtml(studentData.studentName)}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Date of Birth:</span>
+            <span class="info-value">${escapeHtml(studentData.dob)}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">House Name:</span>
+            <span class="info-value">${escapeHtml(studentData.houseName)}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Address:</span>
+            <span class="info-value">${escapeHtml(studentData.address)}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Phone Number:</span>
+            <span class="info-value">${escapeHtml(studentData.phoneNumber)}</span>
+          </div>
+        </div>
+        
+        <div class="section-title">Examination Details</div>
+        <div class="info-grid" style="margin-right: 160px;">
+          <div class="info-item">
+            <span class="info-label">Exam Date:</span>
+            <span class="info-value">17/12/2025 (Wednesday)</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Reporting Time:</span>
+            <span class="info-value">09:00 AM</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Exam Time:</span>
+            <span class="info-value">10:00 AM to 12:00 PM</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Venue:</span>
+            <span class="info-value">Darunnajath Shareeath & Arts College, Karuvarakundu</span>
+          </div>
+        </div>
+        
+        <div class="declaration" style="margin-right: 160px;">
+          <h3 class="declaration-title">Instructions</h3>
+          <ul style="padding-left:20px;font-size:11px;margin-bottom:0;">
+            <li>Bring this hall ticket to the exam center</li>
+            <li>Carry any original ID proof (Aadhaar card/School ID)</li>
+            <li>Report at the exam center 30 minutes before exam time</li>
+            <li>No electronic devices allowed inside exam hall</li>
+            <li>Only blue/black ballpoint pens are allowed</li>
+            <li>Follow all instructions given by invigilators</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div style="text-align:center;margin-top:10px;padding:10px;">
+      <button onclick="window.print()" style="background:var(--islamic-green);color:white;border:none;padding:6px 15px;border-radius:5px;font-size:11px;cursor:pointer;margin:2px;">
+        <i class="fas fa-print"></i> Print
+      </button>
+      <button onclick="showDashboard()" style="background:#6c757d;color:white;border:none;padding:6px 15px;border-radius:5px;font-size:11px;cursor:pointer;margin:2px;">
+        <i class="fas fa-arrow-left"></i> Back to Dashboard
+      </button>
+    </div>`;
+  }
+  
+  function generateResultHtml(data) {
+    const { collegeInfo, studentData } = data;
+    
+    return `
+    <div class="a4-container">
+      <div class="watermark">RESULT</div>
+      <div class="document-header">
+        <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo">
+        <div class="college-info">
+          <div class="college-arabic">كلية دار النجاة للشريعة والآداب</div>
+          <div class="college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div>
+          <div class="college-address">Under Darunnajath Islamic Centre</div>
+          <div class="college-address">Affiliated to Jamia Nooriyya Arabiyya, Pattikkad</div>
+          <div class="college-address">Punnakkad, Karuvarakundu, Malappuram District</div>
+          <div class="document-title">Entrance Exam Result 2025-26</div>
+        </div>
+      </div>
+      <div class="document-content">
+        <div class="section-title">Student Information</div>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Student Name:</span>
+            <span class="info-value">${escapeHtml(studentData.studentName)}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Application ID:</span>
+            <span class="info-value">${escapeHtml(studentData.applicationId || 'APP' + Date.now())}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Date of Birth:</span>
+            <span class="info-value">${escapeHtml(studentData.dob)}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Phone Number:</span>
+            <span class="info-value">${escapeHtml(studentData.phoneNumber)}</span>
+          </div>
+        </div>
+        
+        <div class="section-title">Result Status</div>
+        <div style="text-align:center;padding:20px;background:#e8f4ff;border-radius:8px;margin:15px 0;border:2px solid var(--islamic-green);">
+          <div style="font-size:24px;font-weight:700;color:var(--islamic-green);margin-bottom:10px;">
+            ${escapeHtml(studentData.resultStatus || 'RESULT PENDING')}
+          </div>
+          <div style="font-size:16px;color:#6c757d;">
+            ${escapeHtml(studentData.resultMessage || 'Results will be announced after the examination.')}
+          </div>
+        </div>
+        
+        <div class="declaration">
+          <h3 class="declaration-title">Important Information</h3>
+          <ul style="padding-left:20px;font-size:11px;margin-bottom:0;">
+            <li>Results will be published on the college notice board and website</li>
+            <li>Selected candidates will receive admission details via SMS</li>
+            <li>For any queries, contact college office: 9048020243</li>
+            <li>Admission process will begin after result declaration</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div style="text-align:center;margin-top:10px;padding:10px;">
+      <button onclick="window.print()" style="background:var(--islamic-green);color:white;border:none;padding:6px 15px;border-radius:5px;font-size:11px;cursor:pointer;margin:2px;">
+        <i class="fas fa-print"></i> Print
+      </button>
+      <button onclick="showDashboard()" style="background:#6c757d;color:white;border:none;padding:6px 15px;border-radius:5px;font-size:11px;cursor:pointer;margin:2px;">
+        <i class="fas fa-arrow-left"></i> Back to Dashboard
+      </button>
+    </div>`;
+  }
+  
+  function generateConfirmationHtml(response) {
+    const submissionTime = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+    
+    return `
+    <div style="font-family:Poppins,sans-serif;background:var(--islamic-cream);min-height:100vh;padding:40px 20px;display:flex;justify-content:center;align-items:center;">
+      <div style="background:white;border-radius:20px;padding:40px;box-shadow:0 10px 30px rgba(0,0,0,0.1);border:3px solid var(--islamic-green);text-align:center;max-width:700px;width:100%;">
+        <div style="font-size:60px;color:var(--islamic-green);margin-bottom:20px;">✓</div>
+        <h1 style="color:var(--islamic-green);margin-bottom:15px;">Application Submitted Successfully!</h1>
+        <p style="font-size:18px;color:#666;margin-bottom:20px;">Your admission application has been received.</p>
+        <div style="font-size:24px;font-weight:bold;color:var(--islamic-green);background:#f8f9fa;padding:15px;border-radius:10px;margin:20px 0;border:2px dashed var(--islamic-green);">
+          Application ID: ${escapeHtml(response.applicationId || 'APP' + Date.now())}
+        </div>
+        <div style="background:#e8f4ff;border-radius:15px;padding:25px;margin:25px 0;text-align:left;border:2px solid #cfe2ff;">
+          <h3 style="color:var(--islamic-green);margin-bottom:20px;">Application Details</h3>
+          <div style="display:flex;margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed #dee2e6;">
+            <span style="font-weight:bold;width:200px;color:#495057;">Student Name:</span>
+            <span style="color:#212529;flex:1;">${escapeHtml(response.studentName)}</span>
+          </div>
+          <div style="display:flex;margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed #dee2e6;">
+            <span style="font-weight:bold;width:200px;color:#495057;">Phone Number:</span>
+            <span style="color:#212529;flex:1;">${escapeHtml(response.phoneNumber)}</span>
+          </div>
+          <div style="display:flex;margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed #dee2e6;">
+            <span style="font-weight:bold;width:200px;color:#495057;">Date of Birth:</span>
+            <span style="color:#212529;flex:1;">${escapeHtml(response.dob)}</span>
+          </div>
+          <div style="display:flex;margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed #dee2e6;">
+            <span style="font-weight:bold;width:200px;color:#495057;">Submission Date:</span>
+            <span style="color:#212529;flex:1;">${escapeHtml(submissionTime)}</span>
+          </div>
+        </div>
+        <div style="background:#fff3cd;border:1px solid #ffeaa7;padding:15px;border-radius:10px;margin-top:30px;text-align:left;">
+          <h4 style="color:#856404;margin-bottom:15px;">Important Instructions:</h4>
+          <ul style="padding-left:20px;margin:0;">
+            <li style="margin-bottom:8px;">Pay the application fee.</li>
+            <li style="margin-bottom:8px;">Submit a copy of the Aadhaar card to the institution on the entrance examination day.</li>
+            <li style="margin-bottom:8px;">You can download your application using your phone number and date of birth</li>
+            <li>For any queries, contact college office</li>
+          </ul>
+        </div>
+        <button onclick="window.print()" style="background:var(--islamic-green);color:white;border:none;padding:12px 30px;border-radius:10px;cursor:pointer;font-size:16px;margin-top:20px;transition:all 0.3s;">
+          <i class="fas fa-print" style="margin-right:8px;"></i>Print Confirmation
+        </button>
+        <div style="text-align:center;margin-top:15px;">
+          <button onclick="showDashboard()" style="background:#6c757d;color:white;border:none;padding:8px 20px;border-radius:5px;cursor:pointer;font-size:14px;">
+            <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+          </button>
+        </div>
+      </div>
+    </div>`;
+  }
+  
   // Form submission handlers
   async function handleApplicationSubmit(e) {
     e.preventDefault();
@@ -1721,15 +2411,37 @@
     const dob = document.getElementById('appDob').value;
     
     try {
-      // Your existing API call logic here
-      // For now, just show a notification
-      setTimeout(() => {
-        hideLoading();
-        showNotification('This feature requires backend integration', 'info');
-      }, 1000);
+      // Demo data for testing
+      const demoData = {
+        studentName: "Demo Student",
+        houseName: "Demo House",
+        dob: dob,
+        address: "Demo Address",
+        phoneNumber: mobile,
+        aadhaarNumber: "123456789012",
+        fatherName: "Demo Father",
+        fatherOccupation: "Business",
+        guardianName: "Demo Guardian",
+        madrasa: "Demo Madrasa",
+        madrasaclass: "V",
+        school: "Demo School",
+        schoolclass: "V",
+        previousStudy: "No",
+        identificationMark: "Demo Mark",
+        physicalFitness: "Healthy"
+      };
+      
+      const html = generateApplicationHtml({
+        collegeInfo: {},
+        studentData: demoData
+      });
+      
+      document.getElementById('dashboardView').innerHTML = html;
+      showNotification('Application loaded successfully (Demo)', 'success');
     } catch (error) {
       console.error('Error:', error);
       showNotification('Error occurred. Please try again.', 'error');
+    } finally {
       hideLoading();
     }
   }
@@ -1742,15 +2454,27 @@
     const dob = document.getElementById('ticketDob').value;
     
     try {
-      // Your existing API call logic here
-      // For now, just show a notification
-      setTimeout(() => {
-        hideLoading();
-        showNotification('This feature requires backend integration', 'info');
-      }, 1000);
+      // Demo data for testing
+      const demoData = {
+        studentName: "Demo Student",
+        phoneNumber: mobile,
+        dob: dob,
+        houseName: "Demo House",
+        address: "Demo Address",
+        applicationId: "HT" + Date.now()
+      };
+      
+      const html = generateHallticketHtml({
+        collegeInfo: {},
+        studentData: demoData
+      });
+      
+      document.getElementById('dashboardView').innerHTML = html;
+      showNotification('Hall ticket generated successfully (Demo)', 'success');
     } catch (error) {
       console.error('Error:', error);
       showNotification('Error occurred. Please try again.', 'error');
+    } finally {
       hideLoading();
     }
   }
@@ -1763,15 +2487,27 @@
     const dob = document.getElementById('resultDob').value;
     
     try {
-      // Your existing API call logic here
-      // For now, just show a notification
-      setTimeout(() => {
-        hideLoading();
-        showNotification('This feature requires backend integration', 'info');
-      }, 1000);
+      // Demo data for testing
+      const demoData = {
+        studentName: "Demo Student",
+        phoneNumber: mobile,
+        dob: dob,
+        applicationId: "RS" + Date.now(),
+        resultStatus: "RESULT PENDING",
+        resultMessage: "Results will be announced after the examination on 17/12/2025"
+      };
+      
+      const html = generateResultHtml({
+        collegeInfo: {},
+        studentData: demoData
+      });
+      
+      document.getElementById('dashboardView').innerHTML = html;
+      showNotification('Result loaded successfully (Demo)', 'success');
     } catch (error) {
       console.error('Error:', error);
       showNotification('Error occurred. Please try again.', 'error');
+    } finally {
       hideLoading();
     }
   }
@@ -1784,14 +2520,30 @@
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
     
+    // Handle photo upload
+    const photoFile = document.getElementById('photoInput').files[0];
+    if (photoFile) {
+      try {
+        const photoData = await readFileAsBase64(photoFile);
+        data.photo = photoData;
+      } catch (error) {
+        console.error('Photo upload error:', error);
+      }
+    }
+    
     try {
-      // Your existing API call logic here
-      // For now, just show a notification
-      setTimeout(() => {
-        hideLoading();
-        showNotification('Application submitted successfully! (Demo)', 'success');
-        showDashboard();
-      }, 2000);
+      // Demo response
+      const response = {
+        applicationId: 'APP' + Date.now().toString().slice(-8),
+        studentName: data.studentName,
+        phoneNumber: data.phoneNumber,
+        dob: data.dob,
+        fatherName: data.fatherName
+      };
+      
+      const html = generateConfirmationHtml(response);
+      document.getElementById('dashboardView').innerHTML = html;
+      showNotification('Application submitted successfully! (Demo)', 'success');
     } catch (error) {
       console.error('Submission error:', error);
       showNotification('Submission failed. Please try again.', 'error');
