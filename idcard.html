@@ -39,7 +39,7 @@
       color: #333;
       scroll-behavior: smooth;
       overflow-x: hidden;
-      padding-top: 130px;
+      padding-top: 80px;
     }
     
     a {
@@ -362,13 +362,6 @@
       font-size: 0.9rem;
     }
 
-    .help-text {
-      font-size: 0.8rem;
-      color: #777;
-      margin-top: -0.8rem;
-      margin-bottom: 1rem;
-    }
-
     .id-card-info {
       background: rgba(10, 92, 54, 0.05);
       border-radius: 10px;
@@ -519,7 +512,7 @@
     /* ===== MOBILE RESPONSIVE ===== */
     @media (max-width: 768px) {
       body {
-        padding-top: 110px !important;
+        padding-top: 70px !important;
       }
       
       .navbar-optimized {
@@ -676,7 +669,7 @@
   <div class="container">
     <div class="page-header-content">
       <h1 class="page-title">Digital ID Card</h1>
-      <p class="page-subtitle">Generate your official college identification card online</p>
+      <p class="page-subtitle">Generate your official college identification card</p>
     </div>
   </div>
 </div>
@@ -684,10 +677,7 @@
 <!-- ID CARD FORM -->
 <section class="content-section">
   <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Generate Your ID Card</h2>
-      <p class="section-subtitle">Enter your details to create your official digital identification card</p>
-    </div>
+    <p class="section-subtitle">Enter your details to create your official digital identification card</p>
 
     <div class="row justify-content-center">
       <div class="col-lg-6">
@@ -700,13 +690,11 @@
             <div class="mb-3">
               <label class="form-label">UID Number</label>
               <input type="text" name="uid" class="form-control" placeholder="Enter your UID number" required>
-              <div class="help-text">Unique Identification number provided by college</div>
             </div>
             
             <div class="mb-3">
               <label class="form-label">Date of Birth</label>
               <input type="date" name="dob" class="form-control" required>
-              <div class="help-text">Enter your date of birth as per college records</div>
             </div>
             
             <button type="submit" class="btn-gold w-100 py-3">
