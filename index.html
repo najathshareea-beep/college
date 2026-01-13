@@ -574,6 +574,7 @@
       .navbar-optimized {
         height: 70px;
         padding: 0.3rem 0;
+        z-index: 10 !important;
         transform: translateY(0) !important;
         transition: transform 0.3s ease !important;
       }
@@ -583,7 +584,7 @@
         top: 70px; /* Below mobile navbar */
         height: 40px;
         position: fixed;
-        z-index: 9;
+        z-index: 8;
       }
       
       .ticker-wrapper {
@@ -617,10 +618,15 @@
         padding: 1rem;
         border-radius: 0 0 10px 10px;
         border: 1px solid var(--islamic-gold);
-        margin-top: 10px;
+        margin-top: 0px;
         max-height: 70vh;
         overflow-y: auto;
         text-align: left;
+        position: absolute; 
+        top: 100%; 
+        left: 0;
+        right: 0; 
+        z-index: 11; 
       }
       
       .nav-item-optimized {
@@ -666,6 +672,9 @@
       .hero-subtitle {
         font-size: 1rem;
         line-height: 1.5;
+      }
+      .hero-section + .ticker-container {
+        display: none !important;
       }
       
       /* BUTTONS MOBILE */
@@ -767,12 +776,16 @@
 
     @media (max-width: 576px) {
       body {
-        padding-top: 110px; /* Adjusted for small mobile */
+        padding-top: 105px; /* Adjusted for small mobile */
+      }
+      .navbar-optimized {
+        z-index: 10;
       }
       
       .ticker-container {
         top: 60px;
         height: 35px;
+        z-index: 9;
       }
       
       .hero-title {
@@ -881,6 +894,20 @@
     .lazy-load.loaded {
       opacity: 1;
     }
+
+    @media (max-width: 768px) {
+      .hero-section ~ .ticker-container {
+        display: none !important;
+      }
+    }
+    .navbar-optimized {
+      z-index: 1030 !important; /* Bootstrap default */
+    }
+
+    .ticker-container {
+      z-index: 1029 !important; /* Just below navbar */
+    }
+
   </style>
 </head>
 <body>
@@ -1352,19 +1379,30 @@
   let lastScrollTop = 0;
   window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar-optimized');
+    const ticker = document.querySelector('.ticker-container');
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
+  
     navbar.classList.toggle('scrolled', scrollTop > 50);
-    
-    // Hide navbar on scroll down, show on scroll up (mobile only)
+  
     if (window.innerWidth <= 768) {
       if (scrollTop > lastScrollTop && scrollTop > 100) {
         navbar.style.transform = 'translateY(-100%)';
+        if (ticker) {
+          ticker.style.transform = 'translateY(-100%)';
+        }
       } else {
         navbar.style.transform = 'translateY(0)';
+        if (ticker) {
+          ticker.style.transform = 'translateY(0)';
+        }
+      }
+    } else {
+      navbar.style.transform = 'translateY(0)';
+      if (ticker) {
+        ticker.style.transform = 'translateY(0)';
       }
     }
-    
+  
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
   });
  
@@ -1473,11 +1511,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
