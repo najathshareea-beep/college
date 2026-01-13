@@ -94,18 +94,21 @@
     /* FIXED LOGO SIZE */
     .navbar-brand-compact img {
       border-radius: 8px;
-      border: 2px solid var(--islamic-gold);
       transition: transform 0.3s ease;
       width: 60px;
       height: 60px;
       object-fit: contain;
       filter: brightness(0) invert(1); 
+      border: none;
+      box-shadow: 0 0 0 2px var(--islamic-gold);
+      padding: 0; 
     }
 
     .navbar-optimized.scrolled .navbar-brand-compact img {
       width: 50px;
       height: 50px;
       filter: brightness(0) invert(1); 
+      box-shadow: 0 0 0 2px var(--islamic-gold);
     }
 
     .navbar-brand-compact:hover img {
@@ -1468,6 +1471,7 @@
 </script>
 </body>
 </html>
+
 
 
 
