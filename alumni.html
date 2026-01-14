@@ -137,7 +137,11 @@
     .page-header {
       background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
       color: white;
-      padding: 4rem 0;
+      height: 30vh;
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       margin-bottom: 3rem;
       border-bottom: 5px solid var(--islamic-gold);
@@ -490,7 +494,10 @@
     @media (max-width: 768px) {
       body { padding-top: 70px !important; }
       .navbar-optimized { height: 70px; padding: 0.3rem 0; }
-      .page-header { padding: 2.5rem 0; }
+      .page-header {
+        height: 26vh;
+        min-height: 180px;
+      }
       .page-title { font-size: 2.2rem; }
       .page-subtitle { font-size: 1.1rem; }
       .content-section { padding: 2.5rem 0; }
