@@ -405,6 +405,17 @@
       display: block;
     }
 
+    .form-label.required::after {
+      content: " *";
+      color: #dc3545;
+      font-weight: bold;
+      margin-left: 2px;
+    }
+
+    .form-label.required {
+      position: relative;
+    }
+
     .form-control {
       border: 2px solid #e0e0e0;
       border-radius: 8px;
@@ -592,40 +603,49 @@
       font-weight: 500;
     }
 
-    /* Admission Timeline */
+    /* Horizontal Timeline */
     .timeline {
       position: relative;
-      padding-left: 2rem;
-      margin: 2rem 0;
+      padding: 2rem 0;
+      margin: 3rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .timeline::before {
       content: '';
       position: absolute;
       left: 0;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: linear-gradient(180deg, var(--islamic-green), var(--islamic-gold));
+      right: 0;
+      top: 50%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--islamic-green), var(--islamic-gold));
+      transform: translateY(-50%);
+      z-index: 1;
     }
 
     .timeline-item {
       position: relative;
-      margin-bottom: 2rem;
-      padding-left: 1.5rem;
+      flex: 1;
+      text-align: center;
+      padding: 0 1rem;
+      z-index: 2;
     }
 
     .timeline-item::before {
       content: '';
       position: absolute;
-      left: -2.3rem;
-      top: 0;
-      width: 15px;
-      height: 15px;
+      left: 50%;
+      top: 50%;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       background: var(--islamic-gold);
       border: 3px solid white;
       box-shadow: 0 0 0 3px var(--islamic-green);
+      transform: translate(-50%, -50%);
+      z-index: 3;
     }
 
     .timeline-date {
@@ -633,16 +653,49 @@
       font-weight: 700;
       margin-bottom: 0.5rem;
       font-size: 1.1rem;
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      background: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      border: 1px solid rgba(10, 92, 54, 0.1);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
     }
 
     .timeline-content {
       background: white;
-      padding: 1rem;
-      border-radius: 8px;
+      padding: 1.5rem 1rem;
+      border-radius: 10px;
       border: 1px solid rgba(10, 92, 54, 0.1);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      margin-top: 30px;
+      transition: var(--transition);
+      position: relative;
+      z-index: 2;
     }
 
+    .timeline-content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border-color: var(--islamic-gold);
+    }
+
+    .timeline-content h5 {
+      color: var(--islamic-green);
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .timeline-content p {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      margin: 0;
+    }
+    
     /* ===== DOCUMENT STYLES (For Application, Hall Ticket, Result) ===== */
     .document-container {
       width: 21cm;
@@ -1216,6 +1269,55 @@
         box-shadow: none;
         border-radius: 0;
       }
+      .timeline {
+        flex-direction: column;
+        padding-left: 2rem;
+        margin: 2rem 0;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+  
+      .timeline::before {
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        height: 100%;
+        transform: none;
+        background: linear-gradient(180deg, var(--islamic-green), var(--islamic-gold));
+      }
+  
+      .timeline-item {
+        text-align: left;
+        padding: 0 0 2rem 1.5rem;
+        margin-bottom: 1rem;
+        width: 100%;
+        position: relative;
+      }
+  
+      .timeline-item::before {
+        left: 0;
+        top: 0;
+        transform: translate(-50%, 0);
+      }
+  
+      .timeline-date {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        margin-bottom: 0.5rem;
+        display: inline-block;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+      }
+  
+      .timeline-content {
+        margin-top: 0;
+        padding: 1rem;
+      }
     }
 
     @media (max-width: 576px) {
@@ -1340,10 +1442,9 @@
 
       <div class="timeline">
         <div class="timeline-item" data-aos="fade-up">
-          <div class="timeline-date">17 December 2025</div>
+          <div class="timeline-date">17 December 2025, 10:00 AM</div>
           <div class="timeline-content">
             <h5 class="mb-2">Entrance Examination</h5>
-            <p class="mb-0">Entrance test will be conducted at 10:00 AM</p>
           </div>
         </div>
         
@@ -1351,7 +1452,6 @@
           <div class="timeline-date">31 December 2025</div>
           <div class="timeline-content">
             <h5 class="mb-2">Result Announcement</h5>
-            <p class="mb-0">Entrance exam results will be published</p>
           </div>
         </div>
         
@@ -1359,7 +1459,6 @@
           <div class="timeline-date">15 January 2026</div>
           <div class="timeline-content">
             <h5 class="mb-2">Admission Starts</h5>
-            <p class="mb-0">Selected candidates can begin admission process</p>
           </div>
         </div>
         
@@ -1367,7 +1466,6 @@
           <div class="timeline-date">30 January 2026</div>
           <div class="timeline-content">
             <h5 class="mb-2">Classes Commence</h5>
-            <p class="mb-0">Academic year 2025-26 begins</p>
           </div>
         </div>
       </div>
@@ -1377,10 +1475,6 @@
   <!-- ADMISSION PORTAL SERVICES -->
   <section class="content-section" style="background: white;">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Online Admission Services</h2>
-      </div>
-
       <div class="row g-4">
         <!-- New Application -->
         <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
@@ -2549,7 +2643,7 @@
     );
     
     // Generate QR Code text
-    const qrText = `Name: ${studentData.studentName || studentData.name || ''}, Register No: ${studentData.registerNo || studentData.applicationId || ''}, DoB: ${studentData.dob || ''}, Exam Date: 17/12/2025, Venue: Darunnajath Shareeath & Arts College`;
+    const qrText = `Name: ${studentData.studentName || studentData.name || ''}, Register No: ${studentData.registerNo || studentData.applicationId || ''}, DoB: ${studentData.dob || ''}, Exam Date: 17/12/2025, Venue: College Seminar Hall`;
     const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrText)}`;
     
     return `
