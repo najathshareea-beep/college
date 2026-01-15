@@ -1591,10 +1591,14 @@
                   </label>
                   <select class="form-control" name="madrasaclass" required>
                     <option value="" disabled selected>മദ്റസ ക്ലാസ് തിരഞ്ഞെടുക്കുക | Select Madrasa class</option>
-                    <option value="II">II</option>
-                    <option value="III">III</option>
-                    <option value="IV">IV</option>
                     <option value="V">V</option>
+                    <option value="VI">VI</option>
+                    <option value="VII">VII</option>
+                    <option value="VIII">VIII</option>
+                    <option value="IX">IX</option>
+                    <option value="X">X</option>
+                    <option value="XI">XI</option>
+                    <option value="XII">XII</option>
                   </select>
                 </div>
               </div>
@@ -1618,10 +1622,12 @@
                   </label>
                   <select class="form-control" name="schoolclass" required>
                     <option value="" disabled selected>സ്കൂള്‍ ക്ലാസ് തിരഞ്ഞെടുക്കുക | Select School class</option>
-                    <option value="II">II</option>
-                    <option value="III">III</option>
-                    <option value="IV">IV</option>
-                    <option value="V">V</option>
+                    <option value="VII">VII</option>
+                    <option value="VIII">VIII</option>
+                    <option value="IX">IX</option>
+                    <option value="X">X</option>
+                    <option value="XI">XI</option>
+                    <option value="XII">XII</option>
                   </select>
                 </div>
               </div>
@@ -1671,37 +1677,6 @@
                            placeholder="പഠന കാലം രേഖപ്പെടുത്തുക | Enter duration">
                   </div>
                 </div>
-              </div>
-              
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">
-                      എത്ര ജുസുഅ് | Number of Juz:
-                    </label>
-                    <input type="text" class="form-control" name="juzCount" 
-                           placeholder="ജുസുഅിന്റെ എണ്ണം രേഖപ്പെടുത്തുക | Enter number of Juz">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">
-                      പ്രധാന അദ്ധ്യാപകന്‍റെ ഫോണ്‍ നമ്പര്‍ | Head Teacher's Phone Number:
-                    </label>
-                    <input type="tel" class="form-control" name="headTeacherPhone" 
-                           placeholder="9876543210 | Enter phone number" 
-                           pattern="\d{10}">
-                  </div>
-                </div>
-              </div>
-              
-              <div class="mb-3">
-                <label class="form-label">
-                  പോരാനുള്ള കാരണം | Reason for Leaving:
-                </label>
-                <textarea class="form-control" name="reasonForLeaving" 
-                          placeholder="പോരാനുള്ള കാരണം രേഖപ്പെടുത്തുക | Enter reason for leaving" 
-                          rows="2"></textarea>
               </div>
             </div>
           </div>
@@ -2406,14 +2381,6 @@
           <div class="info-item">
             <span class="info-label">Duration of Study:</span>
             <span class="info-value">${escapeHtml(studentData.studyDuration || 'N/A')}</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Number of Juz:</span>
-            <span class="info-value">${escapeHtml(studentData.juzCount || 'N/A')}</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Head Teacher's Phone:</span>
-            <span class="info-value">${escapeHtml(studentData.headTeacherPhone || 'N/A')}</span>
           </div>
         </div>
         ` : ''}
