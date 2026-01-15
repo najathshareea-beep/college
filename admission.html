@@ -739,7 +739,7 @@
     .info-label {
       font-weight: 600;
       color: #495057;
-      width: 100px;
+      width: 120px;
       font-size: 11px;
       line-height: 1.2;
       text-align: left;
@@ -987,24 +987,47 @@
     /* Print Styles */
     @media print {
       body { 
-        padding: 0; 
-        background: white;
+        padding: 0 !important; 
+        background: white !important;
+        margin: 0 !important;
       }
       .document-container {
-        width: 21cm;
-        min-height: 29.7cm;
-        box-shadow: none;
-        border-radius: 0;
-        margin: 0;
+        width: 21cm !important;
+        min-height: 29.7cm !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        page-break-after: always !important;
       }
       .no-print { 
         display: none !important; 
       }
+      /* Hide main portal elements */
       .navbar-optimized,
       .footer,
       .whatsapp-float,
-      .content-section:not(.document-section) {
+      .page-header,
+      .pattern-bg,
+      .islamic-ornament,
+      .content-section:not(.document-section),
+      #mainContentArea {
         display: none !important;
+      }
+      /* Show only document display area */
+      #documentDisplayArea {
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        position: static !important;
+      }
+      /* Ensure document containers print properly */
+      .document-container {
+        break-inside: avoid !important;
+      }
+      /* Set print margins */
+      @page {
+        size: A4;
+        margin: 0.5cm;
       }
     }
 
@@ -2299,7 +2322,7 @@
         </div>
         ` : ''}
         
-        <div class="document-section-title">Personal Information</div>
+        <div class="document-section-title">1. Personal Information</div>
         <div class="info-grid" style="margin-right: ${hasValidPhoto ? '160px' : '0'};">
           <div class="info-item">
             <span class="info-label">Application Date:</span>
@@ -2310,51 +2333,65 @@
             <span class="info-value">${escapeHtml(studentData.applicationId || 'N/A')}</span>
           </div>
           <div class="info-item">
-            <span class="info-label">Student's Name:</span>
+            <span class="info-label">1. Student's Name:</span>
             <span class="info-value">${escapeHtml(studentData.studentName || studentData.name || 'N/A')}</span>
           </div>
           <div class="info-item">
-            <span class="info-label">House Name:</span>
+            <span class="info-label">2. House Name:</span>
             <span class="info-value">${escapeHtml(studentData.houseName || 'N/A')}</span>
           </div>
           <div class="info-item">
-            <span class="info-label">Date of Birth:</span>
+            <span class="info-label">3. Date of Birth:</span>
             <span class="info-value">${escapeHtml(studentData.dob || 'N/A')}</span>
           </div>
           <div class="info-item">
-            <span class="info-label">Guardian's Name:</span>
-            <span class="info-value">${escapeHtml(studentData.guardianName || 'N/A')}</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Address:</span>
-            <span class="info-value">${escapeHtml(studentData.address || 'N/A')}</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Phone Number:</span>
-            <span class="info-value">${escapeHtml(studentData.phoneNumber || studentData.mobile || 'N/A')}</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">WhatsApp Number:</span>
-            <span class="info-value">${escapeHtml(studentData.whatsappNumber || 'N/A')}</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Aadhaar Number:</span>
+            <span class="info-label">4. Aadhaar Number:</span>
             <span class="info-value">${escapeHtml(studentData.aadhaarNumber || 'N/A')}</span>
           </div>
           <div class="info-item">
-            <span class="info-label">Father's Name:</span>
-            <span class="info-value">${escapeHtml(studentData.fatherName || 'N/A')}</span>
+            <span class="info-label">5. Address:</span>
+            <span class="info-value">${escapeHtml(studentData.address || 'N/A')}</span>
           </div>
           <div class="info-item">
-            <span class="info-label">Father's Occupation:</span>
-            <span class="info-value">${escapeHtml(studentData.fatherOccupation || 'N/A')}</span>
+            <span class="info-label">6. Phone Number:</span>
+            <span class="info-value">${escapeHtml(studentData.phoneNumber || studentData.mobile || 'N/A')}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">7. WhatsApp Number:</span>
+            <span class="info-value">${escapeHtml(studentData.whatsappNumber || 'N/A')}</span>
           </div>
         </div>
         
-        <div class="document-section-title">Educational Information</div>
+        <div class="document-section-title">2. Parent/Guardian Information</div>
         <div class="info-grid" style="margin-right: ${hasValidPhoto ? '160px' : '0'};">
           <div class="info-item">
-            <span class="info-label">Madrasa & Location:</span>
+            <span class="info-label">8. Father's Name:</span>
+            <span class="info-value">${escapeHtml(studentData.fatherName || 'N/A')}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">9. Father's Occupation:</span>
+            <span class="info-value">${escapeHtml(studentData.fatherOccupation || 'N/A')}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">10. Guardian's Name:</span>
+            <span class="info-value">${escapeHtml(studentData.guardianName || 'N/A')}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">11. Relationship with Guardian:</span>
+            <span class="info-value">${escapeHtml(studentData.relationshipWithGuardian || 'N/A')}</span>
+          </div>
+          ${studentData.guardianReason ? `
+          <div class="info-item">
+            <span class="info-label">12. Reason if Guardian is not Father:</span>
+            <span class="info-value">${escapeHtml(studentData.guardianReason)}</span>
+          </div>
+          ` : ''}
+        </div>
+        
+        <div class="document-section-title">3. Educational Information</div>
+        <div class="info-grid" style="margin-right: ${hasValidPhoto ? '160px' : '0'};">
+          <div class="info-item">
+            <span class="info-label">13. Madrasa & Location:</span>
             <span class="info-value">${escapeHtml(studentData.madrasa || 'N/A')}</span>
           </div>
           <div class="info-item">
@@ -2362,37 +2399,45 @@
             <span class="info-value">${escapeHtml(studentData.madrasaclass || 'N/A')}</span>
           </div>
           <div class="info-item">
-            <span class="info-label">School & Location:</span>
+            <span class="info-label">14. School & Location:</span>
             <span class="info-value">${escapeHtml(studentData.school || 'N/A')}</span>
           </div>
           <div class="info-item">
             <span class="info-label">School Class:</span>
             <span class="info-value">${escapeHtml(studentData.schoolclass || 'N/A')}</span>
           </div>
+          <div class="info-item">
+            <span class="info-label">15. Previous Study:</span>
+            <span class="info-value">${escapeHtml(studentData.previousStudy || 'No')}</span>
+          </div>
         </div>
         
         ${studentData.previousStudy === 'Yes' ? `
         <div class="document-section-title">Previous Study Details</div>
         <div class="info-grid" style="margin-right: ${hasValidPhoto ? '160px' : '0'};">
+          ${studentData.previousInstitution ? `
           <div class="info-item">
             <span class="info-label">Previous Institution:</span>
             <span class="info-value">${escapeHtml(studentData.previousInstitution || 'N/A')}</span>
           </div>
+          ` : ''}
+          ${studentData.studyDuration ? `
           <div class="info-item">
             <span class="info-label">Duration of Study:</span>
             <span class="info-value">${escapeHtml(studentData.studyDuration || 'N/A')}</span>
           </div>
+          ` : ''}
         </div>
         ` : ''}
         
-        <div class="document-section-title">Medical & Identification</div>
+        <div class="document-section-title">4. Medical & Identification</div>
         <div class="info-grid" style="margin-right: ${hasValidPhoto ? '160px' : '0'};">
           <div class="info-item">
-            <span class="info-label">Identification Mark:</span>
+            <span class="info-label">16. Identification Mark:</span>
             <span class="info-value">${escapeHtml(studentData.identificationMark || 'N/A')}</span>
           </div>
           <div class="info-item">
-            <span class="info-label">Physical Fitness:</span>
+            <span class="info-label">17. Physical Fitness:</span>
             <span class="info-value">${escapeHtml(studentData.physicalFitness || 'N/A')}</span>
           </div>
           ${studentData.illness ? `
@@ -2401,6 +2446,19 @@
             <span class="info-value">${escapeHtml(studentData.illness)}</span>
           </div>
           ` : ''}
+        </div>
+        
+        <div class="document-section-title">5. Student Photograph</div>
+        <div style="margin-right: ${hasValidPhoto ? '160px' : '0'}; margin-bottom: 15px;">
+          ${hasValidPhoto ? `
+          <div style="font-size: 11px; color: #6c757d; margin-bottom: 5px;">
+            Student's photo has been uploaded and attached.
+          </div>
+          ` : `
+          <div style="font-size: 11px; color: #dc3545; margin-bottom: 5px;">
+            No photo uploaded.
+          </div>
+          `}
         </div>
         
         <div class="document-declaration">
@@ -2435,7 +2493,7 @@
     
     <div class="no-print" style="text-align:center;margin-top:20px;padding:20px;">
       <button onclick="window.print()" class="btn-gold me-2">
-        <i class="fas fa-print me-2"></i> Print Document
+        <i class="fas fa-print me-2"></i> Print Application Form
       </button>
       <button onclick="showDashboard()" class="btn-outline-gold">
         <i class="fas fa-arrow-left me-2"></i> Back to Dashboard
@@ -2528,7 +2586,7 @@
               </div>
               <div class="exam-item">
                 <div class="exam-label">Venue</div>
-                <div class="exam-value">Darunnajath Shareeath & Arts College</div>
+                <div class="exam-value">College Seminar Hall</div>
               </div>
             </div>
           </div>
@@ -2543,10 +2601,10 @@
         <table class="signing-table">
           <thead>
             <tr>
-              <th>Quran Test</th>
-              <th>Hifz Test</th>
-              <th>General Knowledge</th>
-              <th>Memory Test</th>
+              <th>A</th>
+              <th>B</th>
+              <th>C</th>
+              <th>D</th>
             </tr>
           </thead>
           <tbody>
