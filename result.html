@@ -1293,7 +1293,8 @@
     const resultHTML = `
       <div class="result-header">
         <h2>DARUNNAJATH SHAREEATH & ARTS COLLEGE</h2>
-        <p>First Semester Examination 2025-26 • Statement of Marks</p>
+        <p>First Semester Examination 2025-26</p>
+        <p>Statement of Marks</p>
       </div>
       
       <div class="student-info">
@@ -1319,6 +1320,25 @@
         </div>
       </div>
       
+      <div class="subjects-section">
+        <h4 class="text-center mb-3">Subject-wise Marks</h4>
+        <table class="subjects-table">
+          <thead>
+            <tr>
+              <th>Sl.No</th>
+              <th>Subject</th>
+              <th>Max Marks</th>
+              <th>Marks Obtained</th>
+              <th>Grade</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${subjectRows}
+          </tbody>
+        </table>
+      </div>
+
       <div class="performance-summary">
         <h4 class="text-center mb-3">Performance Summary</h4>
         <div class="summary-grid">
@@ -1339,26 +1359,11 @@
             <div class="summary-value">${student.rank}</div>
             <div class="summary-label">Rank</div>
           </div>
+          <div class="summary-card">
+            <div class="summary-value">${presents.rank}</div>
+            <div class="summary-label">Presents</div>
+          </div>
         </div>
-      </div>
-      
-      <div class="subjects-section">
-        <h4 class="text-center mb-3">Subject-wise Marks</h4>
-        <table class="subjects-table">
-          <thead>
-            <tr>
-              <th>Sl.No</th>
-              <th>Subject</th>
-              <th>Max Marks</th>
-              <th>Marks Obtained</th>
-              <th>Grade</th>
-              <th>Result</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${subjectRows}
-          </tbody>
-        </table>
       </div>
       
       <div class="final-result">
@@ -1411,6 +1416,7 @@
 </script>
 </body>
 </html>
+
 
 
 
