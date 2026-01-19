@@ -629,6 +629,47 @@
       .stat-number {
         font-size: 1.5rem;
       }
+      
+      /* NEW: Make channel icons smaller on mobile */
+      .channel-icon {
+        width: 60px !important;
+        height: 60px !important;
+        font-size: 1.8rem !important;
+        margin: 0 auto 1.2rem !important;
+      }
+      
+      /* NEW: Adjust icon spacing for mobile */
+      .channel-info .d-flex {
+        gap: 8px !important;
+      }
+      
+      /* NEW: Make buttons stack on mobile */
+      .channel-info .mt-4.mb-5 {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: center;
+      }
+      
+      .channel-info .btn-gold,
+      .channel-info .btn-outline-gold {
+        width: 100%;
+        max-width: 300px;
+        margin: 0.2rem 0 !important;
+      }
+      
+      /* NEW: Reduce channel info padding */
+      .channel-info {
+        padding: 1.5rem;
+        margin: 0 1rem 2rem;
+      }
+      
+      /* NEW: Adjust video title for mobile */
+      .video-title {
+        min-height: 60px;
+        font-size: 1rem;
+        padding: 1rem;
+      }
     }
 
     @media (max-width: 576px) {
@@ -642,6 +683,7 @@
       
       .video-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
       }
       
       .channel-stats {
@@ -656,6 +698,90 @@
       .category-btn {
         padding: 0.4rem 1rem;
         font-size: 0.9rem;
+      }
+      
+      /* NEW: Further adjustments for very small screens */
+      .channel-icon {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 1.5rem !important;
+      }
+      
+      /* NEW: Adjust heading for mobile */
+      .channel-info h2.section-title {
+        font-size: 1.5rem !important;
+        margin-bottom: 0.8rem !important;
+      }
+      
+      .channel-info p.section-subtitle {
+        font-size: 0.95rem !important;
+        margin-bottom: 1rem !important;
+      }
+      
+      /* NEW: Adjust video info for mobile */
+      .video-info {
+        padding: 0.6rem 1rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+      }
+      
+      .video-category, .video-date {
+        font-size: 0.75rem;
+      }
+      
+      /* NEW: Reduce padding in content section */
+      .content-section {
+        padding: 2rem 0;
+      }
+      
+      /* NEW: Adjust buttons for very small screens */
+      .btn-outline-gold.btn-lg {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+      }
+      
+      .btn-outline-gold.btn-lg.px-5 {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+      }
+    }
+    
+    /* NEW: Add extra small device support */
+    @media (max-width: 400px) {
+      .page-title {
+        font-size: 1.6rem;
+      }
+      
+      .page-subtitle {
+        font-size: 1rem;
+        padding: 0 1rem;
+      }
+      
+      .channel-info {
+        padding: 1rem;
+        margin: 0 0.5rem 1.5rem;
+      }
+      
+      .stat-number {
+        font-size: 1.3rem;
+      }
+      
+      .stat-label {
+        font-size: 0.8rem;
+      }
+      
+      .video-card {
+        border-radius: 10px;
+      }
+      
+      .category-filter {
+        gap: 0.3rem;
+      }
+      
+      .category-btn {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.8rem;
       }
     }
   </style>
