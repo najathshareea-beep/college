@@ -7,27 +7,20 @@
   <meta name="description" content="Jashne Najath 2K25 - അന്യോന്യം" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <style>
     :root {
-      --islamic-green: #0a5c36; --islamic-gold: #c19a3f; --islamic-cream: #f8f3e6; --islamic-light: #e9f5e9; --dark-green: #064e3b; --light-gold: #ffd24d; --transition: all 0.3s ease; --jaihoon: #16a34a; --saihoon: #6366f1;
+      --islamic-green: #0a5c36; --islamic-gold: #c19a3f; --islamic-cream: #f8f3e6; --dark-green: #064e3b; --transition: all 0.3s ease; --jaihoon: #16a34a; --saihoon: #6366f1;
     }
     body {
       font-family: 'Poppins', sans-serif; background-color: var(--islamic-cream); color: #333; scroll-behavior: smooth; overflow-x: hidden; padding-top: 80px;
     }
     a {text-decoration: none;}
-    .arabic-font {font-family: 'Scheherazade New', serif;}
-    .malayalam-font {font-family: 'Anek Malayalam', sans-serif;}
-    .pattern-bg {
-      background-image: radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px), radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px); background-size: 50px 50px; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-    }
     .navbar-optimized {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-bottom: 3px solid var(--islamic-gold); transition: var(--transition); padding: 0.5rem 0; height: 80px; z-index: 1030 !important;
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-bottom: 3px solid var(--islamic-gold); transition: var(--transition); padding: 0.5rem 0; height: 80px; z-index: 1030;
     }
     .navbar-toggler {border-color: rgba(255, 255, 255, 0.5);}
     .navbar-toggler:focus {box-shadow: 0 0 0 2px var(--islamic-gold);}
@@ -102,12 +95,9 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    .team-badge-jaihoon { background-color: rgba(22, 163, 74, 0.1); color: #16a34a; }
-    .team-badge-saihoon { background-color: rgba(99, 102, 241, 0.1); color: #6366f1; }
     .topper-rank-1 { background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); }
     .topper-rank-2 { background: linear-gradient(135deg, #C0C0C0 0%, #A9A9A9 100%); }
     .topper-rank-3 { background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%); }
-    .program-selected {border: 3px solid var(--islamic-green); transform: scale(1.02);}
     .fest-nav {
       background: white; border-bottom: 2px solid var(--islamic-gold); position: relative; z-index: 1000; margin-bottom: 2rem;
     }
@@ -472,32 +462,26 @@
         </div>
       </div>
     </div>
-    
-    <!-- Back to Home Button -->
     <div class="text-center mt-5">
       <button onclick="window.location.href='index.html'" class="btn-outline-gold btn-lg px-5">
         <i class="fas fa-home me-2"></i>Back to Home
       </button>
     </div>
   </section>
-
-  <!-- Scoreboard Section -->
   <section id="scoreboard-section" class="section-hidden content-section bg-white">
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">Live Scoreboard</h2>
         <p class="section-subtitle">Track real-time scores and standings</p>
       </div>
-      
       <div class="filter-buttons">
+        <button class="filter-btn" data-category="Total" style="background: var(--islamic-green); color: white;">Total Score</button>
         <button class="filter-btn active" data-category="General">General</button>
         <button class="filter-btn" data-category="Group">Group</button>
         <button class="filter-btn" data-category="Sub Junior">Sub Junior</button>
         <button class="filter-btn" data-category="Junior">Junior</button>
         <button class="filter-btn" data-category="Senior">Senior</button>
-        <button class="filter-btn" data-category="Total" style="background: var(--islamic-green); color: white;">Total Score</button>
       </div>
-      
       <div class="row g-4 justify-content-center mb-5">
         <div class="col-md-6" data-aos="fade-right">
           <div class="text-center p-4 rounded-3 shadow-sm" style="border: 3px solid var(--jaihoon);">
@@ -506,7 +490,6 @@
             <div class="text-muted" id="score-label-jaihoon">Points</div>
           </div>
         </div>
-        
         <div class="col-md-6" data-aos="fade-left">
           <div class="text-center p-4 rounded-3 shadow-sm" style="border: 3px solid var(--saihoon);">
             <h3 class="mb-3" style="color: var(--saihoon);">Saihoon</h3>
@@ -515,7 +498,6 @@
           </div>
         </div>
       </div>
-      
       <div class="row justify-content-center">
         <div class="col-md-8">
           <div class="p-4 rounded-3 shadow-sm bg-white">
@@ -534,24 +516,18 @@
         </div>
       </div>
     </div>
-    
-    <!-- Back to Home Button -->
     <div class="text-center mt-5">
       <button onclick="window.location.href='index.html'" class="btn-outline-gold btn-lg px-5">
         <i class="fas fa-home me-2"></i>Back to Home
       </button>
     </div>
   </section>
-
-  <!-- Toppers Section -->
   <section id="toppers-section" class="section-hidden content-section">
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">Top Performers</h2>
         <p class="section-subtitle">Celebrating outstanding achievements</p>
       </div>
-      
-      <!-- Chest Number Search -->
       <div class="row justify-content-center mb-5" data-aos="fade-up">
         <div class="col-md-8">
           <div class="p-4 rounded-3 shadow-sm bg-white">
@@ -576,7 +552,6 @@
           </div>
         </div>
       </div>
-      
       <div class="filter-buttons">
         <button class="filter-btn active" data-topper-category="all">All Toppers</button>
         <button class="filter-btn" data-topper-category="General">General</button>
@@ -584,7 +559,6 @@
         <button class="filter-btn" data-topper-category="Junior">Junior</button>
         <button class="filter-btn" data-topper-category="Senior">Senior</button>
       </div>
-      
       <div id="toppers-container" class="mt-4">
         <div class="text-center py-5">
           <div class="loader mx-auto mb-3"></div>
@@ -592,23 +566,18 @@
         </div>
       </div>
     </div>
-    
-    <!-- Back to Home Button -->
     <div class="text-center mt-5">
       <button onclick="window.location.href='index.html'" class="btn-outline-gold btn-lg px-5">
         <i class="fas fa-home me-2"></i>Back to Home
       </button>
     </div>
   </section>
-  
-  <!-- Programs Section -->
   <section id="programs-section" class="section-hidden content-section bg-white">
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">All Programs</h2>
         <p class="section-subtitle">Browse through all competition programs</p>
       </div>
-      
       <div class="filter-buttons">
         <button class="filter-btn active" data-program-filter="all">All</button>
         <button class="filter-btn" data-program-filter="General">General</button>
@@ -617,7 +586,6 @@
         <button class="filter-btn" data-program-filter="Junior">Junior</button>
         <button class="filter-btn" data-program-filter="Senior">Senior</button>
       </div>
-      
       <div id="programs-container" class="row g-4">
         <div class="col-12 text-center py-5">
           <div class="loader mx-auto mb-3"></div>
@@ -625,8 +593,6 @@
         </div>
       </div>
     </div>
-    
-    <!-- Back to Home Button -->
     <div class="text-center mt-5" data-aos="fade-up">
       <button onclick="window.location.href='index.html'" class="btn-outline-gold btn-lg px-5">
         <i class="fas fa-home me-2"></i>Back to Home
@@ -634,7 +600,6 @@
     </div>
   </section>
 </main>
-<!-- STANDARD FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="row">
@@ -660,7 +625,6 @@
           </a>
         </div>
       </div>
-   
       <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
         <div class="footer-links">
           <h5>Quick Links</h5>
@@ -671,7 +635,6 @@
           <a href="contact.html">Contact</a>
         </div>
       </div>
-   
       <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
         <div class="footer-links">
           <h5>Resources</h5>
@@ -682,7 +645,6 @@
           <a href="pta.html">PTA</a>
         </div>
       </div>
-   
       <div class="col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
         <div class="footer-links">
           <h5>Contact Info</h5>
@@ -694,7 +656,6 @@
         </div>
       </div>
     </div>
- 
     <div class="text-center pt-4 mt-4 border-top border-light border-opacity-25">
       <p class="text-light mb-2">
         © <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.
@@ -705,21 +666,14 @@
     </div>
   </div>
 </footer>
-
-<!-- WHATSAPP BUTTON -->
 <a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!"
    class="whatsapp-float" target="_blank"
    title="Chat with us on WhatsApp" aria-label="WhatsApp Chat">
   <i class="fab fa-whatsapp"></i>
 </a>
-
-<!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
-<!-- Fest JavaScript -->
 <script>
-  // Configuration
   const SHEET_ID = '1vk_hE-Ja5d8kZdzuj7jeYxlunTyopx0p9HjzJcGFl0c';
   const SCOREBOARD_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Scoreboard`;
   const RESULTS_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Results`;
@@ -727,7 +681,6 @@
   const EVENT_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Event`;
   const TEAM_LEADERS_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=TeamLeaders`;
   
-  // State
   let scoreboardData = {};
   let allResults = [];
   let allCandidates = [];
@@ -739,7 +692,6 @@
   let currentProgramFilter = 'all';
   let totalScores = { jaihoon: 0, saihoon: 0 };
   
-  // DOM Elements
   const sections = {
     home: document.getElementById('home-section'),
     results: document.getElementById('results-section'),
@@ -749,7 +701,6 @@
     toppers: document.getElementById('toppers-section')
   };
   
-  // Initialize
   document.addEventListener('DOMContentLoaded', function() {
     setupNavigation();
     setupModal();
@@ -760,10 +711,8 @@
     loadTeamLeaders();
     AOS.init({ duration: 800, once: true, offset: 50 });
     
-    // Update current year
     document.getElementById('currentYear').textContent = new Date().getFullYear();
     
-    // Navbar scroll effect
     window.addEventListener('scroll', function() {
       const navbar = document.querySelector('.navbar-optimized');
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -771,9 +720,7 @@
     });
   });
   
-  // Navigation Setup
   function setupNavigation() {
-    // Fest tabs
     document.querySelectorAll('.fest-nav-tab').forEach(tab => {
       tab.addEventListener('click', function() {
         const sectionId = this.getAttribute('data-section');
@@ -786,7 +733,6 @@
       });
     });
     
-    // Buttons
     document.querySelectorAll('#home-section button[data-section]').forEach(button => {
       button.addEventListener('click', function() {
         const sectionId = this.getAttribute('data-section');
@@ -794,7 +740,6 @@
       });
     });
     
-    // Results filter buttons
     document.querySelectorAll('.filter-btn[data-filter]').forEach(btn => {
       btn.addEventListener('click', function() {
         const filter = this.getAttribute('data-filter');
@@ -808,7 +753,6 @@
       });
     });
     
-    // Scoreboard buttons
     document.querySelectorAll('.filter-btn[data-category]').forEach(btn => {
       btn.addEventListener('click', function() {
         const category = this.getAttribute('data-category');
@@ -822,7 +766,6 @@
       });
     });
     
-    // Toppers buttons
     document.querySelectorAll('.filter-btn[data-topper-category]').forEach(btn => {
       btn.addEventListener('click', function() {
         const category = this.getAttribute('data-topper-category');
@@ -836,7 +779,6 @@
       });
     });
     
-    // Program filter buttons
     document.querySelectorAll('.filter-btn[data-program-filter]').forEach(btn => {
       btn.addEventListener('click', function() {
         const filter = this.getAttribute('data-program-filter');
@@ -850,19 +792,16 @@
       });
     });
     
-    // Chest search
     document.getElementById('search-chest-btn').addEventListener('click', searchChestNumber);
     document.getElementById('chest-number-input').addEventListener('keypress', function(e) {
       if (e.key === 'Enter') searchChestNumber();
     });
     
-    // Refresh button
     document.getElementById('refresh-scores').addEventListener('click', function() {
       loadScoreboard();
     });
   }
   
-  // Setup modal functionality
   function setupModal() {
     const modal = document.getElementById('program-modal');
     const closeModalBtn = document.getElementById('close-modal');
@@ -894,7 +833,6 @@
     document.body.style.overflow = 'auto';
   }
   
-  // Show section
   function showSection(sectionId) {
     Object.values(sections).forEach(section => {
       section.classList.remove('section-active');
@@ -914,7 +852,6 @@
     }
   }
   
-  // Load scoreboard
   function loadScoreboard() {
     fetch(SCOREBOARD_URL)
       .then(res => res.text())
@@ -943,7 +880,6 @@
       });
   }
   
-  // Load results
   function loadResults() {
     fetch(RESULTS_URL)
       .then(res => res.text())
@@ -986,7 +922,6 @@
       });
   }
   
-  // Load candidates
   function loadCandidates() {
     fetch(CANDIDATE_URL)
       .then(res => res.text())
@@ -1011,7 +946,6 @@
       });
   }
   
-  // Load events
   function loadEvents() {
     fetch(EVENT_URL)
       .then(res => res.text())
@@ -1038,7 +972,6 @@
       });
   }
   
-  // Load team leaders
   function loadTeamLeaders() {
     fetch(TEAM_LEADERS_URL)
       .then(res => res.text())
@@ -1076,7 +1009,6 @@
       });
   }
   
-  // Clean category names
   function cleanCategoryName(category) {
     if (!category) return '';
     
@@ -1103,7 +1035,6 @@
     return category;
   }
   
-  // Calculate total scores
   function calculateTotalScores() {
     totalScores = { jaihoon: 0, saihoon: 0 };
     
@@ -1122,7 +1053,6 @@
     }
   }
   
-  // Parse CSV
   function parseCSV(csv) {
     const lines = csv.trim().split('\n');
     return lines.map(line => {
@@ -1151,7 +1081,6 @@
     });
   }
   
-  // Update scoreboard
   function updateScoreboard(category) {
     currentCategory = category;
     let data;
@@ -1170,13 +1099,11 @@
     document.getElementById('score-saihoon').textContent = data.saihoon || 0;
   }
   
-  // Update team scores
   function updateTeamScores() {
     document.getElementById('team-jaihoon-score').textContent = totalScores.jaihoon;
     document.getElementById('team-saihoon-score').textContent = totalScores.saihoon;
   }
   
-  // Display results
   function displayResults(filter) {
     currentFilter = filter;
     const container = document.getElementById('results-container');
@@ -1286,7 +1213,6 @@
     });
   }
   
-  // Display toppers
   function displayToppers(category) {
     currentTopperCategory = category;
     const container = document.getElementById('toppers-container');
@@ -1305,9 +1231,7 @@
     
     const candidatePoints = {};
     
-    // Process results
     allResults.forEach(result => {
-      // First place
       if (result.firstChestNo && result.firstName) {
         const key = `${result.firstChestNo}-${result.firstName}`;
         if (!candidatePoints[key]) {
@@ -1325,7 +1249,6 @@
         candidatePoints[key].totalGradePoints += result.firstGradePoint || 0;
       }
       
-      // Second place
       if (result.secondChestNo && result.secondName) {
         const key = `${result.secondChestNo}-${result.secondName}`;
         if (!candidatePoints[key]) {
@@ -1343,7 +1266,6 @@
         candidatePoints[key].totalGradePoints += result.secondGradePoint || 0;
       }
       
-      // Third place
       if (result.thirdChestNo && result.thirdName) {
         const key = `${result.thirdChestNo}-${result.thirdName}`;
         if (!candidatePoints[key]) {
@@ -1362,10 +1284,8 @@
       }
     });
     
-    // Convert to array and sort
     const candidatesArray = Object.values(candidatePoints);
     
-    // Group by category
     const toppersByCategory = {};
     candidatesArray.forEach(candidate => {
       if (!toppersByCategory[candidate.category]) {
@@ -1374,12 +1294,10 @@
       toppersByCategory[candidate.category].push(candidate);
     });
     
-    // Sort each category
     for (const cat in toppersByCategory) {
       toppersByCategory[cat].sort((a, b) => b.totalPoints - a.totalPoints);
     }
     
-    // Display based on category
     if (category === 'all') {
       const categoriesToShow = ['General', 'Sub Junior', 'Junior', 'Senior', 'Group'];
       
@@ -1468,7 +1386,6 @@
     }
   }
   
-  // Display programs
   function displayPrograms() {
     const container = document.getElementById('programs-container');
     
@@ -1508,7 +1425,6 @@
     });
   }
   
-  // Show program results modal
   function showProgramResultsModal(eventCode, eventName) {
     const results = allResults.filter(r => r.eventCode === eventCode);
     
@@ -1626,19 +1542,16 @@
     openModal();
   }
   
-  // Update toppers category
   function updateToppersCategory(category) {
     currentTopperCategory = category;
     displayToppers(category);
   }
   
-  // Update program filter
   function updateProgramFilter(filter) {
     currentProgramFilter = filter;
     displayPrograms();
   }
   
-  // Get team badge
   function getTeamBadge(teamName) {
     if (!teamName) return '<span class="badge bg-light text-dark">-</span>';
     
@@ -1651,7 +1564,6 @@
     }
   }
   
-  // Get team color class
   function getTeamColorClass(teamName) {
     if (teamName.includes('Jaihoon')) {
       return 'bg-green-100 text-green-800';
@@ -1662,7 +1574,6 @@
     }
   }
   
-  // Search chest number
   function searchChestNumber() {
     const chestNumber = document.getElementById('chest-number-input').value.trim().toUpperCase();
     const resultDiv = document.getElementById('chest-result');
@@ -1689,7 +1600,6 @@
       return;
     }
     
-    // Search in results
     let foundResults = [];
     let totalPoints = 0;
     let totalGradePoints = 0;
@@ -1727,7 +1637,6 @@
       }
     });
     
-    // Display results
     let html = `<div class="alert alert-success">`;
     html += `<h5 class="alert-heading">Results for: <strong>${candidate.name}</strong></h5>`;
     html += `<div class="row g-3 mb-3">`;
@@ -1775,7 +1684,6 @@
     resultDiv.classList.remove('d-none');
   }
   
-  // Start with home section
   showSection('home');
 </script>
 </body>
