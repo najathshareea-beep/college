@@ -4,689 +4,184 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DSAC | Gallery</title>
-
-  <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
-  <!-- STANDARD CSS -->
   <style>
-    /* ===== CSS VARIABLES ===== */
     :root {
-      --islamic-green: #0a5c36;
-      --islamic-gold: #c19a3f;
-      --islamic-cream: #f8f3e6;
-      --islamic-light: #e9f5e9;
-      --dark-green: #064e3b;
-      --light-gold: #ffd24d;
-      --transition: all 0.3s ease;
+      --islamic-green: #0a5c36; --islamic-gold: #c19a3f; --islamic-cream: #f8f3e6; --islamic-light: #e9f5e9; --dark-green: #064e3b; --light-gold: #ffd24d; --transition: all 0.3s ease;
     }
-
-    /* ===== BASE STYLES ===== */
     body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--islamic-cream);
-      color: #333;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-      padding-top: 80px;
+      font-family: 'Poppins', sans-serif; background-color: var(--islamic-cream); color: #333; scroll-behavior: smooth; overflow-x: hidden; padding-top: 80px;
     }
-    
-    a {
-      text-decoration: none;
-    }
-
-    .arabic-font {
-      font-family: 'Scheherazade New', serif;
-    }
-
-    .malayalam-font {
-      font-family: 'Anek Malayalam', sans-serif;
-    }
-
-    /* ===== PATTERN BACKGROUND ===== */
-    .pattern-bg {
-      background-image: 
-        radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px),
-        radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px);
-      background-size: 50px 50px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-
-    /* ===== STANDARD NAVBAR ===== */
+    a {text-decoration: none;}
+    .arabic-font {font-family: 'Scheherazade New', serif;}
+    .malayalam-font {font-family: 'Anek Malayalam', sans-serif;}
     .navbar-optimized {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      border-bottom: 3px solid var(--islamic-gold);
-      transition: var(--transition);
-      padding: 0.5rem 0;
-      height: 80px;
-      z-index: 1030 !important;
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-bottom: 3px solid var(--islamic-gold); transition: var(--transition); padding: 0.5rem 0; height: 80px; z-index: 1030 !important;
     }
-    
-    .navbar-toggler {
-      border-color: rgba(255, 255, 255, 0.5);
-    }
-    
-    .navbar-toggler:focus {
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-    }
-
+    .navbar-toggler {border-color: rgba(255, 255, 255, 0.5);}
+    .navbar-toggler:focus {box-shadow: 0 0 0 2px var(--islamic-gold);}
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
-
     .navbar-optimized.scrolled {
-      background: rgba(10, 92, 54, 0.98);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-      height: 70px;
+      background: rgba(10, 92, 54, 0.98); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); height: 70px;
     }
-
-    /* LOGO */
     .navbar-brand-compact img {
-      border-radius: 8px;
-      transition: transform 0.3s ease;
-      width: 60px;
-      height: 60px;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-      border: none;
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-      padding: 0;
+      border-radius: 8px; transition: transform 0.3s ease; width: 60px; height: 60px; object-fit: contain; filter: brightness(0) invert(1); border: none; box-shadow: 0 0 0 2px var(--islamic-gold); padding: 0;
     }
-
-    .navbar-optimized.scrolled .navbar-brand-compact img {
-      width: 50px;
-      height: 50px;
-      filter: brightness(0) invert(1);
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-    }
-
-    .navbar-brand-compact:hover img {
-      transform: scale(1.05);
-    }
-
-    .brand-text {
-      font-size: 1.2rem;
-      line-height: 1.2;
-    }
-
-    .brand-subtext {
-      font-size: 0.8rem;
-      opacity: 0.9;
-    }
-
+    .navbar-optimized.scrolled .navbar-brand-compact img {width: 50px; height: 50px;}
+    .navbar-brand-compact:hover img {transform: scale(1.05);}
+    .brand-text {font-size: 1.2rem; line-height: 1.2;}
+    .brand-subtext {font-size: 0.8rem; opacity: 0.9;}
     .nav-link-optimized {
-      color: #fff !important;
-      font-weight: 500;
-      transition: var(--transition);
-      padding-left: 0.4rem;
-      padding-right: 0.4rem;
-      border-radius: 5px;
-      margin: 0 2px;
-      white-space: nowrap;
+      color: #fff !important; font-weight: 500; transition: var(--transition); padding-left: 0.4rem; padding-right: 0.4rem; border-radius: 5px; margin: 0 2px; white-space: nowrap;
     }
-    
-    .nav-item-optimized {
-      margin: 0 2px;
-    }
-
-    .nav-link-optimized:hover {
-      color: var(--islamic-gold) !important;
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* Navbar dropdown */
+    .nav-item-optimized {margin: 0 2px;}
+    .nav-link-optimized:hover {color: var(--islamic-gold) !important; background: rgba(255, 255, 255, 0.1);}
     .dropdown-menu-optimized {
-      background: var(--islamic-green);
-      border: 1px solid var(--islamic-gold);
-      border-radius: 8px;
-      padding: 0.5rem 0;
+      background: var(--islamic-green); border: 1px solid var(--islamic-gold); border-radius: 8px; padding: 0.5rem 0;
     }
-
     .dropdown-item-optimized {
-      color: white;
-      padding: 0.5rem 1rem;
-      transition: var(--transition);
+      color: white; padding: 0.5rem 1rem; transition: var(--transition);
     }
-
-    .dropdown-item-optimized:hover {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    /* ===== STANDARD PAGE HEADER ===== */
+    .dropdown-item-optimized:hover {background: var(--islamic-gold); color: var(--islamic-green);}
     .page-header {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      color: white;
-      height: 30vh;
-      min-height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      margin-bottom: 3rem;
-      border-bottom: 5px solid var(--islamic-gold);
-      position: relative;
-      overflow: hidden;
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); color: white; height: 30vh; min-height: 220px; display: flex; align-items: center; justify-content: center; text-align: center; margin-bottom: 3rem; border-bottom: 5px solid var(--islamic-gold); position: relative; overflow: hidden;
     }
-
     .page-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
     }
-    
-    .page-header-content {
-      position: relative;
-      z-index: 2;
-    }
-    
+    .page-header-content {position: relative; z-index: 2;}
     .page-title {
-      font-family: 'Scheherazade New', serif;
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--islamic-gold);
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-family: 'Scheherazade New', serif; font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--islamic-gold); text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
-    
     .page-subtitle {
-      font-size: 1.4rem;
-      opacity: 0.95;
-      max-width: 800px;
-      margin: 0 auto;
-      color: var(--islamic-cream);
+      font-size: 1.4rem; opacity: 0.95; max-width: 800px; margin: 0 auto; color: var(--islamic-cream);
     }
-
-    /* ===== STANDARD CONTENT SECTION ===== */
-    .content-section {
-      padding: 4rem 0;
-      background: var(--islamic-cream);
-    }
-    
+    .content-section {padding: 4rem 0; background: var(--islamic-cream);}
     .section-header {
-      text-align: center;
-      margin-bottom: 3rem;
-      position: relative;
-      padding: 2rem 0;
+      text-align: center; margin-bottom: 3rem; position: relative; padding: 2rem 0;
     }
-
     .section-title {
-      color: var(--islamic-green);
-      font-weight: 700;
-      display: inline-block;
-      padding: 0 1rem;
-      background: var(--islamic-cream);
-      position: relative;
-      z-index: 2;
-      margin-bottom: 0.5rem;
-      font-size: 2.5rem;
+      color: var(--islamic-green); font-weight: 700; display: inline-block; padding: 0 1rem; background: var(--islamic-cream); position: relative; z-index: 2; margin-bottom: 0.5rem; font-size: 2.5rem;
     }
-
     .section-header::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent);
-      z-index: 1;
+      content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent); z-index: 1;
     }
-    
-    .section-subtitle {
-      color: #666;
-      font-size: 1.1rem;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    /* ===== STANDARD BUTTONS ===== */
+    .section-subtitle {color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;}
     .btn-gold {
-      background: linear-gradient(135deg, var(--islamic-gold), #d4af37);
-      border: none;
-      color: var(--islamic-green);
-      font-weight: 600;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3);
-      transition: var(--transition);
-      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--islamic-gold), #d4af37); border: none; color: var(--islamic-green); font-weight: 600; border-radius: 8px; box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3); transition: var(--transition); padding: 0.75rem 1.5rem;
     }
-
     .btn-gold:hover {
-      background: linear-gradient(135deg, #d4af37, var(--islamic-gold));
-      box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4);
-      transform: translateY(-2px);
-      color: var(--islamic-green);
+      background: linear-gradient(135deg, #d4af37, var(--islamic-gold)); box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4); transform: translateY(-2px); color: var(--islamic-green);
     }
-
     .btn-outline-gold {
-      border: 2px solid var(--islamic-gold);
-      color: var(--islamic-gold);
-      background: transparent;
-      border-radius: 8px;
-      padding: 0.75rem 1.5rem;
-      font-weight: 600;
-      transition: var(--transition);
+      border: 2px solid var(--islamic-gold); color: var(--islamic-gold); background: transparent; border-radius: 8px; padding: 0.75rem 1.5rem; font-weight: 600; transition: var(--transition);
     }
-
-    .btn-outline-gold:hover {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    /* ===== GALLERY SPECIFIC STYLES ===== */
+    .btn-outline-gold:hover {background: var(--islamic-gold); color: var(--islamic-green);}
     .gallery-item {
-      position: relative;
-      overflow: hidden;
-      border-radius: 12px;
-      transition: var(--transition);
-      cursor: pointer;
-      height: 250px;
-      margin-bottom: 1.5rem;
+      position: relative; overflow: hidden; border-radius: 12px; transition: var(--transition); cursor: pointer; height: 250px; margin-bottom: 1.5rem;
     }
-
     .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-      border-radius: 12px;
+      width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; border-radius: 12px;
     }
-
-    .gallery-item:hover img {
-      transform: scale(1.05);
-    }
-
+    .gallery-item:hover img {transform: scale(1.05);}
     .gallery-item::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
-      opacity: 0;
-      transition: var(--transition);
-      border-radius: 12px;
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to top, rgba(0,0,0,0.4), transparent); opacity: 0; transition: var(--transition); border-radius: 12px;
     }
-
-    .gallery-item:hover::after {
-      opacity: 1;
-    }
-
+    .gallery-item:hover::after {opacity: 1;}
     .video-card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      transition: var(--transition);
-      border: 2px solid transparent;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      height: 100%;
+      background: white; border-radius: 15px; overflow: hidden; transition: var(--transition); border: 2px solid transparent; box-shadow: 0 5px 15px rgba(0,0,0,0.08); height: 100%;
     }
-
-    .video-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--islamic-gold);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    }
-
+    .video-card:hover {transform: translateY(-8px); border-color: var(--islamic-gold); box-shadow: 0 15px 30px rgba(0,0,0,0.15);}
     .video-container {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      background: #000;
+      position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;
     }
-
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    /* Lightbox Styles */
+    .video-container iframe {position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;}
     .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.95);
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
+      display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; flex-direction: column;
     }
-
-    .lightbox img {
-      max-width: 95%;
-      max-height: 90%;
-      border-radius: 10px;
-      transition: opacity 0.5s ease;
-    }
-
+    .lightbox img {max-width: 95%; max-height: 90%; border-radius: 10px; transition: opacity 0.5s ease;}
     .lightbox .controls {
-      position: absolute;
-      top: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      transform: translateY(-50%);
-      padding: 0 30px;
+      position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); padding: 0 30px;
     }
-
     .lightbox button {
-      background: rgba(255,255,255,0.1);
-      border: none;
-      color: white;
-      font-size: 2rem;
-      cursor: pointer;
-      transition: 0.3s;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: rgba(255,255,255,0.1); border: none; color: white; font-size: 2rem; cursor: pointer; transition: 0.3s; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
     }
-
-    .lightbox button:hover {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
+    .lightbox button:hover {background: var(--islamic-gold); color: var(--islamic-green);}
     .close-btn {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 2.5rem;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.1);
+      position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: white; cursor: pointer; transition: 0.3s; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.1);
     }
-
-    .close-btn:hover {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    /* Category Filter */
-    .filter-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin-bottom: 2rem;
-    }
-    
+    .close-btn:hover {background: var(--islamic-gold); color: var(--islamic-green);}
+    .filter-buttons {display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 2rem;}
     .filter-btn {
-      padding: 0.75rem 1.5rem;
-      border: none;
-      background: white;
-      color: #666;
-      font-weight: 500;
-      border-radius: 8px;
-      transition: var(--transition);
-      border: 2px solid transparent;
+      padding: 0.75rem 1.5rem; border: none; background: white; color: #666; font-weight: 500; border-radius: 8px; transition: var(--transition); border: 2px solid transparent;
     }
-    
-    .filter-btn:hover {
-      background: rgba(10, 92, 54, 0.1);
-      color: var(--islamic-green);
-    }
-    
-    .filter-btn.active {
-      background: var(--islamic-green);
-      color: white;
-      border-color: var(--islamic-gold);
-    }
-
-    /* ===== STANDARD FOOTER ===== */
+    .filter-btn:hover {background: rgba(10, 92, 54, 0.1); color: var(--islamic-green);}
+    .filter-btn.active {background: var(--islamic-green); color: white; border-color: var(--islamic-gold);}
     .footer {
-      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
-      border-top: 3px solid var(--islamic-gold);
-      padding: 3rem 0 1.5rem;
-      color: white;
+      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green)); border-top: 3px solid var(--islamic-gold); padding: 3rem 0 1.5rem; color: white;
     }
-
-    .footer-brand {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--islamic-gold);
-      margin-bottom: 1rem;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 12px;
-      margin-top: 1rem;
-    }
-
+    .footer-brand {font-size: 1.8rem; font-weight: 700; color: var(--islamic-gold); margin-bottom: 1rem;}
+    .social-links {display: flex; gap: 12px; margin-top: 1rem;}
     .social-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-decoration: none;
-      transition: var(--transition);
-      background: rgba(255, 255, 255, 0.1);
-      font-size: 1.1rem;
+      width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: var(--transition); background: rgba(255, 255, 255, 0.1); font-size: 1.1rem;
     }
-
-    .social-icon:hover {
-      transform: translateY(-5px);
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    .footer-links h5 {
-      color: var(--islamic-gold);
-      margin-bottom: 1.2rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-
+    .social-icon:hover {transform: translateY(-5px); background: var(--islamic-gold); color: var(--islamic-green);}
+    .footer-links h5 {color: var(--islamic-gold); margin-bottom: 1.2rem; font-size: 1.1rem; font-weight: 600;}
     .footer-links a {
-      display: block;
-      color: rgba(255, 255, 255, 0.85);
-      text-decoration: none;
-      margin-bottom: 0.6rem;
-      transition: var(--transition);
-      font-size: 0.95rem;
+      display: block; color: rgba(255, 255, 255, 0.85); text-decoration: none; margin-bottom: 0.6rem; transition: var(--transition); font-size: 0.95rem;
     }
-
-    .footer-links a:hover {
-      color: var(--islamic-gold);
-      padding-left: 5px;
-    }
-
-    /* ===== WHATSAPP BUTTON ===== */
+    .footer-links a:hover {color: var(--islamic-gold); padding-left: 5px;}
     .whatsapp-float {
-      position: fixed;
-      bottom: 25px;
-      right: 15px;
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #25D366, #128C7E);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
-      z-index: 1000;
-      animation: float 3s ease-in-out infinite;
-      transition: var(--transition);
-      text-decoration: none;
+      position: fixed; bottom: 25px; right: 15px; width: 60px; height: 60px; background: linear-gradient(135deg, #25D366, #128C7E); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); z-index: 1000; animation: float 3s ease-in-out infinite; transition: var(--transition); text-decoration: none;
     }
-
-    .whatsapp-float:hover {
-      transform: scale(1.1) rotate(10deg);
-      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
-    }
-
+    .whatsapp-float:hover {transform: scale(1.1) rotate(10deg); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);}
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
     }
-
-    /* ===== ISLAMIC ORNAMENTS ===== */
     .islamic-ornament {
-      position: fixed;
-      color: var(--islamic-gold);
-      opacity: 0.08;
-      font-size: 1.8rem;
-      z-index: -1;
-      pointer-events: none;
+      position: fixed; color: var(--islamic-gold); opacity: 0.08; font-size: 1.8rem; z-index: -1; pointer-events: none;
     }
-
-    .ornament-1 {
-      top: 20%;
-      left: 5%;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .ornament-2 {
-      top: 60%;
-      right: 5%;
-      animation: float 8s ease-in-out infinite reverse;
-    }
-
-    .ornament-3 {
-      bottom: 20%;
-      left: 10%;
-      animation: float 7s ease-in-out infinite;
-    }
-
-    /* ===== MOBILE RESPONSIVE ===== */
+    .ornament-1 {top: 20%; left: 5%; animation: float 6s ease-in-out infinite;}
+    .ornament-2 {top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse;}
+    .ornament-3 {bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite;}
     @media (max-width: 768px) {
-      body {
-        padding-top: 70px !important;
-      }
-      
-      .navbar-optimized {
-        height: 70px;
-        padding: 0.3rem 0;
-      }
-      
-      .page-header {
-        height: 26vh;
-        min-height: 180px;
-      }
-
-      .page-title {
-        font-size: 2.2rem;
-      }
-      
-      .page-subtitle {
-        font-size: 1.1rem;
-      }
-      
-      .content-section {
-        padding: 2.5rem 0;
-      }
-      
-      .section-title {
-        font-size: 1.8rem;
-      }
-      
+      body {padding-top: 70px !important;}
+      .navbar-optimized {height: 70px; padding: 0.3rem 0;}
+      .page-header {height: 26vh; min-height: 180px;}
+      .page-title {font-size: 2.2rem;}
+      .page-subtitle {font-size: 1.1rem;}
+      .content-section {padding: 2.5rem 0;}
+      .section-title {font-size: 1.8rem;}
       .navbar-collapse {
-        background: var(--dark-green);
-        padding: 1rem;
-        border-radius: 0 0 10px 10px;
-        border: 1px solid var(--islamic-gold);
-        margin-top: 0px;
-        max-height: 70vh;
-        overflow-y: auto;
+        background: var(--dark-green); padding: 1rem; border-radius: 0 0 10px 10px; border: 1px solid var(--islamic-gold); margin-top: 0px; max-height: 70vh; overflow-y: auto;
       }
-      
-      .gallery-item {
-        height: 200px;
-        margin-bottom: 1rem;
-      }
-      
-      .lightbox button {
-        width: 50px;
-        height: 50px;
-        font-size: 1.5rem;
-      }
-      
-      .close-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 2rem;
-      }
+      .gallery-item {height: 200px; margin-bottom: 1rem;}
+      .lightbox button {width: 50px; height: 50px; font-size: 1.5rem;}
+      .close-btn {width: 40px; height: 40px; font-size: 2rem;}
     }
-
     @media (max-width: 576px) {
-      .page-title {
-        font-size: 1.8rem;
-      }
-      
-      .section-title {
-        font-size: 1.5rem;
-      }
-      
-      .gallery-item {
-        height: 180px;
-      }
-      
-      .filter-buttons {
-        gap: 5px;
-      }
-      
-      .filter-btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-      }
+      .page-title {font-size: 1.8rem;}
+      .section-title {font-size: 1.5rem;}
+      .gallery-item {height: 180px;}
+      .filter-buttons {gap: 5px;}
+      .filter-btn {padding: 0.5rem 1rem; font-size: 0.9rem;}
     }
   </style>
 </head>
 <body>
-
-<!-- Floating Islamic Ornaments -->
 <div class="islamic-ornament ornament-1">✸</div>
 <div class="islamic-ornament ornament-2">✸</div>
 <div class="islamic-ornament ornament-3">✸</div>
-
-<!-- STANDARD NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-optimized fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand d-flex align-items-center navbar-brand-compact" href="index.html">
@@ -696,12 +191,10 @@
         <small class="text-light brand-subtext">Karuvarakundu</small>
       </div>
     </a>
- 
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
             aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
- 
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav ms-auto nav-container">
         <li class="nav-item nav-item-optimized">
@@ -710,13 +203,9 @@
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized" href="founder.html">Founder</a>
         </li>
-     
-        <!-- Board Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
-          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" 
-             aria-haspopup="true" aria-expanded="false">
-            Board
-          </a>
+          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">Board</a>
           <ul class="dropdown-menu dropdown-menu-optimized">
             <li><a class="dropdown-item dropdown-item-optimized" href="management.html">Management</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="faculties.html">Faculty</a></li>
@@ -725,21 +214,15 @@
             <li><a class="dropdown-item dropdown-item-optimized" href="students-union.html">Students Union</a></li>
           </ul>
         </li>
-     
-        <!-- Student Zone Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
           <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-            Student Zone
-          </a>
+             aria-haspopup="true" aria-expanded="false">Student Zone</a>
           <ul class="dropdown-menu dropdown-menu-optimized">
             <li><a class="dropdown-item dropdown-item-optimized" href="idcard.html">ID Card</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="result.html">Exam Results</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="fest.html">Fest Score</a></li>
           </ul>
         </li>
-     
-        <!-- Other Items -->
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized" href="https://jamianooriya.in/">Jamia</a>
         </li>
@@ -762,8 +245,6 @@
     </div>
   </div>
 </nav>
-
-<!-- PAGE HEADER -->
 <div class="page-header">
   <div class="container">
     <div class="page-header-content">
@@ -772,108 +253,179 @@
     </div>
   </div>
 </div>
-
-<!-- GALLERY SECTION -->
 <section class="content-section">
   <div class="container">
-    <!-- Category Filter -->
     <div class="filter-buttons mb-4" data-aos="fade-up">
       <button class="filter-btn active" data-filter="all">All Photos</button>
       <button class="filter-btn" data-filter="events">Events</button>
       <button class="filter-btn" data-filter="campus">Campus</button>
       <button class="filter-btn" data-filter="students">Students</button>
       <button class="filter-btn" data-filter="functions">Functions</button>
+      <button class="filter-btn" data-filter="activities">Activities</button>
+      <button class="filter-btn" data-filter="academic">Academic</button>
+      <button class="filter-btn" data-filter="sports">Sports</button>
     </div>
-
-    <!-- Photo Gallery -->
     <div class="row g-3" id="galleryContainer" data-aos="fade-up" data-aos-delay="100">
-      <!-- Image 1 -->
       <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="campus">
-        <img src="https://i.ibb.co/vvw9dqs0/6f4db8d24f060a981562408c706db268.png" 
-             alt="College Campus" 
-             class="img-fluid">
+        <img src="https://i.ibb.co/vvw9dqs0/6f4db8d24f060a981562408c706db268.png" alt="College Campus Building">
       </div>
-      
-      <!-- Image 2 -->
       <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="events">
-        <img src="https://i.ibb.co/RGCXB7T4/IMG-20170916-WA0063.jpg" 
-             alt="College Event" 
-             class="img-fluid">
+        <img src="https://i.ibb.co/RGCXB7T4/IMG-20170916-WA0063.jpg" alt="College Event Celebration">
       </div>
-      
-      <!-- Image 3 -->
       <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="events">
-        <img src="https://i.ibb.co/gL6hVNbd/IMG-20170916-WA0086.jpg" 
-             alt="College Event" 
-             class="img-fluid">
+        <img src="https://i.ibb.co/gL6hVNbd/IMG-20170916-WA0086.jpg" alt="College Cultural Event">
       </div>
-      
-      <!-- Image 4 -->
       <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="events">
-        <img src="https://i.ibb.co/cXhw9PMC/IMG-20171003-WA0066.jpg" 
-             alt="College Event" 
-             class="img-fluid">
+        <img src="https://i.ibb.co/cXhw9PMC/IMG-20171003-WA0066.jpg" alt="College Annual Function">
       </div>
-      
-      <!-- Image 5 -->
       <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="campus">
-        <img src="https://i.ibb.co/RkbN2km0/IMG20180721105002.jpg" 
-             alt="College Campus" 
-             class="img-fluid">
+        <img src="https://i.ibb.co/RkbN2km0/IMG20180721105002.jpg" alt="College Campus View">
       </div>
-      
-      <!-- Image 6 -->
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="campus">
-        <img src="https://i.ibb.co/wFjMkbL6/IMG20180721105535.jpg" 
-             alt="College Campus" 
-             class="img-fluid">
-      </div>
-      
-      <!-- Image 7 -->
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="students">
-        <img src="https://i.ibb.co/zWjx6SYS/IMG20180721110046.jpg" 
-             alt="Students Activities" 
-             class="img-fluid">
-      </div>
-      
-      <!-- Image 8 -->
       <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="functions">
-        <img src="https://i.ibb.co/hJ7VtpqV/IMG20180721113521.jpg" 
-             alt="College Function" 
-             class="img-fluid">
+        <img src="https://i.ibb.co/hJ7VtpqV/IMG20180721113521.jpg" alt="College Convocation Ceremony">
       </div>
-      
-      <!-- Image 9 - Placeholder for more images -->
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="events">
-        <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" 
-             alt="College Logo" 
-             class="img-fluid">
-      </div>
-      
-      <!-- Image 10 - Placeholder for more images -->
       <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="campus">
-        <img src="https://i.ibb.co/rf3Sp41S/COLLEGE-2.png" 
-             alt="College Building" 
-             class="img-fluid">
+        <img src="https://i.ibb.co/vC8VYDVh/Whats-App-Image-2026-01-21-at-11-38-43-AM.jpg" alt="College Main Building Entrance">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="campus">
+        <img src="https://i.ibb.co/21yhyNCn/Whats-App-Image-2026-01-21-at-11-38-44-AM.jpg" alt="College Campus Ground">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="campus">
+        <img src="https://i.ibb.co/BVHVcJSG/Whats-App-Image-2026-01-21-at-11-38-45-AM.jpg" alt="College Library Building">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="academic">
+        <img src="https://i.ibb.co/yFx60BzB/Whats-App-Image-2026-01-21-at-11-38-45-AM-1.jpg" alt="Classroom Learning Session">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="academic">
+        <img src="https://i.ibb.co/SD8WZ4LJ/Whats-App-Image-2026-01-21-at-11-38-46-AM-1.jpg" alt="Laboratory Practical Class">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="academic">
+        <img src="https://i.ibb.co/zTRm7cP0/Whats-App-Image-2026-01-21-at-11-38-46-AM.jpg" alt="Seminar Session in Progress">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="events">
+        <img src="https://i.ibb.co/3m667Nxq/Whats-App-Image-2026-01-21-at-11-38-47-AM-1.jpg" alt="Annual Day Celebration">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="functions">
+        <img src="https://i.ibb.co/zhSXZfJN/Whats-App-Image-2026-01-21-at-11-38-47-AM.jpg" alt="Prize Distribution Ceremony">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="events">
+        <img src="https://i.ibb.co/ymDS5bdP/Whats-App-Image-2026-01-21-at-11-38-48-AM-1.jpg" alt="Cultural Festival Performance">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="students">
+        <img src="https://i.ibb.co/219SYwdw/Whats-App-Image-2026-01-21-at-11-38-48-AM.jpg" alt="Student Group Discussion">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="activities">
+        <img src="https://i.ibb.co/99701Lhp/Whats-App-Image-2026-01-21-at-11-38-49-AM.jpg" alt="Student Project Exhibition">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="activities">
+        <img src="https://i.ibb.co/TBX4XMpW/Whats-App-Image-2026-01-21-at-11-38-49-AM-1.jpg" alt="Arts and Crafts Display">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="campus">
+        <img src="https://i.ibb.co/zV71cXvk/Whats-App-Image-2026-01-21-at-11-28-03-AM-1.jpg" alt="College Hostel Building">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="campus">
+        <img src="https://i.ibb.co/wFkjLPTg/Whats-App-Image-2026-01-21-at-11-28-03-AM.jpg" alt="College Playground Area">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="campus">
+        <img src="https://i.ibb.co/7xnJ4DKk/Whats-App-Image-2026-01-21-at-11-28-08-AM.jpg" alt="College Mosque">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="sports">
+        <img src="https://i.ibb.co/xVNP0N1/Whats-App-Image-2026-01-21-at-11-28-09-AM-1.jpg" alt="Annual Sports Day">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="sports">
+        <img src="https://i.ibb.co/35VhHNf8/Whats-App-Image-2026-01-21-at-11-28-09-AM.jpg" alt="Cricket Match">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="sports">
+        <img src="https://i.ibb.co/DPTHFfFs/Whats-App-Image-2026-01-21-at-11-28-10-AM-1.jpg" alt="Football Tournament">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="academic">
+        <img src="https://i.ibb.co/yn3rHHhK/Whats-App-Image-2026-01-21-at-11-28-10-AM.jpg" alt="Science Exhibition">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="academic">
+        <img src="https://i.ibb.co/sdnLFC74/Whats-App-Image-2026-01-21-at-11-28-11-AM.jpg" alt="Workshop Session">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="functions">
+        <img src="https://i.ibb.co/gLRwCS70/Whats-App-Image-2026-01-21-at-11-28-12-AM-1.jpg" alt="Convocation Ceremony">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="students">
+        <img src="https://i.ibb.co/1YPT2b2w/Whats-App-Image-2026-01-21-at-11-28-12-AM.jpg" alt="Student Council Meeting">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="activities">
+        <img src="https://i.ibb.co/MDFkjKvT/Whats-App-Image-2026-01-21-at-11-28-13-AM.jpg" alt="Cultural Dance Practice">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="events">
+        <img src="https://i.ibb.co/rf4K4n5Z/Whats-App-Image-2026-01-21-at-11-28-14-AM-1.jpg" alt="Independence Day Celebration">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="campus">
+        <img src="https://i.ibb.co/rRDjSFJm/Whats-App-Image-2026-01-21-at-11-28-14-AM.jpg" alt="College Cafeteria">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="campus">
+        <img src="https://i.ibb.co/zTz4qbcC/Whats-App-Image-2026-01-21-at-11-28-15-AM.jpg" alt="College Administrative Block">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="academic">
+        <img src="https://i.ibb.co/Y78DT3MC/Whats-App-Image-2026-01-21-at-11-28-16-AM-1.jpg" alt="Computer Lab Session">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="events">
+        <img src="https://i.ibb.co/mVLk3Q9Q/Whats-App-Image-2026-01-21-at-11-28-17-AM.jpg" alt="College Anniversary Celebration">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="functions">
+        <img src="https://i.ibb.co/tM73DP3k/Whats-App-Image-2026-01-21-at-11-28-18-AM-1.jpg" alt="Parents Teachers Meeting">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="students">
+        <img src="https://i.ibb.co/Kph6yyN5/Whats-App-Image-2026-01-21-at-11-28-18-AM.jpg" alt="Student Study Group">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="activities">
+        <img src="https://i.ibb.co/GfdwK03P/Whats-App-Image-2026-01-21-at-11-28-19-AM-1.jpg" alt="Debate Competition">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="activities">
+        <img src="https://i.ibb.co/mFNxc2Dz/Whats-App-Image-2026-01-21-at-11-28-19-AM.jpg" alt="Quiz Competition">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="events">
+        <img src="https://i.ibb.co/v453Cys5/Whats-App-Image-2026-01-21-at-11-28-20-AM-1.jpg" alt="College Farewell Party">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="functions">
+        <img src="https://i.ibb.co/XZtVsPtK/Whats-App-Image-2026-01-21-at-11-28-20-AM.jpg" alt="Award Ceremony">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="campus">
+        <img src="https://i.ibb.co/1Y253hNq/Whats-App-Image-2026-01-21-at-11-28-22-AM-1.jpg" alt="College Auditorium">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="campus">
+        <img src="https://i.ibb.co/SXBKQ2w3/Whats-App-Image-2026-01-21-at-11-28-22-AM.jpg" alt="College Sports Complex">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="campus">
+        <img src="https://i.ibb.co/KjqsfW39/Whats-App-Image-2026-01-21-at-11-27-40-AM.jpg" alt="Morning Assembly">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="activities">
+        <img src="https://i.ibb.co/C5xRwR2Z/Whats-App-Image-2026-01-21-at-11-27-55-AM.jpg" alt="Yoga Session">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="activities">
+        <img src="https://i.ibb.co/fG253KXm/Whats-App-Image-2026-01-21-at-11-27-58-AM.jpg" alt="Morning Sports Activities">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="activities">
+        <img src="https://i.ibb.co/YFNmsFrZ/Whats-App-Image-2026-01-21-at-11-27-59-AM.jpg" alt="Group Study Session">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="academic">
+        <img src="https://i.ibb.co/RG9VshdD/Whats-App-Image-2026-01-21-at-11-28-00-AM.jpg" alt="Library Study Time">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="academic">
+        <img src="https://i.ibb.co/jvwvy2z5/Whats-App-Image-2026-01-21-at-11-28-01-AM.jpg" alt="Lecture in Progress">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="campus">
+        <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo">
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="campus">
+        <img src="https://i.ibb.co/rf3Sp41S/COLLEGE-2.png" alt="College Building">
       </div>
     </div>
-
-    <!-- Video Gallery Section -->
     <div class="section-header mt-5" data-aos="fade-up">
       <h2 class="section-title">Video Gallery</h2>
       <p class="section-subtitle">Watch memorable moments from our college events</p>
     </div>
-
     <div class="row g-4" data-aos="fade-up" data-aos-delay="200">
-      <!-- Video 1 -->
       <div class="col-md-4">
         <div class="video-card">
           <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/EMgzRUdoiWk" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen 
-                    loading="lazy" 
-                    title="First Convocation Ceremony"></iframe>
+            <iframe src="https://www.youtube.com/embed/EMgzRUdoiWk" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" title="First Convocation Ceremony"></iframe>
           </div>
           <div class="p-4">
             <h5 class="fw-bold" style="color: var(--islamic-green);">First Convocation Ceremony</h5>
@@ -881,16 +433,10 @@
           </div>
         </div>
       </div>
-      
-      <!-- Video 2 -->
       <div class="col-md-4">
         <div class="video-card">
           <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/vNfz0ExArPg" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen 
-                    loading="lazy" 
-                    title="49th Anniversary Celebration"></iframe>
+            <iframe src="https://www.youtube.com/embed/vNfz0ExArPg" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" title="49th Anniversary Celebration"></iframe>
           </div>
           <div class="p-4">
             <h5 class="fw-bold" style="color: var(--islamic-green);">49th Anniversary Celebration</h5>
@@ -898,16 +444,10 @@
           </div>
         </div>
       </div>
-      
-      <!-- Video 3 -->
       <div class="col-md-4">
         <div class="video-card">
           <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/NFVBCxXrl4k" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen 
-                    loading="lazy" 
-                    title="48th Anniversary Celebration"></iframe>
+            <iframe src="https://www.youtube.com/embed/NFVBCxXrl4k" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" title="48th Anniversary Celebration"></iframe>
           </div>
           <div class="p-4">
             <h5 class="fw-bold" style="color: var(--islamic-green);">48th Anniversary Celebration</h5>
@@ -916,15 +456,11 @@
         </div>
       </div>
     </div>
-
-    <!-- View More Button -->
     <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="300">
       <a href="youtube.html" class="btn-gold px-5">
         <i class="fab fa-youtube me-2"></i>View More on YouTube
       </a>
     </div>
-
-    <!-- Back to Home Button -->
     <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="400">
       <a href="index.html" class="btn-outline-gold px-4">
         <i class="fas fa-home me-2"></i>Back to Home
@@ -932,8 +468,6 @@
     </div>
   </div>
 </section>
-
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
   <span class="close-btn">&times;</span>
   <div class="controls">
@@ -942,8 +476,6 @@
   </div>
   <img id="lightboxImage" src="" alt="">
 </div>
-
-<!-- STANDARD FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="row">
@@ -969,7 +501,6 @@
           </a>
         </div>
       </div>
-   
       <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
         <div class="footer-links">
           <h5>Quick Links</h5>
@@ -980,7 +511,6 @@
           <a href="contact.html">Contact</a>
         </div>
       </div>
-   
       <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
         <div class="footer-links">
           <h5>Resources</h5>
@@ -991,7 +521,6 @@
           <a href="pta.html">PTA</a>
         </div>
       </div>
-   
       <div class="col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
         <div class="footer-links">
           <h5>Contact Info</h5>
@@ -1003,7 +532,6 @@
         </div>
       </div>
     </div>
- 
     <div class="text-center pt-4 mt-4 border-top border-light border-opacity-25">
       <p class="text-light mb-2">
         © <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.
@@ -1014,37 +542,25 @@
     </div>
   </div>
 </footer>
-
-<!-- WHATSAPP BUTTON -->
 <a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!"
    class="whatsapp-float" target="_blank"
    title="Chat with us on WhatsApp" aria-label="WhatsApp Chat">
   <i class="fab fa-whatsapp"></i>
 </a>
-
-<!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
 <script>
-  // Initialize
   document.addEventListener('DOMContentLoaded', function() {
     setupGallery();
     AOS.init({ duration: 800, once: true, offset: 50 });
-    
-    // Update current year
     document.getElementById('currentYear').textContent = new Date().getFullYear();
-    
-    // Navbar scroll effect
     window.addEventListener('scroll', function() {
       const navbar = document.querySelector('.navbar-optimized');
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       navbar.classList.toggle('scrolled', scrollTop > 50);
     });
   });
-
   function setupGallery() {
-    // Lightbox functionality
     const images = document.querySelectorAll('.gallery-item img');
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightboxImage');
@@ -1053,47 +569,31 @@
     const prevBtn = document.getElementById('prevBtn');
     let currentIndex = 0;
     let autoSlide;
-
-    // Filter functionality
     const filterButtons = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
-
-    // Filter images by category
     filterButtons.forEach(button => {
       button.addEventListener('click', function() {
         const filter = this.getAttribute('data-filter');
-        
-        // Update active button
         filterButtons.forEach(btn => btn.classList.remove('active'));
         this.classList.add('active');
-        
-        // Filter gallery items
         galleryItems.forEach(item => {
           const category = item.getAttribute('data-category');
-          
           if (filter === 'all' || category === filter) {
             item.style.display = 'block';
-            setTimeout(() => {
-              item.style.opacity = '1';
-            }, 50);
+            setTimeout(() => { item.style.opacity = '1'; }, 50);
           } else {
             item.style.opacity = '0';
-            setTimeout(() => {
-              item.style.display = 'none';
-            }, 300);
+            setTimeout(() => { item.style.display = 'none'; }, 300);
           }
         });
       });
     });
-
-    // Lightbox functionality
     images.forEach((img, index) => {
       img.addEventListener('click', () => {
         currentIndex = index;
         showImage();
       });
     });
-
     function showImage() {
       lightbox.style.display = 'flex';
       lightboxImage.style.opacity = '0';
@@ -1104,58 +604,44 @@
       }, 150);
       startAutoSlide();
     }
-
     function nextImage() {
-      // Get only visible images after filtering
-      const visibleImages = Array.from(galleryItems).filter(item => 
+      const visibleImages = Array.from(galleryItems).filter(item =>
         item.style.display !== 'none'
       ).map(item => item.querySelector('img'));
-      
       if (visibleImages.length === 0) return;
-      
       currentIndex = (currentIndex + 1) % visibleImages.length;
       images[currentIndex] = visibleImages[currentIndex];
       showImage();
     }
-
     function prevImage() {
-      // Get only visible images after filtering
-      const visibleImages = Array.from(galleryItems).filter(item => 
+      const visibleImages = Array.from(galleryItems).filter(item =>
         item.style.display !== 'none'
       ).map(item => item.querySelector('img'));
-      
       if (visibleImages.length === 0) return;
-      
       currentIndex = (currentIndex - 1 + visibleImages.length) % visibleImages.length;
       images[currentIndex] = visibleImages[currentIndex];
       showImage();
     }
-
     nextBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       nextImage();
       stopAutoSlide();
     });
-
     prevBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       prevImage();
       stopAutoSlide();
     });
-
     closeBtn.addEventListener('click', () => {
       lightbox.style.display = 'none';
       stopAutoSlide();
     });
-
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) {
         lightbox.style.display = 'none';
         stopAutoSlide();
       }
     });
-
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
       if (lightbox.style.display === 'flex') {
         if (e.key === 'Escape') {
@@ -1170,31 +656,21 @@
         }
       }
     });
-
-    // Auto slideshow
     function startAutoSlide() {
       stopAutoSlide();
       autoSlide = setInterval(nextImage, 4000);
     }
-
     function stopAutoSlide() {
       clearInterval(autoSlide);
     }
-
-    // Preload images for better UX
     function preloadImages() {
       images.forEach(img => {
         const tempImage = new Image();
         tempImage.src = img.src;
       });
     }
-
-    // Initialize preloading
     preloadImages();
   }
 </script>
 </body>
 </html>
-
-
-
