@@ -907,7 +907,11 @@
       
       ctx.fillStyle = '#0a5c36';
       ctx.font = 'bold 36px "Poppins"';
-      ctx.fillText(`${className} | Marks: ${mark}`, cx, 1120);
+      ctx.fillText(`${className}`, cx, 1120);
+      
+      ctx.fillStyle = '#0a5c36';
+      ctx.font = 'bold 36px "Poppins"';
+      ctx.fillText(`Marks: ${mark}`, cx, 1180);
       
       let rankText = '';
       const rankSuffix = getRankSuffix(rank);
@@ -923,7 +927,7 @@
       
       ctx.fillStyle = gradientColors[0];
       ctx.font = 'italic 32px "Poppins"';
-      ctx.fillText(rankText, cx, 1180);
+      ctx.fillText(rankText, cx, 1280);
       
       return canvas;
     } catch (error) {
