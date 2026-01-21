@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DSAC | Jamia Top Ten Poster</title>
+  <title>DSAC | Toppers Poster</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -200,6 +200,10 @@
     .rank-label.rank-1 {color: var(--islamic-gold); background: rgba(193, 154, 63, 0.08);}
     .rank-label.rank-2 {color: #6c757d; background: rgba(108, 117, 125, 0.08);}
     .rank-label.rank-3 {color: #cd7f32; background: rgba(205, 127, 50, 0.08);}
+    .rank-label.rank-4, .rank-label.rank-5, .rank-label.rank-6,
+    .rank-label.rank-7, .rank-label.rank-8, .rank-label.rank-9, .rank-label.rank-10 {
+      color: var(--islamic-green); background: rgba(10, 92, 54, 0.08);
+    }
     .student-meta {
       text-align: center; color: #555; font-weight: 600; margin-top: 0.5rem; font-size: 0.9rem; padding: 0.3rem 0.8rem; background: rgba(10, 92, 54, 0.05); border-radius: 20px; display: inline-block; margin-left: auto; margin-right: auto; border: 1px solid rgba(10, 92, 54, 0.1);
     }
@@ -374,8 +378,8 @@
 <div class="page-header">
   <div class="container">
     <div class="page-header-content">
-      <h1 class="page-title">Jamia Top Ten Poster</h1>
-      <p class="page-subtitle">Generate beautiful posters for Jamia examination top ten holders | Academic Year 2025-26</p>
+      <h1 class="page-title">Toppers Poster</h1>
+      <p class="page-subtitle">Generate beautiful posters for toppers | Academic Year 2025-26</p>
     </div>
   </div>
 </div>
@@ -388,7 +392,7 @@
       </div>
       <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
         <div class="stat-number" id="totalToppers">0</div>
-        <div class="stat-label">Top Ten Students</div>
+        <div class="stat-label">Top Students</div>
       </div>
       <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
         <div class="stat-number">100%</div>
@@ -398,18 +402,19 @@
     <div class="instructions-box" data-aos="fade-up">
       <h3 class="instructions-title">
         <i class="fas fa-lightbulb"></i>
-        How to Generate Top Ten Posters
+        How to Generate Topper Posters
       </h3>
       <ul class="instructions-list">
         <li><i class="fas fa-camera"></i> Upload high-quality student photos for best results</li>
         <li><i class="fas fa-eye"></i> Preview the poster before downloading</li>
         <li><i class="fas fa-download"></i> Download as PNG or PDF from preview</li>
-        <li><i class="fas fa-star"></i> Each class can have 0-10 top ten holders</li>
+        <li><i class="fas fa-star"></i> Classes 1-6: Jamia Top Ten holders (ranks 1-10)</li>
+        <li><i class="fas fa-school"></i> Classes 8-10: Class Top Three holders (ranks 1-3 only)</li>
         <li><i class="fas fa-medal"></i> Different colors for 1st (Gold), 2nd (Silver), 3rd (Bronze), others (Green)</li>
       </ul>
     </div>
     <div class="section-header">
-      <h2 class="section-title">Jamia Top Ten Holders by Class</h2>
+      <h2 class="section-title">Toppers by Class</h2>
       <p class="section-subtitle">Click "Upload Photo" to add student photos, then "Preview Poster" to generate</p>
     </div>
     <div class="class-grid" id="classGrid"></div>
@@ -519,42 +524,49 @@
   const classesData = [
     { 
       className: "Class 1 - SENIOR SECONDARY", 
+      type: "jamia",
       toppers: [
         { name: "aaaa", mark: "000 / 000", rank: 1 }
       ]
     },
     { 
       className: "Class 2 - SENIOR SECONDARY", 
+      type: "jamia",
       toppers: [
         { name: "aaaa", mark: "000 / 000", rank: 1 }
       ]
     },
     { 
-      className: "Class 3 - BACHELORS’", 
+      className: "Class 3 - BACHELORS", 
+      type: "jamia",
       toppers: [
         { name: "aaaa", mark: "000 / 000", rank: 1 }
       ]
     },
     { 
-      className: "Class 4 - BACHELORS’", 
+      className: "Class 4 - BACHELORS", 
+      type: "jamia",
       toppers: [
         { name: "aaaa", mark: "000 / 000", rank: 1 }
       ]
     },
     { 
-      className: "Class 5 - BACHELORS’", 
+      className: "Class 5 - BACHELORS", 
+      type: "jamia",
       toppers: [
         { name: "aaaa", mark: "000 / 000", rank: 1 }
       ]
     },
     { 
-      className: "Class 6 - BACHELORS’", 
+      className: "Class 6 - BACHELORS", 
+      type: "jamia",
       toppers: [
         { name: "MUHAMMED LABEEB TV", mark: "522 / 855", rank: 5 }
       ]
     },
     { 
       className: "Class 8 - Primary", 
+      type: "college",
       toppers: [
         { name: "MUHAMMED AFTHAB CT", mark: "303 / 350", rank: 1 },
         { name: "MUHAMMED RABEEULLAH PT", mark: "251 / 350", rank: 2 },
@@ -563,6 +575,7 @@
     },
     { 
       className: "Class 9 - Primary", 
+      type: "college",
       toppers: [
         { name: "aaaa", mark: "000 / 000", rank: 1 },
         { name: "aaaa", mark: "000 / 000", rank: 2 },
@@ -571,6 +584,7 @@
     },
     { 
       className: "Class 10 - Primary", 
+      type: "college",
       toppers: [
         { name: "aaaa", mark: "000 / 000", rank: 1 },
         { name: "aaaa", mark: "000 / 000", rank: 2 },
@@ -695,6 +709,21 @@
     return 'th';
   }
 
+  function getRankLabel(cls, rank) {
+    const rankSuffix = getRankSuffix(rank);
+    if (cls.type === "jamia") {
+      if (rank === 1) return 'Jamia Topper - 1st Position';
+      if (rank === 2) return 'Jamia 2nd Position';
+      if (rank === 3) return 'Jamia 3rd Position';
+      return `Jamia Top Ten - ${rank}${rankSuffix} Position`;
+    } else {
+      if (rank === 1) return 'College Topper - 1st Position';
+      if (rank === 2) return 'College 2nd Position';
+      if (rank === 3) return 'College 3rd Position';
+      return `College ${rank}${rankSuffix} Position`;
+    }
+  }
+
   function renderClassCards() {
     const grid = document.getElementById('classGrid');
     grid.innerHTML = '';
@@ -711,20 +740,20 @@
         toppersHTML = `
           <div class="no-toppers">
             <i class="fas fa-info-circle fa-2x mb-3" style="color: #999;"></i>
-            <p>No top ten holders in this class</p>
-            <small class="text-muted">This class has no students in Jamia Top Ten</small>
+            <p>No toppers in this class</p>
+            <small class="text-muted">${cls.type === "jamia" ? 'No students in Jamia Top Ten' : 'No top three holders in college'}</small>
           </div>
         `;
       } else {
         cls.toppers.forEach((topper, topperIndex) => {
           const photoURL = uploadedPhotos[classIndex][topperIndex] || placeholderDataURL();
           const rankClass = `rank-${topper.rank}`;
-          const rankSuffix = getRankSuffix(topper.rank);
+          const rankLabel = getRankLabel(cls, topper.rank);
           
           toppersHTML += `
             <div class="topper-card ${rankClass}">
               <div class="rank-badge ${rankClass}">
-                ${topper.rank}${rankSuffix}
+                ${topper.rank}${getRankSuffix(topper.rank)}
               </div>
               <div class="photo-container">
                 <div class="photo-frame">
@@ -741,7 +770,7 @@
               <div class="student-name">${escapeHtml(topper.name)}</div>
               <div class="rank-container">
                 <div class="rank-label ${rankClass}">
-                  ${topper.rank}${rankSuffix} Position in Jamia
+                  ${rankLabel}
                 </div>
                 <div class="student-meta">
                   Marks: ${escapeHtml(topper.mark)}
@@ -762,10 +791,14 @@
         });
       }
       
+      const classTypeBadge = cls.type === "jamia" ? 
+        '<span class="badge bg-success ms-2">Jamia</span>' : 
+        '<span class="badge bg-info ms-2">College</span>';
+      
       card.innerHTML = `
         <div class="class-header">
-          <h3>${escapeHtml(cls.className)}</h3>
-          <small class="text-muted">${cls.toppers.length} top ten holder${cls.toppers.length !== 1 ? 's' : ''}</small>
+          <h3>${escapeHtml(cls.className)} ${classTypeBadge}</h3>
+          <small class="text-muted">${cls.type === "jamia" ? 'Top Ten holders' : 'Top Three holders'}: ${cls.toppers.length}</small>
         </div>
         ${toppersHTML}
       `;
@@ -857,7 +890,7 @@
     });
   }
 
-  async function renderPosterCanvas(name, className, mark, rank, photo) {
+  async function renderPosterCanvas(name, className, type, mark, rank, photo) {
     const w = 1200, h = 1600;
     const canvas = document.createElement("canvas");
     canvas.width = w;
@@ -931,14 +964,24 @@
       
       let rankText = '';
       const rankSuffix = getRankSuffix(rank);
-      if (rank === 1) {
-        rankText = 'JAMIA TOPPER - 1st POSITION';
-      } else if (rank === 2) {
-        rankText = 'JAMIA 2nd POSITION';
-      } else if (rank === 3) {
-        rankText = 'JAMIA 3rd POSITION';
+      if (type === "jamia") {
+        if (rank === 1) {
+          rankText = 'JAMIA TOPPER - 1st POSITION';
+        } else if (rank === 2) {
+          rankText = 'JAMIA 2nd POSITION';
+        } else if (rank === 3) {
+          rankText = 'JAMIA 3rd POSITION';
+        } else {
+          rankText = `JAMIA TOP TEN - ${rank}${rankSuffix} POSITION`;
+        }
       } else {
-        rankText = `JAMIA TOP TEN - ${rank}${rankSuffix} POSITION`;
+        if (rank === 1) {
+          rankText = 'CLASS TOPPER - 1st POSITION';
+        } else if (rank === 2) {
+          rankText = 'CLASS 2nd POSITION';
+        } else {
+          rankText = `CLASS TOP THREE - ${rank}${rankSuffix} POSITION`;
+        }
       }
       
       ctx.fillStyle = gradientColors[0];
@@ -967,14 +1010,16 @@
   }
 
   async function previewPoster(classIndex, topperIndex) {
-    const topper = classesData[classIndex].toppers[topperIndex];
+    const cls = classesData[classIndex];
+    const topper = cls.toppers[topperIndex];
     const photo = uploadedPhotos[classIndex][topperIndex] || placeholderDataURL();
     
     try {
       showLoading();
       const canvas = await renderPosterCanvas(
         topper.name,
-        classesData[classIndex].className,
+        cls.className,
+        cls.type,
         topper.mark,
         topper.rank,
         photo
@@ -1017,7 +1062,8 @@
   }
 
   async function downloadPoster(classIndex, topperIndex, type) {
-    const topper = classesData[classIndex].toppers[topperIndex];
+    const cls = classesData[classIndex];
+    const topper = cls.toppers[topperIndex];
     const photo = uploadedPhotos[classIndex][topperIndex] || placeholderDataURL();
     
     try {
@@ -1029,7 +1075,8 @@
       
       const canvas = await renderPosterCanvas(
         topper.name,
-        classesData[classIndex].className,
+        cls.className,
+        cls.type,
         topper.mark,
         topper.rank,
         photo
@@ -1051,7 +1098,7 @@
       localStorage.setItem('posterCount', posterCount);
       updatePosterCount();
       
-      const fileName = `Jamia_TopTen_${classesData[classIndex].className.replace(/\s+/g, '_')}_${topper.rank}${getRankSuffix(topper.rank)}_${topper.name.replace(/\s+/g, '_')}`;
+      const fileName = `${cls.type === "jamia" ? "Jamia" : "College"}_${cls.className.replace(/\s+/g, '_')}_${topper.rank}${getRankSuffix(topper.rank)}_${topper.name.replace(/\s+/g, '_')}`;
       
       if (type === "png") {
         const a = document.createElement("a");
