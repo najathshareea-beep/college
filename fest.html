@@ -5,782 +5,222 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DSAC | Fest</title>
   <meta name="description" content="Jashne Najath 2K25 - അന്യോന്യം" />
-
-  <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
-  <!-- STANDARD CSS -->
   <style>
-    /* ===== CSS VARIABLES ===== */
     :root {
-      --islamic-green: #0a5c36;
-      --islamic-gold: #c19a3f;
-      --islamic-cream: #f8f3e6;
-      --islamic-light: #e9f5e9;
-      --dark-green: #064e3b;
-      --light-gold: #ffd24d;
-      --transition: all 0.3s ease;
-      --jaihoon: #16a34a;
-      --saihoon: #6366f1;
+      --islamic-green: #0a5c36; --islamic-gold: #c19a3f; --islamic-cream: #f8f3e6; --islamic-light: #e9f5e9; --dark-green: #064e3b; --light-gold: #ffd24d; --transition: all 0.3s ease; --jaihoon: #16a34a; --saihoon: #6366f1;
     }
-
-    /* ===== BASE STYLES ===== */
     body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--islamic-cream);
-      color: #333;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-      padding-top: 80px;
+      font-family: 'Poppins', sans-serif; background-color: var(--islamic-cream); color: #333; scroll-behavior: smooth; overflow-x: hidden; padding-top: 80px;
     }
-    
-    a {
-      text-decoration: none;
-    }
-
-    .arabic-font {
-      font-family: 'Scheherazade New', serif;
-    }
-
-    .malayalam-font {
-      font-family: 'Anek Malayalam', sans-serif;
-    }
-
-    /* ===== PATTERN BACKGROUND ===== */
+    a {text-decoration: none;}
+    .arabic-font {font-family: 'Scheherazade New', serif;}
+    .malayalam-font {font-family: 'Anek Malayalam', sans-serif;}
     .pattern-bg {
-      background-image: 
-        radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px),
-        radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px);
-      background-size: 50px 50px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
+      background-image: radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px), radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px); background-size: 50px 50px; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
     }
-
-    /* ===== STANDARD NAVBAR ===== */
     .navbar-optimized {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      border-bottom: 3px solid var(--islamic-gold);
-      transition: var(--transition);
-      padding: 0.5rem 0;
-      height: 80px;
-      z-index: 1030 !important;
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-bottom: 3px solid var(--islamic-gold); transition: var(--transition); padding: 0.5rem 0; height: 80px; z-index: 1030 !important;
     }
-    
-    .navbar-toggler {
-      border-color: rgba(255, 255, 255, 0.5);
-    }
-    
-    .navbar-toggler:focus {
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-    }
-
+    .navbar-toggler {border-color: rgba(255, 255, 255, 0.5);}
+    .navbar-toggler:focus {box-shadow: 0 0 0 2px var(--islamic-gold);}
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
-
     .navbar-optimized.scrolled {
-      background: rgba(10, 92, 54, 0.98);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-      height: 70px;
+      background: rgba(10, 92, 54, 0.98); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); height: 70px;
     }
-
-    /* LOGO */
     .navbar-brand-compact img {
-      border-radius: 8px;
-      transition: transform 0.3s ease;
-      width: 60px;
-      height: 60px;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-      border: none;
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-      padding: 0;
+      border-radius: 8px; transition: transform 0.3s ease; width: 60px; height: 60px; object-fit: contain; filter: brightness(0) invert(1); border: none; box-shadow: 0 0 0 2px var(--islamic-gold); padding: 0;
     }
-
-    .navbar-optimized.scrolled .navbar-brand-compact img {
-      width: 50px;
-      height: 50px;
-      filter: brightness(0) invert(1);
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-    }
-
-    .navbar-brand-compact:hover img {
-      transform: scale(1.05);
-    }
-
-    .brand-text {
-      font-size: 1.2rem;
-      line-height: 1.2;
-    }
-
-    .brand-subtext {
-      font-size: 0.8rem;
-      opacity: 0.9;
-    }
-
+    .navbar-optimized.scrolled .navbar-brand-compact img {width: 50px; height: 50px;}
+    .navbar-brand-compact:hover img {transform: scale(1.05);}
+    .brand-text {font-size: 1.2rem; line-height: 1.2;}
+    .brand-subtext {font-size: 0.8rem; opacity: 0.9;}
     .nav-link-optimized {
-      color: #fff !important;
-      font-weight: 500;
-      transition: var(--transition);
-      padding-left: 0.4rem;
-      padding-right: 0.4rem;
-      border-radius: 5px;
-      margin: 0 2px;
-      white-space: nowrap;
+      color: #fff !important; font-weight: 500; transition: var(--transition); padding-left: 0.4rem; padding-right: 0.4rem; border-radius: 5px; margin: 0 2px; white-space: nowrap;
     }
-    
-    .nav-item-optimized {
-      margin: 0 2px;
-    }
-
-    .nav-link-optimized:hover {
-      color: var(--islamic-gold) !important;
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* Navbar dropdown */
+    .nav-item-optimized {margin: 0 2px;}
+    .nav-link-optimized:hover {color: var(--islamic-gold) !important; background: rgba(255, 255, 255, 0.1);}
     .dropdown-menu-optimized {
-      background: var(--islamic-green);
-      border: 1px solid var(--islamic-gold);
-      border-radius: 8px;
-      padding: 0.5rem 0;
+      background: var(--islamic-green); border: 1px solid var(--islamic-gold); border-radius: 8px; padding: 0.5rem 0;
     }
-
     .dropdown-item-optimized {
-      color: white;
-      padding: 0.5rem 1rem;
-      transition: var(--transition);
+      color: white; padding: 0.5rem 1rem; transition: var(--transition);
     }
-
-    .dropdown-item-optimized:hover {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    /* ===== STANDARD PAGE HEADER ===== */
+    .dropdown-item-optimized:hover {background: var(--islamic-gold); color: var(--islamic-green);}
     .page-header {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      color: white;
-      height: 30vh;
-      min-height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      margin-bottom: 3rem;
-      border-bottom: 5px solid var(--islamic-gold);
-      position: relative;
-      overflow: hidden;
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); color: white; height: 30vh; min-height: 220px; display: flex; align-items: center; justify-content: center; text-align: center; margin-bottom: 3rem; border-bottom: 5px solid var(--islamic-gold); position: relative; overflow: hidden;
     }
-  
     .page-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
     }
-    
-    .page-header-content {
-      position: relative;
-      z-index: 2;
-    }
-    
+    .page-header-content {position: relative; z-index: 2;}
     .page-title {
-      font-family: 'Scheherazade New', serif;
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--islamic-gold);
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-family: 'Scheherazade New', serif; font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--islamic-gold); text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
-    
     .page-subtitle {
-      font-size: 1.4rem;
-      opacity: 0.95;
-      max-width: 800px;
-      margin: 0 auto;
-      color: var(--islamic-cream);
+      font-size: 1.4rem; opacity: 0.95; max-width: 800px; margin: 0 auto; color: var(--islamic-cream);
     }
-
-    /* ===== STANDARD CONTENT SECTION ===== */
-    .content-section {
-      padding: 4rem 0;
-      background: var(--islamic-cream);
-    }
-    
+    .content-section {padding: 4rem 0; background: var(--islamic-cream);}
     .section-header {
-      text-align: center;
-      margin-bottom: 3rem;
-      position: relative;
-      padding: 2rem 0;
+      text-align: center; margin-bottom: 3rem; position: relative; padding: 2rem 0;
     }
-
     .section-title {
-      color: var(--islamic-green);
-      font-weight: 700;
-      display: inline-block;
-      padding: 0 1rem;
-      background: var(--islamic-cream);
-      position: relative;
-      z-index: 2;
-      margin-bottom: 0.5rem;
-      font-size: 2.5rem;
+      color: var(--islamic-green); font-weight: 700; display: inline-block; padding: 0 1rem; background: var(--islamic-cream); position: relative; z-index: 2; margin-bottom: 0.5rem; font-size: 2.5rem;
     }
-
     .section-header::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent);
-      z-index: 1;
+      content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent); z-index: 1;
     }
-    
-    .section-subtitle {
-      color: #666;
-      font-size: 1.1rem;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    /* ===== STANDARD BUTTONS ===== */
+    .section-subtitle {color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;}
     .btn-gold {
-      background: linear-gradient(135deg, var(--islamic-gold), #d4af37);
-      border: none;
-      color: var(--islamic-green);
-      font-weight: 600;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3);
-      transition: var(--transition);
-      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--islamic-gold), #d4af37); border: none; color: var(--islamic-green); font-weight: 600; border-radius: 8px; box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3); transition: var(--transition); padding: 0.75rem 1.5rem;
     }
-
     .btn-gold:hover {
-      background: linear-gradient(135deg, #d4af37, var(--islamic-gold));
-      box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4);
-      transform: translateY(-2px);
-      color: var(--islamic-green);
+      background: linear-gradient(135deg, #d4af37, var(--islamic-gold)); box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4); transform: translateY(-2px); color: var(--islamic-green);
     }
-
     .btn-outline-gold {
-      border: 2px solid var(--islamic-gold);
-      color: var(--islamic-gold);
-      background: transparent;
-      border-radius: 8px;
-      padding: 0.75rem 1.5rem;
-      font-weight: 600;
-      transition: var(--transition);
+      border: 2px solid var(--islamic-gold); color: var(--islamic-gold); background: transparent; border-radius: 8px; padding: 0.75rem 1.5rem; font-weight: 600; transition: var(--transition);
     }
-
-    .btn-outline-gold:hover {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    /* ===== FEST SPECIFIC STYLES ===== */
+    .btn-outline-gold:hover {background: var(--islamic-gold); color: var(--islamic-green);}
     .section-active { display: block; }
     .section-hidden { display: none; }
-    
     .nav-tab-active {
-      background: linear-gradient(135deg, var(--islamic-green) 0%, var(--dark-green) 100%) !important;
-      color: white !important;
+      background: linear-gradient(135deg, var(--islamic-green) 0%, var(--dark-green) 100%) !important; color: white !important;
     }
-    
-    .mobile-menu {
-      transform: translateX(100%);
-      transition: transform 0.3s ease-in-out;
-    }
-    
-    .mobile-menu-open {
-      transform: translateX(0);
-    }
-    
     .loader {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid var(--islamic-green);
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
+      border: 4px solid #f3f3f3; border-top: 4px solid var(--islamic-green); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite;
     }
-    
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    
     .team-badge-jaihoon { background-color: rgba(22, 163, 74, 0.1); color: #16a34a; }
     .team-badge-saihoon { background-color: rgba(99, 102, 241, 0.1); color: #6366f1; }
-    
     .topper-rank-1 { background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); }
     .topper-rank-2 { background: linear-gradient(135deg, #C0C0C0 0%, #A9A9A9 100%); }
     .topper-rank-3 { background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%); }
-    
-    .program-selected {
-      border: 3px solid var(--islamic-green);
-      transform: scale(1.02);
-    }
-
-    /* Fest Navigation */
+    .program-selected {border: 3px solid var(--islamic-green); transform: scale(1.02);}
     .fest-nav {
-      background: white;
-      border-bottom: 2px solid var(--islamic-gold);
-      position: relative;
-      z-index: 1000;
-      margin-bottom: 2rem;
+      background: white; border-bottom: 2px solid var(--islamic-gold); position: relative; z-index: 1000; margin-bottom: 2rem;
     }
-    
     .fest-nav-container {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 5px;
-      padding: 0.5rem 0;
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; padding: 0.5rem 0;
     }
-    
     .fest-nav-tab {
-      padding: 0.75rem 1.5rem;
-      border: none;
-      background: transparent;
-      color: #666;
-      font-weight: 500;
-      border-radius: 8px;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      padding: 0.75rem 1.5rem; border: none; background: transparent; color: #666; font-weight: 500; border-radius: 8px; transition: var(--transition); display: flex; align-items: center; gap: 8px;
     }
-    
-    .fest-nav-tab:hover {
-      background: rgba(10, 92, 54, 0.1);
-      color: var(--islamic-green);
-    }
-    
-    /* Fest Cards */
+    .fest-nav-tab:hover {background: rgba(10, 92, 54, 0.1); color: var(--islamic-green);}
     .fest-card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      transition: var(--transition);
-      border: 2px solid transparent;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      height: 100%;
-      position: relative;
+      background: white; border-radius: 15px; overflow: hidden; transition: var(--transition); border: 2px solid transparent; box-shadow: 0 5px 15px rgba(0,0,0,0.08); height: 100%; position: relative;
     }
-
-    .fest-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--islamic-gold);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    }
-    
-    /* Modal Styles */
+    .fest-card:hover {transform: translateY(-8px); border-color: var(--islamic-gold); box-shadow: 0 15px 30px rgba(0,0,0,0.15);}
     .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      z-index: 1000;
-      overflow-y: auto;
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); z-index: 1000; overflow-y: auto;
     }
-    
     .modal-content {
-      background-color: white;
-      margin: 5% auto;
-      padding: 0;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 800px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      animation: modalFadeIn 0.3s ease-out;
+      background-color: white; margin: 5% auto; padding: 0; border-radius: 20px; width: 90%; max-width: 800px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); animation: modalFadeIn 0.3s ease-out;
     }
-    
     @keyframes modalFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from {opacity: 0; transform: translateY(-50px);}
+      to {opacity: 1; transform: translateY(0);}
     }
-    
     .modal-header {
-      padding: 24px 32px;
-      border-bottom: 1px solid #e5e7eb;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      color: white;
-      border-radius: 20px 20px 0 0;
+      padding: 24px 32px; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); color: white; border-radius: 20px 20px 0 0;
     }
-    
-    .modal-body {
-      padding: 32px;
-      max-height: 70vh;
-      overflow-y: auto;
-    }
-    
+    .modal-body {padding: 32px; max-height: 70vh; overflow-y: auto;}
     .close-modal {
-      background: none;
-      border: none;
-      font-size: 28px;
-      cursor: pointer;
-      color: white;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      transition: all 0.2s;
+      background: none; border: none; font-size: 28px; cursor: pointer; color: white; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 10px; transition: all 0.2s;
     }
-    
-    .close-modal:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    /* Stats Cards */
+    .close-modal:hover {background-color: rgba(255, 255, 255, 0.1);}
     .stats-card {
-      background: white;
-      border-radius: 15px;
-      padding: 2rem;
-      text-align: center;
-      transition: var(--transition);
-      border: 2px solid transparent;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      background: white; border-radius: 15px; padding: 2rem; text-align: center; transition: var(--transition); border: 2px solid transparent; box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     }
-    
-    .stats-card:hover {
-      border-color: var(--islamic-gold);
-      transform: translateY(-5px);
-    }
-    
-    .stats-number {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--islamic-green);
-    }
-    
-    /* Team Cards */
+    .stats-card:hover {border-color: var(--islamic-gold); transform: translateY(-5px);}
+    .stats-number {font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--islamic-green);}
     .team-card {
-      background: white;
-      border-radius: 15px;
-      padding: 2rem;
-      transition: var(--transition);
-      border: 2px solid transparent;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      background: white; border-radius: 15px; padding: 2rem; transition: var(--transition); border: 2px solid transparent; box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     }
-    
-    .team-card.jaihoon:hover {
-      border-color: #16a34a;
-    }
-    
-    .team-card.saihoon:hover {
-      border-color: #6366f1;
-    }
-    
-    .team-score {
-      font-size: 4rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-    }
-    
-    .jaihoon-score {
-      color: #16a34a;
-    }
-    
-    .saihoon-score {
-      color: #6366f1;
-    }
-    
-    /* Results Filter */
+    .team-card.jaihoon:hover {border-color: #16a34a;}
+    .team-card.saihoon:hover {border-color: #6366f1;}
+    .team-score {font-size: 4rem; font-weight: 800; margin-bottom: 0.5rem;}
+    .jaihoon-score {color: #16a34a;}
+    .saihoon-score {color: #6366f1;}
     .filter-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin-bottom: 2rem;
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 2rem;
     }
-    
     .filter-btn {
-      padding: 0.75rem 1.5rem;
-      border: none;
-      background: white;
-      color: #666;
-      font-weight: 500;
-      border-radius: 8px;
-      transition: var(--transition);
-      border: 2px solid transparent;
+      padding: 0.75rem 1.5rem; border: none; background: white; color: #666; font-weight: 500; border-radius: 8px; transition: var(--transition); border: 2px solid transparent;
     }
-    
-    .filter-btn:hover {
-      background: rgba(10, 92, 54, 0.1);
-      color: var(--islamic-green);
-    }
-    
-    .filter-btn.active {
-      background: var(--islamic-green);
-      color: white;
-      border-color: var(--islamic-gold);
-    }
-    
-    /* Search Box */
+    .filter-btn:hover {background: rgba(10, 92, 54, 0.1); color: var(--islamic-green);}
+    .filter-btn.active {background: var(--islamic-green); color: white; border-color: var(--islamic-gold);}
     .search-box {
-      background: white;
-      border: 2px solid var(--islamic-gold);
-      border-radius: 50px;
-      padding: 0.75rem 1.5rem;
-      transition: var(--transition);
-      max-width: 500px;
-      margin: 0 auto 2rem;
+      background: white; border: 2px solid var(--islamic-gold); border-radius: 50px; padding: 0.75rem 1.5rem; transition: var(--transition); max-width: 500px; margin: 0 auto 2rem;
     }
-    
-    .search-box:focus-within {
-      box-shadow: 0 0 20px rgba(193, 154, 63, 0.3);
-    }
-    
-    .search-box input {
-      border: none;
-      outline: none;
-      width: 100%;
-      background: transparent;
-    }
-
-    /* ===== STANDARD FOOTER ===== */
+    .search-box:focus-within {box-shadow: 0 0 20px rgba(193, 154, 63, 0.3);}
+    .search-box input {border: none; outline: none; width: 100%; background: transparent;}
     .footer {
-      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
-      border-top: 3px solid var(--islamic-gold);
-      padding: 3rem 0 1.5rem;
-      color: white;
+      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green)); border-top: 3px solid var(--islamic-gold); padding: 3rem 0 1.5rem; color: white;
     }
-
-    .footer-brand {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--islamic-gold);
-      margin-bottom: 1rem;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 12px;
-      margin-top: 1rem;
-    }
-
+    .footer-brand {font-size: 1.8rem; font-weight: 700; color: var(--islamic-gold); margin-bottom: 1rem;}
+    .social-links {display: flex; gap: 12px; margin-top: 1rem;}
     .social-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-decoration: none;
-      transition: var(--transition);
-      background: rgba(255, 255, 255, 0.1);
-      font-size: 1.1rem;
+      width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: var(--transition); background: rgba(255, 255, 255, 0.1); font-size: 1.1rem;
     }
-
-    .social-icon:hover {
-      transform: translateY(-5px);
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    .footer-links h5 {
-      color: var(--islamic-gold);
-      margin-bottom: 1.2rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-
+    .social-icon:hover {transform: translateY(-5px); background: var(--islamic-gold); color: var(--islamic-green);}
+    .footer-links h5 {color: var(--islamic-gold); margin-bottom: 1.2rem; font-size: 1.1rem; font-weight: 600;}
     .footer-links a {
-      display: block;
-      color: rgba(255, 255, 255, 0.85);
-      text-decoration: none;
-      margin-bottom: 0.6rem;
-      transition: var(--transition);
-      font-size: 0.95rem;
+      display: block; color: rgba(255, 255, 255, 0.85); text-decoration: none; margin-bottom: 0.6rem; transition: var(--transition); font-size: 0.95rem;
     }
-
-    .footer-links a:hover {
-      color: var(--islamic-gold);
-      padding-left: 5px;
-    }
-
-    /* ===== WHATSAPP BUTTON ===== */
+    .footer-links a:hover {color: var(--islamic-gold); padding-left: 5px;}
     .whatsapp-float {
-      position: fixed;
-      bottom: 25px;
-      right: 15px;
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #25D366, #128C7E);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
-      z-index: 1000;
-      animation: float 3s ease-in-out infinite;
-      transition: var(--transition);
-      text-decoration: none;
+      position: fixed; bottom: 25px; right: 15px; width: 60px; height: 60px; background: linear-gradient(135deg, #25D366, #128C7E); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); z-index: 1000; animation: float 3s ease-in-out infinite; transition: var(--transition); text-decoration: none;
     }
-
-    .whatsapp-float:hover {
-      transform: scale(1.1) rotate(10deg);
-      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
-    }
-
+    .whatsapp-float:hover {transform: scale(1.1) rotate(10deg); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);}
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
     }
-
-    /* ===== ISLAMIC ORNAMENTS ===== */
     .islamic-ornament {
-      position: fixed;
-      color: var(--islamic-gold);
-      opacity: 0.08;
-      font-size: 1.8rem;
-      z-index: -1;
-      pointer-events: none;
+      position: fixed; color: var(--islamic-gold); opacity: 0.08; font-size: 1.8rem; z-index: -1; pointer-events: none;
     }
-
-    .ornament-1 {
-      top: 20%;
-      left: 5%;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .ornament-2 {
-      top: 60%;
-      right: 5%;
-      animation: float 8s ease-in-out infinite reverse;
-    }
-
-    .ornament-3 {
-      bottom: 20%;
-      left: 10%;
-      animation: float 7s ease-in-out infinite;
-    }
-
-    /* ===== MOBILE RESPONSIVE ===== */
+    .ornament-1 {top: 20%; left: 5%; animation: float 6s ease-in-out infinite;}
+    .ornament-2 {top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse;}
+    .ornament-3 {bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite;}
     @media (max-width: 768px) {
-      body {
-        padding-top: 70px !important;
-      }
-      
-      .navbar-optimized {
-        height: 70px;
-        padding: 0.3rem 0;
-      }
-      
-      .page-header {
-        height: 26vh;
-        min-height: 180px;
-      }
-  
-      .page-title {
-        font-size: 2.2rem;
-      }
-      
-      .page-subtitle {
-        font-size: 1.1rem;
-      }
-      
-      .content-section {
-        padding: 2.5rem 0;
-      }
-      
-      .section-title {
-        font-size: 1.8rem;
-      }
-      
+      body {padding-top: 70px !important;}
+      .navbar-optimized {height: 70px; padding: 0.3rem 0;}
+      .page-header {height: 26vh; min-height: 180px;}
+      .page-title {font-size: 2.2rem;}
+      .page-subtitle {font-size: 1.1rem;}
+      .content-section {padding: 2.5rem 0;}
+      .section-title {font-size: 1.8rem;}
       .navbar-collapse {
-        background: var(--dark-green);
-        padding: 1rem;
-        border-radius: 0 0 10px 10px;
-        border: 1px solid var(--islamic-gold);
-        margin-top: 0px;
-        max-height: 70vh;
-        overflow-y: auto;
+        background: var(--dark-green); padding: 1rem; border-radius: 0 0 10px 10px; border: 1px solid var(--islamic-gold); margin-top: 0px; max-height: 70vh; overflow-y: auto;
       }
-      
-      .fest-nav-container {
-        flex-direction: column;
-        gap: 5px;
-      }
-      
-      .fest-nav-tab {
-        padding: 0.75rem 1rem;
-        font-size: 0.9rem;
-      }
-      
-      .stats-number {
-        font-size: 2rem;
-      }
-      
-      .team-score {
-        font-size: 3rem;
-      }
-      
-      .modal-content {
-        width: 95%;
-        margin: 2% auto;
-      }
+      .fest-nav-container {flex-direction: column; gap: 5px;}
+      .fest-nav-tab {padding: 0.75rem 1rem; font-size: 0.9rem;}
+      .stats-number {font-size: 2rem;}
+      .team-score {font-size: 3rem;}
+      .modal-content {width: 95%; margin: 2% auto;}
     }
-
     @media (max-width: 576px) {
-      .page-title {
-        font-size: 1.8rem;
-      }
-      
-      .section-title {
-        font-size: 1.5rem;
-      }
+      .page-title {font-size: 1.8rem;}
+      .section-title {font-size: 1.5rem;}
     }
   </style>
 </head>
 <body>
-
-<!-- Floating Islamic Ornaments -->
 <div class="islamic-ornament ornament-1">✸</div>
 <div class="islamic-ornament ornament-2">✸</div>
 <div class="islamic-ornament ornament-3">✸</div>
-
-<!-- STANDARD NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-optimized fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand d-flex align-items-center navbar-brand-compact" href="index.html">
@@ -790,12 +230,10 @@
         <small class="text-light brand-subtext">Karuvarakundu</small>
       </div>
     </a>
- 
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
             aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
- 
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav ms-auto nav-container">
         <li class="nav-item nav-item-optimized">
@@ -804,13 +242,9 @@
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized" href="founder.html">Founder</a>
         </li>
-     
-        <!-- Board Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
           <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" 
-             aria-haspopup="true" aria-expanded="false">
-            Board
-          </a>
+             aria-haspopup="true" aria-expanded="false">Board</a>
           <ul class="dropdown-menu dropdown-menu-optimized">
             <li><a class="dropdown-item dropdown-item-optimized" href="management.html">Management</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="faculties.html">Faculty</a></li>
@@ -819,21 +253,15 @@
             <li><a class="dropdown-item dropdown-item-optimized" href="students-union.html">Students Union</a></li>
           </ul>
         </li>
-     
-        <!-- Student Zone Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
           <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-            Student Zone
-          </a>
+             aria-haspopup="true" aria-expanded="false">Student Zone</a>
           <ul class="dropdown-menu dropdown-menu-optimized">
             <li><a class="dropdown-item dropdown-item-optimized" href="idcard.html">ID Card</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="result.html">Exam Results</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="fest.html">Fest Score</a></li>
           </ul>
         </li>
-     
-        <!-- Other Items -->
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized" href="https://jamianooriya.in/">Jamia</a>
         </li>
@@ -856,8 +284,6 @@
     </div>
   </div>
 </nav>
-
-<!-- PAGE HEADER -->
 <div class="page-header">
   <div class="container">
     <div class="page-header-content">
@@ -866,34 +292,18 @@
     </div>
   </div>
 </div>
-
-<!-- Fest Navigation -->
 <div class="fest-nav" data-aos="fade-down">
   <div class="container">
     <div class="fest-nav-container">
-      <button class="fest-nav-tab nav-tab-active" data-section="home">
-        <i class="fas fa-home"></i> Home
-      </button>
-      <button class="fest-nav-tab" data-section="results">
-        <i class="fas fa-trophy"></i> Results
-      </button>
-      <button class="fest-nav-tab" data-section="team">
-        <i class="fas fa-users"></i> Teams
-      </button>
-      <button class="fest-nav-tab" data-section="scoreboard">
-        <i class="fas fa-chart-line"></i> Scoreboard
-      </button>
-      <button class="fest-nav-tab" data-section="programs">
-        <i class="fas fa-microphone"></i> Programs
-      </button>
-      <button class="fest-nav-tab" data-section="toppers">
-        <i class="fas fa-crown"></i> Toppers
-      </button>
+      <button class="fest-nav-tab nav-tab-active" data-section="home"><i class="fas fa-home"></i> Home</button>
+      <button class="fest-nav-tab" data-section="results"><i class="fas fa-trophy"></i> Results</button>
+      <button class="fest-nav-tab" data-section="team"><i class="fas fa-users"></i> Teams</button>
+      <button class="fest-nav-tab" data-section="scoreboard"><i class="fas fa-chart-line"></i> Scoreboard</button>
+      <button class="fest-nav-tab" data-section="programs"><i class="fas fa-microphone"></i> Programs</button>
+      <button class="fest-nav-tab" data-section="toppers"><i class="fas fa-crown"></i> Toppers</button>
     </div>
   </div>
 </div>
-
-<!-- Program Results Modal -->
 <div id="program-modal" class="modal">
   <div class="modal-content">
     <div class="modal-header">
@@ -901,16 +311,11 @@
       <button class="close-modal" id="close-modal">&times;</button>
     </div>
     <div class="modal-body">
-      <div id="modal-program-content">
-        <!-- Program results will be loaded here -->
-      </div>
+      <div id="modal-program-content"></div>
     </div>
   </div>
 </div>
-
-<!-- Main Content -->
 <main>
-  <!-- Home Section -->
   <section id="home-section" class="section-active content-section">
     <div class="container">
       <div class="row align-items-center mb-5" data-aos="fade-up">
@@ -925,12 +330,8 @@
               Darunnajath Shareeath & Arts College presents <strong>"അന്യോന്യം"</strong>
             </p>
             <div class="d-flex flex-wrap gap-3">
-              <button class="btn-gold" data-section="results">
-                View Results
-              </button>
-              <button class="btn-outline-gold" data-section="scoreboard">
-                Live Scores
-              </button>
+              <button class="btn-gold" data-section="results">View Results</button>
+              <button class="btn-outline-gold" data-section="scoreboard">Live Scores</button>
             </div>
           </div>
         </div>
@@ -940,7 +341,6 @@
                class="img-fluid rounded-3 shadow">
         </div>
       </div>
-      
       <div class="row g-4 mt-4" data-aos="fade-up" data-aos-delay="100">
         <div class="col-md-3 col-6">
           <div class="stats-card">
@@ -968,23 +368,18 @@
         </div>
       </div>
     </div>
-    
-    <!-- Back to Home Button -->
     <div class="text-center mt-5">
       <button onclick="window.location.href='index.html'" class="btn-outline-gold btn-lg px-5">
         <i class="fas fa-home me-2"></i>Back to Home
       </button>
     </div>
   </section>
-
-  <!-- Results Section -->
   <section id="results-section" class="section-hidden content-section bg-white">
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">Event Results</h2>
         <p class="section-subtitle">Check the latest results from all competitions</p>
       </div>
-      
       <div class="filter-buttons">
         <button class="filter-btn active" data-filter="all">All Results</button>
         <button class="filter-btn" data-filter="General">General</button>
@@ -993,38 +388,30 @@
         <button class="filter-btn" data-filter="Junior">Junior</button>
         <button class="filter-btn" data-filter="Senior">Senior</button>
       </div>
-      
       <div id="results-container" class="row g-4">
         <div class="col-12 text-center py-5">
           <div class="loader mx-auto mb-3"></div>
           <p class="text-secondary">Loading results...</p>
         </div>
       </div>
-      
       <div id="no-results" class="text-center py-5 d-none">
         <h4 class="text-secondary mb-3">No Results Published Yet</h4>
         <p class="text-muted">Results will be displayed here as soon as they are available.</p>
       </div>
     </div>
-    
-    <!-- Back to Home Button -->
     <div class="text-center mt-5">
       <button onclick="window.location.href='index.html'" class="btn-outline-gold btn-lg px-5">
         <i class="fas fa-home me-2"></i>Back to Home
       </button>
     </div>
   </section>
-
-  <!-- Teams Section -->
   <section id="team-section" class="section-hidden content-section">
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">Competing Teams</h2>
         <p class="section-subtitle">Meet the teams and their leaders</p>
       </div>
-      
       <div class="row g-4 justify-content-center">
-        <!-- Team Jaihoon -->
         <div class="col-lg-6" data-aos="fade-right">
           <div class="team-card jaihoon h-100">
             <div class="d-flex justify-content-between align-items-start mb-4">
@@ -1034,12 +421,10 @@
               </div>
               <div class="display-6 fw-bold" style="color: var(--jaihoon);">#1</div>
             </div>
-            
             <div class="text-center mb-4">
               <div class="team-score jaihoon-score" id="team-jaihoon-score">0</div>
               <div class="text-muted">Total Points</div>
             </div>
-            
             <div class="row g-3">
               <div class="col-md-6">
                 <div class="p-3 rounded" style="background: rgba(22, 163, 74, 0.1);">
@@ -1056,8 +441,6 @@
             </div>
           </div>
         </div>
-        
-        <!-- Team Saihoon -->
         <div class="col-lg-6" data-aos="fade-left">
           <div class="team-card saihoon h-100">
             <div class="d-flex justify-content-between align-items-start mb-4">
@@ -1067,12 +450,10 @@
               </div>
               <div class="display-6 fw-bold" style="color: var(--saihoon);">#2</div>
             </div>
-            
             <div class="text-center mb-4">
               <div class="team-score saihoon-score" id="team-saihoon-score">0</div>
               <div class="text-muted">Total Points</div>
             </div>
-            
             <div class="row g-3">
               <div class="col-md-6">
                 <div class="p-3 rounded" style="background: rgba(99, 102, 241, 0.1);">
