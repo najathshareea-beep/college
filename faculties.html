@@ -4,578 +4,679 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DSAC | Faculty</title>
+
+  <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- STANDARD CSS -->
   <style>
+    /* ===== CSS VARIABLES ===== */
     :root {
-      --islamic-green: #0a5c36; --islamic-gold: #c19a3f; --islamic-cream: #f8f3e6; --islamic-light: #e9f5e9; --dark-green: #064e3b; --light-gold: #ffd24d; --transition: all 0.3s ease;
+      --islamic-green: #0a5c36;
+      --islamic-gold: #c19a3f;
+      --islamic-cream: #f8f3e6;
+      --islamic-light: #e9f5e9;
+      --dark-green: #064e3b;
+      --light-gold: #ffd24d;
+      --transition: all 0.3s ease;
     }
-    * {
-      -webkit-tap-highlight-color: transparent;
-    }
+
+    /* ===== BASE STYLES ===== */
     body {
-      font-family: 'Poppins', sans-serif; 
-      background-color: var(--islamic-cream); 
-      color: #333; 
-      scroll-behavior: smooth; 
-      overflow-x: hidden; 
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--islamic-cream);
+      color: #333;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
       padding-top: 80px;
-      min-height: 100vh;
     }
-    a {text-decoration: none;}
-    .arabic-font {font-family: 'Scheherazade New', serif;}
-    .malayalam-font {font-family: 'Anek Malayalam', sans-serif;}
+    
+    a {
+      text-decoration: none;
+    }
+
+    .arabic-font {
+      font-family: 'Scheherazade New', serif;
+    }
+
+    .malayalam-font {
+      font-family: 'Anek Malayalam', sans-serif;
+    }
+
+    /* ===== PATTERN BACKGROUND ===== */
     .pattern-bg {
-      background-image: radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px), radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px); 
-      background-size: 50px 50px; 
-      position: absolute; 
-      top: 0; 
-      left: 0; 
-      width: 100%; 
-      height: 100%; 
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px),
+        radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px);
+      background-size: 50px 50px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       z-index: -1;
     }
+
+    /* ===== STANDARD NAVBAR ===== */
     .navbar-optimized {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); 
-      border-bottom: 3px solid var(--islamic-gold); 
-      transition: var(--transition); 
-      padding: 0.5rem 1rem; 
-      height: 80px; 
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
+      border-bottom: 3px solid var(--islamic-gold);
+      transition: var(--transition);
+      padding: 0.5rem 0;
+      height: 80px;
       z-index: 1030 !important;
     }
+    
     .navbar-toggler {
       border-color: rgba(255, 255, 255, 0.5);
-      padding: 0.4rem 0.6rem;
-      font-size: 1.2rem;
     }
+    
     .navbar-toggler:focus {
       box-shadow: 0 0 0 2px var(--islamic-gold);
     }
+
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-      width: 1.2em;
-      height: 1.2em;
     }
+
     .navbar-optimized.scrolled {
-      background: rgba(10, 92, 54, 0.98); 
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); 
+      background: rgba(10, 92, 54, 0.98);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
       height: 70px;
     }
+
+    /* LOGO */
     .navbar-brand-compact img {
-      border-radius: 8px; 
-      transition: transform 0.3s ease; 
-      width: 60px; 
-      height: 60px; 
-      object-fit: contain; 
-      filter: brightness(0) invert(1); 
-      border: none; 
-      box-shadow: 0 0 0 2px var(--islamic-gold); 
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      border: none;
+      box-shadow: 0 0 0 2px var(--islamic-gold);
       padding: 0;
     }
-    .navbar-optimized.scrolled .navbar-brand-compact img {width: 50px; height: 50px;}
-    .navbar-brand-compact:hover img {transform: scale(1.05);}
-    .brand-text {font-size: 1.2rem; line-height: 1.2;}
-    .brand-subtext {font-size: 0.8rem; opacity: 0.9;}
+
+    .navbar-optimized.scrolled .navbar-brand-compact img {
+      width: 50px;
+      height: 50px;
+      filter: brightness(0) invert(1);
+      box-shadow: 0 0 0 2px var(--islamic-gold);
+    }
+
+    .navbar-brand-compact:hover img {
+      transform: scale(1.05);
+    }
+
+    .brand-text {
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }
+
+    .brand-subtext {
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+
     .nav-link-optimized {
-      color: #fff !important; 
-      font-weight: 500; 
-      transition: var(--transition); 
-      padding: 0.5rem 0.8rem !important;
-      border-radius: 5px; 
-      margin: 2px 0;
+      color: #fff !important;
+      font-weight: 500;
+      transition: var(--transition);
+      padding-left: 0.4rem;
+      padding-right: 0.4rem;
+      border-radius: 5px;
+      margin: 0 2px;
       white-space: nowrap;
-      text-align: center;
     }
-    .nav-item-optimized {margin: 0 2px;}
-    .nav-link-optimized:hover {color: var(--islamic-gold) !important; background: rgba(255, 255, 255, 0.1);}
+    
+    .nav-item-optimized {
+      margin: 0 2px;
+    }
+
+    .nav-link-optimized:hover {
+      color: var(--islamic-gold) !important;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Navbar dropdown */
     .dropdown-menu-optimized {
-      background: var(--islamic-green); 
-      border: 1px solid var(--islamic-gold); 
-      border-radius: 8px; 
+      background: var(--islamic-green);
+      border: 1px solid var(--islamic-gold);
+      border-radius: 8px;
       padding: 0.5rem 0;
-      margin-top: 5px;
     }
+
     .dropdown-item-optimized {
-      color: white; 
-      padding: 0.5rem 1rem; 
+      color: white;
+      padding: 0.5rem 1rem;
       transition: var(--transition);
     }
-    .dropdown-item-optimized:hover {background: var(--islamic-gold); color: var(--islamic-green);}
-    .page-header {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); 
-      color: white; 
-      height: 30vh; 
-      min-height: 220px; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      text-align: center; 
-      margin-bottom: 3rem; 
-      border-bottom: 5px solid var(--islamic-gold); 
-      position: relative; 
-      overflow: hidden;
-      padding: 20px 15px;
-    }
-    .page-header::before {
-      content: ''; 
-      position: absolute; 
-      top: 0; 
-      left: 0; 
-      right: 0; 
-      bottom: 0; 
-      background: radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
-    }
-    .page-header-content {position: relative; z-index: 2; width: 100%;}
-    .page-title {
-      font-family: 'Scheherazade New', serif; 
-      font-size: 3.5rem; 
-      font-weight: 700; 
-      margin-bottom: 1rem; 
-      color: var(--islamic-gold); 
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      word-break: break-word;
-    }
-    .page-subtitle {
-      font-size: 1.4rem; 
-      opacity: 0.95; 
-      max-width: 800px; 
-      margin: 0 auto; 
-      color: var(--islamic-cream);
-      word-break: break-word;
-    }
-    .content-section {
-      padding: 4rem 0; 
-      background: var(--islamic-cream);
-      min-height: 50vh;
-    }
-    .section-header {
-      text-align: center; 
-      margin-bottom: 3rem; 
-      position: relative; 
-      padding: 2rem 0;
-    }
-    .section-title {
-      color: var(--islamic-green); 
-      font-weight: 700; 
-      display: inline-block; 
-      padding: 0 1rem; 
-      background: var(--islamic-cream); 
-      position: relative; 
-      z-index: 2; 
-      margin-bottom: 0.5rem; 
-      font-size: 2.5rem;
-    }
-    .section-header::before {
-      content: ''; 
-      position: absolute; 
-      top: 50%; 
-      left: 0; 
-      right: 0; 
-      height: 3px; 
-      background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent); 
-      z-index: 1;
-    }
-    .section-subtitle {color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;}
-    .btn-gold {
-      background: linear-gradient(135deg, var(--islamic-gold), #d4af37); 
-      border: none; 
-      color: var(--islamic-green); 
-      font-weight: 600; 
-      border-radius: 8px; 
-      box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3); 
-      transition: var(--transition); 
-      padding: 0.75rem 1.5rem;
-      display: inline-block;
-      cursor: pointer;
-    }
-    .btn-gold:hover {
-      background: linear-gradient(135deg, #d4af37, var(--islamic-gold)); 
-      box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4); 
-      transform: translateY(-2px); 
+
+    .dropdown-item-optimized:hover {
+      background: var(--islamic-gold);
       color: var(--islamic-green);
     }
-    .btn-outline-gold {
-      border: 2px solid var(--islamic-gold); 
-      color: var(--islamic-gold); 
-      background: transparent; 
-      border-radius: 8px; 
-      padding: 0.75rem 1.5rem; 
-      font-weight: 600; 
-      transition: var(--transition);
-      display: inline-block;
-      cursor: pointer;
-    }
-    .btn-outline-gold:hover {background: var(--islamic-gold); color: var(--islamic-green);}
-    .islamic-card {
-      background: white; 
-      border-radius: 15px; 
-      overflow: hidden; 
-      transition: var(--transition); 
-      border: 3px solid transparent; 
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
-      height: 100%; 
-      margin-bottom: 1rem;
-    }
-    .islamic-card:hover {transform: translateY(-8px); border-color: var(--islamic-gold); box-shadow: 0 15px 30px rgba(0,0,0,0.15);}
-    .islamic-card-header {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); 
-      color: white; 
-      padding: 1.5rem; 
-      text-align: center; 
-      border-bottom: 3px solid var(--islamic-gold);
-    }
-    .islamic-card-body {padding: 1.5rem;}
-    .faculty-card {
-      background: white; 
-      border-radius: 15px; 
-      overflow: hidden; 
-      transition: var(--transition); 
-      border: 2px solid transparent; 
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
-      height: 100%; 
+
+    /* ===== STANDARD PAGE HEADER ===== */
+    .page-header {
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
+      color: white;
+      height: 30vh;
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-bottom: 3rem;
+      border-bottom: 5px solid var(--islamic-gold);
       position: relative;
-      padding: 20px;
+      overflow: hidden;
     }
-    .faculty-card:hover {transform: translateY(-8px); border-color: var(--islamic-gold); box-shadow: 0 15px 30px rgba(0,0,0,0.15);}
-    .faculty-card .serial {
-      position: absolute; 
-      top: 15px; 
-      right: 15px; 
-      background: var(--islamic-gold); 
-      color: var(--islamic-green); 
-      width: 35px; 
-      height: 35px; 
-      border-radius: 50%; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      font-weight: bold; 
-      font-size: 1rem; 
+   
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
+    }
+    
+    .page-header-content {
+      position: relative;
       z-index: 2;
     }
+    
+    .page-title {
+      font-family: 'Scheherazade New', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--islamic-gold);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .page-subtitle {
+      font-size: 1.4rem;
+      opacity: 0.95;
+      max-width: 800px;
+      margin: 0 auto;
+      color: var(--islamic-cream);
+    }
+
+    /* ===== STANDARD CONTENT SECTION ===== */
+    .content-section {
+      padding: 4rem 0;
+      background: var(--islamic-cream);
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    .section-title {
+      color: var(--islamic-green);
+      font-weight: 700;
+      display: inline-block;
+      padding: 0 1rem;
+      background: var(--islamic-cream);
+      position: relative;
+      z-index: 2;
+      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+    }
+
+    .section-header::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent);
+      z-index: 1;
+    }
+    
+    .section-subtitle {
+      color: #666;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* ===== STANDARD BUTTONS ===== */
+    .btn-gold {
+      background: linear-gradient(135deg, var(--islamic-gold), #d4af37);
+      border: none;
+      color: var(--islamic-green);
+      font-weight: 600;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3);
+      transition: var(--transition);
+      padding: 0.75rem 1.5rem;
+    }
+
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #d4af37, var(--islamic-gold));
+      box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4);
+      transform: translateY(-2px);
+      color: var(--islamic-green);
+    }
+
+    .btn-outline-gold {
+      border: 2px solid var(--islamic-gold);
+      color: var(--islamic-gold);
+      background: transparent;
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .btn-outline-gold:hover {
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
+    }
+
+    /* ===== STANDARD CARDS ===== */
+    .islamic-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: var(--transition);
+      border: 3px solid transparent;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      height: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .islamic-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--islamic-gold);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .islamic-card-header {
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      border-bottom: 3px solid var(--islamic-gold);
+    }
+    
+    .islamic-card-body {
+      padding: 1.5rem;
+    }
+
+    /* ===== FACULTY CARD STYLES ===== */
+    .faculty-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      height: 100%;
+      position: relative;
+    }
+
+    .faculty-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--islamic-gold);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .faculty-card .serial {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1rem;
+      z-index: 2;
+    }
+
     .faculty-card .profile-img {
-      width: 120px; 
-      height: 120px; 
-      border-radius: 50%; 
-      object-fit: cover; 
-      border: 3px solid var(--islamic-gold); 
-      margin: 0 auto 15px; 
-      padding: 3px; 
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--islamic-gold);
+      margin: 0 auto 15px;
+      padding: 3px;
       background: white;
     }
+
     .faculty-card h4 {
-      color: var(--islamic-green); 
-      margin-bottom: 5px; 
-      font-size: 1.1rem; 
+      color: var(--islamic-green);
+      margin-bottom: 5px;
+      font-size: 1.1rem;
       line-height: 1.3;
-      word-break: break-word;
     }
+
     .faculty-card .designation {
-      color: var(--islamic-gold); 
-      font-weight: 600; 
-      margin-bottom: 10px; 
+      color: var(--islamic-gold);
+      font-weight: 600;
+      margin-bottom: 10px;
       font-size: 0.95rem;
     }
+
     .faculty-card .phone {
-      color: var(--islamic-green); 
-      background: rgba(193, 154, 63, 0.1); 
-      padding: 8px 15px; 
-      border-radius: 20px; 
-      display: inline-block; 
-      font-weight: 500; 
-      margin: 10px 0 15px 0; 
+      color: var(--islamic-green);
+      background: rgba(193, 154, 63, 0.1);
+      padding: 8px 15px;
+      border-radius: 20px;
+      display: inline-block;
+      font-weight: 500;
+      margin: 10px 0 15px 0;
       transition: var(--transition);
-      word-break: break-all;
     }
-    .faculty-card:hover .phone {background: rgba(193, 154, 63, 0.2); transform: scale(1.05);}
+
+    .faculty-card:hover .phone {
+      background: rgba(193, 154, 63, 0.2);
+      transform: scale(1.05);
+    }
+
     .faculty-social-icons {
-      display: flex; 
-      justify-content: center; 
-      gap: 8px; 
-      margin-top: 15px; 
-      padding-top: 15px; 
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 15px;
+      padding-top: 15px;
       border-top: 1px solid rgba(0,0,0,0.1);
-      flex-wrap: wrap;
     }
+
     .faculty-social-icons a {
-      width: 35px; 
-      height: 35px; 
-      border-radius: 50%; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      font-size: 1rem; 
-      transition: var(--transition); 
-      position: relative; 
-      overflow: hidden; 
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
       text-decoration: none;
-      flex-shrink: 0;
     }
+
     .faculty-social-icons a::before {
-      content: ''; 
-      position: absolute; 
-      top: 0; 
-      left: -100%; 
-      width: 100%; 
-      height: 100%; 
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); 
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
       transition: 0.5s;
     }
-    .faculty-social-icons a:hover::before {left: 100%;}
-    .faculty-social-icons a:hover {transform: translateY(-5px) scale(1.15); box-shadow: 0 8px 20px rgba(0,0,0,0.2);}
+
+    .faculty-social-icons a:hover::before {
+      left: 100%;
+    }
+
+    .faculty-social-icons a:hover {
+      transform: translateY(-5px) scale(1.15);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
     .whatsapp { background: #25D366; color: white; }
     .instagram { background: #E1306C; color: white; }
     .facebook { background: #1877F2; color: white; }
     .x { background: #000000; color: white; }
     .telegram { background: #0088cc; color: white; }
     .email { background: var(--islamic-gold); color: white; }
+
     .search-box {
-      background: rgba(255,255,255,0.9); 
-      border: 2px solid var(--islamic-gold); 
-      border-radius: 50px; 
-      padding: 12px 25px; 
-      margin: 30px auto 40px; 
-      max-width: 600px; 
+      background: rgba(255,255,255,0.9);
+      border: 2px solid var(--islamic-gold);
+      border-radius: 50px;
+      padding: 12px 25px;
+      margin: 30px auto 40px;
+      max-width: 600px;
       transition: var(--transition);
-      width: 100%;
     }
-    .search-box:focus-within {background: white; box-shadow: 0 0 20px rgba(193, 154, 63, 0.3);}
+
+    .search-box:focus-within {
+      background: white;
+      box-shadow: 0 0 20px rgba(193, 154, 63, 0.3);
+    }
+
     .search-box input {
-      background: transparent; 
-      border: none; 
-      color: var(--islamic-green); 
-      width: 100%; 
-      outline: none; 
+      background: transparent;
+      border: none;
+      color: var(--islamic-green);
+      width: 100%;
+      outline: none;
       font-size: 1rem;
     }
-    .search-box input::placeholder {color: rgba(10, 92, 54, 0.6);}
+
+    .search-box input::placeholder {
+      color: rgba(10, 92, 54, 0.6);
+    }
+
+    /* ===== STANDARD FOOTER ===== */
     .footer {
-      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green)); 
-      border-top: 3px solid var(--islamic-gold); 
-      padding: 3rem 0 1.5rem; 
+      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
+      border-top: 3px solid var(--islamic-gold);
+      padding: 3rem 0 1.5rem;
       color: white;
     }
-    .footer-brand {font-size: 1.8rem; font-weight: 700; color: var(--islamic-gold); margin-bottom: 1rem;}
-    .social-links {display: flex; gap: 12px; margin-top: 1rem; flex-wrap: wrap;}
-    .social-icon {
-      width: 40px; 
-      height: 40px; 
-      border-radius: 50%; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      color: white; 
-      text-decoration: none; 
-      transition: var(--transition); 
-      background: rgba(255, 255, 255, 0.1); 
-      font-size: 1.1rem;
-      flex-shrink: 0;
+
+    .footer-brand {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--islamic-gold);
+      margin-bottom: 1rem;
     }
-    .social-icon:hover {transform: translateY(-5px); background: var(--islamic-gold); color: var(--islamic-green);}
-    .footer-links h5 {color: var(--islamic-gold); margin-bottom: 1.2rem; font-size: 1.1rem; font-weight: 600;}
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 1rem;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: var(--transition);
+      background: rgba(255, 255, 255, 0.1);
+      font-size: 1.1rem;
+    }
+
+    .social-icon:hover {
+      transform: translateY(-5px);
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
+    }
+
+    .footer-links h5 {
+      color: var(--islamic-gold);
+      margin-bottom: 1.2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
     .footer-links a {
-      display: block; 
-      color: rgba(255, 255, 255, 0.85); 
-      text-decoration: none; 
-      margin-bottom: 0.6rem; 
-      transition: var(--transition); 
+      display: block;
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      margin-bottom: 0.6rem;
+      transition: var(--transition);
       font-size: 0.95rem;
     }
-    .footer-links a:hover {color: var(--islamic-gold); padding-left: 5px;}
+
+    .footer-links a:hover {
+      color: var(--islamic-gold);
+      padding-left: 5px;
+    }
+
+    /* ===== WHATSAPP BUTTON ===== */
     .whatsapp-float {
-      position: fixed; 
-      bottom: 25px; 
-      right: 15px; 
-      width: 60px; 
-      height: 60px; 
-      background: linear-gradient(135deg, #25D366, #128C7E); 
-      color: white; 
-      border-radius: 50%; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      font-size: 1.6rem; 
-      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); 
-      z-index: 1000; 
-      animation: float 3s ease-in-out infinite; 
-      transition: var(--transition); 
+      position: fixed;
+      bottom: 25px;
+      right: 15px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+      z-index: 1000;
+      animation: float 3s ease-in-out infinite;
+      transition: var(--transition);
       text-decoration: none;
     }
-    .whatsapp-float:hover {transform: scale(1.1) rotate(10deg); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);}
+
+    .whatsapp-float:hover {
+      transform: scale(1.1) rotate(10deg);
+      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+    }
+
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
     }
+
+    /* ===== ISLAMIC ORNAMENTS ===== */
     .islamic-ornament {
-      position: fixed; 
-      color: var(--islamic-gold); 
-      opacity: 0.08; 
-      font-size: 1.8rem; 
-      z-index: -1; 
+      position: fixed;
+      color: var(--islamic-gold);
+      opacity: 0.08;
+      font-size: 1.8rem;
+      z-index: -1;
       pointer-events: none;
     }
-    .ornament-1 {top: 20%; left: 5%; animation: float 6s ease-in-out infinite;}
-    .ornament-2 {top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse;}
-    .ornament-3 {bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite;}
-    
-    /* Mobile-specific fixes */
+
+    .ornament-1 {
+      top: 20%;
+      left: 5%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .ornament-2 {
+      top: 60%;
+      right: 5%;
+      animation: float 8s ease-in-out infinite reverse;
+    }
+
+    .ornament-3 {
+      bottom: 20%;
+      left: 10%;
+      animation: float 7s ease-in-out infinite;
+    }
+
+    /* ===== MOBILE RESPONSIVE ===== */
     @media (max-width: 768px) {
       body {
         padding-top: 70px !important;
-        overflow-x: hidden;
-        width: 100%;
       }
+      
       .navbar-optimized {
-        height: 70px; 
-        padding: 0.3rem 1rem;
+        height: 70px;
+        padding: 0.3rem 0;
       }
+      
       .page-header {
-        height: auto; 
+        height: 26vh;
         min-height: 180px;
-        padding: 40px 15px;
       }
+ 
       .page-title {
         font-size: 2.2rem;
-        line-height: 1.2;
       }
+      
       .page-subtitle {
         font-size: 1.1rem;
-        line-height: 1.4;
       }
+      
       .content-section {
-        padding: 2.5rem 15px;
+        padding: 2.5rem 0;
       }
+      
       .section-title {
         font-size: 1.8rem;
       }
+      
       .navbar-collapse {
-        background: var(--dark-green); 
-        padding: 1rem; 
-        border-radius: 0 0 10px 10px; 
-        border: 1px solid var(--islamic-gold); 
-        margin-top: 10px; 
-        max-height: 70vh; 
+        background: var(--dark-green);
+        padding: 1rem;
+        border-radius: 0 0 10px 10px;
+        border: 1px solid var(--islamic-gold);
+        margin-top: 0px;
+        max-height: 70vh;
         overflow-y: auto;
       }
-      .navbar-nav {
-        align-items: flex-start !important;
-      }
-      .nav-link-optimized {
-        text-align: left;
-        padding: 0.5rem 1rem !important;
-      }
-      .dropdown-menu-optimized {
-        position: static !important;
-        float: none;
-        width: 100%;
-        margin-top: 5px;
-        box-shadow: none;
-        border: 1px solid rgba(255,255,255,0.1);
-      }
+      
       .faculty-card .profile-img {
-        width: 100px; 
+        width: 100px;
         height: 100px;
       }
-      .faculty-card {
-        padding: 15px;
-      }
-      .faculty-card h4 {
-        font-size: 1rem;
-      }
-      .search-box {
-        margin: 20px auto 30px;
-        padding: 10px 20px;
-      }
-      .btn-gold, .btn-outline-gold {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
-      }
-      .row.g-4 {
-        margin-left: -10px;
-        margin-right: -10px;
-      }
-      .col-lg-4, .col-md-6 {
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-      .whatsapp-float {
-        width: 55px;
-        height: 55px;
-        font-size: 1.4rem;
-        bottom: 20px;
-        right: 15px;
-      }
-      .islamic-ornament {
-        display: none;
-      }
     }
-    
+
     @media (max-width: 576px) {
       .page-title {
         font-size: 1.8rem;
       }
+      
       .section-title {
         font-size: 1.5rem;
       }
-      .navbar-brand-compact img {
-        width: 50px;
-        height: 50px;
-      }
-      .brand-text {
-        font-size: 1rem;
-      }
-      .faculty-social-icons a {
-        width: 30px;
-        height: 30px;
-        font-size: 0.9rem;
-      }
-      .faculty-card .serial {
-        width: 30px;
-        height: 30px;
-        font-size: 0.9rem;
-      }
-      .footer {
-        padding: 2rem 0 1rem;
-      }
-      .footer-links {
-        margin-bottom: 1.5rem;
-      }
     }
-    
-    @media (max-width: 400px) {
-      .page-title {
-        font-size: 1.5rem;
-      }
-      .page-subtitle {
-        font-size: 1rem;
-      }
-      .navbar-toggler {
-        padding: 0.3rem 0.5rem;
-      }
-    }
-    
-    /* Fix for iOS Safari */
-    @supports (-webkit-touch-callout: none) {
-      .navbar-collapse {
-        -webkit-overflow-scrolling: touch;
-      }
-      body {
-        -webkit-font-smoothing: antialiased;
+
+    /* Fix for AOS on mobile: Ensure elements are visible when AOS is disabled */
+    @media (max-width: 767px) {
+      [data-aos] {
+        opacity: 1 !important;
+        transition-property: none !important;
+        transform: none !important;
       }
     }
   </style>
 </head>
 <body>
+
+<!-- Floating Islamic Ornaments -->
 <div class="islamic-ornament ornament-1">✸</div>
 <div class="islamic-ornament ornament-2">✸</div>
 <div class="islamic-ornament ornament-3">✸</div>
 
+<!-- STANDARD NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-optimized fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand d-flex align-items-center navbar-brand-compact" href="index.html">
@@ -585,10 +686,12 @@
         <small class="text-light brand-subtext">Karuvarakundu</small>
       </div>
     </a>
+ 
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
             aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
+ 
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav ms-auto nav-container">
         <li class="nav-item nav-item-optimized">
@@ -597,9 +700,13 @@
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized" href="founder.html">Founder</a>
         </li>
+     
+        <!-- Board Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
           <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" 
-             aria-haspopup="true" aria-expanded="false">Board</a>
+             aria-haspopup="true" aria-expanded="false">
+            Board
+          </a>
           <ul class="dropdown-menu dropdown-menu-optimized">
             <li><a class="dropdown-item dropdown-item-optimized" href="management.html">Management</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="faculties.html">Faculty</a></li>
@@ -608,15 +715,21 @@
             <li><a class="dropdown-item dropdown-item-optimized" href="students-union.html">Students Union</a></li>
           </ul>
         </li>
+     
+        <!-- Student Zone Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
           <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">Student Zone</a>
+             aria-haspopup="true" aria-expanded="false">
+            Student Zone
+          </a>
           <ul class="dropdown-menu dropdown-menu-optimized">
             <li><a class="dropdown-item dropdown-item-optimized" href="idcard.html">ID Card</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="result.html">Exam Results</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="fest.html">Fest Score</a></li>
           </ul>
         </li>
+     
+        <!-- Other Items -->
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized" href="https://jamianooriya.in/">Jamia</a>
         </li>
@@ -640,6 +753,7 @@
   </div>
 </nav>
 
+<!-- PAGE HEADER -->
 <div class="page-header">
   <div class="container">
     <div class="page-header-content">
@@ -649,20 +763,30 @@
   </div>
 </div>
 
+<!-- MAIN CONTENT -->
 <section class="content-section">
   <div class="container">
+    <!-- Search Box -->
     <div class="search-box">
       <div class="d-flex align-items-center">
         <i class="fas fa-search me-3" style="color: var(--islamic-gold);"></i>
         <input type="text" id="searchInput" placeholder="Search faculty by name, designation or phone...">
       </div>
     </div>
-    <div class="row g-4" id="facultyGrid"></div>
+
+    <!-- Faculty Grid -->
+    <div class="row g-4" id="facultyGrid">
+      <!-- Faculty cards will be loaded by JavaScript -->
+    </div>
+
+    <!-- No Results Message -->
     <div id="noResults" class="text-center py-5" style="display: none;">
       <i class="fas fa-search display-4 mb-3" style="color: var(--islamic-gold);"></i>
       <h4 style="color: var(--islamic-green);">No Faculty Found</h4>
       <p class="text-muted">Try searching with different keywords</p>
     </div>
+
+    <!-- Back to Home Button -->
     <div class="text-center mt-5" data-aos="fade-up">
       <a href="index.html" class="btn-gold btn-lg px-5">
         <i class="fas fa-home me-2"></i>Back to Home
@@ -671,6 +795,7 @@
   </div>
 </section>
 
+<!-- STANDARD FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="row">
@@ -696,6 +821,7 @@
           </a>
         </div>
       </div>
+   
       <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
         <div class="footer-links">
           <h5>Quick Links</h5>
@@ -706,6 +832,7 @@
           <a href="contact.html">Contact</a>
         </div>
       </div>
+   
       <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
         <div class="footer-links">
           <h5>Resources</h5>
@@ -716,6 +843,7 @@
           <a href="pta.html">PTA</a>
         </div>
       </div>
+   
       <div class="col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
         <div class="footer-links">
           <h5>Contact Info</h5>
@@ -727,6 +855,7 @@
         </div>
       </div>
     </div>
+ 
     <div class="text-center pt-4 mt-4 border-top border-light border-opacity-25">
       <p class="text-light mb-2">
         © <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.
@@ -738,23 +867,19 @@
   </div>
 </footer>
 
+<!-- WHATSAPP BUTTON -->
 <a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!"
    class="whatsapp-float" target="_blank"
    title="Chat with us on WhatsApp" aria-label="WhatsApp Chat">
   <i class="fab fa-whatsapp"></i>
 </a>
 
+<!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>
-  // Mobile detection and fixes
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  
-  if (isMobile) {
-    document.documentElement.style.setProperty('--islamic-green', '#0a5c36');
-    document.body.classList.add('mobile-device');
-  }
 
+<script>
+  // Faculty Data
   const facultyData = [
     {
       id: 1,
@@ -904,9 +1029,11 @@
     }
   ];
 
+  // Render faculty cards
   function renderFaculty(teachers = facultyData) {
     const grid = document.getElementById('facultyGrid');
     const noResults = document.getElementById('noResults');
+    
     grid.innerHTML = '';
     noResults.style.display = 'none';
     
@@ -917,6 +1044,8 @@
     
     teachers.forEach((teacher, index) => {
       let socialIconsHTML = '';
+      
+      // Generate social icons
       if (teacher.social.whatsapp) {
         socialIconsHTML += `<a href="${teacher.social.whatsapp}" class="whatsapp" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>`;
       }
@@ -945,11 +1074,13 @@
             <h4>${teacher.name}</h4>
             <div class="designation">${teacher.designation}</div>
             <div class="phone"><i class="fas fa-phone me-2"></i>${teacher.phone}</div>
+            
             ${socialIconsHTML ? `
               <div class="faculty-social-icons">
                 ${socialIconsHTML}
               </div>
             ` : ''}
+            
             <div class="mt-3">
               <a href="tel:${teacher.phone}" class="btn btn-sm btn-outline-gold me-2">
                 <i class="fas fa-phone"></i> Call
@@ -963,6 +1094,7 @@
           </div>
         </div>
       `;
+      
       grid.innerHTML += cardHTML;
     });
   }
@@ -970,6 +1102,7 @@
   // Search functionality
   document.getElementById('searchInput').addEventListener('input', function() {
     const searchTerm = this.value.toLowerCase().trim();
+    
     if (!searchTerm) {
       renderFaculty();
       return;
@@ -984,15 +1117,15 @@
     renderFaculty(filtered);
   });
 
-  // Initialize AOS with mobile detection
+  // Initialize AOS
   AOS.init({
-    duration: 800, 
-    once: true, 
-    offset: 50, 
-    disable: isMobile && window.innerWidth < 768
+    duration: 800,
+    once: true,
+    offset: 50,
+    disable: window.innerWidth < 768
   });
 
-  // Set current year
+  // Update current year
   document.getElementById('currentYear').textContent = new Date().getFullYear();
 
   // Navbar scroll effect
@@ -1002,18 +1135,7 @@
     navbar.classList.toggle('scrolled', scrollTop > 50);
   });
 
-  // Mobile navbar close on click
-  document.querySelectorAll('.nav-link-optimized:not(.dropdown-toggle)').forEach(link => {
-    link.addEventListener('click', () => {
-      const navbarCollapse = document.querySelector('.navbar-collapse.show');
-      if (navbarCollapse && window.innerWidth < 992) {
-        const bsCollapse = new bootstrap.Collapse(navbarCollapse);
-        bsCollapse.hide();
-      }
-    });
-  });
-
-  // Smooth scrolling for anchor links
+  // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       if(this.getAttribute('href') !== '#') {
@@ -1022,82 +1144,55 @@
         if (target) {
           const offset = window.innerWidth <= 768 ? 70 : 80;
           window.scrollTo({
-            top: target.offsetTop - offset, 
+            top: target.offsetTop - offset,
             behavior: 'smooth'
           });
+          
+          // Close mobile menu if open
+          const navbarCollapse = document.querySelector('.navbar-collapse');
+          if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+            bsCollapse.hide();
+          }
         }
       }
     });
   });
 
-  // Fix for mobile dropdowns
-  if (isMobile) {
-    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-      toggle.addEventListener('click', function(e) {
-        if (window.innerWidth < 992) {
-          e.preventDefault();
-          const dropdown = this.closest('.dropdown');
-          dropdown.classList.toggle('show');
-          
-          const menu = dropdown.querySelector('.dropdown-menu');
-          if (menu) {
-            menu.classList.toggle('show');
-            menu.style.position = 'static';
-            menu.style.transform = 'none';
-          }
-        }
-      });
+  // Mobile menu close on click
+  document.querySelectorAll('.navbar-nav .nav-link-optimized:not(.dropdown-toggle)').forEach(link => {
+    link.addEventListener('click', () => {
+      const navbarCollapse = document.querySelector('.navbar-collapse');
+      if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+        const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+        bsCollapse.hide();
+      }
     });
-  }
-
-  // Prevent body scroll when navbar is open on mobile
-  document.querySelector('.navbar-toggler').addEventListener('click', function() {
-    document.body.style.overflow = document.body.style.overflow ? '' : 'hidden';
   });
 
-  // Close navbar when clicking outside on mobile
-  document.addEventListener('click', function(event) {
-    const navbar = document.querySelector('.navbar-collapse');
-    const toggler = document.querySelector('.navbar-toggler');
-    
-    if (window.innerWidth < 992 && 
-        navbar && 
-        navbar.classList.contains('show') && 
-        !navbar.contains(event.target) && 
-        !toggler.contains(event.target)) {
-      const bsCollapse = new bootstrap.Collapse(navbar);
-      bsCollapse.hide();
-      document.body.style.overflow = '';
+  // Parallax effect for floating ornaments
+  window.addEventListener('scroll', () => {
+    if (window.innerWidth > 768) {
+      const scrolled = window.pageYOffset;
+      const ornaments = document.querySelectorAll('.islamic-ornament');
+ 
+      ornaments.forEach((ornament, index) => {
+        const speed = 0.05 * (index + 1);
+        ornament.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.05}deg)`;
+      });
     }
   });
 
-  // Initialize on page load
+  // Initial render
   document.addEventListener('DOMContentLoaded', function() {
     renderFaculty();
     
-    // Add fade-in effect
+    // Fade in effect
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity 0.3s ease';
     setTimeout(() => {
       document.body.style.opacity = '1';
     }, 50);
-    
-    // Fix for iOS viewport height
-    if (isMobile) {
-      const setVH = () => {
-        let vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-      };
-      setVH();
-      window.addEventListener('resize', setVH);
-    }
-  });
-
-  // Handle orientation change
-  window.addEventListener('orientationchange', function() {
-    setTimeout(() => {
-      AOS.refresh();
-    }, 500);
   });
 </script>
 </body>
