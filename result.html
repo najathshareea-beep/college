@@ -4,1084 +4,274 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DSAC | Results</title>
-
-  <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
-  <!-- STANDARD CSS -->
   <style>
-    /* ===== CSS VARIABLES ===== */
     :root {
-      --islamic-green: #0a5c36;
-      --islamic-gold: #c19a3f;
-      --islamic-cream: #f8f3e6;
-      --islamic-light: #e9f5e9;
-      --dark-green: #064e3b;
-      --light-gold: #ffd24d;
-      --transition: all 0.3s ease;
+      --islamic-green: #0a5c36; --islamic-gold: #c19a3f; --islamic-cream: #f8f3e6; --islamic-light: #e9f5e9; --dark-green: #064e3b; --light-gold: #ffd24d; --transition: all 0.3s ease;
     }
-
-    /* ===== BASE STYLES ===== */
     body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--islamic-cream);
-      color: #333;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-      padding-top: 80px;
+      font-family: 'Poppins', sans-serif; background-color: var(--islamic-cream); color: #333; scroll-behavior: smooth; overflow-x: hidden; padding-top: 80px;
     }
-    
-    a {
-      text-decoration: none;
-    }
-
-    .arabic-font {
-      font-family: 'Scheherazade New', serif;
-    }
-
-    .malayalam-font {
-      font-family: 'Anek Malayalam', sans-serif;
-    }
-
-    /* ===== PATTERN BACKGROUND ===== */
+    a {text-decoration: none;}
+    .arabic-font {font-family: 'Scheherazade New', serif;}
+    .malayalam-font {font-family: 'Anek Malayalam', sans-serif;}
     .pattern-bg {
-      background-image: 
-        radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px),
-        radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px);
-      background-size: 50px 50px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
+      background-image: radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px), radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px); background-size: 50px 50px; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
     }
-
-    /* ===== STANDARD NAVBAR ===== */
     .navbar-optimized {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      border-bottom: 3px solid var(--islamic-gold);
-      transition: var(--transition);
-      padding: 0.5rem 0;
-      height: 80px;
-      z-index: 1030 !important;
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-bottom: 3px solid var(--islamic-gold); transition: var(--transition); padding: 0.5rem 0; height: 80px; z-index: 1030 !important;
     }
-    
-    .navbar-toggler {
-      border-color: rgba(255, 255, 255, 0.5);
-    }
-    
-    .navbar-toggler:focus {
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-    }
-
+    .navbar-toggler {border-color: rgba(255, 255, 255, 0.5);}
+    .navbar-toggler:focus {box-shadow: 0 0 0 2px var(--islamic-gold);}
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
-
     .navbar-optimized.scrolled {
-      background: rgba(10, 92, 54, 0.98);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-      height: 70px;
+      background: rgba(10, 92, 54, 0.98); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); height: 70px;
     }
-
-    /* LOGO */
     .navbar-brand-compact img {
-      border-radius: 8px;
-      transition: transform 0.3s ease;
-      width: 60px;
-      height: 60px;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-      border: none;
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-      padding: 0;
+      border-radius: 8px; transition: transform 0.3s ease; width: 60px; height: 60px; object-fit: contain; filter: brightness(0) invert(1); border: none; box-shadow: 0 0 0 2px var(--islamic-gold); padding: 0;
     }
-
-    .navbar-optimized.scrolled .navbar-brand-compact img {
-      width: 50px;
-      height: 50px;
-      filter: brightness(0) invert(1);
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-    }
-
-    .navbar-brand-compact:hover img {
-      transform: scale(1.05);
-    }
-
-    .brand-text {
-      font-size: 1.2rem;
-      line-height: 1.2;
-    }
-
-    .brand-subtext {
-      font-size: 0.8rem;
-      opacity: 0.9;
-    }
-
+    .navbar-optimized.scrolled .navbar-brand-compact img {width: 50px; height: 50px;}
+    .navbar-brand-compact:hover img {transform: scale(1.05);}
+    .brand-text {font-size: 1.2rem; line-height: 1.2;}
+    .brand-subtext {font-size: 0.8rem; opacity: 0.9;}
     .nav-link-optimized {
-      color: #fff !important;
-      font-weight: 500;
-      transition: var(--transition);
-      padding-left: 0.4rem;
-      padding-right: 0.4rem;
-      border-radius: 5px;
-      margin: 0 2px;
-      white-space: nowrap;
+      color: #fff !important; font-weight: 500; transition: var(--transition); padding-left: 0.4rem; padding-right: 0.4rem; border-radius: 5px; margin: 0 2px; white-space: nowrap;
     }
-    
-    .nav-item-optimized {
-      margin: 0 2px;
-    }
-
-    .nav-link-optimized:hover {
-      color: var(--islamic-gold) !important;
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* Navbar dropdown */
+    .nav-item-optimized {margin: 0 2px;}
+    .nav-link-optimized:hover {color: var(--islamic-gold) !important; background: rgba(255, 255, 255, 0.1);}
     .dropdown-menu-optimized {
-      background: var(--islamic-green);
-      border: 1px solid var(--islamic-gold);
-      border-radius: 8px;
-      padding: 0.5rem 0;
+      background: var(--islamic-green); border: 1px solid var(--islamic-gold); border-radius: 8px; padding: 0.5rem 0;
     }
-
     .dropdown-item-optimized {
-      color: white;
-      padding: 0.5rem 1rem;
-      transition: var(--transition);
+      color: white; padding: 0.5rem 1rem; transition: var(--transition);
     }
-
-    .dropdown-item-optimized:hover {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    /* ===== STANDARD PAGE HEADER ===== */
+    .dropdown-item-optimized:hover {background: var(--islamic-gold); color: var(--islamic-green);}
     .page-header {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      color: white;
-      height: 30vh;
-      min-height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      margin-bottom: 3rem;
-      border-bottom: 5px solid var(--islamic-gold);
-      position: relative;
-      overflow: hidden;
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); color: white; height: 30vh; min-height: 220px; display: flex; align-items: center; justify-content: center; text-align: center; margin-bottom: 3rem; border-bottom: 5px solid var(--islamic-gold); position: relative; overflow: hidden;
     }
-
     .page-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
     }
-    
-    .page-header-content {
-      position: relative;
-      z-index: 2;
-    }
-    
+    .page-header-content {position: relative; z-index: 2;}
     .page-title {
-      font-family: 'Scheherazade New', serif;
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--islamic-gold);
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-family: 'Scheherazade New', serif; font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--islamic-gold); text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
-    
     .page-subtitle {
-      font-size: 1.4rem;
-      opacity: 0.95;
-      max-width: 800px;
-      margin: 0 auto;
-      color: var(--islamic-cream);
+      font-size: 1.4rem; opacity: 0.95; max-width: 800px; margin: 0 auto; color: var(--islamic-cream);
     }
-
-    /* ===== STANDARD CONTENT SECTION ===== */
-    .content-section {
-      padding: 4rem 0;
-      background: var(--islamic-cream);
-    }
-    
+    .content-section {padding: 4rem 0; background: var(--islamic-cream);}
     .section-header {
-      text-align: center;
-      margin-bottom: 3rem;
-      position: relative;
-      padding: 2rem 0;
+      text-align: center; margin-bottom: 3rem; position: relative; padding: 2rem 0;
     }
-
     .section-title {
-      color: var(--islamic-green);
-      font-weight: 700;
-      display: inline-block;
-      padding: 0 1rem;
-      background: var(--islamic-cream);
-      position: relative;
-      z-index: 2;
-      margin-bottom: 0.5rem;
-      font-size: 2.5rem;
+      color: var(--islamic-green); font-weight: 700; display: inline-block; padding: 0 1rem; background: var(--islamic-cream); position: relative; z-index: 2; margin-bottom: 0.5rem; font-size: 2.5rem;
     }
-
     .section-header::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent);
-      z-index: 1;
+      content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent); z-index: 1;
     }
-    
-    .section-subtitle {
-      color: #666;
-      font-size: 1.1rem;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    /* ===== STANDARD BUTTONS ===== */
+    .section-subtitle {color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;}
     .btn-gold {
-      background: linear-gradient(135deg, var(--islamic-gold), #d4af37);
-      border: none;
-      color: var(--islamic-green);
-      font-weight: 600;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3);
-      transition: var(--transition);
-      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--islamic-gold), #d4af37); border: none; color: var(--islamic-green); font-weight: 600; border-radius: 8px; box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3); transition: var(--transition); padding: 0.75rem 1.5rem;
     }
-
     .btn-gold:hover {
-      background: linear-gradient(135deg, #d4af37, var(--islamic-gold));
-      box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4);
-      transform: translateY(-2px);
-      color: var(--islamic-green);
+      background: linear-gradient(135deg, #d4af37, var(--islamic-gold)); box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4); transform: translateY(-2px); color: var(--islamic-green);
     }
-
     .btn-outline-gold {
-      border: 2px solid var(--islamic-gold);
-      color: var(--islamic-gold);
-      background: transparent;
-      border-radius: 8px;
-      padding: 0.75rem 1.5rem;
-      font-weight: 600;
-      transition: var(--transition);
+      border: 2px solid var(--islamic-gold); color: var(--islamic-gold); background: transparent; border-radius: 8px; padding: 0.75rem 1.5rem; font-weight: 600; transition: var(--transition);
     }
-
-    .btn-outline-gold:hover {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    /* ===== RESULTS SPECIFIC STYLES ===== */
+    .btn-outline-gold:hover {background: var(--islamic-gold); color: var(--islamic-green);}
     .result-selection-box {
-      background: white;
-      border-radius: 15px;
-      padding: 2.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      border: 2px solid var(--islamic-gold);
-      position: relative;
+      background: white; border-radius: 15px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid var(--islamic-gold); position: relative;
     }
-
     .result-selection-box::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg, var(--islamic-green), var(--islamic-gold));
-      border-radius: 15px 15px 0 0;
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, var(--islamic-green), var(--islamic-gold)); border-radius: 15px 15px 0 0;
     }
-
     .result-btn-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;
     }
-
     .result-btn {
-      background: white;
-      border-radius: 12px;
-      padding: 1.5rem;
-      transition: var(--transition);
-      border: 2px solid rgba(10, 92, 54, 0.1);
-      text-align: center;
-      text-decoration: none;
-      color: #333;
+      background: white; border-radius: 12px; padding: 1.5rem; transition: var(--transition); border: 2px solid rgba(10, 92, 54, 0.1); text-align: center; text-decoration: none; color: #333;
     }
-
-    .result-btn:hover {
-      transform: translateY(-5px);
-      border-color: var(--islamic-gold);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-
-    .result-btn i {
-      font-size: 2rem;
-      color: var(--islamic-green);
-      margin-bottom: 1rem;
-    }
-
-    .result-btn span {
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: var(--islamic-green);
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .result-btn small {
-      color: #666;
-      font-size: 0.9rem;
-    }
-
+    .result-btn:hover {transform: translateY(-5px); border-color: var(--islamic-gold); box-shadow: 0 10px 25px rgba(0,0,0,0.15);}
+    .result-btn i {font-size: 2rem; color: var(--islamic-green); margin-bottom: 1rem;}
+    .result-btn span {font-weight: 600; font-size: 1.1rem; color: var(--islamic-green); display: block; margin-bottom: 0.5rem;}
+    .result-btn small {color: #666; font-size: 0.9rem;}
     .result-form-container {
-      background: white;
-      border-radius: 15px;
-      padding: 2.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      border: 2px solid var(--islamic-gold);
-      display: none;
+      background: white; border-radius: 15px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid var(--islamic-gold); display: none;
     }
-
     .form-control {
-      border: 2px solid rgba(10, 92, 54, 0.2);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      font-size: 0.95rem;
-      transition: var(--transition);
-      margin-bottom: 1.2rem;
+      border: 2px solid rgba(10, 92, 54, 0.2); border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.95rem; transition: var(--transition); margin-bottom: 1.2rem;
     }
-
-    .form-control:focus {
-      border-color: var(--islamic-gold);
-      box-shadow: 0 0 0 3px rgba(193, 154, 63, 0.1);
-    }
-
+    .form-control:focus {border-color: var(--islamic-gold); box-shadow: 0 0 0 3px rgba(193, 154, 63, 0.1);}
     .loading-container {
-      background: white;
-      border-radius: 15px;
-      padding: 3rem;
-      text-align: center;
-      margin-bottom: 2rem;
-      display: none;
+      background: white; border-radius: 15px; padding: 3rem; text-align: center; margin-bottom: 2rem; display: none;
     }
-
     .spinner {
-      width: 50px;
-      height: 50px;
-      border: 4px solid rgba(10, 92, 54, 0.1);
-      border-top: 4px solid var(--islamic-gold);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 1.5rem;
+      width: 50px; height: 50px; border: 4px solid rgba(10, 92, 54, 0.1); border-top: 4px solid var(--islamic-gold); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1.5rem;
     }
-
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
     .error-container {
-      background: white;
-      border-radius: 15px;
-      padding: 2.5rem;
-      text-align: center;
-      margin-bottom: 2rem;
-      display: none;
-      border-left: 4px solid #dc3545;
+      background: white; border-radius: 15px; padding: 2.5rem; text-align: center; margin-bottom: 2rem; display: none; border-left: 4px solid #dc3545;
     }
-
-    .error-icon {
-      font-size: 3rem;
-      color: #dc3545;
-      margin-bottom: 1rem;
-    }
-
-    /* Result Display Styles */
+    .error-icon {font-size: 3rem; color: #dc3545; margin-bottom: 1rem;}
     .result-card {
-      background: white;
-      border-radius: 15px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      border: 2px solid var(--islamic-gold);
-      display: none;
+      background: white; border-radius: 15px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid var(--islamic-gold); display: none;
     }
-
     .result-header {
-      text-align: center;
-      margin-bottom: 2rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 2px solid var(--islamic-gold);
+      text-align: center; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 2px solid var(--islamic-gold);
     }
-
-    .result-header h2 {
-      color: var(--islamic-green);
-      font-weight: 700;
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-    }
-
+    .result-header h2 {color: var(--islamic-green); font-weight: 700; font-size: 1.8rem; margin-bottom: 0.5rem;}
     .student-info {
-      background: rgba(10, 92, 54, 0.05);
-      border-radius: 10px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
+      background: rgba(10, 92, 54, 0.05); border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem;
     }
-
     .info-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 0.5rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 0.5rem;
     }
-
-    .info-label {
-      font-weight: 600;
-      color: var(--islamic-green);
-      font-size: 0.9rem;
-    }
-
-    .info-value {
-      color: #555;
-      font-size: 0.95rem;
-    }
-
+    .info-label {font-weight: 600; color: var(--islamic-green); font-size: 0.9rem;}
+    .info-value {color: #555; font-size: 0.95rem;}
     .performance-summary {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      border-radius: 10px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      color: white;
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; color: white;
     }
-
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1rem;
-    }
-
-    .summary-card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      padding: 1rem;
-      text-align: center;
-    }
-
-    .summary-value {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    .summary-label {
-      font-size: 0.85rem;
-      opacity: 0.9;
-    }
-
-    .subjects-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 2rem;
-    }
-
+    .summary-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;}
+    .summary-card {background: rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 1rem; text-align: center;}
+    .summary-value {font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;}
+    .summary-label {font-size: 0.85rem; opacity: 0.9;}
+    .subjects-table {width: 100%; border-collapse: collapse; margin-bottom: 2rem;}
     .subjects-table th {
-      background: var(--islamic-green);
-      color: white;
-      padding: 1rem;
-      text-align: center;
-      font-weight: 600;
-      font-size: 0.9rem;
+      background: var(--islamic-green); color: white; padding: 1rem; text-align: center; font-weight: 600; font-size: 0.9rem;
     }
-
-    .subjects-table td {
-      padding: 0.8rem;
-      text-align: center;
-      border-bottom: 1px solid rgba(0,0,0,0.1);
-    }
-
-    .subjects-table tr:nth-child(even) {
-      background: rgba(10, 92, 54, 0.02);
-    }
-
-    .grade-pass {
-      color: var(--islamic-green);
-      font-weight: 600;
-    }
-
-    .grade-fail {
-      color: #dc3545;
-      font-weight: 600;
-    }
-
-    .status-pass {
-      color: var(--islamic-green);
-      font-weight: 600;
-    }
-
-    .status-fail {
-      color: #dc3545;
-      font-weight: 600;
-    }
-
+    .subjects-table td {padding: 0.8rem; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.1);}
+    .subjects-table tr:nth-child(even) {background: rgba(10, 92, 54, 0.02);}
+    .grade-pass {color: var(--islamic-green); font-weight: 600;}
+    .grade-fail {color: #dc3545; font-weight: 600;}
+    .status-pass {color: var(--islamic-green); font-weight: 600;}
+    .status-fail {color: #dc3545; font-weight: 600;}
     .final-result {
-      text-align: center;
-      padding: 2rem;
-      border-radius: 10px;
-      margin-top: 2rem;
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      color: white;
+      text-align: center; padding: 2rem; border-radius: 10px; margin-top: 2rem; background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); color: white;
     }
-
     .result-badge {
-      display: inline-block;
-      background: white;
-      color: var(--islamic-green);
-      padding: 0.5rem 2rem;
-      border-radius: 30px;
-      font-weight: 700;
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
+      display: inline-block; background: white; color: var(--islamic-green); padding: 0.5rem 2rem; border-radius: 30px; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem;
     }
-
     .toppers-section {
-      background: white;
-      border-radius: 15px;
-      padding: 2.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      border: 2px solid var(--islamic-gold);
+      background: white; border-radius: 15px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid var(--islamic-gold);
     }
-
-    .toppers-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
+    .toppers-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;}
     .topper-card {
-      background: rgba(10, 92, 54, 0.03);
-      border-radius: 10px;
-      padding: 1.5rem;
-      text-align: center;
-      transition: var(--transition);
-      border: 2px solid transparent;
+      background: rgba(10, 92, 54, 0.03); border-radius: 10px; padding: 1.5rem; text-align: center; transition: var(--transition); border: 2px solid transparent;
     }
-
-    .topper-card:hover {
-      border-color: var(--islamic-gold);
-      transform: translateY(-3px);
-    }
-
-    .topper-medal {
-      font-size: 2rem;
-      color: var(--islamic-gold);
-      margin-bottom: 1rem;
-    }
-
-    .class-label {
-      color: var(--islamic-green);
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      font-size: 0.9rem;
-    }
-
-    .topper-name {
-      color: var(--islamic-green);
-      font-weight: 600;
-      margin-bottom: 1rem;
-      font-size: 1.1rem;
-    }
-
+    .topper-card:hover {border-color: var(--islamic-gold); transform: translateY(-3px);}
+    .topper-medal {font-size: 2rem; color: var(--islamic-gold); margin-bottom: 1rem;}
+    .class-label {color: var(--islamic-green); font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem;}
+    .topper-name {color: var(--islamic-green); font-weight: 600; margin-bottom: 1rem; font-size: 1.1rem;}
     .percentage-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--islamic-gold), #ffd24d);
-      color: var(--islamic-green);
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-weight: 700;
-      font-size: 1rem;
+      display: inline-block; background: linear-gradient(135deg, var(--islamic-gold), #ffd24d); color: var(--islamic-green); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 700; font-size: 1rem;
     }
-
-    /* ===== STANDARD FOOTER ===== */
     .footer {
-      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
-      border-top: 3px solid var(--islamic-gold);
-      padding: 3rem 0 1.5rem;
-      color: white;
+      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green)); border-top: 3px solid var(--islamic-gold); padding: 3rem 0 1.5rem; color: white;
     }
-
-    .footer-brand {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--islamic-gold);
-      margin-bottom: 1rem;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 12px;
-      margin-top: 1rem;
-    }
-
+    .footer-brand {font-size: 1.8rem; font-weight: 700; color: var(--islamic-gold); margin-bottom: 1rem;}
+    .social-links {display: flex; gap: 12px; margin-top: 1rem;}
     .social-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-decoration: none;
-      transition: var(--transition);
-      background: rgba(255, 255, 255, 0.1);
-      font-size: 1.1rem;
+      width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: var(--transition); background: rgba(255, 255, 255, 0.1); font-size: 1.1rem;
     }
-
-    .social-icon:hover {
-      transform: translateY(-5px);
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    .footer-links h5 {
-      color: var(--islamic-gold);
-      margin-bottom: 1.2rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-
+    .social-icon:hover {transform: translateY(-5px); background: var(--islamic-gold); color: var(--islamic-green);}
+    .footer-links h5 {color: var(--islamic-gold); margin-bottom: 1.2rem; font-size: 1.1rem; font-weight: 600;}
     .footer-links a {
-      display: block;
-      color: rgba(255, 255, 255, 0.85);
-      text-decoration: none;
-      margin-bottom: 0.6rem;
-      transition: var(--transition);
-      font-size: 0.95rem;
+      display: block; color: rgba(255, 255, 255, 0.85); text-decoration: none; margin-bottom: 0.6rem; transition: var(--transition); font-size: 0.95rem;
     }
-
-    .footer-links a:hover {
-      color: var(--islamic-gold);
-      padding-left: 5px;
-    }
-
-    /* ===== WHATSAPP BUTTON ===== */
+    .footer-links a:hover {color: var(--islamic-gold); padding-left: 5px;}
     .whatsapp-float {
-      position: fixed;
-      bottom: 25px;
-      right: 15px;
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #25D366, #128C7E);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
-      z-index: 1000;
-      animation: float 3s ease-in-out infinite;
-      transition: var(--transition);
-      text-decoration: none;
+      position: fixed; bottom: 25px; right: 15px; width: 60px; height: 60px; background: linear-gradient(135deg, #25D366, #128C7E); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); z-index: 1000; animation: float 3s ease-in-out infinite; transition: var(--transition); text-decoration: none;
     }
-
-    .whatsapp-float:hover {
-      transform: scale(1.1) rotate(10deg);
-      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
-    }
-
+    .whatsapp-float:hover {transform: scale(1.1) rotate(10deg); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);}
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
     }
-
-    /* ===== ISLAMIC ORNAMENTS ===== */
     .islamic-ornament {
-      position: fixed;
-      color: var(--islamic-gold);
-      opacity: 0.08;
-      font-size: 1.8rem;
-      z-index: -1;
-      pointer-events: none;
+      position: fixed; color: var(--islamic-gold); opacity: 0.08; font-size: 1.8rem; z-index: -1; pointer-events: none;
     }
-
-    .ornament-1 {
-      top: 20%;
-      left: 5%;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .ornament-2 {
-      top: 60%;
-      right: 5%;
-      animation: float 8s ease-in-out infinite reverse;
-    }
-
-    .ornament-3 {
-      bottom: 20%;
-      left: 10%;
-      animation: float 7s ease-in-out infinite;
-    }
-
-    /* ===== PRINT STYLES ===== */
+    .ornament-1 {top: 20%; left: 5%; animation: float 6s ease-in-out infinite;}
+    .ornament-2 {top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse;}
+    .ornament-3 {bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite;}
     @media print {
-      /* Hide all unnecessary elements */
-      .navbar-optimized,
-      .footer,
-      .whatsapp-float,
-      .islamic-ornament,
-      .content-section > .container > .text-center:last-child,
-      .result-card .final-result .d-flex,
-      .toppers-section,
-      .page-header,
-      .result-selection-box,
-      .result-form-container,
-      .loading-container,
-      .error-container,
-      #resultSelectionBox {
-        display: none !important;
-      }
-      
-      /* Reset body for A4 paper */
-      body {
-        background: white !important;
-        color: black !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        font-size: 11pt;
-        line-height: 1.4;
-      }
-      
-      /* Container adjustments */
-      .container {
-        max-width: 100% !important;
-        padding: 0 !important;
-        margin: 0 !important;
-      }
-      
-      /* Result card optimization for A4 */
+      .navbar-optimized, .footer, .whatsapp-float, .islamic-ornament, .content-section > .container > .text-center:last-child, .result-card .final-result .d-flex, .toppers-section, .page-header, .result-selection-box, .result-form-container, .loading-container, .error-container, #resultSelectionBox {display: none !important;}
+      body {background: white !important; color: black !important; padding: 0 !important; margin: 0 !important; font-size: 11pt; line-height: 1.4;}
+      .container {max-width: 100% !important; padding: 0 !important; margin: 0 !important;}
       .result-card {
-        display: block !important;
-        box-shadow: none !important;
-        border: 2px solid #000 !important;
-        border-radius: 0 !important;
-        padding: 15mm !important;
-        margin: 0 !important;
-        width: 210mm !important; /* A4 width */
-        min-height: 297mm !important; /* A4 height */
-        position: relative;
-        page-break-inside: avoid;
-        page-break-after: always;
+        display: block !important; box-shadow: none !important; border: 2px solid #000 !important; border-radius: 0 !important; padding: 15mm !important; margin: 0 !important; width: 210mm !important; min-height: 297mm !important; position: relative; page-break-inside: avoid; page-break-after: always;
       }
-      
-      /* Result header */
-      .result-header {
-        text-align: center;
-        padding: 5mm 0;
-        border-bottom: 3px double #000 !important;
-        margin-bottom: 10mm;
-      }
-      
-      .result-header h2 {
-        font-size: 16pt !important;
-        color: #000 !important;
-        margin-bottom: 2mm;
-      }
-      
-      .result-header p {
-        font-size: 10pt;
-        color: #333 !important;
-        margin: 1mm 0;
-      }
-      
-      /* Student info */
-      .student-info {
-        background: none !important;
-        border: 1px solid #ccc;
-        padding: 5mm;
-        margin-bottom: 10mm;
-      }
-      
-      .info-row {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 5mm;
-      }
-      
-      .info-label {
-        color: #000 !important;
-        font-weight: 600;
-        font-size: 9pt;
-      }
-      
-      .info-value {
-        color: #000 !important;
-        font-size: 10pt;
-      }
-      
-      /* Subjects table */
-      .subjects-section h4 {
-        text-align: center;
-        margin-bottom: 5mm;
-        font-size: 12pt;
-        color: #000 !important;
-      }
-      
-      .subjects-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 10mm;
-        font-size: 9pt;
-      }
-      
-      .subjects-table th {
-        background: #f0f0f0 !important;
-        color: #000 !important;
-        border: 1px solid #000;
-        padding: 2mm;
-        font-weight: 600;
-      }
-      
-      .subjects-table td {
-        border: 1px solid #ccc;
-        padding: 2mm;
-      }
-      
-      .subjects-table tr:nth-child(even) {
-        background: #f9f9f9 !important;
-      }
-      
-      /* Performance summary */
-      .performance-summary {
-        background: #f5f5f5 !important;
-        color: #000 !important;
-        border: 1px solid #ccc;
-        padding: 5mm;
-        margin-bottom: 10mm;
-      }
-      
-      .performance-summary h4 {
-        color: #000 !important;
-        text-align: center;
-        font-size: 12pt;
-        margin-bottom: 3mm;
-      }
-      
-      .summary-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 3mm;
-      }
-      
-      .summary-card {
-        background: white !important;
-        border: 1px solid #ccc;
-        padding: 3mm;
-      }
-      
-      .summary-value {
-        color: #000 !important;
-        font-size: 12pt;
-        margin-bottom: 1mm;
-      }
-      
-      .summary-label {
-        color: #666 !important;
-        font-size: 8pt;
-      }
-      
-      .summary-card small {
-        display: block;
-        font-size: 7pt;
-        color: #888;
-        margin-top: 1mm;
-      }
-      
-      /* Final result */
-      .final-result {
-        background: #f5f5f5 !important;
-        color: #000 !important;
-        border: 1px solid #000;
-        margin-top: 10mm;
-        padding: 5mm;
-      }
-      
-      .result-badge {
-        background: white !important;
-        color: #000 !important;
-        border: 2px solid #000;
-        padding: 2mm 10mm;
-        font-size: 11pt;
-      }
-      
-      .final-result p {
-        color: #000 !important;
-        margin: 3mm 0;
-        font-size: 10pt;
-      }
-      
-      /* Grade colors for print */
-      .grade-pass,
-      .grade-fail,
-      .status-pass,
-      .status-fail {
-        color: #000 !important;
-        font-weight: 600;
-      }
-      
-      /* Page setup */
-      @page {
-        size: A4 portrait;
-        margin: 15mm;
-      }
-      
-      /* Ensure content fits on one page */
-      .result-card {
-        break-inside: avoid;
-      }
-      
-      /* Hide buttons in print */
-      .btn-gold,
-      .btn-outline-gold {
-        display: none !important;
-      }
-      
-      /* Print footer */
+      .result-header {text-align: center; padding: 5mm 0; border-bottom: 3px double #000 !important; margin-bottom: 10mm;}
+      .result-header h2 {font-size: 16pt !important; color: #000 !important; margin-bottom: 2mm;}
+      .result-header p {font-size: 10pt; color: #333 !important; margin: 1mm 0;}
+      .student-info {background: none !important; border: 1px solid #ccc; padding: 5mm; margin-bottom: 10mm;}
+      .info-row {grid-template-columns: repeat(2, 1fr); gap: 5mm;}
+      .info-label {color: #000 !important; font-weight: 600; font-size: 9pt;}
+      .info-value {color: #000 !important; font-size: 10pt;}
+      .subjects-section h4 {text-align: center; margin-bottom: 5mm; font-size: 12pt; color: #000 !important;}
+      .subjects-table {width: 100%; border-collapse: collapse; margin-bottom: 10mm; font-size: 9pt;}
+      .subjects-table th {background: #f0f0f0 !important; color: #000 !important; border: 1px solid #000; padding: 2mm; font-weight: 600;}
+      .subjects-table td {border: 1px solid #ccc; padding: 2mm;}
+      .subjects-table tr:nth-child(even) {background: #f9f9f9 !important;}
+      .performance-summary {background: #f5f5f5 !important; color: #000 !important; border: 1px solid #ccc; padding: 5mm; margin-bottom: 10mm;}
+      .performance-summary h4 {color: #000 !important; text-align: center; font-size: 12pt; margin-bottom: 3mm;}
+      .summary-grid {display: grid; grid-template-columns: repeat(5, 1fr); gap: 3mm;}
+      .summary-card {background: white !important; border: 1px solid #ccc; padding: 3mm;}
+      .summary-value {color: #000 !important; font-size: 12pt; margin-bottom: 1mm;}
+      .summary-label {color: #666 !important; font-size: 8pt;}
+      .summary-card small {display: block; font-size: 7pt; color: #888; margin-top: 1mm;}
+      .final-result {background: #f5f5f5 !important; color: #000 !important; border: 1px solid #000; margin-top: 10mm; padding: 5mm;}
+      .result-badge {background: white !important; color: #000 !important; border: 2px solid #000; padding: 2mm 10mm; font-size: 11pt;}
+      .final-result p {color: #000 !important; margin: 3mm 0; font-size: 10pt;}
+      .grade-pass, .grade-fail, .status-pass, .status-fail {color: #000 !important; font-weight: 600;}
+      @page {size: A4 portrait; margin: 15mm;}
+      .result-card {break-inside: avoid;}
+      .btn-gold, .btn-outline-gold {display: none !important;}
       .result-card::after {
         content: "Printed on: " attr(data-print-date) " | DSAC Result Portal";
-        display: block;
-        text-align: center;
-        margin-top: 10mm;
-        padding-top: 2mm;
-        border-top: 1px solid #ccc;
-        font-size: 8pt;
-        color: #666;
-        position: absolute;
-        bottom: 10mm;
-        left: 15mm;
-        right: 15mm;
+        display: block; text-align: center; margin-top: 10mm; padding-top: 2mm; border-top: 1px solid #ccc; font-size: 8pt; color: #666; position: absolute; bottom: 10mm; left: 15mm; right: 15mm;
       }
     }
-
-    /* ===== MOBILE RESPONSIVE ===== */
     @media (max-width: 768px) {
-      body {
-        padding-top: 70px !important;
-      }
-      
-      .navbar-optimized {
-        height: 70px;
-        padding: 0.3rem 0;
-      }
-      
-      .page-header {
-        height: 26vh;
-        min-height: 180px;
-      }
-
-      .page-title {
-        font-size: 2.2rem;
-      }
-      
-      .page-subtitle {
-        font-size: 1.1rem;
-      }
-      
-      .content-section {
-        padding: 2.5rem 0;
-      }
-      
-      .section-title {
-        font-size: 1.8rem;
-      }
-      
+      body {padding-top: 70px !important;}
+      .navbar-optimized {height: 70px; padding: 0.3rem 0;}
+      .page-header {height: 26vh; min-height: 180px;}
+      .page-title {font-size: 2.2rem;}
+      .page-subtitle {font-size: 1.1rem;}
+      .content-section {padding: 2.5rem 0;}
+      .section-title {font-size: 1.8rem;}
       .navbar-collapse {
-        background: var(--dark-green);
-        padding: 1rem;
-        border-radius: 0 0 10px 10px;
-        border: 1px solid var(--islamic-gold);
-        margin-top: 0px;
-        max-height: 70vh;
-        overflow-y: auto;
+        background: var(--dark-green); padding: 1rem; border-radius: 0 0 10px 10px; border: 1px solid var(--islamic-gold); margin-top: 0px; max-height: 70vh; overflow-y: auto;
       }
-      
-      .result-btn-container {
-        grid-template-columns: 1fr;
-      }
-      
-      .result-selection-box,
-      .result-form-container,
-      .result-card,
-      .toppers-section {
-        padding: 1.5rem;
-        margin: 0 1rem 1.5rem;
-      }
-      
-      .summary-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .toppers-grid {
-        grid-template-columns: 1fr;
-      }
+      .result-btn-container {grid-template-columns: 1fr;}
+      .result-selection-box, .result-form-container, .result-card, .toppers-section {padding: 1.5rem; margin: 0 1rem 1.5rem;}
+      .summary-grid {grid-template-columns: repeat(2, 1fr);}
+      .toppers-grid {grid-template-columns: 1fr;}
     }
-
     @media (max-width: 576px) {
-      .page-title {
-        font-size: 1.8rem;
-      }
-      
-      .section-title {
-        font-size: 1.5rem;
-      }
-      
-      .summary-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .info-row {
-        grid-template-columns: 1fr;
-      }
+      .page-title {font-size: 1.8rem;}
+      .section-title {font-size: 1.5rem;}
+      .summary-grid {grid-template-columns: 1fr;}
+      .info-row {grid-template-columns: 1fr;}
     }
   </style>
 </head>
 <body>
-
-<!-- Floating Islamic Ornaments -->
 <div class="islamic-ornament ornament-1">✸</div>
 <div class="islamic-ornament ornament-2">✸</div>
 <div class="islamic-ornament ornament-3">✸</div>
-
-<!-- STANDARD NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-optimized fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand d-flex align-items-center navbar-brand-compact" href="index.html">
@@ -1091,12 +281,10 @@
         <small class="text-light brand-subtext">Karuvarakundu</small>
       </div>
     </a>
- 
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
             aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
- 
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav ms-auto nav-container">
         <li class="nav-item nav-item-optimized">
@@ -1105,13 +293,9 @@
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized" href="founder.html">Founder</a>
         </li>
-     
-        <!-- Board Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
           <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" 
-             aria-haspopup="true" aria-expanded="false">
-            Board
-          </a>
+             aria-haspopup="true" aria-expanded="false">Board</a>
           <ul class="dropdown-menu dropdown-menu-optimized">
             <li><a class="dropdown-item dropdown-item-optimized" href="management.html">Management</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="faculties.html">Faculty</a></li>
@@ -1120,21 +304,15 @@
             <li><a class="dropdown-item dropdown-item-optimized" href="students-union.html">Students Union</a></li>
           </ul>
         </li>
-     
-        <!-- Student Zone Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
           <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-            Student Zone
-          </a>
+             aria-haspopup="true" aria-expanded="false">Student Zone</a>
           <ul class="dropdown-menu dropdown-menu-optimized">
             <li><a class="dropdown-item dropdown-item-optimized" href="idcard.html">ID Card</a></li>
             <li><a class="dropdown-item dropdown-item-optimized active" href="result.html">Exam Results</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="fest.html">Fest Score</a></li>
           </ul>
         </li>
-     
-        <!-- Other Items -->
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized" href="https://jamianooriya.in/">Jamia</a>
         </li>
@@ -1157,8 +335,6 @@
     </div>
   </div>
 </nav>
-
-<!-- PAGE HEADER -->
 <div class="page-header">
   <div class="container">
     <div class="page-header-content">
@@ -1167,72 +343,56 @@
     </div>
   </div>
 </div>
-
-<!-- MAIN CONTENT -->
 <section class="content-section">
   <div class="container">
-    <!-- Result Selection Box -->
     <div class="result-selection-box" id="resultSelectionBox" data-aos="fade-up">
-      
       <div class="result-btn-container">
         <a href="javascript:void(0);" class="result-btn" id="ExamBtn" onclick="showForm()">
           <i class="fa-solid fa-book-open-reader"></i>
           <span>College Examination</span>
           <small>First Semester Results 2025-26</small>
         </a>
-        
         <a href="https://jamiajuniorcolleges.com/student/" class="result-btn" id="jamiaBtn" target="_blank">
           <i class="fa-solid fa-graduation-cap"></i>
           <span>Jamia Junior Colleges</span>
           <small>Public Examination Results</small>
         </a>
-        
         <a href="toppers.html" class="result-btn" id="posterBtn">
           <i class="fa-solid fa-trophy"></i>
           <span>Toppers Poster</span>
           <small>View academic achievers</small>
         </a>
       </div>
-
       <div class="text-center mt-4">
         <a href="index.html" class="btn-outline-gold">
           <i class="fas fa-arrow-left me-2"></i>Back to Home
         </a>
       </div>
     </div>
-
-    <!-- Form Container -->
     <div class="result-form-container" id="formContainer">
       <div class="section-header">
         <h2 class="section-title">Examination Result</h2>
         <p class="section-subtitle">Enter your details to view your result</p>
       </div>
-
       <form id="resultForm">
         <div class="mb-3">
           <label class="form-label">Registration Number</label>
-          <input type="text" class="form-control" id="roll" name="roll" 
-                 placeholder="Enter your registration number" required>
+          <input type="text" class="form-control" id="roll" name="roll" placeholder="Enter your registration number" required>
         </div>
-        
         <div class="mb-3">
           <label class="form-label">Date of Birth</label>
           <input type="date" class="form-control" id="dob" name="dob" required>
         </div>
-        
         <button type="submit" class="btn-gold w-100 py-3">
           <i class="fas fa-search me-2"></i>Get Result
         </button>
       </form>
-      
       <div class="text-center mt-4">
         <button class="btn-outline-gold" onclick="showResultSelection()">
           <i class="fas fa-arrow-left me-2"></i>Back to Exam Selection
         </button>
       </div>
     </div>
-
-    <!-- Loading -->
     <div class="loading-container" id="loadingContainer">
       <div class="spinner"></div>
       <h3 style="color: var(--islamic-green); margin-bottom: 10px;">
@@ -1240,8 +400,6 @@
       </h3>
       <p style="color: #666;">Please wait while we fetch your result details...</p>
     </div>
-
-    <!-- Error Message -->
     <div class="error-container" id="errorContainer">
       <div class="error-icon"><i class="fas fa-exclamation-triangle"></i></div>
       <h3 style="color: #dc3545; margin-bottom: 15px;" id="errorTitle">Error Loading Result</h3>
@@ -1252,19 +410,12 @@
         </button>
       </div>
     </div>
-
-    <!-- Result Card -->
-    <div class="result-card" id="resultContainer">
-      <!-- Result will be displayed here -->
-    </div>
-
-    <!-- Class Toppers Section -->
+    <div class="result-card" id="resultContainer"></div>
     <div class="toppers-section" id="toppersContainer" data-aos="fade-up">
       <div class="section-header">
         <h2 class="section-title">Class Toppers 2025-26</h2>
         <p class="section-subtitle">First Semester Examination • Celebrating Academic Excellence</p>
       </div>
-      
       <div class="toppers-grid">
         <div class="topper-card">
           <div class="topper-medal"><i class="fas fa-crown"></i></div>
@@ -1310,8 +461,6 @@
         </div>
       </div>
     </div>
-    
-    <!-- Back to Home Button -->
     <div class="text-center mt-5" data-aos="fade-up">
       <a href="index.html" class="btn-outline-gold btn-lg px-5">
         <i class="fas fa-home me-2"></i>Back to Home
@@ -1319,8 +468,6 @@
     </div>
   </div>
 </section>
-
-<!-- STANDARD FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="row">
@@ -1346,7 +493,6 @@
           </a>
         </div>
       </div>
-   
       <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
         <div class="footer-links">
           <h5>Quick Links</h5>
@@ -1357,7 +503,6 @@
           <a href="contact.html">Contact</a>
         </div>
       </div>
-   
       <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
         <div class="footer-links">
           <h5>Student Zone</h5>
@@ -1368,7 +513,6 @@
           <a href="downloads.html">Downloads</a>
         </div>
       </div>
-   
       <div class="col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
         <div class="footer-links">
           <h5>Contact Info</h5>
@@ -1380,7 +524,6 @@
         </div>
       </div>
     </div>
- 
     <div class="text-center pt-4 mt-4 border-top border-light border-opacity-25">
       <p class="text-light mb-2">
         © <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.
@@ -1391,23 +534,15 @@
     </div>
   </div>
 </footer>
-
-<!-- WHATSAPP BUTTON -->
 <a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!"
    class="whatsapp-float" target="_blank"
    title="Chat with us on WhatsApp" aria-label="WhatsApp Chat">
   <i class="fab fa-whatsapp"></i>
 </a>
-
-<!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
 <script>
-  // Replace with your Google Apps Script Web App URL
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyPqm7iD6N7rAUkkycJpFfyUFYrkcNcF9X1XE6-dtD0jvOMF7xRl9GbSoQV9Bw4YDyp/exec';
-
-  // DOM Elements
   const resultSelectionBox = document.getElementById('resultSelectionBox');
   const formContainer = document.getElementById('formContainer');
   const loadingContainer = document.getElementById('loadingContainer');
@@ -1417,26 +552,13 @@
   const errorTitle = document.getElementById('errorTitle');
   const errorText = document.getElementById('errorText');
   const toppersContainer = document.getElementById('toppersContainer');
-
-  // Initialize AOS
-  AOS.init({
-    duration: 800,
-    once: true,
-    offset: 50,
-    disable: window.innerWidth < 768
-  });
-
-  // Update current year
+  AOS.init({duration: 800, once: true, offset: 50, disable: window.innerWidth < 768});
   document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-  // Navbar scroll effect
   window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar-optimized');
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     navbar.classList.toggle('scrolled', scrollTop > 50);
   });
-
-  // Show result selection box
   function showResultSelection() {
     resultSelectionBox.style.display = 'block';
     formContainer.style.display = 'none';
@@ -1446,8 +568,6 @@
     toppersContainer.style.display = 'block';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-
-  // Show form for exam
   function showForm() {
     resultSelectionBox.style.display = 'none';
     formContainer.style.display = 'block';
@@ -1455,41 +575,26 @@
     errorContainer.style.display = 'none';
     loadingContainer.style.display = 'none';
     toppersContainer.style.display = 'none';
-    
     const today = new Date();
     const tenYearsAgo = new Date(today.getFullYear() - 10, today.getMonth(), today.getDate());
     document.getElementById('dob').valueAsDate = tenYearsAgo;
     document.getElementById('roll').focus();
     formContainer.scrollIntoView({ behavior: 'smooth' });
   }
-
-  // Form submission handler
   resultForm.addEventListener('submit', async function(e) {
     e.preventDefault();
-    
     const formData = new FormData(resultForm);
     const roll = formData.get('roll').trim();
     const dob = formData.get('dob');
-    
-    // YOUR ORIGINAL VALIDATION LOGIC - REMOVED THE PROBLEMATIC VALIDATION
     if (!roll || !dob) {
       showError('Missing Information', 'Please fill in all fields.');
       return;
     }
-    
-    // REMOVED THE PROBLEMATIC VALIDATION
-    // if (roll.length < 3) {
-    //   showError('Invalid Roll Number', 'Please enter a valid registration number.');
-    //   return;
-    // }
-    
     showLoading();
-    
     try {
       const url = `${SCRIPT_URL}?roll=${encodeURIComponent(roll)}&dob=${encodeURIComponent(dob)}`;
       const response = await fetch(url);
       const data = await response.json();
-      
       if (data.result === 'success') {
         displayResult(data);
       } else {
@@ -1500,51 +605,36 @@
       console.error('Fetch error:', error);
     }
   });
-
-  // Show loading state
   function showLoading() {
     formContainer.style.display = 'none';
     resultContainer.style.display = 'none';
     loadingContainer.style.display = 'block';
   }
-
-  // Show error
   function showError(title, message) {
     errorTitle.textContent = title;
     errorText.textContent = message;
-    
     formContainer.style.display = 'none';
     resultContainer.style.display = 'none';
     loadingContainer.style.display = 'none';
     errorContainer.style.display = 'block';
     toppersContainer.style.display = 'none';
   }
-
-  // Print result function
   function printResult() {
-    // Add print date to result card
     resultContainer.setAttribute('data-print-date', new Date().toLocaleDateString('en-IN', {
       day: '2-digit',
       month: 'long',
       year: 'numeric'
     }));
-    
-    // Trigger print
     window.print();
   }
-
-  // Display result
   function displayResult(data) {
     const student = data.student;
     const subjects = data.subjects || [];
     const overallStatus = data.overallStatus;
-    
-    // Generate subject rows
     let subjectRows = '';
     subjects.forEach((subject, index) => {
       const gradeClass = subject.status === 'Pass' ? 'grade-pass' : 'grade-fail';
       const statusClass = subject.status === 'Pass' ? 'status-pass' : 'status-fail';
-      
       subjectRows += `
         <tr>
           <td>${index + 1}</td>
@@ -1556,15 +646,12 @@
         </tr>
       `;
     });
-    
-    // Generate result HTML
     const resultHTML = `
       <div class="result-header">
         <h2>DARUNNAJATH SHAREEATH & ARTS COLLEGE</h2>
         <p>First Semester Examination 2025-26</p>
         <p>Statement of Marks</p>
       </div>
-      
       <div class="student-info">
         <div class="info-row">
           <div>
@@ -1587,7 +674,6 @@
           </div>
         </div>
       </div>
-      
       <div class="subjects-section">
         <h4 class="text-center mb-3">Subject-wise Marks</h4>
         <table class="subjects-table">
@@ -1601,12 +687,9 @@
               <th>Result</th>
             </tr>
           </thead>
-          <tbody>
-            ${subjectRows}
-          </tbody>
+          <tbody>${subjectRows}</tbody>
         </table>
       </div>
-
       <div class="performance-summary">
         <h4 class="text-center mb-3">Performance Summary</h4>
         <div class="summary-grid">
@@ -1634,18 +717,14 @@
           </div>
         </div>
       </div>
-      
       <div class="final-result">
-        <div class="result-badge">
-          RESULT: ${overallStatus}
-        </div>
+        <div class="result-badge">RESULT: ${overallStatus}</div>
         <p class="mb-3">
           ${overallStatus === 'PASSED' 
             ? `The candidate has PASSED in all subjects.` 
             : `The candidate has FAILED in: ${data.failedSubjects ? data.failedSubjects.join(', ') : 'some subjects'}.`
           }
         </p>
-        
         <div class="d-flex gap-3 justify-content-center flex-wrap">
           <button class="btn-outline-gold" onclick="showForm()" aria-label="Check another result">
             <i class="fas fa-arrow-left me-2"></i>Check Another Result
@@ -1655,20 +734,16 @@
           </button>
         </div>
       </div>
-      
       <div class="mt-4 text-center text-muted">
         <small>Date of Issue: ${data.generatedOn || new Date().toLocaleDateString()}</small>
       </div>
     `;
-    
-    // Display result
     resultContainer.innerHTML = resultHTML;
     resultContainer.setAttribute('data-print-date', new Date().toLocaleDateString('en-IN', {
       day: '2-digit',
       month: 'long',
       year: 'numeric'
     }));
-    
     formContainer.style.display = 'none';
     loadingContainer.style.display = 'none';
     errorContainer.style.display = 'none';
@@ -1676,17 +751,11 @@
     toppersContainer.style.display = 'none';
     resultContainer.scrollIntoView({ behavior: 'smooth' });
   }
-
-  // Initialize page
   window.addEventListener('DOMContentLoaded', function() {
     showResultSelection();
-    
-    // Fade in effect
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity 0.3s ease';
-    setTimeout(() => {
-      document.body.style.opacity = '1';
-    }, 50);
+    setTimeout(() => {document.body.style.opacity = '1';}, 50);
   });
 </script>
 </body>
