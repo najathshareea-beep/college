@@ -1,799 +1,213 @@
+```html
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DSAC | YouTube Channel</title>
-
-  <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
-  <!-- STANDARD CSS -->
   <style>
-    /* ===== CSS VARIABLES ===== */
     :root {
-      --islamic-green: #0a5c36;
-      --islamic-gold: #c19a3f;
-      --islamic-cream: #f8f3e6;
-      --islamic-light: #e9f5e9;
-      --dark-green: #064e3b;
-      --light-gold: #ffd24d;
-      --transition: all 0.3s ease;
+      --islamic-green: #0a5c36; --islamic-gold: #c19a3f; --islamic-cream: #f8f3e6; --islamic-light: #e9f5e9; --dark-green: #064e3b; --light-gold: #ffd24d; --transition: all 0.3s ease;
     }
-
-    /* ===== BASE STYLES ===== */
     body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--islamic-cream);
-      color: #333;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-      padding-top: 80px;
+      font-family: 'Poppins', sans-serif; background-color: var(--islamic-cream); color: #333; scroll-behavior: smooth; overflow-x: hidden; padding-top: 80px;
     }
-    
-    a {
-      text-decoration: none;
-    }
-
-    .arabic-font {
-      font-family: 'Scheherazade New', serif;
-    }
-
-    .malayalam-font {
-      font-family: 'Anek Malayalam', sans-serif;
-    }
-
-    /* ===== PATTERN BACKGROUND ===== */
-    .pattern-bg {
-      background-image: 
-        radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px),
-        radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px);
-      background-size: 50px 50px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-
-    /* ===== STANDARD NAVBAR ===== */
+    a {text-decoration: none;}
+    .arabic-font {font-family: 'Scheherazade New', serif;}
+    .malayalam-font {font-family: 'Anek Malayalam', sans-serif;}
     .navbar-optimized {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      border-bottom: 3px solid var(--islamic-gold);
-      transition: var(--transition);
-      padding: 0.5rem 0;
-      height: 80px;
-      z-index: 1030 !important;
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-bottom: 3px solid var(--islamic-gold); transition: var(--transition); padding: 0.5rem 0; height: 80px; z-index: 1030 !important;
     }
-    
-    .navbar-toggler {
-      border-color: rgba(255, 255, 255, 0.5);
-    }
-    
-    .navbar-toggler:focus {
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-    }
-
+    .navbar-toggler {border-color: rgba(255, 255, 255, 0.5);}
+    .navbar-toggler:focus {box-shadow: 0 0 0 2px var(--islamic-gold);}
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
-
     .navbar-optimized.scrolled {
-      background: rgba(10, 92, 54, 0.98);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-      height: 70px;
+      background: rgba(10, 92, 54, 0.98); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); height: 70px;
     }
-
-    /* LOGO */
     .navbar-brand-compact img {
-      border-radius: 8px;
-      transition: transform 0.3s ease;
-      width: 60px;
-      height: 60px;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-      border: none;
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-      padding: 0;
+      border-radius: 8px; transition: transform 0.3s ease; width: 60px; height: 60px; object-fit: contain; filter: brightness(0) invert(1); border: none; box-shadow: 0 0 0 2px var(--islamic-gold); padding: 0;
     }
-
-    .navbar-optimized.scrolled .navbar-brand-compact img {
-      width: 50px;
-      height: 50px;
-      filter: brightness(0) invert(1);
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-    }
-
-    .navbar-brand-compact:hover img {
-      transform: scale(1.05);
-    }
-
-    .brand-text {
-      font-size: 1.2rem;
-      line-height: 1.2;
-    }
-
-    .brand-subtext {
-      font-size: 0.8rem;
-      opacity: 0.9;
-    }
-
+    .navbar-optimized.scrolled .navbar-brand-compact img {width: 50px; height: 50px;}
+    .navbar-brand-compact:hover img {transform: scale(1.05);}
+    .brand-text {font-size: 1.2rem; line-height: 1.2;}
+    .brand-subtext {font-size: 0.8rem; opacity: 0.9;}
     .nav-link-optimized {
-      color: #fff !important;
-      font-weight: 500;
-      transition: var(--transition);
-      padding-left: 0.4rem;
-      padding-right: 0.4rem;
-      border-radius: 5px;
-      margin: 0 2px;
-      white-space: nowrap;
+      color: #fff !important; font-weight: 500; transition: var(--transition); padding-left: 0.4rem; padding-right: 0.4rem; border-radius: 5px; margin: 0 2px; white-space: nowrap;
     }
-    
-    .nav-item-optimized {
-      margin: 0 2px;
-    }
-
-    .nav-link-optimized:hover {
-      color: var(--islamic-gold) !important;
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* Navbar dropdown */
+    .nav-item-optimized {margin: 0 2px;}
+    .nav-link-optimized:hover {color: var(--islamic-gold) !important; background: rgba(255, 255, 255, 0.1);}
     .dropdown-menu-optimized {
-      background: var(--islamic-green);
-      border: 1px solid var(--islamic-gold);
-      border-radius: 8px;
-      padding: 0.5rem 0;
+      background: var(--islamic-green); border: 1px solid var(--islamic-gold); border-radius: 8px; padding: 0.5rem 0;
     }
-
     .dropdown-item-optimized {
-      color: white;
-      padding: 0.5rem 1rem;
-      transition: var(--transition);
+      color: white; padding: 0.5rem 1rem; transition: var(--transition);
     }
-
-    .dropdown-item-optimized:hover {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    /* ===== STANDARD PAGE HEADER ===== */
+    .dropdown-item-optimized:hover {background: var(--islamic-gold); color: var(--islamic-green);}
     .page-header {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      color: white;
-      height: 30vh;
-      min-height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      margin-bottom: 3rem;
-      border-bottom: 5px solid var(--islamic-gold);
-      position: relative;
-      overflow: hidden;
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); color: white; height: 30vh; min-height: 220px; display: flex; align-items: center; justify-content: center; text-align: center; margin-bottom: 3rem; border-bottom: 5px solid var(--islamic-gold); position: relative; overflow: hidden;
     }
-
     .page-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
     }
-    
-    .page-header-content {
-      position: relative;
-      z-index: 2;
-    }
-    
+    .page-header-content {position: relative; z-index: 2;}
     .page-title {
-      font-family: 'Scheherazade New', serif;
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--islamic-gold);
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-family: 'Scheherazade New', serif; font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--islamic-gold); text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
-    
     .page-subtitle {
-      font-size: 1.4rem;
-      opacity: 0.95;
-      max-width: 800px;
-      margin: 0 auto;
-      color: var(--islamic-cream);
+      font-size: 1.4rem; opacity: 0.95; max-width: 800px; margin: 0 auto; color: var(--islamic-cream);
     }
-
-    /* ===== STANDARD CONTENT SECTION ===== */
-    .content-section {
-      padding: 4rem 0;
-      background: var(--islamic-cream);
-    }
-    
+    .content-section {padding: 4rem 0; background: var(--islamic-cream);}
     .section-header {
-      text-align: center;
-      margin-bottom: 3rem;
-      position: relative;
-      padding: 2rem 0;
+      text-align: center; margin-bottom: 3rem; position: relative; padding: 2rem 0;
     }
-
     .section-title {
-      color: var(--islamic-green);
-      font-weight: 700;
-      display: inline-block;
-      padding: 0 1rem;
-      background: var(--islamic-cream);
-      position: relative;
-      z-index: 2;
-      margin-bottom: 0.5rem;
-      font-size: 2.5rem;
+      color: var(--islamic-green); font-weight: 700; display: inline-block; padding: 0 1rem; background: var(--islamic-cream); position: relative; z-index: 2; margin-bottom: 0.5rem; font-size: 2.5rem;
     }
-
     .section-header::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent);
-      z-index: 1;
+      content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent); z-index: 1;
     }
-    
-    .section-subtitle {
-      color: #666;
-      font-size: 1.1rem;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    /* ===== STANDARD BUTTONS ===== */
+    .section-subtitle {color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;}
     .btn-gold {
-      background: linear-gradient(135deg, var(--islamic-gold), #d4af37);
-      border: none;
-      color: var(--islamic-green);
-      font-weight: 600;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3);
-      transition: var(--transition);
-      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--islamic-gold), #d4af37); border: none; color: var(--islamic-green); font-weight: 600; border-radius: 8px; box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3); transition: var(--transition); padding: 0.75rem 1.5rem;
     }
-
     .btn-gold:hover {
-      background: linear-gradient(135deg, #d4af37, var(--islamic-gold));
-      box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4);
-      transform: translateY(-2px);
-      color: var(--islamic-green);
+      background: linear-gradient(135deg, #d4af37, var(--islamic-gold)); box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4); transform: translateY(-2px); color: var(--islamic-green);
     }
-
     .btn-outline-gold {
-      border: 2px solid var(--islamic-gold);
-      color: var(--islamic-gold);
-      background: transparent;
-      border-radius: 8px;
-      padding: 0.75rem 1.5rem;
-      font-weight: 600;
-      transition: var(--transition);
+      border: 2px solid var(--islamic-gold); color: var(--islamic-gold); background: transparent; border-radius: 8px; padding: 0.75rem 1.5rem; font-weight: 600; transition: var(--transition);
     }
-
-    .btn-outline-gold:hover {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    /* ===== YOUTUBE VIDEO STYLES ===== */
+    .btn-outline-gold:hover {background: var(--islamic-gold); color: var(--islamic-green);}
     .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 2rem;
-      padding: 1rem 0;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; padding: 1rem 0;
     }
-
     .video-card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      transition: var(--transition);
-      border: 3px solid transparent;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      height: 100%;
+      background: white; border-radius: 15px; overflow: hidden; transition: var(--transition); border: 3px solid transparent; box-shadow: 0 5px 15px rgba(0,0,0,0.08); height: 100%;
     }
-
-    .video-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--islamic-gold);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    }
-
+    .video-card:hover {transform: translateY(-8px); border-color: var(--islamic-gold); box-shadow: 0 15px 30px rgba(0,0,0,0.15);}
     .video-container {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      background: #000;
+      position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;
     }
-
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
+    .video-container iframe {position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;}
     .video-title {
-      color: var(--islamic-green);
-      font-weight: 600;
-      padding: 1.2rem;
-      margin: 0;
-      font-size: 1.1rem;
-      text-align: center;
-      min-height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      color: var(--islamic-green); font-weight: 600; padding: 1.2rem; margin: 0; font-size: 1.1rem; text-align: center; min-height: 80px; display: flex; align-items: center; justify-content: center;
     }
-
     .video-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.8rem 1.2rem;
-      background: rgba(248, 243, 230, 0.5);
-      border-top: 1px solid rgba(10, 92, 54, 0.1);
+      display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 1.2rem; background: rgba(248, 243, 230, 0.5); border-top: 1px solid rgba(10, 92, 54, 0.1);
     }
-
     .video-category {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      color: white;
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 500;
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500;
     }
-
-    .video-date {
-      color: #666;
-      font-size: 0.85rem;
-    }
-
-    /* YouTube Channel Info */
+    .video-date {color: #666; font-size: 0.85rem;}
     .channel-info {
-      background: white;
-      border-radius: 15px;
-      padding: 2rem;
-      margin-bottom: 3rem;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      border: 2px solid var(--islamic-gold);
-      text-align: center;
+      background: white; border-radius: 15px; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border: 2px solid var(--islamic-gold); text-align: center;
     }
-
     .channel-icon {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #FF0000, #FF3333);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      margin: 0;
-      box-shadow: 0 5px 15px rgba(255, 0, 0, 0.2);
+      width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #FF0000, #FF3333); color: white; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0; box-shadow: 0 5px 15px rgba(255, 0, 0, 0.2);
     }
-    .channel-icon.youtube {
-      background: linear-gradient(135deg, #FF0000, #FF3333);
-    }
-
-    .channel-icon.instagram {
-      background: linear-gradient(135deg, #833AB4, #E1306C, #F77737, #FCAF45, #FFDC80);
-    }
-
-    .channel-stats {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 1.5rem;
-    }
-
-    .stat-item {
-      text-align: center;
-    }
-
-    .stat-number {
-      color: var(--islamic-green);
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-    }
-
-    .stat-label {
-      color: #666;
-      font-size: 0.9rem;
-    }
-
-    /* Video Categories */
-    .category-filter {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      margin-bottom: 2.5rem;
-    }
-
+    .channel-icon.youtube {background: linear-gradient(135deg, #FF0000, #FF3333);}
+    .channel-icon.instagram {background: linear-gradient(135deg, #833AB4, #E1306C, #F77737, #FCAF45, #FFDC80);}
+    .channel-stats {display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem;}
+    .stat-item {text-align: center;}
+    .stat-number {color: var(--islamic-green); font-size: 1.8rem; font-weight: 700; margin-bottom: 0.3rem;}
+    .stat-label {color: #666; font-size: 0.9rem;}
+    .category-filter {display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 2.5rem;}
     .category-btn {
-      background: white;
-      border: 2px solid var(--islamic-gold);
-      color: var(--islamic-gold);
-      padding: 0.5rem 1.5rem;
-      border-radius: 25px;
-      font-weight: 500;
-      transition: var(--transition);
-      cursor: pointer;
+      background: white; border: 2px solid var(--islamic-gold); color: var(--islamic-gold); padding: 0.5rem 1.5rem; border-radius: 25px; font-weight: 500; transition: var(--transition); cursor: pointer;
     }
-
-    .category-btn:hover,
-    .category-btn.active {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    /* ===== STANDARD FOOTER ===== */
+    .category-btn:hover, .category-btn.active {background: var(--islamic-gold); color: var(--islamic-green);}
     .footer {
-      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
-      border-top: 3px solid var(--islamic-gold);
-      padding: 3rem 0 1.5rem;
-      color: white;
+      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green)); border-top: 3px solid var(--islamic-gold); padding: 3rem 0 1.5rem; color: white;
     }
-
-    .footer-brand {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--islamic-gold);
-      margin-bottom: 1rem;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 12px;
-      margin-top: 1rem;
-    }
-
+    .footer-brand {font-size: 1.8rem; font-weight: 700; color: var(--islamic-gold); margin-bottom: 1rem;}
+    .social-links {display: flex; gap: 12px; margin-top: 1rem;}
     .social-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-decoration: none;
-      transition: var(--transition);
-      background: rgba(255, 255, 255, 0.1);
-      font-size: 1.1rem;
+      width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: var(--transition); background: rgba(255, 255, 255, 0.1); font-size: 1.1rem;
     }
-
-    .social-icon:hover {
-      transform: translateY(-5px);
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    .footer-links h5 {
-      color: var(--islamic-gold);
-      margin-bottom: 1.2rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-
+    .social-icon:hover {transform: translateY(-5px); background: var(--islamic-gold); color: var(--islamic-green);}
+    .footer-links h5 {color: var(--islamic-gold); margin-bottom: 1.2rem; font-size: 1.1rem; font-weight: 600;}
     .footer-links a {
-      display: block;
-      color: rgba(255, 255, 255, 0.85);
-      text-decoration: none;
-      margin-bottom: 0.6rem;
-      transition: var(--transition);
-      font-size: 0.95rem;
+      display: block; color: rgba(255, 255, 255, 0.85); text-decoration: none; margin-bottom: 0.6rem; transition: var(--transition); font-size: 0.95rem;
     }
-
-    .footer-links a:hover {
-      color: var(--islamic-gold);
-      padding-left: 5px;
-    }
-
-    /* ===== WHATSAPP BUTTON ===== */
+    .footer-links a:hover {color: var(--islamic-gold); padding-left: 5px;}
     .whatsapp-float {
-      position: fixed;
-      bottom: 25px;
-      right: 15px;
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #25D366, #128C7E);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
-      z-index: 1000;
-      animation: float 3s ease-in-out infinite;
-      transition: var(--transition);
-      text-decoration: none;
+      position: fixed; bottom: 25px; right: 15px; width: 60px; height: 60px; background: linear-gradient(135deg, #25D366, #128C7E); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); z-index: 1000; animation: float 3s ease-in-out infinite; transition: var(--transition); text-decoration: none;
     }
-
-    .whatsapp-float:hover {
-      transform: scale(1.1) rotate(10deg);
-      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
-    }
-
+    .whatsapp-float:hover {transform: scale(1.1) rotate(10deg); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);}
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
     }
-
-    /* ===== ISLAMIC ORNAMENTS ===== */
     .islamic-ornament {
-      position: fixed;
-      color: var(--islamic-gold);
-      opacity: 0.08;
-      font-size: 1.8rem;
-      z-index: -1;
-      pointer-events: none;
+      position: fixed; color: var(--islamic-gold); opacity: 0.08; font-size: 1.8rem; z-index: -1; pointer-events: none;
     }
-
-    .ornament-1 {
-      top: 20%;
-      left: 5%;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .ornament-2 {
-      top: 60%;
-      right: 5%;
-      animation: float 8s ease-in-out infinite reverse;
-    }
-
-    .ornament-3 {
-      bottom: 20%;
-      left: 10%;
-      animation: float 7s ease-in-out infinite;
-    }
-
-    /* ===== MOBILE RESPONSIVE ===== */
+    .ornament-1 {top: 20%; left: 5%; animation: float 6s ease-in-out infinite;}
+    .ornament-2 {top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse;}
+    .ornament-3 {bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite;}
     @media (max-width: 768px) {
-      body {
-        padding-top: 70px !important;
-      }
-      
-      .navbar-optimized {
-        height: 70px;
-        padding: 0.3rem 0;
-      }
-      
-      .page-header {
-        height: 26vh;
-        min-height: 180px;
-      }
-
-      .page-title {
-        font-size: 2.2rem;
-      }
-      
-      .page-subtitle {
-        font-size: 1.1rem;
-      }
-      
-      .content-section {
-        padding: 2.5rem 0;
-      }
-      
-      .section-title {
-        font-size: 1.8rem;
-      }
-      
+      body {padding-top: 70px !important;}
+      .navbar-optimized {height: 70px; padding: 0.3rem 0;}
+      .page-header {height: 26vh; min-height: 180px;}
+      .page-title {font-size: 2.2rem;}
+      .page-subtitle {font-size: 1.1rem;}
+      .content-section {padding: 2.5rem 0;}
+      .section-title {font-size: 1.8rem;}
       .navbar-collapse {
-        background: var(--dark-green);
-        padding: 1rem;
-        border-radius: 0 0 10px 10px;
-        border: 1px solid var(--islamic-gold);
-        margin-top: 0px;
-        max-height: 70vh;
-        overflow-y: auto;
+        background: var(--dark-green); padding: 1rem; border-radius: 0 0 10px 10px; border: 1px solid var(--islamic-gold); margin-top: 0px; max-height: 70vh; overflow-y: auto;
       }
-      
-      .video-grid {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 1.5rem;
-      }
-      
-      .channel-stats {
-        gap: 1rem;
-      }
-      
-      .stat-number {
-        font-size: 1.5rem;
-      }
-      
-      /* NEW: Make channel icons smaller on mobile */
-      .channel-icon {
-        width: 60px !important;
-        height: 60px !important;
-        font-size: 1.8rem !important;
-        margin: 0 auto 1.2rem !important;
-      }
-      
-      /* NEW: Adjust icon spacing for mobile */
-      .channel-info .d-flex {
-        gap: 8px !important;
-      }
-      
-      /* NEW: Make buttons stack on mobile */
+      .video-grid {grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;}
+      .channel-stats {gap: 1rem;}
+      .stat-number {font-size: 1.5rem;}
+      .channel-icon {width: 60px !important; height: 60px !important; font-size: 1.8rem !important; margin: 0 auto 1.2rem !important;}
+      .channel-info .d-flex {gap: 8px !important;}
       .channel-info .mt-4.mb-5 {
-        display: flex;
-        flex-direction: column;
-        gap: 0.8rem;
-        align-items: center;
+        display: flex; flex-direction: column; gap: 0.8rem; align-items: center;
       }
-      
-      .channel-info .btn-gold,
-      .channel-info .btn-outline-gold {
-        width: 100%;
-        max-width: 300px;
-        margin: 0.2rem 0 !important;
-      }
-      
-      /* NEW: Reduce channel info padding */
-      .channel-info {
-        padding: 1.5rem;
-        margin: 0 1rem 2rem;
-      }
-      
-      /* NEW: Adjust video title for mobile */
-      .video-title {
-        min-height: 60px;
-        font-size: 1rem;
-        padding: 1rem;
-      }
+      .channel-info .btn-gold, .channel-info .btn-outline-gold {width: 100%; max-width: 300px; margin: 0.2rem 0 !important;}
+      .channel-info {padding: 1.5rem; margin: 0 1rem 2rem;}
+      .video-title {min-height: 60px; font-size: 1rem; padding: 1rem;}
     }
-
     @media (max-width: 576px) {
-      .page-title {
-        font-size: 1.8rem;
-      }
-      
-      .section-title {
-        font-size: 1.5rem;
-      }
-      
-      .video-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-      
-      .channel-stats {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      
-      .category-filter {
-        gap: 0.5rem;
-      }
-      
-      .category-btn {
-        padding: 0.4rem 1rem;
-        font-size: 0.9rem;
-      }
-      
-      /* NEW: Further adjustments for very small screens */
-      .channel-icon {
-        width: 50px !important;
-        height: 50px !important;
-        font-size: 1.5rem !important;
-      }
-      
-      /* NEW: Adjust heading for mobile */
-      .channel-info h2.section-title {
-        font-size: 1.5rem !important;
-        margin-bottom: 0.8rem !important;
-      }
-      
-      .channel-info p.section-subtitle {
-        font-size: 0.95rem !important;
-        margin-bottom: 1rem !important;
-      }
-      
-      /* NEW: Adjust video info for mobile */
-      .video-info {
-        padding: 0.6rem 1rem;
-        flex-direction: column;
-        gap: 0.5rem;
-        align-items: center;
-      }
-      
-      .video-category, .video-date {
-        font-size: 0.75rem;
-      }
-      
-      /* NEW: Reduce padding in content section */
-      .content-section {
-        padding: 2rem 0;
-      }
-      
-      /* NEW: Adjust buttons for very small screens */
-      .btn-outline-gold.btn-lg {
-        padding: 0.6rem 1.5rem;
-        font-size: 0.9rem;
-      }
-      
-      .btn-outline-gold.btn-lg.px-5 {
-        padding-left: 1.5rem !important;
-        padding-right: 1.5rem !important;
-      }
+      .page-title {font-size: 1.8rem;}
+      .section-title {font-size: 1.5rem;}
+      .video-grid {grid-template-columns: 1fr; gap: 1rem;}
+      .channel-stats {flex-direction: column; gap: 0.5rem;}
+      .category-filter {gap: 0.5rem;}
+      .category-btn {padding: 0.4rem 1rem; font-size: 0.9rem;}
+      .channel-icon {width: 50px !important; height: 50px !important; font-size: 1.5rem !important;}
+      .channel-info h2.section-title {font-size: 1.5rem !important; margin-bottom: 0.8rem !important;}
+      .channel-info p.section-subtitle {font-size: 0.95rem !important; margin-bottom: 1rem !important;}
+      .video-info {padding: 0.6rem 1rem; flex-direction: column; gap: 0.5rem; align-items: center;}
+      .video-category, .video-date {font-size: 0.75rem;}
+      .content-section {padding: 2rem 0;}
+      .btn-outline-gold.btn-lg {padding: 0.6rem 1.5rem; font-size: 0.9rem;}
+      .btn-outline-gold.btn-lg.px-5 {padding-left: 1.5rem !important; padding-right: 1.5rem !important;}
     }
-    
-    /* NEW: Add extra small device support */
     @media (max-width: 400px) {
-      .page-title {
-        font-size: 1.6rem;
-      }
-      
-      .page-subtitle {
-        font-size: 1rem;
-        padding: 0 1rem;
-      }
-      
-      .channel-info {
-        padding: 1rem;
-        margin: 0 0.5rem 1.5rem;
-      }
-      
-      .stat-number {
-        font-size: 1.3rem;
-      }
-      
-      .stat-label {
-        font-size: 0.8rem;
-      }
-      
-      .video-card {
-        border-radius: 10px;
-      }
-      
-      .category-filter {
-        gap: 0.3rem;
-      }
-      
-      .category-btn {
-        padding: 0.3rem 0.8rem;
-        font-size: 0.8rem;
-      }
+      .page-title {font-size: 1.6rem;}
+      .page-subtitle {font-size: 1rem; padding: 0 1rem;}
+      .channel-info {padding: 1rem; margin: 0 0.5rem 1.5rem;}
+      .stat-number {font-size: 1.3rem;}
+      .stat-label {font-size: 0.8rem;}
+      .video-card {border-radius: 10px;}
+      .category-filter {gap: 0.3rem;}
+      .category-btn {padding: 0.3rem 0.8rem; font-size: 0.8rem;}
     }
   </style>
 </head>
 <body>
-
-<!-- Floating Islamic Ornaments -->
 <div class="islamic-ornament ornament-1">✸</div>
 <div class="islamic-ornament ornament-2">✸</div>
 <div class="islamic-ornament ornament-3">✸</div>
-
-<!-- STANDARD NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-optimized fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand d-flex align-items-center navbar-brand-compact" href="index.html">
@@ -803,12 +217,10 @@
         <small class="text-light brand-subtext">Karuvarakundu</small>
       </div>
     </a>
- 
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
             aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
- 
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav ms-auto nav-container">
         <li class="nav-item nav-item-optimized">
@@ -817,13 +229,9 @@
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized" href="founder.html">Founder</a>
         </li>
-     
-        <!-- Board Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
           <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" 
-             aria-haspopup="true" aria-expanded="false">
-            Board
-          </a>
+             aria-haspopup="true" aria-expanded="false">Board</a>
           <ul class="dropdown-menu dropdown-menu-optimized">
             <li><a class="dropdown-item dropdown-item-optimized" href="management.html">Management</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="faculties.html">Faculty</a></li>
@@ -832,21 +240,15 @@
             <li><a class="dropdown-item dropdown-item-optimized" href="students-union.html">Students Union</a></li>
           </ul>
         </li>
-     
-        <!-- Student Zone Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
           <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-            Student Zone
-          </a>
+             aria-haspopup="true" aria-expanded="false">Student Zone</a>
           <ul class="dropdown-menu dropdown-menu-optimized">
             <li><a class="dropdown-item dropdown-item-optimized" href="idcard.html">ID Card</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="result.html">Exam Results</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="fest.html">Fest Score</a></li>
           </ul>
         </li>
-     
-        <!-- Other Items -->
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized" href="https://jamianooriya.in/">Jamia</a>
         </li>
@@ -872,8 +274,6 @@
     </div>
   </div>
 </nav>
-
-<!-- PAGE HEADER -->
 <div class="page-header">
   <div class="container">
     <div class="page-header-content">
@@ -882,8 +282,6 @@
     </div>
   </div>
 </div>
-
-<!-- CHANNEL INFORMATION -->
 <section class="content-section">
   <div class="container">
     <div class="channel-info" data-aos="fade-up">
@@ -895,18 +293,12 @@
           <i class="fab fa-instagram"></i>
         </a>
       </div>
-      
-      <!-- Heading -->
       <h2 class="section-title text-center" style="font-size: 2rem; margin-bottom: 1rem;">
         Darunnajath College Social Media
       </h2>
-      
-      <!-- Description -->
       <p class="section-subtitle" style="margin-bottom: 1.5rem;">
         Subscribe to our channels to stay updated with college events, academic programs, cultural activities, and more.
       </p>
-      
-      <!-- Stats Section -->
       <div class="channel-stats mb-4">
         <div class="stat-item">
           <div class="stat-number">12+</div>
@@ -921,8 +313,6 @@
           <div class="stat-label">Years of Content</div>
         </div>
       </div>
-      
-      <!-- Action Buttons -->
       <div class="mt-4 mb-5">
         <a href="https://www.youtube.com/@nissamedia" target="_blank" class="btn-gold me-2">
           <i class="fab fa-youtube me-2"></i>Visit Youtube
@@ -935,8 +325,6 @@
         </button>
       </div>
     </div>
-    
-    <!-- Video Categories Filter -->
     <div class="category-filter" data-aos="fade-up" data-aos-delay="100">
       <button class="category-btn active" onclick="filterVideos('all')">All Videos</button>
       <button class="category-btn" onclick="filterVideos('convocation')">Convocations</button>
@@ -944,17 +332,10 @@
       <button class="category-btn" onclick="filterVideos('fest')">Arts Fest</button>
       <button class="category-btn" onclick="filterVideos('tribute')">Tributes</button>
     </div>
-
-    <!-- VIDEO GRID -->
     <div class="video-grid" id="videoGrid">
-      <!-- VIDEO 1 - First Convocation -->
       <div class="video-card" data-category="convocation" data-aos="fade-up">
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/EMgzRUdoiWk" 
-                  title="First Convocation Ceremony" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen>
-          </iframe>
+          <iframe src="https://www.youtube.com/embed/EMgzRUdoiWk" title="First Convocation Ceremony" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <h3 class="video-title">First Convocation Ceremony</h3>
         <div class="video-info">
@@ -962,15 +343,9 @@
           <span class="video-date">2023</span>
         </div>
       </div>
-
-      <!-- VIDEO 2 - Golden Jubilee -->
       <div class="video-card" data-category="anniversary" data-aos="fade-up" data-aos-delay="100">
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/uGe4yT6RU70" 
-                  title="Golden Jubilee Inaugural Conference" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen>
-          </iframe>
+          <iframe src="https://www.youtube.com/embed/uGe4yT6RU70" title="Golden Jubilee Inaugural Conference" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <h3 class="video-title">Golden Jubilee Inaugural Conference</h3>
         <div class="video-info">
@@ -978,15 +353,9 @@
           <span class="video-date">50 Years</span>
         </div>
       </div>
-
-      <!-- VIDEO 3 - 49th Anniversary -->
       <div class="video-card" data-category="anniversary" data-aos="fade-up" data-aos-delay="200">
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/vNfz0ExArPg" 
-                  title="49th Anniversary Celebration" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen>
-          </iframe>
+          <iframe src="https://www.youtube.com/embed/vNfz0ExArPg" title="49th Anniversary Celebration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <h3 class="video-title">49th Anniversary Celebration</h3>
         <div class="video-info">
@@ -994,15 +363,9 @@
           <span class="video-date">2022</span>
         </div>
       </div>
-
-      <!-- VIDEO 4 - 48th Anniversary -->
       <div class="video-card" data-category="anniversary" data-aos="fade-up" data-aos-delay="300">
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/NFVBCxXrl4k" 
-                  title="48th Anniversary" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen>
-          </iframe>
+          <iframe src="https://www.youtube.com/embed/NFVBCxXrl4k" title="48th Anniversary" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <h3 class="video-title">48th Anniversary Celebration</h3>
         <div class="video-info">
@@ -1010,15 +373,9 @@
           <span class="video-date">2021</span>
         </div>
       </div>
-
-      <!-- VIDEO 5 - 47th Anniversary -->
       <div class="video-card" data-category="anniversary" data-aos="fade-up" data-aos-delay="400">
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/AkwAou7HtpI" 
-                  title="47th Anniversary" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen>
-          </iframe>
+          <iframe src="https://www.youtube.com/embed/AkwAou7HtpI" title="47th Anniversary" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <h3 class="video-title">47th Anniversary Celebration</h3>
         <div class="video-info">
@@ -1026,15 +383,9 @@
           <span class="video-date">2020</span>
         </div>
       </div>
-
-      <!-- VIDEO 6 - 46th Anniversary -->
       <div class="video-card" data-category="anniversary" data-aos="fade-up" data-aos-delay="500">
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/POYg_YRnsJs" 
-                  title="46th Anniversary" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen>
-          </iframe>
+          <iframe src="https://www.youtube.com/embed/POYg_YRnsJs" title="46th Anniversary" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <h3 class="video-title">46th Anniversary Celebration</h3>
         <div class="video-info">
@@ -1042,15 +393,9 @@
           <span class="video-date">2019</span>
         </div>
       </div>
-
-      <!-- VIDEO 7 - KT Ustahd Tribute -->
       <div class="video-card" data-category="tribute" data-aos="fade-up" data-aos-delay="100">
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/YXQNsb6ZwFQ" 
-                  title="KT Ustahd Anusmarana Ganam" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen>
-          </iframe>
+          <iframe src="https://www.youtube.com/embed/YXQNsb6ZwFQ" title="KT Ustahd Anusmarana Ganam" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <h3 class="video-title">KT Ustahd Tribute Song</h3>
         <div class="video-info">
@@ -1058,15 +403,9 @@
           <span class="video-date">Memorial</span>
         </div>
       </div>
-
-      <!-- VIDEO 8 - Arts Fest 2024 -->
       <div class="video-card" data-category="fest" data-aos="fade-up" data-aos-delay="200">
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/qwa_7-1toc0" 
-                  title="Arts Fest Theme Song 2024" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen>
-          </iframe>
+          <iframe src="https://www.youtube.com/embed/qwa_7-1toc0" title="Arts Fest Theme Song 2024" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <h3 class="video-title">Arts Festival Theme Song 2024</h3>
         <div class="video-info">
@@ -1074,15 +413,9 @@
           <span class="video-date">2024</span>
         </div>
       </div>
-
-      <!-- VIDEO 9 - Arts Fest 2023 -->
       <div class="video-card" data-category="fest" data-aos="fade-up" data-aos-delay="300">
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/QevnMUnRgL0" 
-                  title="Arts Fest Theme Song 2023" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen>
-          </iframe>
+          <iframe src="https://www.youtube.com/embed/QevnMUnRgL0" title="Arts Fest Theme Song 2023" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <h3 class="video-title">Arts Festival Theme Song 2023</h3>
         <div class="video-info">
@@ -1090,15 +423,9 @@
           <span class="video-date">2023</span>
         </div>
       </div>
-
-      <!-- VIDEO 10 - Arts Fest 2022 -->
       <div class="video-card" data-category="fest" data-aos="fade-up" data-aos-delay="400">
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/qm9RXJfq7qg" 
-                  title="Arts Fest Theme Song 2022" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen>
-          </iframe>
+          <iframe src="https://www.youtube.com/embed/qm9RXJfq7qg" title="Arts Fest Theme Song 2022" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <h3 class="video-title">Arts Festival Theme Song 2022</h3>
         <div class="video-info">
@@ -1106,15 +433,9 @@
           <span class="video-date">2022</span>
         </div>
       </div>
-
-      <!-- VIDEO 11 - Arts Fest 2021 -->
       <div class="video-card" data-category="fest" data-aos="fade-up" data-aos-delay="500">
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/2bAX6V7GCb0" 
-                  title="Arts Fest Theme Song 2021" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen>
-          </iframe>
+          <iframe src="https://www.youtube.com/embed/2bAX6V7GCb0" title="Arts Fest Theme Song 2021" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <h3 class="video-title">Arts Festival Theme Song 2021</h3>
         <div class="video-info">
@@ -1122,15 +443,9 @@
           <span class="video-date">2021</span>
         </div>
       </div>
-
-      <!-- VIDEO 12 - Arts Fest Burda -->
       <div class="video-card" data-category="fest" data-aos="fade-up" data-aos-delay="100">
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/lfVX2lvFGsU" 
-                  title="Arts Fest Burda" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen>
-          </iframe>
+          <iframe src="https://www.youtube.com/embed/lfVX2lvFGsU" title="Arts Fest Burda" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <h3 class="video-title">Arts Festival Burda Performance</h3>
         <div class="video-info">
@@ -1138,15 +453,9 @@
           <span class="video-date">Special</span>
         </div>
       </div>
-
-      <!-- VIDEO 13 - Arts Fest 2019 -->
       <div class="video-card" data-category="fest" data-aos="fade-up" data-aos-delay="200">
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/nYof6ARiLTM" 
-                  title="Arts Fest Theme Song 2019" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen>
-          </iframe>
+          <iframe src="https://www.youtube.com/embed/nYof6ARiLTM" title="Arts Fest Theme Song 2019" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <h3 class="video-title">Arts Festival Theme Song 2019</h3>
         <div class="video-info">
@@ -1155,15 +464,11 @@
         </div>
       </div>
     </div>
-
-    <!-- Load More Button -->
     <div class="text-center mt-5" data-aos="fade-up">
       <button class="btn-outline-gold btn-lg" onclick="loadMoreVideos()">
         <i class="fas fa-sync-alt me-2"></i>Load More Videos
       </button>
     </div>
-    
-    <!-- Back to Home Button -->
     <div class="text-center mt-5" data-aos="fade-up">
       <a href="index.html" class="btn-outline-gold btn-lg px-5">
         <i class="fas fa-home me-2"></i>Back to Home
@@ -1171,8 +476,6 @@
     </div>
   </div>
 </section>
-
-<!-- STANDARD FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="row">
@@ -1198,7 +501,6 @@
           </a>
         </div>
       </div>
-   
       <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
         <div class="footer-links">
           <h5>Quick Links</h5>
@@ -1209,7 +511,6 @@
           <a href="contact.html">Contact</a>
         </div>
       </div>
-   
       <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
         <div class="footer-links">
           <h5>Resources</h5>
@@ -1220,7 +521,6 @@
           <a href="maintenance.html">PTA</a>
         </div>
       </div>
-   
       <div class="col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
         <div class="footer-links">
           <h5>Contact Info</h5>
@@ -1232,7 +532,6 @@
         </div>
       </div>
     </div>
- 
     <div class="text-center pt-4 mt-4 border-top border-light border-opacity-25">
       <p class="text-light mb-2">
         © <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.
@@ -1243,43 +542,24 @@
     </div>
   </div>
 </footer>
-
-<!-- WHATSAPP BUTTON -->
 <a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!"
    class="whatsapp-float" target="_blank"
    title="Chat with us on WhatsApp" aria-label="WhatsApp Chat">
   <i class="fab fa-whatsapp"></i>
 </a>
-
-<!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
 <script>
-  // Initialize AOS
-  AOS.init({
-    duration: 800,
-    once: true,
-    offset: 50,
-    disable: window.innerWidth < 768
-  });
-
-  // Update current year
+  AOS.init({duration: 800, once: true, offset: 50, disable: window.innerWidth < 768});
   document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-  // Navbar scroll effect
   window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar-optimized');
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     navbar.classList.toggle('scrolled', scrollTop > 50);
   });
-
-  // Video filtering function
   function filterVideos(category) {
     const videos = document.querySelectorAll('.video-card');
     const buttons = document.querySelectorAll('.category-btn');
-    
-    // Update active button
     buttons.forEach(btn => {
       btn.classList.remove('active');
       if (btn.textContent.toLowerCase().includes(category) || 
@@ -1287,8 +567,6 @@
         btn.classList.add('active');
       }
     });
-    
-    // Show/hide videos based on category
     videos.forEach(video => {
       if (category === 'all' || video.dataset.category === category) {
         video.style.display = 'block';
@@ -1305,20 +583,12 @@
       }
     });
   }
-
-  // Load more videos function
   function loadMoreVideos() {
-    // In a real scenario, this would fetch more videos from an API
-    // For now, we'll just show an alert
     alert('More videos will be loaded when available. Check back soon for updates!');
   }
-
-  // Subscribe alert
   function subscribeAlert() {
     alert('Thank you for your interest in subscribing! Please visit our YouTube channel and click the Subscribe button.');
   }
-
-  // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       if(this.getAttribute('href') !== '#') {
@@ -1326,12 +596,7 @@
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
           const offset = window.innerWidth <= 768 ? 70 : 80;
-          window.scrollTo({
-            top: target.offsetTop - offset,
-            behavior: 'smooth'
-          });
-          
-          // Close mobile menu if open
+          window.scrollTo({top: target.offsetTop - offset, behavior: 'smooth'});
           const navbarCollapse = document.querySelector('.navbar-collapse');
           if (navbarCollapse && navbarCollapse.classList.contains('show')) {
             const bsCollapse = new bootstrap.Collapse(navbarCollapse);
@@ -1341,8 +606,6 @@
       }
     });
   });
-
-  // Mobile menu close on click
   document.querySelectorAll('.navbar-nav .nav-link-optimized:not(.dropdown-toggle)').forEach(link => {
     link.addEventListener('click', () => {
       const navbarCollapse = document.querySelector('.navbar-collapse');
@@ -1352,23 +615,17 @@
       }
     });
   });
-
-  // Parallax effect for floating ornaments
   window.addEventListener('scroll', () => {
     if (window.innerWidth > 768) {
       const scrolled = window.pageYOffset;
       const ornaments = document.querySelectorAll('.islamic-ornament');
- 
       ornaments.forEach((ornament, index) => {
         const speed = 0.05 * (index + 1);
         ornament.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.05}deg)`;
       });
     }
   });
-
-  // Initialize on load
   document.addEventListener('DOMContentLoaded', function() {
-    // Set up video card animations
     const videos = document.querySelectorAll('.video-card');
     videos.forEach((video, index) => {
       video.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
@@ -1377,3 +634,4 @@
 </script>
 </body>
 </html>
+```
