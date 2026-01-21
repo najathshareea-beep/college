@@ -4,1014 +4,284 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DSAC | Class Topper Poster</title>
-
-  <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
-  <!-- External Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-  <!-- STANDARD CSS -->
   <style>
-    /* ===== CSS VARIABLES ===== */
     :root {
-      --islamic-green: #0a5c36;
-      --islamic-gold: #c19a3f;
-      --islamic-cream: #f8f3e6;
-      --islamic-light: #e9f5e9;
-      --dark-green: #064e3b;
-      --light-gold: #ffd24d;
-      --transition: all 0.3s ease;
+      --islamic-green: #0a5c36; --islamic-gold: #c19a3f; --islamic-cream: #f8f3e6; --islamic-light: #e9f5e9; --dark-green: #064e3b; --light-gold: #ffd24d; --transition: all 0.3s ease;
     }
-
-    /* ===== BASE STYLES ===== */
     body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--islamic-cream);
-      color: #333;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-      padding-top: 80px;
+      font-family: 'Poppins', sans-serif; background-color: var(--islamic-cream); color: #333; scroll-behavior: smooth; overflow-x: hidden; padding-top: 80px;
     }
-    
-    a {
-      text-decoration: none;
-    }
-
-    .arabic-font {
-      font-family: 'Scheherazade New', serif;
-    }
-
-    .malayalam-font {
-      font-family: 'Anek Malayalam', sans-serif;
-    }
-
-    /* ===== PATTERN BACKGROUND ===== */
-    .pattern-bg {
-      background-image: 
-        radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px),
-        radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px);
-      background-size: 50px 50px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-
-    /* ===== STANDARD NAVBAR ===== */
+    a {text-decoration: none;}
+    .arabic-font {font-family: 'Scheherazade New', serif;}
+    .malayalam-font {font-family: 'Anek Malayalam', sans-serif;}
     .navbar-optimized {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      border-bottom: 3px solid var(--islamic-gold);
-      transition: var(--transition);
-      padding: 0.5rem 0;
-      height: 80px;
-      z-index: 1030 !important;
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-bottom: 3px solid var(--islamic-gold); transition: var(--transition); padding: 0.5rem 0; height: 80px; z-index: 1030 !important;
     }
-    
-    .navbar-toggler {
-      border-color: rgba(255, 255, 255, 0.5);
-    }
-    
-    .navbar-toggler:focus {
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-    }
-
+    .navbar-toggler {border-color: rgba(255, 255, 255, 0.5);}
+    .navbar-toggler:focus {box-shadow: 0 0 0 2px var(--islamic-gold);}
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
-
     .navbar-optimized.scrolled {
-      background: rgba(10, 92, 54, 0.98);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-      height: 70px;
+      background: rgba(10, 92, 54, 0.98); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); height: 70px;
     }
-
-    /* LOGO */
     .navbar-brand-compact img {
-      border-radius: 8px;
-      transition: transform 0.3s ease;
-      width: 60px;
-      height: 60px;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-      border: none;
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-      padding: 0;
+      border-radius: 8px; transition: transform 0.3s ease; width: 60px; height: 60px; object-fit: contain; filter: brightness(0) invert(1); border: none; box-shadow: 0 0 0 2px var(--islamic-gold); padding: 0;
     }
-
-    .navbar-optimized.scrolled .navbar-brand-compact img {
-      width: 50px;
-      height: 50px;
-      filter: brightness(0) invert(1);
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-    }
-
-    .navbar-brand-compact:hover img {
-      transform: scale(1.05);
-    }
-
-    .brand-text {
-      font-size: 1.2rem;
-      line-height: 1.2;
-    }
-
-    .brand-subtext {
-      font-size: 0.8rem;
-      opacity: 0.9;
-    }
-
+    .navbar-optimized.scrolled .navbar-brand-compact img {width: 50px; height: 50px;}
+    .navbar-brand-compact:hover img {transform: scale(1.05);}
+    .brand-text {font-size: 1.2rem; line-height: 1.2;}
+    .brand-subtext {font-size: 0.8rem; opacity: 0.9;}
     .nav-link-optimized {
-      color: #fff !important;
-      font-weight: 500;
-      transition: var(--transition);
-      padding-left: 0.4rem;
-      padding-right: 0.4rem;
-      border-radius: 5px;
-      margin: 0 2px;
-      white-space: nowrap;
+      color: #fff !important; font-weight: 500; transition: var(--transition); padding-left: 0.4rem; padding-right: 0.4rem; border-radius: 5px; margin: 0 2px; white-space: nowrap;
     }
-    
-    .nav-item-optimized {
-      margin: 0 2px;
-    }
-
-    .nav-link-optimized:hover {
-      color: var(--islamic-gold) !important;
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* Navbar dropdown */
+    .nav-item-optimized {margin: 0 2px;}
+    .nav-link-optimized:hover {color: var(--islamic-gold) !important; background: rgba(255, 255, 255, 0.1);}
     .dropdown-menu-optimized {
-      background: var(--islamic-green);
-      border: 1px solid var(--islamic-gold);
-      border-radius: 8px;
-      padding: 0.5rem 0;
+      background: var(--islamic-green); border: 1px solid var(--islamic-gold); border-radius: 8px; padding: 0.5rem 0;
     }
-
     .dropdown-item-optimized {
-      color: white;
-      padding: 0.5rem 1rem;
-      transition: var(--transition);
+      color: white; padding: 0.5rem 1rem; transition: var(--transition);
     }
-
-    .dropdown-item-optimized:hover {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    /* ===== STANDARD PAGE HEADER ===== */
+    .dropdown-item-optimized:hover {background: var(--islamic-gold); color: var(--islamic-green);}
     .page-header {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      color: white;
-      height: 30vh;
-      min-height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      margin-bottom: 3rem;
-      border-bottom: 5px solid var(--islamic-gold);
-      position: relative;
-      overflow: hidden;
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); color: white; height: 30vh; min-height: 220px; display: flex; align-items: center; justify-content: center; text-align: center; margin-bottom: 3rem; border-bottom: 5px solid var(--islamic-gold); position: relative; overflow: hidden;
     }
-
     .page-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
     }
-    
-    .page-header-content {
-      position: relative;
-      z-index: 2;
-    }
-    
+    .page-header-content {position: relative; z-index: 2;}
     .page-title {
-      font-family: 'Scheherazade New', serif;
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--islamic-gold);
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-family: 'Scheherazade New', serif; font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--islamic-gold); text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
-    
     .page-subtitle {
-      font-size: 1.4rem;
-      opacity: 0.95;
-      max-width: 800px;
-      margin: 0 auto;
-      color: var(--islamic-cream);
+      font-size: 1.4rem; opacity: 0.95; max-width: 800px; margin: 0 auto; color: var(--islamic-cream);
     }
-
-    /* ===== STANDARD CONTENT SECTION ===== */
-    .content-section {
-      padding: 4rem 0;
-      background: var(--islamic-cream);
-    }
-    
+    .content-section {padding: 4rem 0; background: var(--islamic-cream);}
     .section-header {
-      text-align: center;
-      margin-bottom: 3rem;
-      position: relative;
-      padding: 2rem 0;
+      text-align: center; margin-bottom: 3rem; position: relative; padding: 2rem 0;
     }
-
     .section-title {
-      color: var(--islamic-green);
-      font-weight: 700;
-      display: inline-block;
-      padding: 0 1rem;
-      background: var(--islamic-cream);
-      position: relative;
-      z-index: 2;
-      margin-bottom: 0.5rem;
-      font-size: 2.5rem;
+      color: var(--islamic-green); font-weight: 700; display: inline-block; padding: 0 1rem; background: var(--islamic-cream); position: relative; z-index: 2; margin-bottom: 0.5rem; font-size: 2.5rem;
     }
-
     .section-header::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent);
-      z-index: 1;
+      content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent); z-index: 1;
     }
-    
-    .section-subtitle {
-      color: #666;
-      font-size: 1.1rem;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    /* ===== STANDARD BUTTONS ===== */
+    .section-subtitle {color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;}
     .btn-gold {
-      background: linear-gradient(135deg, var(--islamic-gold), #d4af37);
-      border: none;
-      color: var(--islamic-green);
-      font-weight: 600;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3);
-      transition: var(--transition);
-      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--islamic-gold), #d4af37); border: none; color: var(--islamic-green); font-weight: 600; border-radius: 8px; box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3); transition: var(--transition); padding: 0.75rem 1.5rem;
     }
-
     .btn-gold:hover {
-      background: linear-gradient(135deg, #d4af37, var(--islamic-gold));
-      box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4);
-      transform: translateY(-2px);
-      color: var(--islamic-green);
+      background: linear-gradient(135deg, #d4af37, var(--islamic-gold)); box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4); transform: translateY(-2px); color: var(--islamic-green);
     }
-
     .btn-outline-gold {
-      border: 2px solid var(--islamic-gold);
-      color: var(--islamic-gold);
-      background: transparent;
-      border-radius: 8px;
-      padding: 0.75rem 1.5rem;
-      font-weight: 600;
-      transition: var(--transition);
+      border: 2px solid var(--islamic-gold); color: var(--islamic-gold); background: transparent; border-radius: 8px; padding: 0.75rem 1.5rem; font-weight: 600; transition: var(--transition);
     }
-
-    .btn-outline-gold:hover {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    /* ===== CLASS TOPPER SPECIFIC STYLES ===== */
+    .btn-outline-gold:hover {background: var(--islamic-gold); color: var(--islamic-green);}
     .stats-container {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin: 2rem 0 3rem;
-      flex-wrap: wrap;
+      display: flex; justify-content: center; gap: 2rem; margin: 2rem 0 3rem; flex-wrap: wrap;
     }
-
     .stat-card {
-      background: white;
-      border-radius: 15px;
-      padding: 1.5rem 2rem;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-      border: 2px solid transparent;
-      transition: var(--transition);
-      min-width: 150px;
+      background: white; border-radius: 15px; padding: 1.5rem 2rem; text-align: center; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); border: 2px solid transparent; transition: var(--transition); min-width: 150px;
     }
-
     .stat-card:hover {
-      border-color: var(--islamic-gold);
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      border-color: var(--islamic-gold); transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
     }
-
     .stat-number {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--islamic-green);
-      margin-bottom: 0.5rem;
-      line-height: 1;
+      font-size: 2.5rem; font-weight: 700; color: var(--islamic-green); margin-bottom: 0.5rem; line-height: 1;
     }
-
-    .stat-label {
-      color: #666;
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
+    .stat-label {color: #666; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;}
     .instructions-box {
-      background: linear-gradient(135deg, rgba(10, 92, 54, 0.05), rgba(193, 154, 63, 0.05));
-      border-radius: 15px;
-      padding: 2rem;
-      margin: 2rem auto 3rem;
-      border: 2px solid var(--islamic-gold);
-      max-width: 900px;
+      background: linear-gradient(135deg, rgba(10, 92, 54, 0.05), rgba(193, 154, 63, 0.05)); border-radius: 15px; padding: 2rem; margin: 2rem auto 3rem; border: 2px solid var(--islamic-gold); max-width: 900px;
     }
-
     .instructions-title {
-      color: var(--islamic-green);
-      font-weight: 700;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.3rem;
+      color: var(--islamic-green); font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; font-size: 1.3rem;
     }
-
     .instructions-list {
-      padding-left: 1.5rem;
-      margin-bottom: 0;
+      padding-left: 1.5rem; margin-bottom: 0;
     }
-
     .instructions-list li {
-      margin-bottom: 0.8rem;
-      color: #555;
-      line-height: 1.6;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
+      margin-bottom: 0.8rem; color: #555; line-height: 1.6; display: flex; align-items: flex-start; gap: 10px;
     }
-
-    .instructions-list i {
-      color: var(--islamic-gold);
-      font-size: 1rem;
-      margin-top: 3px;
-    }
-
-    /* Class Cards Grid */
+    .instructions-list i {color: var(--islamic-gold); font-size: 1rem; margin-top: 3px;}
     .class-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 3rem;
     }
-
     .class-card {
-      background: white;
-      border-radius: 20px;
-      padding: 2rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      border: 2px solid transparent;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
+      background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); border: 2px solid transparent; transition: var(--transition); position: relative; overflow: hidden;
     }
-
     .class-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-      border-color: var(--islamic-gold);
+      transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12); border-color: var(--islamic-gold);
     }
-
     .class-header {
-      text-align: center;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid rgba(193, 154, 63, 0.3);
+      text-align: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid rgba(193, 154, 63, 0.3);
     }
-
-    .class-header h3 {
-      color: var(--islamic-green);
-      font-weight: 700;
-      font-size: 1.8rem;
-      margin: 0;
-    }
-
-    /* Topper Cards */
+    .class-header h3 {color: var(--islamic-green); font-weight: 700; font-size: 1.8rem; margin: 0;}
     .topper-card {
-      background: rgba(248, 243, 230, 0.5);
-      border-radius: 15px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      border: 1px solid rgba(10, 92, 54, 0.1);
-      position: relative;
-      transition: var(--transition);
+      background: rgba(248, 243, 230, 0.5); border-radius: 15px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(10, 92, 54, 0.1); position: relative; transition: var(--transition);
     }
-
-    .topper-card:hover {
-      background: white;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    }
-
-    .topper-card:last-child {
-      margin-bottom: 0;
-    }
-
+    .topper-card:hover {background: white; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);}
+    .topper-card:last-child {margin-bottom: 0;}
     .topper-card.first {
-      border-left: 5px solid var(--islamic-gold);
-      background: linear-gradient(to right, rgba(193, 154, 63, 0.08), rgba(248, 243, 230, 0.5));
+      border-left: 5px solid var(--islamic-gold); background: linear-gradient(to right, rgba(193, 154, 63, 0.08), rgba(248, 243, 230, 0.5));
     }
-
     .topper-card.second {
-      border-left: 5px solid #6c757d;
-      background: linear-gradient(to right, rgba(108, 117, 125, 0.08), rgba(248, 243, 230, 0.5));
+      border-left: 5px solid #6c757d; background: linear-gradient(to right, rgba(108, 117, 125, 0.08), rgba(248, 243, 230, 0.5));
     }
-
     .rank-badge {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 1.1rem;
-      color: white;
-      z-index: 2;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      position: absolute; top: 15px; right: 15px; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; color: white; z-index: 2; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
-
     .rank-badge.first {
-      background: linear-gradient(135deg, var(--islamic-gold), #d4af37);
-      color: var(--islamic-green);
-      border: 2px solid white;
+      background: linear-gradient(135deg, var(--islamic-gold), #d4af37); color: var(--islamic-green); border: 2px solid white;
     }
-
-    .rank-badge.second {
-      background: linear-gradient(135deg, #6c757d, #495057);
-      border: 2px solid white;
-    }
-
-    /* Photo Container */
+    .rank-badge.second {background: linear-gradient(135deg, #6c757d, #495057); border: 2px solid white;}
     .photo-container {
-      width: 160px;
-      height: 160px;
-      margin: 0 auto 1.5rem;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 160px; height: 160px; margin: 0 auto 1.5rem; position: relative; display: flex; align-items: center; justify-content: center;
     }
-
     .photo-frame {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 100%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center;
     }
-
     .photo-border {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: linear-gradient(45deg, var(--dark-green), var(--islamic-green));
-      padding: 6px;
-      z-index: 1;
-      box-shadow: 0 8px 25px rgba(10, 92, 54, 0.2);
+      position: absolute; width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(45deg, var(--dark-green), var(--islamic-green)); padding: 6px; z-index: 1; box-shadow: 0 8px 25px rgba(10, 92, 54, 0.2);
     }
-
     .photo-border.first {
-      background: linear-gradient(45deg, var(--islamic-gold), #d4af37);
-      box-shadow: 0 8px 25px rgba(193, 154, 63, 0.3);
+      background: linear-gradient(45deg, var(--islamic-gold), #d4af37); box-shadow: 0 8px 25px rgba(193, 154, 63, 0.3);
     }
-
-    .photo-border.second {
-      background: linear-gradient(45deg, #6c757d, #495057);
-    }
-
+    .photo-border.second {background: linear-gradient(45deg, #6c757d, #495057);}
     .photo {
-      width: calc(100% - 12px);
-      height: calc(100% - 12px);
-      border-radius: 50%;
-      overflow: hidden;
-      position: relative;
-      z-index: 2;
-      background: var(--islamic-cream);
-      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+      width: calc(100% - 12px); height: calc(100% - 12px); border-radius: 50%; overflow: hidden; position: relative; z-index: 2; background: var(--islamic-cream); box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
     }
-
-    .photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
+    .photo img {width: 100%; height: 100%; object-fit: cover; display: block;}
     .upload-btn {
-      display: block;
-      margin: 1rem auto;
-      padding: 0.75rem 1.5rem;
-      background: var(--islamic-green);
-      color: white;
-      border: none;
-      border-radius: 30px;
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: var(--transition);
-      box-shadow: 0 5px 15px rgba(10, 92, 54, 0.2);
+      display: block; margin: 1rem auto; padding: 0.75rem 1.5rem; background: var(--islamic-green); color: white; border: none; border-radius: 30px; font-weight: 600; cursor: pointer; font-size: 0.9rem; transition: var(--transition); box-shadow: 0 5px 15px rgba(10, 92, 54, 0.2);
     }
-
     .upload-btn:hover {
-      background: var(--dark-green);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(10, 92, 54, 0.3);
+      background: var(--dark-green); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(10, 92, 54, 0.3);
     }
-
     .student-name {
-      text-align: center;
-      font-weight: 700;
-      margin: 1rem 0 0.5rem;
-      font-size: 1.4rem;
-      color: var(--dark-green);
-      position: relative;
-      padding-bottom: 0.5rem;
+      text-align: center; font-weight: 700; margin: 1rem 0 0.5rem; font-size: 1.4rem; color: var(--dark-green); position: relative; padding-bottom: 0.5rem;
     }
-
     .student-name::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--islamic-green), var(--islamic-gold));
+      content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 2px; background: linear-gradient(90deg, var(--islamic-green), var(--islamic-gold));
     }
-
     .rank-label {
-      text-align: center;
-      font-weight: 700;
-      margin-top: 0.5rem;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      position: relative;
-      display: inline-block;
-      padding: 0.25rem 1rem;
-      border-radius: 20px;
-      background: rgba(10, 92, 54, 0.08);
-      color: var(--islamic-green);
+      text-align: center; font-weight: 700; margin-top: 0.5rem; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; position: relative; display: inline-block; padding: 0.25rem 1rem; border-radius: 20px; background: rgba(10, 92, 54, 0.08); color: var(--islamic-green);
     }
-
-    .rank-label.first {
-      color: var(--islamic-gold);
-      background: rgba(193, 154, 63, 0.08);
-    }
-
-    .rank-label.second {
-      color: #6c757d;
-      background: rgba(108, 117, 125, 0.08);
-    }
-
+    .rank-label.first {color: var(--islamic-gold); background: rgba(193, 154, 63, 0.08);}
+    .rank-label.second {color: #6c757d; background: rgba(108, 117, 125, 0.08);}
     .student-meta {
-      text-align: center;
-      color: #555;
-      font-weight: 600;
-      margin-top: 0.75rem;
-      font-size: 1rem;
-      padding: 0.5rem 1rem;
-      background: rgba(10, 92, 54, 0.05);
-      border-radius: 25px;
-      display: inline-block;
-      margin-left: auto;
-      margin-right: auto;
-      border: 1px solid rgba(10, 92, 54, 0.1);
+      text-align: center; color: #555; font-weight: 600; margin-top: 0.75rem; font-size: 1rem; padding: 0.5rem 1rem; background: rgba(10, 92, 54, 0.05); border-radius: 25px; display: inline-block; margin-left: auto; margin-right: auto; border: 1px solid rgba(10, 92, 54, 0.1);
     }
-
-    /* Action Buttons */
-    .topper-actions {
-      display: flex;
-      justify-content: center;
-      margin-top: 1.5rem;
-    }
-
+    .topper-actions {display: flex; justify-content: center; margin-top: 1.5rem;}
     .btn-preview {
-      background: var(--islamic-green);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 0.75rem 1.5rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-width: 180px;
-      box-shadow: 0 5px 15px rgba(10, 92, 54, 0.2);
+      background: var(--islamic-green); color: white; border: none; border-radius: 8px; padding: 0.75rem 1.5rem; font-weight: 600; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 180px; box-shadow: 0 5px 15px rgba(10, 92, 54, 0.2);
     }
-
     .btn-preview:hover {
-      background: var(--dark-green);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(10, 92, 54, 0.3);
+      background: var(--dark-green); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(10, 92, 54, 0.3);
     }
-
-    /* Clear All Button */
-    .clear-all-container {
-      text-align: center;
-      margin: 2rem 0 3rem;
-    }
-
+    .clear-all-container {text-align: center; margin: 2rem 0 3rem;}
     #clearAllBtn {
-      padding: 0.75rem 2rem;
-      background: linear-gradient(135deg, #dc3545, #c82333);
-      color: white;
-      border: none;
-      border-radius: 30px;
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: var(--transition);
-      box-shadow: 0 5px 15px rgba(220, 53, 69, 0.2);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
+      padding: 0.75rem 2rem; background: linear-gradient(135deg, #dc3545, #c82333); color: white; border: none; border-radius: 30px; font-weight: 600; cursor: pointer; font-size: 1rem; transition: var(--transition); box-shadow: 0 5px 15px rgba(220, 53, 69, 0.2); display: inline-flex; align-items: center; gap: 10px;
     }
-
-    #clearAllBtn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(220, 53, 69, 0.3);
-    }
-
-    /* Modals */
+    #clearAllBtn:hover {transform: translateY(-3px); box-shadow: 0 8px 20px rgba(220, 53, 69, 0.3);}
     .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      backdrop-filter: blur(5px);
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); display: none; align-items: center; justify-content: center; z-index: 9999; backdrop-filter: blur(5px);
     }
-
     .modal-content {
-      background: white;
-      border-radius: 15px;
-      padding: 0;
-      position: relative;
-      max-width: 90%;
-      max-height: 90%;
+      background: white; border-radius: 15px; padding: 0; position: relative; max-width: 90%; max-height: 90%;
     }
-
     .modal-close {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      font-size: 2rem;
-      color: white;
-      cursor: pointer;
-      font-weight: 700;
-      background: rgba(0, 0, 0, 0.5);
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-      z-index: 10001;
+      position: absolute; top: 15px; right: 15px; font-size: 2rem; color: white; cursor: pointer; font-weight: 700; background: rgba(0, 0, 0, 0.5); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: var(--transition); z-index: 10001;
     }
-
-    .modal-close:hover {
-      background: #dc3545;
-      transform: rotate(90deg);
-    }
-
-    /* Poster Preview */
+    .modal-close:hover {background: #dc3545; transform: rotate(90deg);}
     .poster-canvas {
-      background: white;
-      width: 800px;
-      max-width: 90%;
-      margin: 0;
-      border-radius: 15px;
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+      background: white; width: 800px; max-width: 90%; margin: 0; border-radius: 15px; box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
     }
-
     .preview-buttons {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 15px;
-      z-index: 10001;
-      flex-wrap: wrap;
-      justify-content: center;
+      position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 15px; z-index: 10001; flex-wrap: wrap; justify-content: center;
     }
-
     .preview-buttons button {
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: var(--transition);
-      font-size: 0.9rem;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      padding: 0.75rem 1.5rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: var(--transition); font-size: 0.9rem; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
-
-    .preview-buttons button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Loading Animation */
+    .preview-buttons button:hover {transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);}
     .loading-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 10002;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      color: white;
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 10002; align-items: center; justify-content: center; flex-direction: column; color: white;
     }
-
     .loading-spinner {
-      width: 60px;
-      height: 60px;
-      border: 5px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top-color: var(--islamic-gold);
-      animation: spin 1s linear infinite;
-      margin-bottom: 1rem;
+      width: 60px; height: 60px; border: 5px solid rgba(255, 255, 255, 0.3); border-radius: 50%; border-top-color: var(--islamic-gold); animation: spin 1s linear infinite; margin-bottom: 1rem;
     }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* ===== STANDARD FOOTER ===== */
+    @keyframes spin {to { transform: rotate(360deg); }}
     .footer {
-      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
-      border-top: 3px solid var(--islamic-gold);
-      padding: 3rem 0 1.5rem;
-      color: white;
+      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green)); border-top: 3px solid var(--islamic-gold); padding: 3rem 0 1.5rem; color: white;
     }
-
-    .footer-brand {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--islamic-gold);
-      margin-bottom: 1rem;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 12px;
-      margin-top: 1rem;
-    }
-
+    .footer-brand {font-size: 1.8rem; font-weight: 700; color: var(--islamic-gold); margin-bottom: 1rem;}
+    .social-links {display: flex; gap: 12px; margin-top: 1rem;}
     .social-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-decoration: none;
-      transition: var(--transition);
-      background: rgba(255, 255, 255, 0.1);
-      font-size: 1.1rem;
+      width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: var(--transition); background: rgba(255, 255, 255, 0.1); font-size: 1.1rem;
     }
-
-    .social-icon:hover {
-      transform: translateY(-5px);
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    .footer-links h5 {
-      color: var(--islamic-gold);
-      margin-bottom: 1.2rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-
+    .social-icon:hover {transform: translateY(-5px); background: var(--islamic-gold); color: var(--islamic-green);}
+    .footer-links h5 {color: var(--islamic-gold); margin-bottom: 1.2rem; font-size: 1.1rem; font-weight: 600;}
     .footer-links a {
-      display: block;
-      color: rgba(255, 255, 255, 0.85);
-      text-decoration: none;
-      margin-bottom: 0.6rem;
-      transition: var(--transition);
-      font-size: 0.95rem;
+      display: block; color: rgba(255, 255, 255, 0.85); text-decoration: none; margin-bottom: 0.6rem; transition: var(--transition); font-size: 0.95rem;
     }
-
-    .footer-links a:hover {
-      color: var(--islamic-gold);
-      padding-left: 5px;
-    }
-
-    /* ===== WHATSAPP BUTTON ===== */
+    .footer-links a:hover {color: var(--islamic-gold); padding-left: 5px;}
     .whatsapp-float {
-      position: fixed;
-      bottom: 25px;
-      right: 15px;
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #25D366, #128C7E);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
-      z-index: 1000;
-      animation: float 3s ease-in-out infinite;
-      transition: var(--transition);
-      text-decoration: none;
+      position: fixed; bottom: 25px; right: 15px; width: 60px; height: 60px; background: linear-gradient(135deg, #25D366, #128C7E); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); z-index: 1000; animation: float 3s ease-in-out infinite; transition: var(--transition); text-decoration: none;
     }
-
-    .whatsapp-float:hover {
-      transform: scale(1.1) rotate(10deg);
-      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
-    }
-
+    .whatsapp-float:hover {transform: scale(1.1) rotate(10deg); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);}
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
     }
-
-    /* ===== ISLAMIC ORNAMENTS ===== */
     .islamic-ornament {
-      position: fixed;
-      color: var(--islamic-gold);
-      opacity: 0.08;
-      font-size: 1.8rem;
-      z-index: -1;
-      pointer-events: none;
+      position: fixed; color: var(--islamic-gold); opacity: 0.08; font-size: 1.8rem; z-index: -1; pointer-events: none;
     }
-
-    .ornament-1 {
-      top: 20%;
-      left: 5%;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .ornament-2 {
-      top: 60%;
-      right: 5%;
-      animation: float 8s ease-in-out infinite reverse;
-    }
-
-    .ornament-3 {
-      bottom: 20%;
-      left: 10%;
-      animation: float 7s ease-in-out infinite;
-    }
-
-    /* ===== MOBILE RESPONSIVE ===== */
+    .ornament-1 {top: 20%; left: 5%; animation: float 6s ease-in-out infinite;}
+    .ornament-2 {top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse;}
+    .ornament-3 {bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite;}
     @media (max-width: 768px) {
-      body {
-        padding-top: 70px !important;
-      }
-      
-      .navbar-optimized {
-        height: 70px;
-        padding: 0.3rem 0;
-      }
-      
-      .page-header {
-        height: 26vh;
-        min-height: 180px;
-      }
-
-      .page-title {
-        font-size: 2.2rem;
-      }
-      
-      .page-subtitle {
-        font-size: 1.1rem;
-      }
-      
-      .content-section {
-        padding: 2.5rem 0;
-      }
-      
-      .section-title {
-        font-size: 1.8rem;
-      }
-      
+      body {padding-top: 70px !important;}
+      .navbar-optimized {height: 70px; padding: 0.3rem 0;}
+      .page-header {height: 26vh; min-height: 180px;}
+      .page-title {font-size: 2.2rem;}
+      .page-subtitle {font-size: 1.1rem;}
+      .content-section {padding: 2.5rem 0;}
+      .section-title {font-size: 1.8rem;}
       .navbar-collapse {
-        background: var(--dark-green);
-        padding: 1rem;
-        border-radius: 0 0 10px 10px;
-        border: 1px solid var(--islamic-gold);
-        margin-top: 0px;
-        max-height: 70vh;
-        overflow-y: auto;
+        background: var(--dark-green); padding: 1rem; border-radius: 0 0 10px 10px; border: 1px solid var(--islamic-gold); margin-top: 0px; max-height: 70vh; overflow-y: auto;
       }
-      
-      .class-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .stat-card {
-        min-width: 120px;
-        padding: 1rem 1.5rem;
-      }
-      
-      .photo-container {
-        width: 140px;
-        height: 140px;
-      }
+      .class-grid {grid-template-columns: 1fr;}
+      .stat-card {min-width: 120px; padding: 1rem 1.5rem;}
+      .photo-container {width: 140px; height: 140px;}
     }
-
     @media (max-width: 576px) {
-      .page-title {
-        font-size: 1.8rem;
-      }
-      
-      .section-title {
-        font-size: 1.5rem;
-      }
-      
-      .stat-number {
-        font-size: 2rem;
-      }
-      
-      .photo-container {
-        width: 120px;
-        height: 120px;
-      }
-      
-      .preview-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
+      .page-title {font-size: 1.8rem;}
+      .section-title {font-size: 1.5rem;}
+      .stat-number {font-size: 2rem;}
+      .photo-container {width: 120px; height: 120px;}
+      .preview-buttons {flex-direction: column; align-items: center;}
     }
     @media (max-width: 767px) {
       [data-aos] {
-        opacity: 1 !important;
-        transform: translate3d(0, 0, 0) !important;
-        transition-property: none !important;
+        opacity: 1 !important; transform: translate3d(0, 0, 0) !important; transition-property: none !important;
       }
     }
   </style>
 </head>
 <body>
-
-<!-- Floating Islamic Ornaments -->
 <div class="islamic-ornament ornament-1">✸</div>
 <div class="islamic-ornament ornament-2">✸</div>
 <div class="islamic-ornament ornament-3">✸</div>
-
-<!-- STANDARD NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-optimized fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand d-flex align-items-center navbar-brand-compact" href="index.html">
@@ -1021,12 +291,10 @@
         <small class="text-light brand-subtext">Karuvarakundu</small>
       </div>
     </a>
- 
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
             aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
- 
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav ms-auto nav-container">
         <li class="nav-item nav-item-optimized">
@@ -1035,13 +303,9 @@
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized" href="founder.html">Founder</a>
         </li>
-     
-        <!-- Board Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
           <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" 
-             aria-haspopup="true" aria-expanded="false">
-            Board
-          </a>
+             aria-haspopup="true" aria-expanded="false">Board</a>
           <ul class="dropdown-menu dropdown-menu-optimized">
             <li><a class="dropdown-item dropdown-item-optimized" href="management.html">Management</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="faculties.html">Faculty</a></li>
@@ -1050,21 +314,15 @@
             <li><a class="dropdown-item dropdown-item-optimized" href="students-union.html">Students Union</a></li>
           </ul>
         </li>
-     
-        <!-- Student Zone Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
           <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-            Student Zone
-          </a>
+             aria-haspopup="true" aria-expanded="false">Student Zone</a>
           <ul class="dropdown-menu dropdown-menu-optimized">
             <li><a class="dropdown-item dropdown-item-optimized" href="idcard.html">ID Card</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="result.html">Exam Results</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="fest.html">Fest Score</a></li>
           </ul>
         </li>
-     
-        <!-- Other Items -->
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized" href="https://jamianooriya.in/">Jamia</a>
         </li>
@@ -1087,8 +345,6 @@
     </div>
   </div>
 </nav>
-
-<!-- PAGE HEADER -->
 <div class="page-header">
   <div class="container">
     <div class="page-header-content">
@@ -1097,18 +353,15 @@
     </div>
   </div>
 </div>
-
-<!-- MAIN CONTENT -->
 <section class="content-section">
   <div class="container">
-    <!-- Stats -->
     <div class="stats-container">
       <div class="stat-card" data-aos="fade-up">
-        <div class="stat-number">10</div>
+        <div class="stat-number">7</div>
         <div class="stat-label">Classes</div>
       </div>
       <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="stat-number">20</div>
+        <div class="stat-number">14</div>
         <div class="stat-label">Top Students</div>
       </div>
       <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
@@ -1116,8 +369,6 @@
         <div class="stat-label">Success Rate</div>
       </div>
     </div>
-
-    <!-- Instructions -->
     <div class="instructions-box" data-aos="fade-up">
       <h3 class="instructions-title">
         <i class="fas fa-lightbulb"></i>
@@ -1131,23 +382,16 @@
         <li><i class="fas fa-star"></i> Celebrate academic excellence with beautiful posters</li>
       </ul>
     </div>
-
-    <!-- Class Toppers Section -->
     <div class="section-header">
       <h2 class="section-title">Class Toppers & Second Place</h2>
       <p class="section-subtitle">Click "Upload Photo" to add student photos, then "Preview Poster" to generate</p>
     </div>
-
     <div class="class-grid" id="classGrid"></div>
-
-    <!-- Clear All Button -->
     <div class="clear-all-container" data-aos="fade-up">
       <button id="clearAllBtn">
         <i class="fas fa-trash-alt"></i> Clear All Uploaded Photos
       </button>
     </div>
-    
-    <!-- Back to Home Button -->
     <div class="text-center mt-5" data-aos="fade-up">
       <a href="index.html" class="btn-outline-gold btn-lg px-5">
         <i class="fas fa-home me-2"></i>Back to Home
@@ -1155,8 +399,6 @@
     </div>
   </div>
 </section>
-
-<!-- STANDARD FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="row">
@@ -1182,7 +424,6 @@
           </a>
         </div>
       </div>
-   
       <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
         <div class="footer-links">
           <h5>Quick Links</h5>
@@ -1193,7 +434,6 @@
           <a href="contact.html">Contact</a>
         </div>
       </div>
-   
       <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
         <div class="footer-links">
           <h5>Resources</h5>
@@ -1203,7 +443,6 @@
           <a href="management.html">Management</a>
         </div>
       </div>
-   
       <div class="col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
         <div class="footer-links">
           <h5>Contact Info</h5>
@@ -1215,7 +454,6 @@
         </div>
       </div>
     </div>
- 
     <div class="text-center pt-4 mt-4 border-top border-light border-opacity-25">
       <p class="text-light mb-2">
         © <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.
@@ -1226,48 +464,32 @@
     </div>
   </div>
 </footer>
-
-<!-- WHATSAPP BUTTON -->
 <a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!"
    class="whatsapp-float" target="_blank"
    title="Chat with us on WhatsApp" aria-label="WhatsApp Chat">
   <i class="fab fa-whatsapp"></i>
 </a>
-
-<!-- Loading Overlay -->
 <div class="loading-overlay" id="loadingOverlay">
   <div class="loading-spinner"></div>
   <p>Generating Poster...</p>
 </div>
-
-<!-- Photo Preview Modal -->
 <div class="modal-overlay" id="photoPreviewModal">
   <div class="modal-close">×</div>
   <div class="modal-content">
     <img id="previewImage" src="" alt="Photo Preview" style="max-width: 100%; max-height: 90vh; border-radius: 15px;">
   </div>
 </div>
-
-<!-- Poster Preview Modal -->
 <div class="modal-overlay" id="posterPreviewModal">
   <div class="modal-close">×</div>
   <div class="modal-content">
     <canvas id="previewCanvas" class="poster-canvas"></canvas>
   </div>
 </div>
-
-<!-- Audio for sound effects -->
 <audio id="successSound" src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3" preload="auto"></audio>
-
-<!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
 <script>
-  // Configuration
   const POSTER_BG = "https://i.ibb.co/d4d7wwNW/TOPPER.jpg";
-  
-  // Class data with two toppers per class
   const classesData = [
     { 
       class: "1", 
@@ -1319,26 +541,17 @@
       ]
     }
   ];
-
-  // Initialize uploaded photos and poster count
   const uploadedPhotos = {};
   let posterCount = parseInt(localStorage.getItem('posterCount') || '0');
-  
-  // Initialize AOS
   AOS.init({
     duration: 800,
     once: true,
     offset: 50,
     disable: window.innerWidth < 768
   });
-
-  // Initialize page
   document.addEventListener('DOMContentLoaded', function() {
-    // Set current year
     document.getElementById('currentYear').textContent = new Date().getFullYear();
     updatePosterCount();
-    
-    // Initialize uploaded photos
     classesData.forEach((cls, classIndex) => {
       uploadedPhotos[classIndex] = [];
       cls.toppers.forEach((topper, topperIndex) => {
@@ -1346,22 +559,14 @@
         uploadedPhotos[classIndex][topperIndex] = saved || null;
       });
     });
-    
-    // Render class cards
     renderClassCards();
-    
-    // Initialize modals
     initModals();
-    
-    // Navbar scroll effect
     window.addEventListener('scroll', function() {
       const navbar = document.querySelector('.navbar-optimized');
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       navbar.classList.toggle('scrolled', scrollTop > 50);
     });
   });
-
-  // Helper functions
   function escapeHtml(text) {
     if (!text) return '';
     const map = {
@@ -1373,7 +578,6 @@
     };
     return String(text).replace(/[&<>"']/g, function(m) { return map[m]; });
   }
-
   function placeholderDataURL() {
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">
       <defs>
@@ -1396,11 +600,9 @@
     </svg>`;
     return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
   }
-
   function updatePosterCount() {
     document.getElementById('posterCount').textContent = posterCount;
   }
-
   function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.style.cssText = `
@@ -1425,31 +627,24 @@
       <span>${message}</span>
     `;
     document.body.appendChild(notification);
-    
     setTimeout(() => notification.style.transform = 'translateX(0)', 10);
-    
     setTimeout(() => {
       notification.style.transform = 'translateX(150%)';
       setTimeout(() => notification.remove(), 500);
     }, 3000);
   }
-
-  // Render class cards
   function renderClassCards() {
     const grid = document.getElementById('classGrid');
     grid.innerHTML = '';
-    
     classesData.forEach((cls, classIndex) => {
       const card = document.createElement('div');
       card.className = 'class-card';
       card.setAttribute('data-aos', 'fade-up');
       card.setAttribute('data-aos-delay', (classIndex % 3) * 100);
-      
       let toppersHTML = '';
       cls.toppers.forEach((topper, topperIndex) => {
         const photoURL = uploadedPhotos[classIndex][topperIndex] || placeholderDataURL();
         const isFirst = topper.rank === 'First';
-        
         toppersHTML += `
           <div class="topper-card ${isFirst ? 'first' : 'second'}">
             <div class="rank-badge ${isFirst ? 'first' : 'second'}">
@@ -1483,40 +678,30 @@
           </div>
         `;
       });
-      
       card.innerHTML = `
         <div class="class-header">
           <h3>Class ${escapeHtml(cls.class)}</h3>
         </div>
         ${toppersHTML}
       `;
-      
       grid.appendChild(card);
     });
   }
-
-  // Initialize modals
   function initModals() {
     const modals = ['photoPreviewModal', 'posterPreviewModal'];
     modals.forEach(modalId => {
       const modal = document.getElementById(modalId);
       const closeBtn = modal.querySelector('.modal-close');
-      
       closeBtn.addEventListener('click', () => {
         modal.style.display = 'none';
       });
-      
       modal.addEventListener('click', (e) => {
         if (e.target === modal) {
           modal.style.display = 'none';
         }
       });
     });
-    
-    // Clear all button
     document.getElementById('clearAllBtn').addEventListener('click', clearAllPhotos);
-    
-    // Keyboard shortcuts
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         modals.forEach(modalId => {
@@ -1525,65 +710,46 @@
       }
     });
   }
-
-  // Upload photo
   function uploadPhoto(classIndex, topperIndex) {
     document.getElementById(`file-${classIndex}-${topperIndex}`).click();
   }
-
   function handlePhotoUpload(event, classIndex, topperIndex) {
     const file = event.target.files[0];
     if (!file) return;
-    
     if (file.size > 10 * 1024 * 1024) {
       showNotification('File too large! Please choose an image under 10MB.', 'error');
       return;
     }
-    
     if (!file.type.match('image.*')) {
       showNotification('Please select an image file (JPG, PNG, etc.)', 'error');
       return;
     }
-    
     const reader = new FileReader();
     reader.onload = function(e) {
       uploadedPhotos[classIndex][topperIndex] = e.target.result;
       localStorage.setItem(`topperPhoto_${classIndex}_${topperIndex}`, e.target.result);
-      
-      // Update the photo in the card
       const card = document.querySelector(`#file-${classIndex}-${topperIndex}`).closest('.topper-card');
       if (card) {
         card.querySelector('img').src = e.target.result;
       }
-      
       showNotification('Photo uploaded successfully!', 'success');
     };
-    
     reader.onerror = function() {
       showNotification('Error uploading photo. Please try again.', 'error');
     };
-    
     reader.readAsDataURL(file);
   }
-
-  // Preview photo
   function previewPhoto(src) {
     if (src.includes('Student</text>')) return;
     document.getElementById('previewImage').src = src;
     document.getElementById('photoPreviewModal').style.display = 'flex';
   }
-
-  // Show loading
   function showLoading() {
     document.getElementById('loadingOverlay').style.display = 'flex';
   }
-
-  // Hide loading
   function hideLoading() {
     document.getElementById('loadingOverlay').style.display = 'none';
   }
-
-  // Load image helper
   function loadImage(src) {
     return new Promise((resolve, reject) => {
       const img = new Image();
@@ -1593,27 +759,17 @@
       img.src = src;
     });
   }
-
-  // Render poster canvas
   async function renderPosterCanvas(name, cls, mark, rank, photo) {
     const w = 1200, h = 1600;
     const canvas = document.createElement("canvas");
     canvas.width = w;
     canvas.height = h;
     const ctx = canvas.getContext("2d");
-    
     try {
-      // Draw background
       const bg = await loadImage(POSTER_BG);
       ctx.drawImage(bg, 0, 0, w, h);
-      
-      // Add student photo
       const cx = w / 2, cy = 800, r = 200;
-      const borderColor = rank === 'First' ? '#c19a3f' : '#6c757d';
-      
-      // Draw stylish border
       const gradient = ctx.createLinearGradient(cx - r - 10, cy - r - 10, cx + r + 10, cy + r + 10);
-      
       if (rank === 'First') {
         gradient.addColorStop(0, '#c19a3f');
         gradient.addColorStop(0.5, '#d4af37');
@@ -1623,20 +779,14 @@
         gradient.addColorStop(0.5, '#495057');
         gradient.addColorStop(1, '#343a40');
       }
-      
-      // Draw outer border
       ctx.beginPath();
       ctx.arc(cx, cy, r + 12, 0, Math.PI * 2);
       ctx.fillStyle = gradient;
       ctx.fill();
-      
-      // Draw inner white border
       ctx.beginPath();
       ctx.arc(cx, cy, r + 8, 0, Math.PI * 2);
       ctx.fillStyle = 'white';
       ctx.fill();
-      
-      // Draw the photo if available
       if (photo && !photo.includes('Student</text>')) {
         try {
           const img = await loadImage(photo);
@@ -1644,11 +794,9 @@
           ctx.beginPath();
           ctx.arc(cx, cy, r, 0, Math.PI * 2);
           ctx.clip();
-          
           const scale = Math.max(r * 2 / img.width, r * 2 / img.height);
           const x = cx - (img.width * scale) / 2;
           const y = cy - (img.height * scale) / 2;
-          
           ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
           ctx.restore();
         } catch (e) {
@@ -1658,31 +806,23 @@
       } else {
         drawPlaceholderPhoto(ctx, cx, cy, r, name);
       }
-      
-      // Draw student name
       ctx.fillStyle = '#064e3b';
       ctx.font = 'bold 56px "Poppins"';
       ctx.textAlign = 'center';
       ctx.fillText(name, cx, 1050);
-      
-      // Draw class and marks
       ctx.fillStyle = '#0a5c36';
       ctx.font = 'bold 36px "Poppins"';
       ctx.fillText(`Class: ${cls} | Marks: ${mark}`, cx, 1120);
-      
-      // Draw rank text
       ctx.fillStyle = rank === 'First' ? '#c19a3f' : '#6c757d';
       ctx.font = 'italic 32px "Poppins"';
       const rankText = rank === 'First' ? 'CLASS TOPPER' : 'SECOND PLACE IN CLASS';
       ctx.fillText(rankText, cx, 1180);
-      
       return canvas;
     } catch (error) {
       console.error("Error rendering poster:", error);
       throw new Error("Failed to load poster background");
     }
   }
-
   function drawPlaceholderPhoto(ctx, cx, cy, r, name) {
     ctx.fillStyle = '#f8f3e6';
     ctx.beginPath();
@@ -1695,12 +835,9 @@
     ctx.font = '28px "Poppins"';
     ctx.fillText('PHOTO', cx, cy + 35);
   }
-
-  // Preview poster
   async function previewPoster(classIndex, topperIndex) {
     const topper = classesData[classIndex].toppers[topperIndex];
     const photo = uploadedPhotos[classIndex][topperIndex] || placeholderDataURL();
-    
     try {
       showLoading();
       const canvas = await renderPosterCanvas(
@@ -1711,25 +848,15 @@
         photo
       );
       hideLoading();
-      
       const previewCanvas = document.getElementById('previewCanvas');
       const ctx = previewCanvas.getContext('2d');
-      
-      // Set canvas size for preview
       previewCanvas.width = 800;
       previewCanvas.height = 1067;
-      
-      // Draw scaled poster
       ctx.drawImage(canvas, 0, 0, 1200, 1600, 0, 0, 800, 1067);
-      
-      // Show preview
       document.getElementById('posterPreviewModal').style.display = 'flex';
-      
-      // Add download buttons
       setTimeout(() => {
         const existingButtons = document.querySelector('.preview-buttons');
         if (existingButtons) existingButtons.remove();
-        
         const buttonContainer = document.createElement('div');
         buttonContainer.className = 'preview-buttons';
         buttonContainer.innerHTML = `
@@ -1742,31 +869,22 @@
             <i class="fas fa-file-pdf"></i> Download PDF
           </button>
         `;
-        
         document.getElementById('posterPreviewModal').appendChild(buttonContainer);
       }, 100);
-      
     } catch (error) {
       hideLoading();
       console.error("Error previewing poster:", error);
       showNotification("Error previewing poster. Please try again.", 'error');
     }
   }
-
-  // Download poster
   async function downloadPoster(classIndex, topperIndex, type) {
     const topper = classesData[classIndex].toppers[topperIndex];
     const photo = uploadedPhotos[classIndex][topperIndex] || placeholderDataURL();
-    
     try {
       showLoading();
-      
-      // Play sound
       const sound = document.getElementById("successSound");
       sound.currentTime = 0;
       sound.play().catch(e => console.log("Audio play failed:", e));
-      
-      // Render poster
       const canvas = await renderPosterCanvas(
         topper.name,
         classesData[classIndex].class,
@@ -1775,23 +893,16 @@
         photo
       );
       const img = canvas.toDataURL("image/png");
-      
-      // Confetti celebration
       confetti({
         particleCount: 100,
         spread: 70,
         origin: { y: 0.6 },
         colors: topper.rank === 'First' ? ['#c19a3f', '#0a5c36', '#fff'] : ['#6c757d', '#0a5c36', '#fff']
       });
-      
-      // Update poster count
       posterCount++;
       localStorage.setItem('posterCount', posterCount);
       updatePosterCount();
-      
-      // Generate output based on type
       const fileName = `DSAC_Class${classesData[classIndex].class}_${topper.rank.replace(' ', '_')}_${topper.name.replace(/\s+/g, '_')}`;
-      
       if (type === "png") {
         const a = document.createElement("a");
         a.href = img;
@@ -1807,17 +918,13 @@
         pdf.save(`${fileName}.pdf`);
         showNotification(`PDF poster for ${topper.name} downloaded!`, 'success');
       }
-      
       hideLoading();
-      
     } catch (error) {
       hideLoading();
       console.error("Error generating poster:", error);
       showNotification("Error generating poster. Please try again.", 'error');
     }
   }
-
-  // Clear all photos
   function clearAllPhotos() {
     if (confirm("Are you sure you want to clear all uploaded photos? This action cannot be undone.")) {
       classesData.forEach((cls, classIndex) => {
@@ -1826,8 +933,6 @@
           uploadedPhotos[classIndex][topperIndex] = null;
         });
       });
-      
-      // Re-render cards
       renderClassCards();
       showNotification('All photos cleared successfully!', 'success');
     }
