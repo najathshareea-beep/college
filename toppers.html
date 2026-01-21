@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DSAC | Class Topper Poster</title>
+  <title>DSAC | Jamia Top Ten Poster</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -128,69 +128,90 @@
     }
     .class-header h3 {color: var(--islamic-green); font-weight: 700; font-size: 1.8rem; margin: 0;}
     .topper-card {
-      background: rgba(248, 243, 230, 0.5); border-radius: 15px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(10, 92, 54, 0.1); position: relative; transition: var(--transition);
+      background: rgba(248, 243, 230, 0.5); border-radius: 15px; padding: 1.5rem; margin-bottom: 1rem; border: 1px solid rgba(10, 92, 54, 0.1); position: relative; transition: var(--transition);
     }
     .topper-card:hover {background: white; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);}
     .topper-card:last-child {margin-bottom: 0;}
-    .topper-card.first {
+    .topper-card.rank-1 {
       border-left: 5px solid var(--islamic-gold); background: linear-gradient(to right, rgba(193, 154, 63, 0.08), rgba(248, 243, 230, 0.5));
     }
-    .topper-card.second {
+    .topper-card.rank-2 {
       border-left: 5px solid #6c757d; background: linear-gradient(to right, rgba(108, 117, 125, 0.08), rgba(248, 243, 230, 0.5));
+    }
+    .topper-card.rank-3 {
+      border-left: 5px solid #cd7f32; background: linear-gradient(to right, rgba(205, 127, 50, 0.08), rgba(248, 243, 230, 0.5));
+    }
+    .topper-card.rank-4, .topper-card.rank-5, .topper-card.rank-6,
+    .topper-card.rank-7, .topper-card.rank-8, .topper-card.rank-9, .topper-card.rank-10 {
+      border-left: 5px solid #0a5c36; background: linear-gradient(to right, rgba(10, 92, 54, 0.05), rgba(248, 243, 230, 0.5));
     }
     .rank-badge {
       position: absolute; top: 15px; right: 15px; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; color: white; z-index: 2; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
-    .rank-badge.first {
+    .rank-badge.rank-1 {
       background: linear-gradient(135deg, var(--islamic-gold), #d4af37); color: var(--islamic-green); border: 2px solid white;
     }
-    .rank-badge.second {background: linear-gradient(135deg, #6c757d, #495057); border: 2px solid white;}
+    .rank-badge.rank-2 {background: linear-gradient(135deg, #6c757d, #495057); border: 2px solid white;}
+    .rank-badge.rank-3 {background: linear-gradient(135deg, #cd7f32, #a6691e); border: 2px solid white;}
+    .rank-badge.rank-4, .rank-badge.rank-5, .rank-badge.rank-6,
+    .rank-badge.rank-7, .rank-badge.rank-8, .rank-badge.rank-9, .rank-badge.rank-10 {
+      background: linear-gradient(135deg, #0a5c36, #064e3b); border: 2px solid white;
+    }
     .photo-container {
-      width: 160px; height: 160px; margin: 0 auto 1.5rem; position: relative; display: flex; align-items: center; justify-content: center;
+      width: 140px; height: 140px; margin: 0 auto 1.5rem; position: relative; display: flex; align-items: center; justify-content: center;
     }
     .photo-frame {
       width: 100%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center;
     }
     .photo-border {
-      position: absolute; width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(45deg, var(--dark-green), var(--islamic-green)); padding: 6px; z-index: 1; box-shadow: 0 8px 25px rgba(10, 92, 54, 0.2);
+      position: absolute; width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(45deg, var(--dark-green), var(--islamic-green)); padding: 5px; z-index: 1; box-shadow: 0 8px 25px rgba(10, 92, 54, 0.2);
     }
-    .photo-border.first {
+    .photo-border.rank-1 {
       background: linear-gradient(45deg, var(--islamic-gold), #d4af37); box-shadow: 0 8px 25px rgba(193, 154, 63, 0.3);
     }
-    .photo-border.second {background: linear-gradient(45deg, #6c757d, #495057);}
+    .photo-border.rank-2 {background: linear-gradient(45deg, #6c757d, #495057);}
+    .photo-border.rank-3 {background: linear-gradient(45deg, #cd7f32, #a6691e);}
+    .photo-border.rank-4, .photo-border.rank-5, .photo-border.rank-6,
+    .photo-border.rank-7, .photo-border.rank-8, .photo-border.rank-9, .photo-border.rank-10 {
+      background: linear-gradient(45deg, #0a5c36, #064e3b);
+    }
     .photo {
-      width: calc(100% - 12px); height: calc(100% - 12px); border-radius: 50%; overflow: hidden; position: relative; z-index: 2; background: var(--islamic-cream); box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+      width: calc(100% - 10px); height: calc(100% - 10px); border-radius: 50%; overflow: hidden; position: relative; z-index: 2; background: var(--islamic-cream); box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
     }
     .photo img {width: 100%; height: 100%; object-fit: cover; display: block;}
     .upload-btn {
-      display: block; margin: 1rem auto; padding: 0.75rem 1.5rem; background: var(--islamic-green); color: white; border: none; border-radius: 30px; font-weight: 600; cursor: pointer; font-size: 0.9rem; transition: var(--transition); box-shadow: 0 5px 15px rgba(10, 92, 54, 0.2);
+      display: block; margin: 0.5rem auto 1rem; padding: 0.5rem 1rem; background: var(--islamic-green); color: white; border: none; border-radius: 30px; font-weight: 600; cursor: pointer; font-size: 0.85rem; transition: var(--transition); box-shadow: 0 5px 15px rgba(10, 92, 54, 0.2); width: 90%;
     }
     .upload-btn:hover {
       background: var(--dark-green); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(10, 92, 54, 0.3);
     }
     .student-name {
-      text-align: center; font-weight: 700; margin: 1rem 0 0.5rem; font-size: 1.4rem; color: var(--dark-green); position: relative; padding-bottom: 0.5rem;
+      text-align: center; font-weight: 700; margin: 0.5rem 0 0.25rem; font-size: 1.2rem; color: var(--dark-green); position: relative; padding-bottom: 0.5rem;
     }
     .student-name::after {
-      content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 2px; background: linear-gradient(90deg, var(--islamic-green), var(--islamic-gold));
+      content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 2px; background: linear-gradient(90deg, var(--islamic-green), var(--islamic-gold));
     }
     .rank-container {
       text-align: center;
     }
     .rank-label {
-      text-align: center; font-weight: 700; margin-top: 0.5rem; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; position: relative; display: inline-block; padding: 0.25rem 1rem; border-radius: 20px; background: rgba(10, 92, 54, 0.08); color: var(--islamic-green);
+      text-align: center; font-weight: 700; margin-top: 0.25rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; position: relative; display: inline-block; padding: 0.2rem 0.8rem; border-radius: 20px; background: rgba(10, 92, 54, 0.08); color: var(--islamic-green);
     }
-    .rank-label.first {color: var(--islamic-gold); background: rgba(193, 154, 63, 0.08);}
-    .rank-label.second {color: #6c757d; background: rgba(108, 117, 125, 0.08);}
+    .rank-label.rank-1 {color: var(--islamic-gold); background: rgba(193, 154, 63, 0.08);}
+    .rank-label.rank-2 {color: #6c757d; background: rgba(108, 117, 125, 0.08);}
+    .rank-label.rank-3 {color: #cd7f32; background: rgba(205, 127, 50, 0.08);}
     .student-meta {
-      text-align: center; color: #555; font-weight: 600; margin-top: 0.75rem; font-size: 1rem; padding: 0.5rem 1rem; background: rgba(10, 92, 54, 0.05); border-radius: 25px; display: inline-block; margin-left: auto; margin-right: auto; border: 1px solid rgba(10, 92, 54, 0.1);
+      text-align: center; color: #555; font-weight: 600; margin-top: 0.5rem; font-size: 0.9rem; padding: 0.3rem 0.8rem; background: rgba(10, 92, 54, 0.05); border-radius: 20px; display: inline-block; margin-left: auto; margin-right: auto; border: 1px solid rgba(10, 92, 54, 0.1);
     }
-    .topper-actions {display: flex; justify-content: center; margin-top: 1.5rem;}
+    .topper-actions {display: flex; justify-content: center; margin-top: 1rem;}
     .btn-preview {
-      background: var(--islamic-green); color: white; border: none; border-radius: 8px; padding: 0.75rem 1.5rem; font-weight: 600; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 180px; box-shadow: 0 5px 15px rgba(10, 92, 54, 0.2);
+      background: var(--islamic-green); color: white; border: none; border-radius: 8px; padding: 0.5rem 1rem; font-weight: 600; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 5px; min-width: 150px; box-shadow: 0 5px 15px rgba(10, 92, 54, 0.2); font-size: 0.9rem;
     }
     .btn-preview:hover {
       background: var(--dark-green); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(10, 92, 54, 0.3);
+    }
+    .no-toppers {
+      text-align: center; padding: 2rem; color: #666; font-style: italic; background: rgba(248, 243, 230, 0.7); border-radius: 15px; margin: 1rem 0;
     }
     .clear-all-container {text-align: center; margin: 2rem 0 3rem;}
     #clearAllBtn {
@@ -265,14 +286,16 @@
       }
       .class-grid {grid-template-columns: 1fr;}
       .stat-card {min-width: 120px; padding: 1rem 1.5rem;}
-      .photo-container {width: 140px; height: 140px;}
+      .photo-container {width: 120px; height: 120px;}
     }
     @media (max-width: 576px) {
       .page-title {font-size: 1.8rem;}
       .section-title {font-size: 1.5rem;}
       .stat-number {font-size: 2rem;}
-      .photo-container {width: 120px; height: 120px;}
+      .photo-container {width: 100px; height: 100px;}
       .preview-buttons {flex-direction: column; align-items: center;}
+      .student-name {font-size: 1.1rem;}
+      .student-meta {font-size: 0.85rem;}
     }
     @media (max-width: 767px) {
       [data-aos] {
@@ -351,8 +374,8 @@
 <div class="page-header">
   <div class="container">
     <div class="page-header-content">
-      <h1 class="page-title">Class Topper Poster</h1>
-      <p class="page-subtitle">Generate beautiful posters for academic achievers | Academic Year 2025-26</p>
+      <h1 class="page-title">Jamia Top Ten Poster</h1>
+      <p class="page-subtitle">Generate beautiful posters for Jamia examination top ten holders | Academic Year 2025-26</p>
     </div>
   </div>
 </div>
@@ -360,12 +383,12 @@
   <div class="container">
     <div class="stats-container">
       <div class="stat-card" data-aos="fade-up">
-        <div class="stat-number">7</div>
+        <div class="stat-number" id="totalClasses">0</div>
         <div class="stat-label">Classes</div>
       </div>
       <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="stat-number">14</div>
-        <div class="stat-label">Top Students</div>
+        <div class="stat-number" id="totalToppers">0</div>
+        <div class="stat-label">Top Ten Students</div>
       </div>
       <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
         <div class="stat-number">100%</div>
@@ -375,18 +398,18 @@
     <div class="instructions-box" data-aos="fade-up">
       <h3 class="instructions-title">
         <i class="fas fa-lightbulb"></i>
-        How to Generate Posters
+        How to Generate Top Ten Posters
       </h3>
       <ul class="instructions-list">
         <li><i class="fas fa-camera"></i> Upload high-quality student photos for best results</li>
         <li><i class="fas fa-eye"></i> Preview the poster before downloading</li>
         <li><i class="fas fa-download"></i> Download as PNG or PDF from preview</li>
-        <li><i class="fas fa-trash-alt"></i> Clear all photos if needed</li>
-        <li><i class="fas fa-star"></i> Celebrate academic excellence with beautiful posters</li>
+        <li><i class="fas fa-star"></i> Each class can have 0-10 top ten holders</li>
+        <li><i class="fas fa-medal"></i> Different colors for 1st (Gold), 2nd (Silver), 3rd (Bronze), others (Green)</li>
       </ul>
     </div>
     <div class="section-header">
-      <h2 class="section-title">Class Toppers & Second Place</h2>
+      <h2 class="section-title">Jamia Top Ten Holders by Class</h2>
       <p class="section-subtitle">Click "Upload Photo" to add student photos, then "Preview Poster" to generate</p>
     </div>
     <div class="class-grid" id="classGrid"></div>
@@ -495,66 +518,89 @@
   const POSTER_BG = "https://i.ibb.co/d4d7wwNW/TOPPER.jpg";
   const classesData = [
     { 
-      class: "1", 
+      className: "Class 1 - Primary", 
       toppers: [
-        { name: "Suhail P", mark: "498 / 500", rank: "First" },
-        { name: "Minhaj P", mark: "495 / 500", rank: "Second" }
+        { name: "Suhail P", mark: "498 / 500", rank: 1 },
+        { name: "Minhaj P", mark: "495 / 500", rank: 2 },
+        { name: "Ahmed R", mark: "492 / 500", rank: 3 },
+        { name: "Fatima K", mark: "490 / 500", rank: 4 }
       ]
     },
     { 
-      class: "2", 
+      className: "Class 2 - Secondary", 
       toppers: [
-        { name: "Muhammed Shahid", mark: "493 / 500", rank: "First" },
-        { name: "Ashmil T", mark: "490 / 500", rank: "Second" }
+        { name: "Muhammed Shahid", mark: "493 / 500", rank: 1 },
+        { name: "Ashmil T", mark: "490 / 500", rank: 2 },
+        { name: "Rahman M", mark: "487 / 500", rank: 5 }
       ]
     },
     { 
-      class: "3", 
+      className: "Class 3 - Intermediate", 
       toppers: [
-        { name: "Muhammed Hadi K", mark: "487 / 500", rank: "First" },
-        { name: "Danish T", mark: "485 / 500", rank: "Second" }
+        { name: "Muhammed Hadi K", mark: "487 / 500", rank: 1 },
+        { name: "Danish T", mark: "485 / 500", rank: 2 },
+        { name: "Aisha M", mark: "483 / 500", rank: 3 },
+        { name: "Ibrahim S", mark: "480 / 500", rank: 4 },
+        { name: "Zainab A", mark: "478 / 500", rank: 6 },
+        { name: "Omar K", mark: "475 / 500", rank: 7 }
       ]
     },
     { 
-      class: "4", 
+      className: "Class 4 - Advanced", 
       toppers: [
-        { name: "Faris P", mark: "489 / 500", rank: "First" },
-        { name: "Rifaee P", mark: "486 / 500", rank: "Second" }
+        { name: "Faris P", mark: "489 / 500", rank: 1 },
+        { name: "Rifaee P", mark: "486 / 500", rank: 2 },
+        { name: "Sarah J", mark: "484 / 500", rank: 8 }
       ]
     },
     { 
-      class: "5", 
+      className: "Class 5 - Senior", 
       toppers: [
-        { name: "Shamil N", mark: "491 / 500", rank: "First" },
-        { name: "Nida Mol", mark: "488 / 500", rank: "Second" }
+        { name: "Shamil N", mark: "491 / 500", rank: 1 },
+        { name: "Nida Mol", mark: "488 / 500", rank: 2 },
+        { name: "Yusuf A", mark: "485 / 500", rank: 3 },
+        { name: "Hafsa M", mark: "482 / 500", rank: 9 },
+        { name: "Ali R", mark: "479 / 500", rank: 10 }
       ]
     },
     { 
-      class: "6", 
+      className: "Class 6 - Graduate", 
       toppers: [
-        { name: "Hana M", mark: "480 / 500", rank: "First" },
-        { name: "Riya T", mark: "478 / 500", rank: "Second" }
+        { name: "Hana M", mark: "480 / 500", rank: 1 },
+        { name: "Riya T", mark: "478 / 500", rank: 2 }
       ]
     },
     { 
-      class: "8", 
+      className: "Class 8 - Post Graduate", 
       toppers: [
-        { name: "Zainab K", mark: "492 / 500", rank: "First" },
-        { name: "Muhsin P", mark: "489 / 500", rank: "Second" }
+        { name: "Zainab K", mark: "492 / 500", rank: 1 },
+        { name: "Muhsin P", mark: "489 / 500", rank: 2 },
+        { name: "Amina S", mark: "486 / 500", rank: 3 },
+        { name: "Khalid M", mark: "484 / 500", rank: 4 },
+        { name: "Sumaya A", mark: "481 / 500", rank: 5 }
       ]
+    },
+    { 
+      className: "Class 7 - Special", 
+      toppers: [] // No top ten holders in this class
     }
   ];
+
   const uploadedPhotos = {};
   let posterCount = parseInt(localStorage.getItem('posterCount') || '0');
+
   AOS.init({
     duration: 800,
     once: true,
     offset: 50,
     disable: window.innerWidth < 768
   });
+
   document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('currentYear').textContent = new Date().getFullYear();
     updatePosterCount();
+    updateStats();
+    
     classesData.forEach((cls, classIndex) => {
       uploadedPhotos[classIndex] = [];
       cls.toppers.forEach((topper, topperIndex) => {
@@ -562,14 +608,23 @@
         uploadedPhotos[classIndex][topperIndex] = saved || null;
       });
     });
+    
     renderClassCards();
     initModals();
+    
     window.addEventListener('scroll', function() {
       const navbar = document.querySelector('.navbar-optimized');
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       navbar.classList.toggle('scrolled', scrollTop > 50);
     });
   });
+
+  function updateStats() {
+    document.getElementById('totalClasses').textContent = classesData.length;
+    const totalToppers = classesData.reduce((sum, cls) => sum + cls.toppers.length, 0);
+    document.getElementById('totalToppers').textContent = totalToppers;
+  }
+
   function escapeHtml(text) {
     if (!text) return '';
     const map = {
@@ -581,6 +636,7 @@
     };
     return String(text).replace(/[&<>"']/g, function(m) { return map[m]; });
   }
+
   function placeholderDataURL() {
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">
       <defs>
@@ -603,9 +659,11 @@
     </svg>`;
     return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
   }
+
   function updatePosterCount() {
     document.getElementById('posterCount').textContent = posterCount;
   }
+
   function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.style.cssText = `
@@ -636,66 +694,92 @@
       setTimeout(() => notification.remove(), 500);
     }, 3000);
   }
+
+  function getRankSuffix(rank) {
+    if (rank === 1) return 'st';
+    if (rank === 2) return 'nd';
+    if (rank === 3) return 'rd';
+    return 'th';
+  }
+
   function renderClassCards() {
     const grid = document.getElementById('classGrid');
     grid.innerHTML = '';
+    
     classesData.forEach((cls, classIndex) => {
       const card = document.createElement('div');
       card.className = 'class-card';
       card.setAttribute('data-aos', 'fade-up');
       card.setAttribute('data-aos-delay', (classIndex % 3) * 100);
+      
       let toppersHTML = '';
-      cls.toppers.forEach((topper, topperIndex) => {
-        const photoURL = uploadedPhotos[classIndex][topperIndex] || placeholderDataURL();
-        const isFirst = topper.rank === 'First';
-        toppersHTML += `
-          <div class="topper-card ${isFirst ? 'first' : 'second'}">
-            <div class="rank-badge ${isFirst ? 'first' : 'second'}">
-              ${isFirst ? '1st' : '2nd'}
-            </div>
-            <div class="photo-container">
-              <div class="photo-frame">
-                <div class="photo-border ${isFirst ? 'first' : 'second'}"></div>
-                <div class="photo">
-                  <img src="${photoURL}" alt="${escapeHtml(topper.name)}" 
-                       onclick="previewPhoto('${photoURL.replace(/'/g, "\\'")}')">
-                </div>
-              </div>
-            </div>
-            <button class="upload-btn" onclick="uploadPhoto(${classIndex}, ${topperIndex})">
-              <i class="fas fa-upload"></i> Upload Photo
-            </button>
-            <div class="student-name">${escapeHtml(topper.name)}</div>
-            <div class="rank-container">
-              <div class="rank-label ${isFirst ? 'first' : 'second'}">
-                ${topper.rank} Place in Class
-              </div>
-              <div class="student-meta">
-                Marks: ${escapeHtml(topper.mark)}
-              </div>
-            </div>
-            <div class="topper-actions">
-              <button class="btn-preview" onclick="previewPoster(${classIndex}, ${topperIndex})">
-                <i class="fas fa-eye"></i> Preview Poster
-              </button>
-            </div>
-            <input type="file" 
-                   id="file-${classIndex}-${topperIndex}" 
-                   accept="image/*" 
-                   style="display:none" 
-                   onchange="handlePhotoUpload(event, ${classIndex}, ${topperIndex})">
+      
+      if (cls.toppers.length === 0) {
+        toppersHTML = `
+          <div class="no-toppers">
+            <i class="fas fa-info-circle fa-2x mb-3" style="color: #999;"></i>
+            <p>No top ten holders in this class</p>
+            <small class="text-muted">This class has no students in Jamia Top Ten</small>
           </div>
         `;
-      });
+      } else {
+        cls.toppers.forEach((topper, topperIndex) => {
+          const photoURL = uploadedPhotos[classIndex][topperIndex] || placeholderDataURL();
+          const rankClass = `rank-${topper.rank}`;
+          const rankSuffix = getRankSuffix(topper.rank);
+          
+          toppersHTML += `
+            <div class="topper-card ${rankClass}">
+              <div class="rank-badge ${rankClass}">
+                ${topper.rank}${rankSuffix}
+              </div>
+              <div class="photo-container">
+                <div class="photo-frame">
+                  <div class="photo-border ${rankClass}"></div>
+                  <div class="photo">
+                    <img src="${photoURL}" alt="${escapeHtml(topper.name)}" 
+                         onclick="previewPhoto('${photoURL.replace(/'/g, "\\'")}')">
+                  </div>
+                </div>
+              </div>
+              <button class="upload-btn" onclick="uploadPhoto(${classIndex}, ${topperIndex})">
+                <i class="fas fa-upload"></i> Upload Photo
+              </button>
+              <div class="student-name">${escapeHtml(topper.name)}</div>
+              <div class="rank-container">
+                <div class="rank-label ${rankClass}">
+                  ${topper.rank}${rankSuffix} Position in Jamia
+                </div>
+                <div class="student-meta">
+                  Marks: ${escapeHtml(topper.mark)}
+                </div>
+              </div>
+              <div class="topper-actions">
+                <button class="btn-preview" onclick="previewPoster(${classIndex}, ${topperIndex})">
+                  <i class="fas fa-eye"></i> Preview Poster
+                </button>
+              </div>
+              <input type="file" 
+                     id="file-${classIndex}-${topperIndex}" 
+                     accept="image/*" 
+                     style="display:none" 
+                     onchange="handlePhotoUpload(event, ${classIndex}, ${topperIndex})">
+            </div>
+          `;
+        });
+      }
+      
       card.innerHTML = `
         <div class="class-header">
-          <h3>Class ${escapeHtml(cls.class)}</h3>
+          <h3>${escapeHtml(cls.className)}</h3>
+          <small class="text-muted">${cls.toppers.length} top ten holder${cls.toppers.length !== 1 ? 's' : ''}</small>
         </div>
         ${toppersHTML}
       `;
       grid.appendChild(card);
     });
   }
+
   function initModals() {
     const modals = ['photoPreviewModal', 'posterPreviewModal'];
     modals.forEach(modalId => {
@@ -710,7 +794,9 @@
         }
       });
     });
+    
     document.getElementById('clearAllBtn').addEventListener('click', clearAllPhotos);
+    
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         modals.forEach(modalId => {
@@ -719,20 +805,25 @@
       }
     });
   }
+
   function uploadPhoto(classIndex, topperIndex) {
     document.getElementById(`file-${classIndex}-${topperIndex}`).click();
   }
+
   function handlePhotoUpload(event, classIndex, topperIndex) {
     const file = event.target.files[0];
     if (!file) return;
+    
     if (file.size > 10 * 1024 * 1024) {
       showNotification('File too large! Please choose an image under 10MB.', 'error');
       return;
     }
+    
     if (!file.type.match('image.*')) {
       showNotification('Please select an image file (JPG, PNG, etc.)', 'error');
       return;
     }
+    
     const reader = new FileReader();
     reader.onload = function(e) {
       uploadedPhotos[classIndex][topperIndex] = e.target.result;
@@ -748,17 +839,21 @@
     };
     reader.readAsDataURL(file);
   }
+
   function previewPhoto(src) {
     if (src.includes('Student</text>')) return;
     document.getElementById('previewImage').src = src;
     document.getElementById('photoPreviewModal').style.display = 'flex';
   }
+
   function showLoading() {
     document.getElementById('loadingOverlay').style.display = 'flex';
   }
+
   function hideLoading() {
     document.getElementById('loadingOverlay').style.display = 'none';
   }
+
   function loadImage(src) {
     return new Promise((resolve, reject) => {
       const img = new Image();
@@ -768,34 +863,46 @@
       img.src = src;
     });
   }
-  async function renderPosterCanvas(name, cls, mark, rank, photo) {
+
+  async function renderPosterCanvas(name, className, mark, rank, photo) {
     const w = 1200, h = 1600;
     const canvas = document.createElement("canvas");
     canvas.width = w;
     canvas.height = h;
     const ctx = canvas.getContext("2d");
+    
     try {
       const bg = await loadImage(POSTER_BG);
       ctx.drawImage(bg, 0, 0, w, h);
+      
       const cx = w / 2, cy = 720, r = 200;
-      const gradient = ctx.createLinearGradient(cx - r - 10, cy - r - 10, cx + r + 10, cy + r + 10);
-      if (rank === 'First') {
-        gradient.addColorStop(0, '#c19a3f');
-        gradient.addColorStop(0.5, '#d4af37');
-        gradient.addColorStop(1, '#ffd24d');
+      
+      let gradientColors;
+      if (rank === 1) {
+        gradientColors = ['#c19a3f', '#d4af37', '#ffd24d'];
+      } else if (rank === 2) {
+        gradientColors = ['#6c757d', '#495057', '#343a40'];
+      } else if (rank === 3) {
+        gradientColors = ['#cd7f32', '#a6691e', '#8a5500'];
       } else {
-        gradient.addColorStop(0, '#6c757d');
-        gradient.addColorStop(0.5, '#495057');
-        gradient.addColorStop(1, '#343a40');
+        gradientColors = ['#0a5c36', '#064e3b', '#023020'];
       }
+      
+      const gradient = ctx.createLinearGradient(cx - r - 10, cy - r - 10, cx + r + 10, cy + r + 10);
+      gradient.addColorStop(0, gradientColors[0]);
+      gradient.addColorStop(0.5, gradientColors[1]);
+      gradient.addColorStop(1, gradientColors[2]);
+      
       ctx.beginPath();
       ctx.arc(cx, cy, r + 12, 0, Math.PI * 2);
       ctx.fillStyle = gradient;
       ctx.fill();
+      
       ctx.beginPath();
       ctx.arc(cx, cy, r + 8, 0, Math.PI * 2);
       ctx.fillStyle = 'white';
       ctx.fill();
+      
       if (photo && !photo.includes('Student</text>')) {
         try {
           const img = await loadImage(photo);
@@ -815,28 +922,45 @@
       } else {
         drawPlaceholderPhoto(ctx, cx, cy, r, name);
       }
+      
       ctx.fillStyle = '#064e3b';
       ctx.font = 'bold 56px "Poppins"';
       ctx.textAlign = 'center';
       ctx.fillText(name, cx, 1050);
+      
       ctx.fillStyle = '#0a5c36';
       ctx.font = 'bold 36px "Poppins"';
-      ctx.fillText(`Class: ${cls} | Marks: ${mark}`, cx, 1120);
-      ctx.fillStyle = rank === 'First' ? '#c19a3f' : '#6c757d';
+      ctx.fillText(`${className} | Marks: ${mark}`, cx, 1120);
+      
+      let rankText = '';
+      const rankSuffix = getRankSuffix(rank);
+      if (rank === 1) {
+        rankText = 'JAMIA TOPPER - 1st POSITION';
+      } else if (rank === 2) {
+        rankText = 'JAMIA 2nd POSITION';
+      } else if (rank === 3) {
+        rankText = 'JAMIA 3rd POSITION';
+      } else {
+        rankText = `JAMIA TOP TEN - ${rank}${rankSuffix} POSITION`;
+      }
+      
+      ctx.fillStyle = gradientColors[0];
       ctx.font = 'italic 32px "Poppins"';
-      const rankText = rank === 'First' ? 'CLASS TOPPER' : 'SECOND PLACE IN CLASS';
       ctx.fillText(rankText, cx, 1180);
+      
       return canvas;
     } catch (error) {
       console.error("Error rendering poster:", error);
       throw new Error("Failed to load poster background");
     }
   }
+
   function drawPlaceholderPhoto(ctx, cx, cy, r, name) {
     ctx.fillStyle = '#f8f3e6';
     ctx.beginPath();
     ctx.arc(cx, cy, r, 0, Math.PI * 2);
     ctx.fill();
+    
     ctx.fillStyle = '#0a5c36';
     ctx.font = 'bold 34px "Poppins"';
     ctx.textAlign = 'center';
@@ -844,28 +968,35 @@
     ctx.font = '28px "Poppins"';
     ctx.fillText('PHOTO', cx, cy + 35);
   }
+
   async function previewPoster(classIndex, topperIndex) {
     const topper = classesData[classIndex].toppers[topperIndex];
     const photo = uploadedPhotos[classIndex][topperIndex] || placeholderDataURL();
+    
     try {
       showLoading();
       const canvas = await renderPosterCanvas(
         topper.name,
-        classesData[classIndex].class,
+        classesData[classIndex].className,
         topper.mark,
         topper.rank,
         photo
       );
+      
       hideLoading();
+      
       const previewCanvas = document.getElementById('previewCanvas');
       const ctx = previewCanvas.getContext('2d');
       previewCanvas.width = 800;
       previewCanvas.height = 1067;
       ctx.drawImage(canvas, 0, 0, 1200, 1600, 0, 0, 800, 1067);
+      
       document.getElementById('posterPreviewModal').style.display = 'flex';
+      
       setTimeout(() => {
         const existingButtons = document.querySelector('.preview-buttons');
         if (existingButtons) existingButtons.remove();
+        
         const buttonContainer = document.createElement('div');
         buttonContainer.className = 'preview-buttons';
         buttonContainer.innerHTML = `
@@ -880,38 +1011,51 @@
         `;
         document.getElementById('posterPreviewModal').appendChild(buttonContainer);
       }, 100);
+      
     } catch (error) {
       hideLoading();
       console.error("Error previewing poster:", error);
       showNotification("Error previewing poster. Please try again.", 'error');
     }
   }
+
   async function downloadPoster(classIndex, topperIndex, type) {
     const topper = classesData[classIndex].toppers[topperIndex];
     const photo = uploadedPhotos[classIndex][topperIndex] || placeholderDataURL();
+    
     try {
       showLoading();
+      
       const sound = document.getElementById("successSound");
       sound.currentTime = 0;
       sound.play().catch(e => console.log("Audio play failed:", e));
+      
       const canvas = await renderPosterCanvas(
         topper.name,
-        classesData[classIndex].class,
+        classesData[classIndex].className,
         topper.mark,
         topper.rank,
         photo
       );
+      
       const img = canvas.toDataURL("image/png");
+      
       confetti({
         particleCount: 100,
         spread: 70,
         origin: { y: 0.6 },
-        colors: topper.rank === 'First' ? ['#c19a3f', '#0a5c36', '#fff'] : ['#6c757d', '#0a5c36', '#fff']
+        colors: topper.rank === 1 ? ['#c19a3f', '#0a5c36', '#fff'] : 
+                topper.rank === 2 ? ['#6c757d', '#0a5c36', '#fff'] :
+                topper.rank === 3 ? ['#cd7f32', '#0a5c36', '#fff'] :
+                ['#0a5c36', '#064e3b', '#fff']
       });
+      
       posterCount++;
       localStorage.setItem('posterCount', posterCount);
       updatePosterCount();
-      const fileName = `DSAC_Class${classesData[classIndex].class}_${topper.rank.replace(' ', '_')}_${topper.name.replace(/\s+/g, '_')}`;
+      
+      const fileName = `Jamia_TopTen_${classesData[classIndex].className.replace(/\s+/g, '_')}_${topper.rank}${getRankSuffix(topper.rank)}_${topper.name.replace(/\s+/g, '_')}`;
+      
       if (type === "png") {
         const a = document.createElement("a");
         a.href = img;
@@ -927,6 +1071,7 @@
         pdf.save(`${fileName}.pdf`);
         showNotification(`PDF poster for ${topper.name} downloaded!`, 'success');
       }
+      
       hideLoading();
     } catch (error) {
       hideLoading();
@@ -934,6 +1079,7 @@
       showNotification("Error generating poster. Please try again.", 'error');
     }
   }
+
   function clearAllPhotos() {
     if (confirm("Are you sure you want to clear all uploaded photos? This action cannot be undone.")) {
       classesData.forEach((cls, classIndex) => {
