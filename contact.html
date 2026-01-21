@@ -4,762 +4,106 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DSAC | Contact</title>
-
-  <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
-  <!-- STANDARD CSS -->
   <style>
-    /* ===== CSS VARIABLES ===== */
-    :root {
-      --islamic-green: #0a5c36;
-      --islamic-gold: #c19a3f;
-      --islamic-cream: #f8f3e6;
-      --islamic-light: #e9f5e9;
-      --dark-green: #064e3b;
-      --light-gold: #ffd24d;
-      --transition: all 0.3s ease;
-    }
-
-    /* ===== BASE STYLES ===== */
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--islamic-cream);
-      color: #333;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-      padding-top: 80px;
-    }
-    
-    a {
-      text-decoration: none;
-    }
-
-    .arabic-font {
-      font-family: 'Scheherazade New', serif;
-    }
-
-    .malayalam-font {
-      font-family: 'Anek Malayalam', sans-serif;
-    }
-
-    /* ===== PATTERN BACKGROUND ===== */
-    .pattern-bg {
-      background-image: 
-        radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px),
-        radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px);
-      background-size: 50px 50px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-
-    /* ===== STANDARD NAVBAR ===== */
-    .navbar-optimized {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      border-bottom: 3px solid var(--islamic-gold);
-      transition: var(--transition);
-      padding: 0.5rem 0;
-      height: 80px;
-      z-index: 1030 !important;
-    }
-    
-    .navbar-toggler {
-      border-color: rgba(255, 255, 255, 0.5);
-    }
-    
-    .navbar-toggler:focus {
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-    }
-
-    .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-    }
-
-    .navbar-optimized.scrolled {
-      background: rgba(10, 92, 54, 0.98);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-      height: 70px;
-    }
-
-    /* LOGO */
-    .navbar-brand-compact img {
-      border-radius: 8px;
-      transition: transform 0.3s ease;
-      width: 60px;
-      height: 60px;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-      border: none;
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-      padding: 0;
-    }
-
-    .navbar-optimized.scrolled .navbar-brand-compact img {
-      width: 50px;
-      height: 50px;
-      filter: brightness(0) invert(1);
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-    }
-
-    .navbar-brand-compact:hover img {
-      transform: scale(1.05);
-    }
-
-    .brand-text {
-      font-size: 1.2rem;
-      line-height: 1.2;
-    }
-
-    .brand-subtext {
-      font-size: 0.8rem;
-      opacity: 0.9;
-    }
-
-    .nav-link-optimized {
-      color: #fff !important;
-      font-weight: 500;
-      transition: var(--transition);
-      padding-left: 0.4rem;
-      padding-right: 0.4rem;
-      border-radius: 5px;
-      margin: 0 2px;
-      white-space: nowrap;
-    }
-    
-    .nav-item-optimized {
-      margin: 0 2px;
-    }
-
-    .nav-link-optimized:hover {
-      color: var(--islamic-gold) !important;
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* Navbar dropdown */
-    .dropdown-menu-optimized {
-      background: var(--islamic-green);
-      border: 1px solid var(--islamic-gold);
-      border-radius: 8px;
-      padding: 0.5rem 0;
-    }
-
-    .dropdown-item-optimized {
-      color: white;
-      padding: 0.5rem 1rem;
-      transition: var(--transition);
-    }
-
-    .dropdown-item-optimized:hover {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    /* ===== STANDARD PAGE HEADER ===== */
-    .page-header {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      color: white;
-      height: 30vh;
-      min-height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      margin-bottom: 3rem;
-      border-bottom: 5px solid var(--islamic-gold);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .page-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
-    }
-    
-    .page-header-content {
-      position: relative;
-      z-index: 2;
-    }
-    
-    .page-title {
-      font-family: 'Scheherazade New', serif;
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--islamic-gold);
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    }
-    
-    .page-subtitle {
-      font-size: 1.4rem;
-      opacity: 0.95;
-      max-width: 800px;
-      margin: 0 auto;
-      color: var(--islamic-cream);
-    }
-
-    /* ===== STANDARD CONTENT SECTION ===== */
-    .content-section {
-      padding: 4rem 0;
-      background: var(--islamic-cream);
-    }
-    
-    .section-header {
-      text-align: center;
-      margin-bottom: 3rem;
-      position: relative;
-      padding: 2rem 0;
-    }
-
-    .section-title {
-      color: var(--islamic-green);
-      font-weight: 700;
-      display: inline-block;
-      padding: 0 1rem;
-      background: var(--islamic-cream);
-      position: relative;
-      z-index: 2;
-      margin-bottom: 0.5rem;
-      font-size: 2.5rem;
-    }
-
-    .section-header::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent);
-      z-index: 1;
-    }
-    
-    .section-subtitle {
-      color: #666;
-      font-size: 1.1rem;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    /* ===== STANDARD BUTTONS ===== */
-    .btn-gold {
-      background: linear-gradient(135deg, var(--islamic-gold), #d4af37);
-      border: none;
-      color: var(--islamic-green);
-      font-weight: 600;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3);
-      transition: var(--transition);
-      padding: 0.75rem 1.5rem;
-    }
-
-    .btn-gold:hover {
-      background: linear-gradient(135deg, #d4af37, var(--islamic-gold));
-      box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4);
-      transform: translateY(-2px);
-      color: var(--islamic-green);
-    }
-
-    .btn-outline-gold {
-      border: 2px solid var(--islamic-gold);
-      color: var(--islamic-gold);
-      background: transparent;
-      border-radius: 8px;
-      padding: 0.75rem 1.5rem;
-      font-weight: 600;
-      transition: var(--transition);
-    }
-
-    .btn-outline-gold:hover {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    /* ===== STANDARD CARDS ===== */
-    .islamic-card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      transition: var(--transition);
-      border: 3px solid transparent;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      height: 100%;
-      margin-bottom: 1rem;
-    }
-
-    .islamic-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--islamic-gold);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    }
-    
-    .islamic-card-header {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      color: white;
-      padding: 1.5rem;
-      text-align: center;
-      border-bottom: 3px solid var(--islamic-gold);
-    }
-    
-    .islamic-card-body {
-      padding: 1.5rem;
-    }
-
-    /* ===== CONTACT PAGE SPECIFIC STYLES ===== */
-    .contact-card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      transition: var(--transition);
-      border: 2px solid transparent;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      height: 100%;
-      padding: 2rem;
-    }
-
-    .contact-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--islamic-gold);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    }
-
-    .contact-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      color: var(--islamic-gold);
-      font-size: 1.5rem;
-      border: 3px solid var(--islamic-gold);
-    }
-
-    .contact-info h4 {
-      color: var(--islamic-green);
-      margin-bottom: 1rem;
-      font-size: 1.3rem;
-    }
-
-    .contact-info p {
-      color: #666;
-      margin-bottom: 0.5rem;
-    }
-
-    .contact-info a {
-      color: var(--islamic-green);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .contact-info a:hover {
-      color: var(--islamic-gold);
-    }
-
-    /* Form Styles */
-    .form-control {
-      background: white;
-      border: 2px solid #e9ecef;
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      transition: var(--transition);
-      color: #333;
-    }
-
-    .form-control:focus {
-      border-color: var(--islamic-gold);
-      box-shadow: 0 0 0 0.2rem rgba(193, 154, 63, 0.25);
-    }
-
-    .form-label {
-      color: var(--islamic-green);
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    /* Map Container */
-    .map-container {
-      border-radius: 15px;
-      overflow: hidden;
-      border: 3px solid var(--islamic-gold);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      height: 400px;
-      margin-bottom: 1.5rem;
-    }
-
-    .map-container iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .quick-info-box {
-      background: white;
-      border-radius: 15px;
-      padding: 1.5rem;
-      border: 2px solid var(--islamic-gold);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      height: 600px;
-      overflow-y: auto;
-    }
-
-    .quick-info-box h3 {
-      color: var(--islamic-green);
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      text-align: center;
-      padding-bottom: 0.75rem;
-      border-bottom: 2px solid rgba(193, 154, 63, 0.3);
-    }
-
-    .quick-info-item {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 1rem;
-      padding: 0.5rem 0;
-    }
-
-    .quick-info-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .quick-info-icon {
-      flex-shrink: 0;
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      background: rgba(10, 92, 54, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--islamic-gold);
-      margin-right: 0.75rem;
-      margin-top: 0.25rem;
-    }
-
-    .quick-info-content h6 {
-      color: var(--islamic-green);
-      font-size: 0.95rem;
-      margin-bottom: 0.25rem;
-      font-weight: 600;
-    }
-
-    .quick-info-content p {
-      color: #666;
-      font-size: 0.85rem;
-      margin-bottom: 0;
-      line-height: 1.4;
-    }
-
-    /* Social Links */
-    .contact-social-links {
-      display: flex;
-      gap: 10px;
-      margin-top: 1.5rem;
-      justify-content: center;
-    }
-
-    .contact-social-links a {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-decoration: none;
-      transition: var(--transition);
-      font-size: 1.1rem;
-    }
-
-    .contact-social-links a:hover {
-      transform: translateY(-5px) scale(1.1);
-    }
-
-    .whatsapp-bg { background: #25D366; }
-    .email-bg { background: var(--islamic-gold); }
-    .facebook-bg { background: #1877F2; }
-    .instagram-bg { background: #E1306C; }
-    .youtube-bg { background: #FF0000; }
-
-    /* Alert Styles */
-    .alert {
-      border-radius: 8px;
-      padding: 1rem;
-      margin-top: 1rem;
-      border: none;
-    }
-
-    .alert-success {
-      background: rgba(10, 92, 54, 0.1);
-      color: var(--islamic-green);
-      border-left: 4px solid var(--islamic-green);
-    }
-
-    .alert-danger {
-      background: rgba(220, 53, 69, 0.1);
-      color: #dc3545;
-      border-left: 4px solid #dc3545;
-    }
-
-    .alert-info {
-      background: rgba(13, 202, 240, 0.1);
-      color: #0dcaf0;
-      border-left: 4px solid #0dcaf0;
-    }
-
-    /* Working Hours */
-    .hours-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .hours-list li {
-      padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .hours-list li:last-child {
-      border-bottom: none;
-    }
-
-    /* ===== STANDARD FOOTER ===== */
-    .footer {
-      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
-      border-top: 3px solid var(--islamic-gold);
-      padding: 3rem 0 1.5rem;
-      color: white;
-    }
-
-    .footer-brand {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--islamic-gold);
-      margin-bottom: 1rem;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 12px;
-      margin-top: 1rem;
-    }
-
-    .social-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-decoration: none;
-      transition: var(--transition);
-      background: rgba(255, 255, 255, 0.1);
-      font-size: 1.1rem;
-    }
-
-    .social-icon:hover {
-      transform: translateY(-5px);
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    .footer-links h5 {
-      color: var(--islamic-gold);
-      margin-bottom: 1.2rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-
-    .footer-links a {
-      display: block;
-      color: rgba(255, 255, 255, 0.85);
-      text-decoration: none;
-      margin-bottom: 0.6rem;
-      transition: var(--transition);
-      font-size: 0.95rem;
-    }
-
-    .footer-links a:hover {
-      color: var(--islamic-gold);
-      padding-left: 5px;
-    }
-
-    /* ===== WHATSAPP BUTTON ===== */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 25px;
-      right: 15px;
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #25D366, #128C7E);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
-      z-index: 1000;
-      animation: float 3s ease-in-out infinite;
-      transition: var(--transition);
-      text-decoration: none;
-    }
-
-    .whatsapp-float:hover {
-      transform: scale(1.1) rotate(10deg);
-      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-
-    /* ===== ISLAMIC ORNAMENTS ===== */
-    .islamic-ornament {
-      position: fixed;
-      color: var(--islamic-gold);
-      opacity: 0.08;
-      font-size: 1.8rem;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .ornament-1 {
-      top: 20%;
-      left: 5%;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .ornament-2 {
-      top: 60%;
-      right: 5%;
-      animation: float 8s ease-in-out infinite reverse;
-    }
-
-    .ornament-3 {
-      bottom: 20%;
-      left: 10%;
-      animation: float 7s ease-in-out infinite;
-    }
-
-    /* ===== MOBILE RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      body {
-        padding-top: 70px !important;
-      }
-      
-      .navbar-optimized {
-        height: 70px;
-        padding: 0.3rem 0;
-      }
-      
-      .page-header {
-        height: 26vh;
-        min-height: 180px;
-      }
-      
-      .page-title {
-        font-size: 2.2rem;
-      }
-      
-      .page-subtitle {
-        font-size: 1.1rem;
-      }
-      
-      .content-section {
-        padding: 2.5rem 0;
-      }
-      
-      .section-title {
-        font-size: 1.8rem;
-      }
-      
-      .navbar-collapse {
-        background: var(--dark-green);
-        padding: 1rem;
-        border-radius: 0 0 10px 10px;
-        border: 1px solid var(--islamic-gold);
-        margin-top: 0px;
-        max-height: 70vh;
-        overflow-y: auto;
-      }
-      
-      .contact-card {
-        padding: 1.5rem;
-      }
-      
-      .map-container {
-        height: 300px;
-      }
-      
-      .quick-info-box {
-        height: 600px;
-        overflow-y: auto;
-        padding: 1rem;
-      }
-      
-      .quick-info-box h3 {
-        font-size: 1.3rem;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .page-title {
-        font-size: 1.8rem;
-      }
-      
-      .section-title {
-        font-size: 1.5rem;
-      }
-      
-      .quick-info-item {
-        flex-direction: column;
-        text-align: center;
-      }
-      
-      .quick-info-icon {
-        margin-right: 0;
-        margin-bottom: 0.5rem;
-        align-self: center;
-      }
-    }
+    :root {--islamic-green:#0a5c36; --islamic-gold:#c19a3f; --islamic-cream:#f8f3e6; --islamic-light:#e9f5e9; --dark-green:#064e3b; --transition:all 0.3s ease;}
+    body {font-family:'Poppins',sans-serif; background-color:var(--islamic-cream); color:#333; scroll-behavior:smooth; overflow-x:hidden; padding-top:80px;}
+    a {text-decoration:none;}
+    .arabic-font {font-family:'Scheherazade New',serif;}
+    .malayalam-font {font-family:'Anek Malayalam',sans-serif;}
+    .pattern-bg {background-image:radial-gradient(circle at 25% 25%,rgba(10,92,54,0.03) 2px,transparent 2px),radial-gradient(circle at 75% 75%,rgba(193,154,63,0.03) 2px,transparent 2px); background-size:50px 50px; position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1;}
+    .navbar-optimized {background:linear-gradient(135deg,var(--islamic-green),var(--dark-green)); border-bottom:3px solid var(--islamic-gold); transition:var(--transition); padding:0.5rem 0; height:80px; z-index:1030 !important;}
+    .navbar-toggler {border-color:rgba(255,255,255,0.5);}
+    .navbar-toggler:focus {box-shadow:0 0 0 2px var(--islamic-gold);}
+    .navbar-toggler-icon {background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");}
+    .navbar-optimized.scrolled {background:rgba(10,92,54,0.98); box-shadow:0 5px 20px rgba(0,0,0,0.1); height:70px;}
+    .navbar-brand-compact img {border-radius:8px; transition:transform 0.3s ease; width:60px; height:60px; object-fit:contain; filter:brightness(0) invert(1); border:none; box-shadow:0 0 0 2px var(--islamic-gold); padding:0;}
+    .navbar-optimized.scrolled .navbar-brand-compact img {width:50px; height:50px;}
+    .navbar-brand-compact:hover img {transform:scale(1.05);}
+    .brand-text {font-size:1.2rem; line-height:1.2;}
+    .brand-subtext {font-size:0.8rem; opacity:0.9;}
+    .nav-link-optimized {color:#fff !important; font-weight:500; transition:var(--transition); padding-left:0.4rem; padding-right:0.4rem; border-radius:5px; margin:0 2px; white-space:nowrap;}
+    .nav-item-optimized {margin:0 2px;}
+    .nav-link-optimized:hover {color:var(--islamic-gold) !important; background:rgba(255,255,255,0.1);}
+    .dropdown-menu-optimized {background:var(--islamic-green); border:1px solid var(--islamic-gold); border-radius:8px; padding:0.5rem 0;}
+    .dropdown-item-optimized {color:white; padding:0.5rem 1rem; transition:var(--transition);}
+    .dropdown-item-optimized:hover {background:var(--islamic-gold); color:var(--islamic-green);}
+    .page-header {background:linear-gradient(135deg,var(--islamic-green),var(--dark-green)); color:white; height:30vh; min-height:220px; display:flex; align-items:center; justify-content:center; text-align:center; margin-bottom:3rem; border-bottom:5px solid var(--islamic-gold); position:relative; overflow:hidden;}
+    .page-header::before {content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:radial-gradient(circle at 20% 30%,rgba(193,154,63,0.1) 0%,transparent 50%),radial-gradient(circle at 80% 70%,rgba(10,92,54,0.1) 0%,transparent 50%);}
+    .page-header-content {position:relative; z-index:2;}
+    .page-title {font-family:'Scheherazade New',serif; font-size:3.5rem; font-weight:700; margin-bottom:1rem; color:var(--islamic-gold); text-shadow:0 2px 4px rgba(0,0,0,0.3);}
+    .page-subtitle {font-size:1.4rem; opacity:0.95; max-width:800px; margin:0 auto; color:var(--islamic-cream);}
+    .content-section {padding:4rem 0; background:var(--islamic-cream);}
+    .section-header {text-align:center; margin-bottom:3rem; position:relative; padding:2rem 0;}
+    .section-title {color:var(--islamic-green); font-weight:700; display:inline-block; padding:0 1rem; background:var(--islamic-cream); position:relative; z-index:2; margin-bottom:0.5rem; font-size:2.5rem;}
+    .section-header::before {content:''; position:absolute; top:50%; left:0; right:0; height:3px; background:linear-gradient(90deg,transparent,var(--islamic-gold),transparent); z-index:1;}
+    .section-subtitle {color:#666; font-size:1.1rem; max-width:700px; margin:0 auto;}
+    .btn-gold {background:linear-gradient(135deg,var(--islamic-gold),#d4af37); border:none; color:var(--islamic-green); font-weight:600; border-radius:8px; box-shadow:0 4px 15px rgba(193,154,63,0.3); transition:var(--transition); padding:0.75rem 1.5rem;}
+    .btn-gold:hover {background:linear-gradient(135deg,#d4af37,var(--islamic-gold)); box-shadow:0 6px 20px rgba(193,154,63,0.4); transform:translateY(-2px); color:var(--islamic-green);}
+    .btn-outline-gold {border:2px solid var(--islamic-gold); color:var(--islamic-gold); background:transparent; border-radius:8px; padding:0.75rem 1.5rem; font-weight:600; transition:var(--transition);}
+    .btn-outline-gold:hover {background:var(--islamic-gold); color:var(--islamic-green);}
+    .contact-card {background:white; border-radius:15px; overflow:hidden; transition:var(--transition); border:2px solid transparent; box-shadow:0 5px 15px rgba(0,0,0,0.08); height:100%; padding:2rem;}
+    .contact-card:hover {transform:translateY(-5px); border-color:var(--islamic-gold); box-shadow:0 15px 30px rgba(0,0,0,0.15);}
+    .contact-icon {width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg,var(--islamic-green),var(--dark-green)); display:flex; align-items:center; justify-content:center; margin:0 auto 1.5rem; color:var(--islamic-gold); font-size:1.5rem; border:3px solid var(--islamic-gold);}
+    .contact-info h4 {color:var(--islamic-green); margin-bottom:1rem; font-size:1.3rem;}
+    .contact-info p {color:#666; margin-bottom:0.5rem;}
+    .contact-info a {color:var(--islamic-green); text-decoration:none; transition:var(--transition);}
+    .contact-info a:hover {color:var(--islamic-gold);}
+    .form-control {background:white; border:2px solid #e9ecef; border-radius:8px; padding:0.75rem 1rem; transition:var(--transition); color:#333;}
+    .form-control:focus {border-color:var(--islamic-gold); box-shadow:0 0 0 0.2rem rgba(193,154,63,0.25);}
+    .form-label {color:var(--islamic-green); font-weight:600; margin-bottom:0.5rem;}
+    .map-container {border-radius:15px; overflow:hidden; border:3px solid var(--islamic-gold); box-shadow:0 10px 30px rgba(0,0,0,0.1); height:400px; margin-bottom:1.5rem;}
+    .map-container iframe {width:100%; height:100%; border:none;}
+    .quick-info-box {background:white; border-radius:15px; padding:1.5rem; border:2px solid var(--islamic-gold); box-shadow:0 5px 15px rgba(0,0,0,0.08); height:600px; overflow-y:auto;}
+    .quick-info-box h3 {color:var(--islamic-green); font-size:1.5rem; margin-bottom:1.5rem; text-align:center; padding-bottom:0.75rem; border-bottom:2px solid rgba(193,154,63,0.3);}
+    .quick-info-item {display:flex; align-items:flex-start; margin-bottom:1rem; padding:0.5rem 0;}
+    .quick-info-item:last-child {margin-bottom:0;}
+    .quick-info-icon {flex-shrink:0; width:35px; height:35px; border-radius:50%; background:rgba(10,92,54,0.1); display:flex; align-items:center; justify-content:center; color:var(--islamic-gold); margin-right:0.75rem; margin-top:0.25rem;}
+    .quick-info-content h6 {color:var(--islamic-green); font-size:0.95rem; margin-bottom:0.25rem; font-weight:600;}
+    .quick-info-content p {color:#666; font-size:0.85rem; margin-bottom:0; line-height:1.4;}
+    .contact-social-links {display:flex; gap:10px; margin-top:1.5rem; justify-content:center;}
+    .contact-social-links a {width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; text-decoration:none; transition:var(--transition); font-size:1.1rem;}
+    .contact-social-links a:hover {transform:translateY(-5px) scale(1.1);}
+    .whatsapp-bg {background:#25D366;}
+    .email-bg {background:var(--islamic-gold);}
+    .facebook-bg {background:#1877F2;}
+    .instagram-bg {background:#E1306C;}
+    .youtube-bg {background:#FF0000;}
+    .alert {border-radius:8px; padding:1rem; margin-top:1rem; border:none;}
+    .alert-success {background:rgba(10,92,54,0.1); color:var(--islamic-green); border-left:4px solid var(--islamic-green);}
+    .alert-danger {background:rgba(220,53,69,0.1); color:#dc3545; border-left:4px solid #dc3545;}
+    .hours-list {list-style:none; padding:0;}
+    .hours-list li {padding:0.5rem 0; border-bottom:1px solid rgba(0,0,0,0.1); display:flex; justify-content:space-between;}
+    .hours-list li:last-child {border-bottom:none;}
+    .footer {background:linear-gradient(135deg,var(--dark-green),var(--islamic-green)); border-top:3px solid var(--islamic-gold); padding:3rem 0 1.5rem; color:white;}
+    .footer-brand {font-size:1.8rem; font-weight:700; color:var(--islamic-gold); margin-bottom:1rem;}
+    .social-links {display:flex; gap:12px; margin-top:1rem;}
+    .social-icon {width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; text-decoration:none; transition:var(--transition); background:rgba(255,255,255,0.1); font-size:1.1rem;}
+    .social-icon:hover {transform:translateY(-5px); background:var(--islamic-gold); color:var(--islamic-green);}
+    .footer-links h5 {color:var(--islamic-gold); margin-bottom:1.2rem; font-size:1.1rem; font-weight:600;}
+    .footer-links a {display:block; color:rgba(255,255,255,0.85); text-decoration:none; margin-bottom:0.6rem; transition:var(--transition); font-size:0.95rem;}
+    .footer-links a:hover {color:var(--islamic-gold); padding-left:5px;}
+    .whatsapp-float {position:fixed; bottom:25px; right:15px; width:60px; height:60px; background:linear-gradient(135deg,#25D366,#128C7E); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.6rem; box-shadow:0 10px 25px rgba(37,211,102,0.3); z-index:1000; animation:float 3s ease-in-out infinite; transition:var(--transition); text-decoration:none;}
+    .whatsapp-float:hover {transform:scale(1.1) rotate(10deg); box-shadow:0 15px 30px rgba(37,211,102,0.4);}
+    @keyframes float {0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);}}
+    .islamic-ornament {position:fixed; color:var(--islamic-gold); opacity:0.08; font-size:1.8rem; z-index:-1; pointer-events:none;}
+    .ornament-1 {top:20%; left:5%; animation:float 6s ease-in-out infinite;}
+    .ornament-2 {top:60%; right:5%; animation:float 8s ease-in-out infinite reverse;}
+    .ornament-3 {bottom:20%; left:10%; animation:float 7s ease-in-out infinite;}
+    @media (max-width:768px) {body{padding-top:70px !important;} .navbar-optimized{height:70px;padding:0.3rem 0;} .page-header{height:26vh;min-height:180px;} .page-title{font-size:2.2rem;} .page-subtitle{font-size:1.1rem;} .content-section{padding:2.5rem 0;} .section-title{font-size:1.8rem;} .navbar-collapse{background:var(--dark-green);padding:1rem;border-radius:0 0 10px 10px;border:1px solid var(--islamic-gold);margin-top:0px;max-height:70vh;overflow-y:auto;} .contact-card{padding:1.5rem;} .map-container{height:300px;} .quick-info-box{height:600px;overflow-y:auto;padding:1rem;} .quick-info-box h3{font-size:1.3rem;}}
+    @media (max-width:576px) {.page-title{font-size:1.8rem;} .section-title{font-size:1.5rem;} .quick-info-item{flex-direction:column;text-align:center;} .quick-info-icon{margin-right:0;margin-bottom:0.5rem;align-self:center;}}
   </style>
 </head>
 <body>
-
-<!-- Floating Islamic Ornaments -->
 <div class="islamic-ornament ornament-1">✸</div>
 <div class="islamic-ornament ornament-2">✸</div>
 <div class="islamic-ornament ornament-3">✸</div>
-
-<!-- STANDARD NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-optimized fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand d-flex align-items-center navbar-brand-compact" href="index.html">
@@ -769,27 +113,15 @@
         <small class="text-light brand-subtext">Karuvarakundu</small>
       </div>
     </a>
- 
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
-            aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarContent">
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
- 
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav ms-auto nav-container">
-        <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized" href="index.html">Home</a>
-        </li>
-        <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized" href="founder.html">Founder</a>
-        </li>
-     
-        <!-- Board Dropdown -->
+        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="index.html">Home</a></li>
+        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="founder.html">Founder</a></li>
         <li class="nav-item dropdown nav-item-optimized">
-          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" 
-             aria-haspopup="true" aria-expanded="false">
-            Board
-          </a>
+          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Board</a>
           <ul class="dropdown-menu dropdown-menu-optimized">
             <li><a class="dropdown-item dropdown-item-optimized" href="management.html">Management</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="faculties.html">Faculty</a></li>
@@ -798,48 +130,25 @@
             <li><a class="dropdown-item dropdown-item-optimized" href="students-union.html">Students Union</a></li>
           </ul>
         </li>
-     
-        <!-- Student Zone Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
-          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-            Student Zone
-          </a>
+          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Student Zone</a>
           <ul class="dropdown-menu dropdown-menu-optimized">
             <li><a class="dropdown-item dropdown-item-optimized" href="idcard.html">ID Card</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="result.html">Exam Results</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="fest.html">Fest Score</a></li>
           </ul>
         </li>
-     
-        <!-- Other Items -->
-        <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized" href="https://jamianooriya.in/">Jamia</a>
-        </li>
-        <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized" href="downloads.html">Downloads</a>
-        </li>
-        <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized" href="gallery.html">Gallery</a>
-        </li>
-        <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized" href="library.html">Library</a>
-        </li>
-        <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized" href="admission.html">Admission</a>
-        </li>
-        <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized" href="test.html">Test</a>
-        </li>
-        <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized" href="contact.html">Contact</a>
-        </li>
+        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="https://jamianooriya.in/">Jamia</a></li>
+        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="downloads.html">Downloads</a></li>
+        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="gallery.html">Gallery</a></li>
+        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="library.html">Library</a></li>
+        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="admission.html">Admission</a></li>
+        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="test.html">Test</a></li>
+        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="contact.html">Contact</a></li>
       </ul>
     </div>
   </div>
 </nav>
-
-<!-- PAGE HEADER -->
 <div class="page-header">
   <div class="container">
     <div class="page-header-content">
@@ -847,53 +156,31 @@
     </div>
   </div>
 </div>
-
-<!-- MAIN CONTENT -->
 <section class="content-section">
   <div class="container">
-    <!-- Contact Information Cards -->
     <div class="row g-4 mb-5">
       <div class="col-md-4" data-aos="fade-up">
         <div class="contact-card text-center">
-          <div class="contact-icon">
-            <i class="fas fa-map-marker-alt"></i>
-          </div>
+          <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
           <div class="contact-info">
             <h4>Our Location</h4>
-            <p>
-              Darunnajath Shareeath & Arts College<br>
-              Punnakkad, Karuvarakundu<br>
-              Malappuram District, Kerala<br>
-              PIN: 676523
-            </p>
+            <p>Darunnajath Shareeath & Arts College<br>Punnakkad, Karuvarakundu<br>Malappuram District, Kerala<br>PIN: 676523</p>
           </div>
         </div>
       </div>
-      
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
         <div class="contact-card text-center">
-          <div class="contact-icon">
-            <i class="fas fa-phone"></i>
-          </div>
+          <div class="contact-icon"><i class="fas fa-phone"></i></div>
           <div class="contact-info">
             <h4>Phone & Email</h4>
-            <p>
-              <strong>Phone:</strong><br>
-              <a href="tel:+919048020243">+91 90480 20243</a>
-            </p>
-            <p>
-              <strong>Email:</strong><br>
-              <a href="mailto:najathshareea@gmail.com">najathshareea@gmail.com</a>
-            </p>
+            <p><strong>Phone:</strong><br><a href="tel:+919048020243">+91 90480 20243</a></p>
+            <p><strong>Email:</strong><br><a href="mailto:najathshareea@gmail.com">najathshareea@gmail.com</a></p>
           </div>
         </div>
       </div>
-      
       <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
         <div class="contact-card text-center">
-          <div class="contact-icon">
-            <i class="fas fa-clock"></i>
-          </div>
+          <div class="contact-icon"><i class="fas fa-clock"></i></div>
           <div class="contact-info">
             <h4>Working Hours</h4>
             <ul class="hours-list">
@@ -905,160 +192,97 @@
         </div>
       </div>
     </div>
-
-    <!-- Contact Form and Map -->
     <div class="row g-5">
-      <!-- Contact Form -->
       <div class="col-lg-6" data-aos="fade-right">
-        <div class="islamic-card p-4">
+        <div class="contact-card p-4">
           <div class="section-header mb-4">
             <h2 class="section-title">Send Us a Message</h2>
             <p class="section-subtitle">Have questions? Fill out the form below and we'll get back to you soon.</p>
           </div>
-          
           <form id="contactForm">
             <div class="mb-3">
               <label for="name" class="form-label">Full Name *</label>
               <input type="text" class="form-control" id="name" name="name" required>
             </div>
-            
             <div class="mb-3">
               <label for="email" class="form-label">Email Address *</label>
               <input type="email" class="form-control" id="email" name="email" required>
             </div>
-            
             <div class="mb-3">
               <label for="phone" class="form-label">Phone Number</label>
               <input type="tel" class="form-control" id="phone" name="phone">
             </div>
-            
             <div class="mb-3">
               <label for="subject" class="form-label">Subject</label>
               <input type="text" class="form-control" id="subject" name="subject">
             </div>
-            
             <div class="mb-4">
               <label for="message" class="form-label">Message *</label>
               <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
             </div>
-            
             <div class="d-grid">
-              <button type="submit" class="btn-gold btn-lg" id="submitBtn">
-                <i class="fas fa-paper-plane me-2"></i>Send Message
-              </button>
+              <button type="submit" class="btn-gold btn-lg" id="submitBtn"><i class="fas fa-paper-plane me-2"></i>Send Message</button>
             </div>
-            
-            <!-- Alert Container -->
             <div id="formAlert" class="alert mt-3 d-none" role="alert"></div>
           </form>
-          
-          <!-- Social Links -->
           <div class="text-center mt-4">
             <p class="text-muted mb-2">Connect with us on social media:</p>
             <div class="contact-social-links">
-              <a href="https://wa.me/919048020243" class="whatsapp-bg" target="_blank" title="WhatsApp">
-                <i class="fab fa-whatsapp"></i>
-              </a>
-              <a href="mailto:najathshareea@gmail.com" class="email-bg" title="Email">
-                <i class="fas fa-envelope"></i>
-              </a>
-              <a href="#" class="facebook-bg" target="_blank" title="Facebook">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="https://www.instagram.com/nissamedia?igsh=MWk3aTJsYzBycHEzNw==" class="instagram-bg" target="_blank" title="Instagram">
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a href="https://www.youtube.com/@nissamedia" class="youtube-bg" target="_blank" title="YouTube">
-                <i class="fab fa-youtube"></i>
-              </a>
+              <a href="https://wa.me/919048020243" class="whatsapp-bg" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+              <a href="mailto:najathshareea@gmail.com" class="email-bg" title="Email"><i class="fas fa-envelope"></i></a>
+              <a href="#" class="facebook-bg" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://www.instagram.com/nissamedia?igsh=MWk3aTJsYzBycHEzNw==" class="instagram-bg" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.youtube.com/@nissamedia" class="youtube-bg" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
             </div>
           </div>
         </div>
       </div>
-      
-      <!-- Map and Quick Information -->
       <div class="col-lg-6" data-aos="fade-left">
-        <!-- Google Map with Correct Location -->
         <div class="map-container">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.248863200616!2d76.3228427!3d11.114692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba62c2905656f4d%3A0x7b677071ca68ea3e!2sK%20T%20Usthad%20Convention%20Centre!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-                  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.248863200616!2d76.3228427!3d11.114692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba62c2905656f4d%3A0x7b677071ca68ea3e!2sK%20T%20Usthad%20Convention%20Centre!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        
-        <!-- RESIZED QUICK INFORMATION BOX -->
         <div class="quick-info-box">
           <h3><i class="fas fa-info-circle me-2"></i>Quick Information</h3>
-          
           <div class="quick-info-item">
-            <div class="quick-info-icon">
-              <i class="fas fa-user-graduate"></i>
-            </div>
+            <div class="quick-info-icon"><i class="fas fa-user-graduate"></i></div>
             <div class="quick-info-content">
               <h6>Admission Queries</h6>
               <p>For admission-related inquiries, we kindly request you to contact the mobile number directly during working hours.</p>
             </div>
           </div>
-          
           <div class="quick-info-item">
-            <div class="quick-info-icon">
-              <i class="fas fa-book"></i>
-            </div>
+            <div class="quick-info-icon"><i class="fas fa-book"></i></div>
             <div class="quick-info-content">
               <h6>Academic Queries</h6>
-              <p>For academic matters and course information, we kindly request you to contact the Principal’s mobile number.</p>
+              <p>For academic matters and course information, we kindly request you to contact the Principal's mobile number.</p>
             </div>
           </div>
-                    
           <div class="text-center mt-4 pt-3 border-top">
-            <a href="tel:+919048020243" class="btn btn-outline-gold me-2 btn-sm">
-              <i class="fas fa-phone me-1"></i> Office
-            </a>
-            <a href="tel:+919744247124" class="btn btn-outline-gold me-2 btn-sm">
-              <i class="fas fa-phone me-1"></i> Principal
-            </a>
-            <a href="https://wa.me/919048020243" class="btn-gold btn-sm" target="_blank">
-              <i class="fab fa-whatsapp me-1"></i> WhatsApp
-            </a>
+            <a href="tel:+919048020243" class="btn btn-outline-gold me-2 btn-sm"><i class="fas fa-phone me-1"></i> Office</a>
+            <a href="tel:+919744247124" class="btn btn-outline-gold me-2 btn-sm"><i class="fas fa-phone me-1"></i> Principal</a>
+            <a href="https://wa.me/919048020243" class="btn-gold btn-sm" target="_blank"><i class="fab fa-whatsapp me-1"></i> WhatsApp</a>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Back to Home Button -->
     <div class="text-center mt-5" data-aos="fade-up">
-      <a href="index.html" class="btn-outline-gold btn-lg px-5">
-        <i class="fas fa-home me-2"></i>Back to Home
-      </a>
+      <a href="index.html" class="btn-outline-gold btn-lg px-5"><i class="fas fa-home me-2"></i>Back to Home</a>
     </div>
   </div>
 </section>
-
-<!-- STANDARD FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="row">
       <div class="col-lg-4 mb-4" data-aos="fade-up">
         <div class="footer-brand">DSAC</div>
-        <p class="text-light opacity-75">
-          Darunnajath Shareeath & Arts College<br>
-          Punnakkad, Karuvarakundu<br>
-          Affiliated to Jamia Nooriyya Arabiyya, Pattikkad
-        </p>
+        <p class="text-light opacity-75">Darunnajath Shareeath & Arts College<br>Punnakkad, Karuvarakundu<br>Affiliated to Jamia Nooriyya Arabiyya, Pattikkad</p>
         <div class="social-links">
-          <a href="https://facebook.com/" class="social-icon" target="_blank" aria-label="Facebook">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="https://instagram.com/" class="social-icon" target="_blank" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="https://x.com/" class="social-icon" target="_blank" aria-label="Twitter">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="https://youtube.com/" class="social-icon" target="_blank" aria-label="YouTube">
-            <i class="fab fa-youtube"></i>
-          </a>
+          <a href="https://facebook.com/" class="social-icon" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com/" class="social-icon" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://x.com/" class="social-icon" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="https://youtube.com/" class="social-icon" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
-   
       <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
         <div class="footer-links">
           <h5>Quick Links</h5>
@@ -1069,7 +293,6 @@
           <a href="contact.html">Contact</a>
         </div>
       </div>
-   
       <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
         <div class="footer-links">
           <h5>Resources</h5>
@@ -1080,7 +303,6 @@
           <a href="pta.html">PTA</a>
         </div>
       </div>
-   
       <div class="col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
         <div class="footer-links">
           <h5>Contact Info</h5>
@@ -1092,180 +314,26 @@
         </div>
       </div>
     </div>
- 
     <div class="text-center pt-4 mt-4 border-top border-light border-opacity-25">
-      <p class="text-light mb-2">
-        © <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.
-      </p>
-      <small class="text-light opacity-75">
-        Hosted by <span>Rafi Wafi</span>
-      </small>
+      <p class="text-light mb-2">© <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.</p>
+      <small class="text-light opacity-75">Hosted by <span>Rafi Wafi</span></small>
     </div>
   </div>
 </footer>
-
-<!-- WHATSAPP BUTTON -->
-<a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!"
-   class="whatsapp-float" target="_blank"
-   title="Chat with us on WhatsApp" aria-label="WhatsApp Chat">
-  <i class="fab fa-whatsapp"></i>
-</a>
-
-<!-- SCRIPTS -->
+<a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp" aria-label="WhatsApp Chat"><i class="fab fa-whatsapp"></i></a>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
 <script>
-  // Initialize AOS
-  AOS.init({
-    duration: 800,
-    once: true,
-    offset: 50,
-    disable: window.innerWidth < 768
-  });
-
-  // Update current year
-  document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-  // Navbar scroll effect
-  window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar-optimized');
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    navbar.classList.toggle('scrolled', scrollTop > 50);
-  });
-
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      if(this.getAttribute('href') !== '#') {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          const offset = window.innerWidth <= 768 ? 70 : 80;
-          window.scrollTo({
-            top: target.offsetTop - offset,
-            behavior: 'smooth'
-          });
-          
-          // Close mobile menu if open
-          const navbarCollapse = document.querySelector('.navbar-collapse');
-          if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
-            bsCollapse.hide();
-          }
-        }
-      }
-    });
-  });
-
-  // Mobile menu close on click
-  document.querySelectorAll('.navbar-nav .nav-link-optimized:not(.dropdown-toggle)').forEach(link => {
-    link.addEventListener('click', () => {
-      const navbarCollapse = document.querySelector('.navbar-collapse');
-      if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-        const bsCollapse = new bootstrap.Collapse(navbarCollapse);
-        bsCollapse.hide();
-      }
-    });
-  });
-
-  // Form submission handling
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const submitBtn = document.getElementById('submitBtn');
-    const originalText = submitBtn.innerHTML;
-    const alertDiv = document.getElementById('formAlert');
-    
-    // Show loading state
-    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Sending...';
-    submitBtn.disabled = true;
-    
-    // Clear previous alerts
-    alertDiv.className = 'alert d-none';
-    alertDiv.textContent = '';
-    
-    // Get form values
-    const formData = new FormData(this);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const message = formData.get('message');
-    
-    // Validation
-    if (!name || !email || !message) {
-      alertDiv.className = 'alert alert-danger';
-      alertDiv.textContent = 'Please fill in all required fields (*).';
-      alertDiv.classList.remove('d-none');
-      
-      submitBtn.innerHTML = originalText;
-      submitBtn.disabled = false;
-      return;
-    }
-    
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      alertDiv.className = 'alert alert-danger';
-      alertDiv.textContent = 'Please enter a valid email address.';
-      alertDiv.classList.remove('d-none');
-      
-      submitBtn.innerHTML = originalText;
-      submitBtn.disabled = false;
-      return;
-    }
-    
-    // Simulate form submission (replace with actual backend integration)
-    setTimeout(() => {
-      alertDiv.className = 'alert alert-success';
-      alertDiv.textContent = 'Thank you! Your message has been sent successfully. We will contact you soon.';
-      alertDiv.classList.remove('d-none');
-      
-      // Reset form
-      document.getElementById('contactForm').reset();
-      
-      submitBtn.innerHTML = originalText;
-      submitBtn.disabled = false;
-      
-      // Scroll to alert
-      alertDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 1500);
-  });
-
-  // WhatsApp message function
-  function sendWhatsAppMessage() {
-    const name = document.getElementById('name').value || '';
-    const message = document.getElementById('message').value || 'Hello, I would like to inquire about the college.';
-    
-    const whatsappMessage = `Hello Darunnajath College,%0A%0AMy name is ${name}.%0A%0A${message}`;
-    window.open(`https://wa.me/919048020243?text=${whatsappMessage}`, '_blank');
-  }
-
-  // Parallax effect for floating ornaments
-  window.addEventListener('scroll', () => {
-    if (window.innerWidth > 768) {
-      const scrolled = window.pageYOffset;
-      const ornaments = document.querySelectorAll('.islamic-ornament');
- 
-      ornaments.forEach((ornament, index) => {
-        const speed = 0.05 * (index + 1);
-        ornament.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.05}deg)`;
-      });
-    }
-  });
-
-  // Initial fade in effect
-  document.addEventListener('DOMContentLoaded', function() {
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.3s ease';
-    setTimeout(() => {
-      document.body.style.opacity = '1';
-    }, 50);
-  });
+  AOS.init({duration:800,once:true,offset:50,disable:window.innerWidth<768});
+  document.getElementById('currentYear').textContent=new Date().getFullYear();
+  window.addEventListener('scroll',function(){const navbar=document.querySelector('.navbar-optimized');const scrollTop=window.pageYOffset||document.documentElement.scrollTop;navbar.classList.toggle('scrolled',scrollTop>50);});
+  document.querySelectorAll('a[href^="#"]').forEach(anchor=>{anchor.addEventListener('click',function(e){if(this.getAttribute('href')!=='#'){e.preventDefault();const target=document.querySelector(this.getAttribute('href'));if(target){const offset=window.innerWidth<=768?70:80;window.scrollTo({top:target.offsetTop-offset,behavior:'smooth'});const navbarCollapse=document.querySelector('.navbar-collapse');if(navbarCollapse&&navbarCollapse.classList.contains('show')){new bootstrap.Collapse(navbarCollapse).hide();}}}});});
+  document.querySelectorAll('.navbar-nav .nav-link-optimized:not(.dropdown-toggle)').forEach(link=>{link.addEventListener('click',()=>{const navbarCollapse=document.querySelector('.navbar-collapse');if(navbarCollapse&&navbarCollapse.classList.contains('show')){new bootstrap.Collapse(navbarCollapse).hide();}});});
+  document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();const submitBtn=document.getElementById('submitBtn');const originalText=submitBtn.innerHTML;const alertDiv=document.getElementById('formAlert');submitBtn.innerHTML='<span class="spinner-border spinner-border-sm me-2"></span> Sending...';submitBtn.disabled=true;alertDiv.className='alert d-none';alertDiv.textContent='';const formData=new FormData(this);const name=formData.get('name');const email=formData.get('email');const message=formData.get('message');if(!name||!email||!message){alertDiv.className='alert alert-danger';alertDiv.textContent='Please fill in all required fields (*).';alertDiv.classList.remove('d-none');submitBtn.innerHTML=originalText;submitBtn.disabled=false;return;}
+    const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;if(!emailRegex.test(email)){alertDiv.className='alert alert-danger';alertDiv.textContent='Please enter a valid email address.';alertDiv.classList.remove('d-none');submitBtn.innerHTML=originalText;submitBtn.disabled=false;return;}
+    setTimeout(()=>{alertDiv.className='alert alert-success';alertDiv.textContent='Thank you! Your message has been sent successfully. We will contact you soon.';alertDiv.classList.remove('d-none');document.getElementById('contactForm').reset();submitBtn.innerHTML=originalText;submitBtn.disabled=false;alertDiv.scrollIntoView({behavior:'smooth',block:'nearest'});},1500);});
+  window.addEventListener('scroll',()=>{if(window.innerWidth>768){const scrolled=window.pageYOffset;const ornaments=document.querySelectorAll('.islamic-ornament');ornaments.forEach((ornament,index)=>{const speed=0.05*(index+1);ornament.style.transform=`translateY(${scrolled*speed}px) rotate(${scrolled*0.05}deg)`;});}});
+  document.addEventListener('DOMContentLoaded',function(){document.body.style.opacity='0';document.body.style.transition='opacity 0.3s ease';setTimeout(()=>{document.body.style.opacity='1';},50);});
 </script>
 </body>
 </html>
-
-
-
-
-
