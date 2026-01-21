@@ -4,609 +4,164 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DSAC | Downloads</title>
-
-  <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
-  <!-- STANDARD CSS -->
   <style>
-    /* ===== CSS VARIABLES ===== */
     :root {
-      --islamic-green: #0a5c36;
-      --islamic-gold: #c19a3f;
-      --islamic-cream: #f8f3e6;
-      --islamic-light: #e9f5e9;
-      --dark-green: #064e3b;
-      --light-gold: #ffd24d;
-      --transition: all 0.3s ease;
+      --islamic-green: #0a5c36; --islamic-gold: #c19a3f; --islamic-cream: #f8f3e6; --dark-green: #064e3b; --transition: all 0.3s ease;
     }
-
-    /* ===== BASE STYLES ===== */
     body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--islamic-cream);
-      color: #333;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-      padding-top: 80px;
+      font-family: 'Poppins', sans-serif; background-color: var(--islamic-cream); color: #333; scroll-behavior: smooth; overflow-x: hidden; padding-top: 80px;
     }
-    
-    a {
-      text-decoration: none;
-    }
-
-    .arabic-font {
-      font-family: 'Scheherazade New', serif;
-    }
-
-    .malayalam-font {
-      font-family: 'Anek Malayalam', sans-serif;
-    }
-
-    /* ===== PATTERN BACKGROUND ===== */
-    .pattern-bg {
-      background-image: 
-        radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px),
-        radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px);
-      background-size: 50px 50px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-
-    /* ===== STANDARD NAVBAR ===== */
+    a {text-decoration: none;}
     .navbar-optimized {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      border-bottom: 3px solid var(--islamic-gold);
-      transition: var(--transition);
-      padding: 0.5rem 0;
-      height: 80px;
-      z-index: 1030 !important;
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-bottom: 3px solid var(--islamic-gold); transition: var(--transition); padding: 0.5rem 0; height: 80px; z-index: 1030;
     }
-    
-    .navbar-toggler {
-      border-color: rgba(255, 255, 255, 0.5);
-    }
-    
-    .navbar-toggler:focus {
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-    }
-
+    .navbar-toggler {border-color: rgba(255, 255, 255, 0.5);}
+    .navbar-toggler:focus {box-shadow: 0 0 0 2px var(--islamic-gold);}
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
-
     .navbar-optimized.scrolled {
-      background: rgba(10, 92, 54, 0.98);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-      height: 70px;
+      background: rgba(10, 92, 54, 0.98); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); height: 70px;
     }
-
-    /* LOGO */
     .navbar-brand-compact img {
-      border-radius: 8px;
-      transition: transform 0.3s ease;
-      width: 60px;
-      height: 60px;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-      border: none;
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-      padding: 0;
+      border-radius: 8px; transition: transform 0.3s ease; width: 60px; height: 60px; object-fit: contain; filter: brightness(0) invert(1); border: none; box-shadow: 0 0 0 2px var(--islamic-gold); padding: 0;
     }
-
-    .navbar-optimized.scrolled .navbar-brand-compact img {
-      width: 50px;
-      height: 50px;
-      filter: brightness(0) invert(1);
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-    }
-
-    .navbar-brand-compact:hover img {
-      transform: scale(1.05);
-    }
-
-    .brand-text {
-      font-size: 1.2rem;
-      line-height: 1.2;
-    }
-
-    .brand-subtext {
-      font-size: 0.8rem;
-      opacity: 0.9;
-    }
-
+    .navbar-optimized.scrolled .navbar-brand-compact img {width: 50px; height: 50px;}
+    .navbar-brand-compact:hover img {transform: scale(1.05);}
+    .brand-text {font-size: 1.2rem; line-height: 1.2;}
+    .brand-subtext {font-size: 0.8rem; opacity: 0.9;}
     .nav-link-optimized {
-      color: #fff !important;
-      font-weight: 500;
-      transition: var(--transition);
-      padding-left: 0.4rem;
-      padding-right: 0.4rem;
-      border-radius: 5px;
-      margin: 0 2px;
-      white-space: nowrap;
+      color: #fff !important; font-weight: 500; transition: var(--transition); padding-left: 0.4rem; padding-right: 0.4rem; border-radius: 5px; margin: 0 2px; white-space: nowrap;
     }
-    
-    .nav-item-optimized {
-      margin: 0 2px;
-    }
-
-    .nav-link-optimized:hover {
-      color: var(--islamic-gold) !important;
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* Navbar dropdown */
+    .nav-item-optimized {margin: 0 2px;}
+    .nav-link-optimized:hover {color: var(--islamic-gold) !important; background: rgba(255, 255, 255, 0.1);}
     .dropdown-menu-optimized {
-      background: var(--islamic-green);
-      border: 1px solid var(--islamic-gold);
-      border-radius: 8px;
-      padding: 0.5rem 0;
+      background: var(--islamic-green); border: 1px solid var(--islamic-gold); border-radius: 8px; padding: 0.5rem 0;
     }
-
     .dropdown-item-optimized {
-      color: white;
-      padding: 0.5rem 1rem;
-      transition: var(--transition);
+      color: white; padding: 0.5rem 1rem; transition: var(--transition);
     }
-
-    .dropdown-item-optimized:hover {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    /* ===== STANDARD PAGE HEADER ===== */
+    .dropdown-item-optimized:hover {background: var(--islamic-gold); color: var(--islamic-green);}
     .page-header {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      color: white;
-      height: 30vh;
-      min-height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      margin-bottom: 3rem;
-      border-bottom: 5px solid var(--islamic-gold);
-      position: relative;
-      overflow: hidden;
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); color: white; height: 30vh; min-height: 220px; display: flex; align-items: center; justify-content: center; text-align: center; margin-bottom: 3rem; border-bottom: 5px solid var(--islamic-gold); position: relative; overflow: hidden;
     }
-
     .page-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
     }
-    
-    .page-header-content {
-      position: relative;
-      z-index: 2;
-    }
-    
+    .page-header-content {position: relative; z-index: 2;}
     .page-title {
-      font-family: 'Scheherazade New', serif;
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--islamic-gold);
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-family: 'Scheherazade New', serif; font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--islamic-gold); text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
-    
     .page-subtitle {
-      font-size: 1.4rem;
-      opacity: 0.95;
-      max-width: 800px;
-      margin: 0 auto;
-      color: var(--islamic-cream);
+      font-size: 1.4rem; opacity: 0.95; max-width: 800px; margin: 0 auto; color: var(--islamic-cream);
     }
-
-    /* ===== STANDARD CONTENT SECTION ===== */
-    .content-section {
-      padding: 4rem 0;
-      background: var(--islamic-cream);
-    }
-    
+    .content-section {padding: 4rem 0; background: var(--islamic-cream);}
     .section-header {
-      text-align: center;
-      margin-bottom: 3rem;
-      position: relative;
-      padding: 2rem 0;
+      text-align: center; margin-bottom: 3rem; position: relative; padding: 2rem 0;
     }
-
     .section-title {
-      color: var(--islamic-green);
-      font-weight: 700;
-      display: inline-block;
-      padding: 0 1rem;
-      background: var(--islamic-cream);
-      position: relative;
-      z-index: 2;
-      margin-bottom: 0.5rem;
-      font-size: 2.5rem;
+      color: var(--islamic-green); font-weight: 700; display: inline-block; padding: 0 1rem; background: var(--islamic-cream); position: relative; z-index: 2; margin-bottom: 0.5rem; font-size: 2.5rem;
     }
-
     .section-header::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent);
-      z-index: 1;
+      content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent); z-index: 1;
     }
-    
-    .section-subtitle {
-      color: #666;
-      font-size: 1.1rem;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    /* ===== STANDARD BUTTONS ===== */
+    .section-subtitle {color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;}
     .btn-gold {
-      background: linear-gradient(135deg, var(--islamic-gold), #d4af37);
-      border: none;
-      color: var(--islamic-green);
-      font-weight: 600;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3);
-      transition: var(--transition);
-      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--islamic-gold), #d4af37); border: none; color: var(--islamic-green); font-weight: 600; border-radius: 8px; box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3); transition: var(--transition); padding: 0.75rem 1.5rem;
     }
-
     .btn-gold:hover {
-      background: linear-gradient(135deg, #d4af37, var(--islamic-gold));
-      box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4);
-      transform: translateY(-2px);
-      color: var(--islamic-green);
+      background: linear-gradient(135deg, #d4af37, var(--islamic-gold)); box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4); transform: translateY(-2px); color: var(--islamic-green);
     }
-
     .btn-outline-gold {
-      border: 2px solid var(--islamic-gold);
-      color: var(--islamic-gold);
-      background: transparent;
-      border-radius: 8px;
-      padding: 0.75rem 1.5rem;
-      font-weight: 600;
-      transition: var(--transition);
+      border: 2px solid var(--islamic-gold); color: var(--islamic-gold); background: transparent; border-radius: 8px; padding: 0.75rem 1.5rem; font-weight: 600; transition: var(--transition);
     }
-
-    .btn-outline-gold:hover {
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    /* ===== DOWNLOADS SPECIFIC STYLES ===== */
+    .btn-outline-gold:hover {background: var(--islamic-gold); color: var(--islamic-green);}
     .download-card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      transition: var(--transition);
-      border: 2px solid transparent;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      height: 100%;
-      position: relative;
+      background: white; border-radius: 15px; overflow: hidden; transition: var(--transition); border: 2px solid transparent; box-shadow: 0 5px 15px rgba(0,0,0,0.08); height: 100%; position: relative;
     }
-
-    .download-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--islamic-gold);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    }
-
+    .download-card:hover {transform: translateY(-8px); border-color: var(--islamic-gold); box-shadow: 0 15px 30px rgba(0,0,0,0.15);}
     .download-icon-wrapper {
-      width: 80px;
-      height: 80px;
-      background: linear-gradient(135deg, rgba(10, 92, 54, 0.1), rgba(193, 154, 63, 0.05));
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
+      width: 80px; height: 80px; background: linear-gradient(135deg, rgba(10, 92, 54, 0.1), rgba(193, 154, 63, 0.05)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;
     }
-
-    .download-icon {
-      font-size: 2.5rem;
-      color: var(--islamic-green);
-    }
-
+    .download-icon {font-size: 2.5rem; color: var(--islamic-green);}
     .file-info {
-      background: rgba(10, 92, 54, 0.05);
-      border-radius: 10px;
-      padding: 1rem;
-      margin: 1.5rem 0;
-      font-size: 0.9rem;
+      background: rgba(10, 92, 54, 0.05); border-radius: 10px; padding: 1rem; margin: 1.5rem 0; font-size: 0.9rem;
     }
-
-    .file-info i {
-      color: var(--islamic-gold);
-      margin-right: 5px;
-    }
-
+    .file-info i {color: var(--islamic-gold); margin-right: 5px;}
     .search-box {
-      background: white;
-      border: 2px solid var(--islamic-gold);
-      border-radius: 50px;
-      padding: 0.75rem 1.5rem;
-      transition: var(--transition);
+      background: white; border: 2px solid var(--islamic-gold); border-radius: 50px; padding: 0.75rem 1.5rem; transition: var(--transition);
     }
-
-    .search-box:focus-within {
-      box-shadow: 0 0 20px rgba(193, 154, 63, 0.3);
-    }
-
-    .search-box input {
-      border: none;
-      outline: none;
-      width: 100%;
-      background: transparent;
-    }
-
+    .search-box:focus-within {box-shadow: 0 0 20px rgba(193, 154, 63, 0.3);}
+    .search-box input {border: none; outline: none; width: 100%; background: transparent;}
     .category-badge {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      margin: 0.25rem;
+      display: inline-block; padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.8rem; font-weight: 500; margin: 0.25rem;
     }
-
     .badge-forms { background: rgba(10, 92, 54, 0.1); color: var(--islamic-green); }
     .badge-applications { background: rgba(193, 154, 63, 0.1); color: var(--islamic-gold); }
     .badge-documents { background: rgba(102, 16, 242, 0.1); color: #6610f2; }
-
     .stats-card {
-      background: white;
-      border-radius: 15px;
-      padding: 2rem;
-      text-align: center;
-      transition: var(--transition);
-      border: 2px solid transparent;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      background: white; border-radius: 15px; padding: 2rem; text-align: center; transition: var(--transition); border: 2px solid transparent; box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     }
-
-    .stats-card:hover {
-      border-color: var(--islamic-gold);
-      transform: translateY(-5px);
-    }
-
-    .stats-number {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--islamic-green);
-    }
-
-    .loader {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid var(--islamic-green);
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* ===== STANDARD FOOTER ===== */
+    .stats-card:hover {border-color: var(--islamic-gold); transform: translateY(-5px);}
+    .stats-number {font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--islamic-green);}
     .footer {
-      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
-      border-top: 3px solid var(--islamic-gold);
-      padding: 3rem 0 1.5rem;
-      color: white;
+      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green)); border-top: 3px solid var(--islamic-gold); padding: 3rem 0 1.5rem; color: white;
     }
-
-    .footer-brand {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--islamic-gold);
-      margin-bottom: 1rem;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 12px;
-      margin-top: 1rem;
-    }
-
+    .footer-brand {font-size: 1.8rem; font-weight: 700; color: var(--islamic-gold); margin-bottom: 1rem;}
+    .social-links {display: flex; gap: 12px; margin-top: 1rem;}
     .social-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-decoration: none;
-      transition: var(--transition);
-      background: rgba(255, 255, 255, 0.1);
-      font-size: 1.1rem;
+      width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: var(--transition); background: rgba(255, 255, 255, 0.1); font-size: 1.1rem;
     }
-
-    .social-icon:hover {
-      transform: translateY(-5px);
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-
-    .footer-links h5 {
-      color: var(--islamic-gold);
-      margin-bottom: 1.2rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-
+    .social-icon:hover {transform: translateY(-5px); background: var(--islamic-gold); color: var(--islamic-green);}
+    .footer-links h5 {color: var(--islamic-gold); margin-bottom: 1.2rem; font-size: 1.1rem; font-weight: 600;}
     .footer-links a {
-      display: block;
-      color: rgba(255, 255, 255, 0.85);
-      text-decoration: none;
-      margin-bottom: 0.6rem;
-      transition: var(--transition);
-      font-size: 0.95rem;
+      display: block; color: rgba(255, 255, 255, 0.85); text-decoration: none; margin-bottom: 0.6rem; transition: var(--transition); font-size: 0.95rem;
     }
-
-    .footer-links a:hover {
-      color: var(--islamic-gold);
-      padding-left: 5px;
-    }
-
-    /* ===== WHATSAPP BUTTON ===== */
+    .footer-links a:hover {color: var(--islamic-gold); padding-left: 5px;}
     .whatsapp-float {
-      position: fixed;
-      bottom: 25px;
-      right: 15px;
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #25D366, #128C7E);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
-      z-index: 1000;
-      animation: float 3s ease-in-out infinite;
-      transition: var(--transition);
-      text-decoration: none;
+      position: fixed; bottom: 25px; right: 15px; width: 60px; height: 60px; background: linear-gradient(135deg, #25D366, #128C7E); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); z-index: 1000; animation: float 3s ease-in-out infinite; transition: var(--transition); text-decoration: none;
     }
-
-    .whatsapp-float:hover {
-      transform: scale(1.1) rotate(10deg);
-      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
-    }
-
+    .whatsapp-float:hover {transform: scale(1.1) rotate(10deg); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);}
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
     }
-
-    /* ===== ISLAMIC ORNAMENTS ===== */
     .islamic-ornament {
-      position: fixed;
-      color: var(--islamic-gold);
-      opacity: 0.08;
-      font-size: 1.8rem;
-      z-index: -1;
-      pointer-events: none;
+      position: fixed; color: var(--islamic-gold); opacity: 0.08; font-size: 1.8rem; z-index: -1; pointer-events: none;
     }
-
-    .ornament-1 {
-      top: 20%;
-      left: 5%;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .ornament-2 {
-      top: 60%;
-      right: 5%;
-      animation: float 8s ease-in-out infinite reverse;
-    }
-
-    .ornament-3 {
-      bottom: 20%;
-      left: 10%;
-      animation: float 7s ease-in-out infinite;
-    }
-
-    /* ===== MOBILE RESPONSIVE ===== */
+    .ornament-1 {top: 20%; left: 5%; animation: float 6s ease-in-out infinite;}
+    .ornament-2 {top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse;}
+    .ornament-3 {bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite;}
     @media (max-width: 768px) {
-      body {
-        padding-top: 70px !important;
-      }
-      
-      .navbar-optimized {
-        height: 70px;
-        padding: 0.3rem 0;
-      }
-      
-      .page-header {
-        height: 26vh;
-        min-height: 180px;
-      }
-
-      .page-title {
-        font-size: 2.2rem;
-      }
-      
-      .page-subtitle {
-        font-size: 1.1rem;
-      }
-      
-      .content-section {
-        padding: 2.5rem 0;
-      }
-      
-      .section-title {
-        font-size: 1.8rem;
-      }
-      
+      body {padding-top: 70px !important;}
+      .navbar-optimized {height: 70px; padding: 0.3rem 0;}
+      .page-header {height: 26vh; min-height: 180px;}
+      .page-title {font-size: 2.2rem;}
+      .page-subtitle {font-size: 1.1rem;}
+      .content-section {padding: 2.5rem 0;}
+      .section-title {font-size: 1.8rem;}
       .navbar-collapse {
-        background: var(--dark-green);
-        padding: 1rem;
-        border-radius: 0 0 10px 10px;
-        border: 1px solid var(--islamic-gold);
-        margin-top: 0px;
-        max-height: 70vh;
-        overflow-y: auto;
+        background: var(--dark-green); padding: 1rem; border-radius: 0 0 10px 10px; border: 1px solid var(--islamic-gold); margin-top: 0px; max-height: 70vh; overflow-y: auto;
       }
-      
-      .download-icon-wrapper {
-        width: 70px;
-        height: 70px;
-      }
-      
-      .download-icon {
-        font-size: 2rem;
-      }
-      
-      .stats-number {
-        font-size: 2rem;
-      }
+      .download-icon-wrapper {width: 70px; height: 70px;}
+      .download-icon {font-size: 2rem;}
+      .stats-number {font-size: 2rem;}
     }
-
     @media (max-width: 576px) {
-      .page-title {
-        font-size: 1.8rem;
-      }
-      
-      .section-title {
-        font-size: 1.5rem;
-      }
+      .page-title {font-size: 1.8rem;}
+      .section-title {font-size: 1.5rem;}
     }
   </style>
 </head>
 <body>
-
-<!-- Floating Islamic Ornaments -->
 <div class="islamic-ornament ornament-1">✸</div>
 <div class="islamic-ornament ornament-2">✸</div>
 <div class="islamic-ornament ornament-3">✸</div>
-
-<!-- STANDARD NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-optimized fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand d-flex align-items-center navbar-brand-compact" href="index.html">
@@ -616,12 +171,10 @@
         <small class="text-light brand-subtext">Karuvarakundu</small>
       </div>
     </a>
- 
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
             aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
- 
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav ms-auto nav-container">
         <li class="nav-item nav-item-optimized">
@@ -630,13 +183,9 @@
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized" href="founder.html">Founder</a>
         </li>
-     
-        <!-- Board Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
           <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" 
-             aria-haspopup="true" aria-expanded="false">
-            Board
-          </a>
+             aria-haspopup="true" aria-expanded="false">Board</a>
           <ul class="dropdown-menu dropdown-menu-optimized">
             <li><a class="dropdown-item dropdown-item-optimized" href="management.html">Management</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="faculties.html">Faculty</a></li>
@@ -645,21 +194,15 @@
             <li><a class="dropdown-item dropdown-item-optimized" href="students-union.html">Students Union</a></li>
           </ul>
         </li>
-     
-        <!-- Student Zone Dropdown -->
         <li class="nav-item dropdown nav-item-optimized">
           <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-            Student Zone
-          </a>
+             aria-haspopup="true" aria-expanded="false">Student Zone</a>
           <ul class="dropdown-menu dropdown-menu-optimized">
             <li><a class="dropdown-item dropdown-item-optimized" href="idcard.html">ID Card</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="result.html">Exam Results</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="fest.html">Fest Score</a></li>
           </ul>
         </li>
-     
-        <!-- Other Items -->
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized" href="https://jamianooriya.in/">Jamia</a>
         </li>
@@ -682,8 +225,6 @@
     </div>
   </div>
 </nav>
-
-<!-- PAGE HEADER -->
 <div class="page-header">
   <div class="container">
     <div class="page-header-content">
@@ -697,11 +238,8 @@
     </div>
   </div>
 </div>
-
-<!-- MAIN CONTENT -->
 <section class="content-section">
   <div class="container">
-    <!-- Search and Filter Section -->
     <div class="row mb-5" data-aos="fade-up">
       <div class="col-lg-8 mb-3 mb-lg-0">
         <div class="search-box">
@@ -728,10 +266,7 @@
         </div>
       </div>
     </div>
-
-    <!-- Downloads Grid -->
     <div class="row g-4" id="downloadsContainer" data-aos="fade-up" data-aos-delay="200">
-      <!-- Card 1: Application Form -->
       <div class="col-md-6 col-lg-4 download-item" data-category="applications" data-name="application form">
         <div class="download-card h-100">
           <div class="p-4 text-center">
@@ -740,7 +275,6 @@
             </div>
             <h5 class="fw-bold mb-3" style="color: var(--islamic-green);">Application Form</h5>
             <p class="text-muted mb-4">Complete application form for new admissions to Darunnajath Shareeath and Arts College.</p>
-            
             <div class="file-info">
               <div class="d-flex justify-content-between mb-2">
                 <span><i class="fas fa-file-pdf me-1"></i>PDF Format</span>
@@ -750,7 +284,6 @@
                 <small class="text-muted"><i class="fas fa-calendar-alt me-1"></i>Updated: January 2026</small>
               </div>
             </div>
-            
             <a href="https://crimson-night-427.linkyhost.com/" 
                class="btn-gold mt-2 w-100" 
                download="DSAC_Application_Form.pdf"
@@ -761,8 +294,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Card 2: Admission Brochure -->
       <div class="col-md-6 col-lg-4 download-item" data-category="documents" data-name="admission brochure">
         <div class="download-card h-100">
           <div class="p-4 text-center">
@@ -771,7 +302,6 @@
             </div>
             <h5 class="fw-bold mb-3" style="color: var(--islamic-green);">Admission Brochure</h5>
             <p class="text-muted mb-4">Detailed information about courses, facilities, and admission process for the academic year 2026-27.</p>
-            
             <div class="file-info">
               <div class="d-flex justify-content-between mb-2">
                 <span><i class="fas fa-file-pdf me-1"></i>PDF Format</span>
@@ -781,16 +311,12 @@
                 <small class="text-muted"><i class="fas fa-calendar-alt me-1"></i>Updated: December 2025</small>
               </div>
             </div>
-            
             <button class="btn-outline-gold mt-2 w-100" onclick="showComingSoon('Admission Brochure')">
               <i class="fas fa-download me-2"></i>Coming Soon
             </button>
           </div>
         </div>
       </div>
-
-
-      <!-- Card 3: More Coming Soon -->
       <div class="col-md-6 col-lg-4">
         <div class="download-card h-100" style="border: 2px dashed var(--islamic-gold); background: transparent; box-shadow: none;">
           <div class="p-4 text-center d-flex flex-column align-items-center justify-content-center" style="min-height: 350px;">
@@ -808,8 +334,6 @@
         </div>
       </div>
     </div>
-
-    <!-- No Results Message -->
     <div class="row mt-5 d-none" id="noResults">
       <div class="col-12">
         <div class="text-center py-5">
@@ -824,8 +348,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Download Statistics -->
     <div class="row mt-5" data-aos="fade-up" data-aos-delay="300">
       <div class="col-12">
         <div class="stats-card">
@@ -841,8 +363,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Back to Home Button -->
     <div class="text-center mt-5" data-aos="fade-up">
       <a href="index.html" class="btn-outline-gold btn-lg px-5">
         <i class="fas fa-home me-2"></i>Back to Home
@@ -850,8 +370,6 @@
     </div>
   </div>
 </section>
-
-<!-- STANDARD FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="row">
@@ -877,7 +395,6 @@
           </a>
         </div>
       </div>
-   
       <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
         <div class="footer-links">
           <h5>Quick Links</h5>
@@ -888,7 +405,6 @@
           <a href="contact.html">Contact</a>
         </div>
       </div>
-   
       <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
         <div class="footer-links">
           <h5>Resources</h5>
@@ -899,7 +415,6 @@
           <a href="pta.html">PTA</a>
         </div>
       </div>
-   
       <div class="col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
         <div class="footer-links">
           <h5>Contact Info</h5>
@@ -911,7 +426,6 @@
         </div>
       </div>
     </div>
- 
     <div class="text-center pt-4 mt-4 border-top border-light border-opacity-25">
       <p class="text-light mb-2">
         © <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.
@@ -922,28 +436,19 @@
     </div>
   </div>
 </footer>
-
-<!-- WHATSAPP BUTTON -->
 <a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!"
    class="whatsapp-float" target="_blank"
    title="Chat with us on WhatsApp" aria-label="WhatsApp Chat">
   <i class="fab fa-whatsapp"></i>
 </a>
-
-<!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
 <script>
-  // Initialize
   document.addEventListener('DOMContentLoaded', function() {
     setupDownloads();
     AOS.init({ duration: 800, once: true, offset: 50 });
-    
-    // Update current year
     document.getElementById('currentYear').textContent = new Date().getFullYear();
     
-    // Navbar scroll effect
     window.addEventListener('scroll', function() {
       const navbar = document.querySelector('.navbar-optimized');
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -952,10 +457,6 @@
   });
   
   function setupDownloads() {
-    // Set current year
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-    // Initialize variables
     const searchInput = document.getElementById('searchInput');
     const searchButton = document.getElementById('searchButton');
     const categoryFilter = document.getElementById('categoryFilter');
@@ -965,15 +466,12 @@
     const downloadItems = document.querySelectorAll('.download-item');
     
     let downloadCount = 0;
-    
-    // Load download count from localStorage
     const savedCount = localStorage.getItem('totalDownloads');
     if (savedCount) {
       downloadCount = parseInt(savedCount);
       totalDownloadsEl.textContent = downloadCount;
     }
 
-    // Filter function
     function filterDownloads() {
       const searchTerm = searchInput.value.toLowerCase().trim();
       const selectedCategory = categoryFilter.value;
@@ -994,7 +492,6 @@
         }
       });
 
-      // Show/hide no results message
       if (visibleCount === 0) {
         noResults.classList.remove('d-none');
       } else {
@@ -1002,12 +499,10 @@
       }
     }
 
-    // Event listeners for filtering
     searchInput.addEventListener('input', filterDownloads);
     searchButton.addEventListener('click', filterDownloads);
     categoryFilter.addEventListener('change', filterDownloads);
 
-    // Reset filters
     resetFiltersBtn.addEventListener('click', function() {
       searchInput.value = '';
       categoryFilter.value = 'all';
@@ -1015,45 +510,32 @@
       searchInput.focus();
     });
 
-    // Download tracking
     document.querySelectorAll('.btn-gold[href]').forEach(button => {
       button.addEventListener('click', function(e) {
-        const fileName = this.download || 'document';
-        
-        // Add loading animation
         const originalHTML = this.innerHTML;
         this.innerHTML = '<span class="visually-hidden">Downloading...</span>';
         this.classList.add('loading');
         
-        // Simulate download delay
         setTimeout(() => {
           this.innerHTML = originalHTML;
           this.classList.remove('loading');
           
-          // Update download count
           downloadCount++;
           totalDownloadsEl.textContent = downloadCount;
           localStorage.setItem('totalDownloads', downloadCount);
           
-          // Show success notification
           showNotification('Download started', 'Your file is being downloaded...', 'success');
-          
-          // Log for analytics
-          console.log(`Downloaded: ${fileName} | Total downloads: ${downloadCount}`);
         }, 1500);
       });
     });
 
-    // Initialize filters
     filterDownloads();
   }
 
-  // Show coming soon notification
   function showComingSoon(itemName) {
     showNotification('Coming Soon', `${itemName} will be available soon.`, 'info');
   }
 
-  // Notification function
   function showNotification(title, message, type) {
     const toast = document.createElement('div');
     toast.className = 'position-fixed bottom-0 end-0 p-3';
@@ -1076,7 +558,6 @@
     `;
     document.body.appendChild(toast);
     
-    // Auto-remove after 4 seconds
     setTimeout(() => {
       if (toast.parentNode) {
         toast.remove();
