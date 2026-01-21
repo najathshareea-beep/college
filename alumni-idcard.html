@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DSAC | ID Card</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    :root {
+      --islamic-green: #0a5c36; --islamic-gold: #c19a3f; --islamic-cream: #f8f3e6; --islamic-light: #e9f5e9; --dark-green: #064e3b; --light-gold: #ffd24d; --transition: all 0.3s ease;
+    }
+    body {
+      font-family: 'Poppins', sans-serif; background-color: var(--islamic-cream); color: #333; scroll-behavior: smooth; overflow-x: hidden; padding-top: 80px;
+    }
+    a {text-decoration: none;}
+    .arabic-font {font-family: 'Scheherazade New', serif;}
+    .malayalam-font {font-family: 'Anek Malayalam', sans-serif;}
+    .pattern-bg {
+      background-image: radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px), radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px); background-size: 50px 50px; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+    }
+    .navbar-optimized {
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-bottom: 3px solid var(--islamic-gold); transition: var(--transition); padding: 0.5rem 0; height: 80px; z-index: 1030 !important;
+    }
+    .navbar-toggler {border-color: rgba(255, 255, 255, 0.5);}
+    .navbar-toggler:focus {box-shadow: 0 0 0 2px var(--islamic-gold);}
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+    .navbar-optimized.scrolled {
+      background: rgba(10, 92, 54, 0.98); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); height: 70px;
+    }
+    .navbar-brand-compact img {
+      border-radius: 8px; transition: transform 0.3s ease; width: 60px; height: 60px; object-fit: contain; filter: brightness(0) invert(1); border: none; box-shadow: 0 0 0 2px var(--islamic-gold); padding: 0;
+    }
+    .navbar-optimized.scrolled .navbar-brand-compact img {width: 50px; height: 50px;}
+    .navbar-brand-compact:hover img {transform: scale(1.05);}
+    .brand-text {font-size: 1.2rem; line-height: 1.2;}
+    .brand-subtext {font-size: 0.8rem; opacity: 0.9;}
+    .nav-link-optimized {
+      color: #fff !important; font-weight: 500; transition: var(--transition); padding-left: 0.4rem; padding-right: 0.4rem; border-radius: 5px; margin: 0 2px; white-space: nowrap;
+    }
+    .nav-item-optimized {margin: 0 2px;}
+    .nav-link-optimized:hover {color: var(--islamic-gold) !important; background: rgba(255, 255, 255, 0.1);}
+    .dropdown-menu-optimized {
+      background: var(--islamic-green); border: 1px solid var(--islamic-gold); border-radius: 8px; padding: 0.5rem 0;
+    }
+    .dropdown-item-optimized {
+      color: white; padding: 0.5rem 1rem; transition: var(--transition);
+    }
+    .dropdown-item-optimized:hover {background: var(--islamic-gold); color: var(--islamic-green);}
+    .page-header {
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); color: white; height: 30vh; min-height: 220px; display: flex; align-items: center; justify-content: center; text-align: center; margin-bottom: 3rem; border-bottom: 5px solid var(--islamic-gold); position: relative; overflow: hidden;
+    }
+    .page-header::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
+    }
+    .page-header-content {position: relative; z-index: 2;}
+    .page-title {
+      font-family: 'Scheherazade New', serif; font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--islamic-gold); text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    .page-subtitle {
+      font-size: 1.4rem; opacity: 0.95; max-width: 800px; margin: 0 auto; color: var(--islamic-cream);
+    }
+    .content-section {padding: 4rem 0; background: var(--islamic-cream);}
+    .section-header {
+      text-align: center; margin-bottom: 3rem; position: relative; padding: 2rem 0;
+    }
+    .section-title {
+      color: var(--islamic-green); font-weight: 700; display: inline-block; padding: 0 1rem; background: var(--islamic-cream); position: relative; z-index: 2; margin-bottom: 0.5rem; font-size: 2.5rem;
+    }
+    .section-header::before {
+      content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent); z-index: 1;
+    }
+    .section-subtitle {color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;}
+    .btn-gold {
+      background: linear-gradient(135deg, var(--islamic-gold), #d4af37); border: none; color: var(--islamic-green); font-weight: 600; border-radius: 8px; box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3); transition: var(--transition); padding: 0.75rem 1.5rem;
+    }
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #d4af37, var(--islamic-gold)); box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4); transform: translateY(-2px); color: var(--islamic-green);
+    }
+    .btn-outline-gold {
+      border: 2px solid var(--islamic-gold); color: var(--islamic-gold); background: transparent; border-radius: 8px; padding: 0.75rem 1.5rem; font-weight: 600; transition: var(--transition);
+    }
+    .btn-outline-gold:hover {background: var(--islamic-gold); color: var(--islamic-green);}
+    .id-card-form-container {
+      background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); padding: 2.5rem; max-width: 450px; margin: 0 auto; border: 2px solid var(--islamic-gold); position: relative;
+    }
+    .id-card-form-container::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, var(--islamic-green), var(--islamic-gold)); border-radius: 15px 15px 0 0;
+    }
+    .form-logo {
+      width: 80px; height: 80px; object-fit: contain; margin: 0 auto 1rem; display: block; border-radius: 10px; border: 2px solid var(--islamic-gold); padding: 5px;
+    }
+    .form-title {
+      color: var(--islamic-green); font-weight: 700; text-align: center; margin-bottom: 0.5rem; font-size: 1.5rem;
+    }
+    .form-subtitle {color: #666; text-align: center; margin-bottom: 2rem; font-size: 0.95rem;}
+    .form-control {
+      border: 2px solid rgba(10, 92, 54, 0.2); border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.95rem; transition: var(--transition); margin-bottom: 1.2rem;
+    }
+    .form-control:focus {border-color: var(--islamic-gold); box-shadow: 0 0 0 3px rgba(193, 154, 63, 0.1);}
+    .form-label {color: var(--islamic-green); font-weight: 500; margin-bottom: 0.5rem; font-size: 0.9rem;}
+    .id-card-info {
+      background: rgba(10, 92, 54, 0.05); border-radius: 10px; padding: 1.5rem; margin-top: 2rem; border: 1px solid rgba(10, 92, 54, 0.1);
+    }
+    .id-card-info h5 {color: var(--islamic-green); font-weight: 600; margin-bottom: 0.8rem; font-size: 1.1rem;}
+    .id-card-info ul {padding-left: 1.2rem; margin-bottom: 0;}
+    .id-card-info li {margin-bottom: 0.5rem; color: #555; font-size: 0.9rem;}
+    .footer {
+      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green)); border-top: 3px solid var(--islamic-gold); padding: 3rem 0 1.5rem; color: white;
+    }
+    .footer-brand {font-size: 1.8rem; font-weight: 700; color: var(--islamic-gold); margin-bottom: 1rem;}
+    .social-links {display: flex; gap: 12px; margin-top: 1rem;}
+    .social-icon {
+      width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: var(--transition); background: rgba(255, 255, 255, 0.1); font-size: 1.1rem;
+    }
+    .social-icon:hover {transform: translateY(-5px); background: var(--islamic-gold); color: var(--islamic-green);}
+    .footer-links h5 {color: var(--islamic-gold); margin-bottom: 1.2rem; font-size: 1.1rem; font-weight: 600;}
+    .footer-links a {
+      display: block; color: rgba(255, 255, 255, 0.85); text-decoration: none; margin-bottom: 0.6rem; transition: var(--transition); font-size: 0.95rem;
+    }
+    .footer-links a:hover {color: var(--islamic-gold); padding-left: 5px;}
+    .whatsapp-float {
+      position: fixed; bottom: 25px; right: 15px; width: 60px; height: 60px; background: linear-gradient(135deg, #25D366, #128C7E); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); z-index: 1000; animation: float 3s ease-in-out infinite; transition: var(--transition); text-decoration: none;
+    }
+    .whatsapp-float:hover {transform: scale(1.1) rotate(10deg); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);}
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .islamic-ornament {
+      position: fixed; color: var(--islamic-gold); opacity: 0.08; font-size: 1.8rem; z-index: -1; pointer-events: none;
+    }
+    .ornament-1 {top: 20%; left: 5%; animation: float 6s ease-in-out infinite;}
+    .ornament-2 {top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse;}
+    .ornament-3 {bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite;}
+    @media (max-width: 768px) {
+      body {padding-top: 70px !important;}
+      .navbar-optimized {height: 70px; padding: 0.3rem 0;}
+      .page-header {height: 26vh; min-height: 180px;}
+      .page-title {font-size: 2.2rem;}
+      .page-subtitle {font-size: 1.1rem;}
+      .content-section {padding: 2.5rem 0;}
+      .section-title {font-size: 1.8rem;}
+      .navbar-collapse {
+        background: var(--dark-green); padding: 1rem; border-radius: 0 0 10px 10px; border: 1px solid var(--islamic-gold); margin-top: 0px; max-height: 70vh; overflow-y: auto;
+      }
+      .id-card-form-container {padding: 2rem; margin: 0 1rem;}
+      .form-logo {width: 70px; height: 70px;}
+    }
+    @media (max-width: 576px) {
+      .page-title {font-size: 1.8rem;}
+      .section-title {font-size: 1.5rem;}
+      .id-card-form-container {padding: 1.5rem;}
+      .form-title {font-size: 1.3rem;}
+    }
+  </style>
+</head>
+<body>
+<div class="islamic-ornament ornament-1">✸</div>
+<div class="islamic-ornament ornament-2">✸</div>
+<div class="islamic-ornament ornament-3">✸</div>
+<nav class="navbar navbar-expand-lg navbar-optimized fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center navbar-brand-compact" href="index.html">
+      <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="DSAC Logo" class="me-2">
+      <div class="d-flex flex-column">
+        <span class="text-white fw-bold brand-text">DSAC</span>
+        <small class="text-light brand-subtext">Karuvarakundu</small>
+      </div>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
+            aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ms-auto nav-container">
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="index.html">Home</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="founder.html">Founder</a>
+        </li>
+        <li class="nav-item dropdown nav-item-optimized">
+          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" 
+             aria-haspopup="true" aria-expanded="false">Board</a>
+          <ul class="dropdown-menu dropdown-menu-optimized">
+            <li><a class="dropdown-item dropdown-item-optimized" href="management.html">Management</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="faculties.html">Faculty</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="pta.html">PTA</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="alumni.html">Alumni</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="students-union.html">Students Union</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown nav-item-optimized">
+          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">Student Zone</a>
+          <ul class="dropdown-menu dropdown-menu-optimized">
+            <li><a class="dropdown-item dropdown-item-optimized active" href="idcard.html">ID Card</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="result.html">Exam Results</a></li>
+            <li><a class="dropdown-item dropdown-item-optimized" href="fest.html">Fest Score</a></li>
+          </ul>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="https://jamianooriya.in/">Jamia</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="downloads.html">Downloads</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="gallery.html">Gallery</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="library.html">Library</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="admission.html">Admission</a>
+        </li>
+        <li class="nav-item nav-item-optimized">
+          <a class="nav-link-optimized" href="contact.html">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="page-header">
+  <div class="container">
+    <div class="page-header-content">
+      <h1 class="page-title">Digital ID Card</h1>
+      <p class="page-subtitle">Generate your official college identification card</p>
+    </div>
+  </div>
+</div>
+<section class="content-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="id-card-form-container" data-aos="fade-up">
+          <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="form-logo">
+          <h3 class="form-title">DARUNNAJATH SHAREEATH & ARTS COLLEGE</h3>
+          <p class="form-subtitle">Punnakkad, Karuvarakundu</p>
+          <form id="idForm">
+            <div class="mb-3">
+              <label class="form-label">UID Number</label>
+              <input type="text" name="uid" class="form-control" placeholder="Enter your UID number" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Date of Birth</label>
+              <input type="date" name="dob" class="form-control" required>
+            </div>
+            <button type="submit" class="btn-gold w-100 py-3">
+              <i class="fas fa-id-card me-2"></i>Generate ID Card
+            </button>
+          </form>
+          <div class="id-card-info mt-4">
+            <h5><i class="fas fa-info-circle me-2"></i>Important Information</h5>
+            <ul>
+              <li>UID number is provided during admission</li>
+              <li>Use date of birth as registered with college</li>
+              <li>ID card contains QR code for verification</li>
+              <li>You can print the ID card for official use</li>
+              <li>Contact college office for any corrections</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5" data-aos="fade-up">
+      <a href="index.html" class="btn-outline-gold btn-lg px-5">
+        <i class="fas fa-home me-2"></i>Back to Home
+      </a>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4" data-aos="fade-up">
+        <div class="footer-brand">DSAC</div>
+        <p class="text-light opacity-75">
+          Darunnajath Shareeath & Arts College<br>
+          Punnakkad, Karuvarakundu<br>
+          Affiliated to Jamia Nooriyya Arabiyya, Pattikkad
+        </p>
+        <div class="social-links">
+          <a href="https://facebook.com/" class="social-icon" target="_blank" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://instagram.com/" class="social-icon" target="_blank" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://x.com/" class="social-icon" target="_blank" aria-label="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://youtube.com/" class="social-icon" target="_blank" aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="footer-links">
+          <h5>Quick Links</h5>
+          <a href="index.html">Home</a>
+          <a href="admission.html">Admissions</a>
+          <a href="result.html">Results</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="footer-links">
+          <h5>Student Zone</h5>
+          <a href="idcard.html">ID Card</a>
+          <a href="result.html">Exam Results</a>
+          <a href="fest.html">Fest Score</a>
+          <a href="library.html">Library</a>
+          <a href="downloads.html">Downloads</a>
+        </div>
+      </div>
+      <div class="col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="footer-links">
+          <h5>Contact Info</h5>
+          <p class="text-light opacity-75">
+            <i class="fas fa-envelope me-2"></i>najathshareea@gmail.com<br>
+            <i class="fas fa-phone me-2"></i>+91 9048020243<br>
+            <i class="fas fa-map-marker-alt me-2"></i>Karuvarakundu, Kerala
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="text-center pt-4 mt-4 border-top border-light border-opacity-25">
+      <p class="text-light mb-2">
+        © <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.
+      </p>
+      <small class="text-light opacity-75">
+        Hosted by <span>Rafi Wafi</span>
+      </small>
+    </div>
+  </div>
+</footer>
+<a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!"
+   class="whatsapp-float" target="_blank"
+   title="Chat with us on WhatsApp" aria-label="WhatsApp Chat">
+  <i class="fab fa-whatsapp"></i>
+</a>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({duration: 800, once: true, offset: 50, disable: window.innerWidth < 768});
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
+  window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar-optimized');
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    navbar.classList.toggle('scrolled', scrollTop > 50);
+  });
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      if(this.getAttribute('href') !== '#') {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offset = window.innerWidth <= 768 ? 70 : 80;
+          window.scrollTo({top: target.offsetTop - offset, behavior: 'smooth'});
+          const navbarCollapse = document.querySelector('.navbar-collapse');
+          if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+            bsCollapse.hide();
+          }
+        }
+      }
+    });
+  });
+  document.querySelectorAll('.navbar-nav .nav-link-optimized:not(.dropdown-toggle)').forEach(link => {
+    link.addEventListener('click', () => {
+      const navbarCollapse = document.querySelector('.navbar-collapse');
+      if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+        const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+        bsCollapse.hide();
+      }
+    });
+  });
+  window.addEventListener('scroll', () => {
+    if (window.innerWidth > 768) {
+      const scrolled = window.pageYOffset;
+      const ornaments = document.querySelectorAll('.islamic-ornament');
+      ornaments.forEach((ornament, index) => {
+        const speed = 0.05 * (index + 1);
+        ornament.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.05}deg)`;
+      });
+    }
+  });
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzn-mQFa6gnbtz8g02K8-aS2uFCwqC4AcnwOyM2b8d0Z74ZmHpvF7NHJ-rOdSb-N5Hl/exec';
+  document.getElementById('idForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const uidVal = formData.get('uid');
+    const dobVal = formData.get('dob');
+    const url = `${scriptURL}?uid=${encodeURIComponent(uidVal)}&dob=${encodeURIComponent(dobVal)}`;
+    const newWin = window.open("", "_blank");
+    newWin.document.write(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Loading ID Card...</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+          @media print {
+            body { margin: 0; padding: 0; }
+            .no-print { display: none !important; }
+            .id-card { margin: 0; box-shadow: none; border: 1px solid #000; }
+          }
+          * {margin: 0; padding: 0; box-sizing: border-box;}
+          body {
+            font-family: 'Poppins', sans-serif;
+            background: #f0f4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 10px;
+          }
+          .id-card {
+            width: 300px;
+            height: 420px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border: 3px solid #0b5ed7;
+            position: relative;
+            overflow: hidden;
+          }
+          .header {
+            background: linear-gradient(90deg, #0b5ed7, #74b9ff);
+            color: white;
+            padding: 8px;
+            text-align: center;
+          }
+          .header h3 {font-size: 14px; font-weight: 700; margin: 0; line-height: 1.2;}
+          .header small {font-size: 9px; display: block;}
+          .content {padding: 15px;}
+          .photo-qr-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            gap: 10px;
+          }
+          .photo-section {text-align: center; flex: 1;}
+          .student-photo {
+            width: 110px;
+            height: 130px;
+            object-fit: cover;
+            border: 2px solid #0b5ed7;
+            border-radius: 5px;
+            background: #f8f9fa;
+          }
+          .photo-label {font-size: 10px; color: #666; margin-top: 5px;}
+          .qr-section {text-align: center; flex: 0.8; margin-top: 10px;}
+          .qr-code {
+            width: 80px;
+            height: 80px;
+            background: white;
+            padding: 5px;
+            border: 2px solid #0b5ed7;
+            border-radius: 5px;
+          }
+          .qr-label {font-size: 8px; color: #666; margin-top: 3px;}
+          .student-name {
+            text-align: center;
+            color: #0b5ed7;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #0b5ed7;
+          }
+          .details {display: grid; grid-template-columns: 1fr; gap: 6px; margin-bottom: 15px;}
+          .detail-row {display: flex; align-items: center; font-size: 11px;}
+          .detail-label {color: #0b5ed7; font-weight: 600; min-width: 100px;}
+          .detail-value {color: #333; flex: 1;}
+          .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #ccc;
+          }
+          .academic-year {text-align: center; flex: 1;}
+          .year {color: #0b5ed7; font-weight: 600; font-size: 12px;}
+          .signature {font-size: 9px; color: #666; margin-top: 5px;}
+          .controls {text-align: center; margin-top: 15px;}
+          .btn-print {
+            background: #0a5c36;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="controls no-print"><button class="btn-print" onclick="window.print()">🖨️ Print ID Card</button></div>
+        <div class="id-card">
+          <div class="header">
+            <h3>DARUNNAJATH SHAREEATH & ARTS COLLEGE</h3>
+            <p>Punnakkad, Karuvarakundu</p>
+          </div>
+          <div class="content">
+            <div class="photo-qr-row">
+              <div class="photo-section"><img src="" alt="Student Photo" class="student-photo"></div>
+              <div class="qr-section"><div class="qr-code"><img src="" alt="QR Code"></div><div class="qr-label">SCAN TO VERIFY</div></div>
+            </div>
+            <h2 class="student-name">Loading...</h2>
+            <div class="details">
+              <div class="detail-row"><span class="detail-label">UID:</span><span class="detail-value">${uidVal}</span></div>
+              <div class="detail-row"><span class="detail-label">FATHER'S NAME:</span><span class="detail-value">Loading...</span></div>
+              <div class="detail-row"><span class="detail-label">BATCH:</span><span class="detail-value">Loading...</span></div>
+              <div class="detail-row"><span class="detail-label">PHONE:</span><span class="detail-value">Loading...</span></div>
+            </div>
+            <div class="footer">
+              <div class="academic-year"><div class="year">ACADEMIC YEAR 2025-26</div><div class="signature">PRINCIPAL'S SIGNATURE</div></div>
+            </div>
+          </div>
+        </div>
+      </body>
+      </html>
+    `);
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        if (data.result === 'success') {
+          const s = data.student;
+          const qrData = `UID: ${s.UID}, Name: ${s.FullName}, S/o ${s.FatherName}, Batch: ${s.BatchNumber}, Phone: ${s.Phone}`;
+          const qrURL = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=70x70&margin=2&color=0b5ed7`;
+          const html = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <title>${s.FullName} | ID Card</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <style>
+                @media print {
+                  body { margin: 0; padding: 0; }
+                  .no-print { display: none !important; }
+                  .id-card { margin: 0; box-shadow: none; border: 1px solid #000; }
+                }
+                * {margin: 0; padding: 0; box-sizing: border-box;}
+                body {
+                  font-family: 'Poppins', sans-serif;
+                  background: #f0f4ff;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  min-height: 100vh;
+                  padding: 10px;
+                }
+                .id-card {
+                  width: 300px;
+                  height: 420px;
+                  background: white;
+                  border-radius: 10px;
+                  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                  border: 3px solid #0b5ed7;
+                  position: relative;
+                  overflow: hidden;
+                }
+                .header {
+                  background: linear-gradient(90deg, #0b5ed7, #74b9ff);
+                  color: white;
+                  padding: 8px;
+                  text-align: center;
+                }
+                .header h3 {font-size: 14px; font-weight: 700; margin: 0; line-height: 1.2;}
+                .header small {font-size: 9px; display: block;}
+                .content {padding: 15px;}
+                .photo-qr-row {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: flex-start;
+                  margin-bottom: 15px;
+                  gap: 10px;
+                }
+                .photo-section {text-align: center; flex: 1;}
+                .student-photo {
+                  width: 110px;
+                  height: 130px;
+                  object-fit: cover;
+                  border: 2px solid #0b5ed7;
+                  border-radius: 5px;
+                  background: #f8f9fa;
+                }
+                .photo-label {font-size: 10px; color: #666; margin-top: 5px;}
+                .qr-section {text-align: center; flex: 0.8; margin-top: 10px;}
+                .qr-code {
+                  width: 80px;
+                  height: 80px;
+                  background: white;
+                  padding: 5px;
+                  border: 2px solid #0b5ed7;
+                  border-radius: 5px;
+                }
+                .qr-label {font-size: 8px; color: #666; margin-top: 3px;}
+                .student-name {
+                  text-align: center;
+                  color: #0b5ed7;
+                  font-size: 18px;
+                  font-weight: 700;
+                  margin-bottom: 15px;
+                  padding-bottom: 5px;
+                  border-bottom: 2px solid #0b5ed7;
+                }
+                .details {display: grid; grid-template-columns: 1fr; gap: 6px; margin-bottom: 15px;}
+                .detail-row {display: flex; align-items: center; font-size: 11px;}
+                .detail-label {color: #0b5ed7; font-weight: 600; min-width: 100px;}
+                .detail-value {color: #333; flex: 1;}
+                .footer {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: flex-end;
+                  margin-top: 10px;
+                  padding-top: 10px;
+                  border-top: 1px dashed #ccc;
+                }
+                .academic-year {text-align: center; flex: 1;}
+                .year {color: #0b5ed7; font-weight: 600; font-size: 12px;}
+                .signature {font-size: 9px; color: #666; margin-top: 5px;}
+                .controls {text-align: center; margin-top: 15px;}
+                .btn-print {
+                  background: #0a5c36;
+                  color: white;
+                  border: none;
+                  padding: 8px 20px;
+                  border-radius: 20px;
+                  font-weight: 600;
+                  cursor: pointer;
+                  font-size: 14px;
+                }
+              </style>
+            </head>
+            <body>
+              <div class="controls no-print"><button class="btn-print" onclick="window.print()">🖨️ Print ID Card</button></div>
+              <div class="id-card">
+                <div class="header">
+                  <h3>DARUNNAJATH SHAREEATH & ARTS COLLEGE</h3>
+                  <p>Punnakkad, Karuvarakundu</p>
+                </div>
+                <div class="content">
+                  <div class="photo-qr-row">
+                    <div class="photo-section"><img src="${s.PhotoURL || 'https://via.placeholder.com/110x130?text=Photo'}" alt="Student Photo" class="student-photo"></div>
+                    <div class="qr-section"><div class="qr-code"><img src="${qrURL}" alt="QR Code"></div><div class="qr-label">SCAN TO VERIFY</div></div>
+                  </div>
+                  <h2 class="student-name">${s.FullName}</h2>
+                  <div class="details">
+                    <div class="detail-row"><span class="detail-label">UID:</span><span class="detail-value">${s.UID}</span></div>
+                    <div class="detail-row"><span class="detail-label">FATHER'S NAME:</span><span class="detail-value">${s.FatherName}</span></div>
+                    <div class="detail-row"><span class="detail-label">BATCH:</span><span class="detail-value">${s.BatchNumber}</span></div>
+                    <div class="detail-row"><span class="detail-label">PHONE:</span><span class="detail-value">${s.Phone}</span></div>
+                  </div>
+                  <div class="footer">
+                    <div class="academic-year"><div class="year">ACADEMIC YEAR 2025-26</div><div class="signature">PRINCIPAL'S SIGNATURE</div></div>
+                  </div>
+                </div>
+              </div>
+            </body>
+            </html>
+          `;
+          newWin.document.open();
+          newWin.document.write(html);
+          newWin.document.close();
+        } else {
+          newWin.document.write(`
+            <html>
+            <body style="font-family: Poppins; text-align: center; padding: 50px; background: #f0f4ff;">
+              <div style="color: #dc3545;">
+                <h2>Student Not Found</h2>
+                <p>${data.message || 'Please check UID and Date of Birth.'}</p>
+                <button onclick="window.close()" style="background: #0a5c36; color: white; border: none; padding: 10px 20px; border-radius: 25px; margin-top: 20px;">Go Back</button>
+              </div>
+            </body>
+            </html>
+          `);
+        }
+      })
+      .catch(() => {
+        newWin.document.write(`
+          <html>
+          <body style="font-family: Poppins; text-align: center; padding: 50px; background: #f0f4ff;">
+            <div style="color: #dc3545;">
+              <h2>Connection Error</h2>
+              <p>Please try again later.</p>
+              <button onclick="window.close()" style="background: #0a5c36; color: white; border: none; padding: 10px 20px; border-radius: 25px; margin-top: 20px;">Go Back</button>
+            </div>
+          </body>
+          </html>
+        `);
+      });
+  });
+  document.addEventListener('DOMContentLoaded', function() {
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.3s ease';
+    setTimeout(() => {document.body.style.opacity = '1';}, 50);
+  });
+</script>
+</body>
+</html>
