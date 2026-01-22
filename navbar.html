@@ -7,14 +7,14 @@
         <small class="text-light brand-subtext">Karuvarakundu</small>
       </div>
     </a>
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
             aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav ms-auto nav-container">
         <li class="nav-item nav-item-optimized">
-          <a class="nav-link-optimized" href="index.html">Home</a>
+          <a class="nav-link-optimized active" href="index.html">Home</a>
         </li>
         <li class="nav-item nav-item-optimized">
           <a class="nav-link-optimized" href="founder.html">Founder</a>
@@ -26,7 +26,16 @@
             <li><a class="dropdown-item dropdown-item-optimized" href="management.html">Management</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="faculties.html">Faculty</a></li>
             <li><a class="dropdown-item dropdown-item-optimized" href="maintenance.html">PTA</a></li>
-            <li><a class="dropdown-item dropdown-item-optimized" href="alumni.html">Alumni</a></li>
+            <li class="dropdown-submenu">
+              <a class="dropdown-item dropdown-item-optimized submenu-toggle" href="#"
+                 data-bs-toggle="collapse" data-bs-target="#alumniSubmenu" aria-expanded="false">
+                Alumni <i class="fas fa-chevron-right ms-2"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-optimized collapse" id="alumniSubmenu">
+                <li><a class="dropdown-item dropdown-item-optimized" href="alumni.html">Committee</a></li>
+                <li><a class="dropdown-item dropdown-item-optimized" href="alumni-idcard.html">ID Card</a></li>
+              </ul>
+            </li>
             <li><a class="dropdown-item dropdown-item-optimized" href="students-union.html">Students Union</a></li>
           </ul>
         </li>
