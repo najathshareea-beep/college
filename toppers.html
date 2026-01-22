@@ -465,7 +465,6 @@
   });
 
   document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
     updatePosterCount();
     updateStats();
     
@@ -480,19 +479,17 @@
     renderClassCards();
     initModals();
     
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
       const navbar = document.querySelector('.navbar-optimized');
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      navbar.classList.toggle('scrolled', scrollTop > 50);
+      if (!navbar) return;
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
   });
-
   function updateStats() {
     document.getElementById('totalClasses').textContent = classesData.length;
     const totalToppers = classesData.reduce((sum, cls) => sum + cls.toppers.length, 0);
     document.getElementById('totalToppers').textContent = totalToppers;
   }
-
   function escapeHtml(text) {
     if (!text) return '';
     const map = {
@@ -504,7 +501,6 @@
     };
     return String(text).replace(/[&<>"']/g, function(m) { return map[m]; });
   }
-
   function placeholderDataURL() {
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">
       <defs>
@@ -529,9 +525,9 @@
   }
 
   function updatePosterCount() {
-    document.getElementById('posterCount').textContent = posterCount;
+    const el = document.getElementById('posterCount');
+    if (el) el.textContent = posterCount;
   }
-
   function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.style.cssText = `
