@@ -225,8 +225,8 @@
       <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
         <div class="pta-member-card p-4 text-center h-100">
           <div class="role-badge">President</div>
-          <img src="https://i.ibb.co/fYtC1h9w/155.png?t=<?php echo time(); ?>" alt="President" class="member-photo" 
-               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png?t=<?php echo time(); ?>'">
+          <img src="https://i.ibb.co/fYtC1h9w/155.png" alt="President" class="member-photo" 
+               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
           <h4>Aaaaa</h4>
           <div class="designation">PTA President</div>
           <div class="contact-info">
@@ -237,8 +237,8 @@
       <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="150">
         <div class="pta-member-card p-4 text-center h-100">
           <div class="role-badge">Secretary</div>
-          <img src="https://i.ibb.co/fYtC1h9w/155.png?t=<?php echo time(); ?>" alt="Secretary" class="member-photo" 
-               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png?t=<?php echo time(); ?>'">
+          <img src="https://i.ibb.co/fYtC1h9w/155.png" alt="Secretary" class="member-photo" 
+               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
           <h4>Bbbbb</h4>
           <div class="designation">General Secretary</div>
           <div class="contact-info">
@@ -249,8 +249,8 @@
       <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
         <div class="pta-member-card p-4 text-center h-100">
           <div class="role-badge">Treasurer</div>
-          <img src="https://i.ibb.co/fYtC1h9w/155.png?t=<?php echo time(); ?>" alt="Treasurer" class="member-photo" 
-               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png?t=<?php echo time(); ?>'">
+          <img src="https://i.ibb.co/fYtC1h9w/155.png" alt="Treasurer" class="member-photo" 
+               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
           <h4>Ccccc</h4>
           <div class="designation">Treasurer</div>
           <div class="contact-info">
@@ -261,8 +261,8 @@
       <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="250">
         <div class="pta-member-card p-4 text-center h-100">
           <div class="role-badge">Staff Secretary</div>
-          <img src="https://i.ibb.co/fYtC1h9w/155.png?t=<?php echo time(); ?>" alt="Staff Secretary" class="member-photo" 
-               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png?t=<?php echo time(); ?>'">
+          <img src="https://i.ibb.co/fYtC1h9w/155.png" alt="Staff Secretary" class="member-photo" 
+               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
           <h4>Ddddddd</h4>
           <div class="designation">Staff Secretary</div>
           <div class="contact-info">
@@ -322,8 +322,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-  // Cache control version - update this when you make changes
-  const CACHE_VERSION = '1.0.2';
+  // Cache control version - UPDATE THIS WHEN YOU MAKE CHANGES
+  const CACHE_VERSION = '1.0.3';
   
   // Initialize AOS animations
   AOS.init({
@@ -407,8 +407,9 @@
       localStorage.setItem('cacheVersion', CACHE_VERSION);
       localStorage.setItem('lastUpdate', Date.now());
       
-      // Show cache cleared message
-      console.log('Cache version updated to:', CACHE_VERSION);
+      // Force reload if version changed
+      console.log('Cache version updated to:', CACHE_VERSION, ' - forcing reload');
+      window.location.reload();
     }
   });
   
@@ -453,7 +454,7 @@
             <nav class="navbar navbar-optimized navbar-expand-lg fixed-top">
               <div class="container">
                 <a class="navbar-brand-compact" href="#">
-                  <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="Logo">
+                  <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png?v=${CACHE_VERSION}" alt="Logo">
                 </a>
                 <div class="ms-2">
                   <div class="brand-text text-white">DSAC</div>
@@ -507,7 +508,7 @@
   // Load external content when DOM is ready
   document.addEventListener('DOMContentLoaded', loadExternalContent);
   
-  // Force reload if content is suspected to be stale (optional)
+  // Force reload if content is suspected to be stale
   window.addEventListener('pageshow', function(event) {
     // Check if page was loaded from cache
     if (event.persisted) {
@@ -522,6 +523,19 @@
       }
     }
   });
+  
+  // Add cache-busting to images
+  function addCacheBusterToImages() {
+    const images = document.querySelectorAll('img[src]');
+    images.forEach(img => {
+      if (img.src && !img.src.includes('?') && !img.src.includes('data:')) {
+        img.src = img.src + '?v=' + CACHE_VERSION;
+      }
+    });
+  }
+  
+  // Run image cache busting after page loads
+  window.addEventListener('load', addCacheBusterToImages);
 </script>
 </body>
 </html>
