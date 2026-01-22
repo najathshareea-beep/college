@@ -613,7 +613,57 @@
     }
   }, 2000); // Check after 2 seconds
 </script>
+<script>
+  // Simple test to see if JavaScript is working
+  console.log("Debug: Script is running");
+  
+  // Check if footer-container exists
+  const footerContainer = document.getElementById('footer-container');
+  console.log("Debug: Footer container found?", !!footerContainer);
+  
+  if (footerContainer) {
+    console.log("Debug: Footer container parent:", footerContainer.parentElement);
+    console.log("Debug: Footer container has children?", footerContainer.children.length > 0);
+  }
+  
+  // Try to manually load footer with timeout
+  setTimeout(() => {
+    console.log("Debug: Attempting to load footer manually...");
+    
+    // Create a simple fallback footer
+    const fallbackFooter = `
+      <footer class="footer" style="display: block !important; visibility: visible !important;">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 mb-4">
+              <div class="footer-brand">DSAC</div>
+              <p class="text-light opacity-75">
+                Darunnajath Shareeath & Arts College<br>
+                Punnakkad, Karuvarakundu<br>
+                Affiliated to Jamia Nooriyya Arabiyya, Pattikkad
+              </p>
+            </div>
+          </div>
+          <div class="text-center pt-4 mt-4 border-top border-light border-opacity-25">
+            <p class="text-light mb-2">
+              © ${new Date().getFullYear()} Darunnajath Shareeath & Arts College. All rights reserved.
+            </p>
+            <small class="text-light opacity-75">
+              Hosted by <span>Rafi Wafi</span>
+            </small>
+          </div>
+        </div>
+      </footer>
+    `;
+    
+    if (footerContainer && footerContainer.innerHTML === "") {
+      console.log("Debug: Setting fallback footer");
+      footerContainer.innerHTML = fallbackFooter;
+    }
+  }, 1000);
+</script>  
 </body>
 </html>
+
 
 
