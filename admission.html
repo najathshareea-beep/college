@@ -144,56 +144,24 @@
     .ornament-3 {bottom:20%; left:10%; animation:float 7s ease-in-out infinite;}
     @media (max-width:768px) {body{padding-top:70px !important;} .navbar-optimized{height:70px;padding:0.3rem 0;} .page-header{height:26vh;min-height:180px;} .page-title{font-size:2.2rem;} .page-subtitle{font-size:1.1rem;} .content-section{padding:2.5rem 0;} .section-title{font-size:1.8rem;} .navbar-collapse{background:var(--dark-green);padding:1rem;border-radius:0 0 10px 10px;border:1px solid var(--islamic-gold);margin-top:0px;max-height:70vh;overflow-y:auto;} .form-container{padding:1.5rem;} .portal-card{padding:1.5rem;} .document-container{width:100%;box-shadow:none;border-radius:0;} .timeline::before{left:20px;right:auto;top:0;bottom:0;width:4px;height:auto;background:linear-gradient(180deg,var(--islamic-green),var(--islamic-gold));transform:none;} .timeline-item{justify-content:flex-start;margin-bottom:2.5rem;} .timeline-content-box{width:calc(100% - 60px);margin-left:40px;margin-right:0;} .timeline-content-box::before{top:50%;left:-35px;transform:translateY(-50%);} .timeline-content-box:hover::before{transform:translateY(-50%) scale(1.2);}}
     @media (max-width:576px) {.page-title{font-size:1.8rem;} .section-title{font-size:1.5rem;} .portal-icon{width:60px;height:60px;font-size:1.5rem;}}
+    @media (min-width: 992px) {
+      .dropdown-submenu {  position: relative;  }
+      .dropdown-submenu:hover > .collapse {    display: block !important;  }
+      .dropdown-submenu .collapse {    position: absolute;    top: 0;    left: 100%;    z-index: 1000;    min-width: 12rem;    padding: 0.5rem 0;    margin: 0;    font-size: 1rem;    background-color: var(--islamic-green);    border: 1px solid var(--islamic-gold);    border-radius: 0 0.5rem 0.5rem 0.5rem;  }
+      .dropdown-submenu > a:after {    content: "›";    float: right;    margin-right: -0.5rem;    font-size: 1.2rem;  }
+    }
+    @media (max-width: 991px) {
+      .dropdown-submenu .collapse {    position: static;    width: auto;    border: none;    box-shadow: none;    background: rgba(0,0,0,0.1);
+    margin-left: 1.2rem;  }
+    }
+
   </style>
 </head>
 <body>
 <div class="islamic-ornament ornament-1">✸</div>
 <div class="islamic-ornament ornament-2">✸</div>
 <div class="islamic-ornament ornament-3">✸</div>
-<nav class="navbar navbar-expand-lg navbar-optimized fixed-top">
-  <div class="container-fluid">
-    <a class="navbar-brand d-flex align-items-center navbar-brand-compact" href="index.html">
-      <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="DSAC Logo" class="me-2">
-      <div class="d-flex flex-column">
-        <span class="text-white fw-bold brand-text">DSAC</span>
-        <small class="text-light brand-subtext">Karuvarakundu</small>
-      </div>
-    </a>
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarContent">
-      <ul class="navbar-nav ms-auto nav-container">
-        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="index.html">Home</a></li>
-        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="founder.html">Founder</a></li>
-        <li class="nav-item dropdown nav-item-optimized">
-          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Board</a>
-          <ul class="dropdown-menu dropdown-menu-optimized">
-            <li><a class="dropdown-item dropdown-item-optimized" href="management.html">Management</a></li>
-            <li><a class="dropdown-item dropdown-item-optimized" href="faculties.html">Faculty</a></li>
-            <li><a class="dropdown-item dropdown-item-optimized" href="maintenance.html">PTA</a></li>
-            <li><a class="dropdown-item dropdown-item-optimized" href="alumni.html">Alumni</a></li>
-            <li><a class="dropdown-item dropdown-item-optimized" href="students-union.html">Students Union</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown nav-item-optimized">
-          <a class="nav-link-optimized dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Student Zone</a>
-          <ul class="dropdown-menu dropdown-menu-optimized">
-            <li><a class="dropdown-item dropdown-item-optimized" href="idcard.html">ID Card</a></li>
-            <li><a class="dropdown-item dropdown-item-optimized" href="result.html">Exam Results</a></li>
-            <li><a class="dropdown-item dropdown-item-optimized" href="fest.html">Fest Score</a></li>
-          </ul>
-        </li>
-        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="https://jamianooriya.in/">Jamia</a></li>
-        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="downloads.html">Downloads</a></li>
-        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="gallery.html">Gallery</a></li>
-        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="library.html">Library</a></li>
-        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized active" href="admission.html">Admission</a></li>
-        <li class="nav-item nav-item-optimized"><a class="nav-link-optimized" href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<div id="navbar-container"></div>
 <div class="page-header">
   <div class="container">
     <div class="page-header-content">
@@ -587,54 +555,7 @@
   </section>
 </div>
 <div id="documentDisplayArea" style="display: none;"></div>
-<footer class="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4 mb-4" data-aos="fade-up">
-        <div class="footer-brand">DSAC</div>
-        <p class="text-light opacity-75">Darunnajath Shareeath & Arts College<br>Punnakkad, Karuvarakundu<br>Affiliated to Jamia Nooriyya Arabiyya, Pattikkad</p>
-        <div class="social-links">
-          <a href="mailto:najathshareea@gmail.com" class="social-icon" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://facebook.com/profile.php?id=61556129147663" class="social-icon" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/nissamedia?igsh=MWk3aTJsYzBycHEzNw==" class="social-icon" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://x.com/" class="social-icon" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="https://www.youtube.com/@nissamedia" class="social-icon" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        </div>
-      </div>
-      <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-        <div class="footer-links">
-          <h5>Quick Links</h5>
-          <a href="index.html">Home</a>
-          <a href="admission.html">Admissions</a>
-          <a href="result.html">Results</a>
-          <a href="gallery.html">Gallery</a>
-          <a href="contact.html">Contact</a>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
-        <div class="footer-links">
-          <h5>Resources</h5>
-          <a href="downloads.html">Downloads</a>
-          <a href="library.html">Library</a>
-          <a href="faculties.html">Faculty</a>
-          <a href="management.html">Management</a>
-          <a href="pta.html">PTA</a>
-        </div>
-      </div>
-      <div class="col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
-        <div class="footer-links">
-          <h5>Contact Info</h5>
-          <p class="text-light opacity-75"><i class="fas fa-envelope me-2"></i>najathshareea@gmail.com<br><i class="fas fa-phone me-2"></i>+91 9048020243<br><i class="fas fa-map-marker-alt me-2"></i>Karuvarakundu, Kerala</p>
-        </div>
-      </div>
-    </div>
-    <div class="text-center pt-4 mt-4 border-top border-light border-opacity-25">
-      <p class="text-light mb-2">© <span id="currentYear"></span> Darunnajath Shareeath & Arts College. All rights reserved.</p>
-      <small class="text-light opacity-75">Hosted by <span>Rafi Wafi</span></small>
-    </div>
-  </div>
-</footer>
-<a href="https://wa.me/919048020243?text=Hello%20Darunnajath%20Shareeath%20%26%20Arts%20College!" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp" aria-label="WhatsApp Chat"><i class="fab fa-whatsapp"></i></a>
+<div id="footer-container"></div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
@@ -688,6 +609,36 @@
     const submitData=new URLSearchParams();for(const[key,value]of Object.entries(data)){if(value!==undefined&&value!==null){submitData.append(key,value);}}
     try{const response=await fetch(SCRIPT_URL,{method:'POST',body:submitData,headers:{'Content-Type':'application/x-www-form-urlencoded'}});const result=await response.json();if(result.status==='success'){form.reset();document.getElementById('photoPreview').style.display='none';toggleSubmitButton(false);setTimeout(()=>{const mockData={collegeInfo:{logo:'https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png',contact:'كلية دار النجاة للشريعة والآداب',collegeName:'DARUNNAJATH SHAREEATH & ARTS COLLEGE',underOrg:'Under DARUNNAJATH ISLAMIC CENTRE',affiliation:'Affiliated to JAMIA NOORIYYA ARABIYYA, PATTIKKAD',address:'Punnakkad, Karuvarakundu, Malappuram District'},studentData:{...data,submissionDate:new Date().toLocaleDateString(),applicationId:result.data.applicationId||'APP-'+Date.now(),photoUrl:photoFile?URL.createObjectURL(photoFile):null}};const html=generateApplicationHtml(mockData);displayDocument(html);},1500);}else{}}catch(error){console.error('Submission error:',error);}}
   function escapeHtml(text){if(!text)return'';const map={'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'};return String(text).replace(/[&<>"']/g,function(m){return map[m];});}
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.submenu-toggle').forEach(function (toggle) {
+      toggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+      });
+    });
+  });
 </script>
+<script>
+  fetch('navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navbar-container').innerHTML = data;
+      document.querySelectorAll('.submenu-toggle').forEach(function (toggle) {
+        toggle.addEventListener('click', function (e) {
+          e.stopPropagation();
+          e.preventDefault();
+          const target = document.querySelector(toggle.getAttribute('data-bs-target'));
+          const bsCollapse = new bootstrap.Collapse(target, { toggle: true });
+        });
+      });
+    })
+    .catch(error => console.error('Navbar load error:', error));
+  fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-container').innerHTML = data;
+    })
+    .catch(error => console.error('Footer load error:', error));
+</script> 
 </body>
 </html>
