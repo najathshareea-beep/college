@@ -419,15 +419,20 @@
     document.body.style.transition = 'opacity 0.3s ease';
     setTimeout(() => {document.body.style.opacity = '1';}, 50);
   });
-</script>
-<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.submenu-toggle').forEach(function (toggle) {
+      toggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+      });
+    });
+  });
   fetch('navbar.html')
     .then(response => response.text())
     .then(data => {
       document.getElementById('navbar-container').innerHTML = data;
     })
     .catch(error => console.error('Navbar load error:', error));
-
   fetch('footer.html')
     .then(response => response.text())
     .then(data => {
