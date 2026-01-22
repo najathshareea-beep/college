@@ -162,6 +162,16 @@
       .section-title {font-size: 1.5rem;}
       .gallery-grid {grid-template-columns: 1fr;}
     }
+    @media (min-width: 992px) {
+      .dropdown-submenu {  position: relative;  }
+      .dropdown-submenu:hover > .collapse {    display: block !important;  }
+      .dropdown-submenu .collapse {    position: absolute;    top: 0;    left: 100%;    z-index: 1000;    min-width: 12rem;    padding: 0.5rem 0;    margin: 0;    font-size: 1rem;    background-color: var(--islamic-green);    border: 1px solid var(--islamic-gold);    border-radius: 0 0.5rem 0.5rem 0.5rem;  }
+      .dropdown-submenu > a:after {    content: "›";    float: right;    margin-right: -0.5rem;    font-size: 1.2rem;  }
+    }
+    @media (max-width: 991px) {
+      .dropdown-submenu .collapse {    position: static;    width: auto;    border: none;    box-shadow: none;    background: rgba(0,0,0,0.1);
+    margin-left: 1.2rem;  }
+    }
   </style>
 </head>
 <body>
