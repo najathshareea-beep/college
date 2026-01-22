@@ -320,7 +320,6 @@
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
   AOS.init({duration: 800, once: true, offset: 50, disable: window.innerWidth < 768});
-  document.getElementById('currentYear').textContent = new Date().getFullYear();
   window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar-optimized');
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -400,3 +399,4 @@ document.addEventListener('DOMContentLoaded', function () {
 </script> 
 </body>
 </html>
+
