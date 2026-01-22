@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>DSAC | PTA</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
@@ -222,8 +225,8 @@
       <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
         <div class="pta-member-card p-4 text-center h-100">
           <div class="role-badge">President</div>
-          <img src="https://i.ibb.co/fYtC1h9w/155.png" alt="President" class="member-photo" 
-               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
+          <img src="https://i.ibb.co/fYtC1h9w/155.png?t=<?php echo time(); ?>" alt="President" class="member-photo" 
+               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png?t=<?php echo time(); ?>'">
           <h4>Aaaaa</h4>
           <div class="designation">PTA President</div>
           <div class="contact-info">
@@ -234,8 +237,8 @@
       <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="150">
         <div class="pta-member-card p-4 text-center h-100">
           <div class="role-badge">Secretary</div>
-          <img src="https://i.ibb.co/fYtC1h9w/155.png" alt="Secretary" class="member-photo" 
-               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
+          <img src="https://i.ibb.co/fYtC1h9w/155.png?t=<?php echo time(); ?>" alt="Secretary" class="member-photo" 
+               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png?t=<?php echo time(); ?>'">
           <h4>Bbbbb</h4>
           <div class="designation">General Secretary</div>
           <div class="contact-info">
@@ -246,8 +249,8 @@
       <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
         <div class="pta-member-card p-4 text-center h-100">
           <div class="role-badge">Treasurer</div>
-          <img src="https://i.ibb.co/fYtC1h9w/155.png" alt="Treasurer" class="member-photo" 
-               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
+          <img src="https://i.ibb.co/fYtC1h9w/155.png?t=<?php echo time(); ?>" alt="Treasurer" class="member-photo" 
+               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png?t=<?php echo time(); ?>'">
           <h4>Ccccc</h4>
           <div class="designation">Treasurer</div>
           <div class="contact-info">
@@ -258,8 +261,8 @@
       <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="250">
         <div class="pta-member-card p-4 text-center h-100">
           <div class="role-badge">Staff Secretary</div>
-          <img src="https://i.ibb.co/fYtC1h9w/155.png" alt="Staff Secretary" class="member-photo" 
-               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
+          <img src="https://i.ibb.co/fYtC1h9w/155.png?t=<?php echo time(); ?>" alt="Staff Secretary" class="member-photo" 
+               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png?t=<?php echo time(); ?>'">
           <h4>Ddddddd</h4>
           <div class="designation">Staff Secretary</div>
           <div class="contact-info">
@@ -319,39 +322,66 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-  AOS.init({duration: 800, once: true, offset: 50, disable: window.innerWidth < 768});
-  document.getElementById('currentYear').textContent = new Date().getFullYear();
+  // Cache control version - update this when you make changes
+  const CACHE_VERSION = '1.0.2';
+  
+  // Initialize AOS animations
+  AOS.init({
+    duration: 800,
+    once: true,
+    offset: 50,
+    disable: window.innerWidth < 768
+  });
+  
+  // Update current year in footer (if needed)
+  if (document.getElementById('currentYear')) {
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  }
+  
+  // Navbar scroll effect
   window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar-optimized');
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    navbar.classList.toggle('scrolled', scrollTop > 50);
+    if (navbar) {
+      navbar.classList.toggle('scrolled', scrollTop > 50);
+    }
   });
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      if(this.getAttribute('href') !== '#') {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          const offset = window.innerWidth <= 768 ? 70 : 80;
-          window.scrollTo({top: target.offsetTop - offset, behavior: 'smooth'});
-          const navbarCollapse = document.querySelector('.navbar-collapse');
-          if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
-            bsCollapse.hide();
-          }
+  
+  // Smooth scrolling for anchor links
+  document.addEventListener('click', function(e) {
+    if (e.target.matches('a[href^="#"]') && e.target.getAttribute('href') !== '#') {
+      e.preventDefault();
+      const targetId = e.target.getAttribute('href');
+      const target = document.querySelector(targetId);
+      if (target) {
+        const offset = window.innerWidth <= 768 ? 70 : 80;
+        window.scrollTo({
+          top: target.offsetTop - offset,
+          behavior: 'smooth'
+        });
+        
+        // Close mobile navbar if open
+        const navbarCollapse = document.querySelector('.navbar-collapse.show');
+        if (navbarCollapse) {
+          const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+          bsCollapse.hide();
         }
       }
-    });
+    }
   });
-  document.querySelectorAll('.navbar-nav .nav-link-optimized:not(.dropdown-toggle)').forEach(link => {
-    link.addEventListener('click', () => {
-      const navbarCollapse = document.querySelector('.navbar-collapse');
-      if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+  
+  // Close mobile navbar when clicking on nav links
+  document.addEventListener('click', function(e) {
+    if (e.target.matches('.nav-link-optimized:not(.dropdown-toggle)')) {
+      const navbarCollapse = document.querySelector('.navbar-collapse.show');
+      if (navbarCollapse) {
         const bsCollapse = new bootstrap.Collapse(navbarCollapse);
         bsCollapse.hide();
       }
-    });
+    }
   });
+  
+  // Parallax effect for ornaments
   window.addEventListener('scroll', () => {
     if (window.innerWidth > 768) {
       const scrolled = window.pageYOffset;
@@ -362,42 +392,136 @@
       });
     }
   });
+  
+  // Fade in page on load
   document.addEventListener('DOMContentLoaded', function() {
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity 0.3s ease';
-    setTimeout(() => {document.body.style.opacity = '1';}, 50);
+    setTimeout(() => {
+      document.body.style.opacity = '1';
+    }, 50);
+    
+    // Check if cache needs to be cleared
+    const savedVersion = localStorage.getItem('cacheVersion');
+    if (!savedVersion || savedVersion !== CACHE_VERSION) {
+      localStorage.setItem('cacheVersion', CACHE_VERSION);
+      localStorage.setItem('lastUpdate', Date.now());
+      
+      // Show cache cleared message
+      console.log('Cache version updated to:', CACHE_VERSION);
+    }
   });
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.submenu-toggle').forEach(function (toggle) {
-      toggle.addEventListener('click', function (e) {
-        e.stopPropagation();
-        e.preventDefault();
+  
+  // Load external content with cache busting
+  function loadExternalContent() {
+    // Generate a unique cache buster based on time and version
+    const cacheBuster = `?v=${CACHE_VERSION}&t=${Date.now()}`;
+    
+    // Load navbar
+    fetch(`navbar.html${cacheBuster}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then(data => {
+        const container = document.getElementById('navbar-container');
+        if (container) {
+          container.innerHTML = data;
+          
+          // Reinitialize navbar events after loading
+          const submenuToggles = document.querySelectorAll('.submenu-toggle');
+          submenuToggles.forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+              e.stopPropagation();
+              e.preventDefault();
+              const target = document.querySelector(this.getAttribute('data-bs-target'));
+              if (target) {
+                const bsCollapse = new bootstrap.Collapse(target, { toggle: true });
+              }
+            });
+          });
+        }
+      })
+      .catch(error => {
+        console.error('Navbar load error:', error);
+        // Fallback if navbar fails to load
+        const container = document.getElementById('navbar-container');
+        if (container) {
+          container.innerHTML = `
+            <nav class="navbar navbar-optimized navbar-expand-lg fixed-top">
+              <div class="container">
+                <a class="navbar-brand-compact" href="#">
+                  <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="Logo">
+                </a>
+                <div class="ms-2">
+                  <div class="brand-text text-white">DSAC</div>
+                  <div class="brand-subtext text-white">PTA</div>
+                </div>
+              </div>
+            </nav>
+          `;
+        }
       });
-    });
+    
+    // Load footer
+    fetch(`footer.html${cacheBuster}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then(data => {
+        const container = document.getElementById('footer-container');
+        if (container) {
+          container.innerHTML = data;
+          
+          // Update current year in loaded footer if needed
+          const yearElement = container.querySelector('#currentYear');
+          if (yearElement) {
+            yearElement.textContent = new Date().getFullYear();
+          }
+        }
+      })
+      .catch(error => {
+        console.error('Footer load error:', error);
+        // Fallback if footer fails to load
+        const container = document.getElementById('footer-container');
+        if (container) {
+          container.innerHTML = `
+            <footer class="footer">
+              <div class="container">
+                <div class="text-center py-3">
+                  <p>&copy; ${new Date().getFullYear()} DSAC PTA. All rights reserved.</p>
+                  <p>Page loaded with fallback content</p>
+                </div>
+              </div>
+            </footer>
+          `;
+        }
+      });
+  }
+  
+  // Load external content when DOM is ready
+  document.addEventListener('DOMContentLoaded', loadExternalContent);
+  
+  // Force reload if content is suspected to be stale (optional)
+  window.addEventListener('pageshow', function(event) {
+    // Check if page was loaded from cache
+    if (event.persisted) {
+      console.log('Page loaded from cache, checking for updates...');
+      const lastUpdate = localStorage.getItem('lastUpdate');
+      const currentTime = Date.now();
+      
+      // If content is older than 1 hour, force reload
+      if (lastUpdate && (currentTime - lastUpdate) > 3600000) {
+        localStorage.setItem('lastUpdate', currentTime);
+        window.location.reload();
+      }
+    }
   });
 </script>
-<script>
-  fetch('navbar.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('navbar-container').innerHTML = data;
-      document.querySelectorAll('.submenu-toggle').forEach(function (toggle) {
-        toggle.addEventListener('click', function (e) {
-          e.stopPropagation();
-          e.preventDefault();
-          const target = document.querySelector(toggle.getAttribute('data-bs-target'));
-          const bsCollapse = new bootstrap.Collapse(target, { toggle: true });
-        });
-      });
-    })
-    .catch(error => console.error('Navbar load error:', error));
-  fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('footer-container').innerHTML = data;
-    })
-    .catch(error => console.error('Footer load error:', error));
-</script> 
 </body>
 </html>
-
