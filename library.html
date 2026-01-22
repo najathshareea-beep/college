@@ -332,6 +332,17 @@
         </footer>
       `;
     });
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.navbar-nav .nav-link-optimized:not(.dropdown-toggle)').forEach(link => {
+        link.addEventListener('click', () => {
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+            if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                bsCollapse.hide();
+            }
+        });
+     });
+  });
 </script> 
 </body>
 </html>
