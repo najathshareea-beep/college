@@ -592,6 +592,28 @@
     })
     .catch(error => console.error('Footer load error:', error));
 </script> 
+<script>
+  // Debug script to check footer loading
+  setTimeout(function() {
+    const footerContainer = document.getElementById('footer-container');
+    if (footerContainer) {
+      console.log('Footer container exists:', footerContainer);
+      console.log('Footer container innerHTML:', footerContainer.innerHTML.length > 0 ? 'Has content' : 'Empty');
+      console.log('Footer container parent display:', window.getComputedStyle(footerContainer.parentElement).display);
+      console.log('Footer container display:', window.getComputedStyle(footerContainer).display);
+    }
+    
+    // Force display if hidden
+    const footerElement = document.querySelector('.footer');
+    if (footerElement) {
+      console.log('Footer element found');
+      footerElement.style.display = 'block !important';
+      footerElement.style.visibility = 'visible !important';
+      footerElement.style.opacity = '1 !important';
+    }
+  }, 2000); // Check after 2 seconds
+</script>
 </body>
 </html>
+
 
