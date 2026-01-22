@@ -564,20 +564,25 @@
     .then(response => response.text())
     .then(data => {
       document.getElementById('navbar-container').innerHTML = data;
+      
+      document.querySelectorAll('.submenu-toggle').forEach(function (toggle) {
+        toggle.addEventListener('click', function (e) {
+          e.stopPropagation();
+          e.preventDefault();
+          
+          const target = document.querySelector(toggle.getAttribute('data-bs-target'));
+          const bsCollapse = new bootstrap.Collapse(target, { toggle: true });
+        });
+      });
     })
     .catch(error => console.error('Navbar load error:', error));
+
   fetch('footer.html')
     .then(response => response.text())
     .then(data => {
       document.getElementById('footer-container').innerHTML = data;
     })
     .catch(error => console.error('Footer load error:', error));
-</script>  
+</script> 
 </body>
 </html>
-
-
-
-
-
-
