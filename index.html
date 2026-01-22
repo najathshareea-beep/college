@@ -224,6 +224,17 @@
       .dropdown-submenu .collapse {    position: static;    width: auto;    border: none;    box-shadow: none;    background: rgba(0,0,0,0.1);
     margin-left: 1.2rem;  }
     }
+    @media (max-width: 768px) {
+      .footer .row > div { display: block !important; width: 100% !important; margin-bottom: 2rem;  }
+      .footer-links { text-align: center; }
+      .footer-links h5 { border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding-bottom: 0.5rem; margin-bottom: 1rem; }
+      .footer-links a { margin-bottom: 0.5rem; font-size: 1rem; }
+      .social-links { justify-content: center; margin-top: 1.5rem; }
+    }
+    @media (max-width: 576px) {
+      .footer .row > div.col-6 {  width: 50% !important; float: left; }
+      .footer .row::after { content: ""; display: table; clear: both; }
+    }
   </style>
 </head>
 <body>
@@ -583,3 +594,4 @@
 </script> 
 </body>
 </html>
+
