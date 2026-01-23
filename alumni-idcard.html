@@ -130,7 +130,6 @@
       }
     }
     
-    /* Professional Page Header */
     .page-header {
       background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
       color: white;
@@ -202,7 +201,6 @@
       z-index: 1;
     }
     
-    /* Professional Form Container */
     .id-card-form-container {
       background: white;
       border-radius: 12px;
@@ -240,16 +238,17 @@
       color: var(--alumni-blue);
       font-weight: 700;
       text-align: center;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.3rem;
       font-size: 1.4rem;
       letter-spacing: 0.5px;
     }
     .form-subtitle {
       color: #555;
       text-align: center;
-      margin-bottom: 1.5rem;
+      margin-top: 0;
+      margin-bottom: 0.4rem;
       font-size: 0.9rem;
-      line-height: 1.4;
+      line-height: 1.2;
       font-weight: 400;
     }
     .form-control {
@@ -470,7 +469,7 @@
     <div class="container">
       <div class="page-header-content text-center">
         <h1 class="page-title">ANSAS Alumni ID Card</h1>
-        <p class="page-subtitle">Generate official college alumni identification card with verification</p>
+        <p class="page-subtitle">Generate official college alumni identification card</p>
       </div>
     </div>
   </div>
@@ -531,7 +530,7 @@
       navbar.classList.toggle('scrolled', scrollTop > 50);
     });
     
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzeeA5nUxWUKQrjoR6OruCwFN9wUi7_lm1UzUZwY0D-9H5ArKQqXsjSOjLsXEh0exaJ/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxZ3WxNFNWVB6yYctuUgDhuTnk1AA-t9ey9W4ufPWyo0SpexR3BiltkNFZRcyMzo5iQ/exec';
     
     function formatDateToDDMMYYYY(dateStr) {
       if (!dateStr) return '';
@@ -551,7 +550,6 @@
       const url = `${scriptURL}?uid=${encodeURIComponent(uidVal)}&dob=${encodeURIComponent(dobVal)}&type=${encodeURIComponent(typeVal)}`;
       const newWin = window.open("", "_blank");
       
-      // COMPACT ID CARD DESIGN WITH REDUCED GAPS
       newWin.document.write(`<!DOCTYPE html><html><head><title>Loading...</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
           @media print { 
@@ -642,12 +640,6 @@
             border: 2px solid #1e3a8a; 
             border-radius: 4px; 
             background: #f8f9fa; 
-          }
-          .photo-label { 
-            font-size: 8px; 
-            color: #666; 
-            margin-top: 3px; 
-            font-weight: 400; 
           }
           .qr-section { 
             text-align: center; 
@@ -787,8 +779,8 @@
             </div>
             <div class="content">
               <div class="photo-qr-row">
-                <div class="photo-section"><img src="" alt="Photo" class="student-photo"><div class="photo-label">ALUMNI PHOTO</div></div>
-                <div class="qr-section"><div class="qr-code"><img src="" alt="QR"></div><div class="qr-label">VERIFY ALUMNI</div></div>
+                <div class="photo-section"><img src="" alt="Photo" class="student-photo"></div>
+                <div class="qr-section"><div class="qr-code"><img src="" alt="QR"></div><div class="qr-label">VERIFY</div></div>
               </div>
               <h2 class="alumni-name">Loading...</h2>
               <div class="details">
@@ -797,7 +789,7 @@
                 <div class="detail-row"><span class="detail-label">DATE OF BIRTH:</span><span class="detail-value">${dobVal}</span></div>
                 <div class="detail-row"><span class="detail-label">BATCH:</span><span class="detail-value">Loading...</span></div>
                 <div class="detail-row"><span class="detail-label">PASSOUT YEAR:</span><span class="detail-value">Loading...</span></div>
-                <div class="detail-row"><span class="detail-label">COURSE:</span><span class="detail-value">Loading...</span></div>
+                <div class="detail-row"><span class="detail-label">PLACE:</span><span class="detail-value">Loading...</span></div>
                 <div class="detail-row"><span class="detail-label">PHONE:</span><span class="detail-value">Loading...</span></div>
               </div>
               <div class="alumni-footer">
@@ -818,11 +810,10 @@
         if (data.result === 'success') {
           const s = data.student;
           const formattedDOB = formatDateToDDMMYYYY(s.DateOfBirth || dobVal);
-          const qrData = `ANSAS ALUMNI ID CARD\nADM NO: ${s.UID}\nNAME: ${s.FullName}\nFATHER: ${s.FatherName}\nDOB: ${formattedDOB}\nBATCH: ${s.BatchNumber}\nPASSOUT: ${s.PassoutYear}\nCOURSE: ${s.Course}\nPHONE: ${s.Phone}`;
+          const qrData = `ANSAS ALUMNI ID CARD\nADM NO: ${s.UID}\nNAME: ${s.FullName}\nFATHER: ${s.FatherName}\nDOB: ${formattedDOB}\nBATCH: ${s.BatchNumber}\nPASSOUT: ${s.PassoutYear}\nPLACE: ${s.Place}\nPHONE: ${s.Phone}`;
           const qrURL = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=80x80&margin=0&color=1e3a8a`;
           const photoURL = s.PhotoURL || 'https://via.placeholder.com/100x120?text=Alumni';
           
-          // COMPACT FINAL HTML WITH REDUCED GAPS
           const html = `<!DOCTYPE html><html><head><title>${s.FullName} | Alumni ID Card</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
             <style>
               @media print { 
@@ -876,6 +867,7 @@
                 padding: 8px 6px; 
                 text-align: center; 
                 border-bottom: 2px solid #c19a3f;
+                font-size: 1.1rem;
               }
               .header h3 { 
                 font-size: 14px; 
@@ -913,12 +905,6 @@
                 border: 2px solid #1e3a8a; 
                 border-radius: 4px; 
                 background: #f8f9fa; 
-              }
-              .photo-label { 
-                font-size: 8px; 
-                color: #666; 
-                margin-top: 3px; 
-                font-weight: 400; 
               }
               .qr-section { 
                 text-align: center; 
@@ -1058,8 +1044,8 @@
                 </div>
                 <div class="content">
                   <div class="photo-qr-row">
-                    <div class="photo-section"><img src="${photoURL}" alt="Photo" class="student-photo"><div class="photo-label">ALUMNI PHOTO</div></div>
-                    <div class="qr-section"><div class="qr-code"><img src="${qrURL}" alt="QR"></div><div class="qr-label">VERIFY ALUMNI</div></div>
+                    <div class="photo-section"><img src="${photoURL}" alt="Photo" class="student-photo"></div>
+                    <div class="qr-section"><div class="qr-code"><img src="${qrURL}" alt="QR"></div><div class="qr-label">VERIFY</div></div>
                   </div>
                   <h2 class="alumni-name">${s.FullName}</h2>
                   <div class="details">
@@ -1068,7 +1054,7 @@
                     <div class="detail-row"><span class="detail-label">DATE OF BIRTH:</span><span class="detail-value">${formattedDOB}</span></div>
                     <div class="detail-row"><span class="detail-label">BATCH:</span><span class="detail-value">${s.BatchNumber}</span></div>
                     <div class="detail-row"><span class="detail-label">PASSOUT YEAR:</span><span class="detail-value">${s.PassoutYear}</span></div>
-                    <div class="detail-row"><span class="detail-label">COURSE:</span><span class="detail-value">${s.Course}</span></div>
+                    <div class="detail-row"><span class="detail-label">PLACE:</span><span class="detail-value">${s.Place}</span></div>
                     <div class="detail-row"><span class="detail-label">PHONE:</span><span class="detail-value">${s.Phone}</span></div>
                   </div>
                   <div class="alumni-footer">
@@ -1077,7 +1063,6 @@
                   </div>
                 </div>
               </div>
-              <div class="print-instructions">For best print results, use A4 paper and select "Fit to page" in printer settings</div>
               <div class="controls no-print">
                 <button class="btn-print" onclick="window.print()">🖨️ Print Card</button>
                 <button class="btn-close" onclick="window.close()">✕ Close</button>
