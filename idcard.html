@@ -1,5 +1,4 @@
-<!doctype html>
-<html lang="en">
+<!doctype html><html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,197 +64,47 @@
   </style>
 </head>
 <body>
-<div id="navbar-container"></div>
-<div class="page-header"><div class="container"><div class="page-header-content">
-<h1 class="page-title">Digital ID Card</h1>
-<p class="page-subtitle">Generate your official college identification card</p>
-</div></div></div>
-<section class="content-section"><div class="container"><div class="row justify-content-center"><div class="col-lg-6">
-<div class="id-card-form-container">
-<img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="form-logo">
-<h3 class="form-title">DARUNNAJATH SHAREEATH & ARTS COLLEGE</h3>
-<p class="form-subtitle">Punnakkad, Karuvarakundu</p>
-<form id="idForm">
-<div class="mb-3">
-<label class="form-label">UID Number</label>
-<input type="text" name="uid" class="form-control" placeholder="Enter UID number" required>
-</div>
-<div class="mb-3">
-<label class="form-label">Date of Birth</label>
-<input type="date" name="dob" class="form-control" required>
-</div>
-<button type="submit" class="btn-gold w-100 py-3"><i class="fas fa-id-card me-2"></i>Generate ID Card</button>
-</form>
-<div class="id-card-info mt-4">
-<h5><i class="fas fa-info-circle me-2"></i>Important Information</h5>
-<ul>
-<li>UID number is provided during admission</li>
-<li>Use date of birth as registered with college</li>
-<li>ID card contains QR code for verification</li>
-<li>You can print the ID card for official use</li>
-<li>Contact college office for any corrections</li>
-</ul>
-</div>
-</div>
-<div class="text-center mt-5"><a href="index.html" class="btn-outline-gold btn-lg px-5"><i class="fas fa-home me-2"></i>Back to Home</a></div>
-</div></div></div></section>
-<div id="footer-container"></div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-window.addEventListener('scroll',function(){const navbar=document.querySelector('.navbar-optimized');navbar.classList.toggle('scrolled',window.scrollY>50);});
-const scriptURL='https://script.google.com/macros/s/AKfycbyt3XdBw1BmJ7webObbKgY0ZDkmk-sOYfo-EROt1C6Z3Y9xGrPUVlevfq0_EgwwJjz7/exec';
-document.getElementById('idForm').addEventListener('submit',function(e){e.preventDefault();const formData=new FormData(e.target);const uidVal=formData.get('uid');const dobVal=formData.get('dob');const url=`${scriptURL}?uid=${encodeURIComponent(uidVal)}&dob=${encodeURIComponent(dobVal)}`;const newWin=window.open("","_blank");
+  <div class="islamic-ornament ornament-1">✸</div><div class="islamic-ornament ornament-2">✸</div><div class="islamic-ornament ornament-3">✸</div>
+  <div id="navbar-container"></div>
+  <div class="page-header"><div class="container"><div class="page-header-content"><h1 class="page-title">Digital ID Card</h1><p class="page-subtitle">Generate your official college identification card</p></div></div></div>
+  <section class="content-section"><div class="container"><div class="row justify-content-center"><div class="col-lg-6">
+    <div class="id-card-form-container" data-aos="fade-up">
+      <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="form-logo">
+      <h3 class="form-title">DARUNNAJATH SHAREEATH & ARTS COLLEGE</h3>
+      <p class="form-subtitle">Punnakkad, Karuvarakundu</p>
+      <form id="idForm">
+        <div class="mb-3"><label class="form-label">UID Number</label><input type="text" name="uid" class="form-control" placeholder="Enter your UID number" required></div>
+        <div class="mb-3"><label class="form-label">Date of Birth</label><input type="date" name="dob" class="form-control" required></div>
+        <button type="submit" class="btn-gold w-100 py-3"><i class="fas fa-id-card me-2"></i>Generate ID Card</button>
+      </form>
+      <div class="id-card-info mt-4">
+        <h5><i class="fas fa-info-circle me-2"></i>Important Information</h5>
+        <ul><li>UID number is provided during admission</li><li>Use date of birth as registered with college</li><li>ID card contains QR code for verification</li><li>You can print the ID card for official use</li><li>Contact college office for any corrections</li></ul>
+      </div>
+    </div>
+    </div>
+    </div>
 
-newWin.document.write(`<!DOCTYPE html><html><head><title>Loading...</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>
-@media print{body{margin:0;padding:0;}.no-print{display:none!important;}}
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Poppins',sans-serif;background:#f0f4ff;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:20px 10px;}
-.id-card{width:300px;height:470px;background:white;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.2);border:3px solid #0a5c36;margin-bottom:20px;}
-.header{background:#0a5c36;color:white;padding:10px;text-align:center;border-bottom:3px solid #c19a3f;}
-.header h3{font-size:15px;font-weight:700;margin:0;line-height:1.3;letter-spacing:0.5px;}
-.header p{font-size:10px;margin:3px 0 0;opacity:0.9;}
-.content{padding:15px;}
-.photo-qr-row{display:flex;justify-content:space-between;margin-bottom:12px;}
-.student-photo{width:110px;height:130px;object-fit:cover;border:2px solid #0a5c36;border-radius:5px;}
-.qr-code{width:80px;height:80px;border:2px solid #0a5c36;border-radius:5px;}
-.student-name{text-align:center;color:#0a5c36;font-size:18px;font-weight:700;margin-bottom:12px;padding-bottom:5px;border-bottom:2px solid #0a5c36;}
-.details{display:grid;grid-template-columns:1fr;gap:4px;margin-bottom:12px;}
-.detail-row{display:flex;font-size:11px;line-height:1.3;}
-.detail-label{color:#0a5c36;font-weight:600;min-width:100px;}
-.detail-value{color:#333;flex:1;font-weight:500;}
-.footer{text-align:center;padding-top:10px;border-top:1px dashed #ccc;}
-.year{color:#0a5c36;font-weight:600;font-size:12px;}
-.signature{font-size:9px;color:#666;margin-top:5px;}
-.controls{margin-top:15px;display:flex;justify-content:center;gap:10px;}
-.btn{background:#0a5c36;color:white;border:none;padding:8px 20px;border-radius:20px;cursor:pointer;font-weight:600;}
-.btn-close{background:#dc3545;}
-</style></head><body>
-<div class="id-card">
-<div class="header">
-<h3>DARUNNAJATH SHAREEATH & ARTS COLLEGE</h3>
-<p>Punnakkad, Karuvarakundu | Official ID Card</p>
-</div>
-<div class="content">
-<div class="photo-qr-row">
-<div><img src="" class="student-photo"><div style="font-size:10px;text-align:center;margin-top:3px">PHOTO</div></div>
-<div><div class="qr-code"><img src=""></div><div style="font-size:8px;text-align:center;margin-top:3px">SCAN TO VERIFY</div></div>
-</div>
-<h2 class="student-name">Loading...</h2>
-<div class="details">
-<div class="detail-row"><span class="detail-label">UID:</span><span>${uidVal}</span></div>
-<div class="detail-row"><span class="detail-label">FATHER'S NAME:</span><span>Loading...</span></div>
-<div class="detail-row"><span class="detail-label">DATE OF BIRTH:</span><span>${dobVal}</span></div>
-<div class="detail-row"><span class="detail-label">BATCH:</span><span>Loading...</span></div>
-<div class="detail-row"><span class="detail-label">PHONE:</span><span>Loading...</span></div>
-</div>
-<div class="footer">
-<div class="year">ACADEMIC YEAR 2025-26</div>
-<div class="signature">PRINCIPAL'S SIGNATURE</div>
-</div>
-</div>
-</div>
-<div class="controls no-print">
-<button class="btn" onclick="window.print()">🖨️ Print ID Card</button>
-<button class="btn btn-close" onclick="window.close()">✕ Close Window</button>
-</div>
-</body></html>`);
-
-fetch(url).then(res=>res.json()).then(data=>{
-if(data.result==='success'){
-const s=data.student;
-const qrData=`DSAC ID CARD<br>UID: ${s.UID}<br>Name: ${s.FullName}<br>Father: ${s.FatherName}<br>DOB: ${s.DateOfBirth||dobVal}<br>Batch: ${s.BatchNumber}<br>Phone: ${s.Phone}`;
-const qrURL=`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=80x80&color=0a5c36`;
-const photoURL=s.PhotoURL||'https://via.placeholder.com/110x130?text=PHOTO';
-
-const finalHTML=`<!DOCTYPE html><html><head><title>${s.FullName}|ID Card</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>
-@media print{body{margin:0;padding:0;}.no-print{display:none!important;}}
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Poppins',sans-serif;background:#f0f4ff;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:20px 10px;}
-.id-card{width:300px;height:470px;background:white;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.2);border:3px solid #0a5c36;margin-bottom:20px;}
-.header{background:#0a5c36;color:white;padding:10px;text-align:center;border-bottom:3px solid #c19a3f;}
-.header h3{font-size:15px;font-weight:700;margin:0;line-height:1.3;letter-spacing:0.5px;}
-.header p{font-size:10px;margin:3px 0 0;opacity:0.9;}
-.content{padding:15px;}
-.photo-qr-row{display:flex;justify-content:space-between;margin-bottom:12px;}
-.student-photo{width:110px;height:130px;object-fit:cover;border:2px solid #0a5c36;border-radius:5px;}
-.qr-code{width:80px;height:80px;border:2px solid #0a5c36;border-radius:5px;}
-.student-name{text-align:center;color:#0a5c36;font-size:18px;font-weight:700;margin-bottom:12px;padding-bottom:5px;border-bottom:2px solid #0a5c36;}
-.details{display:grid;grid-template-columns:1fr;gap:4px;margin-bottom:12px;}
-.detail-row{display:flex;font-size:11px;line-height:1.3;}
-.detail-label{color:#0a5c36;font-weight:600;min-width:100px;}
-.detail-value{color:#333;flex:1;font-weight:500;}
-.footer{text-align:center;padding-top:10px;border-top:1px dashed #ccc;}
-.year{color:#0a5c36;font-weight:600;font-size:12px;}
-.signature{font-size:9px;color:#666;margin-top:5px;}
-.controls{margin-top:15px;display:flex;justify-content:center;gap:10px;}
-.btn{background:#0a5c36;color:white;border:none;padding:8px 20px;border-radius:20px;cursor:pointer;font-weight:600;}
-.btn-close{background:#dc3545;}
-</style></head><body>
-<div class="id-card">
-<div class="header">
-<h3>DARUNNAJATH SHAREEATH & ARTS COLLEGE</h3>
-<p>Punnakkad, Karuvarakundu | Official ID Card</p>
-</div>
-<div class="content">
-<div class="photo-qr-row">
-<div><img src="${photoURL}" class="student-photo"><div style="font-size:10px;text-align:center;margin-top:3px">PHOTO</div></div>
-<div><div class="qr-code"><img src="${qrURL}"></div><div style="font-size:8px;text-align:center;margin-top:3px">SCAN TO VERIFY</div></div>
-</div>
-<h2 class="student-name">${s.FullName}</h2>
-<div class="details">
-<div class="detail-row"><span class="detail-label">UID:</span><span>${s.UID}</span></div>
-<div class="detail-row"><span class="detail-label">FATHER'S NAME:</span><span>${s.FatherName}</span></div>
-<div class="detail-row"><span class="detail-label">DATE OF BIRTH:</span><span>${s.DateOfBirth||dobVal}</span></div>
-<div class="detail-row"><span class="detail-label">BATCH:</span><span>${s.BatchNumber}</span></div>
-<div class="detail-row"><span class="detail-label">PHONE:</span><span>${s.Phone}</span></div>
-</div>
-<div class="footer">
-<div class="year">ACADEMIC YEAR 2025-26</div>
-<div class="signature">PRINCIPAL'S SIGNATURE</div>
-</div>
-</div>
-</div>
-<div class="controls no-print">
-<button class="btn" onclick="window.print()">🖨️ Print ID Card</button>
-<button class="btn btn-close" onclick="window.close()">✕ Close Window</button>
-</div>
-</body></html>`;
-
-newWin.document.open();
-newWin.document.write(finalHTML);
-newWin.document.close();
-}else{
-newWin.document.write(`<html><body style="font-family:Poppins;text-align:center;padding:50px;">
-<h2 style="color:#dc3545">Student Not Found</h2>
-<p>${data.message||'Check UID and Date of Birth.'}</p>
-<button onclick="window.close()" style="background:#0a5c36;color:white;border:none;padding:10px 20px;border-radius:25px;margin-top:20px;">
-Go Back
-</button>
-</body></html>`);
-}
-}).catch(()=>{
-newWin.document.write(`<html><body style="font-family:Poppins;text-align:center;padding:50px;">
-<h2 style="color:#dc3545">Connection Error</h2>
-<p>Please try again later.</p>
-<button onclick="window.close()" style="background:#0a5c36;color:white;border:none;padding:10px 20px;border-radius:25px;margin-top:20px;">
-Go Back
-</button>
-</body></html>`);
-});
-});
-
-fetch('navbar.html').then(r=>r.text()).then(d=>{
-document.getElementById('navbar-container').innerHTML=d;
-}).catch(e=>console.error('Navbar error:',e));
-
-fetch('footer.html').then(r=>r.text()).then(d=>{
-document.getElementById('footer-container').innerHTML=d;
-}).catch(e=>console.error('Footer error:',e));
-
-document.addEventListener('DOMContentLoaded',function(){
-document.body.style.opacity='0';
-setTimeout(()=>{document.body.style.opacity='1';},50);
-});
-</script>
+    <div class="text-center mt-5" data-aos="fade-up"><a href="index.html" class="btn-outline-gold btn-lg px-5"><i class="fas fa-home me-2"></i>Back to Home</a></div>
+   </div>
+  </section>
+  <div id="footer-container"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({duration:800,once:true,offset:50,disable:window.innerWidth<768});
+    window.addEventListener('scroll',function(){const navbar=document.querySelector('.navbar-optimized');const scrollTop=window.pageYOffset||document.documentElement.scrollTop;navbar.classList.toggle('scrolled',scrollTop>50);});
+    const scriptURL='https://script.google.com/macros/s/AKfycbyt3XdBw1BmJ7webObbKgY0ZDkmk-sOYfo-EROt1C6Z3Y9xGrPUVlevfq0_EgwwJjz7/exec';
+    document.getElementById('idForm').addEventListener('submit',function(e){e.preventDefault();const formData=new FormData(e.target);const uidVal=formData.get('uid');const dobVal=formData.get('dob');const url=`${scriptURL}?uid=${encodeURIComponent(uidVal)}&dob=${encodeURIComponent(dobVal)}`;const newWin=window.open("","_blank");
+    newWin.document.write(`<!DOCTYPE html><html><head><title>Loading...</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>@media print{body{margin:0;padding:0;}.no-print{display:none!important;}.id-card{margin:0;box-shadow:none;border:1px solid #000;}}*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Poppins',sans-serif;background:#f0f4ff;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:10px;}.id-card{width:300px;height:470px;background:white;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.2);border:3px solid #0a5c36;position:relative;overflow:hidden;}.header{background:linear-gradient(90deg,#0a5c36,#0b5ed7);color:white;padding:8px;text-align:center;}.header h3{font-size:14px;font-weight:700;margin:0;line-height:1.2;}.header small{font-size:9px;display:block;}.content{padding:15px;}.photo-qr-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:15px;gap:10px;}.photo-section{text-align:center;flex:1;}.student-photo{width:110px;height:130px;object-fit:cover;border:2px solid #0a5c36;border-radius:5px;background:#f8f9fa;}.photo-label{font-size:10px;color:#666;margin-top:5px;}.qr-section{text-align:center;flex:0.8;margin-top:10px;}.qr-code{width:80px;height:80px;background:white;padding:5px;border:2px solid #0a5c36;border-radius:5px;}.qr-label{font-size:8px;color:#666;margin-top:3px;}.student-name{text-align:center;color:#0a5c36;font-size:18px;font-weight:700;margin-bottom:15px;padding-bottom:5px;border-bottom:2px solid #0a5c36;}.details{display:grid;grid-template-columns:1fr;gap:6px;margin-bottom:15px;}.detail-row{display:flex;align-items:center;font-size:11px;min-height:20px;}.detail-label{color:#0a5c36;font-weight:600;min-width:100px;}.detail-value{color:#333;flex:1;font-weight:500;}.footer{display:flex;justify-content:space-between;align-items:flex-end;margin-top:10px;padding-top:10px;border-top:1px dashed #ccc;}.academic-year{text-align:center;flex:1;}.year{color:#0a5c36;font-weight:600;font-size:12px;}.signature{font-size:9px;color:#666;margin-top:5px;}.controls{text-align:center;margin-top:15px;margin-bottom:15px;}.btn-print{background:#0a5c36;color:white;border:none;padding:8px 20px;border-radius:20px;font-weight:600;cursor:pointer;font-size:14px;}.btn-print:hover{background:#0b5ed7;}.btn-close{background:#dc3545;color:white;border:none;padding:8px 20px;border-radius:20px;font-weight:600;cursor:pointer;font-size:14px;margin-left:10px;}.btn-close:hover{background:#bb2d3b;}</style></head><body><div class="controls no-print"><button class="btn-print" onclick="window.print()">🖨️ Print</button><button class="btn-close" onclick="window.close()">✕ Close</button></div><div class="id-card"><div class="header"><h3>DARUNNAJATH SHAREEATH & ARTS COLLEGE</h3><p>Punnakkad, Karuvarakundu</p></div><div class="content"><div class="photo-qr-row"><div class="photo-section"><img src="" alt="Photo" class="student-photo"><div class="photo-label">PHOTO</div></div><div class="qr-section"><div class="qr-code"><img src="" alt="QR"></div><div class="qr-label">SCAN TO VERIFY</div></div></div><h2 class="student-name">Loading...</h2><div class="details"><div class="detail-row"><span class="detail-label">UID:</span><span class="detail-value">${uidVal}</span></div><div class="detail-row"><span class="detail-label">FATHER:</span><span class="detail-value">Loading...</span></div><div class="detail-row"><span class="detail-label">Date of Birth:</span><span class="detail-value">${dobVal}</span></div><div class="detail-row"><span class="detail-label">BATCH:</span><span class="detail-value">Loading...</span></div><div class="detail-row"><span class="detail-label">PHONE:</span><span class="detail-value">Loading...</span></div></div><div class="footer"><div class="academic-year"><div class="year">ACADEMIC YEAR 2025-26</div><div class="signature">PRINCIPAL'S SIGNATURE</div></div></div></div></div></body></html>`);
+    fetch(url).then(res=>res.json()).then(data=>{if(data.result==='success'){const s=data.student;const qrData=`UID:${s.UID},Name:${s.FullName},Father:${s.FatherName},Date of Birth:${s.DateOfBirth||dobVal},Batch:${s.BatchNumber}`;const qrURL=`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=70x70&margin=2&color=0a5c36`;
+    const html=`<!DOCTYPE html><html><head><title>${s.FullName}|ID Card</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>@media print{body{margin:0;padding:0;}.no-print{display:none!important;}.id-card{margin:0;box-shadow:none;border:1px solid #000;position:absolute;top:0;left:0;width:100%;height:100%;}}*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Poppins',sans-serif;background:#f0f4ff;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:10px;}.id-card{width:300px;height:470px;background:white;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.2);border:3px solid #0a5c36;position:relative;overflow:hidden;}.header{background:linear-gradient(90deg,#0a5c36,#0b5ed7);color:white;padding:8px;text-align:center;}.header h3{font-size:14px;font-weight:700;margin:0;line-height:1.2;}.header small{font-size:9px;display:block;}.content{padding:15px;}.photo-qr-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:15px;gap:10px;}.photo-section{text-align:center;flex:1;}.student-photo{width:110px;height:130px;object-fit:cover;border:2px solid #0a5c36;border-radius:5px;background:#f8f9fa;}.photo-label{font-size:10px;color:#666;margin-top:5px;}.qr-section{text-align:center;flex:0.8;margin-top:10px;}.qr-code{width:80px;height:80px;background:white;padding:5px;border:2px solid #0a5c36;border-radius:5px;}.qr-label{font-size:8px;color:#666;margin-top:3px;}.student-name{text-align:center;color:#0a5c36;font-size:18px;font-weight:700;margin-bottom:15px;padding-bottom:5px;border-bottom:2px solid #0a5c36;}.details{display:grid;grid-template-columns:1fr;gap:6px;margin-bottom:15px;}.detail-row{display:flex;align-items:center;font-size:11px;min-height:20px;}.detail-label{color:#0a5c36;font-weight:600;min-width:100px;}.detail-value{color:#333;flex:1;font-weight:500;}.footer{display:flex;justify-content:space-between;align-items:flex-end;margin-top:10px;padding-top:10px;border-top:1px dashed #ccc;}.academic-year{text-align:center;flex:1;}.year{color:#0a5c36;font-weight:600;font-size:12px;}.signature{font-size:9px;color:#666;margin-top:5px;}.controls{text-align:center;margin-top:15px;margin-bottom:15px;}.btn-print{background:#0a5c36;color:white;border:none;padding:8px 20px;border-radius:20px;font-weight:600;cursor:pointer;font-size:14px;}.btn-print:hover{background:#0b5ed7;}.btn-close{background:#dc3545;color:white;border:none;padding:8px 20px;border-radius:20px;font-weight:600;cursor:pointer;font-size:14px;margin-left:10px;}.btn-close:hover{background:#bb2d3b;}</style></head><body><div class="controls no-print"><button class="btn-print" onclick="window.print()">🖨️ Print</button><button class="btn-close" onclick="window.close()">✕ Close</button></div><div class="id-card"><div class="header"><h3>DARUNNAJATH SHAREEATH & ARTS COLLEGE</h3><p>Punnakkad, Karuvarakundu</p></div><div class="content"><div class="photo-qr-row"><div class="photo-section"><img src="${s.PhotoURL||'https://via.placeholder.com/110x130?text=Photo'}" alt="Photo" class="student-photo"><div class="photo-label">PHOTO</div></div><div class="qr-section"><div class="qr-code"><img src="${qrURL}" alt="QR"></div><div class="qr-label">SCAN TO VERIFY</div></div></div><h2 class="student-name">${s.FullName}</h2><div class="details"><div class="detail-row"><span class="detail-label">UID:</span><span class="detail-value">${s.UID}</span></div><div class="detail-row"><span class="detail-label">FATHER:</span><span class="detail-value">${s.FatherName}</span></div><div class="detail-row"><span class="detail-label">Date of Birth:</span><span class="detail-value">${s.DateOfBirth||dobVal}</span></div><div class="detail-row"><span class="detail-label">BATCH:</span><span class="detail-value">${s.BatchNumber}</span></div><div class="detail-row"><span class="detail-label">PHONE:</span><span class="detail-value">${s.Phone}</span></div></div><div class="footer"><div class="academic-year"><div class="year">ACADEMIC YEAR 2025-26</div><div class="signature">PRINCIPAL'S SIGNATURE</div></div></div></div></div></body></html>`;
+    newWin.document.open();newWin.document.write(html);newWin.document.close();}else{newWin.document.write(`<html><head><style>body{font-family:Poppins;text-align:center;padding:50px;background:#f0f4ff;}.error-container{max-width:400px;margin:0 auto;}h2{color:#dc3545;margin-bottom:20px;}button{background:#0a5c36;color:white;border:none;padding:12px 30px;border-radius:25px;margin-top:20px;cursor:pointer;font-size:16px;}</style></head><body><div class="error-container"><h2>Student Not Found</h2><p>${data.message||'Check UID and Date of Birth.'}</p><button onclick="window.close()">Go Back</button></div></body></html>`);}}).catch(()=>{newWin.document.write(`<html><body style="font-family:Poppins;text-align:center;padding:50px;background:#f0f4ff;"><div style="color:#dc3545;"><h2>Connection Error</h2><p>Please try again later.</p><button onclick="window.close()" style="background:#0a5c36;color:white;border:none;padding:10px 20px;border-radius:25px;margin-top:20px;">Go Back</button></div></body></html>`);});});
+  </script>
+  <script>
+    fetch('navbar.html').then(response=>response.text()).then(data=>{document.getElementById('navbar-container').innerHTML=data;document.querySelectorAll('.submenu-toggle').forEach(function(toggle){toggle.addEventListener('click',function(e){e.stopPropagation();e.preventDefault();const target=document.querySelector(toggle.getAttribute('data-bs-target'));new bootstrap.Collapse(target,{toggle:true});});});}).catch(error=>console.error('Navbar error:',error));
+    fetch('footer.html').then(response=>response.text()).then(data=>{document.getElementById('footer-container').innerHTML=data;}).catch(error=>console.error('Footer error:',error));
+    document.addEventListener('DOMContentLoaded',function(){document.body.style.opacity='0';document.body.style.transition='opacity 0.3s ease';setTimeout(()=>{document.body.style.opacity='1';},50);});
+  </script>
 </body>
 </html>
