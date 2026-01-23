@@ -20,20 +20,16 @@
       --alumni-gold: #d4af37;
       --transition: all 0.3s ease;
     }
-   
     body {
       font-family: 'Poppins', sans-serif;
       background-color: var(--islamic-cream);
       color: #333;
       padding-top: 80px;
       overflow-x: hidden;
-      transition: opacity 0.3s ease;
     }
-   
     a {
       text-decoration: none !important;
     }
-   
     .pattern-bg {
       background-image: radial-gradient(circle at 25% 25%, rgba(30, 58, 138, 0.03) 2px, transparent 2px),
         radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px);
@@ -45,33 +41,22 @@
       height: 100%;
       z-index: -1;
     }
-   
     .navbar-optimized {
       background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
       border-bottom: 3px solid var(--islamic-gold);
       height: 80px;
       z-index: 1030;
-      transition: all 0.3s ease;
     }
-   
-    .navbar-toggler {
-      border-color: rgba(255, 255, 255, 0.5);
-    }
-   
-    .navbar-toggler:focus {
-      box-shadow: 0 0 0 2px var(--islamic-gold);
-    }
-   
+    .navbar-toggler {border-color: rgba(255, 255, 255, 0.5);}
+    .navbar-toggler:focus {box-shadow: 0 0 0 2px var(--islamic-gold);}
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
-   
     .navbar-optimized.scrolled {
       background: rgba(10, 92, 54, 0.98);
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
       height: 70px;
     }
-   
     .navbar-brand-compact img {
       border-radius: 8px;
       width: 60px;
@@ -81,12 +66,10 @@
       border: none;
       box-shadow: 0 0 0 2px var(--islamic-gold);
     }
-   
     .navbar-optimized.scrolled .navbar-brand-compact img {
       width: 50px;
       height: 50px;
     }
-   
     .nav-link-optimized {
       color: #fff !important;
       font-weight: 500;
@@ -95,105 +78,47 @@
       white-space: nowrap;
       text-decoration: none !important;
     }
-   
     .nav-link-optimized:hover {
       color: var(--islamic-gold) !important;
       background: rgba(255, 255, 255, 0.1);
     }
-   
     .dropdown-menu-optimized {
       background: var(--islamic-green);
       border: 1px solid var(--islamic-gold);
       border-radius: 8px;
     }
-   
     .dropdown-item-optimized {
       color: white;
       padding: 0.5rem 1rem;
       text-decoration: none !important;
     }
-   
     .dropdown-item-optimized:hover {
       background: var(--islamic-gold);
       color: var(--islamic-green);
     }
-   
-    /* Modal fixes */
-    .modal-backdrop {
-      z-index: 1040;
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-   
-    .modal-backdrop.show {
-      opacity: 0.5;
-    }
-   
-    .modal {
-      z-index: 1050;
-    }
-   
-    .modal.fade .modal-dialog {
-      transform: translate(0, -50px);
-      transition: transform 0.3s ease-out;
-    }
-   
-    .modal.show .modal-dialog {
-      transform: translate(0, 0);
-    }
-   
-    .modal-content {
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      border: none;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-   
-    #alumniTableBody td:first-child {
-      color: #000 !important;
-      font-weight: 500;
-      font-family: monospace;
-      font-size: 0.9rem;
-    }
-   
-    .table-responsive {
-      border-radius: 8px;
-      border: 1px solid #dee2e6;
-      overflow-y: auto;
-    }
-   
-    .table th {
+
+    /* Fix for sticky header */
+    .table-container thead th {
       background-color: #f8f9fa;
-      font-weight: 600;
-      color: var(--alumni-blue);
-    }
-   
-    .table thead th {
       position: sticky;
       top: 0;
-      z-index: 10;
-      background: #f8f9fa;
-      box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1);
     }
-   
-    .table td {
-      padding: 0.75rem 1rem;
-      vertical-align: middle;
-      border-bottom: 1px solid #dee2e6;
-    }
-   
-    .table tbody tr:hover {
-      background-color: rgba(30, 58, 138, 0.05);
-    }
-   
+
+    #alumniTable { font-size: 0.85rem;}
+    #alumniTable tbody tr { transition: all 0.2s;}
+    #alumniTable tbody tr:hover { background-color: rgba(30, 58, 138, 0.08) !important; transform: translateX(2px);}
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; }}
+    .modal.fade .modal-dialog { animation: fadeIn 0.3s ease-out;}
+
     @media (min-width: 992px) {
       .dropdown-submenu {
         position: relative;
       }
-     
-      .dropdown-submenu:hover>.collapse {
+      .dropdown-submenu:hover > .collapse {
         display: block !important;
       }
-     
       .dropdown-submenu .collapse {
         position: absolute;
         top: 0;
@@ -207,26 +132,24 @@
         border: 1px solid var(--islamic-gold);
         border-radius: 0 0.5rem 0.5rem 0.5rem;
       }
-     
-      .dropdown-submenu>a:after {
+      .dropdown-submenu > a:after {
         content: "›";
         float: right;
         margin-right: -0.5rem;
         font-size: 1.2rem;
       }
     }
-   
     @media (max-width: 991px) {
       .dropdown-submenu .collapse {
         position: static;
         width: auto;
         border: none;
         box-shadow: none;
-        background: rgba(0, 0, 0, 0.1);
+        background: rgba(0,0,0,0.1);
         margin-left: 1.2rem;
       }
     }
-   
+
     .page-header {
       background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
       color: white;
@@ -241,7 +164,6 @@
       position: relative;
       overflow: hidden;
     }
-   
     .page-header::before {
       content: '';
       position: absolute;
@@ -252,7 +174,6 @@
       background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
       opacity: 0.5;
     }
-   
     .page-title {
       font-family: 'Scheherazade New', serif;
       font-size: 2.8rem;
@@ -260,10 +181,9 @@
       margin-bottom: 0.8rem;
       color: var(--alumni-gold);
       width: 100%;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
       letter-spacing: 1px;
     }
-   
     .page-subtitle {
       font-size: 1.2rem;
       opacity: 0.95;
@@ -274,12 +194,11 @@
       font-weight: 400;
       letter-spacing: 0.5px;
     }
-   
+
     .content-section {
       padding: 3rem 0;
       background: var(--islamic-cream);
     }
-   
     .section-title {
       color: var(--alumni-blue);
       font-weight: 700;
@@ -291,18 +210,7 @@
       margin-bottom: 0.5rem;
       font-size: 2.2rem;
     }
-   
-    .section-header::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--alumni-gold), transparent);
-      z-index: 1;
-    }
-   
+
     .id-card-form-container {
       background: white;
       border-radius: 12px;
@@ -314,7 +222,6 @@
       position: relative;
       overflow: hidden;
     }
-   
     .id-card-form-container::before {
       content: '';
       position: absolute;
@@ -325,7 +232,6 @@
       background: linear-gradient(90deg, var(--alumni-blue), var(--alumni-gold));
       border-radius: 12px 12px 0 0;
     }
-   
     .form-logo {
       width: 75px;
       height: 75px;
@@ -336,9 +242,8 @@
       border: 1px solid rgba(30, 58, 138, 0.2);
       padding: 4px;
       background: white;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
     }
-   
     .form-title {
       color: var(--alumni-blue);
       font-weight: 700;
@@ -347,7 +252,6 @@
       font-size: 1.4rem;
       letter-spacing: 0.5px;
     }
-   
     .form-subtitle {
       color: #555;
       text-align: center;
@@ -357,7 +261,6 @@
       line-height: 1.2;
       font-weight: 400;
     }
-   
     .form-control {
       border: 1px solid rgba(30, 58, 138, 0.25);
       border-radius: 6px;
@@ -367,14 +270,12 @@
       background: #fdfdfd;
       transition: var(--transition);
     }
-   
     .form-control:focus {
       border-color: var(--alumni-gold);
       box-shadow: 0 0 0 3px rgba(193, 154, 63, 0.1);
       background: white;
       outline: none;
     }
-   
     .form-label {
       color: var(--alumni-blue);
       font-weight: 600;
@@ -383,13 +284,12 @@
       display: flex;
       align-items: center;
     }
-   
     .form-label i {
       margin-right: 8px;
       font-size: 0.9rem;
       color: var(--alumni-gold);
     }
-   
+
     .btn-alumni {
       background: linear-gradient(135deg, var(--alumni-blue), #2d4f9c);
       border: none;
@@ -402,14 +302,12 @@
       transition: var(--transition);
       letter-spacing: 0.5px;
     }
-   
     .btn-alumni:hover {
       background: linear-gradient(135deg, #2d4f9c, var(--alumni-blue));
       box-shadow: 0 6px 15px rgba(30, 58, 138, 0.25);
       transform: translateY(-2px);
       color: white;
     }
-   
     .btn-outline-alumni {
       border: 1px solid var(--alumni-blue);
       color: var(--alumni-blue);
@@ -420,13 +318,12 @@
       text-decoration: none !important;
       transition: var(--transition);
     }
-   
     .btn-outline-alumni:hover {
       background: var(--alumni-blue);
       color: white;
       border-color: var(--alumni-blue);
     }
-   
+
     .id-card-info {
       background: rgba(30, 58, 138, 0.03);
       border-radius: 8px;
@@ -435,7 +332,6 @@
       border: 1px solid rgba(30, 58, 138, 0.1);
       font-size: 0.88rem;
     }
-   
     .id-card-info h5 {
       color: var(--alumni-blue);
       font-weight: 600;
@@ -444,77 +340,30 @@
       display: flex;
       align-items: center;
     }
-   
     .id-card-info ul {
       padding-left: 1.2rem;
       margin-bottom: 0;
     }
-   
     .id-card-info li {
       margin-bottom: 0.4rem;
       color: #555;
       font-size: 0.85rem;
       line-height: 1.4;
     }
-   
+
     .footer {
       background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
       border-top: 3px solid var(--islamic-gold);
       padding: 2.5rem 0 1.5rem;
       color: white;
     }
-   
     .footer-brand {
       font-size: 1.8rem;
       font-weight: 700;
       color: var(--islamic-gold);
       margin-bottom: 1rem;
     }
-   
-    .social-links {
-      display: flex;
-      gap: 12px;
-      margin-top: 1rem;
-    }
-   
-    .social-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      background: rgba(255, 255, 255, 0.1);
-      font-size: 1.1rem;
-      text-decoration: none !important;
-    }
-   
-    .social-icon:hover {
-      transform: translateY(-5px);
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-    }
-   
-    .footer-links h5 {
-      color: var(--islamic-gold);
-      margin-bottom: 1.2rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-   
-    .footer-links a {
-      display: block;
-      color: rgba(255, 255, 255, 0.85);
-      margin-bottom: 0.6rem;
-      text-decoration: none !important;
-    }
-   
-    .footer-links a:hover {
-      color: var(--islamic-gold);
-      padding-left: 5px;
-    }
-   
+
     .whatsapp-float {
       position: fixed;
       bottom: 25px;
@@ -533,21 +382,15 @@
       animation: float 3s ease-in-out infinite;
       text-decoration: none !important;
     }
-   
     .whatsapp-float:hover {
       transform: scale(1.1) rotate(10deg);
       box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
     }
-   
     @keyframes float {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-8px);
-      }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
-   
+
     .islamic-ornament {
       position: fixed;
       color: var(--alumni-gold);
@@ -556,55 +399,18 @@
       z-index: -1;
       pointer-events: none;
     }
-   
-    .ornament-1 {
-      top: 20%;
-      left: 5%;
-      animation: float 6s ease-in-out infinite;
-    }
-   
-    .ornament-2 {
-      top: 60%;
-      right: 5%;
-      animation: float 8s ease-in-out infinite reverse;
-    }
-   
-    .ornament-3 {
-      bottom: 20%;
-      left: 10%;
-      animation: float 7s ease-in-out infinite;
-    }
-   
+    .ornament-1 { top: 20%; left: 5%; animation: float 6s ease-in-out infinite; }
+    .ornament-2 { top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse; }
+    .ornament-3 { bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite; }
+
     @media (max-width: 768px) {
-      body {
-        padding-top: 70px !important;
-      }
-     
-      .navbar-optimized {
-        height: 70px;
-      }
-     
-      .page-header {
-        height: 22vh;
-        min-height: 160px;
-      }
-     
-      .page-title {
-        font-size: 2rem;
-      }
-     
-      .page-subtitle {
-        font-size: 1rem;
-      }
-     
-      .content-section {
-        padding: 2rem 0;
-      }
-     
-      .section-title {
-        font-size: 1.6rem;
-      }
-     
+      body { padding-top: 70px !important; }
+      .navbar-optimized { height: 70px; }
+      .page-header { height: 22vh; min-height: 160px; }
+      .page-title { font-size: 2rem; }
+      .page-subtitle { font-size: 1rem; }
+      .content-section { padding: 2rem 0; }
+      .section-title { font-size: 1.6rem; }
       .navbar-collapse {
         background: var(--dark-green);
         padding: 1rem;
@@ -612,99 +418,76 @@
         border: 1px solid var(--islamic-gold);
         margin-top: 0;
       }
-     
-      .id-card-form-container {
-        padding: 1.8rem;
-        margin: 0 1rem;
-      }
-     
-      .form-logo {
-        width: 65px;
-        height: 65px;
-      }
+      .id-card-form-container { padding: 1.8rem; margin: 0 1rem; }
+      .form-logo { width: 65px; height: 65px; }
     }
-   
+
     @media (max-width: 576px) {
-      .page-title {
-        font-size: 1.6rem;
-      }
-     
-      .section-title {
-        font-size: 1.3rem;
-      }
-     
-      .id-card-form-container {
-        padding: 1.5rem;
-      }
-     
-      .form-title {
-        font-size: 1.2rem;
-      }
-     
-      .form-subtitle {
-        font-size: 0.85rem;
-      }
+      .page-title { font-size: 1.6rem; }
+      .section-title { font-size: 1.3rem; }
+      .id-card-form-container { padding: 1.5rem; }
+      .form-title { font-size: 1.2rem; }
+      .form-subtitle { font-size: 0.85rem; }
     }
   </style>
 </head>
 <body>
-
   <div id="navbar-container"></div>
 
   <div class="page-header">
     <div class="container">
-      <h1 class="page-title">ANSAS ID Card</h1>
-      <p class="page-subtitle">Generate official college alumni identification card</p>
+      <div class="page-header-content text-center">
+        <h1 class="page-title">ANSAS ID Card</h1>
+        <p class="page-subtitle">Generate official college alumni identification card</p>
+      </div>
     </div>
   </div>
 
-  <section class="content-section py-5">
+  <section class="content-section">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-6">
           <div class="id-card-form-container" data-aos="fade-up">
-            <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="form-logo mx-auto d-block mb-3">
-            <h3 class="form-title text-center">ANSAS</h3>
-            <p class="form-subtitle text-center mb-1">Association of Najawees for Shareea, Academic and Society</p>
-            <p class="form-subtitle text-center">Darunnajath Shareeath & Arts College, Punnakkad</p>
-
-            <form id="idForm" class="mt-4">
+            <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="form-logo">
+            <h3 class="form-title">ANSAS</h3>
+            <p class="form-subtitle">Association of Najawees for Shareea, Academic and Society</p>
+            <p class="form-subtitle">Darunnajath Shareeath & Arts College, Punnakkad</p>
+            <form id="idForm">
               <input type="hidden" name="type" value="alumni">
               <div class="mb-3">
-                <label class="form-label"><i class="fas fa-id-card me-2"></i>Admission Number</label>
+                <label class="form-label"><i class="fas fa-id-card"></i> Admission Number</label>
                 <input type="text" name="uid" class="form-control" placeholder="Enter admission number" required>
               </div>
               <div class="mb-3">
-                <label class="form-label"><i class="fas fa-calendar-alt me-2"></i>Date of Birth</label>
+                <label class="form-label"><i class="fas fa-calendar-alt"></i> Date of Birth</label>
                 <input type="date" name="dob" class="form-control" required>
               </div>
               <button type="submit" class="btn-alumni w-100 py-3">
-                <i class="fas fa-graduation-cap me-2"></i>Generate Alumni ID Card
+                <i class="fas fa-graduation-cap me-2"></i> Generate Alumni ID Card
               </button>
             </form>
-
             <div class="text-center mt-4">
               <button type="button" id="showAlumniBtn" class="btn btn-outline-success w-100 py-3">
-                <i class="fas fa-list me-2"></i>Search Admission Number
+                <i class="fas fa-list me-2"></i> Search Admission Number
               </button>
             </div>
 
-            <div class="id-card-info mt-4 p-3 bg-light rounded">
-              <h5 class="mb-3"><i class="fas fa-info-circle me-2"></i>Important Information</h5>
-              <ul class="mb-0">
+            <div class="id-card-info mt-4">
+              <h5><i class="fas fa-info-circle me-2"></i>Important Information</h5>
+              <ul>
                 <li>If you have forgotten your admission number, please search.</li>
                 <li>Use date of birth as registered with college</li>
                 <li>Alumni ID card contains QR code for verification</li>
-                <li>Contact alumni association for corrections</li>
+                <li>This card provides access to alumni benefits and events</li>
+                <li>Contact alumni association for any corrections</li>
               </ul>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="text-center mt-5">
-        <a href="index.html" class="btn btn-outline-primary btn-lg px-5">
-          <i class="fas fa-home me-2"></i>Back to Home
+      <div class="text-center mt-5" data-aos="fade-up">
+        <a href="index.html" class="btn-outline-alumni btn-lg px-5">
+          <i class="fas fa-home me-2"></i> Back to Home
         </a>
       </div>
     </div>
@@ -712,33 +495,40 @@
 
   <div id="footer-container"></div>
 
-  <!-- ALUMNI MODAL – placed at the end of body -->
-  <div class="modal fade" id="alumniModal" tabindex="-1" aria-labelledby="alumniModalLabel" aria-hidden="true">
+  <!-- ──────────────────────────────────────────────── -->
+  <!--               ALUMNI MODAL (moved here)          -->
+  <!-- ──────────────────────────────────────────────── -->
+  <div class="modal fade" id="alumniModal" tabindex="-1" data-bs-backdrop="static">
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="alumniModalLabel">
-            <i class="fas fa-users me-2"></i>Alumni List – Search Admission Number
+        <div class="modal-header bg-alumni-blue text-white">
+          <h5 class="modal-title">
+            <i class="fas fa-users me-2"></i> Alumni List
           </h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body p-0">
-          <div class="table-responsive" style="max-height: 65vh;">
+          <div class="table-container" style="max-height: 65vh; overflow-y: auto;">
             <table class="table table-hover mb-0" id="alumniTable">
-              <thead class="sticky-top">
-                <tr>
-                  <th class="py-3">Admission Number</th>
-                  <th class="py-3">Name</th>
+              <thead class="sticky-top" style="top: 0; z-index: 1;">
+                <tr class="bg-light">
+                  <th class="py-3" style="width: 40%;">Admission Number</th>
+                  <th class="py-3" style="width: 60%;">Name</th>
                 </tr>
               </thead>
-              <tbody id="alumniTableBody">
-                <!-- Data loaded here -->
-              </tbody>
+              <tbody id="alumniTableBody"></tbody>
             </table>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <div class="d-flex justify-content-between w-100">
+            <div class="text-muted small" id="alumniCount">Loading...</div>
+            <div>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                <i class="fas fa-times me-1"></i> Close
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -746,181 +536,1195 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
   <script>
     AOS.init({ duration: 800, once: true, offset: 50, disable: window.innerWidth < 768 });
 
-    // Navbar scroll effect
-    window.addEventListener('scroll', () => {
-      document.querySelector('.navbar-optimized')?.classList.toggle('scrolled', window.scrollY > 50);
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar-optimized');
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      navbar.classList.toggle('scrolled', scrollTop > 50);
     });
 
-    // =============================================
-    //          ALUMNI MODAL LOGIC
-    // =============================================
-    document.getElementById('showAlumniBtn')?.addEventListener('click', function() {
-      const modalEl = document.getElementById('alumniModal');
-      const tbody = document.getElementById('alumniTableBody');
+    // ────────────────────────────────────────────────
+    //                Alumni List Modal Logic
+    // ────────────────────────────────────────────────
+    document.getElementById('showAlumniBtn').addEventListener('click', function() {
+      const modalElement = document.getElementById('alumniModal');
+      const modal = new bootstrap.Modal(modalElement, {
+        backdrop: true,
+        keyboard: true
+      });
 
-      // Show loading state
-      tbody.innerHTML = `
+      const tableBody = document.getElementById('alumniTableBody');
+      const alumniCount = document.getElementById('alumniCount');
+
+      tableBody.innerHTML = `
         <tr>
           <td colspan="2" class="text-center py-5">
-            <div class="spinner-border text-primary" role="status"></div>
-            <p class="mt-3 text-muted">Loading alumni list...</p>
+            <div class="spinner-border text-primary mb-3"></div>
+            <p class="text-muted mb-0">Loading alumni data...</p>
           </td>
         </tr>
       `;
 
-      const modal = new bootstrap.Modal(modalEl);
       modal.show();
 
       const API_URL = 'https://script.google.com/macros/s/AKfycbxEsuxJR-1rQwpYKn1MaJf_JuKOHO_9V_1A-Ff3xk79ahoy6CFm8FziAtjtw-yEpRVsHQ/exec';
 
       fetch(API_URL)
-        .then(res => res.json())
+        .then(response => {
+          if (!response.ok) throw new Error('Network response was not ok');
+          return response.json();
+        })
         .then(data => {
-          tbody.innerHTML = '';
           if (data.alumni && data.alumni.length > 0) {
-            data.alumni.forEach(al => {
-              const tr = document.createElement('tr');
-              tr.innerHTML = `
-                <td><span class="badge bg-primary fs-6">${al.uid || '—'}</span></td>
-                <td class="fw-medium">${al.name || 'N/A'}</td>
+            tableBody.innerHTML = '';
+            data.alumni.forEach((alumni) => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                <td><span class="badge bg-primary">${alumni.uid || 'N/A'}</span></td>
+                <td>${alumni.name || 'N/A'}</td>
               `;
-              tbody.appendChild(tr);
+              tableBody.appendChild(row);
             });
+            alumniCount.innerHTML = `<i class="fas fa-users me-1"></i> ${data.alumni.length} alumni found`;
           } else {
-            tbody.innerHTML = `
+            tableBody.innerHTML = `
               <tr>
-                <td colspan="2" class="text-center py-5 text-muted">
-                  <i class="fas fa-exclamation-circle fa-2x mb-3 d-block"></i>
-                  No alumni data found
+                <td colspan="2" class="text-center py-5">
+                  <i class="fas fa-exclamation-triangle text-warning fa-2x mb-3"></i>
+                  <p class="text-muted">No alumni data found in the sheet.</p>
                 </td>
               </tr>
             `;
+            alumniCount.innerHTML = '<i class="fas fa-exclamation-circle me-1"></i> No data found';
           }
         })
-        .catch(err => {
-          console.error(err);
-          tbody.innerHTML = `
+        .catch(error => {
+          console.error('Error:', error);
+          tableBody.innerHTML = `
             <tr>
-              <td colspan="2" class="text-center py-5 text-danger">
-                <i class="fas fa-exclamation-triangle fa-2x mb-3 d-block"></i>
-                Error loading data. Please try again.
+              <td colspan="2" class="text-center py-5">
+                <i class="fas fa-exclamation-circle text-danger fa-2x mb-3"></i>
+                <p class="text-danger mb-1">Error loading data</p>
+                <p class="text-muted small">Please check internet connection</p>
               </td>
             </tr>
           `;
+          alumniCount.innerHTML = '<i class="fas fa-exclamation-circle me-1"></i> Error loading';
         });
     });
 
-    // Reset body scroll lock when modal closes
-    document.getElementById('alumniModal')?.addEventListener('hidden.bs.modal', function () {
+    // Reset scroll lock when modal is closed
+    document.getElementById('alumniModal').addEventListener('hidden.bs.modal', function () {
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
+      // Optional: reset table to initial state
+      document.getElementById('alumniTableBody').innerHTML = '';
+      document.getElementById('alumniCount').textContent = 'Loading...';
     });
 
-    // =============================================
-    //          ID CARD GENERATION (unchanged)
-    // =============================================
+    // ────────────────────────────────────────────────
+    //                Navbar & Footer Loading
+    // ────────────────────────────────────────────────
+    fetch('navbar.html').then(response => response.text()).then(data => {
+      document.getElementById('navbar-container').innerHTML = data;
+    }).catch(error => console.error('Navbar load error:', error));
+
+    fetch('footer.html').then(response => response.text()).then(data => {
+      document.getElementById('footer-container').innerHTML = data;
+    }).catch(error => console.error('Footer load error:', error));
+
+    // Page fade in
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.style.opacity = '0';
+      document.body.style.transition = 'opacity 0.3s ease';
+      setTimeout(() => {
+        document.body.style.opacity = '1';
+      }, 50);
+    });
+  </script>
+
+  // Your ID card generation script (unchanged from your original code)
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwv_2BtMwVnl7C7EMvi-vVC3LmhagvllQ6rphmg0NlGI3WgkqUkvrILUlNM6aGqxjiI/exec';
+
+function formatDateToDDMMYYYY(dateStr) {
+  if (!dateStr) return '';
+  const parts = dateStr.split('-');
+  if (parts.length === 3) {
+    return `${parts[2]}-${parts[1]}-${parts[0]}`;
+  }
+  return dateStr;
+}
+
+document.getElementById('idForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const uidVal = formData.get('uid');
+  const dobVal = formData.get('dob');
+  const typeVal = formData.get('type');
+  const url = `${scriptURL}?uid=${encodeURIComponent(uidVal)}&dob=${encodeURIComponent(dobVal)}&type=${encodeURIComponent(typeVal)}`;
+  const newWin = window.open("", "_blank");
+ 
+  newWin.document.write(`<!DOCTYPE html><html><head><title>Loading...</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      @media print {
+        body { margin: 0; padding: 0; }
+        .no-print { display: none !important; }
+        .id-card { margin: 0 auto; box-shadow: none; border: 1px solid #000; page-break-inside: avoid; }
+        @page { margin: 0; size: auto; }
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: 'Poppins', sans-serif;
+        background: #f8f9fa;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 15px;
+      }
+      .id-card-container {
+        width: 100%;
+        max-width: 320px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .id-card {
+        width: 100%;
+        max-width: 320px;
+        height: 480px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        border: 2px solid #1e3a8a;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+      .id-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #1e3a8a, #c19a3f, #1e3a8a);
+      }
+      .header {
+        background: linear-gradient(135deg, #1e3a8a, #2d4f9c);
+        color: white;
+        padding: 8px 6px;
+        text-align: center;
+        border-bottom: 2px solid #c19a3f;
+      }
+      .header h3 {
+        font-size: 14px;
+        font-weight: 700;
+        margin: 0;
+        line-height: 1.2;
+        letter-spacing: 0.3px;
+      }
+      .header p {
+        font-size: 9px;
+        margin: 2px 0 0;
+        opacity: 0.95;
+        font-weight: 400;
+        line-height: 1.1;
+      }
+      .content {
+        padding: 12px;
+        position: relative;
+      }
+      .photo-qr-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 12px;
+        gap: 8px;
+      }
+      .photo-section {
+        text-align: center;
+        flex: 1;
+      }
+      .student-photo {
+        width: 100px;
+        height: 120px;
+        object-fit: cover;
+        border: 2px solid #1e3a8a;
+        border-radius: 4px;
+        background: #f8f9fa;
+      }
+      .qr-section {
+        text-align: center;
+        flex: 0.8;
+        margin-top: 8px;
+      }
+      .qr-code {
+        width: 80px;
+        height: 80px;
+        background: white;
+        padding: 2px;
+        border: 1px solid #1e3a8a;
+        border-radius: 4px;
+      }
+      .qr-code img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .qr-label {
+        font-size: 7px;
+        color: #1e3a8a;
+        margin-top: 2px;
+        font-weight: 500;
+      }
+      .alumni-name {
+        text-align: center;
+        color: #1e3a8a;
+        font-size: 16px;
+        font-weight: 700;
+        margin: 8px 0 10px;
+        padding-bottom: 4px;
+        border-bottom: 1px solid #c19a3f;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .details {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1px;
+        margin-bottom: 12px;
+      }
+      .detail-row {
+        display: flex;
+        font-size: 9px;
+        line-height: 1.1;
+        min-height: 16px;
+        align-items: center;
+      }
+      .detail-label {
+        color: #1e3a8a;
+        font-weight: 600;
+        min-width: 90px;
+        text-transform: uppercase;
+        font-size: 8px;
+      }
+      .detail-value {
+        color: #333;
+        flex: 1;
+        font-weight: 400;
+      }
+      .alumni-footer {
+        text-align: center;
+        margin-top: 10px;
+        padding-top: 8px;
+        border-top: 1px dashed #c19a3f;
+      }
+      .status {
+        color: #1e3a8a;
+        font-weight: 600;
+        font-size: 10px;
+        margin-bottom: 3px;
+      }
+      .signature {
+        font-size: 8px;
+        color: #666;
+        margin-top: 2px;
+      }
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 15px;
+        width: 100%;
+        max-width: 320px;
+      }
+      .btn-print {
+        background: linear-gradient(135deg, #1e3a8a, #2d4f9c);
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 12px;
+        box-shadow: 0 3px 8px rgba(30,58,138,0.2);
+        flex: 1;
+      }
+      .btn-print:hover {
+        background: linear-gradient(135deg, #2d4f9c, #1e3a8a);
+      }
+      .btn-close {
+        background: #dc3545;
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 12px;
+        box-shadow: 0 3px 8px rgba(220,53,69,0.2);
+        flex: 1;
+      }
+      .btn-close:hover {
+        background: #bb2d3b;
+      }
+      .print-instructions {
+        font-size: 10px;
+        color: #666;
+        text-align: center;
+        margin-top: 8px;
+        padding: 5px;
+        background: #f8f9fa;
+        border-radius: 4px;
+        max-width: 320px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="id-card-container">
+      <div class="id-card">
+        <div class="header">
+          <h3>ANSAS</h3>
+          <p>(Association of Najawees for Shareea, Academic and Society)</p>
+          <p>Darunnajath Shareeath & Arts College, Punnakkad</p>
+          <p>Official Alumni ID Card</p>
+        </div>
+        <div class="content">
+          <div class="photo-qr-row">
+            <div class="photo-section"><img src="" alt="Photo" class="student-photo"></div>
+            <div class="qr-section"><div class="qr-code"><img src="" alt="QR"></div><div class="qr-label">VERIFY</div></div>
+          </div>
+          <h2 class="alumni-name">Loading...</h2>
+          <div class="details">
+            <div class="detail-row"><span class="detail-label">ADMISSION NO:</span><span class="detail-value">${uidVal}</span></div>
+            <div class="detail-row"><span class="detail-label">FATHER:</span><span class="detail-value">Loading...</span></div>
+            <div class="detail-row"><span class="detail-label">DATE OF BIRTH:</span><span class="detail-value">${dobVal}</span></div>
+            <div class="detail-row"><span class="detail-label">BATCH:</span><span class="detail-value">Loading...</span></div>
+            <div class="detail-row"><span class="detail-label">PASSOUT YEAR:</span><span class="detail-value">Loading...</span></div>
+            <div class="detail-row"><span class="detail-label">PLACE:</span><span class="detail-value">Loading...</span></div>
+            <div class="detail-row"><span class="detail-label">PHONE:</span><span class="detail-value">Loading...</span></div>
+          </div>
+          <div class="alumni-footer">
+            <div class="status">LIFETIME ALUMNI MEMBER</div>
+            <div class="signature">ALUMNI ASSOCIATION PRESIDENT</div>
+          </div>
+        </div>
+      </div>
+      <div class="controls no-print">
+        <button class="btn-print" onclick="window.print()">🖨️ Print Card</button>
+        <button class="btn-close" onclick="window.close()">✕ Close</button>
+      </div>
+    </div>
+  </body></html>`);
+ 
+  fetch(url).then(res => res.json()).then(data => {
+    if (data.result === 'success') {
+      const s = data.student;
+      const formattedDOB = formatDateToDDMMYYYY(s.DateOfBirth || dobVal);
+      const qrData = `ANSAS ALUMNI ID CARD\nADM NO: ${s.UID}\nNAME: ${s.FullName}\nFATHER: ${s.FatherName}\nDOB: ${formattedDOB}\nBATCH: ${s.BatchNumber}\nPASSOUT: ${s.PassoutYear}\nPLACE: ${s.Place}\nPHONE: ${s.Phone}`;
+      const qrURL = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=80x80&margin=0&color=1e3a8a`;
+      const photoURL = s.PhotoURL || 'https://via.placeholder.com/100x120?text=Alumni';
+     
+      const html = `<!DOCTYPE html><html><head><title>${s.FullName} | Alumni ID Card</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+          @media print {
+            body { margin: 0; padding: 0; }
+            .no-print { display: none !important; }
+            .id-card { margin: 0 auto; box-shadow: none; border: 1px solid #000; page-break-inside: avoid; }
+            @page { margin: 0; size: auto; }
+          }
+          * { margin: 0; padding: 0; box-sizing: border-box; }
+          body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 15px;
+          }
+          .id-card-container {
+            width: 100%;
+            max-width: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+          .id-card {
+            width: 100%;
+            max-width: 320px;
+            height: 480px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            border: 2px solid #1e3a8a;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+          }
+          .id-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #1e3a8a, #c19a3f, #1e3a8a);
+          }
+          .header {
+            background: linear-gradient(135deg, #1e3a8a, #2d4f9c);
+            color: white;
+            padding: 8px 6px;
+            text-align: center;
+            border-bottom: 2px solid #c19a3f;
+            font-size: 1.1rem;
+          }
+          .header h3 {
+            font-size: 14px;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.2;
+            letter-spacing: 0.3px;
+          }
+          .header p {
+            font-size: 9px;
+            margin: 2px 0 0;
+            opacity: 0.95;
+            font-weight: 400;
+            line-height: 1.1;
+          }
+          .content {
+            padding: 12px;
+            position: relative;
+          }
+          .photo-qr-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            gap: 8px;
+          }
+          .photo-section {
+            text-align: center;
+            flex: 1;
+          }
+          .student-photo {
+            width: 100px;
+            height: 120px;
+            object-fit: cover;
+            border: 2px solid #1e3a8a;
+            border-radius: 4px;
+            background: #f8f9fa;
+          }
+          .qr-section {
+            text-align: center;
+            flex: 0.8;
+            margin-top: 8px;
+          }
+          .qr-code {
+            width: 80px;
+            height: 80px;
+            background: white;
+            padding: 2px;
+            border: 1px solid #1e3a8a;
+            border-radius: 4px;
+          }
+          .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+          .qr-label {
+            font-size: 7px;
+            color: #1e3a8a;
+            margin-top: 2px;
+            font-weight: 500;
+          }
+          .alumni-name {
+            text-align: center;
+            color: #1e3a8a;
+            font-size: 16px;
+            font-weight: 700;
+            margin: 8px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #c19a3f;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+          .details {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1px;
+            margin-bottom: 12px;
+          }
+          .detail-row {
+            display: flex;
+            font-size: 9px;
+            line-height: 1.1;
+            min-height: 16px;
+            align-items: center;
+          }
+          .detail-label {
+            color: #1e3a8a;
+            font-weight: 600;
+            min-width: 90px;
+            text-transform: uppercase;
+            font-size: 8px;
+          }
+          .detail-value {
+            color: #333;
+            flex: 1;
+            font-weight: 400;
+          }
+          .alumni-footer {
+            text-align: center;
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px dashed #c19a3f;
+          }
+          .status {
+            color: #1e3a8a;
+            font-weight: 600;
+            font-size: 10px;
+            margin-bottom: 3px;
+          }
+          .signature {
+            font-size: 8px;
+            color: #666;
+            margin-top: 2px;
+          }
+          .controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
+            width: 100%;
+            max-width: 320px;
+          }
+          .btn-print {
+            background: linear-gradient(135deg, #1e3a8a, #2d4f9c);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 12px;
+            box-shadow: 0 3px 8px rgba(30,58,138,0.2);
+            flex: 1;
+          }
+          .btn-print:hover {
+            background: linear-gradient(135deg, #2d4f9c, #1e3a8a);
+          }
+          .btn-close {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 12px;
+            box-shadow: 0 3px 8px rgba(220,53,69,0.2);
+            flex: 1;
+          }
+          .btn-close:hover {
+            background: #bb2d3b;
+          }
+          .print-instructions {
+            font-size: 10px;
+            color: #666;
+            text-align: center;
+            margin-top: 8px;
+            padding: 5px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            max-width: 320px;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="id-card-container">
+          <div class="id-card">
+            <div class="header">
+              <h3>ANSAS</h3>
+              <p>(Association of Najawees for Shareea, Academic and Society)</p>
+              <p>Darunnajath Shareeath & Arts College, Punnakkad</p>
+              <p>Official Alumni ID Card</p>
+            </div>
+            <div class="content">
+              <div class="photo-qr-row">
+                <div class="photo-section"><img src="${photoURL}" alt="Photo" class="student-photo"></div>
+                <div class="qr-section"><div class="qr-code"><img src="${qrURL}" alt="QR"></div><div class="qr-label">VERIFY</div></div>
+              </div>
+              <h2 class="alumni-name">${s.FullName}</h2>
+              <div class="details">
+                <div class="detail-row"><span class="detail-label">ADMISSION NO:</span><span class="detail-value">${s.UID}</span></div>
+                <div class="detail-row"><span class="detail-label">FATHER:</span><span class="detail-value">${s.FatherName}</span></div>
+                <div class="detail-row"><span class="detail-label">DATE OF BIRTH:</span><span class="detail-value">${formattedDOB}</span></div>
+                <div class="detail-row"><span class="detail-label">BATCH:</span><span class="detail-value">${s.BatchNumber}</span></div>
+                <div class="detail-row"><span class="detail-label">PASSOUT YEAR:</span><span class="detail-value">${s.PassoutYear}</span></div>
+                <div class="detail-row"><span class="detail-label">PLACE:</span><span class="detail-value">${s.Place}</span></div>
+                <div class="detail-row"><span class="detail-label">PHONE:</span><span class="detail-value">${s.Phone}</span></div>
+              </div>
+              <div class="alumni-footer">
+                <div class="status">LIFETIME ALUMNI MEMBER</div>
+                <div class="signature">ALUMNI ASSOCIATION PRESIDENT</div>
+              </div>
+            </div>
+          </div>
+          <div class="controls no-print">
+            <button class="btn-print" onclick="window.print()">🖨️ Print Card</button>
+            <button class="btn-close" onclick="window.close()">✕ Close</button>
+          </div>
+        </div>
+      </body></html>`;
+     
+      newWin.document.open();
+      newWin.document.write(html);
+      newWin.document.close();
+    } else {
+      newWin.document.write(`<html><head><style>body{font-family:Poppins;text-align:center;padding:50px;background:#f0f4ff;}.error-container{max-width:400px;margin:0 auto;}h2{color:#dc3545;margin-bottom:20px;}button{background:#1e3a8a;color:white;border:none;padding:12px 30px;border-radius:25px;margin-top:20px;cursor:pointer;font-size:16px;}</style></head><body><div class="error-container"><h2>Alumni Not Found</h2><p>${data.message || 'Check Admission Number and Date of Birth.'}</p><button onclick="window.close()">Go Back</button></div></body></html>`);
+    }
+  }).catch(() => {
+    newWin.document.write(`<html><body style="font-family:Poppins;text-align:center;padding:50px;background:#f0f4ff;"><div style="color:#dc3545;"><h2>Connection Error</h2><p>Please try again later.</p><button onclick="window.close()" style="background:#1e3a8a;color:white;border:none;padding:10px 20px;border-radius:25px;margin-top:20px;">Go Back</button></div></body></html>`);
+  });
+});
+  <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbwv_2BtMwVnl7C7EMvi-vVC3LmhagvllQ6rphmg0NlGI3WgkqUkvrILUlNM6aGqxjiI/exec';
 
     function formatDateToDDMMYYYY(dateStr) {
       if (!dateStr) return '';
-      const [y, m, d] = dateStr.split('-');
-      return `${d}-${m}-${y}`;
+      const parts = dateStr.split('-');
+      if (parts.length === 3) {
+        return `${parts[2]}-${parts[1]}-${parts[0]}`;
+      }
+      return dateStr;
     }
 
-    document.getElementById('idForm')?.addEventListener('submit', function(e) {
+    document.getElementById('idForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      const formData = new FormData(this);
-      const uid = formData.get('uid');
-      const dob = formData.get('dob');
-      const type = formData.get('type');
+      const formData = new FormData(e.target);
+      const uidVal = formData.get('uid');
+      const dobVal = formData.get('dob');
+      const typeVal = formData.get('type');
+      const url = `${scriptURL}?uid=${encodeURIComponent(uidVal)}&dob=${encodeURIComponent(dobVal)}&type=${encodeURIComponent(typeVal)}`;
+      const newWin = window.open("", "_blank");
 
-      const url = `${scriptURL}?uid=${encodeURIComponent(uid)}&dob=${encodeURIComponent(dob)}&type=${encodeURIComponent(type)}`;
+      newWin.document.write(`<!DOCTYPE html><html><head><title>Loading...</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @media print {
+      body { margin: 0; padding: 0; }
+      .no-print { display: none !important; }
+      .id-card { margin: 0 auto; box-shadow: none; border: 1px solid #000; page-break-inside: avoid; }
+      @page { margin: 0; size: auto; }
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8f9fa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 15px;
+    }
+    .id-card-container {
+      width: 100%;
+      max-width: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .id-card {
+      width: 100%;
+      max-width: 320px;
+      height: 480px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      border: 2px solid #1e3a8a;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .id-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #1e3a8a, #c19a3f, #1e3a8a);
+    }
+    .header {
+      background: linear-gradient(135deg, #1e3a8a, #2d4f9c);
+      color: white;
+      padding: 8px 6px;
+      text-align: center;
+      border-bottom: 2px solid #c19a3f;
+    }
+    .header h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.2;
+      letter-spacing: 0.3px;
+    }
+    .header p {
+      font-size: 9px;
+      margin: 2px 0 0;
+      opacity: 0.95;
+      font-weight: 400;
+      line-height: 1.1;
+    }
+    .content {
+      padding: 12px;
+      position: relative;
+    }
+    .photo-qr-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      gap: 8px;
+    }
+    .photo-section {
+      text-align: center;
+      flex: 1;
+    }
+    .student-photo {
+      width: 100px;
+      height: 120px;
+      object-fit: cover;
+      border: 2px solid #1e3a8a;
+      border-radius: 4px;
+      background: #f8f9fa;
+    }
+    .qr-section {
+      text-align: center;
+      flex: 0.8;
+      margin-top: 8px;
+    }
+    .qr-code {
+      width: 80px;
+      height: 80px;
+      background: white;
+      padding: 2px;
+      border: 1px solid #1e3a8a;
+      border-radius: 4px;
+    }
+    .qr-code img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .qr-label {
+      font-size: 7px;
+      color: #1e3a8a;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+    .alumni-name {
+      text-align: center;
+      color: #1e3a8a;
+      font-size: 16px;
+      font-weight: 700;
+      margin: 8px 0 10px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #c19a3f;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .details {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      margin-bottom: 12px;
+    }
+    .detail-row {
+      display: flex;
+      font-size: 9px;
+      line-height: 1.1;
+      min-height: 16px;
+      align-items: center;
+    }
+    .detail-label {
+      color: #1e3a8a;
+      font-weight: 600;
+      min-width: 90px;
+      text-transform: uppercase;
+      font-size: 8px;
+    }
+    .detail-value {
+      color: #333;
+      flex: 1;
+      font-weight: 400;
+    }
+    .alumni-footer {
+      text-align: center;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px dashed #c19a3f;
+    }
+    .status {
+      color: #1e3a8a;
+      font-weight: 600;
+      font-size: 10px;
+      margin-bottom: 3px;
+    }
+    .signature {
+      font-size: 8px;
+      color: #666;
+      margin-top: 2px;
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 15px;
+      width: 100%;
+      max-width: 320px;
+    }
+    .btn-print {
+      background: linear-gradient(135deg, #1e3a8a, #2d4f9c);
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 12px;
+      box-shadow: 0 3px 8px rgba(30,58,138,0.2);
+      flex: 1;
+    }
+    .btn-print:hover {
+      background: linear-gradient(135deg, #2d4f9c, #1e3a8a);
+    }
+    .btn-close {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 12px;
+      box-shadow: 0 3px 8px rgba(220,53,69,0.2);
+      flex: 1;
+    }
+    .btn-close:hover {
+      background: #bb2d3b;
+    }
+  </style>
+</head>
+<body>
+  <div class="id-card-container">
+    <div class="id-card">
+      <div class="header">
+        <h3>ANSAS</h3>
+        <p>(Association of Najawees for Shareea, Academic and Society)</p>
+        <p>Darunnajath Shareeath & Arts College, Punnakkad</p>
+        <p>Official Alumni ID Card</p>
+      </div>
+      <div class="content">
+        <div class="photo-qr-row">
+          <div class="photo-section"><img src="" alt="Photo" class="student-photo"></div>
+          <div class="qr-section"><div class="qr-code"><img src="" alt="QR"></div><div class="qr-label">VERIFY</div></div>
+        </div>
+        <h2 class="alumni-name">Loading...</h2>
+        <div class="details">
+          <div class="detail-row"><span class="detail-label">ADMISSION NO:</span><span class="detail-value">${uidVal}</span></div>
+          <div class="detail-row"><span class="detail-label">FATHER:</span><span class="detail-value">Loading...</span></div>
+          <div class="detail-row"><span class="detail-label">DATE OF BIRTH:</span><span class="detail-value">${dobVal}</span></div>
+          <div class="detail-row"><span class="detail-label">BATCH:</span><span class="detail-value">Loading...</span></div>
+          <div class="detail-row"><span class="detail-label">PASSOUT YEAR:</span><span class="detail-value">Loading...</span></div>
+          <div class="detail-row"><span class="detail-label">PLACE:</span><span class="detail-value">Loading...</span></div>
+          <div class="detail-row"><span class="detail-label">PHONE:</span><span class="detail-value">Loading...</span></div>
+        </div>
+        <div class="alumni-footer">
+          <div class="status">LIFETIME ALUMNI MEMBER</div>
+          <div class="signature">ALUMNI ASSOCIATION PRESIDENT</div>
+        </div>
+      </div>
+    </div>
+    <div class="controls no-print">
+      <button class="btn-print" onclick="window.print()">🖨️ Print Card</button>
+      <button class="btn-close" onclick="window.close()">✕ Close</button>
+    </div>
+  </div>
+</body></html>`);
 
-      const win = window.open('', '_blank');
-      win.document.write(`<html><head><title>Loading...</title></head><body style="font-family:Arial;text-align:center;padding:100px 20px;"><h2>Loading Alumni ID Card...</h2><p>Please wait...</p></body></html>`);
-
-      fetch(url)
-        .then(res => res.json())
-        .then(data => {
-          if (data.result === 'success') {
-            const s = data.student;
-            const formattedDOB = formatDateToDDMMYYYY(s.DateOfBirth || dob);
-            const qrData = `ANSAS ALUMNI ID CARD\nADM NO: ${s.UID}\nNAME: ${s.FullName}\nFATHER: ${s.FatherName}\nDOB: ${formattedDOB}\nBATCH: ${s.BatchNumber}\nPASSOUT: ${s.PassoutYear}\nPLACE: ${s.Place}\nPHONE: ${s.Phone}`;
-            const qrURL = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=100x100`;
-            const photo = s.PhotoURL || 'https://via.placeholder.com/120x140?text=Photo';
-
-            win.document.open();
-            win.document.write(`
-              <!DOCTYPE html>
-              <html>
-              <head>
-                <title>${s.FullName} - ANSAS Alumni ID</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                <style>
-                  @media print { body { margin:0; } .no-print { display:none; } }
-                  body { font-family:Arial,sans-serif; background:#f8f9fa; margin:0; padding:20px; text-align:center; }
-                  .card { width:100%; max-width:340px; margin:0 auto; background:white; border:2px solid #1e3a8a; border-radius:12px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.15); }
-                  .header { background:linear-gradient(135deg,#1e3a8a,#2d4f9c); color:white; padding:12px; text-align:center; }
-                  .content { padding:15px; }
-                  .photo-qr { display:flex; justify-content:space-between; margin-bottom:15px; }
-                  .photo { width:110px; height:135px; object-fit:cover; border:2px solid #1e3a8a; border-radius:6px; }
-                  .qr { width:90px; height:90px; padding:4px; border:1px solid #1e3a8a; border-radius:6px; background:white; }
-                  .name { font-size:1.4rem; font-weight:bold; color:#1e3a8a; margin:10px 0; border-bottom:1px solid #c19a3f; padding-bottom:6px; }
-                  .details { font-size:0.9rem; }
-                  .row { display:flex; margin:6px 0; }
-                  .label { width:110px; font-weight:600; color:#1e3a8a; }
-                </style>
-              </head>
-              <body>
-                <div class="card">
-                  <div class="header">
-                    <h4 style="margin:0;">ANSAS</h4>
-                    <small>Darunnajath Shareeath & Arts College</small>
-                  </div>
-                  <div class="content">
-                    <div class="photo-qr">
-                      <img src="${photo}" class="photo" alt="Alumni Photo">
-                      <div><img src="${qrURL}" class="qr" alt="QR Code"></div>
-                    </div>
-                    <div class="name">${s.FullName}</div>
-                    <div class="details">
-                      <div class="row"><span class="label">Adm No:</span><span>${s.UID}</span></div>
-                      <div class="row"><span class="label">Father:</span><span>${s.FatherName}</span></div>
-                      <div class="row"><span class="label">DOB:</span><span>${formattedDOB}</span></div>
-                      <div class="row"><span class="label">Batch:</span><span>${s.BatchNumber}</span></div>
-                      <div class="row"><span class="label">Passout:</span><span>${s.PassoutYear}</span></div>
-                      <div class="row"><span class="label">Place:</span><span>${s.Place}</span></div>
-                      <div class="row"><span class="label">Phone:</span><span>${s.Phone}</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="no-print mt-4">
-                  <button onclick="window.print()" style="padding:10px 25px; background:#1e3a8a; color:white; border:none; border-radius:25px; margin-right:10px; cursor:pointer;">🖨️ Print</button>
-                  <button onclick="window.close()" style="padding:10px 25px; background:#dc3545; color:white; border:none; border-radius:25px; cursor:pointer;">✕ Close</button>
-                </div>
-              </body>
-              </html>
-            `);
-            win.document.close();
-          } else {
-            win.document.body.innerHTML = `<div style="padding:80px 20px;text-align:center;color:#dc3545;"><h2>Not Found</h2><p>${data.message || 'Invalid credentials'}</p><button onclick="window.close()" style="padding:10px 30px;background:#1e3a8a;color:white;border:none;border-radius:6px;margin-top:20px;">Close</button></div>`;
-          }
-        })
-        .catch(() => {
-          win.document.body.innerHTML = `<div style="padding:80px 20px;text-align:center;color:#dc3545;"><h2>Error</h2><p>Connection failed. Try again later.</p><button onclick="window.close()" style="padding:10px 30px;background:#1e3a8a;color:white;border:none;border-radius:6px;margin-top:20px;">Close</button></div>`;
-        });
-    });
-
-    // Navbar & Footer loading (keep your original if needed)
-    fetch('navbar.html').then(r => r.text()).then(html => {
-      document.getElementById('navbar-container').innerHTML = html;
-    });
-    fetch('footer.html').then(r => r.text()).then(html => {
-      document.getElementById('footer-container').innerHTML = html;
+fetch(url).then(res => res.json()).then(data => {
+  if (data.result === 'success') {
+    const s = data.student;
+    const formattedDOB = formatDateToDDMMYYYY(s.DateOfBirth || dobVal);
+    const qrData = `ANSAS ALUMNI ID CARD\nADM NO: ${s.UID}\nNAME: ${s.FullName}\nFATHER: ${s.FatherName}\nDOB: ${formattedDOB}\nBATCH: ${s.BatchNumber}\nPASSOUT: ${s.PassoutYear}\nPLACE: ${s.Place}\nPHONE: ${s.Phone}`;
+    const qrURL = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=80x80&margin=0&color=1e3a8a`;
+    const photoURL = s.PhotoURL || 'https://via.placeholder.com/100x120?text=Alumni';
+   
+    const html = `<!DOCTYPE html><html><head><title>${s.FullName} | Alumni ID Card</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+        @media print {
+          body { margin: 0; padding: 0; }
+          .no-print { display: none !important; }
+          .id-card { margin: 0 auto; box-shadow: none; border: 1px solid #000; page-break-inside: avoid; }
+          @page { margin: 0; size: auto; }
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+          font-family: 'Poppins', sans-serif;
+          background: #f8f9fa;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+          padding: 15px;
+        }
+        .id-card-container {
+          width: 100%;
+          max-width: 320px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .id-card {
+          width: 100%;
+          max-width: 320px;
+          height: 480px;
+          background: white;
+          border-radius: 10px;
+          box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+          border: 2px solid #1e3a8a;
+          position: relative;
+          overflow: hidden;
+          margin-bottom: 20px;
+        }
+        .id-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(90deg, #1e3a8a, #c19a3f, #1e3a8a);
+        }
+        .header {
+          background: linear-gradient(135deg, #1e3a8a, #2d4f9c);
+          color: white;
+          padding: 8px 6px;
+          text-align: center;
+          border-bottom: 2px solid #c19a3f;
+          font-size: 1.1rem;
+        }
+        .header h3 {
+          font-size: 14px;
+          font-weight: 700;
+          margin: 0;
+          line-height: 1.2;
+          letter-spacing: 0.3px;
+        }
+        .header p {
+          font-size: 9px;
+          margin: 2px 0 0;
+          opacity: 0.95;
+          font-weight: 400;
+          line-height: 1.1;
+        }
+        .content {
+          padding: 12px;
+          position: relative;
+        }
+        .photo-qr-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          margin-bottom: 12px;
+          gap: 8px;
+        }
+        .photo-section {
+          text-align: center;
+          flex: 1;
+        }
+        .student-photo {
+          width: 100px;
+          height: 120px;
+          object-fit: cover;
+          border: 2px solid #1e3a8a;
+          border-radius: 4px;
+          background: #f8f9fa;
+        }
+        .qr-section {
+          text-align: center;
+          flex: 0.8;
+          margin-top: 8px;
+        }
+        .qr-code {
+          width: 80px;
+          height: 80px;
+          background: white;
+          padding: 2px;
+          border: 1px solid #1e3a8a;
+          border-radius: 4px;
+        }
+        .qr-code img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+        .qr-label {
+          font-size: 7px;
+          color: #1e3a8a;
+          margin-top: 2px;
+          font-weight: 500;
+        }
+        .alumni-name {
+          text-align: center;
+          color: #1e3a8a;
+          font-size: 16px;
+          font-weight: 700;
+          margin: 8px 0 10px;
+          padding-bottom: 4px;
+          border-bottom: 1px solid #c19a3f;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        .details {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 1px;
+          margin-bottom: 12px;
+        }
+        .detail-row {
+          display: flex;
+          font-size: 9px;
+          line-height: 1.1;
+          min-height: 16px;
+          align-items: center;
+        }
+        .detail-label {
+          color: #1e3a8a;
+          font-weight: 600;
+          min-width: 90px;
+          text-transform: uppercase;
+          font-size: 8px;
+        }
+        .detail-value {
+          color: #333;
+          flex: 1;
+          font-weight: 400;
+        }
+        .alumni-footer {
+          text-align: center;
+          margin-top: 10px;
+          padding-top: 8px;
+          border-top: 1px dashed #c19a3f;
+        }
+        .status {
+          color: #1e3a8a;
+          font-weight: 600;
+          font-size: 10px;
+          margin-bottom: 3px;
+        }
+        .signature {
+          font-size: 8px;
+          color: #666;
+          margin-top: 2px;
+        }
+        .controls {
+          display: flex;
+          justify-content: center;
+          gap: 12px;
+          margin-top: 15px;
+          width: 100%;
+          max-width: 320px;
+        }
+        .btn-print {
+          background: linear-gradient(135deg, #1e3a8a, #2d4f9c);
+          color: white;
+          border: none;
+          padding: 8px 20px;
+          border-radius: 20px;
+          font-weight: 600;
+          cursor: pointer;
+          font-size: 12px;
+          box-shadow: 0 3px 8px rgba(30,58,138,0.2);
+          flex: 1;
+        }
+        .btn-print:hover {
+          background: linear-gradient(135deg, #2d4f9c, #1e3a8a);
+        }
+        .btn-close {
+          background: #dc3545;
+          color: white;
+          border: none;
+          padding: 8px 20px;
+          border-radius: 20px;
+          font-weight: 600;
+          cursor: pointer;
+          font-size: 12px;
+          box-shadow: 0 3px 8px rgba(220,53,69,0.2);
+          flex: 1;
+        }
+        .btn-close:hover {
+          background: #bb2d3b;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="id-card-container">
+        <div class="id-card">
+          <div class="header">
+            <h3>ANSAS</h3>
+            <p>(Association of Najawees for Shareea, Academic and Society)</p>
+            <p>Darunnajath Shareeath & Arts College, Punnakkad</p>
+            <p>Official Alumni ID Card</p>
+          </div>
+          <div class="content">
+            <div class="photo-qr-row">
+              <div class="photo-section"><img src="${photoURL}" alt="Photo" class="student-photo"></div>
+              <div class="qr-section"><div class="qr-code"><img src="${qrURL}" alt="QR"></div><div class="qr-label">VERIFY</div></div>
+            </div>
+            <h2 class="alumni-name">${s.FullName}</h2>
+            <div class="details">
+              <div class="detail-row"><span class="detail-label">ADMISSION NO:</span><span class="detail-value">${s.UID}</span></div>
+              <div class="detail-row"><span class="detail-label">FATHER:</span><span class="detail-value">${s.FatherName}</span></div>
+              <div class="detail-row"><span class="detail-label">DATE OF BIRTH:</span><span class="detail-value">${formattedDOB}</span></div>
+              <div class="detail-row"><span class="detail-label">BATCH:</span><span class="detail-value">${s.BatchNumber}</span></div>
+              <div class="detail-row"><span class="detail-label">PASSOUT YEAR:</span><span class="detail-value">${s.PassoutYear}</span></div>
+              <div class="detail-row"><span class="detail-label">PLACE:</span><span class="detail-value">${s.Place}</span></div>
+              <div class="detail-row"><span class="detail-label">PHONE:</span><span class="detail-value">${s.Phone}</span></div>
+            </div>
+            <div class="alumni-footer">
+              <div class="status">LIFETIME ALUMNI MEMBER</div>
+              <div class="signature">ALUMNI ASSOCIATION PRESIDENT</div>
+            </div>
+          </div>
+        </div>
+        <div class="controls no-print">
+          <button class="btn-print" onclick="window.print()">🖨️ Print Card</button>
+          <button class="btn-close" onclick="window.close()">✕ Close</button>
+        </div>
+      </div>
+    </body></html>`;
+   
+    newWin.document.open();
+    newWin.document.write(html);
+    newWin.document.close();
+  } else {
+    newWin.document.write(`<html><head><style>body{font-family:Poppins;text-align:center;padding:50px;background:#f0f4ff;}.error-container{max-width:400px;margin:0 auto;}h2{color:#dc3545;margin-bottom:20px;}button{background:#1e3a8a;color:white;border:none;padding:12px 30px;border-radius:25px;margin-top:20px;cursor:pointer;font-size:16px;}</style></head><body><div class="error-container"><h2>Alumni Not Found</h2><p>${data.message || 'Check Admission Number and Date of Birth.'}</p><button onclick="window.close()">Go Back</button></div></body></html>`);
+  }
+}).catch(() => {
+  newWin.document.write(`<html><body style="font-family:Poppins;text-align:center;padding:50px;background:#f0f4ff;"><div style="color:#dc3545;"><h2>Connection Error</h2><p>Please try again later.</p><button onclick="window.close()" style="background:#1e3a8a;color:white;border:none;padding:10px 20px;border-radius:25px;margin-top:20px;">Go Back</button></div></body></html>`);
+});
     });
   </script>
 </body>
