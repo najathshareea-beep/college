@@ -25,7 +25,6 @@
     .dropdown-item-optimized {color:white;padding:0.5rem 1rem;text-decoration: none !important;}
     .dropdown-item-optimized:hover {background:var(--islamic-gold);color:var(--islamic-green);}
     
-    /* Submenu Styles */
     @media (min-width: 992px) {
       .dropdown-submenu {position: relative;}
       .dropdown-submenu:hover > .collapse {display: block !important;}
@@ -134,7 +133,6 @@
     window.addEventListener('scroll',function(){const navbar=document.querySelector('.navbar-optimized');const scrollTop=window.pageYOffset||document.documentElement.scrollTop;navbar.classList.toggle('scrolled',scrollTop>50);});
     const scriptURL='https://script.google.com/macros/s/AKfycbyt3XdBw1BmJ7webObbKgY0ZDkmk-sOYfo-EROt1C6Z3Y9xGrPUVlevfq0_EgwwJjz7/exec';
     
-    // Function to format date from yyyy-mm-dd to dd-mm-yyyy
     function formatDateToDDMMYYYY(dateStr) {
       if (!dateStr) return '';
       const parts = dateStr.split('-');
@@ -149,7 +147,6 @@
     fetch(url).then(res=>res.json()).then(data=>{
       if(data.result==='success'){
         const s=data.student;
-        // Format date to dd-mm-yyyy
         const formattedDOB = formatDateToDDMMYYYY(s.DateOfBirth || dobVal);
         const qrData=`DSAC ID CARD\nUID: ${s.UID}\nNAME: ${s.FullName}\nFATHER: ${s.FatherName}\nDOB: ${formattedDOB}\nBATCH: ${s.BatchNumber}\nPHONE: ${s.Phone}`;
         const qrURL=`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=90x90&margin=0&color=0a5c36`;
