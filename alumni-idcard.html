@@ -96,7 +96,9 @@
       background: var(--islamic-gold);
       color: var(--islamic-green);
     }
-    
+    #alumniTable {font-size: 0.9rem;}
+    #alumniTable thead th { background: linear-gradient(135deg, var(--alumni-blue), #2d4f9c); color: white; border: none; padding: 0.75rem;}
+    #alumniTable tbody tr:hover { background-color: rgba(30, 58, 138, 0.05);}
     @media (min-width: 992px) {
       .dropdown-submenu {
         position: relative;
@@ -502,6 +504,39 @@
                 <i class="fas fa-graduation-cap me-2"></i>Generate Alumni ID Card
               </button>
             </form>
+            <div class="text-center mt-4">
+              <button type="button" id="showAlumniBtn" class="btn btn-outline-success w-100 py-3">
+                <i class="fas fa-list me-2"></i>Show Alumni List (UID & Name)
+              </button>
+            </div>
+
+            <div class="modal fade" id="alumniModal" tabindex="-1">
+              <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Alumni List</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="table-responsive">
+                      <table class="table table-striped" id="alumniTable">
+                        <thead>
+                          <tr>
+                            <th>UID (A Column)</th>
+                            <th>Name (C Column)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="id-card-info mt-4">
               <h5><i class="fas fa-info-circle me-2"></i>Important Information</h5>
               <ul>
@@ -1109,6 +1144,37 @@
       setTimeout(() => {
         document.body.style.opacity = '1';
       }, 50);
+    });
+    document.getElementById('showAlumniBtn').addEventListener('click', function() {
+      const modal = new bootstrap.Modal(document.getElementById('alumniModal'));
+      const tableBody = document.querySelector('#alumniTable tbody');
+  
+      const API_URL = 'https://script.google.com/macros/s/AKfycbxEsuxJR-1rQwpYKn1MaJf_JuKOHO_9V_1A-Ff3xk79ahoy6CFm8FziAtjtw-yEpRVsHQ/exec';
+  
+      tableBody.innerHTML = '<tr><td colspan="2" class="text-center"><div class="spinner-border text-primary"></div> Loading...</td></tr>';
+      modal.show();
+  
+      fetch(API_URL)
+        .then(response => response.json())
+        .then(data => {
+          if (data.alumni && data.alumni.length > 0) {
+            tableBody.innerHTML = '';
+            data.alumni.forEach(alumni => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                <td><strong>${alumni.uid}</strong></td>
+                <td>${alumni.name}</td>
+              `;
+              tableBody.appendChild(row);
+            });
+          } else {
+            tableBody.innerHTML = '<tr><td colspan="2" class="text-center text-danger">No alumni data found</td></tr>';
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          tableBody.innerHTML = '<tr><td colspan="2" class="text-center text-danger">Error loading data</td></tr>';
+        });
     });
   </script>
 </body>
