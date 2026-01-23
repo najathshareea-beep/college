@@ -96,9 +96,77 @@
       background: var(--islamic-gold);
       color: var(--islamic-green);
     }
-    #alumniModal .modal-dialog { max-height: calc(100vh - 100px); overflow-y: auto;}
-    #alumniModal .modal-content { max-height: calc(100vh - 100px); overflow: hidden;}
-    #alumniModal .modal-body { max-height: calc(100vh - 200px); overflow-y: auto;}
+    /* Fix for modal scrolling and backdrop issues */
+.modal {
+  --bs-modal-zindex: 1055;
+  --bs-modal-width: 800px;
+  --bs-modal-padding: 1rem;
+  --bs-modal-margin: 0.5rem;
+}
+
+.modal-backdrop {
+  --bs-backdrop-zindex: 1050;
+}
+
+.modal-dialog-scrollable .modal-content {
+  max-height: calc(100vh - var(--bs-modal-margin) * 2);
+  overflow: hidden;
+}
+
+.modal-dialog-scrollable .modal-body {
+  overflow-y: auto;
+}
+
+.table-container {
+  position: relative;
+}
+
+/* Fix for sticky header */
+.table-container thead th {
+  background-color: #f8f9fa;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1);
+}
+
+/* Better table styling */
+#alumniTable {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+#alumniTable tbody tr {
+  cursor: default;
+  transition: background-color 0.15s ease;
+}
+
+#alumniTable tbody tr:hover {
+  background-color: rgba(30, 58, 138, 0.08);
+}
+
+#alumniTable td {
+  padding: 0.75rem 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #dee2e6;
+}
+
+#alumniTable th {
+  font-weight: 600;
+  border-bottom: 2px solid var(--alumni-blue);
+}
+
+.spinner-border {
+  width: 2rem;
+  height: 2rem;
+}
+
+.btn-close:focus {
+  box-shadow: 0 0 0 0.25rem rgba(30, 58, 138, 0.25);
+}
+
+.bg-alumni-blue {
+  background: linear-gradient(135deg, var(--alumni-blue), #2d4f9c) !important;
+}
 
     #alumniTable { font-size: 0.85rem;}
 
@@ -1164,37 +1232,143 @@
         document.body.style.opacity = '1';
       }, 50);
     });
-    document.getElementById('showAlumniBtn').addEventListener('click', function() {
-      const modal = new bootstrap.Modal(document.getElementById('alumniModal'));
-      const tableBody = document.querySelector('#alumniTable tbody');
+    // Replace the entire event listener with this improved version
+document.getElementById('showAlumniBtn').addEventListener('click', function() {
+  const modalElement = document.getElementById('alumniModal');
+  const modal = new bootstrap.Modal(modalElement, {
+    backdrop: true,
+    keyboard: true,
+    focus: true
+  });
   
-      const API_URL = 'https://script.google.com/macros/s/AKfycbxEsuxJR-1rQwpYKn1MaJf_JuKOHO_9V_1A-Ff3xk79ahoy6CFm8FziAtjtw-yEpRVsHQ/exec';
+  const tableBody = document.getElementById('alumniTableBody');
+  const alumniCount = document.getElementById('alumniCount');
   
-      tableBody.innerHTML = '<tr><td colspan="2" class="text-center"><div class="spinner-border text-primary"></div> Loading...</td></tr>';
-      modal.show();
+  // Replace with your actual Web App URL
+  const API_URL = 'https://script.google.com/macros/s/AKfycbxEsuxJR-1rQwpYKn1MaJf_JuKOHO_9V_1A-Ff3xk79ahoy6CFm8FziAtjtw-yEpRVsHQ/exec';
   
-      fetch(API_URL)
-        .then(response => response.json())
-        .then(data => {
-          if (data.alumni && data.alumni.length > 0) {
-            tableBody.innerHTML = '';
-            data.alumni.forEach(alumni => {
-              const row = document.createElement('tr');
-              row.innerHTML = `
-                <td><strong>${alumni.uid}</strong></td>
-                <td>${alumni.name}</td>
-              `;
-              tableBody.appendChild(row);
-            });
-          } else {
-            tableBody.innerHTML = '<tr><td colspan="2" class="text-center text-danger">No alumni data found</td></tr>';
-          }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          tableBody.innerHTML = '<tr><td colspan="2" class="text-center text-danger">Error loading data</td></tr>';
-        });
-    });
+  // Show loading state
+  tableBody.innerHTML = `
+    <tr>
+      <td colspan="2" class="text-center py-5">
+        <div class="spinner-border text-primary mb-3"></div>
+        <p class="text-muted mb-0">Loading alumni data...</p>
+      </td>
+    </tr>
+  `;
+  
+  // Show modal first
+  modal.show();
+  
+  // Ensure modal is fully shown before fetching data
+  setTimeout(() => {
+    // Fetch data from Google Apps Script
+    fetch(API_URL)
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+      })
+      .then(data => {
+        if (data.alumni && data.alumni.length > 0) {
+          tableBody.innerHTML = '';
+          data.alumni.forEach((alumni, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td><span class="badge bg-primary">${alumni.uid || 'N/A'}</span></td>
+              <td>${alumni.name || 'N/A'}</td>
+            `;
+            tableBody.appendChild(row);
+          });
+          
+          // Update count
+          alumniCount.innerHTML = `<i class="fas fa-users me-1"></i> ${data.alumni.length} alumni found`;
+        } else {
+          tableBody.innerHTML = `
+            <tr>
+              <td colspan="2" class="text-center py-5">
+                <i class="fas fa-exclamation-triangle text-warning fa-2x mb-3"></i>
+                <p class="text-muted">No alumni data found in the sheet.</p>
+              </td>
+            </tr>
+          `;
+          alumniCount.innerHTML = '<i class="fas fa-exclamation-circle me-1"></i> No data found';
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching alumni data:', error);
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="2" class="text-center py-5">
+              <i class="fas fa-exclamation-circle text-danger fa-2x mb-3"></i>
+              <p class="text-danger mb-1">Error loading data</p>
+              <p class="text-muted small">Please check your internet connection and try again.</p>
+            </td>
+          </tr>
+        `;
+        alumniCount.innerHTML = '<i class="fas fa-exclamation-circle me-1"></i> Error loading';
+      });
+  }, 300); // Small delay to ensure modal animation completes
+});
+
+// Export function (optional)
+function exportToCSV() {
+  const rows = document.querySelectorAll('#alumniTable tbody tr');
+  let csv = 'UID,Name\n';
+  
+  rows.forEach(row => {
+    const cols = row.querySelectorAll('td');
+    if (cols.length >= 2) {
+      const uid = cols[0].textContent.trim();
+      const name = cols[1].textContent.trim();
+      csv += `"${uid}","${name}"\n`;
+    }
+  });
+  
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  const url = URL.createObjectURL(blob);
+  link.setAttribute('href', url);
+  link.setAttribute('download', 'alumni_list.csv');
+  link.style.visibility = 'hidden';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+// Handle modal hidden event to reset
+document.getElementById('alumniModal').addEventListener('hidden.bs.modal', function () {
+  // Reset modal content
+  document.getElementById('alumniTableBody').innerHTML = `
+    <tr>
+      <td colspan="2" class="text-center py-5 text-muted">
+        Click "Show Alumni List" to load data
+      </td>
+    </tr>
+  `;
+  document.getElementById('alumniCount').textContent = 'Loading...';
+});
+    // Fix for modal scrolling issue on PC
+document.addEventListener('DOMContentLoaded', function() {
+  // Prevent body scroll when modal is open
+  const alumniModal = document.getElementById('alumniModal');
+  
+  alumniModal.addEventListener('show.bs.modal', function () {
+    document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = '0'; // Prevent shift
+  });
+  
+  alumniModal.addEventListener('hidden.bs.modal', function () {
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+  });
+  
+  // Force modal to close on ESC key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && bootstrap.Modal.getInstance(alumniModal)) {
+      bootstrap.Modal.getInstance(alumniModal).hide();
+    }
+  });
+});
   </script>
 </body>
 </html>
