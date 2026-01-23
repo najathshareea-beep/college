@@ -590,7 +590,7 @@
     <div class="modal-content">
       <div class="modal-header bg-alumni-blue text-white">
         <h5 class="modal-title">
-          <i class="fas fa-users me-2"></i>Alumni List (UID & Name)
+          <i class="fas fa-users me-2"></i>Alumni List
         </h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -599,8 +599,8 @@
           <table class="table table-hover mb-0" id="alumniTable">
             <thead class="sticky-top" style="top: 0; z-index: 1;">
               <tr class="bg-light">
-                <th class="py-3" style="width: 40%;">UID (Column A)</th>
-                <th class="py-3" style="width: 60%;">Name (Column C)</th>
+                <th class="py-3" style="width: 40%;">Admission Number</th>
+                <th class="py-3" style="width: 60%;">Name</th>
               </tr>
             </thead>
             <tbody id="alumniTableBody">
@@ -612,9 +612,6 @@
         <div class="d-flex justify-content-between w-100">
           <div class="text-muted small" id="alumniCount">Loading...</div>
           <div>
-            <button type="button" class="btn btn-outline-secondary me-2" onclick="exportToCSV()">
-              <i class="fas fa-download me-1"></i>Export
-            </button>
             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
               <i class="fas fa-times me-1"></i>Close
             </button>
@@ -1232,7 +1229,6 @@
         document.body.style.opacity = '1';
       }, 50);
     });
-    // Replace the entire event listener with this improved version
 document.getElementById('showAlumniBtn').addEventListener('click', function() {
   const modalElement = document.getElementById('alumniModal');
   const modal = new bootstrap.Modal(modalElement, {
@@ -1244,10 +1240,8 @@ document.getElementById('showAlumniBtn').addEventListener('click', function() {
   const tableBody = document.getElementById('alumniTableBody');
   const alumniCount = document.getElementById('alumniCount');
   
-  // Replace with your actual Web App URL
   const API_URL = 'https://script.google.com/macros/s/AKfycbxEsuxJR-1rQwpYKn1MaJf_JuKOHO_9V_1A-Ff3xk79ahoy6CFm8FziAtjtw-yEpRVsHQ/exec';
   
-  // Show loading state
   tableBody.innerHTML = `
     <tr>
       <td colspan="2" class="text-center py-5">
@@ -1257,12 +1251,9 @@ document.getElementById('showAlumniBtn').addEventListener('click', function() {
     </tr>
   `;
   
-  // Show modal first
   modal.show();
   
-  // Ensure modal is fully shown before fetching data
   setTimeout(() => {
-    // Fetch data from Google Apps Script
     fetch(API_URL)
       .then(response => {
         if (!response.ok) throw new Error('Network response was not ok');
@@ -1280,7 +1271,6 @@ document.getElementById('showAlumniBtn').addEventListener('click', function() {
             tableBody.appendChild(row);
           });
           
-          // Update count
           alumniCount.innerHTML = `<i class="fas fa-users me-1"></i> ${data.alumni.length} alumni found`;
         } else {
           tableBody.innerHTML = `
@@ -1307,37 +1297,12 @@ document.getElementById('showAlumniBtn').addEventListener('click', function() {
         `;
         alumniCount.innerHTML = '<i class="fas fa-exclamation-circle me-1"></i> Error loading';
       });
-  }, 300); // Small delay to ensure modal animation completes
+  }, 300); 
 });
 
-// Export function (optional)
-function exportToCSV() {
-  const rows = document.querySelectorAll('#alumniTable tbody tr');
-  let csv = 'UID,Name\n';
-  
-  rows.forEach(row => {
-    const cols = row.querySelectorAll('td');
-    if (cols.length >= 2) {
-      const uid = cols[0].textContent.trim();
-      const name = cols[1].textContent.trim();
-      csv += `"${uid}","${name}"\n`;
-    }
-  });
-  
-  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-  const link = document.createElement('a');
-  const url = URL.createObjectURL(blob);
-  link.setAttribute('href', url);
-  link.setAttribute('download', 'alumni_list.csv');
-  link.style.visibility = 'hidden';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
 
-// Handle modal hidden event to reset
+
 document.getElementById('alumniModal').addEventListener('hidden.bs.modal', function () {
-  // Reset modal content
   document.getElementById('alumniTableBody').innerHTML = `
     <tr>
       <td colspan="2" class="text-center py-5 text-muted">
@@ -1347,14 +1312,12 @@ document.getElementById('alumniModal').addEventListener('hidden.bs.modal', funct
   `;
   document.getElementById('alumniCount').textContent = 'Loading...';
 });
-    // Fix for modal scrolling issue on PC
 document.addEventListener('DOMContentLoaded', function() {
-  // Prevent body scroll when modal is open
   const alumniModal = document.getElementById('alumniModal');
   
   alumniModal.addEventListener('show.bs.modal', function () {
     document.body.style.overflow = 'hidden';
-    document.body.style.paddingRight = '0'; // Prevent shift
+    document.body.style.paddingRight = '0'; 
   });
   
   alumniModal.addEventListener('hidden.bs.modal', function () {
@@ -1362,7 +1325,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.paddingRight = '';
   });
   
-  // Force modal to close on ESC key
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && bootstrap.Modal.getInstance(alumniModal)) {
       bootstrap.Modal.getInstance(alumniModal).hide();
