@@ -96,87 +96,55 @@
       background: var(--islamic-gold);
       color: var(--islamic-green);
     }
-    /* Fix for modal scrolling and backdrop issues */
-.modal {
-  --bs-modal-zindex: 1055;
-  --bs-modal-width: 800px;
-  --bs-modal-padding: 1rem;
-  --bs-modal-margin: 0.5rem;
-}
-
-.modal-backdrop {
-  --bs-backdrop-zindex: 1050;
-}
-
-.modal-dialog-scrollable .modal-content {
-  max-height: calc(100vh - var(--bs-modal-margin) * 2);
-  overflow: hidden;
-}
-
-.modal-dialog-scrollable .modal-body {
-  overflow-y: auto;
-}
-
-.table-container {
-  position: relative;
-}
-
-/* Fix for sticky header */
-.table-container thead th {
-  background-color: #f8f9fa;
-  position: sticky;
-  top: 0;
-  box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1);
-}
-
-/* Better table styling */
-#alumniTable {
-  font-size: 0.9rem;
-  margin-bottom: 0;
-}
-
-#alumniTable tbody tr {
-  cursor: default;
-  transition: background-color 0.15s ease;
-}
-
-#alumniTable tbody tr:hover {
-  background-color: rgba(30, 58, 138, 0.08);
-}
-
-#alumniTable td {
-  padding: 0.75rem 1rem;
-  vertical-align: middle;
-  border-bottom: 1px solid #dee2e6;
-}
-
-#alumniTable th {
-  font-weight: 600;
-  border-bottom: 2px solid var(--alumni-blue);
-}
-
-.spinner-border {
-  width: 2rem;
-  height: 2rem;
-}
-
-.btn-close:focus {
-  box-shadow: 0 0 0 0.25rem rgba(30, 58, 138, 0.25);
-}
-
-.bg-alumni-blue {
-  background: linear-gradient(135deg, var(--alumni-blue), #2d4f9c) !important;
-}
-
-    #alumniTable { font-size: 0.85rem;}
-
-    #alumniTable tbody tr { transition: all 0.2s;}
-
-    #alumniTable tbody tr:hover { background-color: rgba(30, 58, 138, 0.08) !important; transform: translateX(2px);}
-
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; }}
-
-    .modal.fade .modal-dialog { animation: fadeIn 0.3s ease-out;}
+    
+    /* Modal fixes */
+    .modal-backdrop.show {
+      opacity: 0.5 !important;
+    }
+    
+    /* Plain black text for admission number */
+    #alumniTableBody td:first-child {
+      color: #000 !important;
+      font-weight: 500;
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+    
+    /* Better table styling */
+    .table-responsive {
+      border-radius: 8px;
+      border: 1px solid #dee2e6;
+    }
+    
+    .table th {
+      background-color: #f8f9fa;
+      font-weight: 600;
+      color: var(--alumni-blue);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    
+    .table td {
+      padding: 0.75rem 1rem;
+      vertical-align: middle;
+      border-bottom: 1px solid #dee2e6;
+    }
+    
+    .table tbody tr:hover {
+      background-color: rgba(30, 58, 138, 0.05);
+    }
+    
+    /* Modal animation */
+    .modal.fade .modal-dialog {
+      transform: translate(0, -50px);
+      transition: transform 0.3s ease-out;
+    }
+    
+    .modal.show .modal-dialog {
+      transform: translate(0, 0);
+    }
+    
     @media (min-width: 992px) {
       .dropdown-submenu {
         position: relative;
@@ -204,6 +172,7 @@
         font-size: 1.2rem;
       }
     }
+    
     @media (max-width: 991px) {
       .dropdown-submenu .collapse {
         position: static;
@@ -229,6 +198,7 @@
       position: relative;
       overflow: hidden;
     }
+    
     .page-header::before {
       content: '';
       position: absolute;
@@ -239,6 +209,7 @@
       background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
       opacity: 0.5;
     }
+    
     .page-title {
       font-family: 'Scheherazade New', serif;
       font-size: 2.8rem;
@@ -249,6 +220,7 @@
       text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
       letter-spacing: 1px;
     }
+    
     .page-subtitle {
       font-size: 1.2rem;
       opacity: 0.95;
@@ -264,6 +236,7 @@
       padding: 3rem 0;
       background: var(--islamic-cream);
     }
+    
     .section-title {
       color: var(--alumni-blue);
       font-weight: 700;
@@ -275,6 +248,7 @@
       margin-bottom: 0.5rem;
       font-size: 2.2rem;
     }
+    
     .section-header::before {
       content: '';
       position: absolute;
@@ -297,6 +271,7 @@
       position: relative;
       overflow: hidden;
     }
+    
     .id-card-form-container::before {
       content: '';
       position: absolute;
@@ -307,6 +282,7 @@
       background: linear-gradient(90deg, var(--alumni-blue), var(--alumni-gold));
       border-radius: 12px 12px 0 0;
     }
+    
     .form-logo {
       width: 75px;
       height: 75px;
@@ -319,6 +295,7 @@
       background: white;
       box-shadow: 0 3px 10px rgba(0,0,0,0.05);
     }
+    
     .form-title {
       color: var(--alumni-blue);
       font-weight: 700;
@@ -327,6 +304,7 @@
       font-size: 1.4rem;
       letter-spacing: 0.5px;
     }
+    
     .form-subtitle {
       color: #555;
       text-align: center;
@@ -336,6 +314,7 @@
       line-height: 1.2;
       font-weight: 400;
     }
+    
     .form-control {
       border: 1px solid rgba(30, 58, 138, 0.25);
       border-radius: 6px;
@@ -345,12 +324,14 @@
       background: #fdfdfd;
       transition: var(--transition);
     }
+    
     .form-control:focus {
       border-color: var(--alumni-gold);
       box-shadow: 0 0 0 3px rgba(193, 154, 63, 0.1);
       background: white;
       outline: none;
     }
+    
     .form-label {
       color: var(--alumni-blue);
       font-weight: 600;
@@ -359,6 +340,7 @@
       display: flex;
       align-items: center;
     }
+    
     .form-label i {
       margin-right: 8px;
       font-size: 0.9rem;
@@ -377,12 +359,14 @@
       transition: var(--transition);
       letter-spacing: 0.5px;
     }
+    
     .btn-alumni:hover {
       background: linear-gradient(135deg, #2d4f9c, var(--alumni-blue));
       box-shadow: 0 6px 15px rgba(30, 58, 138, 0.25);
       transform: translateY(-2px);
       color: white;
     }
+    
     .btn-outline-alumni {
       border: 1px solid var(--alumni-blue);
       color: var(--alumni-blue);
@@ -393,6 +377,7 @@
       text-decoration: none !important;
       transition: var(--transition);
     }
+    
     .btn-outline-alumni:hover {
       background: var(--alumni-blue);
       color: white;
@@ -407,6 +392,7 @@
       border: 1px solid rgba(30, 58, 138, 0.1);
       font-size: 0.88rem;
     }
+    
     .id-card-info h5 {
       color: var(--alumni-blue);
       font-weight: 600;
@@ -415,10 +401,12 @@
       display: flex;
       align-items: center;
     }
+    
     .id-card-info ul {
       padding-left: 1.2rem;
       margin-bottom: 0;
     }
+    
     .id-card-info li {
       margin-bottom: 0.4rem;
       color: #555;
@@ -432,17 +420,20 @@
       padding: 2.5rem 0 1.5rem;
       color: white;
     }
+    
     .footer-brand {
       font-size: 1.8rem;
       font-weight: 700;
       color: var(--islamic-gold);
       margin-bottom: 1rem;
     }
+    
     .social-links {
       display: flex;
       gap: 12px;
       margin-top: 1rem;
     }
+    
     .social-icon {
       width: 40px;
       height: 40px;
@@ -455,23 +446,27 @@
       font-size: 1.1rem;
       text-decoration: none !important;
     }
+    
     .social-icon:hover {
       transform: translateY(-5px);
       background: var(--islamic-gold);
       color: var(--islamic-green);
     }
+    
     .footer-links h5 {
       color: var(--islamic-gold);
       margin-bottom: 1.2rem;
       font-size: 1.1rem;
       font-weight: 600;
     }
+    
     .footer-links a {
       display: block;
       color: rgba(255, 255, 255, 0.85);
       margin-bottom: 0.6rem;
       text-decoration: none !important;
     }
+    
     .footer-links a:hover {
       color: var(--islamic-gold);
       padding-left: 5px;
@@ -495,10 +490,12 @@
       animation: float 3s ease-in-out infinite;
       text-decoration: none !important;
     }
+    
     .whatsapp-float:hover {
       transform: scale(1.1) rotate(10deg);
       box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
     }
+    
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
@@ -512,6 +509,7 @@
       z-index: -1;
       pointer-events: none;
     }
+    
     .ornament-1 { top: 20%; left: 5%; animation: float 6s ease-in-out infinite; }
     .ornament-2 { top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse; }
     .ornament-3 { bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite; }
@@ -579,48 +577,46 @@
                 <i class="fas fa-graduation-cap me-2"></i>Generate Alumni ID Card
               </button>
             </form>
+            
+            <!-- Search Alumni Button -->
             <div class="text-center mt-4">
               <button type="button" id="showAlumniBtn" class="btn btn-outline-success w-100 py-3">
-                <i class="fas fa-list me-2"></i>Search Admission Number
+                <i class="fas fa-search me-2"></i>Search Admission Number
               </button>
             </div>
 
-<div class="modal fade" id="alumniModal" tabindex="-1" data-bs-backdrop="static">
-  <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header bg-alumni-blue text-white">
-        <h5 class="modal-title">
-          <i class="fas fa-users me-2"></i>Alumni List
-        </h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body p-0">
-        <div class="table-container" style="max-height: 65vh; overflow-y: auto;">
-          <table class="table table-hover mb-0" id="alumniTable">
-            <thead class="sticky-top" style="top: 0; z-index: 1;">
-              <tr class="bg-light">
-                <th class="py-3" style="width: 40%;">Admission Number</th>
-                <th class="py-3" style="width: 60%;">Name</th>
-              </tr>
-            </thead>
-            <tbody id="alumniTableBody">
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <div class="d-flex justify-content-between w-100">
-          <div class="text-muted small" id="alumniCount">Loading...</div>
-          <div>
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-              <i class="fas fa-times me-1"></i>Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+            <!-- Alumni List Modal -->
+            <div class="modal fade" id="alumniModal" tabindex="-1">
+              <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                  <div class="modal-header" style="background: linear-gradient(135deg, var(--alumni-blue), #2d4f9c); color: white;">
+                    <h5 class="modal-title">
+                      <i class="fas fa-search me-2"></i>Search Admission Number
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body p-0">
+                    <div class="table-responsive" style="max-height: 60vh;">
+                      <table class="table table-hover mb-0">
+                        <thead style="position: sticky; top: 0; background: white; z-index: 1;">
+                          <tr>
+                            <th class="py-3 border-bottom">Admission Number</th>
+                            <th class="py-3 border-bottom">Name</th>
+                          </tr>
+                        </thead>
+                        <tbody id="alumniTableBody">
+                          <!-- Data will load here -->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="id-card-info mt-4">
               <h5><i class="fas fa-info-circle me-2"></i>Important Information</h5>
               <ul>
@@ -634,6 +630,7 @@
           </div>
         </div>
       </div>
+      
       <div class="text-center mt-5" data-aos="fade-up">
         <a href="index.html" class="btn-outline-alumni btn-lg px-5">
           <i class="fas fa-home me-2"></i>Back to Home
@@ -646,14 +643,19 @@
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  
   <script>
+    // Initialize AOS
     AOS.init({ duration: 800, once: true, offset: 50, disable: window.innerWidth < 768 });
+    
+    // Navbar scroll effect
     window.addEventListener('scroll', function() {
       const navbar = document.querySelector('.navbar-optimized');
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       navbar.classList.toggle('scrolled', scrollTop > 50);
     });
     
+    // ID Card Generation
     const scriptURL = 'https://script.google.com/macros/s/AKfycbwv_2BtMwVnl7C7EMvi-vVC3LmhagvllQ6rphmg0NlGI3WgkqUkvrILUlNM6aGqxjiI/exec';
     
     function formatDateToDDMMYYYY(dateStr) {
@@ -879,16 +881,6 @@
           }
           .btn-close:hover { 
             background: #bb2d3b; 
-          }
-          .print-instructions {
-            font-size: 10px;
-            color: #666;
-            text-align: center;
-            margin-top: 8px;
-            padding: 5px;
-            background: #f8f9fa;
-            border-radius: 4px;
-            max-width: 320px;
           }
         </style>
       </head>
@@ -1144,16 +1136,6 @@
               .btn-close:hover { 
                 background: #bb2d3b; 
               }
-              .print-instructions {
-                font-size: 10px;
-                color: #666;
-                text-align: center;
-                margin-top: 8px;
-                padding: 5px;
-                background: #f8f9fa;
-                border-radius: 4px;
-                max-width: 320px;
-              }
             </style>
           </head>
           <body>
@@ -1203,9 +1185,67 @@
         newWin.document.write(`<html><body style="font-family:Poppins;text-align:center;padding:50px;background:#f0f4ff;"><div style="color:#dc3545;"><h2>Connection Error</h2><p>Please try again later.</p><button onclick="window.close()" style="background:#1e3a8a;color:white;border:none;padding:10px 20px;border-radius:25px;margin-top:20px;">Go Back</button></div></body></html>`);
       });
     });
-  </script>
-  
-  <script>
+    
+    // Alumni List Functionality
+    document.getElementById('showAlumniBtn').addEventListener('click', function() {
+      const modalElement = document.getElementById('alumniModal');
+      const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
+      const tableBody = document.getElementById('alumniTableBody');
+      
+      // Your Google Apps Script URL
+      const API_URL = 'https://script.google.com/macros/s/AKfycbxEsuxJR-1rQwpYKn1MaJf_JuKOHO_9V_1A-Ff3xk79ahoy6CFm8FziAtjtw-yEpRVsHQ/exec';
+      
+      // Show loading
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="2" class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="text-muted mt-2">Loading data...</p>
+          </td>
+        </tr>
+      `;
+      
+      modal.show();
+      
+      // Fetch data from Google Sheet
+      fetch(API_URL)
+        .then(response => response.json())
+        .then(data => {
+          if (data.alumni && data.alumni.length > 0) {
+            tableBody.innerHTML = '';
+            data.alumni.forEach(alumni => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                <td>${alumni.uid || 'N/A'}</td>
+                <td>${alumni.name || 'N/A'}</td>
+              `;
+              tableBody.appendChild(row);
+            });
+          } else {
+            tableBody.innerHTML = `
+              <tr>
+                <td colspan="2" class="text-center py-5 text-muted">
+                  <i class="fas fa-exclamation-circle me-2"></i>No data found
+                </td>
+              </tr>
+            `;
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching alumni data:', error);
+          tableBody.innerHTML = `
+            <tr>
+              <td colspan="2" class="text-center py-5 text-danger">
+                <i class="fas fa-exclamation-triangle me-2"></i>Error loading data
+              </td>
+            </tr>
+          `;
+        });
+    });
+    
+    // Load navbar and footer
     fetch('navbar.html').then(response => response.text()).then(data => {
       document.getElementById('navbar-container').innerHTML = data;
       document.querySelectorAll('.submenu-toggle').forEach(function(toggle) {
@@ -1222,6 +1262,7 @@
       document.getElementById('footer-container').innerHTML = data;
     }).catch(error => console.error('Footer error:', error));
     
+    // Page load animation
     document.addEventListener('DOMContentLoaded', function() {
       document.body.style.opacity = '0';
       document.body.style.transition = 'opacity 0.3s ease';
@@ -1229,108 +1270,6 @@
         document.body.style.opacity = '1';
       }, 50);
     });
-document.getElementById('showAlumniBtn').addEventListener('click', function() {
-  const modalElement = document.getElementById('alumniModal');
-  const modal = new bootstrap.Modal(modalElement, {
-    backdrop: true,
-    keyboard: true,
-    focus: true
-  });
-  
-  const tableBody = document.getElementById('alumniTableBody');
-  const alumniCount = document.getElementById('alumniCount');
-  
-  const API_URL = 'https://script.google.com/macros/s/AKfycbxEsuxJR-1rQwpYKn1MaJf_JuKOHO_9V_1A-Ff3xk79ahoy6CFm8FziAtjtw-yEpRVsHQ/exec';
-  
-  tableBody.innerHTML = `
-    <tr>
-      <td colspan="2" class="text-center py-5">
-        <div class="spinner-border text-primary mb-3"></div>
-        <p class="text-muted mb-0">Loading alumni data...</p>
-      </td>
-    </tr>
-  `;
-  
-  modal.show();
-  
-  setTimeout(() => {
-    fetch(API_URL)
-      .then(response => {
-        if (!response.ok) throw new Error('Network response was not ok');
-        return response.json();
-      })
-      .then(data => {
-        if (data.alumni && data.alumni.length > 0) {
-          tableBody.innerHTML = '';
-          data.alumni.forEach((alumni, index) => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-              <td><span class="badge bg-primary">${alumni.uid || 'N/A'}</span></td>
-              <td>${alumni.name || 'N/A'}</td>
-            `;
-            tableBody.appendChild(row);
-          });
-          
-          alumniCount.innerHTML = `<i class="fas fa-users me-1"></i> ${data.alumni.length} alumni found`;
-        } else {
-          tableBody.innerHTML = `
-            <tr>
-              <td colspan="2" class="text-center py-5">
-                <i class="fas fa-exclamation-triangle text-warning fa-2x mb-3"></i>
-                <p class="text-muted">No alumni data found in the sheet.</p>
-              </td>
-            </tr>
-          `;
-          alumniCount.innerHTML = '<i class="fas fa-exclamation-circle me-1"></i> No data found';
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching alumni data:', error);
-        tableBody.innerHTML = `
-          <tr>
-            <td colspan="2" class="text-center py-5">
-              <i class="fas fa-exclamation-circle text-danger fa-2x mb-3"></i>
-              <p class="text-danger mb-1">Error loading data</p>
-              <p class="text-muted small">Please check your internet connection and try again.</p>
-            </td>
-          </tr>
-        `;
-        alumniCount.innerHTML = '<i class="fas fa-exclamation-circle me-1"></i> Error loading';
-      });
-  }, 300); 
-});
-
-
-
-document.getElementById('alumniModal').addEventListener('hidden.bs.modal', function () {
-  document.getElementById('alumniTableBody').innerHTML = `
-    <tr>
-      <td colspan="2" class="text-center py-5 text-muted">
-        Click "Show Alumni List" to load data
-      </td>
-    </tr>
-  `;
-  document.getElementById('alumniCount').textContent = 'Loading...';
-});
-document.addEventListener('DOMContentLoaded', function() {
-  const alumniModal = document.getElementById('alumniModal');
-  
-  alumniModal.addEventListener('show.bs.modal', function () {
-    document.body.style.overflow = 'hidden';
-    document.body.style.paddingRight = '0'; 
-  });
-  
-  alumniModal.addEventListener('hidden.bs.modal', function () {
-    document.body.style.overflow = '';
-    document.body.style.paddingRight = '';
-  });
-  
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && bootstrap.Modal.getInstance(alumniModal)) {
-      bootstrap.Modal.getInstance(alumniModal).hide();
-    }
-  });
-});
   </script>
 </body>
 </html>
