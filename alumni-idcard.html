@@ -517,33 +517,45 @@
               </button>
             </div>
 
-            <div class="modal fade" id="alumniModal" tabindex="-1">
-              <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Alumni List</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="table-responsive">
-                      <table class="table table-striped" id="alumniTable">
-                        <thead>
-                          <tr>
-                            <th>Admission No</th>
-                            <th>Name</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+<div class="modal fade" id="alumniModal" tabindex="-1" data-bs-backdrop="static">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-alumni-blue text-white">
+        <h5 class="modal-title">
+          <i class="fas fa-users me-2"></i>Alumni List (UID & Name)
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-0">
+        <div class="table-container" style="max-height: 65vh; overflow-y: auto;">
+          <table class="table table-hover mb-0" id="alumniTable">
+            <thead class="sticky-top" style="top: 0; z-index: 1;">
+              <tr class="bg-light">
+                <th class="py-3" style="width: 40%;">UID (Column A)</th>
+                <th class="py-3" style="width: 60%;">Name (Column C)</th>
+              </tr>
+            </thead>
+            <tbody id="alumniTableBody">
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="d-flex justify-content-between w-100">
+          <div class="text-muted small" id="alumniCount">Loading...</div>
+          <div>
+            <button type="button" class="btn btn-outline-secondary me-2" onclick="exportToCSV()">
+              <i class="fas fa-download me-1"></i>Export
+            </button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+              <i class="fas fa-times me-1"></i>Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
             <div class="id-card-info mt-4">
               <h5><i class="fas fa-info-circle me-2"></i>Important Information</h5>
               <ul>
