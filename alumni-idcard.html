@@ -20,16 +20,25 @@
       --alumni-gold: #d4af37;
       --transition: all 0.3s ease;
     }
+    
     body {
       font-family: 'Poppins', sans-serif;
       background-color: var(--islamic-cream);
       color: #333;
       padding-top: 80px;
       overflow-x: hidden;
+      transition: opacity 0.3s ease;
     }
+    
+    body.modal-open {
+      overflow: hidden !important;
+      padding-right: 0 !important;
+    }
+    
     a {
       text-decoration: none !important;
     }
+    
     .pattern-bg {
       background-image: radial-gradient(circle at 25% 25%, rgba(30, 58, 138, 0.03) 2px, transparent 2px),
         radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px);
@@ -41,22 +50,33 @@
       height: 100%;
       z-index: -1;
     }
+    
     .navbar-optimized {
       background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
       border-bottom: 3px solid var(--islamic-gold);
       height: 80px;
       z-index: 1030;
+      transition: all 0.3s ease;
     }
-    .navbar-toggler {border-color: rgba(255, 255, 255, 0.5);}
-    .navbar-toggler:focus {box-shadow: 0 0 0 2px var(--islamic-gold);}
+    
+    .navbar-toggler {
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .navbar-toggler:focus {
+      box-shadow: 0 0 0 2px var(--islamic-gold);
+    }
+    
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
+    
     .navbar-optimized.scrolled {
       background: rgba(10, 92, 54, 0.98);
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
       height: 70px;
     }
+    
     .navbar-brand-compact img {
       border-radius: 8px;
       width: 60px;
@@ -66,10 +86,12 @@
       border: none;
       box-shadow: 0 0 0 2px var(--islamic-gold);
     }
+    
     .navbar-optimized.scrolled .navbar-brand-compact img {
       width: 50px;
       height: 50px;
     }
+    
     .nav-link-optimized {
       color: #fff !important;
       font-weight: 500;
@@ -78,27 +100,58 @@
       white-space: nowrap;
       text-decoration: none !important;
     }
+    
     .nav-link-optimized:hover {
       color: var(--islamic-gold) !important;
       background: rgba(255, 255, 255, 0.1);
     }
+    
     .dropdown-menu-optimized {
       background: var(--islamic-green);
       border: 1px solid var(--islamic-gold);
       border-radius: 8px;
     }
+    
     .dropdown-item-optimized {
       color: white;
       padding: 0.5rem 1rem;
       text-decoration: none !important;
     }
+    
     .dropdown-item-optimized:hover {
       background: var(--islamic-gold);
       color: var(--islamic-green);
     }
     
+    /* Modal fixes */
+    .modal-backdrop {
+      z-index: 1040;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    
     .modal-backdrop.show {
-      opacity: 0.5 !important;
+      opacity: 0.5;
+    }
+    
+    .modal {
+      z-index: 1050;
+      backdrop-filter: blur(2px);
+    }
+    
+    .modal.fade .modal-dialog {
+      transform: translate(0, -50px);
+      transition: transform 0.3s ease-out;
+    }
+    
+    .modal.show .modal-dialog {
+      transform: translate(0, 0);
+    }
+    
+    .modal-content {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
     }
     
     #alumniTableBody td:first-child {
@@ -111,15 +164,21 @@
     .table-responsive {
       border-radius: 8px;
       border: 1px solid #dee2e6;
+      overflow-y: auto;
     }
     
     .table th {
       background-color: #f8f9fa;
       font-weight: 600;
       color: var(--alumni-blue);
+    }
+    
+    .table thead th {
       position: sticky;
       top: 0;
-      z-index: 1;
+      z-index: 10;
+      background: #f8f9fa;
+      box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
     }
     
     .table td {
@@ -132,22 +191,15 @@
       background-color: rgba(30, 58, 138, 0.05);
     }
     
-    .modal.fade .modal-dialog {
-      transform: translate(0, -50px);
-      transition: transform 0.3s ease-out;
-    }
-    
-    .modal.show .modal-dialog {
-      transform: translate(0, 0);
-    }
-    
     @media (min-width: 992px) {
       .dropdown-submenu {
         position: relative;
       }
-      .dropdown-submenu:hover > .collapse {
+      
+      .dropdown-submenu:hover>.collapse {
         display: block !important;
       }
+      
       .dropdown-submenu .collapse {
         position: absolute;
         top: 0;
@@ -161,7 +213,8 @@
         border: 1px solid var(--islamic-gold);
         border-radius: 0 0.5rem 0.5rem 0.5rem;
       }
-      .dropdown-submenu > a:after {
+      
+      .dropdown-submenu>a:after {
         content: "›";
         float: right;
         margin-right: -0.5rem;
@@ -175,7 +228,7 @@
         width: auto;
         border: none;
         box-shadow: none;
-        background: rgba(0,0,0,0.1);
+        background: rgba(0, 0, 0, 0.1);
         margin-left: 1.2rem;
       }
     }
@@ -213,7 +266,7 @@
       margin-bottom: 0.8rem;
       color: var(--alumni-gold);
       width: 100%;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
       letter-spacing: 1px;
     }
     
@@ -289,7 +342,7 @@
       border: 1px solid rgba(30, 58, 138, 0.2);
       padding: 4px;
       background: white;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
     }
     
     .form-title {
@@ -493,8 +546,12 @@
     }
     
     @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
     }
     
     .islamic-ornament {
@@ -506,18 +563,54 @@
       pointer-events: none;
     }
     
-    .ornament-1 { top: 20%; left: 5%; animation: float 6s ease-in-out infinite; }
-    .ornament-2 { top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse; }
-    .ornament-3 { bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite; }
+    .ornament-1 {
+      top: 20%;
+      left: 5%;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .ornament-2 {
+      top: 60%;
+      right: 5%;
+      animation: float 8s ease-in-out infinite reverse;
+    }
+    
+    .ornament-3 {
+      bottom: 20%;
+      left: 10%;
+      animation: float 7s ease-in-out infinite;
+    }
     
     @media (max-width: 768px) {
-      body { padding-top: 70px !important; }
-      .navbar-optimized { height: 70px; }
-      .page-header { height: 22vh; min-height: 160px; }
-      .page-title { font-size: 2rem; }
-      .page-subtitle { font-size: 1rem; }
-      .content-section { padding: 2rem 0; }
-      .section-title { font-size: 1.6rem; }
+      body {
+        padding-top: 70px !important;
+      }
+      
+      .navbar-optimized {
+        height: 70px;
+      }
+      
+      .page-header {
+        height: 22vh;
+        min-height: 160px;
+      }
+      
+      .page-title {
+        font-size: 2rem;
+      }
+      
+      .page-subtitle {
+        font-size: 1rem;
+      }
+      
+      .content-section {
+        padding: 2rem 0;
+      }
+      
+      .section-title {
+        font-size: 1.6rem;
+      }
+      
       .navbar-collapse {
         background: var(--dark-green);
         padding: 1rem;
@@ -525,22 +618,45 @@
         border: 1px solid var(--islamic-gold);
         margin-top: 0;
       }
-      .id-card-form-container { padding: 1.8rem; margin: 0 1rem; }
-      .form-logo { width: 65px; height: 65px; }
+      
+      .id-card-form-container {
+        padding: 1.8rem;
+        margin: 0 1rem;
+      }
+      
+      .form-logo {
+        width: 65px;
+        height: 65px;
+      }
     }
     
     @media (max-width: 576px) {
-      .page-title { font-size: 1.6rem; }
-      .section-title { font-size: 1.3rem; }
-      .id-card-form-container { padding: 1.5rem; }
-      .form-title { font-size: 1.2rem; }
-      .form-subtitle { font-size: 0.85rem; }
+      .page-title {
+        font-size: 1.6rem;
+      }
+      
+      .section-title {
+        font-size: 1.3rem;
+      }
+      
+      .id-card-form-container {
+        padding: 1.5rem;
+      }
+      
+      .form-title {
+        font-size: 1.2rem;
+      }
+      
+      .form-subtitle {
+        font-size: 0.85rem;
+      }
     }
   </style>
 </head>
+
 <body>
   <div id="navbar-container"></div>
-  
+
   <div class="page-header">
     <div class="container">
       <div class="page-header-content text-center">
@@ -549,7 +665,7 @@
       </div>
     </div>
   </div>
-  
+
   <section class="content-section">
     <div class="container">
       <div class="row justify-content-center">
@@ -573,32 +689,34 @@
                 <i class="fas fa-graduation-cap me-2"></i>Generate Alumni ID Card
               </button>
             </form>
-            
+
             <div class="text-center mt-4">
               <button type="button" id="showAlumniBtn" class="btn btn-outline-success w-100 py-3">
                 <i class="fas fa-search me-2"></i>Search Admission Number
               </button>
             </div>
 
-            <div class="modal fade" id="alumniModal" tabindex="-1">
+            <!-- Fixed Modal -->
+            <div class="modal fade" id="alumniModal" tabindex="-1" aria-hidden="true">
               <div class="modal-dialog modal-lg modal-dialog-scrollable">
                 <div class="modal-content">
                   <div class="modal-header" style="background: linear-gradient(135deg, var(--alumni-blue), #2d4f9c); color: white;">
                     <h5 class="modal-title">
                       <i class="fas fa-search me-2"></i>Search Admission Number
                     </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body p-0">
-                    <div class="table-responsive" style="max-height: 60vh;">
+                    <div class="table-responsive" style="max-height: 400px;">
                       <table class="table table-hover mb-0">
-                        <thead style="position: sticky; top: 0; background: white; z-index: 1;">
+                        <thead>
                           <tr>
                             <th class="py-3 border-bottom">Admission Number</th>
                             <th class="py-3 border-bottom">Name</th>
                           </tr>
                         </thead>
                         <tbody id="alumniTableBody">
+                          <!-- Data will be loaded here -->
                         </tbody>
                       </table>
                     </div>
@@ -623,7 +741,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="text-center mt-5" data-aos="fade-up">
         <a href="index.html" class="btn-outline-alumni btn-lg px-5">
           <i class="fas fa-home me-2"></i>Back to Home
@@ -631,23 +749,31 @@
       </div>
     </div>
   </section>
-  
+
   <div id="footer-container"></div>
-  
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  
+
   <script>
-    AOS.init({ duration: 800, once: true, offset: 50, disable: window.innerWidth < 768 });
-    
+    // Initialize AOS
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 50,
+      disable: window.innerWidth < 768
+    });
+
+    // Navbar scroll effect
     window.addEventListener('scroll', function() {
       const navbar = document.querySelector('.navbar-optimized');
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       navbar.classList.toggle('scrolled', scrollTop > 50);
     });
-    
+
+    // Form submission for ID card generation
     const scriptURL = 'https://script.google.com/macros/s/AKfycbwv_2BtMwVnl7C7EMvi-vVC3LmhagvllQ6rphmg0NlGI3WgkqUkvrILUlNM6aGqxjiI/exec';
-    
+
     function formatDateToDDMMYYYY(dateStr) {
       if (!dateStr) return '';
       const parts = dateStr.split('-');
@@ -656,7 +782,7 @@
       }
       return dateStr;
     }
-    
+
     document.getElementById('idForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const formData = new FormData(e.target);
@@ -665,7 +791,7 @@
       const typeVal = formData.get('type');
       const url = `${scriptURL}?uid=${encodeURIComponent(uidVal)}&dob=${encodeURIComponent(dobVal)}&type=${encodeURIComponent(typeVal)}`;
       const newWin = window.open("", "_blank");
-      
+
       newWin.document.write(`<!DOCTYPE html><html><head><title>Loading...</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
           @media print { 
@@ -910,7 +1036,7 @@
           </div>
         </div>
       </body></html>`);
-      
+
       fetch(url).then(res => res.json()).then(data => {
         if (data.result === 'success') {
           const s = data.student;
@@ -918,7 +1044,7 @@
           const qrData = `ANSAS ALUMNI ID CARD\nADM NO: ${s.UID}\nNAME: ${s.FullName}\nFATHER: ${s.FatherName}\nDOB: ${formattedDOB}\nBATCH: ${s.BatchNumber}\nPASSOUT: ${s.PassoutYear}\nPLACE: ${s.Place}\nPHONE: ${s.Phone}`;
           const qrURL = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=80x80&margin=0&color=1e3a8a`;
           const photoURL = s.PhotoURL || 'https://via.placeholder.com/100x120?text=Alumni';
-          
+
           const html = `<!DOCTYPE html><html><head><title>${s.FullName} | Alumni ID Card</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
             <style>
               @media print { 
@@ -1164,7 +1290,7 @@
               </div>
             </div>
           </body></html>`;
-          
+
           newWin.document.open();
           newWin.document.write(html);
           newWin.document.close();
@@ -1175,14 +1301,13 @@
         newWin.document.write(`<html><body style="font-family:Poppins;text-align:center;padding:50px;background:#f0f4ff;"><div style="color:#dc3545;"><h2>Connection Error</h2><p>Please try again later.</p><button onclick="window.close()" style="background:#1e3a8a;color:white;border:none;padding:10px 20px;border-radius:25px;margin-top:20px;">Go Back</button></div></body></html>`);
       });
     });
-    
+
+    // Fixed Alumni Modal Functionality
     document.getElementById('showAlumniBtn').addEventListener('click', function() {
       const modalElement = document.getElementById('alumniModal');
-      const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
       const tableBody = document.getElementById('alumniTableBody');
       
-      const API_URL = 'https://script.google.com/macros/s/AKfycbxEsuxJR-1rQwpYKn1MaJf_JuKOHO_9V_1A-Ff3xk79ahoy6CFm8FziAtjtw-yEpRVsHQ/exec';
-      
+      // Clear previous data and show loading
       tableBody.innerHTML = `
         <tr>
           <td colspan="2" class="text-center py-5">
@@ -1194,7 +1319,16 @@
         </tr>
       `;
       
+      // Initialize and show modal
+      const modal = new bootstrap.Modal(modalElement, {
+        backdrop: true,
+        keyboard: true,
+        focus: true
+      });
       modal.show();
+      
+      // Fetch alumni data
+      const API_URL = 'https://script.google.com/macros/s/AKfycbxEsuxJR-1rQwpYKn1MaJf_JuKOHO_9V_1A-Ff3xk79ahoy6CFm8FziAtjtw-yEpRVsHQ/exec';
       
       fetch(API_URL)
         .then(response => response.json())
@@ -1204,7 +1338,7 @@
             data.alumni.forEach(alumni => {
               const row = document.createElement('tr');
               row.innerHTML = `
-                <td>${alumni.uid || 'N/A'}</td>
+                <td class="font-monospace">${alumni.uid || 'N/A'}</td>
                 <td>${alumni.name || 'N/A'}</td>
               `;
               tableBody.appendChild(row);
@@ -1213,7 +1347,7 @@
             tableBody.innerHTML = `
               <tr>
                 <td colspan="2" class="text-center py-5 text-muted">
-                  <i class="fas fa-exclamation-circle me-2"></i>No data found
+                  <i class="fas fa-exclamation-circle me-2"></i>No alumni data found
                 </td>
               </tr>
             `;
@@ -1224,13 +1358,14 @@
           tableBody.innerHTML = `
             <tr>
               <td colspan="2" class="text-center py-5 text-danger">
-                <i class="fas fa-exclamation-triangle me-2"></i>Error loading data
+                <i class="fas fa-exclamation-triangle me-2"></i>Error loading data. Please try again.
               </td>
             </tr>
           `;
         });
     });
-    
+
+    // Load navbar and footer
     fetch('navbar.html').then(response => response.text()).then(data => {
       document.getElementById('navbar-container').innerHTML = data;
       document.querySelectorAll('.submenu-toggle').forEach(function(toggle) {
@@ -1242,17 +1377,34 @@
         });
       });
     }).catch(error => console.error('Navbar error:', error));
-    
+
     fetch('footer.html').then(response => response.text()).then(data => {
       document.getElementById('footer-container').innerHTML = data;
     }).catch(error => console.error('Footer error:', error));
-    
+
+    // Page fade-in effect
     document.addEventListener('DOMContentLoaded', function() {
       document.body.style.opacity = '0';
-      document.body.style.transition = 'opacity 0.3s ease';
       setTimeout(() => {
         document.body.style.opacity = '1';
       }, 50);
+    });
+
+    // Modal event handlers
+    document.addEventListener('DOMContentLoaded', function() {
+      const alumniModal = document.getElementById('alumniModal');
+      
+      if (alumniModal) {
+        // When modal opens
+        alumniModal.addEventListener('show.bs.modal', function() {
+          document.body.classList.add('modal-open');
+        });
+        
+        // When modal closes
+        alumniModal.addEventListener('hidden.bs.modal', function() {
+          document.body.classList.remove('modal-open');
+        });
+      }
     });
   </script>
 </body>
