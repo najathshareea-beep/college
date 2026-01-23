@@ -96,9 +96,19 @@
       background: var(--islamic-gold);
       color: var(--islamic-green);
     }
-    #alumniTable {font-size: 0.9rem;}
-    #alumniTable thead th { background: linear-gradient(135deg, var(--alumni-blue), #2d4f9c); color: white; border: none; padding: 0.75rem;}
-    #alumniTable tbody tr:hover { background-color: rgba(30, 58, 138, 0.05);}
+    #alumniModal .modal-dialog { max-height: calc(100vh - 100px); overflow-y: auto;}
+    #alumniModal .modal-content { max-height: calc(100vh - 100px); overflow: hidden;}
+    #alumniModal .modal-body { max-height: calc(100vh - 200px); overflow-y: auto;}
+
+    #alumniTable { font-size: 0.85rem;}
+
+    #alumniTable tbody tr { transition: all 0.2s;}
+
+    #alumniTable tbody tr:hover { background-color: rgba(30, 58, 138, 0.08) !important; transform: translateX(2px);}
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; }}
+
+    .modal.fade .modal-dialog { animation: fadeIn 0.3s ease-out;}
     @media (min-width: 992px) {
       .dropdown-submenu {
         position: relative;
