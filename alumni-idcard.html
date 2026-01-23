@@ -97,12 +97,10 @@
       color: var(--islamic-green);
     }
     
-    /* Modal fixes */
     .modal-backdrop.show {
       opacity: 0.5 !important;
     }
     
-    /* Plain black text for admission number */
     #alumniTableBody td:first-child {
       color: #000 !important;
       font-weight: 500;
@@ -110,7 +108,6 @@
       font-size: 0.9rem;
     }
     
-    /* Better table styling */
     .table-responsive {
       border-radius: 8px;
       border: 1px solid #dee2e6;
@@ -135,7 +132,6 @@
       background-color: rgba(30, 58, 138, 0.05);
     }
     
-    /* Modal animation */
     .modal.fade .modal-dialog {
       transform: translate(0, -50px);
       transition: transform 0.3s ease-out;
@@ -578,14 +574,12 @@
               </button>
             </form>
             
-            <!-- Search Alumni Button -->
             <div class="text-center mt-4">
               <button type="button" id="showAlumniBtn" class="btn btn-outline-success w-100 py-3">
                 <i class="fas fa-search me-2"></i>Search Admission Number
               </button>
             </div>
 
-            <!-- Alumni List Modal -->
             <div class="modal fade" id="alumniModal" tabindex="-1">
               <div class="modal-dialog modal-lg modal-dialog-scrollable">
                 <div class="modal-content">
@@ -605,7 +599,6 @@
                           </tr>
                         </thead>
                         <tbody id="alumniTableBody">
-                          <!-- Data will load here -->
                         </tbody>
                       </table>
                     </div>
@@ -645,17 +638,14 @@
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   
   <script>
-    // Initialize AOS
     AOS.init({ duration: 800, once: true, offset: 50, disable: window.innerWidth < 768 });
     
-    // Navbar scroll effect
     window.addEventListener('scroll', function() {
       const navbar = document.querySelector('.navbar-optimized');
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       navbar.classList.toggle('scrolled', scrollTop > 50);
     });
     
-    // ID Card Generation
     const scriptURL = 'https://script.google.com/macros/s/AKfycbwv_2BtMwVnl7C7EMvi-vVC3LmhagvllQ6rphmg0NlGI3WgkqUkvrILUlNM6aGqxjiI/exec';
     
     function formatDateToDDMMYYYY(dateStr) {
@@ -1186,16 +1176,13 @@
       });
     });
     
-    // Alumni List Functionality
     document.getElementById('showAlumniBtn').addEventListener('click', function() {
       const modalElement = document.getElementById('alumniModal');
       const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
       const tableBody = document.getElementById('alumniTableBody');
       
-      // Your Google Apps Script URL
       const API_URL = 'https://script.google.com/macros/s/AKfycbxEsuxJR-1rQwpYKn1MaJf_JuKOHO_9V_1A-Ff3xk79ahoy6CFm8FziAtjtw-yEpRVsHQ/exec';
       
-      // Show loading
       tableBody.innerHTML = `
         <tr>
           <td colspan="2" class="text-center py-5">
@@ -1209,7 +1196,6 @@
       
       modal.show();
       
-      // Fetch data from Google Sheet
       fetch(API_URL)
         .then(response => response.json())
         .then(data => {
@@ -1245,7 +1231,6 @@
         });
     });
     
-    // Load navbar and footer
     fetch('navbar.html').then(response => response.text()).then(data => {
       document.getElementById('navbar-container').innerHTML = data;
       document.querySelectorAll('.submenu-toggle').forEach(function(toggle) {
@@ -1262,7 +1247,6 @@
       document.getElementById('footer-container').innerHTML = data;
     }).catch(error => console.error('Footer error:', error));
     
-    // Page load animation
     document.addEventListener('DOMContentLoaded', function() {
       document.body.style.opacity = '0';
       document.body.style.transition = 'opacity 0.3s ease';
