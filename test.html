@@ -1,394 +1,800 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DSAC | PTA</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <style>
-    :root {
-      --islamic-green: #0a5c36; --islamic-gold: #c19a3f; --islamic-cream: #f8f3e6; --islamic-light: #e9f5e9; --dark-green: #064e3b; --light-gold: #ffd24d; --transition: all 0.3s ease;
-    }
-    body {
-      font-family: 'Poppins', sans-serif; background-color: var(--islamic-cream); color: #333; scroll-behavior: smooth; overflow-x: hidden; padding-top: 80px;
-    }
-    a {text-decoration: none;}
-    .arabic-font {font-family: 'Scheherazade New', serif;}
-    .malayalam-font {font-family: 'Anek Malayalam', sans-serif;}
-    .pattern-bg {
-      background-image: radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px), radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px); background-size: 50px 50px; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-    }
-    .navbar-optimized {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-bottom: 3px solid var(--islamic-gold); transition: var(--transition); padding: 0.5rem 0; height: 80px; z-index: 1030 !important;
-    }
-    .navbar-toggler {border-color: rgba(255, 255, 255, 0.5);}
-    .navbar-toggler:focus {box-shadow: 0 0 0 2px var(--islamic-gold);}
-    .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-    }
-    .navbar-optimized.scrolled {
-      background: rgba(10, 92, 54, 0.98); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); height: 70px;
-    }
-    .navbar-brand-compact img {
-      border-radius: 8px; transition: transform 0.3s ease; width: 60px; height: 60px; object-fit: contain; filter: brightness(0) invert(1); border: none; box-shadow: 0 0 0 2px var(--islamic-gold); padding: 0;
-    }
-    .navbar-optimized.scrolled .navbar-brand-compact img {width: 50px; height: 50px;}
-    .navbar-brand-compact:hover img {transform: scale(1.05);}
-    .brand-text {font-size: 1.2rem; line-height: 1.2;}
-    .brand-subtext {font-size: 0.8rem; opacity: 0.9;}
-    .nav-link-optimized {
-      color: #fff !important; font-weight: 500; transition: var(--transition); padding-left: 0.4rem; padding-right: 0.4rem; border-radius: 5px; margin: 0 2px; white-space: nowrap;
-    }
-    .nav-item-optimized {margin: 0 2px;}
-    .nav-link-optimized:hover {color: var(--islamic-gold) !important; background: rgba(255, 255, 255, 0.1);}
-    .dropdown-menu-optimized {
-      background: var(--islamic-green); border: 1px solid var(--islamic-gold); border-radius: 8px; padding: 0.5rem 0;
-    }
-    .dropdown-item-optimized {
-      color: white; padding: 0.5rem 1rem; transition: var(--transition);
-    }
-    .dropdown-item-optimized:hover {background: var(--islamic-gold); color: var(--islamic-green);}
-    .page-header {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); color: white; height: 30vh; min-height: 220px; display: flex; align-items: center; justify-content: center; text-align: center; margin-bottom: 3rem; border-bottom: 5px solid var(--islamic-gold); position: relative; overflow: hidden;
-    }
-    .page-header::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
-    }
-    .page-header-content {position: relative; z-index: 2;}
-    .page-title {
-      font-family: 'Scheherazade New', serif; font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--islamic-gold); text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    }
-    .content-section {padding: 4rem 0; background: var(--islamic-cream);}
-    .section-header {
-      text-align: center; margin-bottom: 3rem; position: relative; padding: 2rem 0;
-    }
-    .section-title {
-      color: var(--islamic-green); font-weight: 700; display: inline-block; padding: 0 1rem; background: var(--islamic-cream); position: relative; z-index: 2; margin-bottom: 0.5rem; font-size: 2.5rem;
-    }
-    .section-header::before {
-      content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent); z-index: 1;
-    }
-    .btn-gold {
-      background: linear-gradient(135deg, var(--islamic-gold), #d4af37); border: none; color: var(--islamic-green); font-weight: 600; border-radius: 8px; box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3); transition: var(--transition); padding: 0.75rem 1.5rem;
-    }
-    .btn-gold:hover {
-      background: linear-gradient(135deg, #d4af37, var(--islamic-gold)); box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4); transform: translateY(-2px); color: var(--islamic-green);
-    }
-    .btn-outline-gold {
-      border: 2px solid var(--islamic-gold); color: var(--islamic-gold); background: transparent; border-radius: 8px; padding: 0.75rem 1.5rem; font-weight: 600; transition: var(--transition);
-    }
-    .btn-outline-gold:hover {background: var(--islamic-gold); color: var(--islamic-green);}
-    .islamic-card {
-      background: white; border-radius: 15px; overflow: hidden; transition: var(--transition); border: 3px solid transparent; box-shadow: 0 5px 15px rgba(0,0,0,0.08); height: 100%; margin-bottom: 1rem;
-    }
-    .islamic-card:hover {transform: translateY(-8px); border-color: var(--islamic-gold); box-shadow: 0 15px 30px rgba(0,0,0,0.15);}
-    .islamic-card-header {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); color: white; padding: 1.5rem; text-align: center; border-bottom: 3px solid var(--islamic-gold);
-    }
-    .islamic-card-body {padding: 1.5rem;}
-    .pta-member-card {
-      background: white; border-radius: 15px; overflow: hidden; transition: var(--transition); border: 2px solid transparent; box-shadow: 0 5px 15px rgba(0,0,0,0.08); height: 100%; position: relative;
-    }
-    .pta-member-card:hover {transform: translateY(-8px); border-color: var(--islamic-gold); box-shadow: 0 15px 30px rgba(0,0,0,0.15);}
-    .pta-member-card .role-badge {
-      position: absolute; top: 15px; right: 15px; background: var(--islamic-gold); color: var(--islamic-green); padding: 0.5rem 1rem; border-radius: 20px; font-weight: bold; font-size: 0.85rem; z-index: 2; box-shadow: 0 3px 10px rgba(193, 154, 63, 0.3);
-    }
-    .pta-member-card .member-photo {
-      width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid var(--islamic-gold); margin: 0 auto 15px; padding: 3px; background: white;
-    }
-    .pta-member-card h4 {
-      color: var(--islamic-green); margin-bottom: 5px; font-size: 1.2rem; line-height: 1.3; font-weight: 600;
-    }
-    .pta-member-card .designation {
-      color: var(--islamic-gold); font-weight: 600; margin-bottom: 10px; font-size: 0.95rem;
-    }
-    .pta-member-card .contact-info {
-      color: var(--islamic-green); background: rgba(193, 154, 63, 0.1); padding: 8px 15px; border-radius: 20px; display: inline-block; font-weight: 500; margin: 10px 0 15px 0; transition: var(--transition);
-    }
-    .pta-member-card:hover .contact-info {background: rgba(193, 154, 63, 0.2); transform: scale(1.05);}
-    .activity-card {
-      background: white; border-radius: 15px; padding: 2rem; transition: var(--transition); border: 2px solid transparent; box-shadow: 0 5px 15px rgba(0,0,0,0.08); height: 100%; text-align: center;
-    }
-    .activity-card:hover {transform: translateY(-5px); border-color: var(--islamic-gold); box-shadow: 0 10px 25px rgba(0,0,0,0.15);}
-    .activity-icon {
-      width: 70px; height: 70px; background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: white; font-size: 1.8rem; transition: var(--transition);
-    }
-    .activity-card:hover .activity-icon {transform: scale(1.1) rotate(5deg); box-shadow: 0 5px 15px rgba(10, 92, 54, 0.3);}
-    .activity-title {color: var(--islamic-green); font-size: 1.3rem; font-weight: 600; margin-bottom: 1rem;}
-    .activity-description {color: #666; font-size: 0.95rem; line-height: 1.6;}
-    .mission-section {
-      background: linear-gradient(135deg, rgba(10, 92, 54, 0.1), rgba(193, 154, 63, 0.1)); border-radius: 15px; padding: 3rem; text-align: center; margin: 3rem 0; border: 2px solid var(--islamic-gold);
-    }
-    .mission-icon {
-      width: 80px; height: 80px; background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; color: white; font-size: 2rem; box-shadow: 0 5px 15px rgba(10, 92, 54, 0.3);
-    }
-    .mission-title {color: var(--islamic-green); font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem;}
-    .mission-text {
-      color: #555; font-size: 1.1rem; line-height: 1.8; max-width: 800px; margin: 0 auto;
-    }
-    .footer {
-      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green)); border-top: 3px solid var(--islamic-gold); padding: 3rem 0 1.5rem; color: white;
-    }
-    .footer-brand {font-size: 1.8rem; font-weight: 700; color: var(--islamic-gold); margin-bottom: 1rem;}
-    .social-links {display: flex; gap: 12px; margin-top: 1rem;}
-    .social-icon {
-      width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: var(--transition); background: rgba(255, 255, 255, 0.1); font-size: 1.1rem;
-    }
-    .social-icon:hover {transform: translateY(-5px); background: var(--islamic-gold); color: var(--islamic-green);}
-    .footer-links h5 {color: var(--islamic-gold); margin-bottom: 1.2rem; font-size: 1.1rem; font-weight: 600;}
-    .footer-links a {
-      display: block; color: rgba(255, 255, 255, 0.85); text-decoration: none; margin-bottom: 0.6rem; transition: var(--transition); font-size: 0.95rem;
-    }
-    .footer-links a:hover {color: var(--islamic-gold); padding-left: 5px;}
-    .whatsapp-float {
-      position: fixed; bottom: 25px; right: 15px; width: 60px; height: 60px; background: linear-gradient(135deg, #25D366, #128C7E); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); z-index: 1000; animation: float 3s ease-in-out infinite; transition: var(--transition); text-decoration: none;
-    }
-    .whatsapp-float:hover {transform: scale(1.1) rotate(10deg); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);}
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-    .islamic-ornament {
-      position: fixed; color: var(--islamic-gold); opacity: 0.08; font-size: 1.8rem; z-index: -1; pointer-events: none;
-    }
-    .ornament-1 {top: 20%; left: 5%; animation: float 6s ease-in-out infinite;}
-    .ornament-2 {top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse;}
-    .ornament-3 {bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite;}
-    @media (max-width: 768px) {
-      body {padding-top: 70px !important;}
-      .navbar-optimized {height: 70px; padding: 0.3rem 0;}
-      .page-header {height: 26vh; min-height: 180px;}
-      .page-title {font-size: 2.2rem;}
-      .content-section {padding: 2.5rem 0;}
-      .section-title {font-size: 1.8rem;}
-      .navbar-collapse {
-        background: var(--dark-green); padding: 1rem; border-radius: 0 0 10px 10px; border: 1px solid var(--islamic-gold); margin-top: 0px; max-height: 70vh; overflow-y: auto;
-      }
-      .pta-member-card .member-photo {width: 100px; height: 100px;}
-      .mission-section {padding: 2rem;}
-      .mission-title {font-size: 1.6rem;}
-      .mission-text {font-size: 1rem;}
-    }
-    @media (max-width: 576px) {
-      .page-title {font-size: 1.8rem;}
-      .section-title {font-size: 1.5rem;}
-    }
-    @media (min-width: 992px) {
-      .dropdown-submenu {  position: relative;  }
-      .dropdown-submenu:hover > .collapse {    display: block !important;  }
-      .dropdown-submenu .collapse {    position: absolute;    top: 0;    left: 100%;    z-index: 1000;    min-width: 12rem;    padding: 0.5rem 0;    margin: 0;    font-size: 1rem;    background-color: var(--islamic-green);    border: 1px solid var(--islamic-gold);    border-radius: 0 0.5rem 0.5rem 0.5rem;  }
-      .dropdown-submenu > a:after {    content: "›";    float: right;    margin-right: -0.5rem;    font-size: 1.2rem;  }
-    }
-    @media (max-width: 991px) {
-      .dropdown-submenu .collapse {    position: static;    width: auto;    border: none;    box-shadow: none;    background: rgba(0,0,0,0.1);
-    margin-left: 1.2rem;  }
-    }
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Create personalised poster for സമസ്ത - നൂറാം വാർഷികം">
+    <title>സമസ്ത - നൂറാം വാർഷികം | Create Personalised Poster</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Cropper CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+    <style type="text/css">
+        :root {
+            --input-padding-x: 1.5rem;
+            --input-padding-y: .75rem;
+        }
+        
+        body {
+            background: #007bff;
+            background: linear-gradient(to right, #0062E6, #33AEFF);
+            min-height: 100vh;
+            padding: 20px 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .card-signin {
+            border: 0;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            background: white;
+        }
+        
+        .card-body {
+            padding: 2rem;
+        }
+        
+        /* Title Image */
+        .title-image {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Loader Screen */
+        .loader_screen {
+            background: #cbe0f4;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+            padding: 20px;
+            display: none;
+            border-radius: 1rem;
+            overflow-y: auto;
+        }
+        
+        /* Progress Bar */
+        .progress {
+            height: 25px;
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #e9ecef;
+        }
+        
+        .progress-bar {
+            line-height: 25px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #28a745, #20c997);
+        }
+        
+        /* Final Poster Container */
+        .poster-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .template-image {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .user-photo-overlay {
+            position: absolute;
+            width: 30%; /* Adjust size as needed */
+            height: 40%; /* Adjust size as needed */
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            /* Center position - adjust these values based on your template */
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .user-photo-overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Social Buttons */
+        .social-buttons-container {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .social-btn {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            text-decoration: none !important;
+            position: relative;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        
+        .social-btn img {
+            width: 50%;
+            height: 50%;
+            object-fit: contain;
+        }
+        
+        .social-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            font-weight: bold;
+            color: #333;
+            white-space: nowrap;
+        }
+        
+        /* Button Colors */
+        .download-btn { background: linear-gradient(135deg, #28a745, #20c997); }
+        .whatsapp-btn { background: linear-gradient(135deg, #25D366, #128C7E); }
+        .new-btn { background: linear-gradient(135deg, #17a2b8, #138496); }
+        
+        /* Modal Styling */
+        .modal-content {
+            border-radius: 1rem;
+            overflow: hidden;
+            border: none;
+        }
+        
+        .modal-header {
+            background: linear-gradient(to right, #0062E6, #33AEFF);
+            color: white;
+            border-bottom: none;
+            padding: 15px 20px;
+        }
+        
+        .modal-title {
+            font-weight: 600;
+        }
+        
+        /* Image Container in Modal */
+        .img-container {
+            max-height: 400px;
+            overflow: auto;
+            margin-top: 15px;
+            border: 2px dashed #dee2e6;
+            border-radius: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            min-height: 300px;
+        }
+        
+        #image {
+            max-width: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        /* Create Button */
+        .create-btn {
+            background: linear-gradient(to right, #0062E6, #33AEFF);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 98, 230, 0.4);
+            width: 100%;
+            max-width: 300px;
+            margin: 10px auto;
+            display: block;
+        }
+        
+        .create-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 98, 230, 0.6);
+        }
+        
+        /* Success Message */
+        .success-message {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border: none;
+            color: #155724;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Footer */
+        .footer {
+            color: white;
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+        }
+        
+        .footer a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            color: #e6f2ff;
+            text-decoration: underline;
+        }
+        
+        /* WhatsApp Contact */
+        .whatsapp-contact {
+            background: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 10px 0;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(37, 211, 102, 0.3);
+        }
+        
+        /* Instructions */
+        .instructions {
+            background: #e3f2fd;
+            border-left: 4px solid #0062E6;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+        
+        .instructions ul {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .social-btn {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .user-photo-overlay {
+                width: 35%;
+                height: 30%;
+            }
+            
+            .modal-dialog {
+                margin: 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .social-btn {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .social-buttons {
+                gap: 15px;
+            }
+            
+            .user-photo-overlay {
+                width: 40%;
+                height: 25%;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        /* Hide elements */
+        .hidden {
+            display: none;
+        }
+        
+        /* Show elements */
+        .visible {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-<div class="islamic-ornament ornament-1">✸</div>
-<div class="islamic-ornament ornament-2">✸</div>
-<div class="islamic-ornament ornament-3">✸</div>
-<div id="navbar-container"></div>
-<div class="page-header">
-  <div class="container">
-    <div class="page-header-content">
-      <h1 class="page-title">Parent Teacher Association</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card card-signin my-4">
+                    <div class="card-body position-relative">
+                        <!-- Loader Screen (Hidden by default) -->
+                        <div class="loader_screen">
+                            <div class="text-center mb-4">
+                                <h3 class="text-primary">Creating Your Poster...</h3>
+                                <p class="text-muted">Please wait while we generate your personalised poster</p>
+                            </div>
+                            
+                            <div class="complete-hide">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%">0%</div>
+                                </div>
+                                
+                                <div class="text-center mt-4">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="success-show hidden">
+                                <div class="success-message fade-in">
+                                    🎉 POSTER CREATED SUCCESSFULLY!
+                                </div>
+                                
+                                <div class="text-center mb-4">
+                                    <div class="poster-container">
+                                        <!-- Template Image -->
+                                        <img id="finalTemplateImage" class="template-image" alt="സമസ്ത - നൂറാം വാർഷികം Poster">
+                                        <!-- User's Photo Overlay -->
+                                        <div class="user-photo-overlay">
+                                            <img id="finalUserPhoto" alt="Your Photo">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <h4 class="text-center mb-3 text-dark">Share Your Poster</h4>
+                                
+                                <div class="social-buttons-container fade-in">
+                                    <div class="social-buttons">
+                                        <a download="Samasta_Poster.jpg" id="dw_btn" class="social-btn download-btn" title="Download Poster">
+                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTI1NiAwQzExNC42IDAgMCAxMTQuNiAwIDI1NnMxMTQuNiAyNTYgMjU2IDI1NiAyNTYtMTE0LjYgMjU2LTI1NlMzOTcuNCAwIDI1NiAwem0xMzUuNiAyNzguNmwtNzQuNiA3NC42VjE3MC43YzAtMTEuMy05LjEtMjAuNS0yMC41LTIwLjVTMjk2IDE1OS41IDI5NiAxNzAuN3YxODIuNGwtNzQuNi03NC42Yy04LThtNzQuNiA3NC42bDc0LjYtNzQuNmMtOC04LTIwLjktOC0yOC45IDBzLTggMjAuOSAwIDI4Ljl6Ii8+PC9zdmc+" alt="Download">
+                                            <span class="social-label">Download</span>
+                                        </a>
+                                        
+                                        <a id="wt_share" class="social-btn whatsapp-btn" title="Share on WhatsApp">
+                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTQwNC43IDk0LjVDMzYzLjggNTMuNiAzMDguNiAzMiAyNTEgMzJjLTEyMy4zIDAtMjIzLjggMTAwLjQtMjIzLjggMjIzLjcgMCA0MS4zIDEwLjkgODEuMSAzMS4yIDExNi40IDMuOCA2LjIgNy45IDEyLjIgMTIuMyAxOC4xbC0xOC4zIDY4LjIgNjguOS0xOC4xYzIyLjYgMTIuMyA0OC4yIDE5LjEgNzQuOSAxOS4xaC4xYzEyMy4zIDAgMjIzLjgtMTAwLjQgMjIzLjgtMjIzLjdDNS4zIDE5NC44IDk0LjkgOTQuNSA0MDQuNyA0OTV6TTI1MSA0NDEuMWMtMjEuOSAwLTQzLjMtNC43LTYzLjYtMTRsLTguOS01LjMtNDEuNyAxMC45IDExLjEtNDEuMy01LjQtOC45Yy0xNS44LTI2LjEtMjQuMi01Ni44LTI0LjItODkgMC0xMDIuMSA4My4xLTE4NS4yIDE4NS4yLTE4NS4yIDQ5LjMgMCA5Ny4zIDE5LjIgMTMyLjggNTQuMSAzNS41IDM0LjUgNTQuOSA4MS44IDU0LjkgMTMxLjQgMCAxMDIuMS04My4xIDE4NS4yLTE4NS4yIDE4NS4yeiIvPjwvc3ZnPg==" alt="WhatsApp">
+                                            <span class="social-label">WhatsApp</span>
+                                        </a>
+                                        
+                                        <a class="social-btn new-btn" onclick="location.reload()" title="Create New Poster">
+                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTQzNiA2NEg3NmMtMjEuNCAwLTM4LjYgMTcuMi0zOC42IDM4LjZ2MzA2LjhDNzcuNCA0MzAuOCA5NC42IDQ0OCAxMTYgNDQ4aDE2MEwzNDQgNTEybDY4LTE2MGg2NGMyMS40IDAgMzguNi0xNy4yIDM4LjYtMzguNlYxMDIuNkM0NzQuNiA4MS4yIDQ1Ny40IDY0IDQzNiA2NHpNMzUyIDM1MmgtNzJ2LTcyYzAtMTMuMy0xMC43LTI0LTI0LTI0cy0yNCAxMC43LTI0IDI0djcyaC03MmMtMTMuMyAwLTI0IDEwLjctMjQgMjRzMTAuNyAyNCAyNCAyNGg3MnY3MmMwIDEzLjMgMTAuNyAyNCAyNCAyNHMyNC0xMC43IDI0LTI0di03Mmg3MmMxMy4zIDAgMjQtMTAuNyAyNC0yNHMtMTAuNy0yNC0yNC0yNHoiLz48L3N2Zz4=" alt="New">
+                                            <span class="social-label">New</span>
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="text-center mt-4">
+                                        <div class="whatsapp-contact">
+                                            📞 Contact: 9048020243
+                                        </div>
+                                        <p class="text-muted mt-2">For any issues or custom poster requests</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Main Content (Visible by default) -->
+                        <div id="main_content">
+                            <div class="text-center mb-4">
+                                <img src="https://i.ibb.co/q36Rmxyf/df440d59c3c14e4bff119951f9b32eec.png" class="title-image" alt="സമസ്ത - നൂറാം വാർഷികം" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x200/0062E6/ffffff?text=സമസ്ത+നൂറാം+വാർഷികം';">
+                                <h3 class="text-primary font-weight-bold">സമസ്ത - നൂറാം വാർഷികം</h3>
+                                <h4 class="text-dark mb-4">Create Your Personalised Poster</h4>
+                            </div>
+                            
+                            <div class="instructions">
+                                <h5 class="text-primary">📋 How it works:</h5>
+                                <ul>
+                                    <li>Click the "Create Poster Now" button</li>
+                                    <li>Select your photo from your device</li>
+                                    <li>Crop your photo to fit perfectly</li>
+                                    <li>Your photo will be placed on the template</li>
+                                    <li>Download and share your personalised poster!</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="text-center mt-4">
+                                <button id="createPosterBtn" class="create-btn">
+                                    🎨 CREATE POSTER NOW
+                                </button>
+                                <p class="text-muted mt-3">
+                                    <small>Your photo will be placed in the center of the poster</small>
+                                </p>
+                            </div>
+                            
+                            <div class="text-center mt-4">
+                                <div class="whatsapp-contact">
+                                    Need help? WhatsApp: 9048020243
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer">
+                    <p>Create personalised poster for സമസ്ത - നൂറാം വാർഷികം</p>
+                    <p><a href="https://socialwaves.in">&copy; socialwaves.in</a> | Contact: 9048020243</p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-<section class="content-section">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">PTA Executive Committee</h2>
+
+    <!-- Crop Modal -->
+    <div class="modal fade" id="cropModal" tabindex="-1" role="dialog" aria-labelledby="cropModalLabel" data-backdrop="static" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cropModalLabel">✂️ Crop Your Photo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="custom-file mb-3">
+                        <input type="file" id="file-input" class="custom-file-input" accept="image/*">
+                        <label class="custom-file-label" for="file-input">Choose your photo...</label>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <strong>Tip:</strong> Select a clear photo of your face. Crop it to fit within the circle.
+                    </div>
+                    
+                    <div class="img-container mt-3">
+                        <img id="image" src="" alt="Image to crop" style="display: none;">
+                    </div>
+                    
+                    <div class="text-center mt-3">
+                        <button type="button" class="btn btn-success btn-lg" id="cropAndCreateBtn" style="display: none; padding: 12px 40px;">
+                            ✅ CROP & CREATE POSTER
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="cropBtn" style="display: none;">Crop Image</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="row g-4">
-      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-        <div class="pta-member-card p-4 text-center h-100">
-          <div class="role-badge">President</div>
-          <img src="https://i.ibb.co/fYtC1h9w/155.png" alt="President" class="member-photo" 
-               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
-          <h4>Aaaaa</h4>
-          <div class="designation">PTA President</div>
-          <div class="contact-info">
-            <i class="fas fa-phone me-2"></i>1234567890
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="150">
-        <div class="pta-member-card p-4 text-center h-100">
-          <div class="role-badge">Secretary</div>
-          <img src="https://i.ibb.co/fYtC1h9w/155.png" alt="Secretary" class="member-photo" 
-               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
-          <h4>Bbbbb</h4>
-          <div class="designation">General Secretary</div>
-          <div class="contact-info">
-            <i class="fas fa-phone me-2"></i>1234567890
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-        <div class="pta-member-card p-4 text-center h-100">
-          <div class="role-badge">Treasurer</div>
-          <img src="https://i.ibb.co/fYtC1h9w/155.png" alt="Treasurer" class="member-photo" 
-               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
-          <h4>Ccccc</h4>
-          <div class="designation">Treasurer</div>
-          <div class="contact-info">
-            <i class="fas fa-phone me-2"></i>1234567890
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="250">
-        <div class="pta-member-card p-4 text-center h-100">
-          <div class="role-badge">Staff Secretary</div>
-          <img src="https://i.ibb.co/fYtC1h9w/155.png" alt="Staff Secretary" class="member-photo" 
-               onerror="this.src='https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png'">
-          <h4>Ddddddd</h4>
-          <div class="designation">Staff Secretary</div>
-          <div class="contact-info">
-            <i class="fas fa-phone me-2"></i>1234567890
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="content-section" style="background: white;">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">PTA Activities</h2>
-    </div>
-    <div class="row g-4">
-      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
-        <div class="activity-card">
-          <div class="activity-icon">
-            <i class="fas fa-mosque"></i>
-          </div>
-          <h4 class="activity-title">Parenting Seminars</h4>
-        </div>
-      </div>
-      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="150">
-        <div class="activity-card">
-          <div class="activity-icon">
-            <i class="fas fa-hands-helping"></i>
-          </div>
-          <h4 class="activity-title">Campus Development</h4>
-        </div>
-      </div>
-      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
-        <div class="activity-card">
-          <div class="activity-icon">
-            <i class="fas fa-book-open"></i>
-          </div>
-          <h4 class="activity-title">Academic Support</h4>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="content-section">
-  <div class="container">
-    <div class="mission-section" data-aos="fade-up">
-      <h3 class="mission-title">Our Mission</h3>
-      <p class="mission-text">
-        To foster strong partnerships between parents, teachers, and the college community, 
-        working collaboratively to enhance the educational experience and ensure every student 
-        develops both academic excellence and strong character in a supportive and nurturing environment.
-      </p>
-    </div>
-  </div>
-</section>
-<div id="footer-container"></div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init({duration: 800, once: true, offset: 50, disable: window.innerWidth < 768});
-  document.getElementById('currentYear').textContent = new Date().getFullYear();
-  window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar-optimized');
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    navbar.classList.toggle('scrolled', scrollTop > 50);
-  });
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      if(this.getAttribute('href') !== '#') {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          const offset = window.innerWidth <= 768 ? 70 : 80;
-          window.scrollTo({top: target.offsetTop - offset, behavior: 'smooth'});
-          const navbarCollapse = document.querySelector('.navbar-collapse');
-          if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
-            bsCollapse.hide();
-          }
-        }
-      }
-    });
-  });
-  document.querySelectorAll('.navbar-nav .nav-link-optimized:not(.dropdown-toggle)').forEach(link => {
-    link.addEventListener('click', () => {
-      const navbarCollapse = document.querySelector('.navbar-collapse');
-      if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-        const bsCollapse = new bootstrap.Collapse(navbarCollapse);
-        bsCollapse.hide();
-      }
-    });
-  });
-  window.addEventListener('scroll', () => {
-    if (window.innerWidth > 768) {
-      const scrolled = window.pageYOffset;
-      const ornaments = document.querySelectorAll('.islamic-ornament');
-      ornaments.forEach((ornament, index) => {
-        const speed = 0.05 * (index + 1);
-        ornament.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.05}deg)`;
-      });
-    }
-  });
-  document.addEventListener('DOMContentLoaded', function() {
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.3s ease';
-    setTimeout(() => {document.body.style.opacity = '1';}, 50);
-  });
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.submenu-toggle').forEach(function (toggle) {
-      toggle.addEventListener('click', function (e) {
-        e.stopPropagation();
-        e.preventDefault();
-      });
-    });
-  });
-</script>
-<script>
-  fetch('navbar.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('navbar-container').innerHTML = data;
-      document.querySelectorAll('.submenu-toggle').forEach(function (toggle) {
-        toggle.addEventListener('click', function (e) {
-          e.stopPropagation();
-          e.preventDefault();
-          const target = document.querySelector(toggle.getAttribute('data-bs-target'));
-          const bsCollapse = new bootstrap.Collapse(target, { toggle: true });
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script type="text/javascript">
+        // Initialize variables
+        var cropper;
+        var $modal = $('#cropModal');
+        var $progressBar = $('.progress-bar');
+        var userPhotoDataURL = '';
+        var templateImageURL = 'https://i.ibb.co/q36Rmxyf/df440d59c3c14e4bff119951f9b32eec.png';
+        
+        // Create poster button click
+        $('#createPosterBtn').click(function() {
+            $('#cropModal').modal('show');
         });
-      });
-    })
-    .catch(error => console.error('Navbar load error:', error));
-  fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('footer-container').innerHTML = data;
-    })
-    .catch(error => console.error('Footer load error:', error));
-</script> 
+        
+        // File input change handler
+        $('#file-input').on('change', function(e) {
+            var fileName = 'Choose your photo...';
+            var files = e.target.files;
+            
+            if (files && files.length > 0) {
+                fileName = files[0].name;
+                
+                // Create image preview
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    // Destroy previous cropper instance
+                    if (cropper) {
+                        cropper.destroy();
+                    }
+                    
+                    // Set image source
+                    $('#image').attr('src', e.target.result).show();
+                    
+                    // Initialize cropper with circular mask
+                    cropper = new Cropper(document.getElementById('image'), {
+                        aspectRatio: 1, // Square for circular crop
+                        viewMode: 2,
+                        autoCropArea: 0.8,
+                        responsive: true,
+                        restore: true,
+                        guides: true,
+                        center: true,
+                        highlight: true,
+                        cropBoxMovable: true,
+                        cropBoxResizable: true,
+                        minContainerWidth: 300,
+                        minContainerHeight: 300,
+                        preview: '.img-container'
+                    });
+                    
+                    // Show crop buttons
+                    $('#cropBtn').show();
+                    $('#cropAndCreateBtn').show();
+                };
+                
+                reader.readAsDataURL(files[0]);
+            } else {
+                $('#image').hide();
+                $('#cropBtn').hide();
+                $('#cropAndCreateBtn').hide();
+            }
+            
+            // Update file label
+            $(this).next('.custom-file-label').text(fileName);
+        });
+        
+        // Crop and Create Poster button
+        $('#cropAndCreateBtn').click(function() {
+            createPoster();
+        });
+        
+        // Crop button
+        $('#cropBtn').click(function() {
+            createPoster();
+        });
+        
+        function createPoster() {
+            if (!cropper) {
+                alert('Please select an image first!');
+                return;
+            }
+            
+            // Get cropped canvas (circular)
+            var canvas = cropper.getCroppedCanvas({
+                width: 300,
+                height: 300,
+                fillColor: '#fff',
+                imageSmoothingEnabled: true,
+                imageSmoothingQuality: 'high'
+            });
+            
+            if (!canvas) {
+                alert('Could not crop image. Please try again.');
+                return;
+            }
+            
+            // Convert canvas to circular
+            var circularCanvas = makeCircular(canvas);
+            userPhotoDataURL = circularCanvas.toDataURL('image/jpeg', 0.9);
+            
+            // Close modal
+            $modal.modal('hide');
+            
+            // Show loading screen
+            $('.loader_screen').show();
+            $('#main_content').hide();
+            
+            // Simulate processing
+            simulateProcessing(function() {
+                // Set the template image
+                $('#finalTemplateImage').attr('src', templateImageURL);
+                
+                // Set user's photo
+                $('#finalUserPhoto').attr('src', userPhotoDataURL);
+                
+                // Show success section
+                $('.success-show').removeClass('hidden').addClass('visible');
+                $('.complete-hide').hide();
+                
+                // Create final poster for download
+                createFinalPoster();
+            });
+        }
+        
+        // Make image circular
+        function makeCircular(canvas) {
+            var circularCanvas = document.createElement('canvas');
+            var ctx = circularCanvas.getContext('2d');
+            var size = Math.min(canvas.width, canvas.height);
+            
+            circularCanvas.width = size;
+            circularCanvas.height = size;
+            
+            // Create circular clipping path
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size/2, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.clip();
+            
+            // Draw the image
+            ctx.drawImage(canvas, 
+                (canvas.width - size)/2, 
+                (canvas.height - size)/2, 
+                size, size, 
+                0, 0, 
+                size, size
+            );
+            
+            return circularCanvas;
+        }
+        
+        // Create final poster by combining template and user photo
+        function createFinalPoster() {
+            // Load template image
+            var templateImg = new Image();
+            templateImg.crossOrigin = "anonymous";
+            templateImg.src = templateImageURL;
+            
+            templateImg.onload = function() {
+                // Load user photo
+                var userImg = new Image();
+                userImg.src = userPhotoDataURL;
+                
+                userImg.onload = function() {
+                    // Create canvas for final poster
+                    var posterCanvas = document.createElement('canvas');
+                    var ctx = posterCanvas.getContext('2d');
+                    
+                    // Set canvas size (adjust as needed)
+                    posterCanvas.width = 800;
+                    posterCanvas.height = Math.round(posterCanvas.width * (templateImg.height / templateImg.width));
+                    
+                    // Draw template
+                    ctx.drawImage(templateImg, 0, 0, posterCanvas.width, posterCanvas.height);
+                    
+                    // Draw user photo in center
+                    var userPhotoSize = posterCanvas.width * 0.3; // 30% of width
+                    var userPhotoX = (posterCanvas.width - userPhotoSize) / 2;
+                    var userPhotoY = posterCanvas.height * 0.35; // Adjust Y position
+                    
+                    // Save context for circular clipping
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.arc(userPhotoX + userPhotoSize/2, userPhotoY + userPhotoSize/2, userPhotoSize/2, 0, Math.PI * 2);
+                    ctx.closePath();
+                    ctx.clip();
+                    
+                    // Draw user photo
+                    ctx.drawImage(userImg, userPhotoX, userPhotoY, userPhotoSize, userPhotoSize);
+                    
+                    // Restore context
+                    ctx.restore();
+                    
+                    // Add border to user photo
+                    ctx.beginPath();
+                    ctx.arc(userPhotoX + userPhotoSize/2, userPhotoY + userPhotoSize/2, userPhotoSize/2, 0, Math.PI * 2);
+                    ctx.lineWidth = 5;
+                    ctx.strokeStyle = 'white';
+                    ctx.stroke();
+                    
+                    // Get final poster data URL
+                    var finalPosterDataURL = posterCanvas.toDataURL('image/jpeg', 0.9);
+                    
+                    // Set download link
+                    $('#dw_btn').attr('href', finalPosterDataURL);
+                    
+                    // Set WhatsApp share link with your number
+                    var whatsappText = encodeURIComponent(
+                        'Check out my personalised poster for സമസ്ത - നൂറാം വാർഷികം! ' +
+                        'Create your own poster too! 📸' +
+                        '\n\nContact for posters: 9048020243'
+                    );
+                    
+                    // Share image via WhatsApp (using Blob method)
+                    $('#wt_share').off('click').on('click', function(e) {
+                        e.preventDefault();
+                        
+                        // Convert data URL to blob
+                        fetch(finalPosterDataURL)
+                            .then(res => res.blob())
+                            .then(blob => {
+                                // For WhatsApp Web/Desktop
+                                if (navigator.share) {
+                                    navigator.share({
+                                        title: 'My സമസ്ത - നൂറാം വാർഷികം Poster',
+                                        text: 'Check out my personalised poster!',
+                                        url: window.location.href
+                                    });
+                                } else {
+                                    // For mobile devices
+                                    var whatsappUrl = 'https://wa.me/9048020243?text=' + whatsappText;
+                                    window.open(whatsappUrl, '_blank');
+                                }
+                            })
+                            .catch(err => {
+                                console.error('Error sharing:', err);
+                                // Fallback to simple WhatsApp link
+                                var whatsappUrl = 'https://wa.me/9048020243?text=' + whatsappText;
+                                window.open(whatsappUrl, '_blank');
+                            });
+                    });
+                };
+                
+                userImg.onerror = function() {
+                    console.error('Error loading user image');
+                };
+            };
+            
+            templateImg.onerror = function() {
+                console.error('Error loading template image');
+                // Use fallback
+                $('#finalTemplateImage').attr('src', 'https://via.placeholder.com/800x1000/0062E6/ffffff?text=സമസ്ത+നൂറാം+വാർഷികം+Poster');
+            };
+        }
+        
+        // Simulate processing with progress bar
+        function simulateProcessing(callback) {
+            var progress = 0;
+            var interval = setInterval(function() {
+                progress += 10;
+                if (progress > 100) progress = 100;
+                
+                $progressBar.css('width', progress + '%')
+                    .attr('aria-valuenow', progress)
+                    .text(progress + '%');
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(callback, 500);
+                }
+            }, 200);
+        }
+        
+        // Clean up when modal is closed
+        $modal.on('hidden.bs.modal', function() {
+            if (cropper) {
+                cropper.destroy();
+                cropper = null;
+            }
+            $('#file-input').val('');
+            $('.custom-file-label').text('Choose your photo...');
+            $('#image').hide();
+            $('#cropBtn').hide();
+            $('#cropAndCreateBtn').hide();
+        });
+        
+        // Initialize on page load
+        $(document).ready(function() {
+            console.log('സമസ്ത - നൂറാം വാർഷികം Poster Creator loaded');
+            console.log('Contact WhatsApp: 9048020243');
+        });
+    </script>
 </body>
 </html>
