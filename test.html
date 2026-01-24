@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Create personalised poster for സമസ്ത - നൂറാം വാർഷികം">
     <title>സമസ്ത - നൂറാം വാർഷികം | Create Personalised Poster</title>
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- Cropper CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
     <style type="text/css">
         :root {
@@ -33,9 +31,9 @@
         
         .card-body {
             padding: 2rem;
+            min-height: 500px;
         }
         
-        /* Title Image */
         .title-image {
             width: 100%;
             max-height: 200px;
@@ -45,7 +43,6 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
-        /* Loader Screen */
         .loader_screen {
             background: #cbe0f4;
             position: absolute;
@@ -61,7 +58,6 @@
             overflow-y: auto;
         }
         
-        /* Progress Bar */
         .progress {
             height: 25px;
             margin: 20px 0;
@@ -76,32 +72,36 @@
             background: linear-gradient(90deg, #28a745, #20c997);
         }
         
-        /* Final Poster Container */
+        /* POSTER CONTAINER - BIGGER SIZE */
         .poster-container {
             position: relative;
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
+            min-height: 400px;
         }
         
         .template-image {
             width: 100%;
             border-radius: 10px;
             box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            max-height: 500px;
+            object-fit: contain;
         }
         
+        /* USER PHOTO OVERLAY - BIGGER SIZE */
         .user-photo-overlay {
             position: absolute;
-            width: 30%; /* Adjust size as needed */
-            height: 40%; /* Adjust size as needed */
+            width: 80%; /* Increased from 30% */
+            height: 90%; /* Increased from 40% */
             border-radius: 50%;
             overflow: hidden;
-            border: 3px solid white;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            /* Center position - adjust these values based on your template */
-            top: 35%;
+            border: 5px solid white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            top: 45%; /* Adjusted position */
             left: 50%;
             transform: translate(-50%, -50%);
+            z-index: 10;
         }
         
         .user-photo-overlay img {
@@ -110,7 +110,6 @@
             object-fit: cover;
         }
         
-        /* Social Buttons */
         .social-buttons-container {
             background: white;
             border-radius: 15px;
@@ -163,12 +162,10 @@
             white-space: nowrap;
         }
         
-        /* Button Colors */
         .download-btn { background: linear-gradient(135deg, #28a745, #20c997); }
         .whatsapp-btn { background: linear-gradient(135deg, #25D366, #128C7E); }
         .new-btn { background: linear-gradient(135deg, #17a2b8, #138496); }
         
-        /* Modal Styling */
         .modal-content {
             border-radius: 1rem;
             overflow: hidden;
@@ -186,25 +183,28 @@
             font-weight: 600;
         }
         
-        /* Image Container in Modal */
+        /* BIGGER IMAGE CONTAINER FOR CROPPING */
         .img-container {
-            max-height: 400px;
+            max-height: 500px;
             overflow: auto;
             margin-top: 15px;
             border: 2px dashed #dee2e6;
             border-radius: 10px;
             padding: 10px;
             background: #f8f9fa;
-            min-height: 300px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         #image {
             max-width: 100%;
+            max-height: 400px;
             display: block;
             margin: 0 auto;
         }
         
-        /* Create Button */
         .create-btn {
             background: linear-gradient(to right, #0062E6, #33AEFF);
             border: none;
@@ -225,7 +225,6 @@
             box-shadow: 0 6px 20px rgba(0, 98, 230, 0.6);
         }
         
-        /* Success Message */
         .success-message {
             background: linear-gradient(135deg, #d4edda, #c3e6cb);
             border: none;
@@ -239,7 +238,6 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
-        /* Footer */
         .footer {
             color: white;
             text-align: center;
@@ -260,7 +258,6 @@
             text-decoration: underline;
         }
         
-        /* WhatsApp Contact */
         .whatsapp-contact {
             background: #25D366;
             color: white;
@@ -290,7 +287,16 @@
             margin-bottom: 8px;
         }
         
-        /* Responsive */
+        /* BIGGER FINAL POSTER PREVIEW */
+        .final-poster-preview {
+            max-width: 600px;
+            margin: 0 auto;
+            border: 3px solid #0062E6;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
         @media (max-width: 768px) {
             .social-btn {
                 width: 70px;
@@ -298,8 +304,13 @@
             }
             
             .user-photo-overlay {
-                width: 35%;
-                height: 30%;
+                width: 60%; /* Even bigger on mobile */
+                height: 40%;
+                top: 40%;
+            }
+            
+            .poster-container {
+                max-width: 100%;
             }
             
             .modal-dialog {
@@ -318,12 +329,20 @@
             }
             
             .user-photo-overlay {
-                width: 40%;
-                height: 25%;
+                width: 65%;
+                height: 35%;
+                top: 38%;
+            }
+            
+            .img-container {
+                min-height: 300px;
+            }
+            
+            #image {
+                max-height: 300px;
             }
         }
         
-        /* Animation */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -333,14 +352,28 @@
             animation: fadeIn 0.5s ease-out;
         }
         
-        /* Hide elements */
         .hidden {
             display: none;
         }
         
-        /* Show elements */
         .visible {
             display: block;
+        }
+        
+        /* BIGGER CROPPED IMAGE SIZE */
+        .cropped-preview {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px solid #28a745;
+            margin: 10px auto;
+            overflow: hidden;
+        }
+        
+        .cropped-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     </style>
 </head>
@@ -350,7 +383,6 @@
             <div class="col-lg-8 mx-auto">
                 <div class="card card-signin my-4">
                     <div class="card-body position-relative">
-                        <!-- Loader Screen (Hidden by default) -->
                         <div class="loader_screen">
                             <div class="text-center mb-4">
                                 <h3 class="text-primary">Creating Your Poster...</h3>
@@ -366,6 +398,12 @@
                                     <div class="spinner-border text-primary" role="status">
                                         <span class="sr-only">Loading...</span>
                                     </div>
+                                    <p class="mt-2">Processing your photo...</p>
+                                </div>
+                                
+                                <!-- Cropped preview -->
+                                <div class="cropped-preview mt-3">
+                                    <img id="croppedPreview" alt="Cropped photo">
                                 </div>
                             </div>
                             
@@ -375,12 +413,13 @@
                                 </div>
                                 
                                 <div class="text-center mb-4">
-                                    <div class="poster-container">
-                                        <!-- Template Image -->
-                                        <img id="finalTemplateImage" class="template-image" alt="സമസ്ത - നൂറാം വാർഷികം Poster">
-                                        <!-- User's Photo Overlay -->
-                                        <div class="user-photo-overlay">
-                                            <img id="finalUserPhoto" alt="Your Photo">
+                                    <h4 class="mb-3 text-dark">Your Personalised Poster</h4>
+                                    <div class="final-poster-pview">
+                                        <div class="poster-container">
+                                            <img id="finalTemplateImage" class="template-image" alt="സമസ്ത - നൂറാം വാർഷികം Poster">
+                                            <div class="user-photo-overlay">
+                                                <img id="finalUserPhoto" alt="Your Photo">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -390,7 +429,7 @@
                                 <div class="social-buttons-container fade-in">
                                     <div class="social-buttons">
                                         <a download="Samasta_Poster.jpg" id="dw_btn" class="social-btn download-btn" title="Download Poster">
-                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTI1NiAwQzExNC42IDAgMCAxMTQuNiAwIDI1NnMxMTQuNiAyNTYgMjU2IDI1NiAyNTYtMTE0LjYgMjU2LTI1NlMzOTcuNCAwIDI1NiAwem0xMzUuNiAyNzguNmwtNzQuNiA3NC42VjE3MC43YzAtMTEuMy05LjEtMjAuNS0yMC41LTIwLjVTMjk2IDE1OS41IDI5NiAxNzAuN3YxODIuNGwtNzQuNi03NC42Yy04LThtNzQuNiA3NC42bDc0LjYtNzQuNmMtOC04LTIwLjktOC0yOC45IDBzLTggMjAuOSAwIDI4Ljl6Ii8+PC9zdmc+" alt="Download">
+                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTI1NiAwQzExNC42IDAgMCAxMTQuNiAwIDI1NnMxMTQuNiAyNTYgMjU2IDI1NiAyNTYtMTE0LjYgMjU2LTI1NlMzOTcuNCAwIDI1NiAwem0xMzUuNiAyNzguNmwtNzQuNiA3NC42VjE3MC43YzAtMTEuMy05LjEtMjAuNS0yMC41LTIwLjVTMjk2IDE1OS41IDI5NiAxNzAuN3YxODIuNGwtNzQuNi03NC42Yy04LThtNzQuNiA3NC42bDc0LjYtNzQuNmMtOC04LTIwLjktOC0yOC45IDBzLTggMjAwIDI4Ljl6Ii8+PC9zdmc+" alt="Download">
                                             <span class="social-label">Download</span>
                                         </a>
                                         
@@ -415,7 +454,6 @@
                             </div>
                         </div>
 
-                        <!-- Main Content (Visible by default) -->
                         <div id="main_content">
                             <div class="text-center mb-4">
                                 <img src="https://i.ibb.co/q36Rmxyf/df440d59c3c14e4bff119951f9b32eec.png" class="title-image" alt="സമസ്ത - നൂറാം വാർഷികം" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x200/0062E6/ffffff?text=സമസ്ത+നൂറാം+വാർഷികം';">
@@ -426,8 +464,7 @@
                             <div class="instructions">
                                 <h5 class="text-primary">📋 How it works:</h5>
                                 <ul>
-                                    <li>Click the "Create Poster Now" button</li>
-                                    <li>Select your photo from your device</li>
+                                    <li>Upload your photo</li>
                                     <li>Crop your photo to fit perfectly</li>
                                     <li>Your photo will be placed on the template</li>
                                     <li>Download and share your personalised poster!</li>
@@ -436,11 +473,8 @@
                             
                             <div class="text-center mt-4">
                                 <button id="createPosterBtn" class="create-btn">
-                                    🎨 CREATE POSTER NOW
+                                     CREATE POSTER NOW
                                 </button>
-                                <p class="text-muted mt-3">
-                                    <small>Your photo will be placed in the center of the poster</small>
-                                </p>
                             </div>
                             
                             <div class="text-center mt-4">
@@ -460,7 +494,6 @@
         </div>
     </div>
 
-    <!-- Crop Modal -->
     <div class="modal fade" id="cropModal" tabindex="-1" role="dialog" aria-labelledby="cropModalLabel" data-backdrop="static" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -477,7 +510,7 @@
                     </div>
                     
                     <div class="alert alert-info">
-                        <strong>Tip:</strong> Select a clear photo of your face. Crop it to fit within the circle.
+                        <strong>Tip:</strong> Crop your face properly. It will appear BIG in the final poster.
                     </div>
                     
                     <div class="img-container mt-3">
@@ -486,7 +519,7 @@
                     
                     <div class="text-center mt-3">
                         <button type="button" class="btn btn-success btn-lg" id="cropAndCreateBtn" style="display: none; padding: 12px 40px;">
-                            ✅ CROP & CREATE POSTER
+                             CROP & CREATE POSTER
                         </button>
                     </div>
                 </div>
@@ -498,27 +531,22 @@
         </div>
     </div>
 
-    <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <script type="text/javascript">
-        // Initialize variables
         var cropper;
         var $modal = $('#cropModal');
         var $progressBar = $('.progress-bar');
         var userPhotoDataURL = '';
         var templateImageURL = 'https://i.ibb.co/q36Rmxyf/df440d59c3c14e4bff119951f9b32eec.png';
         
-        // Create poster button click
         $('#createPosterBtn').click(function() {
             $('#cropModal').modal('show');
         });
         
-        // File input change handler
         $('#file-input').on('change', function(e) {
             var fileName = 'Choose your photo...';
             var files = e.target.files;
@@ -526,22 +554,19 @@
             if (files && files.length > 0) {
                 fileName = files[0].name;
                 
-                // Create image preview
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    // Destroy previous cropper instance
                     if (cropper) {
                         cropper.destroy();
                     }
                     
-                    // Set image source
                     $('#image').attr('src', e.target.result).show();
                     
-                    // Initialize cropper with circular mask
+                    // BIGGER CROPPING AREA
                     cropper = new Cropper(document.getElementById('image'), {
-                        aspectRatio: 1, // Square for circular crop
-                        viewMode: 2,
-                        autoCropArea: 0.8,
+                        aspectRatio: 1, 
+                        viewMode: 1,
+                        autoCropArea: 1,
                         responsive: true,
                         restore: true,
                         guides: true,
@@ -549,12 +574,17 @@
                         highlight: true,
                         cropBoxMovable: true,
                         cropBoxResizable: true,
-                        minContainerWidth: 300,
-                        minContainerHeight: 300,
-                        preview: '.img-container'
+                        minContainerWidth: 400,
+                        minContainerHeight: 400,
+                        ready: function() {
+                            // Set initial crop box size to be larger
+                            this.cropper.setCropBoxData({
+                                width: 350,
+                                height: 350
+                            });
+                        }
                     });
                     
-                    // Show crop buttons
                     $('#cropBtn').show();
                     $('#cropAndCreateBtn').show();
                 };
@@ -566,16 +596,13 @@
                 $('#cropAndCreateBtn').hide();
             }
             
-            // Update file label
             $(this).next('.custom-file-label').text(fileName);
         });
         
-        // Crop and Create Poster button
         $('#cropAndCreateBtn').click(function() {
             createPoster();
         });
         
-        // Crop button
         $('#cropBtn').click(function() {
             createPoster();
         });
@@ -586,10 +613,10 @@
                 return;
             }
             
-            // Get cropped canvas (circular)
+            // BIGGER CROPPED CANVAS SIZE
             var canvas = cropper.getCroppedCanvas({
-                width: 300,
-                height: 300,
+                width: 800, // Increased from 300
+                height: 800, // Increased from 300
                 fillColor: '#fff',
                 imageSmoothingEnabled: true,
                 imageSmoothingQuality: 'high'
@@ -600,35 +627,28 @@
                 return;
             }
             
-            // Convert canvas to circular
             var circularCanvas = makeCircular(canvas);
-            userPhotoDataURL = circularCanvas.toDataURL('image/jpeg', 0.9);
+            userPhotoDataURL = circularCanvas.toDataURL('image/jpeg', 0.95);
             
-            // Close modal
+            // Show cropped preview
+            $('#croppedPreview').attr('src', userPhotoDataURL);
+            
             $modal.modal('hide');
             
-            // Show loading screen
             $('.loader_screen').show();
             $('#main_content').hide();
             
-            // Simulate processing
             simulateProcessing(function() {
-                // Set the template image
                 $('#finalTemplateImage').attr('src', templateImageURL);
-                
-                // Set user's photo
                 $('#finalUserPhoto').attr('src', userPhotoDataURL);
                 
-                // Show success section
                 $('.success-show').removeClass('hidden').addClass('visible');
                 $('.complete-hide').hide();
                 
-                // Create final poster for download
                 createFinalPoster();
             });
         }
         
-        // Make image circular
         function makeCircular(canvas) {
             var circularCanvas = document.createElement('canvas');
             var ctx = circularCanvas.getContext('2d');
@@ -637,13 +657,11 @@
             circularCanvas.width = size;
             circularCanvas.height = size;
             
-            // Create circular clipping path
             ctx.beginPath();
             ctx.arc(size/2, size/2, size/2, 0, Math.PI * 2);
             ctx.closePath();
             ctx.clip();
             
-            // Draw the image
             ctx.drawImage(canvas, 
                 (canvas.width - size)/2, 
                 (canvas.height - size)/2, 
@@ -655,95 +673,79 @@
             return circularCanvas;
         }
         
-        // Create final poster by combining template and user photo
         function createFinalPoster() {
-            // Load template image
             var templateImg = new Image();
             templateImg.crossOrigin = "anonymous";
             templateImg.src = templateImageURL;
             
             templateImg.onload = function() {
-                // Load user photo
                 var userImg = new Image();
                 userImg.src = userPhotoDataURL;
                 
                 userImg.onload = function() {
-                    // Create canvas for final poster
                     var posterCanvas = document.createElement('canvas');
                     var ctx = posterCanvas.getContext('2d');
                     
-                    // Set canvas size (adjust as needed)
+                    // Set canvas size based on template
                     posterCanvas.width = 800;
                     posterCanvas.height = Math.round(posterCanvas.width * (templateImg.height / templateImg.width));
                     
                     // Draw template
                     ctx.drawImage(templateImg, 0, 0, posterCanvas.width, posterCanvas.height);
                     
-                    // Draw user photo in center
-                    var userPhotoSize = posterCanvas.width * 0.3; // 30% of width
+                    // BIGGER USER PHOTO SIZE - 45% of width (increased from 30%)
+                    var userPhotoSize = posterCanvas.width * 0.7;
                     var userPhotoX = (posterCanvas.width - userPhotoSize) / 2;
-                    var userPhotoY = posterCanvas.height * 0.35; // Adjust Y position
+                    var userPhotoY = posterCanvas.height * 0.45; // Adjusted position
                     
-                    // Save context for circular clipping
+                    // Create circular clipping for user photo
                     ctx.save();
                     ctx.beginPath();
                     ctx.arc(userPhotoX + userPhotoSize/2, userPhotoY + userPhotoSize/2, userPhotoSize/2, 0, Math.PI * 2);
                     ctx.closePath();
                     ctx.clip();
                     
-                    // Draw user photo
+                    // Draw user photo (BIGGER)
                     ctx.drawImage(userImg, userPhotoX, userPhotoY, userPhotoSize, userPhotoSize);
                     
-                    // Restore context
                     ctx.restore();
                     
                     // Add border to user photo
                     ctx.beginPath();
                     ctx.arc(userPhotoX + userPhotoSize/2, userPhotoY + userPhotoSize/2, userPhotoSize/2, 0, Math.PI * 2);
-                    ctx.lineWidth = 5;
+                    ctx.lineWidth = 8; // Thicker border
                     ctx.strokeStyle = 'white';
                     ctx.stroke();
                     
-                    // Get final poster data URL
-                    var finalPosterDataURL = posterCanvas.toDataURL('image/jpeg', 0.9);
+                    // Add shadow effect
+                    ctx.beginPath();
+                    ctx.arc(userPhotoX + userPhotoSize/2, userPhotoY + userPhotoSize/2, userPhotoSize/2 + 2, 0, Math.PI * 2);
+                    ctx.shadowColor = 'rgba(0,0,0,0.3)';
+                    ctx.shadowBlur = 15;
+                    ctx.shadowOffsetX = 0;
+                    ctx.shadowOffsetY = 0;
+                    ctx.strokeStyle = 'transparent';
+                    ctx.stroke();
+                    ctx.shadowColor = 'transparent';
+                    
+                    var finalPosterDataURL = posterCanvas.toDataURL('image/jpeg', 0.95);
                     
                     // Set download link
                     $('#dw_btn').attr('href', finalPosterDataURL);
                     
-                    // Set WhatsApp share link with your number
+                    // WhatsApp sharing
                     var whatsappText = encodeURIComponent(
                         'Check out my personalised poster for സമസ്ത - നൂറാം വാർഷികം! ' +
                         'Create your own poster too! 📸' +
                         '\n\nContact for posters: 9048020243'
                     );
                     
-                    // Share image via WhatsApp (using Blob method)
                     $('#wt_share').off('click').on('click', function(e) {
                         e.preventDefault();
                         
-                        // Convert data URL to blob
-                        fetch(finalPosterDataURL)
-                            .then(res => res.blob())
-                            .then(blob => {
-                                // For WhatsApp Web/Desktop
-                                if (navigator.share) {
-                                    navigator.share({
-                                        title: 'My സമസ്ത - നൂറാം വാർഷികം Poster',
-                                        text: 'Check out my personalised poster!',
-                                        url: window.location.href
-                                    });
-                                } else {
-                                    // For mobile devices
-                                    var whatsappUrl = 'https://wa.me/9048020243?text=' + whatsappText;
-                                    window.open(whatsappUrl, '_blank');
-                                }
-                            })
-                            .catch(err => {
-                                console.error('Error sharing:', err);
-                                // Fallback to simple WhatsApp link
-                                var whatsappUrl = 'https://wa.me/9048020243?text=' + whatsappText;
-                                window.open(whatsappUrl, '_blank');
-                            });
+                        // Simple WhatsApp sharing with your number
+                        var whatsappUrl = 'https://wa.me/919048020243?text=' + whatsappText;
+                        window.open(whatsappUrl, '_blank');
                     });
                 };
                 
@@ -754,12 +756,10 @@
             
             templateImg.onerror = function() {
                 console.error('Error loading template image');
-                // Use fallback
                 $('#finalTemplateImage').attr('src', 'https://via.placeholder.com/800x1000/0062E6/ffffff?text=സമസ്ത+നൂറാം+വാർഷികം+Poster');
             };
         }
         
-        // Simulate processing with progress bar
         function simulateProcessing(callback) {
             var progress = 0;
             var interval = setInterval(function() {
@@ -772,12 +772,11 @@
                 
                 if (progress >= 100) {
                     clearInterval(interval);
-                    setTimeout(callback, 500);
+                    setTimeout(callback, 300);
                 }
-            }, 200);
+            }, 150);
         }
         
-        // Clean up when modal is closed
         $modal.on('hidden.bs.modal', function() {
             if (cropper) {
                 cropper.destroy();
@@ -790,7 +789,6 @@
             $('#cropAndCreateBtn').hide();
         });
         
-        // Initialize on page load
         $(document).ready(function() {
             console.log('സമസ്ത - നൂറാം വാർഷികം Poster Creator loaded');
             console.log('Contact WhatsApp: 9048020243');
