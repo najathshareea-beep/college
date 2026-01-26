@@ -86,17 +86,343 @@
       border: 2px solid var(--islamic-gold); color: var(--islamic-gold); background: transparent; border-radius: 8px; padding: 0.75rem 1.5rem; font-weight: 600; transition: var(--transition);
     }
     .btn-outline-gold:hover {background: var(--islamic-gold); color: var(--islamic-green);}
+    
+    /* Improved Gallery Layout */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-auto-rows: 200px;
+      grid-gap: 1.5rem;
+      grid-auto-flow: dense;
+    }
+
     .gallery-item {
-      position: relative; overflow: hidden; border-radius: 12px; transition: var(--transition); cursor: pointer; height: 250px; margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
+
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
     .gallery-item img {
-      width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; border-radius: 12px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
     }
-    .gallery-item:hover img {transform: scale(1.05);}
-    .gallery-item::after {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to top, rgba(0,0,0,0.4), transparent); opacity: 0; transition: var(--transition); border-radius: 12px;
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
     }
-    .gallery-item:hover::after {opacity: 1;}
+
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 1;
+      border-radius: 12px;
+    }
+
+    .gallery-item:hover::before {
+      opacity: 1;
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      color: white;
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+      z-index: 2;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      border-radius: 0 0 12px 12px;
+    }
+
+    .gallery-item:hover .gallery-caption {
+      transform: translateY(0);
+    }
+
+    .gallery-category {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.4s ease;
+    }
+
+    .gallery-item:hover .gallery-category {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Span items for better layout */
+    .gallery-item:nth-child(3n) {
+      grid-row: span 2;
+    }
+
+    .gallery-item:nth-child(5n) {
+      grid-column: span 2;
+    }
+
+    .gallery-item:nth-child(7n) {
+      grid-row: span 2;
+      grid-column: span 2;
+    }
+
+    /* Enhanced Lightbox Modal */
+    .gallery-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .modal-content {
+      position: relative;
+      max-width: 95vw;
+      max-height: 95vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .modal-image-container {
+      position: relative;
+      max-width: 90vw;
+      max-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-image {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .modal-info {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .modal-title {
+      color: white;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .modal-category {
+      display: inline-block;
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* Modal Controls */
+    .modal-controls {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: space-between;
+      padding: 0 2rem;
+      pointer-events: none;
+    }
+
+    .modal-controls button {
+      pointer-events: all;
+      background: rgba(255, 255, 255, 0.15);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-controls button:hover {
+      background: var(--islamic-gold);
+      border-color: var(--islamic-gold);
+      color: var(--islamic-green);
+      transform: scale(1.1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: rgba(255, 255, 255, 0.15);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      z-index: 10000;
+    }
+
+    .modal-close:hover {
+      background: var(--islamic-gold);
+      border-color: var(--islamic-gold);
+      color: var(--islamic-green);
+      transform: rotate(90deg);
+    }
+
+    .modal-counter {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      color: white;
+      font-size: 1rem;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+    }
+
+    /* Modal Zoom Controls */
+    .modal-zoom-controls {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.5rem;
+      border-radius: 25px;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-zoom-controls button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .modal-zoom-controls button:hover {
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
+    }
+
+    /* Loading Animation */
+    .image-loader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top-color: var(--islamic-gold);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* Filter Buttons */
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+      padding: 0 1rem;
+    }
+
+    .filter-btn {
+      padding: 0.8rem 1.8rem;
+      border: none;
+      background: white;
+      color: #666;
+      font-weight: 500;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .filter-btn:hover {
+      background: rgba(10, 92, 54, 0.1);
+      color: var(--islamic-green);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
+      color: white;
+      border-color: var(--islamic-gold);
+      box-shadow: 0 6px 20px rgba(10, 92, 54, 0.3);
+    }
+
     .video-card {
       background: white; border-radius: 15px; overflow: hidden; transition: var(--transition); border: 2px solid transparent; box-shadow: 0 5px 15px rgba(0,0,0,0.08); height: 100%;
     }
@@ -105,27 +431,6 @@
       position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;
     }
     .video-container iframe {position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;}
-    .lightbox {
-      display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; flex-direction: column;
-    }
-    .lightbox img {max-width: 95%; max-height: 90%; border-radius: 10px; transition: opacity 0.5s ease;}
-    .lightbox .controls {
-      position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); padding: 0 30px;
-    }
-    .lightbox button {
-      background: rgba(255,255,255,0.1); border: none; color: white; font-size: 2rem; cursor: pointer; transition: 0.3s; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    }
-    .lightbox button:hover {background: var(--islamic-gold); color: var(--islamic-green);}
-    .close-btn {
-      position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: white; cursor: pointer; transition: 0.3s; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.1);
-    }
-    .close-btn:hover {background: var(--islamic-gold); color: var(--islamic-green);}
-    .filter-buttons {display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 2rem;}
-    .filter-btn {
-      padding: 0.75rem 1.5rem; border: none; background: white; color: #666; font-weight: 500; border-radius: 8px; transition: var(--transition); border: 2px solid transparent;
-    }
-    .filter-btn:hover {background: rgba(10, 92, 54, 0.1); color: var(--islamic-green);}
-    .filter-btn.active {background: var(--islamic-green); color: white; border-color: var(--islamic-gold);}
     .footer {
       background: linear-gradient(135deg, var(--dark-green), var(--islamic-green)); border-top: 3px solid var(--islamic-gold); padding: 3rem 0 1.5rem; color: white;
     }
@@ -165,16 +470,47 @@
       .navbar-collapse {
         background: var(--dark-green); padding: 1rem; border-radius: 0 0 10px 10px; border: 1px solid var(--islamic-gold); margin-top: 0px; max-height: 70vh; overflow-y: auto;
       }
-      .gallery-item {height: 200px; margin-bottom: 1rem;}
-      .lightbox button {width: 50px; height: 50px; font-size: 1.5rem;}
-      .close-btn {width: 40px; height: 40px; font-size: 2rem;}
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-gap: 1rem;
+      }
+      .gallery-item:nth-child(5n),
+      .gallery-item:nth-child(7n) {
+        grid-column: span 1;
+      }
+      .modal-controls button {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+      .modal-close {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+      }
+      .modal-zoom-controls {
+        bottom: 6rem;
+      }
+      .filter-buttons {gap: 0.5rem;}
+      .filter-btn {padding: 0.6rem 1.2rem; font-size: 0.9rem;}
     }
     @media (max-width: 576px) {
       .page-title {font-size: 1.8rem;}
       .section-title {font-size: 1.5rem;}
-      .gallery-item {height: 180px;}
-      .filter-buttons {gap: 5px;}
-      .filter-btn {padding: 0.5rem 1rem; font-size: 0.9rem;}
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-auto-rows: 180px;
+      }
+      .filter-buttons {gap: 0.3rem;}
+      .filter-btn {padding: 0.5rem 1rem; font-size: 0.85rem;}
+      .modal-controls {
+        padding: 0 0.5rem;
+      }
+      .modal-controls button {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
     }
     @media (min-width: 992px) {
       .dropdown-submenu {  position: relative;  }
@@ -215,148 +551,336 @@
       <button class="filter-btn" data-filter="academic">Academic</button>      
       <button class="filter-btn" data-filter="activities">Activities</button>   
     </div>
-    <div class="row g-3" id="galleryContainer" data-aos="fade-up" data-aos-delay="100">
+    <div class="gallery-grid" id="galleryContainer" data-aos="fade-up" data-aos-delay="100">
       
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="report">
+      <div class="gallery-item" data-category="report">
         <img src="https://i.ibb.co/FLLDHYKF/1769428173-suprabhatham-epaper.png" alt="Arts and Crafts Display">
+        <div class="gallery-caption">
+          <p>College News Report</p>
+        </div>
+        <span class="gallery-category">Report</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="report">
+      <div class="gallery-item" data-category="report">
         <img src="https://i.ibb.co/pjDFMsHG/chandrika-epaper-MALAPPURAM13-13.png" alt="Arts and Crafts Display">
+        <div class="gallery-caption">
+          <p>Newspaper Coverage</p>
+        </div>
+        <span class="gallery-category">Report</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="functions">
+      <div class="gallery-item" data-category="functions">
         <img src="https://i.ibb.co/GQ74Hsjg/IMG-20260123-WA0122.jpg" alt="Arts and Crafts Display">
+        <div class="gallery-caption">
+          <p>College Function</p>
+        </div>
+        <span class="gallery-category">Functions</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="activities">
+      <div class="gallery-item" data-category="activities">
         <img src="https://i.ibb.co/RGCXB7T4/IMG-20170916-WA0063.jpg" alt="College Event Celebration">
+        <div class="gallery-caption">
+          <p>Student Activities</p>
+        </div>
+        <span class="gallery-category">Activities</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="activities">
+      <div class="gallery-item" data-category="activities">
         <img src="https://i.ibb.co/gL6hVNbd/IMG-20170916-WA0086.jpg" alt="College Cultural Event">
+        <div class="gallery-caption">
+          <p>Cultural Activities</p>
+        </div>
+        <span class="gallery-category">Activities</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="events">
+      <div class="gallery-item" data-category="events">
         <img src="https://i.ibb.co/cXhw9PMC/IMG-20171003-WA0066.jpg" alt="College Annual Function">
+        <div class="gallery-caption">
+          <p>Annual Function</p>
+        </div>
+        <span class="gallery-category">Events</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="events">
+      <div class="gallery-item" data-category="events">
         <img src="https://i.ibb.co/vC8VYDVh/Whats-App-Image-2026-01-21-at-11-38-43-AM.jpg" alt="College Main Building Entrance">
+        <div class="gallery-caption">
+          <p>Main Building</p>
+        </div>
+        <span class="gallery-category">Events</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="students">
+      <div class="gallery-item" data-category="students">
         <img src="https://i.ibb.co/21yhyNCn/Whats-App-Image-2026-01-21-at-11-38-44-AM.jpg" alt="College Campus Ground">
+        <div class="gallery-caption">
+          <p>Campus Ground</p>
+        </div>
+        <span class="gallery-category">Students</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="events">
+      <div class="gallery-item" data-category="events">
         <img src="https://i.ibb.co/BVHVcJSG/Whats-App-Image-2026-01-21-at-11-38-45-AM.jpg" alt="College Library Building">
+        <div class="gallery-caption">
+          <p>Library Building</p>
+        </div>
+        <span class="gallery-category">Events</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="functions">
+      <div class="gallery-item" data-category="functions">
         <img src="https://i.ibb.co/yFx60BzB/Whats-App-Image-2026-01-21-at-11-38-45-AM-1.jpg" alt="Classroom Learning Session">
+        <div class="gallery-caption">
+          <p>Classroom Session</p>
+        </div>
+        <span class="gallery-category">Functions</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="academic">
+      <div class="gallery-item" data-category="academic">
         <img src="https://i.ibb.co/SD8WZ4LJ/Whats-App-Image-2026-01-21-at-11-38-46-AM-1.jpg" alt="Laboratory Practical Class">
+        <div class="gallery-caption">
+          <p>Laboratory Class</p>
+        </div>
+        <span class="gallery-category">Academic</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="academic">
+      <div class="gallery-item" data-category="academic">
         <img src="https://i.ibb.co/zTRm7cP0/Whats-App-Image-2026-01-21-at-11-38-46-AM.jpg" alt="Seminar Session in Progress">
+        <div class="gallery-caption">
+          <p>Seminar Session</p>
+        </div>
+        <span class="gallery-category">Academic</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="report">
+      <div class="gallery-item" data-category="report">
         <img src="https://i.ibb.co/3m667Nxq/Whats-App-Image-2026-01-21-at-11-38-47-AM-1.jpg" alt="Annual Day Celebration">
+        <div class="gallery-caption">
+          <p>Annual Day</p>
+        </div>
+        <span class="gallery-category">Report</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="report">
+      <div class="gallery-item" data-category="report">
         <img src="https://i.ibb.co/zhSXZfJN/Whats-App-Image-2026-01-21-at-11-38-47-AM.jpg" alt="Prize Distribution Ceremony">
+        <div class="gallery-caption">
+          <p>Prize Distribution</p>
+        </div>
+        <span class="gallery-category">Report</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="report">
+      <div class="gallery-item" data-category="report">
         <img src="https://i.ibb.co/ymDS5bdP/Whats-App-Image-2026-01-21-at-11-38-48-AM-1.jpg" alt="Cultural Festival Performance">
+        <div class="gallery-caption">
+          <p>Cultural Festival</p>
+        </div>
+        <span class="gallery-category">Report</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="report">
+      <div class="gallery-item" data-category="report">
         <img src="https://i.ibb.co/219SYwdw/Whats-App-Image-2026-01-21-at-11-38-48-AM.jpg" alt="Student Group Discussion">
+        <div class="gallery-caption">
+          <p>Group Discussion</p>
+        </div>
+        <span class="gallery-category">Report</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="report">
+      <div class="gallery-item" data-category="report">
         <img src="https://i.ibb.co/99701Lhp/Whats-App-Image-2026-01-21-at-11-38-49-AM.jpg" alt="Student Project Exhibition">
+        <div class="gallery-caption">
+          <p>Project Exhibition</p>
+        </div>
+        <span class="gallery-category">Report</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="functions">
+      <div class="gallery-item" data-category="functions">
         <img src="https://i.ibb.co/TBX4XMpW/Whats-App-Image-2026-01-21-at-11-38-49-AM-1.jpg" alt="Arts and Crafts Display">
+        <div class="gallery-caption">
+          <p>Arts Display</p>
+        </div>
+        <span class="gallery-category">Functions</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="campus">
+      <div class="gallery-item" data-category="campus">
         <img src="https://i.ibb.co/zV71cXvk/Whats-App-Image-2026-01-21-at-11-28-03-AM-1.jpg" alt="College Hostel Building">
+        <div class="gallery-caption">
+          <p>Hostel Building</p>
+        </div>
+        <span class="gallery-category">Campus</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="convocation">
+      <div class="gallery-item" data-category="convocation">
         <img src="https://i.ibb.co/7xnJ4DKk/Whats-App-Image-2026-01-21-at-11-28-08-AM.jpg" alt="convocation">
+        <div class="gallery-caption">
+          <p>Convocation Ceremony</p>
+        </div>
+        <span class="gallery-category">Convocation</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="convocation">
+      <div class="gallery-item" data-category="convocation">
         <img src="https://i.ibb.co/xVNP0N1/Whats-App-Image-2026-01-21-at-11-28-09-AM-1.jpg" alt="Annual convocation Day">
+        <div class="gallery-caption">
+          <p>Convocation Day</p>
+        </div>
+        <span class="gallery-category">Convocation</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="convocation">
+      <div class="gallery-item" data-category="convocation">
         <img src="https://i.ibb.co/35VhHNf8/Whats-App-Image-2026-01-21-at-11-28-09-AM.jpg" alt="convocation">
+        <div class="gallery-caption">
+          <p>Graduation Day</p>
+        </div>
+        <span class="gallery-category">Convocation</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="convocation">
+      <div class="gallery-item" data-category="convocation">
         <img src="https://i.ibb.co/DPTHFfFs/Whats-App-Image-2026-01-21-at-11-28-10-AM-1.jpg" alt="convocation">
+        <div class="gallery-caption">
+          <p>Convocation Event</p>
+        </div>
+        <span class="gallery-category">Convocation</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="convocation">
+      <div class="gallery-item" data-category="convocation">
         <img src="https://i.ibb.co/yn3rHHhK/Whats-App-Image-2026-01-21-at-11-28-10-AM.jpg" alt="convocation">
+        <div class="gallery-caption">
+          <p>Graduation Ceremony</p>
+        </div>
+        <span class="gallery-category">Convocation</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="convocation">
+      <div class="gallery-item" data-category="convocation">
         <img src="https://i.ibb.co/sdnLFC74/Whats-App-Image-2026-01-21-at-11-28-11-AM.jpg" alt="convocation">
+        <div class="gallery-caption">
+          <p>Award Ceremony</p>
+        </div>
+        <span class="gallery-category">Convocation</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="convocation">
+      <div class="gallery-item" data-category="convocation">
         <img src="https://i.ibb.co/gLRwCS70/Whats-App-Image-2026-01-21-at-11-28-12-AM-1.jpg" alt="Convocation">
+        <div class="gallery-caption">
+          <p>Degree Distribution</p>
+        </div>
+        <span class="gallery-category">Convocation</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="convocation">
+      <div class="gallery-item" data-category="convocation">
         <img src="https://i.ibb.co/1YPT2b2w/Whats-App-Image-2026-01-21-at-11-28-12-AM.jpg" alt="Student Council Meeting">
+        <div class="gallery-caption">
+          <p>Student Council</p>
+        </div>
+        <span class="gallery-category">Convocation</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="students">
+      <div class="gallery-item" data-category="students">
         <img src="https://i.ibb.co/MDFkjKvT/Whats-App-Image-2026-01-21-at-11-28-13-AM.jpg" alt="Cultural Dance Practice">
+        <div class="gallery-caption">
+          <p>Dance Practice</p>
+        </div>
+        <span class="gallery-category">Students</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="students">
+      <div class="gallery-item" data-category="students">
         <img src="https://i.ibb.co/rf4K4n5Z/Whats-App-Image-2026-01-21-at-11-28-14-AM-1.jpg" alt="Independence Day Celebration">
+        <div class="gallery-caption">
+          <p>Independence Day</p>
+        </div>
+        <span class="gallery-category">Students</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="students">
+      <div class="gallery-item" data-category="students">
         <img src="https://i.ibb.co/rRDjSFJm/Whats-App-Image-2026-01-21-at-11-28-14-AM.jpg" alt="College Cafeteria">
+        <div class="gallery-caption">
+          <p>Cafeteria</p>
+        </div>
+        <span class="gallery-category">Students</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="events">
+      <div class="gallery-item" data-category="events">
         <img src="https://i.ibb.co/zTz4qbcC/Whats-App-Image-2026-01-21-at-11-28-15-AM.jpg" alt="College Administrative Block">
+        <div class="gallery-caption">
+          <p>Administrative Block</p>
+        </div>
+        <span class="gallery-category">Events</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="activities">
+      <div class="gallery-item" data-category="activities">
         <img src="https://i.ibb.co/Y78DT3MC/Whats-App-Image-2026-01-21-at-11-28-16-AM-1.jpg" alt="Computer Lab Session">
+        <div class="gallery-caption">
+          <p>Computer Lab</p>
+        </div>
+        <span class="gallery-category">Activities</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="activities">
+      <div class="gallery-item" data-category="activities">
         <img src="https://i.ibb.co/mVLk3Q9Q/Whats-App-Image-2026-01-21-at-11-28-17-AM.jpg" alt="College Anniversary Celebration">
+        <div class="gallery-caption">
+          <p>Anniversary Celebration</p>
+        </div>
+        <span class="gallery-category">Activities</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="students">
+      <div class="gallery-item" data-category="students">
         <img src="https://i.ibb.co/tM73DP3k/Whats-App-Image-2026-01-21-at-11-28-18-AM-1.jpg" alt="Parents Teachers Meeting">
+        <div class="gallery-caption">
+          <p>PT Meeting</p>
+        </div>
+        <span class="gallery-category">Students</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="events">
+      <div class="gallery-item" data-category="events">
         <img src="https://i.ibb.co/Kph6yyN5/Whats-App-Image-2026-01-21-at-11-28-18-AM.jpg" alt="Student Study Group">
+        <div class="gallery-caption">
+          <p>Study Group</p>
+        </div>
+        <span class="gallery-category">Events</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="events">
+      <div class="gallery-item" data-category="events">
         <img src="https://i.ibb.co/GfdwK03P/Whats-App-Image-2026-01-21-at-11-28-19-AM-1.jpg" alt="Debate Competition">
+        <div class="gallery-caption">
+          <p>Debate Competition</p>
+        </div>
+        <span class="gallery-category">Events</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="activities">
+      <div class="gallery-item" data-category="activities">
         <img src="https://i.ibb.co/mFNxc2Dz/Whats-App-Image-2026-01-21-at-11-28-19-AM.jpg" alt="Quiz Competition">
+        <div class="gallery-caption">
+          <p>Quiz Competition</p>
+        </div>
+        <span class="gallery-category">Activities</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="events">
+      <div class="gallery-item" data-category="events">
         <img src="https://i.ibb.co/v453Cys5/Whats-App-Image-2026-01-21-at-11-28-20-AM-1.jpg" alt="College Farewell Party">
+        <div class="gallery-caption">
+          <p>Farewell Party</p>
+        </div>
+        <span class="gallery-category">Events</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="events">
+      <div class="gallery-item" data-category="events">
         <img src="https://i.ibb.co/XZtVsPtK/Whats-App-Image-2026-01-21-at-11-28-20-AM.jpg" alt="Award Ceremony">
+        <div class="gallery-caption">
+          <p>Award Ceremony</p>
+        </div>
+        <span class="gallery-category">Events</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="events">
+      <div class="gallery-item" data-category="events">
         <img src="https://i.ibb.co/1Y253hNq/Whats-App-Image-2026-01-21-at-11-28-22-AM-1.jpg" alt="College Auditorium">
+        <div class="gallery-caption">
+          <p>Auditorium</p>
+        </div>
+        <span class="gallery-category">Events</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="functions">
+      <div class="gallery-item" data-category="functions">
         <img src="https://i.ibb.co/KjqsfW39/Whats-App-Image-2026-01-21-at-11-27-40-AM.jpg" alt="Morning Assembly">
+        <div class="gallery-caption">
+          <p>Morning Assembly</p>
+        </div>
+        <span class="gallery-category">Functions</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="functions">
+      <div class="gallery-item" data-category="functions">
         <img src="https://i.ibb.co/C5xRwR2Z/Whats-App-Image-2026-01-21-at-11-27-55-AM.jpg" alt="Yoga Session">
+        <div class="gallery-caption">
+          <p>Yoga Session</p>
+        </div>
+        <span class="gallery-category">Functions</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="functions">
+      <div class="gallery-item" data-category="functions">
         <img src="https://i.ibb.co/fG253KXm/Whats-App-Image-2026-01-21-at-11-27-58-AM.jpg" alt="Morning Sports Activities">
+        <div class="gallery-caption">
+          <p>Sports Activities</p>
+        </div>
+        <span class="gallery-category">Functions</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="functions">
+      <div class="gallery-item" data-category="functions">
         <img src="https://i.ibb.co/YFNmsFrZ/Whats-App-Image-2026-01-21-at-11-27-59-AM.jpg" alt="Group Study Session">
+        <div class="gallery-caption">
+          <p>Group Study</p>
+        </div>
+        <span class="gallery-category">Functions</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="functions">
+      <div class="gallery-item" data-category="functions">
         <img src="https://i.ibb.co/RG9VshdD/Whats-App-Image-2026-01-21-at-11-28-00-AM.jpg" alt="Library Study Time">
+        <div class="gallery-caption">
+          <p>Library Study</p>
+        </div>
+        <span class="gallery-category">Functions</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="campus">
+      <div class="gallery-item" data-category="campus">
         <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo">
+        <div class="gallery-caption">
+          <p>College Logo</p>
+        </div>
+        <span class="gallery-category">Campus</span>
       </div>
-      <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="campus">
+      <div class="gallery-item" data-category="campus">
         <img src="https://i.ibb.co/rf3Sp41S/COLLEGE-2.png" alt="College Building">
+        <div class="gallery-caption">
+          <p>College Building</p>
+        </div>
+        <span class="gallery-category">Campus</span>
       </div>
     </div>
     <div class="section-header mt-5" data-aos="fade-up">
@@ -410,14 +934,32 @@
     </div>
   </div>
 </section>
-<div class="lightbox" id="lightbox">
-  <span class="close-btn">&times;</span>
-  <div class="controls">
-    <button id="prevBtn"><i class="fas fa-chevron-left"></i></button>
-    <button id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+
+<!-- Gallery Modal -->
+<div class="gallery-modal" id="galleryModal">
+  <div class="modal-close" id="modalClose">&times;</div>
+  <div class="modal-content">
+    <div class="modal-image-container">
+      <div class="image-loader" id="imageLoader"></div>
+      <img class="modal-image" id="modalImage" src="" alt="">
+    </div>
+    <div class="modal-info">
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-category" id="modalCategory"></div>
+    </div>
+    <div class="modal-counter" id="modalCounter"></div>
+    <div class="modal-controls">
+      <button id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+      <button id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="modal-zoom-controls">
+      <button id="zoomIn"><i class="fas fa-search-plus"></i></button>
+      <button id="zoomOut"><i class="fas fa-search-minus"></i></button>
+      <button id="resetZoom"><i class="fas fa-expand-alt"></i></button>
+    </div>
   </div>
-  <img id="lightboxImage" src="" alt="">
 </div>
+
 <div id="footer-container"></div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
@@ -432,117 +974,226 @@
       navbar.classList.toggle('scrolled', scrollTop > 50);
     });
   });
+
   function setupGallery() {
-    const images = document.querySelectorAll('.gallery-item img');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImage = document.getElementById('lightboxImage');
-    const closeBtn = document.querySelector('.close-btn');
-    const nextBtn = document.getElementById('nextBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    let currentIndex = 0;
-    let autoSlide;
-    const filterButtons = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const modal = document.getElementById('galleryModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalCategory = document.getElementById('modalCategory');
+    const modalCounter = document.getElementById('modalCounter');
+    const modalClose = document.getElementById('modalClose');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const zoomInBtn = document.getElementById('zoomIn');
+    const zoomOutBtn = document.getElementById('zoomOut');
+    const resetZoomBtn = document.getElementById('resetZoom');
+    const imageLoader = document.getElementById('imageLoader');
+    
+    let currentIndex = 0;
+    let currentFilter = 'all';
+    let filteredItems = Array.from(galleryItems);
+    let scale = 1;
+
+    // Filter functionality
     filterButtons.forEach(button => {
       button.addEventListener('click', function() {
         const filter = this.getAttribute('data-filter');
+        currentFilter = filter;
+        
         filterButtons.forEach(btn => btn.classList.remove('active'));
         this.classList.add('active');
+        
+        filteredItems = Array.from(galleryItems).filter(item => {
+          const category = item.getAttribute('data-category');
+          return filter === 'all' || category === filter;
+        });
+        
         galleryItems.forEach(item => {
           const category = item.getAttribute('data-category');
           if (filter === 'all' || category === filter) {
             item.style.display = 'block';
-            setTimeout(() => { item.style.opacity = '1'; }, 50);
+            setTimeout(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'scale(1)';
+            }, 50);
           } else {
             item.style.opacity = '0';
-            setTimeout(() => { item.style.display = 'none'; }, 300);
+            item.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+              item.style.display = 'none';
+            }, 300);
           }
         });
       });
     });
-    images.forEach((img, index) => {
-      img.addEventListener('click', () => {
-        currentIndex = index;
-        showImage();
+
+    // Open modal on image click
+    galleryItems.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        // Get filtered items for current filter
+        const currentFilteredItems = Array.from(galleryItems).filter(item => {
+          const category = item.getAttribute('data-category');
+          return currentFilter === 'all' || category === currentFilter;
+        });
+        
+        // Find index in filtered items
+        currentIndex = currentFilteredItems.indexOf(item);
+        openModal(currentFilteredItems);
       });
     });
-    function showImage() {
-      lightbox.style.display = 'flex';
-      lightboxImage.style.opacity = '0';
-      setTimeout(() => {
-        lightboxImage.src = images[currentIndex].src;
-        lightboxImage.alt = images[currentIndex].alt;
-        lightboxImage.style.opacity = '1';
-      }, 150);
-      startAutoSlide();
+
+    function openModal(items) {
+      filteredItems = items;
+      updateModal();
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      resetZoom();
     }
+
+    function updateModal() {
+      if (filteredItems.length === 0) return;
+      
+      const currentItem = filteredItems[currentIndex];
+      const img = currentItem.querySelector('img');
+      const title = currentItem.querySelector('.gallery-caption p').textContent;
+      const category = currentItem.querySelector('.gallery-category').textContent;
+      
+      // Show loader
+      modalImage.style.opacity = '0';
+      imageLoader.style.display = 'block';
+      
+      // Preload image
+      const tempImage = new Image();
+      tempImage.src = img.src;
+      tempImage.onload = () => {
+        modalImage.src = img.src;
+        modalImage.alt = img.alt;
+        modalTitle.textContent = title;
+        modalCategory.textContent = category;
+        modalCounter.textContent = `${currentIndex + 1} / ${filteredItems.length}`;
+        
+        // Hide loader and show image
+        setTimeout(() => {
+          imageLoader.style.display = 'none';
+          modalImage.style.opacity = '1';
+        }, 300);
+      };
+    }
+
     function nextImage() {
-      const visibleImages = Array.from(galleryItems).filter(item =>
-        item.style.display !== 'none'
-      ).map(item => item.querySelector('img'));
-      if (visibleImages.length === 0) return;
-      currentIndex = (currentIndex + 1) % visibleImages.length;
-      images[currentIndex] = visibleImages[currentIndex];
-      showImage();
+      currentIndex = (currentIndex + 1) % filteredItems.length;
+      updateModal();
+      resetZoom();
     }
+
     function prevImage() {
-      const visibleImages = Array.from(galleryItems).filter(item =>
-        item.style.display !== 'none'
-      ).map(item => item.querySelector('img'));
-      if (visibleImages.length === 0) return;
-      currentIndex = (currentIndex - 1 + visibleImages.length) % visibleImages.length;
-      images[currentIndex] = visibleImages[currentIndex];
-      showImage();
+      currentIndex = (currentIndex - 1 + filteredItems.length) % filteredItems.length;
+      updateModal();
+      resetZoom();
     }
-    nextBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      nextImage();
-      stopAutoSlide();
+
+    function zoomIn() {
+      scale = Math.min(scale * 1.2, 4);
+      updateImageScale();
+    }
+
+    function zoomOut() {
+      scale = Math.max(scale / 1.2, 1);
+      updateImageScale();
+    }
+
+    function resetZoom() {
+      scale = 1;
+      updateImageScale();
+    }
+
+    function updateImageScale() {
+      modalImage.style.transform = `scale(${scale})`;
+      modalImage.style.transition = 'transform 0.3s ease';
+    }
+
+    // Event Listeners
+    nextBtn.addEventListener('click', nextImage);
+    prevBtn.addEventListener('click', prevImage);
+    modalClose.addEventListener('click', () => {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
     });
-    prevBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      prevImage();
-      stopAutoSlide();
-    });
-    closeBtn.addEventListener('click', () => {
-      lightbox.style.display = 'none';
-      stopAutoSlide();
-    });
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        lightbox.style.display = 'none';
-        stopAutoSlide();
-      }
-    });
+
+    zoomInBtn.addEventListener('click', zoomIn);
+    zoomOutBtn.addEventListener('click', zoomOut);
+    resetZoomBtn.addEventListener('click', resetZoom);
+
+    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-      if (lightbox.style.display === 'flex') {
-        if (e.key === 'Escape') {
-          lightbox.style.display = 'none';
-          stopAutoSlide();
-        } else if (e.key === 'ArrowRight') {
-          nextImage();
-          stopAutoSlide();
-        } else if (e.key === 'ArrowLeft') {
-          prevImage();
-          stopAutoSlide();
+      if (modal.style.display === 'flex') {
+        switch(e.key) {
+          case 'Escape':
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            break;
+          case 'ArrowRight':
+            nextImage();
+            break;
+          case 'ArrowLeft':
+            prevImage();
+            break;
+          case '+':
+            zoomIn();
+            break;
+          case '-':
+            zoomOut();
+            break;
+          case '0':
+            resetZoom();
+            break;
         }
       }
     });
-    function startAutoSlide() {
-      stopAutoSlide();
-      autoSlide = setInterval(nextImage, 4000);
+
+    // Swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    modal.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    modal.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+      
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          nextImage(); // Swipe left
+        } else {
+          prevImage(); // Swipe right
+        }
+      }
     }
-    function stopAutoSlide() {
-      clearInterval(autoSlide);
-    }
-    function preloadImages() {
-      images.forEach(img => {
-        const tempImage = new Image();
-        tempImage.src = img.src;
-      });
-    }
-    preloadImages();
+
+    // Double click to zoom
+    modalImage.addEventListener('dblclick', (e) => {
+      if (scale === 1) {
+        zoomIn();
+      } else {
+        resetZoom();
+      }
+    });
+
+    // Prevent modal close when clicking on image
+    modalImage.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
   }
+
   document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.submenu-toggle').forEach(function (toggle) {
       toggle.addEventListener('click', function (e) {
@@ -576,10 +1227,3 @@
 </script> 
 </body>
 </html>
-
-
-
-
-
-
-
