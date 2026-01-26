@@ -616,7 +616,8 @@
             <table class="table table-hover mb-0" id="alumniTable">
               <thead class="sticky-top" style="top: 0; z-index: 1;">
                 <tr class="bg-light">
-                  <th class="py-3" style="width: 40%;">Admission Number</th>
+                  <th class="py-3" style="width: 20%;">Admission No.</th>
+                  <th class="py-3" style="width: 20%;">Batch</th>
                   <th class="py-3" style="width: 60%;">Name</th>
                 </tr>
               </thead>
@@ -1190,7 +1191,7 @@
 
       tableBody.innerHTML = `
         <tr>
-          <td colspan="2" class="text-center py-5">
+          <td colspan="3" class="text-center py-5">
             <div class="spinner-border text-primary mb-3"></div>
             <p class="text-muted mb-0">Loading alumni data...</p>
           </td>
@@ -1199,7 +1200,7 @@
 
       modal.show();
 
-      const API_URL = 'https://script.google.com/macros/s/AKfycbxEsuxJR-1rQwpYKn1MaJf_JuKOHO_9V_1A-Ff3xk79ahoy6CFm8FziAtjtw-yEpRVsHQ/exec';
+      const API_URL = 'https://script.google.com/macros/s/AKfycbyqOVVptGCOgKn2dmyrupPBAIFvoX3OtnhSJTKZFiS8ZzMap5Qh9M_9ubfvoUUTB4pVnw/exec';
 
       fetch(API_URL)
         .then(response => {
@@ -1213,6 +1214,7 @@
               const row = document.createElement('tr');
               row.innerHTML = `
                 <td>${alumni.uid || 'N/A'}</td>
+                <td>${alumni.batch || 'N/A'}</td>
                 <td>${alumni.name || 'N/A'}</td>
               `;
               tableBody.appendChild(row);
