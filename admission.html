@@ -11,9 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <!-- Add these new CDN links -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     :root {--islamic-green:#0a5c36; --islamic-gold:#c19a3f; --islamic-cream:#f8f3e6; --islamic-light:#e9f5e9; --dark-green:#064e3b; --transition:all 0.3s ease;}
     body {font-family:'Poppins',sans-serif; background-color:var(--islamic-cream); color:#333; scroll-behavior:smooth; overflow-x:hidden; padding-top:80px;}
@@ -21,108 +18,6 @@
     .arabic-font {font-family:'Scheherazade New',serif;}
     .malayalam-font {font-family:'Anek Malayalam',sans-serif;}
     .pattern-bg {background-image:radial-gradient(circle at 25% 25%,rgba(10,92,54,0.03) 2px,transparent 2px),radial-gradient(circle at 75% 75%,rgba(193,154,63,0.03) 2px,transparent 2px); background-size:50px 50px; position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1;}
-    
-    /* Admin Button Styles */
-    .admin-btn {
-      background: linear-gradient(135deg, #ffc107, #ff9800);
-      border: none;
-      color: #000;
-      font-weight: 600;
-      border-radius: 8px;
-      padding: 8px 20px;
-      transition: var(--transition);
-      margin-left: 10px;
-    }
-    .admin-btn:hover {
-      background: linear-gradient(135deg, #ff9800, #ffc107);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
-    }
-    
-    /* Loading Overlay */
-    .loading-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.95);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 99999;
-      display: none;
-    }
-    
-    /* Admin Modal Styles */
-    .admin-modal {
-      background: linear-gradient(135deg, var(--islamic-cream), white);
-      border-radius: 15px;
-      border: 3px solid var(--islamic-gold);
-    }
-    .admin-btn-icon {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      color: white;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem;
-      font-size: 1.5rem;
-    }
-    .admin-btn-card {
-      background: white;
-      border-radius: 12px;
-      padding: 1.5rem;
-      border: 2px solid transparent;
-      transition: var(--transition);
-      height: 100%;
-      text-align: center;
-      cursor: pointer;
-    }
-    .admin-btn-card:hover {
-      border-color: var(--islamic-gold);
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-    .admin-data-table {
-      background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 2px solid var(--islamic-gold);
-      max-height: 400px;
-      overflow-y: auto;
-    }
-    .admin-data-table th {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-      color: white;
-      font-weight: 600;
-      padding: 12px 15px;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    .admin-data-table td {
-      padding: 10px 15px;
-      border-bottom: 1px solid #eee;
-      vertical-align: middle;
-    }
-    .admin-data-table tr:hover {
-      background-color: rgba(10, 92, 54, 0.05);
-    }
-    
-    /* Modal Close Button Fix */
-    .modal .btn-close {
-      box-shadow: none;
-      opacity: 0.8;
-    }
-    .modal .btn-close:hover {
-      opacity: 1;
-    }
-
     .navbar-optimized {background:linear-gradient(135deg,var(--islamic-green),var(--dark-green)); border-bottom:3px solid var(--islamic-gold); transition:var(--transition); padding:0.5rem 0; height:80px; z-index:1030 !important;}
     .navbar-toggler {border-color:rgba(255,255,255,0.5);}
     .navbar-toggler:focus {box-shadow:0 0 0 2px var(--islamic-gold);}
@@ -259,244 +154,14 @@
       .dropdown-submenu .collapse {    position: static;    width: auto;    border: none;    box-shadow: none;    background: rgba(0,0,0,0.1);
     margin-left: 1.2rem;  }
     }
+
   </style>
 </head>
 <body>
-<!-- Loading Overlay -->
-<div class="loading-overlay" id="loadingOverlay">
-  <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-  <p class="mt-3" id="loadingText">Loading data...</p>
-</div>
-
-<!-- Islamic Ornaments -->
 <div class="islamic-ornament ornament-1">✸</div>
 <div class="islamic-ornament ornament-2">✸</div>
 <div class="islamic-ornament ornament-3">✸</div>
-
-<!-- Admin Login Modal -->
-<div class="modal fade" id="adminLoginModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content admin-modal">
-      <div class="modal-header" style="border-bottom: 2px solid var(--islamic-gold);">
-        <h5 class="modal-title" style="color: var(--islamic-green); font-weight: 700;">
-          <i class="fas fa-lock me-2"></i>Admin Login
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="text-center mb-4">
-          <div class="admin-btn-icon">
-            <i class="fas fa-user-shield"></i>
-          </div>
-          <h4 style="color: var(--islamic-green);">Admin Access Required</h4>
-          <p class="text-muted">Enter credentials to access admin panel</p>
-        </div>
-        <form id="adminLoginForm">
-          <div class="mb-3">
-            <label class="form-label">Username</label>
-            <div class="input-group">
-              <span class="input-group-text"><i class="fas fa-user"></i></span>
-              <input type="text" class="form-control" id="adminUsername" placeholder="Enter username" required>
-            </div>
-          </div>
-          <div class="mb-4">
-            <label class="form-label">Password</label>
-            <div class="input-group">
-              <span class="input-group-text"><i class="fas fa-key"></i></span>
-              <input type="password" class="form-control" id="adminPassword" placeholder="Enter password" required>
-            </div>
-          </div>
-          <div class="alert alert-danger d-none" id="loginError">
-            <i class="fas fa-exclamation-triangle me-2"></i>Invalid username or password!
-          </div>
-          <button type="submit" class="btn-gold w-100">
-            <i class="fas fa-sign-in-alt me-2"></i>Login
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Admin Dashboard Modal -->
-<div class="modal fade" id="adminDashboardModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
-  <div class="modal-dialog modal-xl modal-dialog-centered">
-    <div class="modal-content admin-modal">
-      <div class="modal-header" style="border-bottom: 2px solid var(--islamic-gold);">
-        <h5 class="modal-title" style="color: var(--islamic-green); font-weight: 700;">
-          <i class="fas fa-tachometer-alt me-2"></i>Admin Dashboard
-        </h5>
-        <button type="button" class="btn btn-outline-danger btn-sm" onclick="logoutAdmin()">
-          <i class="fas fa-sign-out-alt me-1"></i>Logout
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- Admin Buttons -->
-        <div class="row g-4 mb-5">
-          <div class="col-lg-3 col-md-6">
-            <div class="admin-btn-card" onclick="adminDownloadAll('application')">
-              <div class="admin-btn-icon" style="background: linear-gradient(135deg, #28a745, #20c997);">
-                <i class="fas fa-file-download"></i>
-              </div>
-              <h5 style="color: var(--islamic-green);">Download All Applications</h5>
-              <p class="text-muted small">Get all application forms in PDF format</p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="admin-btn-card" onclick="adminDownloadAll('hallticket')">
-              <div class="admin-btn-icon" style="background: linear-gradient(135deg, #17a2b8, #0dcaf0);">
-                <i class="fas fa-ticket-alt"></i>
-              </div>
-              <h5 style="color: var(--islamic-green);">Download All Hall Tickets</h5>
-              <p class="text-muted small">Generate all hall tickets at once</p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="admin-btn-card" onclick="adminDownloadAll('result')">
-              <div class="admin-btn-icon" style="background: linear-gradient(135deg, #6610f2, #6f42c1);">
-                <i class="fas fa-chart-line"></i>
-              </div>
-              <h5 style="color: var(--islamic-green);">Download All Results</h5>
-              <p class="text-muted small">Get all exam results in one click</p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="admin-btn-card" onclick="viewApplicationData()">
-              <div class="admin-btn-icon" style="background: linear-gradient(135deg, #fd7e14, #ffc107);">
-                <i class="fas fa-database"></i>
-              </div>
-              <h5 style="color: var(--islamic-green);">View Application Data</h5>
-              <p class="text-muted small">See all submitted applications</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Application Data Section (Initially Hidden) -->
-        <div id="applicationDataSection" style="display: none;">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 style="color: var(--islamic-green);">
-              <i class="fas fa-table me-2"></i>All Application Data
-            </h4>
-            <button class="btn btn-outline-gold btn-sm" onclick="backToAdminDashboard()">
-              <i class="fas fa-arrow-left me-1"></i>Back to Dashboard
-            </button>
-          </div>
-          <div class="admin-data-table">
-            <table class="table table-hover mb-0">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Phone</th>
-                  <th>DOB</th>
-                  <th>Application ID</th>
-                  <th>Date</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="applicationDataTable">
-                <!-- Data will be loaded here -->
-              </tbody>
-            </table>
-          </div>
-          <div class="text-center mt-3">
-            <button class="btn-gold" onclick="exportToCSV()">
-              <i class="fas fa-file-export me-2"></i>Export to CSV
-            </button>
-          </div>
-        </div>
-
-        <!-- Dashboard Stats (Initially Visible) -->
-        <div id="adminDashboardStats">
-          <div class="row g-4">
-            <div class="col-md-3">
-              <div class="text-center p-3 rounded" style="background: linear-gradient(135deg, rgba(40, 167, 69, 0.1), rgba(32, 201, 151, 0.1)); border: 2px solid #28a745;">
-                <h2 class="mb-0" style="color: #28a745;" id="totalApplications">0</h2>
-                <p class="mb-0" style="color: var(--islamic-green);">Total Applications</p>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="text-center p-3 rounded" style="background: linear-gradient(135deg, rgba(23, 162, 184, 0.1), rgba(13, 202, 240, 0.1)); border: 2px solid #17a2b8;">
-                <h2 class="mb-0" style="color: #17a2b8;" id="hallticketsGenerated">0</h2>
-                <p class="mb-0" style="color: var(--islamic-green);">Hall Tickets Generated</p>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="text-center p-3 rounded" style="background: linear-gradient(135deg, rgba(102, 16, 242, 0.1), rgba(111, 66, 193, 0.1)); border: 2px solid #6610f2;">
-                <h2 class="mb-0" style="color: #6610f2;" id="resultsPublished">0</h2>
-                <p class="mb-0" style="color: var(--islamic-green);">Results Published</p>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="text-center p-3 rounded" style="background: linear-gradient(135deg, rgba(253, 126, 20, 0.1), rgba(255, 193, 7, 0.1)); border: 2px solid #fd7e14;">
-                <h2 class="mb-0" style="color: #fd7e14;" id="qualifiedStudents">0</h2>
-                <p class="mb-0" style="color: var(--islamic-green);">Qualified Students</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="mt-4">
-            <h5 style="color: var(--islamic-green);" class="mb-3">
-              <i class="fas fa-cog me-2"></i>Quick Actions
-            </h5>
-            <div class="d-flex flex-wrap gap-2">
-              <button class="btn btn-outline-gold" onclick="refreshData()">
-                <i class="fas fa-sync-alt me-1"></i>Refresh Data
-              </button>
-              <button class="btn btn-outline-gold" onclick="printSummary()">
-                <i class="fas fa-print me-1"></i>Print Summary
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Custom Navbar -->
-<nav class="navbar navbar-expand-lg navbar-optimized fixed-top">
-  <div class="container">
-    <a class="navbar-brand navbar-brand-compact d-flex align-items-center" href="#">
-      <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo">
-      <div class="ms-2">
-        <div class="brand-text">DSAC</div>
-        <div class="brand-subtext">Admission Portal</div>
-      </div>
-    </a>
-    
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    
-    <div class="collapse navbar-collapse" id="navbarContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item-optimized">
-          <a class="nav-link-optimized" href="index.html"><i class="fas fa-home me-1"></i> Home</a>
-        </li>
-        <li class="nav-item-optimized">
-          <a class="nav-link-optimized active" href="admission.html"><i class="fas fa-graduation-cap me-1"></i> Admission</a>
-        </li>
-        <li class="nav-item-optimized">
-          <a class="nav-link-optimized" href="#"><i class="fas fa-info-circle me-1"></i> About</a>
-        </li>
-        <li class="nav-item-optimized">
-          <a class="nav-link-optimized" href="#"><i class="fas fa-phone me-1"></i> Contact</a>
-        </li>
-        <!-- Admin Button -->
-        <li class="nav-item ms-2">
-          <button class="btn admin-btn" onclick="openAdminLogin()">
-            <i class="fas fa-user-shield me-1"></i> Admin
-          </button>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
+<div id="navbar-container"></div>
 <div class="page-header">
   <div class="container">
     <div class="page-header-content">
@@ -504,7 +169,6 @@
     </div>
   </div>
 </div>
-
 <div class="instructions-box m-5" data-aos="fade-up">
   <h3 class="instructions-title"><i class="fas fa-info-circle"></i>Important Instructions</h3>
   <ul class="instructions-list">
@@ -515,7 +179,6 @@
     <li>For any queries, contact: +91 9048020243</li>
   </ul>
 </div>
-
 <div id="mainContentArea">
   <section class="content-section">
     <div class="container">
@@ -552,7 +215,6 @@
       </div>
     </div>
   </section>
-  
   <section class="content-section" style="background: white;">
     <div class="container">
       <div class="row g-4">
@@ -594,8 +256,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Existing form sections (unchanged) -->
   <section class="content-section" id="applyNowFormSection" style="display: none;">
     <div class="container">
       <div class="form-container" data-aos="fade-up">
@@ -830,7 +490,6 @@
       </div>
     </div>
   </section>
-  
   <section class="content-section" id="applicationFormSection" style="display: none;">
     <div class="container">
       <div class="form-container" data-aos="fade-up">
@@ -852,7 +511,6 @@
       </div>
     </div>
   </section>
-  
   <section class="content-section" id="hallticketFormSection" style="display: none;">
     <div class="container">
       <div class="form-container" data-aos="fade-up">
@@ -874,7 +532,6 @@
       </div>
     </div>
   </section>
-  
   <section class="content-section" id="resultFormSection" style="display: none;">
     <div class="container">
       <div class="form-container" data-aos="fade-up">
@@ -897,581 +554,43 @@
     </div>
   </section>
 </div>
-
 <div id="documentDisplayArea" style="display: none;"></div>
-
-<!-- Footer -->
-<footer class="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4 mb-4">
-        <div class="footer-brand">DSAC</div>
-        <p>Darunnajath Shareeath & Arts College<br>Punnakkad, Karuvarakundu, Malappuram</p>
-        <div class="social-links">
-          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
-        </div>
-      </div>
-      <div class="col-lg-2 col-md-6 mb-4">
-        <h5>Quick Links</h5>
-        <a href="index.html">Home</a>
-        <a href="admission.html">Admission</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact</a>
-      </div>
-      <div class="col-lg-3 col-md-6 mb-4">
-        <h5>Important Dates</h5>
-        <a href="#">Exam: 17 Dec 2025</a>
-        <a href="#">Result: 31 Dec 2025</a>
-        <a href="#">Admission: 15 Jan 2026</a>
-        <a href="#">Classes: 30 Jan 2026</a>
-      </div>
-      <div class="col-lg-3 col-md-6 mb-4">
-        <h5>Contact Info</h5>
-        <p><i class="fas fa-phone me-2"></i> +91 9048020243</p>
-        <p><i class="fas fa-envelope me-2"></i> najathshareea@gmail.com</p>
-        <p><i class="fas fa-map-marker-alt me-2"></i> Punnakkad, Karuvarakundu</p>
-      </div>
-    </div>
-    <div class="text-center pt-3 border-top border-white border-opacity-25">
-      <p class="mb-0">© <span id="currentYear">2025</span> Darunnajath Shareeath & Arts College. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
-
-<a href="https://wa.me/919048020243" class="whatsapp-float" target="_blank">
-  <i class="fab fa-whatsapp"></i>
-</a>
-
+<div id="footer-container"></div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
 <script>
-// CONSTANTS
-const ADMIN_CREDENTIALS = {
-  username: "admin",
-  password: "786"
-};
-
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyVMXRvVWqJTVrdkdWtloXYwYFGW9xXWkFOcleG_y_C-Lkx_JJDl1blOWZysdXsPtmDrA/exec';
-
-// Initialize when page loads
-document.addEventListener('DOMContentLoaded', function() {
-  initializePage();
-  
-  // Check if already logged in
-  if (localStorage.getItem('adminLoggedIn') === 'true') {
-    // Auto-show dashboard
-    setTimeout(() => {
-      const dashboardModal = new bootstrap.Modal(document.getElementById('adminDashboardModal'));
-      dashboardModal.show();
-      refreshData();
-    }, 1000);
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyVMXRvVWqJTVrdkdWtloXYwYFGW9xXWkFOcleG_y_C-Lkx_JJDl1blOWZysdXsPtmDrA/exec';
+  document.addEventListener('DOMContentLoaded', function() {initializePage();});
+  function initializePage() {
+    AOS.init({duration:800,once:true,offset:50,disable:window.innerWidth<768});
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    const today=new Date().toISOString().split('T')[0];document.querySelectorAll('input[type="date"]').forEach(input=>{input.setAttribute('max',today);});
+    window.addEventListener('scroll',function(){const navbar=document.querySelector('.navbar-optimized');const scrollTop=window.pageYOffset||document.documentElement.scrollTop;navbar.classList.toggle('scrolled',scrollTop>50);});
   }
-});
-
-// ============== ADMIN FUNCTIONS ==============
-
-function openAdminLogin() {
-  const modal = new bootstrap.Modal(document.getElementById('adminLoginModal'));
-  modal.show();
-}
-
-// Handle admin login form submission
-document.getElementById('adminLoginForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const username = document.getElementById('adminUsername').value;
-  const password = document.getElementById('adminPassword').value;
-  const errorDiv = document.getElementById('loginError');
-  
-  if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
-    errorDiv.classList.add('d-none');
-    const loginModal = bootstrap.Modal.getInstance(document.getElementById('adminLoginModal'));
-    loginModal.hide();
-    
-    // Remember login
-    localStorage.setItem('adminLoggedIn', 'true');
-    
-    // Show admin dashboard
-    const dashboardModal = new bootstrap.Modal(document.getElementById('adminDashboardModal'));
-    dashboardModal.show();
-    
-    // Load data from Google Sheets
-    await refreshData();
-  } else {
-    errorDiv.classList.remove('d-none');
+  function showDashboard() {
+    document.getElementById('mainContentArea').style.display='block';document.getElementById('documentDisplayArea').style.display='none';document.getElementById('documentDisplayArea').innerHTML='';
+    document.querySelectorAll('[id$="Section"]').forEach(section=>{if(section.id!=='mainContentArea'){section.style.display='none';}});
+    document.querySelectorAll('.content-section').forEach(section=>{if(!section.id.includes('FormSection')&&!section.id.includes('DisplayArea')){section.style.display='block';}});
+    window.scrollTo({top:0,behavior:'smooth'});
   }
-});
-
-function logoutAdmin() {
-  const dashboardModal = bootstrap.Modal.getInstance(document.getElementById('adminDashboardModal'));
-  dashboardModal.hide();
-  localStorage.removeItem('adminLoggedIn');
-  document.getElementById('adminUsername').value = '';
-  document.getElementById('adminPassword').value = '';
-}
-
-async function refreshData() {
-  showLoading('Loading data from Google Sheets...');
-  try {
-    // First try to get all data from Google Sheets
-    const response = await fetch(`${SCRIPT_URL}?type=getAllApplications`);
-    if (response.ok) {
-      const data = await response.json();
-      if (data.status === 'success' && data.data) {
-        // Store in localStorage
-        localStorage.setItem('allApplications', JSON.stringify(data.data));
-        updateDashboardStats(data.data);
-        showLoading(false);
-        return;
-      }
-    }
-    
-    // If Google Sheets fails, use demo data
-    await loadDemoData();
-    showLoading(false);
-    
-  } catch (error) {
-    console.error('Error loading data:', error);
-    // Use demo data as fallback
-    await loadDemoData();
-    showLoading(false);
+  function showForm(formId) {
+    document.getElementById('mainContentArea').style.display='block';document.getElementById('documentDisplayArea').style.display='none';document.getElementById('documentDisplayArea').innerHTML='';
+    document.querySelectorAll('[id$="Section"]').forEach(section=>{section.style.display='none';});
+    const formSection=document.getElementById(formId+'Section');if(formSection){formSection.style.display='block';window.scrollTo({top:formSection.offsetTop-20,behavior:'smooth'});}
   }
-}
-
-async function loadDemoData() {
-  // Demo data for testing
-  const demoData = [
-    {
-      studentName: "Mohammed Ali",
-      phoneNumber: "9876543210",
-      dob: "2008-05-15",
-      applicationId: "APP-001",
-      address: "Punnakkad, Malappuram",
-      fatherName: "Abdul Rahman",
-      school: "GHSS Karuvarakundu",
-      madrasa: "Darunnajath Madrasa",
-      registerNo: "REG-001",
-      result: "QUALIFIED",
-      rank: "1",
-      submissionDate: "2024-01-10"
-    },
-    {
-      studentName: "Fatima Beevi",
-      phoneNumber: "9876543211",
-      dob: "2009-03-22",
-      applicationId: "APP-002",
-      address: "Karuvarakundu, Malappuram",
-      fatherName: "Ibrahim",
-      school: "CHM HSS",
-      madrasa: "Markaz Sunniya",
-      registerNo: "REG-002",
-      result: "WAITING LIST",
-      rank: "15",
-      submissionDate: "2024-01-11"
-    },
-    {
-      studentName: "Ahmed Raza",
-      phoneNumber: "9876543212",
-      dob: "2008-11-30",
-      applicationId: "APP-003",
-      address: "Pandikkad, Malappuram",
-      fatherName: "Muhammed",
-      school: "MES HSS",
-      madrasa: "Jamia Nooriyya",
-      registerNo: "REG-003",
-      result: "QUALIFIED",
-      rank: "3",
-      submissionDate: "2024-01-12"
-    }
-  ];
-  
-  localStorage.setItem('allApplications', JSON.stringify(demoData));
-  updateDashboardStats(demoData);
-  
-  // Show info message
-  alert('Using demo data. In production, this will fetch from Google Sheets.');
-}
-
-function updateDashboardStats(applications) {
-  if (!applications || !Array.isArray(applications)) return;
-  
-  const totalApps = applications.length;
-  const hallticketsGenerated = applications.filter(app => app.registerNo).length;
-  const resultsPublished = applications.filter(app => app.result).length;
-  const qualifiedStudents = applications.filter(app => app.result === 'QUALIFIED').length;
-  
-  document.getElementById('totalApplications').textContent = totalApps;
-  document.getElementById('hallticketsGenerated').textContent = hallticketsGenerated;
-  document.getElementById('resultsPublished').textContent = resultsPublished;
-  document.getElementById('qualifiedStudents').textContent = qualifiedStudents;
-}
-
-function viewApplicationData() {
-  document.getElementById('adminDashboardStats').style.display = 'none';
-  document.getElementById('applicationDataSection').style.display = 'block';
-  
-  const applications = JSON.parse(localStorage.getItem('allApplications') || '[]');
-  populateApplicationTable(applications);
-}
-
-function backToAdminDashboard() {
-  document.getElementById('applicationDataSection').style.display = 'none';
-  document.getElementById('adminDashboardStats').style.display = 'block';
-}
-
-function populateApplicationTable(applications) {
-  const tableBody = document.getElementById('applicationDataTable');
-  tableBody.innerHTML = '';
-  
-  if (!applications || applications.length === 0) {
-    tableBody.innerHTML = `
-      <tr>
-        <td colspan="8" class="text-center py-4">
-          <i class="fas fa-database fa-2x mb-3 text-muted"></i>
-          <p class="text-muted">No applications found</p>
-        </td>
-      </tr>
-    `;
-    return;
+  function calculateAge(dobString) {
+    if(!dobString)return;const birthDate=new Date(dobString);const today=new Date();let years=today.getFullYear()-birthDate.getFullYear();let months=today.getMonth()-birthDate.getMonth();let days=today.getDate()-birthDate.getDate();if(days<0){months--;days+=new Date(today.getFullYear(),today.getMonth(),0).getDate();}if(months<0){years--;months+=12;}document.getElementById('ageDisplay').textContent=`Age: ${years} years ${months} months ${days} days`;
   }
-  
-  applications.forEach((app, index) => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${index + 1}</td>
-      <td><strong>${app.studentName || app.name || 'N/A'}</strong></td>
-      <td>${app.phoneNumber || app.mobile || 'N/A'}</td>
-      <td>${app.dob || 'N/A'}</td>
-      <td><code>${app.applicationId || 'N/A'}</code></td>
-      <td>${app.submissionDate || app.timestamp || 'N/A'}</td>
-      <td>
-        <span class="badge ${app.result === 'QUALIFIED' ? 'bg-success' : app.result === 'WAITING LIST' ? 'bg-warning text-dark' : 'bg-secondary'}">
-          ${app.result || 'Pending'}
-        </span>
-      </td>
-      <td>
-        <button class="btn btn-sm btn-outline-primary" onclick="viewApplicationDetails(${index})" title="View Details">
-          <i class="fas fa-eye"></i>
-        </button>
-      </td>
-    `;
-    tableBody.appendChild(row);
-  });
-}
-
-async function adminDownloadAll(type) {
-  const applications = JSON.parse(localStorage.getItem('allApplications') || '[]');
-  
-  if (applications.length === 0) {
-    alert('No applications found. Please load data first.');
-    return;
-  }
-  
-  showLoading(`Preparing ${type} download...`);
-  
-  try {
-    switch(type) {
-      case 'application':
-        await downloadAllApplications(applications);
-        break;
-      case 'hallticket':
-        await downloadAllHallTickets(applications);
-        break;
-      case 'result':
-        await downloadAllResults(applications);
-        break;
-    }
-  } catch (error) {
-    console.error('Download error:', error);
-    alert('Error generating files: ' + error.message);
-  } finally {
-    showLoading(false);
-  }
-}
-
-async function downloadAllApplications(applications) {
-  // For demo, just create a summary PDF
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-  
-  doc.setFontSize(20);
-  doc.text('APPLICATIONS SUMMARY', 105, 20, { align: 'center' });
-  doc.setFontSize(12);
-  doc.text(`Total Applications: ${applications.length}`, 105, 30, { align: 'center' });
-  doc.text(`Date: ${new Date().toLocaleDateString()}`, 105, 40, { align: 'center' });
-  
-  let y = 60;
-  doc.setFontSize(10);
-  applications.forEach((app, index) => {
-    if (y > 250) {
-      doc.addPage();
-      y = 20;
-    }
-    
-    doc.setFontSize(12);
-    doc.text(`${index + 1}. ${app.studentName || app.name || 'Unknown'}`, 20, y);
-    doc.setFontSize(10);
-    doc.text(`Phone: ${app.phoneNumber || 'N/A'} | DOB: ${app.dob || 'N/A'}`, 20, y + 8);
-    doc.text(`App ID: ${app.applicationId || 'N/A'} | School: ${app.school || 'N/A'}`, 20, y + 16);
-    doc.text(`Address: ${app.address || 'N/A'}`, 20, y + 24);
-    
-    y += 35;
-  });
-  
-  doc.save(`Applications_Summary_${new Date().getTime()}.pdf`);
-  
-  alert(`${applications.length} applications summary downloaded as PDF.`);
-}
-
-async function downloadAllHallTickets(applications) {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-  
-  doc.setFontSize(20);
-  doc.text('HALL TICKETS LIST', 105, 20, { align: 'center' });
-  doc.setFontSize(12);
-  doc.text(`Total Students: ${applications.length}`, 105, 30, { align: 'center' });
-  doc.text(`Exam Date: 17 December 2025, 10:00 AM`, 105, 40, { align: 'center' });
-  
-  let y = 60;
-  doc.setFontSize(10);
-  applications.forEach((app, index) => {
-    if (y > 250) {
-      doc.addPage();
-      y = 20;
-    }
-    
-    doc.setFontSize(12);
-    doc.text(`${index + 1}. ${app.studentName || app.name || 'Unknown'}`, 20, y);
-    doc.setFontSize(10);
-    doc.text(`Register No: ${app.registerNo || 'N/A'} | Phone: ${app.phoneNumber || 'N/A'}`, 20, y + 8);
-    doc.text(`DOB: ${app.dob || 'N/A'} | Exam Center: College Seminar Hall`, 20, y + 16);
-    doc.text(`Reporting Time: 09:30 AM | Duration: 10:00 AM - 12:30 PM`, 20, y + 24);
-    
-    y += 35;
-  });
-  
-  doc.save(`Hall_Tickets_List_${new Date().getTime()}.pdf`);
-  
-  alert(`${applications.length} hall tickets list downloaded as PDF.`);
-}
-
-async function downloadAllResults(applications) {
-  // Create CSV file
-  const headers = ['Sl.No', 'Name', 'Mobile', 'DOB', 'Application ID', 'Register No', 'Result', 'Rank', 'Status'];
-  const csvRows = [headers.join(',')];
-  
-  applications.forEach((app, index) => {
-    const row = [
-      index + 1,
-      `"${app.studentName || app.name || ''}"`,
-      app.phoneNumber || app.mobile || '',
-      app.dob || '',
-      app.applicationId || '',
-      app.registerNo || '',
-      app.result || '',
-      app.rank || '',
-      app.result === 'QUALIFIED' ? 'Qualified' : app.result === 'WAITING LIST' ? 'Waiting List' : 'Pending'
-    ];
-    csvRows.push(row.join(','));
-  });
-  
-  const csvString = csvRows.join('\n');
-  const blob = new Blob([csvString], { type: 'text/csv' });
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `Results_${new Date().getTime()}.csv`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  
-  alert(`${applications.length} results exported to CSV file.`);
-}
-
-function exportToCSV() {
-  const applications = JSON.parse(localStorage.getItem('allApplications') || '[]');
-  
-  if (applications.length === 0) {
-    alert('No data to export!');
-    return;
-  }
-  
-  const headers = ['Name', 'Mobile', 'DOB', 'Address', 'Father Name', 'School', 'Madrasa', 'Application ID', 'Register No', 'Result', 'Rank', 'Submission Date'];
-  const csvRows = [headers.join(',')];
-  
-  applications.forEach(app => {
-    const row = [
-      `"${app.studentName || app.name || ''}"`,
-      app.phoneNumber || app.mobile || '',
-      app.dob || '',
-      `"${app.address || ''}"`,
-      `"${app.fatherName || ''}"`,
-      `"${app.school || ''}"`,
-      `"${app.madrasa || ''}"`,
-      app.applicationId || '',
-      app.registerNo || '',
-      app.result || '',
-      app.rank || '',
-      app.submissionDate || app.timestamp || ''
-    ];
-    csvRows.push(row.join(','));
-  });
-  
-  const csvString = csvRows.join('\n');
-  const blob = new Blob([csvString], { type: 'text/csv' });
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `Applications_Export_${new Date().getTime()}.csv`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  
-  alert(`${applications.length} applications exported to CSV file.`);
-}
-
-function viewApplicationDetails(index) {
-  const applications = JSON.parse(localStorage.getItem('allApplications') || '[]');
-  const app = applications[index];
-  
-  if (!app) return;
-  
-  const modalHtml = `
-    <div class="modal fade" id="appDetailModal">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header bg-primary text-white">
-            <h5 class="modal-title">Application Details</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="col-md-6">
-                <h6><i class="fas fa-user me-2"></i>Personal Information</h6>
-                <p><strong>Name:</strong> ${escapeHtml(app.studentName || app.name || 'N/A')}</p>
-                <p><strong>Father:</strong> ${escapeHtml(app.fatherName || 'N/A')}</p>
-                <p><strong>DOB:</strong> ${escapeHtml(app.dob || 'N/A')}</p>
-                <p><strong>Phone:</strong> ${escapeHtml(app.phoneNumber || app.mobile || 'N/A')}</p>
-                <p><strong>Address:</strong> ${escapeHtml(app.address || 'N/A')}</p>
-              </div>
-              <div class="col-md-6">
-                <h6><i class="fas fa-graduation-cap me-2"></i>Academic Information</h6>
-                <p><strong>School:</strong> ${escapeHtml(app.school || 'N/A')}</p>
-                <p><strong>Madrasa:</strong> ${escapeHtml(app.madrasa || 'N/A')}</p>
-                <p><strong>App ID:</strong> <code>${escapeHtml(app.applicationId || 'N/A')}</code></p>
-                <p><strong>Register No:</strong> <code>${escapeHtml(app.registerNo || 'N/A')}</code></p>
-                <p><strong>Result:</strong> 
-                  <span class="badge ${app.result === 'QUALIFIED' ? 'bg-success' : app.result === 'WAITING LIST' ? 'bg-warning text-dark' : 'bg-secondary'}">
-                    ${escapeHtml(app.result || 'Pending')}
-                  </span>
-                </p>
-                <p><strong>Rank:</strong> ${escapeHtml(app.rank || 'N/A')}</p>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-primary" onclick="downloadIndividualApplication('${app.applicationId || index}')">
-              <i class="fas fa-download me-1"></i> Download
-            </button>
-            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-  
-  // Remove existing modal if any
-  const existingModal = document.getElementById('appDetailModal');
-  if (existingModal) existingModal.remove();
-  
-  // Add new modal
-  document.body.insertAdjacentHTML('beforeend', modalHtml);
-  const modal = new bootstrap.Modal(document.getElementById('appDetailModal'));
-  modal.show();
-  
-  // Clean up after modal is closed
-  document.getElementById('appDetailModal').addEventListener('hidden.bs.modal', function() {
-    this.remove();
-  });
-}
-
-function downloadIndividualApplication(id) {
-  alert(`Downloading application ${id}...\n(In production, this would generate PDF)`);
-}
-
-function printSummary() {
-  window.print();
-}
-
-function showLoading(message) {
-  const overlay = document.getElementById('loadingOverlay');
-  const text = document.getElementById('loadingText');
-  
-  if (message === false || message === undefined) {
-    overlay.style.display = 'none';
-  } else {
-    text.textContent = message;
-    overlay.style.display = 'flex';
-  }
-}
-
-// Utility function to escape HTML
-function escapeHtml(text) {
-  if (!text) return '';
-  const map = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#039;'
-  };
-  return String(text).replace(/[&<>"']/g, function(m) { return map[m]; });
-}
-
-// ============== EXISTING FUNCTIONS (From your original code) ==============
-
-function initializePage() {
-  AOS.init({duration:800,once:true,offset:50,disable:window.innerWidth<768});
-  document.getElementById('currentYear').textContent = new Date().getFullYear();
-  const today=new Date().toISOString().split('T')[0];document.querySelectorAll('input[type="date"]').forEach(input=>{input.setAttribute('max',today);});
-  window.addEventListener('scroll',function(){const navbar=document.querySelector('.navbar-optimized');const scrollTop=window.pageYOffset||document.documentElement.scrollTop;navbar.classList.toggle('scrolled',scrollTop>50);});
-}
-
-function showDashboard() {
-  document.getElementById('mainContentArea').style.display='block';document.getElementById('documentDisplayArea').style.display='none';document.getElementById('documentDisplayArea').innerHTML='';
-  document.querySelectorAll('[id$="Section"]').forEach(section=>{if(section.id!=='mainContentArea'){section.style.display='none';}});
-  document.querySelectorAll('.content-section').forEach(section=>{if(!section.id.includes('FormSection')&&!section.id.includes('DisplayArea')){section.style.display='block';}});
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function showForm(formId) {
-  document.getElementById('mainContentArea').style.display='block';document.getElementById('documentDisplayArea').style.display='none';document.getElementById('documentDisplayArea').innerHTML='';
-  document.querySelectorAll('[id$="Section"]').forEach(section=>{section.style.display='none';});
-  const formSection=document.getElementById(formId+'Section');if(formSection){formSection.style.display='block';window.scrollTo({top:formSection.offsetTop-20,behavior:'smooth'});}
-}
-
-function calculateAge(dobString) {
-  if(!dobString)return;const birthDate=new Date(dobString);const today=new Date();let years=today.getFullYear()-birthDate.getFullYear();let months=today.getMonth()-birthDate.getMonth();let days=today.getDate()-birthDate.getDate();if(days<0){months--;days+=new Date(today.getFullYear(),today.getMonth(),0).getDate();}if(months<0){years--;months+=12;}document.getElementById('ageDisplay').textContent=`Age: ${years} years ${months} months ${days} days`;
-}
-
-function togglePreviousStudy(show){document.getElementById('previous-study-section').style.display=show?'block':'none';}
-function toggleIllnessSection(show){document.getElementById('illness-section').style.display=show?'block':'none';}
-function toggleSubmitButton(enabled){document.getElementById('submitApplicationBtn').disabled=!enabled;}
-
-function handleDragOver(e){e.preventDefault();e.stopPropagation();document.getElementById('fileUploadContainer').classList.add('dragover');}
-function handleDragLeave(e){e.preventDefault();e.stopPropagation();document.getElementById('fileUploadContainer').classList.remove('dragover');}
-function handleDrop(e){e.preventDefault();e.stopPropagation();document.getElementById('fileUploadContainer').classList.remove('dragover');const files=e.dataTransfer.files;if(files.length>0){handleFile(files[0]);}}
-
-function handlePhotoUpload(e){const file=e.target.files[0];if(file){handleFile(file);}}
-function handleFile(file){if(!file.type.startsWith('image/')){return;}if(file.size>5*1024*1024){return;}
-  const reader=new FileReader();reader.onload=function(e){const preview=document.getElementById('photoPreview');preview.src=e.target.result;preview.style.display='block';};reader.readAsDataURL(file);}
-
-function readFileAsBase64(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(file);});}
-
+  function togglePreviousStudy(show){document.getElementById('previous-study-section').style.display=show?'block':'none';}
+  function toggleIllnessSection(show){document.getElementById('illness-section').style.display=show?'block':'none';}
+  function toggleSubmitButton(enabled){document.getElementById('submitApplicationBtn').disabled=!enabled;}
+  function handleDragOver(e){e.preventDefault();e.stopPropagation();document.getElementById('fileUploadContainer').classList.add('dragover');}
+  function handleDragLeave(e){e.preventDefault();e.stopPropagation();document.getElementById('fileUploadContainer').classList.remove('dragover');}
+  function handleDrop(e){e.preventDefault();e.stopPropagation();document.getElementById('fileUploadContainer').classList.remove('dragover');const files=e.dataTransfer.files;if(files.length>0){handleFile(files[0]);}}
+  function handlePhotoUpload(e){const file=e.target.files[0];if(file){handleFile(file);}}
+  function handleFile(file){if(!file.type.startsWith('image/')){return;}if(file.size>5*1024*1024){return;}
+    const reader=new FileReader();reader.onload=function(e){const preview=document.getElementById('photoPreview');preview.src=e.target.result;preview.style.display='block';};reader.readAsDataURL(file);}
+  function readFileAsBase64(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(file);});}
   function generateApplicationHtml(data){const{collegeInfo,studentData}=data;const hasValidPhoto=studentData.photoUrl&&(studentData.photoUrl.includes('drive.google.com')||studentData.photoUrl.startsWith('data:image')||studentData.photoUrl.startsWith('http'));
     return `<div class="document-container"><div class="document-watermark">APPLICATION FORM</div><div class="document-header"><img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo"><div class="document-college-info"><div class="document-arabic">كلية دار النجاة للشريعة والآداب</div><div class="document-college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div><div class="document-address">Punnakkad, Karuvarakundu, Malappuram District</div><div class="document-address">Under DARUNNAJATH ISLAMIC CENTRE</div><div class="document-address">Affiliated to JAMIA NOORIYYA ARABIYYA, PATTIKKAD</div><div class="document-title">Admission Application Form</div></div></div><div class="document-content">${hasValidPhoto?`<div style="position:absolute;top:40px;right:40px;text-align:center;z-index:1;"><div style="width:150px;height:180px;border:2px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa;display:flex;align-items:center;justify-content:center;"><img src="${escapeHtml(studentData.photoUrl)}" style="max-width:100%;max-height:100%;object-fit:contain;" alt="Student Photo"></div><div style="font-size:12px;color:#6c757d;margin-top:5px;font-weight:500;">Student Photograph</div></div>`:''}<div class="document-section-title">1. Personal Information</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${['Application Date','Application ID',"1. Student's Name","2. House Name","3. Date of Birth","4. Aadhaar Number","5. Address","6. Phone Number","7. WhatsApp Number"].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.submissionDate||new Date().toLocaleDateString(),studentData.applicationId||'N/A',studentData.studentName||studentData.name||'N/A',studentData.houseName||'N/A',studentData.dob||'N/A',studentData.aadhaarNumber||'N/A',studentData.address||'N/A',studentData.phoneNumber||studentData.mobile||'N/A',studentData.whatsappNumber||'N/A'][i])}</span></div>`).join('')}</div><div class="document-section-title">2. Parent/Guardian Information</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${["8. Father's Name","9. Father's Occupation","10. Guardian's Name","11. Relationship with Guardian"].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.fatherName||'N/A',studentData.fatherOccupation||'N/A',studentData.guardianName||'N/A',studentData.relationshipWithGuardian||'N/A'][i])}</span></div>`).join('')}${studentData.guardianReason?`<div class="info-item"><span class="info-label">12. Reason if Guardian is not Father:</span><span class="info-value">${escapeHtml(studentData.guardianReason)}</span></div>`:''}</div><div class="document-section-title">3. Educational Information</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${["13. Madrasa & Location","Madrasa Class","14. School & Location","School Class","15. Previous Study"].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.madrasa||'N/A',studentData.madrasaclass||'N/A',studentData.school||'N/A',studentData.schoolclass||'N/A',studentData.previousStudy||'No'][i])}</span></div>`).join('')}</div>${studentData.previousStudy==='Yes'?`<div class="document-section-title">Previous Study Details</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${studentData.previousInstitution?`<div class="info-item"><span class="info-label">Previous Institution:</span><span class="info-value">${escapeHtml(studentData.previousInstitution||'N/A')}</span></div>`:''}${studentData.studyDuration?`<div class="info-item"><span class="info-label">Duration of Study:</span><span class="info-value">${escapeHtml(studentData.studyDuration||'N/A')}</span></div>`:''}</div>`:''}<div class="document-section-title">4. Medical & Identification</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${["16. Identification Mark","17. Physical Fitness"].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.identificationMark||'N/A',studentData.physicalFitness||'N/A'][i])}</span></div>`).join('')}${studentData.illness?`<div class="info-item"><span class="info-label">Illness:</span><span class="info-value">${escapeHtml(studentData.illness)}</span></div>`:''}</div><div class="document-section-title">5. Student Photograph</div><div style="margin-right: ${hasValidPhoto?'160px':'0'}; margin-bottom: 15px;">${hasValidPhoto?`<div style="font-size: 11px; color: #6c757d; margin-bottom: 5px;">Student's photo has been uploaded and attached.</div>`:`<div style="font-size: 11px; color: #dc3545; margin-bottom: 5px;">No photo uploaded.</div>`}</div><div class="document-declaration"><h3 class="document-section-title">Declaration</h3><p style="text-align: justify; line-height: 1.4; margin-bottom: 10px; font-size: 11px;"><strong>${escapeHtml(studentData.studentName||studentData.name||'')}</strong> S/o <strong>${escapeHtml(studentData.guardianName||'')}</strong>, എന്ന എന്‍റെ കുട്ടിയും ഞാനും ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജിന്‍റെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജില്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.</p><div class="document-signature-section"><div><div class="document-signature-line"></div><div style="font-size:10px;">Parent/Guardian's Name & Signature</div></div><div style="margin-top:10px;text-align:left;"><p style="font-size:9px;color:#6c757d;">Date: ______________________________<br><br>Place: _____________________________</p></div></div></div></div><div class="document-footer"><p style="color:#495057;font-size:10px;margin:0;"><strong>College Contact:</strong> 9048020243 | <strong>Email:</strong> najathshareea@gmail.com</p></div></div><div class="no-print" style="text-align:center;margin-top:20px;padding:20px;"><button onclick="window.print()" class="btn-gold me-2"><i class="fas fa-print me-2"></i> Print Application Form</button><button onclick="showDashboard()" class="btn-outline-gold"><i class="fas fa-arrow-left me-2"></i> Back to Dashboard</button></div>`;}
   function generateHallticketHtml(data){const{collegeInfo,studentData}=data;const hasValidPhoto=studentData.photoUrl&&(studentData.photoUrl.includes('drive.google.com')||studentData.photoUrl.startsWith('data:image')||studentData.photoUrl.startsWith('http'));
