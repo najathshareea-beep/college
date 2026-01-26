@@ -758,20 +758,16 @@ async function renderPosterCanvas(name, className, type, mark, rank, photo) {
     const bg = await loadImage(POSTER_BG);
     ctx.drawImage(bg, 0, 0, w, h);
     
-    // Draw heading at the top of the photo
     const cx = w / 2, cy = 720, r = 200;
     
-    // Set heading text based on type
     const headingText = type === "jamia" ? "Top Ten" : "Class Topper";
-    const headingY = cy - r - 250; // Position above the photo
+    const headingY = cy - r - 250; 
     
-    // Draw heading text in white only (no background or border)
     ctx.fillStyle = '#ffffff';
     ctx.font = 'bold 64px "Poppins"';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     
-    // Add a subtle text shadow for better visibility
     ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
     ctx.shadowBlur = 5;
     ctx.shadowOffsetX = 2;
@@ -779,7 +775,6 @@ async function renderPosterCanvas(name, className, type, mark, rank, photo) {
     
     ctx.fillText(headingText, cx, headingY);
     
-    // Reset shadow
     ctx.shadowColor = 'transparent';
     ctx.shadowBlur = 0;
     ctx.shadowOffsetX = 0;
