@@ -1,4 +1,3 @@
-/* style.css - Global Styles for DSAC Website */
 :root {
   --islamic-green: #0a5c36;
   --islamic-gold: #c19a3f;
@@ -7,7 +6,6 @@
   --transition: all 0.3s ease;
 }
 
-/* Base Styles */
 * {
   box-sizing: border-box;
 }
@@ -31,13 +29,11 @@ a:hover {
   text-decoration: none;
 }
 
-/* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   line-height: 1.2;
 }
 
-/* Navbar */
 .navbar-optimized {
   background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
   border-bottom: 3px solid var(--islamic-gold);
@@ -156,7 +152,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--islamic-green);
 }
 
-/* Page Header */
 .page-header {
   background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
   color: white;
@@ -205,7 +200,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--islamic-cream);
 }
 
-/* Content Sections */
 .content-section {
   padding: 4rem 0;
   background: var(--islamic-cream);
@@ -249,7 +243,6 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 auto;
 }
 
-/* Buttons */
 .btn-gold {
   background: linear-gradient(135deg, var(--islamic-gold), #d4af37);
   border: none;
@@ -291,7 +284,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--islamic-green);
 }
 
-/* Cards */
 .download-card,
 .library-card,
 .resource-card {
@@ -324,7 +316,6 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 1;
 }
 
-/* Download Specific */
 .download-icon-wrapper {
   width: 80px;
   height: 80px;
@@ -354,7 +345,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: 5px;
 }
 
-/* Search Box */
 .search-box {
   background: white;
   border: 2px solid var(--islamic-gold);
@@ -374,7 +364,6 @@ h1, h2, h3, h4, h5, h6 {
   background: transparent;
 }
 
-/* Badges */
 .category-badge {
   display: inline-block;
   padding: 0.25rem 0.75rem;
@@ -409,7 +398,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--islamic-gold);
 }
 
-/* Stats Card */
 .stats-card {
   background: white;
   border-radius: 15px;
@@ -432,7 +420,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--islamic-green);
 }
 
-/* Library Specific */
 .book-cover {
   height: 250px;
   width: 100%;
@@ -462,7 +449,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--islamic-green);
 }
 
-/* Footer */
 .footer {
   background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
   border-top: 3px solid var(--islamic-gold);
@@ -524,7 +510,6 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: 5px;
 }
 
-/* WhatsApp Float */
 .whatsapp-float {
   position: fixed;
   bottom: 25px;
@@ -555,7 +540,6 @@ h1, h2, h3, h4, h5, h6 {
   50% { transform: translateY(-8px); }
 }
 
-/* Islamic Ornaments */
 .islamic-ornament {
   position: fixed;
   color: var(--islamic-gold);
@@ -583,7 +567,6 @@ h1, h2, h3, h4, h5, h6 {
   animation: float 7s ease-in-out infinite;
 }
 
-/* Dropdown Submenu for Desktop */
 @media (min-width: 992px) {
   .dropdown-submenu {
     position: relative;
@@ -615,7 +598,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Mobile Styles */
 @media (max-width: 768px) {
   body {
     padding-top: 70px !important;
@@ -671,7 +653,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 2rem;
   }
   
-  /* Mobile dropdown submenu */
   .dropdown-submenu .collapse {
     position: static;
     width: auto;
@@ -698,7 +679,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Utility Classes */
 .text-center { text-align: center; }
 .mt-1 { margin-top: 0.25rem; }
 .mt-2 { margin-top: 0.5rem; }
@@ -718,3 +698,4 @@ h1, h2, h3, h4, h5, h6 {
 .w-100 { width: 100%; }
 .h-100 { height: 100%; }
 .rounded-3 { border-radius: 1rem; }
+
