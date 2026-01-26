@@ -1,11 +1,15 @@
+/* style.css - Global Styles for DSAC Website */
 :root {
   --islamic-green: #0a5c36;
   --islamic-gold: #c19a3f;
   --islamic-cream: #f8f3e6;
-  --islamic-light: #e9f5e9;
   --dark-green: #064e3b;
-  --light-gold: #ffd24d;
   --transition: all 0.3s ease;
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -15,45 +19,64 @@ body {
   scroll-behavior: smooth;
   overflow-x: hidden;
   padding-top: 80px;
+  margin: 0;
 }
 
-a {text-decoration: none;}
-.arabic-font {font-family: 'Scheherazade New', serif;}
-.malayalam-font {font-family: 'Anek Malayalam', sans-serif;}
-
-.pattern-bg {
-  background-image: radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px), 
-                   radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px);
-  background-size: 50px 50px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-/* Navbar Styles */
+a:hover {
+  text-decoration: none;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Navbar */
 .navbar-optimized {
   background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
   border-bottom: 3px solid var(--islamic-gold);
   transition: var(--transition);
   padding: 0.5rem 0;
   height: 80px;
-  z-index: 1030 !important;
+  z-index: 1030;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
-.navbar-toggler {border-color: rgba(255, 255, 255, 0.5);}
-.navbar-toggler:focus {box-shadow: 0 0 0 2px var(--islamic-gold);}
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5);
+  padding: 0.25rem 0.5rem;
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 2px var(--islamic-gold);
+  outline: none;
+}
 
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  width: 1.5em;
+  height: 1.5em;
 }
 
 .navbar-optimized.scrolled {
   background: rgba(10, 92, 54, 0.98);
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   height: 70px;
+}
+
+.navbar-brand-compact {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
 
 .navbar-brand-compact img {
@@ -68,33 +91,46 @@ a {text-decoration: none;}
   padding: 0;
 }
 
-.navbar-optimized.scrolled .navbar-brand-compact img {width: 50px; height: 50px;}
-.navbar-brand-compact:hover img {transform: scale(1.05);}
+.navbar-optimized.scrolled .navbar-brand-compact img {
+  width: 50px;
+  height: 50px;
+}
 
-.brand-text {font-size: 1.2rem; line-height: 1.2;}
-.brand-subtext {font-size: 0.8rem; opacity: 0.9;}
+.navbar-brand-compact:hover img {
+  transform: scale(1.05);
+}
+
+.brand-text {
+  font-size: 1.2rem;
+  line-height: 1.2;
+  color: white;
+  margin: 0;
+}
+
+.brand-subtext {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
 
 .nav-link-optimized {
   color: #fff !important;
   font-weight: 500;
   transition: var(--transition);
-  padding-left: 0.4rem;
-  padding-right: 0.4rem;
+  padding: 0.5rem 0.8rem !important;
   border-radius: 5px;
   margin: 0 2px;
   white-space: nowrap;
 }
 
-.nav-item-optimized {margin: 0 2px;}
+.nav-item-optimized {
+  margin: 0 2px;
+}
+
 .nav-link-optimized:hover {
   color: var(--islamic-gold) !important;
   background: rgba(255, 255, 255, 0.1);
-}
-
-.nav-link-optimized.active {
-  color: var(--islamic-gold) !important;
-  background: rgba(255, 255, 255, 0.15);
-  font-weight: 600;
 }
 
 .dropdown-menu-optimized {
@@ -102,23 +138,22 @@ a {text-decoration: none;}
   border: 1px solid var(--islamic-gold);
   border-radius: 8px;
   padding: 0.5rem 0;
+  margin-top: 0.5rem;
 }
 
 .dropdown-item-optimized {
   color: white;
   padding: 0.5rem 1rem;
   transition: var(--transition);
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
 }
 
 .dropdown-item-optimized:hover {
   background: var(--islamic-gold);
   color: var(--islamic-green);
-}
-
-.dropdown-item-optimized.active {
-  background: var(--islamic-gold);
-  color: var(--islamic-green);
-  font-weight: 600;
 }
 
 /* Page Header */
@@ -144,11 +179,14 @@ a {text-decoration: none;}
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%), 
+  background: radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%),
               radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
 }
 
-.page-header-content {position: relative; z-index: 2;}
+.page-header-content {
+  position: relative;
+  z-index: 2;
+}
 
 .page-title {
   font-family: 'Scheherazade New', serif;
@@ -168,7 +206,10 @@ a {text-decoration: none;}
 }
 
 /* Content Sections */
-.content-section {padding: 4rem 0; background: var(--islamic-cream);}
+.content-section {
+  padding: 4rem 0;
+  background: var(--islamic-cream);
+}
 
 .section-header {
   text-align: center;
@@ -198,6 +239,7 @@ a {text-decoration: none;}
   height: 3px;
   background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent);
   z-index: 1;
+  transform: translateY(-50%);
 }
 
 .section-subtitle {
@@ -217,6 +259,10 @@ a {text-decoration: none;}
   box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3);
   transition: var(--transition);
   padding: 0.75rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .btn-gold:hover {
@@ -234,6 +280,10 @@ a {text-decoration: none;}
   padding: 0.75rem 1.5rem;
   font-weight: 600;
   transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .btn-outline-gold:hover {
@@ -242,32 +292,175 @@ a {text-decoration: none;}
 }
 
 /* Cards */
-.islamic-card {
+.download-card,
+.library-card,
+.resource-card {
   background: white;
   border-radius: 15px;
   overflow: hidden;
   transition: var(--transition);
-  border: 3px solid transparent;
+  border: 2px solid transparent;
   box-shadow: 0 5px 15px rgba(0,0,0,0.08);
   height: 100%;
-  margin-bottom: 1rem;
+  position: relative;
 }
 
-.islamic-card:hover {
+.download-card:hover,
+.library-card:hover,
+.resource-card:hover {
   transform: translateY(-8px);
   border-color: var(--islamic-gold);
   box-shadow: 0 15px 30px rgba(0,0,0,0.15);
 }
 
-.islamic-card-header {
-  background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
-  color: white;
-  padding: 1.5rem;
-  text-align: center;
-  border-bottom: 3px solid var(--islamic-gold);
+.library-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--islamic-green), var(--islamic-gold));
+  z-index: 1;
 }
 
-.islamic-card-body {padding: 1.5rem;}
+/* Download Specific */
+.download-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(10, 92, 54, 0.1), rgba(193, 154, 63, 0.05));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+.download-icon {
+  font-size: 2.5rem;
+  color: var(--islamic-green);
+}
+
+.file-info {
+  background: rgba(10, 92, 54, 0.05);
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+}
+
+.file-info i {
+  color: var(--islamic-gold);
+  margin-right: 5px;
+}
+
+/* Search Box */
+.search-box {
+  background: white;
+  border: 2px solid var(--islamic-gold);
+  border-radius: 50px;
+  padding: 0.75rem 1.5rem;
+  transition: var(--transition);
+}
+
+.search-box:focus-within {
+  box-shadow: 0 0 20px rgba(193, 154, 63, 0.3);
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  background: transparent;
+}
+
+/* Badges */
+.category-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin: 0.25rem;
+}
+
+.badge-forms {
+  background: rgba(10, 92, 54, 0.1);
+  color: var(--islamic-green);
+}
+
+.badge-applications {
+  background: rgba(193, 154, 63, 0.1);
+  color: var(--islamic-gold);
+}
+
+.badge-documents {
+  background: rgba(102, 16, 242, 0.1);
+  color: #6610f2;
+}
+
+.badge-quran {
+  background: rgba(10, 92, 54, 0.1);
+  color: var(--islamic-green);
+}
+
+.badge-hadith {
+  background: rgba(193, 154, 63, 0.1);
+  color: var(--islamic-gold);
+}
+
+/* Stats Card */
+.stats-card {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  transition: var(--transition);
+  border: 2px solid transparent;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.stats-card:hover {
+  border-color: var(--islamic-gold);
+  transform: translateY(-5px);
+}
+
+.stats-number {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--islamic-green);
+}
+
+/* Library Specific */
+.book-cover {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.library-card:hover .book-cover {
+  transform: scale(1.05);
+}
+
+.resource-card {
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.resource-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(10, 92, 54, 0.1), rgba(193, 154, 63, 0.05));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 2rem;
+  color: var(--islamic-green);
+}
 
 /* Footer */
 .footer {
@@ -331,85 +524,7 @@ a {text-decoration: none;}
   padding-left: 5px;
 }
 
-/* Founder Page Specific */
-.founder-image {
-  width: 100%;
-  max-height: 400px;
-  object-fit: cover;
-  border-radius: 15px;
-  border: 5px solid var(--islamic-gold);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  margin-bottom: 2rem;
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.gallery-item {
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  border: 3px solid transparent;
-}
-
-.gallery-item:hover {
-  transform: scale(1.05);
-  border-color: var(--islamic-gold);
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-}
-
-.video-card {
-  background: white;
-  border-radius: 15px;
-  overflow: hidden;
-  transition: var(--transition);
-  border: 3px solid transparent;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-  height: 100%;
-}
-
-.video-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--islamic-gold);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-}
-
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  background: #000;
-}
-
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-.video-title {
-  color: var(--islamic-green);
-  font-weight: 600;
-  padding: 1rem;
-  margin: 0;
-  font-size: 1.1rem;
-}
-
-/* Whatsapp Float */
+/* WhatsApp Float */
 .whatsapp-float {
   position: fixed;
   bottom: 25px;
@@ -450,13 +565,61 @@ a {text-decoration: none;}
   pointer-events: none;
 }
 
-.ornament-1 {top: 20%; left: 5%; animation: float 6s ease-in-out infinite;}
-.ornament-2 {top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse;}
-.ornament-3 {bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite;}
+.ornament-1 {
+  top: 20%;
+  left: 5%;
+  animation: float 6s ease-in-out infinite;
+}
 
-/* Responsive Design */
+.ornament-2 {
+  top: 60%;
+  right: 5%;
+  animation: float 8s ease-in-out infinite reverse;
+}
+
+.ornament-3 {
+  bottom: 20%;
+  left: 10%;
+  animation: float 7s ease-in-out infinite;
+}
+
+/* Dropdown Submenu for Desktop */
+@media (min-width: 992px) {
+  .dropdown-submenu {
+    position: relative;
+  }
+  
+  .dropdown-submenu:hover > .collapse {
+    display: block !important;
+  }
+  
+  .dropdown-submenu .collapse {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    z-index: 1000;
+    min-width: 12rem;
+    padding: 0.5rem 0;
+    margin: 0;
+    font-size: 1rem;
+    background-color: var(--islamic-green);
+    border: 1px solid var(--islamic-gold);
+    border-radius: 0 0.5rem 0.5rem 0.5rem;
+  }
+  
+  .dropdown-submenu > a:after {
+    content: "›";
+    float: right;
+    margin-right: -0.5rem;
+    font-size: 1.2rem;
+  }
+}
+
+/* Mobile Styles */
 @media (max-width: 768px) {
-  body {padding-top: 70px !important;}
+  body {
+    padding-top: 70px !important;
+  }
   
   .navbar-optimized {
     height: 70px;
@@ -468,26 +631,90 @@ a {text-decoration: none;}
     min-height: 180px;
   }
   
-  .page-title {font-size: 2.2rem;}
-  .page-subtitle {font-size: 1.1rem;}
-  .section-title {font-size: 1.8rem;}
-  .content-section {padding: 2.5rem 0;}
+  .page-title {
+    font-size: 2.2rem;
+  }
+  
+  .page-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .content-section {
+    padding: 2.5rem 0;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
   
   .navbar-collapse {
     background: var(--dark-green);
     padding: 1rem;
     border-radius: 0 0 10px 10px;
     border: 1px solid var(--islamic-gold);
-    margin-top: 0px;
+    margin-top: 0;
     max-height: 70vh;
     overflow-y: auto;
   }
   
-  .gallery-grid {grid-template-columns: repeat(2, 1fr);}
+  .download-icon-wrapper,
+  .resource-icon {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .download-icon {
+    font-size: 2rem;
+  }
+  
+  .stats-number {
+    font-size: 2rem;
+  }
+  
+  /* Mobile dropdown submenu */
+  .dropdown-submenu .collapse {
+    position: static;
+    width: auto;
+    border: none;
+    box-shadow: none;
+    background: rgba(0,0,0,0.1);
+    margin-left: 1.2rem;
+  }
 }
 
 @media (max-width: 576px) {
-  .page-title {font-size: 1.8rem;}
-  .section-title {font-size: 1.5rem;}
-  .gallery-grid {grid-template-columns: 1fr;}
+  .page-title {
+    font-size: 1.8rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    font-size: 1.4rem;
+  }
 }
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mt-5 { margin-top: 3rem; }
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 1rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.mb-5 { margin-bottom: 3rem; }
+.d-none { display: none; }
+.d-block { display: block; }
+.d-flex { display: flex; }
+.justify-content-center { justify-content: center; }
+.align-items-center { align-items: center; }
+.w-100 { width: 100%; }
+.h-100 { height: 100%; }
+.rounded-3 { border-radius: 1rem; }
