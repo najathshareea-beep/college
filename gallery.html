@@ -128,7 +128,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+      background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 40%);
       opacity: 0;
       transition: opacity 0.4s ease;
       z-index: 1;
@@ -139,44 +139,7 @@
       opacity: 1;
     }
 
-    .gallery-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 1.5rem;
-      color: white;
-      transform: translateY(100%);
-      transition: transform 0.4s ease;
-      z-index: 2;
-      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-      border-radius: 0 0 12px 12px;
-    }
-
-    .gallery-item:hover .gallery-caption {
-      transform: translateY(0);
-    }
-
-    .gallery-category {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      z-index: 2;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: all 0.4s ease;
-    }
-
-    .gallery-item:hover .gallery-category {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* Removed gallery-caption and gallery-category styles since we don't need them */
 
     /* Span items for better layout */
     .gallery-item:nth-child(3n) {
@@ -192,7 +155,7 @@
       grid-column: span 2;
     }
 
-    /* Enhanced Lightbox Modal */
+    /* Enhanced Lightbox Modal - Clean version without captions */
     .gallery-modal {
       display: none;
       position: fixed;
@@ -204,7 +167,7 @@
       z-index: 9999;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
+      padding: 1rem;
     }
 
     .modal-content {
@@ -219,7 +182,7 @@
     .modal-image-container {
       position: relative;
       max-width: 90vw;
-      max-height: 80vh;
+      max-height: 90vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -227,38 +190,9 @@
 
     .modal-image {
       max-width: 100%;
-      max-height: 80vh;
+      max-height: 90vh;
       object-fit: contain;
-      border-radius: 8px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    }
-
-    .modal-info {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 10px;
-      padding: 1.5rem;
-      margin-top: 1.5rem;
-      text-align: center;
-      max-width: 600px;
-      width: 100%;
-    }
-
-    .modal-title {
-      color: white;
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-
-    .modal-category {
-      display: inline-block;
-      background: var(--islamic-gold);
-      color: var(--islamic-green);
-      padding: 0.3rem 1rem;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      font-weight: 600;
+      border-radius: 4px;
     }
 
     /* Modal Controls */
@@ -270,7 +204,7 @@
       transform: translateY(-50%);
       display: flex;
       justify-content: space-between;
-      padding: 0 2rem;
+      padding: 0 1rem;
       pointer-events: none;
     }
 
@@ -279,13 +213,13 @@
       background: rgba(255, 255, 255, 0.15);
       border: 2px solid rgba(255, 255, 255, 0.3);
       color: white;
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       cursor: pointer;
       transition: all 0.3s ease;
       backdrop-filter: blur(5px);
@@ -300,18 +234,18 @@
 
     .modal-close {
       position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
+      top: 1rem;
+      right: 1rem;
       background: rgba(255, 255, 255, 0.15);
       border: 2px solid rgba(255, 255, 255, 0.3);
       color: white;
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       cursor: pointer;
       transition: all 0.3s ease;
       backdrop-filter: blur(5px);
@@ -327,21 +261,21 @@
 
     .modal-counter {
       position: absolute;
-      bottom: 1.5rem;
-      right: 1.5rem;
+      bottom: 1rem;
+      right: 1rem;
       color: white;
-      font-size: 1rem;
+      font-size: 0.9rem;
       background: rgba(0, 0, 0, 0.5);
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
+      padding: 0.4rem 0.8rem;
+      border-radius: 15px;
       backdrop-filter: blur(5px);
     }
 
     /* Modal Zoom Controls */
     .modal-zoom-controls {
       position: absolute;
-      bottom: 1.5rem;
-      left: 1.5rem;
+      bottom: 1rem;
+      left: 1rem;
       display: flex;
       gap: 0.5rem;
       background: rgba(0, 0, 0, 0.5);
@@ -351,8 +285,8 @@
     }
 
     .modal-zoom-controls button {
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       border: none;
       background: rgba(255, 255, 255, 0.15);
@@ -381,6 +315,7 @@
       border-top-color: var(--islamic-gold);
       border-radius: 50%;
       animation: spin 1s linear infinite;
+      display: none;
     }
 
     @keyframes spin {
@@ -479,17 +414,21 @@
         grid-column: span 1;
       }
       .modal-controls button {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
-      }
-      .modal-close {
         width: 40px;
         height: 40px;
-        font-size: 1.5rem;
+        font-size: 1rem;
+      }
+      .modal-close {
+        width: 35px;
+        height: 35px;
+        font-size: 1.3rem;
       }
       .modal-zoom-controls {
-        bottom: 6rem;
+        bottom: 5rem;
+      }
+      .modal-zoom-controls button {
+        width: 32px;
+        height: 32px;
       }
       .filter-buttons {gap: 0.5rem;}
       .filter-btn {padding: 0.6rem 1.2rem; font-size: 0.9rem;}
@@ -507,9 +446,12 @@
         padding: 0 0.5rem;
       }
       .modal-controls button {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+      }
+      .modal-zoom-controls {
+        bottom: 4rem;
       }
     }
     @media (min-width: 992px) {
@@ -555,332 +497,144 @@
       
       <div class="gallery-item" data-category="report">
         <img src="https://i.ibb.co/FLLDHYKF/1769428173-suprabhatham-epaper.png" alt="Arts and Crafts Display">
-        <div class="gallery-caption">
-          <p>College News Report</p>
-        </div>
-        <span class="gallery-category">Report</span>
       </div>
       <div class="gallery-item" data-category="report">
         <img src="https://i.ibb.co/pjDFMsHG/chandrika-epaper-MALAPPURAM13-13.png" alt="Arts and Crafts Display">
-        <div class="gallery-caption">
-          <p>Newspaper Coverage</p>
-        </div>
-        <span class="gallery-category">Report</span>
       </div>
       <div class="gallery-item" data-category="functions">
         <img src="https://i.ibb.co/GQ74Hsjg/IMG-20260123-WA0122.jpg" alt="Arts and Crafts Display">
-        <div class="gallery-caption">
-          <p>College Function</p>
-        </div>
-        <span class="gallery-category">Functions</span>
       </div>
       <div class="gallery-item" data-category="activities">
         <img src="https://i.ibb.co/RGCXB7T4/IMG-20170916-WA0063.jpg" alt="College Event Celebration">
-        <div class="gallery-caption">
-          <p>Student Activities</p>
-        </div>
-        <span class="gallery-category">Activities</span>
       </div>
       <div class="gallery-item" data-category="activities">
         <img src="https://i.ibb.co/gL6hVNbd/IMG-20170916-WA0086.jpg" alt="College Cultural Event">
-        <div class="gallery-caption">
-          <p>Cultural Activities</p>
-        </div>
-        <span class="gallery-category">Activities</span>
       </div>
       <div class="gallery-item" data-category="events">
         <img src="https://i.ibb.co/cXhw9PMC/IMG-20171003-WA0066.jpg" alt="College Annual Function">
-        <div class="gallery-caption">
-          <p>Annual Function</p>
-        </div>
-        <span class="gallery-category">Events</span>
       </div>
       <div class="gallery-item" data-category="events">
         <img src="https://i.ibb.co/vC8VYDVh/Whats-App-Image-2026-01-21-at-11-38-43-AM.jpg" alt="College Main Building Entrance">
-        <div class="gallery-caption">
-          <p>Main Building</p>
-        </div>
-        <span class="gallery-category">Events</span>
       </div>
       <div class="gallery-item" data-category="students">
         <img src="https://i.ibb.co/21yhyNCn/Whats-App-Image-2026-01-21-at-11-38-44-AM.jpg" alt="College Campus Ground">
-        <div class="gallery-caption">
-          <p>Campus Ground</p>
-        </div>
-        <span class="gallery-category">Students</span>
       </div>
       <div class="gallery-item" data-category="events">
         <img src="https://i.ibb.co/BVHVcJSG/Whats-App-Image-2026-01-21-at-11-38-45-AM.jpg" alt="College Library Building">
-        <div class="gallery-caption">
-          <p>Library Building</p>
-        </div>
-        <span class="gallery-category">Events</span>
       </div>
       <div class="gallery-item" data-category="functions">
         <img src="https://i.ibb.co/yFx60BzB/Whats-App-Image-2026-01-21-at-11-38-45-AM-1.jpg" alt="Classroom Learning Session">
-        <div class="gallery-caption">
-          <p>Classroom Session</p>
-        </div>
-        <span class="gallery-category">Functions</span>
       </div>
       <div class="gallery-item" data-category="academic">
         <img src="https://i.ibb.co/SD8WZ4LJ/Whats-App-Image-2026-01-21-at-11-38-46-AM-1.jpg" alt="Laboratory Practical Class">
-        <div class="gallery-caption">
-          <p>Laboratory Class</p>
-        </div>
-        <span class="gallery-category">Academic</span>
       </div>
       <div class="gallery-item" data-category="academic">
         <img src="https://i.ibb.co/zTRm7cP0/Whats-App-Image-2026-01-21-at-11-38-46-AM.jpg" alt="Seminar Session in Progress">
-        <div class="gallery-caption">
-          <p>Seminar Session</p>
-        </div>
-        <span class="gallery-category">Academic</span>
       </div>
       <div class="gallery-item" data-category="report">
         <img src="https://i.ibb.co/3m667Nxq/Whats-App-Image-2026-01-21-at-11-38-47-AM-1.jpg" alt="Annual Day Celebration">
-        <div class="gallery-caption">
-          <p>Annual Day</p>
-        </div>
-        <span class="gallery-category">Report</span>
       </div>
       <div class="gallery-item" data-category="report">
         <img src="https://i.ibb.co/zhSXZfJN/Whats-App-Image-2026-01-21-at-11-38-47-AM.jpg" alt="Prize Distribution Ceremony">
-        <div class="gallery-caption">
-          <p>Prize Distribution</p>
-        </div>
-        <span class="gallery-category">Report</span>
       </div>
       <div class="gallery-item" data-category="report">
         <img src="https://i.ibb.co/ymDS5bdP/Whats-App-Image-2026-01-21-at-11-38-48-AM-1.jpg" alt="Cultural Festival Performance">
-        <div class="gallery-caption">
-          <p>Cultural Festival</p>
-        </div>
-        <span class="gallery-category">Report</span>
       </div>
       <div class="gallery-item" data-category="report">
         <img src="https://i.ibb.co/219SYwdw/Whats-App-Image-2026-01-21-at-11-38-48-AM.jpg" alt="Student Group Discussion">
-        <div class="gallery-caption">
-          <p>Group Discussion</p>
-        </div>
-        <span class="gallery-category">Report</span>
       </div>
       <div class="gallery-item" data-category="report">
         <img src="https://i.ibb.co/99701Lhp/Whats-App-Image-2026-01-21-at-11-38-49-AM.jpg" alt="Student Project Exhibition">
-        <div class="gallery-caption">
-          <p>Project Exhibition</p>
-        </div>
-        <span class="gallery-category">Report</span>
       </div>
       <div class="gallery-item" data-category="functions">
         <img src="https://i.ibb.co/TBX4XMpW/Whats-App-Image-2026-01-21-at-11-38-49-AM-1.jpg" alt="Arts and Crafts Display">
-        <div class="gallery-caption">
-          <p>Arts Display</p>
-        </div>
-        <span class="gallery-category">Functions</span>
       </div>
       <div class="gallery-item" data-category="campus">
         <img src="https://i.ibb.co/zV71cXvk/Whats-App-Image-2026-01-21-at-11-28-03-AM-1.jpg" alt="College Hostel Building">
-        <div class="gallery-caption">
-          <p>Hostel Building</p>
-        </div>
-        <span class="gallery-category">Campus</span>
       </div>
       <div class="gallery-item" data-category="convocation">
         <img src="https://i.ibb.co/7xnJ4DKk/Whats-App-Image-2026-01-21-at-11-28-08-AM.jpg" alt="convocation">
-        <div class="gallery-caption">
-          <p>Convocation Ceremony</p>
-        </div>
-        <span class="gallery-category">Convocation</span>
       </div>
       <div class="gallery-item" data-category="convocation">
         <img src="https://i.ibb.co/xVNP0N1/Whats-App-Image-2026-01-21-at-11-28-09-AM-1.jpg" alt="Annual convocation Day">
-        <div class="gallery-caption">
-          <p>Convocation Day</p>
-        </div>
-        <span class="gallery-category">Convocation</span>
       </div>
       <div class="gallery-item" data-category="convocation">
         <img src="https://i.ibb.co/35VhHNf8/Whats-App-Image-2026-01-21-at-11-28-09-AM.jpg" alt="convocation">
-        <div class="gallery-caption">
-          <p>Graduation Day</p>
-        </div>
-        <span class="gallery-category">Convocation</span>
       </div>
       <div class="gallery-item" data-category="convocation">
         <img src="https://i.ibb.co/DPTHFfFs/Whats-App-Image-2026-01-21-at-11-28-10-AM-1.jpg" alt="convocation">
-        <div class="gallery-caption">
-          <p>Convocation Event</p>
-        </div>
-        <span class="gallery-category">Convocation</span>
       </div>
       <div class="gallery-item" data-category="convocation">
         <img src="https://i.ibb.co/yn3rHHhK/Whats-App-Image-2026-01-21-at-11-28-10-AM.jpg" alt="convocation">
-        <div class="gallery-caption">
-          <p>Graduation Ceremony</p>
-        </div>
-        <span class="gallery-category">Convocation</span>
       </div>
       <div class="gallery-item" data-category="convocation">
         <img src="https://i.ibb.co/sdnLFC74/Whats-App-Image-2026-01-21-at-11-28-11-AM.jpg" alt="convocation">
-        <div class="gallery-caption">
-          <p>Award Ceremony</p>
-        </div>
-        <span class="gallery-category">Convocation</span>
       </div>
       <div class="gallery-item" data-category="convocation">
         <img src="https://i.ibb.co/gLRwCS70/Whats-App-Image-2026-01-21-at-11-28-12-AM-1.jpg" alt="Convocation">
-        <div class="gallery-caption">
-          <p>Degree Distribution</p>
-        </div>
-        <span class="gallery-category">Convocation</span>
       </div>
       <div class="gallery-item" data-category="convocation">
         <img src="https://i.ibb.co/1YPT2b2w/Whats-App-Image-2026-01-21-at-11-28-12-AM.jpg" alt="Student Council Meeting">
-        <div class="gallery-caption">
-          <p>Student Council</p>
-        </div>
-        <span class="gallery-category">Convocation</span>
       </div>
       <div class="gallery-item" data-category="students">
         <img src="https://i.ibb.co/MDFkjKvT/Whats-App-Image-2026-01-21-at-11-28-13-AM.jpg" alt="Cultural Dance Practice">
-        <div class="gallery-caption">
-          <p>Dance Practice</p>
-        </div>
-        <span class="gallery-category">Students</span>
       </div>
       <div class="gallery-item" data-category="students">
         <img src="https://i.ibb.co/rf4K4n5Z/Whats-App-Image-2026-01-21-at-11-28-14-AM-1.jpg" alt="Independence Day Celebration">
-        <div class="gallery-caption">
-          <p>Independence Day</p>
-        </div>
-        <span class="gallery-category">Students</span>
       </div>
       <div class="gallery-item" data-category="students">
         <img src="https://i.ibb.co/rRDjSFJm/Whats-App-Image-2026-01-21-at-11-28-14-AM.jpg" alt="College Cafeteria">
-        <div class="gallery-caption">
-          <p>Cafeteria</p>
-        </div>
-        <span class="gallery-category">Students</span>
       </div>
       <div class="gallery-item" data-category="events">
         <img src="https://i.ibb.co/zTz4qbcC/Whats-App-Image-2026-01-21-at-11-28-15-AM.jpg" alt="College Administrative Block">
-        <div class="gallery-caption">
-          <p>Administrative Block</p>
-        </div>
-        <span class="gallery-category">Events</span>
       </div>
       <div class="gallery-item" data-category="activities">
         <img src="https://i.ibb.co/Y78DT3MC/Whats-App-Image-2026-01-21-at-11-28-16-AM-1.jpg" alt="Computer Lab Session">
-        <div class="gallery-caption">
-          <p>Computer Lab</p>
-        </div>
-        <span class="gallery-category">Activities</span>
       </div>
       <div class="gallery-item" data-category="activities">
         <img src="https://i.ibb.co/mVLk3Q9Q/Whats-App-Image-2026-01-21-at-11-28-17-AM.jpg" alt="College Anniversary Celebration">
-        <div class="gallery-caption">
-          <p>Anniversary Celebration</p>
-        </div>
-        <span class="gallery-category">Activities</span>
       </div>
       <div class="gallery-item" data-category="students">
         <img src="https://i.ibb.co/tM73DP3k/Whats-App-Image-2026-01-21-at-11-28-18-AM-1.jpg" alt="Parents Teachers Meeting">
-        <div class="gallery-caption">
-          <p>PT Meeting</p>
-        </div>
-        <span class="gallery-category">Students</span>
       </div>
       <div class="gallery-item" data-category="events">
         <img src="https://i.ibb.co/Kph6yyN5/Whats-App-Image-2026-01-21-at-11-28-18-AM.jpg" alt="Student Study Group">
-        <div class="gallery-caption">
-          <p>Study Group</p>
-        </div>
-        <span class="gallery-category">Events</span>
       </div>
       <div class="gallery-item" data-category="events">
         <img src="https://i.ibb.co/GfdwK03P/Whats-App-Image-2026-01-21-at-11-28-19-AM-1.jpg" alt="Debate Competition">
-        <div class="gallery-caption">
-          <p>Debate Competition</p>
-        </div>
-        <span class="gallery-category">Events</span>
       </div>
       <div class="gallery-item" data-category="activities">
         <img src="https://i.ibb.co/mFNxc2Dz/Whats-App-Image-2026-01-21-at-11-28-19-AM.jpg" alt="Quiz Competition">
-        <div class="gallery-caption">
-          <p>Quiz Competition</p>
-        </div>
-        <span class="gallery-category">Activities</span>
       </div>
       <div class="gallery-item" data-category="events">
         <img src="https://i.ibb.co/v453Cys5/Whats-App-Image-2026-01-21-at-11-28-20-AM-1.jpg" alt="College Farewell Party">
-        <div class="gallery-caption">
-          <p>Farewell Party</p>
-        </div>
-        <span class="gallery-category">Events</span>
       </div>
       <div class="gallery-item" data-category="events">
         <img src="https://i.ibb.co/XZtVsPtK/Whats-App-Image-2026-01-21-at-11-28-20-AM.jpg" alt="Award Ceremony">
-        <div class="gallery-caption">
-          <p>Award Ceremony</p>
-        </div>
-        <span class="gallery-category">Events</span>
       </div>
       <div class="gallery-item" data-category="events">
         <img src="https://i.ibb.co/1Y253hNq/Whats-App-Image-2026-01-21-at-11-28-22-AM-1.jpg" alt="College Auditorium">
-        <div class="gallery-caption">
-          <p>Auditorium</p>
-        </div>
-        <span class="gallery-category">Events</span>
       </div>
       <div class="gallery-item" data-category="functions">
         <img src="https://i.ibb.co/KjqsfW39/Whats-App-Image-2026-01-21-at-11-27-40-AM.jpg" alt="Morning Assembly">
-        <div class="gallery-caption">
-          <p>Morning Assembly</p>
-        </div>
-        <span class="gallery-category">Functions</span>
       </div>
       <div class="gallery-item" data-category="functions">
         <img src="https://i.ibb.co/C5xRwR2Z/Whats-App-Image-2026-01-21-at-11-27-55-AM.jpg" alt="Yoga Session">
-        <div class="gallery-caption">
-          <p>Yoga Session</p>
-        </div>
-        <span class="gallery-category">Functions</span>
       </div>
       <div class="gallery-item" data-category="functions">
         <img src="https://i.ibb.co/fG253KXm/Whats-App-Image-2026-01-21-at-11-27-58-AM.jpg" alt="Morning Sports Activities">
-        <div class="gallery-caption">
-          <p>Sports Activities</p>
-        </div>
-        <span class="gallery-category">Functions</span>
       </div>
       <div class="gallery-item" data-category="functions">
         <img src="https://i.ibb.co/YFNmsFrZ/Whats-App-Image-2026-01-21-at-11-27-59-AM.jpg" alt="Group Study Session">
-        <div class="gallery-caption">
-          <p>Group Study</p>
-        </div>
-        <span class="gallery-category">Functions</span>
       </div>
       <div class="gallery-item" data-category="functions">
         <img src="https://i.ibb.co/RG9VshdD/Whats-App-Image-2026-01-21-at-11-28-00-AM.jpg" alt="Library Study Time">
-        <div class="gallery-caption">
-          <p>Library Study</p>
-        </div>
-        <span class="gallery-category">Functions</span>
       </div>
       <div class="gallery-item" data-category="campus">
         <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo">
-        <div class="gallery-caption">
-          <p>College Logo</p>
-        </div>
-        <span class="gallery-category">Campus</span>
       </div>
       <div class="gallery-item" data-category="campus">
         <img src="https://i.ibb.co/rf3Sp41S/COLLEGE-2.png" alt="College Building">
-        <div class="gallery-caption">
-          <p>College Building</p>
-        </div>
-        <span class="gallery-category">Campus</span>
       </div>
     </div>
     <div class="section-header mt-5" data-aos="fade-up">
@@ -935,17 +689,13 @@
   </div>
 </section>
 
-<!-- Gallery Modal -->
+<!-- Gallery Modal - Clean version without captions -->
 <div class="gallery-modal" id="galleryModal">
   <div class="modal-close" id="modalClose">&times;</div>
   <div class="modal-content">
     <div class="modal-image-container">
       <div class="image-loader" id="imageLoader"></div>
       <img class="modal-image" id="modalImage" src="" alt="">
-    </div>
-    <div class="modal-info">
-      <div class="modal-title" id="modalTitle"></div>
-      <div class="modal-category" id="modalCategory"></div>
     </div>
     <div class="modal-counter" id="modalCounter"></div>
     <div class="modal-controls">
@@ -980,8 +730,6 @@
     const filterButtons = document.querySelectorAll('.filter-btn');
     const modal = document.getElementById('galleryModal');
     const modalImage = document.getElementById('modalImage');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalCategory = document.getElementById('modalCategory');
     const modalCounter = document.getElementById('modalCounter');
     const modalClose = document.getElementById('modalClose');
     const prevBtn = document.getElementById('prevBtn');
@@ -1057,8 +805,6 @@
       
       const currentItem = filteredItems[currentIndex];
       const img = currentItem.querySelector('img');
-      const title = currentItem.querySelector('.gallery-caption p').textContent;
-      const category = currentItem.querySelector('.gallery-category').textContent;
       
       // Show loader
       modalImage.style.opacity = '0';
@@ -1070,8 +816,6 @@
       tempImage.onload = () => {
         modalImage.src = img.src;
         modalImage.alt = img.alt;
-        modalTitle.textContent = title;
-        modalCategory.textContent = category;
         modalCounter.textContent = `${currentIndex + 1} / ${filteredItems.length}`;
         
         // Hide loader and show image
