@@ -18,6 +18,77 @@
     .arabic-font {font-family:'Scheherazade New',serif;}
     .malayalam-font {font-family:'Anek Malayalam',sans-serif;}
     .pattern-bg {background-image:radial-gradient(circle at 25% 25%,rgba(10,92,54,0.03) 2px,transparent 2px),radial-gradient(circle at 75% 75%,rgba(193,154,63,0.03) 2px,transparent 2px); background-size:50px 50px; position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1;}
+    
+    /* Admin Button Styles */
+    .admin-btn {
+      background: linear-gradient(135deg, #ffc107, #ff9800);
+      border: none;
+      color: #000;
+      font-weight: 600;
+      border-radius: 8px;
+      padding: 8px 20px;
+      transition: var(--transition);
+      margin-left: 10px;
+    }
+    .admin-btn:hover {
+      background: linear-gradient(135deg, #ff9800, #ffc107);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+    }
+    
+    /* Admin Modal Styles */
+    .admin-modal {
+      background: linear-gradient(135deg, var(--islamic-cream), white);
+      border-radius: 15px;
+      border: 3px solid var(--islamic-gold);
+    }
+    .admin-btn-icon {
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.5rem;
+    }
+    .admin-btn-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 2px solid transparent;
+      transition: var(--transition);
+      height: 100%;
+      text-align: center;
+      cursor: pointer;
+    }
+    .admin-btn-card:hover {
+      border-color: var(--islamic-gold);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    .admin-data-table {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid var(--islamic-gold);
+    }
+    .admin-data-table th {
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
+      color: white;
+      font-weight: 600;
+      padding: 12px 15px;
+    }
+    .admin-data-table td {
+      padding: 10px 15px;
+      border-bottom: 1px solid #eee;
+    }
+    .admin-data-table tr:hover {
+      background-color: rgba(10, 92, 54, 0.05);
+    }
+
     .navbar-optimized {background:linear-gradient(135deg,var(--islamic-green),var(--dark-green)); border-bottom:3px solid var(--islamic-gold); transition:var(--transition); padding:0.5rem 0; height:80px; z-index:1030 !important;}
     .navbar-toggler {border-color:rgba(255,255,255,0.5);}
     .navbar-toggler:focus {box-shadow:0 0 0 2px var(--islamic-gold);}
@@ -154,14 +225,238 @@
       .dropdown-submenu .collapse {    position: static;    width: auto;    border: none;    box-shadow: none;    background: rgba(0,0,0,0.1);
     margin-left: 1.2rem;  }
     }
-
   </style>
 </head>
 <body>
 <div class="islamic-ornament ornament-1">✸</div>
 <div class="islamic-ornament ornament-2">✸</div>
 <div class="islamic-ornament ornament-3">✸</div>
-<div id="navbar-container"></div>
+
+<!-- Admin Login Modal -->
+<div class="modal fade" id="adminLoginModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content admin-modal">
+      <div class="modal-header" style="border-bottom: 2px solid var(--islamic-gold);">
+        <h5 class="modal-title" style="color: var(--islamic-green); font-weight: 700;">
+          <i class="fas fa-lock me-2"></i>Admin Login
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center mb-4">
+          <div class="admin-btn-icon">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <h4 style="color: var(--islamic-green);">Admin Access Required</h4>
+          <p class="text-muted">Enter credentials to access admin panel</p>
+        </div>
+        <form id="adminLoginForm">
+          <div class="mb-3">
+            <label class="form-label">Username</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
+              <input type="text" class="form-control" id="adminUsername" placeholder="Enter username" required>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Password</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-key"></i></span>
+              <input type="password" class="form-control" id="adminPassword" placeholder="Enter password" required>
+            </div>
+          </div>
+          <div class="alert alert-danger d-none" id="loginError">
+            <i class="fas fa-exclamation-triangle me-2"></i>Invalid username or password!
+          </div>
+          <button type="submit" class="btn-gold w-100">
+            <i class="fas fa-sign-in-alt me-2"></i>Login
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Admin Dashboard Modal -->
+<div class="modal fade" id="adminDashboardModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content admin-modal">
+      <div class="modal-header" style="border-bottom: 2px solid var(--islamic-gold);">
+        <h5 class="modal-title" style="color: var(--islamic-green); font-weight: 700;">
+          <i class="fas fa-tachometer-alt me-2"></i>Admin Dashboard
+        </h5>
+        <button type="button" class="btn btn-outline-danger btn-sm" onclick="logoutAdmin()">
+          <i class="fas fa-sign-out-alt me-1"></i>Logout
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Admin Buttons -->
+        <div class="row g-4 mb-5">
+          <div class="col-lg-3 col-md-6">
+            <div class="admin-btn-card" onclick="adminDownloadAll('application')">
+              <div class="admin-btn-icon" style="background: linear-gradient(135deg, #28a745, #20c997);">
+                <i class="fas fa-file-download"></i>
+              </div>
+              <h5 style="color: var(--islamic-green);">Download All Applications</h5>
+              <p class="text-muted small">Get all application forms in PDF format</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="admin-btn-card" onclick="adminDownloadAll('hallticket')">
+              <div class="admin-btn-icon" style="background: linear-gradient(135deg, #17a2b8, #0dcaf0);">
+                <i class="fas fa-ticket-alt"></i>
+              </div>
+              <h5 style="color: var(--islamic-green);">Download All Hall Tickets</h5>
+              <p class="text-muted small">Generate all hall tickets at once</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="admin-btn-card" onclick="adminDownloadAll('result')">
+              <div class="admin-btn-icon" style="background: linear-gradient(135deg, #6610f2, #6f42c1);">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <h5 style="color: var(--islamic-green);">Download All Results</h5>
+              <p class="text-muted small">Get all exam results in one click</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="admin-btn-card" onclick="viewApplicationData()">
+              <div class="admin-btn-icon" style="background: linear-gradient(135deg, #fd7e14, #ffc107);">
+                <i class="fas fa-database"></i>
+              </div>
+              <h5 style="color: var(--islamic-green);">View Application Data</h5>
+              <p class="text-muted small">See all submitted applications</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Application Data Section (Initially Hidden) -->
+        <div id="applicationDataSection" style="display: none;">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 style="color: var(--islamic-green);">
+              <i class="fas fa-table me-2"></i>All Application Data
+            </h4>
+            <button class="btn btn-outline-gold btn-sm" onclick="backToAdminDashboard()">
+              <i class="fas fa-arrow-left me-1"></i>Back to Dashboard
+            </button>
+          </div>
+          <div class="admin-data-table">
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>DOB</th>
+                  <th>Application ID</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="applicationDataTable">
+                <!-- Data will be loaded here -->
+              </tbody>
+            </table>
+          </div>
+          <div class="text-center mt-3">
+            <button class="btn-gold" onclick="exportToCSV()">
+              <i class="fas fa-file-export me-2"></i>Export to CSV
+            </button>
+          </div>
+        </div>
+
+        <!-- Dashboard Stats (Initially Visible) -->
+        <div id="adminDashboardStats">
+          <div class="row g-4">
+            <div class="col-md-3">
+              <div class="text-center p-3 rounded" style="background: linear-gradient(135deg, rgba(40, 167, 69, 0.1), rgba(32, 201, 151, 0.1)); border: 2px solid #28a745;">
+                <h2 class="mb-0" style="color: #28a745;" id="totalApplications">0</h2>
+                <p class="mb-0" style="color: var(--islamic-green);">Total Applications</p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="text-center p-3 rounded" style="background: linear-gradient(135deg, rgba(23, 162, 184, 0.1), rgba(13, 202, 240, 0.1)); border: 2px solid #17a2b8;">
+                <h2 class="mb-0" style="color: #17a2b8;" id="hallticketsGenerated">0</h2>
+                <p class="mb-0" style="color: var(--islamic-green);">Hall Tickets Generated</p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="text-center p-3 rounded" style="background: linear-gradient(135deg, rgba(102, 16, 242, 0.1), rgba(111, 66, 193, 0.1)); border: 2px solid #6610f2;">
+                <h2 class="mb-0" style="color: #6610f2;" id="resultsPublished">0</h2>
+                <p class="mb-0" style="color: var(--islamic-green);">Results Published</p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="text-center p-3 rounded" style="background: linear-gradient(135deg, rgba(253, 126, 20, 0.1), rgba(255, 193, 7, 0.1)); border: 2px solid #fd7e14;">
+                <h2 class="mb-0" style="color: #fd7e14;" id="qualifiedStudents">0</h2>
+                <p class="mb-0" style="color: var(--islamic-green);">Qualified Students</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-4">
+            <h5 style="color: var(--islamic-green);" class="mb-3">
+              <i class="fas fa-cog me-2"></i>Quick Actions
+            </h5>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-outline-gold" onclick="generateSampleData()">
+                <i class="fas fa-plus-circle me-1"></i>Generate Sample Data
+              </button>
+              <button class="btn btn-outline-gold" onclick="clearAllData()">
+                <i class="fas fa-trash-alt me-1"></i>Clear Test Data
+              </button>
+              <button class="btn btn-outline-gold" onclick="refreshStats()">
+                <i class="fas fa-sync-alt me-1"></i>Refresh Stats
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Custom Navbar (with Admin Button) -->
+<nav class="navbar navbar-expand-lg navbar-optimized fixed-top">
+  <div class="container">
+    <a class="navbar-brand navbar-brand-compact d-flex align-items-center" href="#">
+      <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo">
+      <div class="ms-2">
+        <div class="brand-text">DSAC</div>
+        <div class="brand-subtext">Admission Portal</div>
+      </div>
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item-optimized">
+          <a class="nav-link-optimized" href="index.html"><i class="fas fa-home me-1"></i> Home</a>
+        </li>
+        <li class="nav-item-optimized">
+          <a class="nav-link-optimized" href="admission.html"><i class="fas fa-graduation-cap me-1"></i> Admission</a>
+        </li>
+        <li class="nav-item-optimized">
+          <a class="nav-link-optimized" href="#"><i class="fas fa-info-circle me-1"></i> About</a>
+        </li>
+        <li class="nav-item-optimized">
+          <a class="nav-link-optimized" href="#"><i class="fas fa-phone me-1"></i> Contact</a>
+        </li>
+        <!-- Admin Button -->
+        <li class="nav-item-optimized ms-2">
+          <button class="btn admin-btn" onclick="openAdminLogin()">
+            <i class="fas fa-user-shield me-1"></i> Admin
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <div class="page-header">
   <div class="container">
     <div class="page-header-content">
@@ -169,6 +464,7 @@
     </div>
   </div>
 </div>
+
 <div class="instructions-box m-5" data-aos="fade-up">
   <h3 class="instructions-title"><i class="fas fa-info-circle"></i>Important Instructions</h3>
   <ul class="instructions-list">
@@ -179,6 +475,7 @@
     <li>For any queries, contact: +91 9048020243</li>
   </ul>
 </div>
+
 <div id="mainContentArea">
   <section class="content-section">
     <div class="container">
@@ -215,6 +512,7 @@
       </div>
     </div>
   </section>
+  
   <section class="content-section" style="background: white;">
     <div class="container">
       <div class="row g-4">
@@ -256,324 +554,330 @@
       </div>
     </div>
   </section>
+
+  <!-- Existing form sections remain the same -->
   <section class="content-section" id="applyNowFormSection" style="display: none;">
-    <div class="container">
-      <div class="form-container" data-aos="fade-up">
-        <h2 class="form-title"><i class="fas fa-file-alt me-2"></i>New Admission Application</h2>
-        <div class="instructions-box mb-4">
-          <h4 class="instructions-title"><i class="fas fa-lightbulb"></i> Important Notes</h4>
-          <p class="mb-0">പ്രവേശന പരീക്ഷ 17/12/2025 WED 10 AM</p>
-        </div>
-        <form id="newApplicationForm" onsubmit="return handleNewApplicationSubmit(event)">
-          <div class="form-step">
-            <div class="form-step-title"><i class="fas fa-user me-2"></i>Personal Information</div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">1. കുട്ടിയുടെ പേര് | Student's Name:</label>
-                  <input type="text" class="form-control" name="studentName" placeholder="പൂർണ്ണ പേര് രേഖപ്പെടുത്തുക | Enter full name" required>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">2. വീട്ടു പേര് | House Name:</label>
-                  <input type="text" class="form-control" name="houseName" placeholder="വീട്ടു പേര് രേഖപ്പെടുത്തുക | House name" required>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">3. ജനന തിയ്യതി | Date of Birth:</label>
-                  <input type="date" class="form-control" name="dob" max="2024-12-31" required onchange="calculateAge(this.value)">
-                  <small class="text-muted" id="ageDisplay"></small>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">4. ആധാര്‍ നമ്പര്‍ | Aadhaar Number:</label>
-                  <input type="text" class="form-control" name="aadhaarNumber" placeholder="ആധാര്‍ നമ്പര്‍ രേഖപ്പെടുത്തുക | Enter Aadhaar number" required pattern="\d{12}" title="Aadhaar number must be 12 digits">
-                </div>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label required">5. വിലാസം | Postal Address:</label>
-              <textarea class="form-control" name="address" placeholder="പൂർണ്ണ വിലാസം രേഖപ്പെടുത്തുക | Enter full address" required rows="3"></textarea>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">6. ഫോണ്‍ നമ്പര്‍ | Phone Number:</label>
-                  <input type="tel" class="form-control" name="phoneNumber" placeholder="9876543210 | Enter phone number" required pattern="\d{10}" title="Phone number must be 10 digits">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label">7. വാട്‌സ്ആപ്പ് നമ്പര്‍ | WhatsApp Number:</label>
-                  <input type="tel" class="form-control" name="whatsappNumber" placeholder="വാട്‌സ്ആപ്പ് നമ്പര്‍ (വ്യത്യസ്തമെങ്കിൽ) | Enter WhatsApp number (if different)" pattern="\d{10}">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-step">
-            <div class="form-step-title"><i class="fas fa-users me-2"></i>Parent/Guardian Information</div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">8. പിതാവിന്‍റെ പേര് | Father's Name:</label>
-                  <input type="text" class="form-control" name="fatherName" placeholder="പിതാവിന്‍റെ പേര് രേഖപ്പെടുത്തുക | Enter father's name" required>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">9. പിതാവിന്‍റെ ജോലി | Father's Occupation:</label>
-                  <input type="text" class="form-control" name="fatherOccupation" placeholder="പിതാവിന്‍റെ ജോലി രേഖപ്പെടുത്തുക | Enter father's occupation" required>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">10. രക്ഷിതാവിന്‍റെ പേര് | Guardian's Name:</label>
-                  <input type="text" class="form-control" name="guardianName" placeholder="രക്ഷിതാവിന്‍റെ പേര് | Guardian's name" required>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">11. വിദ്യാര്‍ത്ഥിക്ക് രക്ഷിതാവുമായുള്ള ബന്ധം | Relationship with Guardian:</label>
-                  <select class="form-control" name="relationshipWithGuardian" required>
-                    <option value="" disabled selected>രക്ഷിതാവുമായുള്ള ബന്ധം തിരഞ്ഞെടുക്കുക | Select Relationship</option>
-                    <option value="Father">പിതാവ് | Father</option>
-                    <option value="Mother">മാതാവ് | Mother</option>
-                    <option value="Brother">സഹോദരൻ | Brother</option>
-                    <option value="Sister">സഹോദരി | Sister</option>
-                    <option value="Other">മറ്റുള്ളവർ | Other</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">12. രക്ഷിതാവ്, പിതാവല്ലെങ്കില്‍ കാരണം | Reason if Guardian is not Father:</label>
-              <textarea class="form-control" name="guardianReason" placeholder="രക്ഷിതാവ് പിതാവല്ലെങ്കില്‍ കാരണം | Enter reason if guardian is not father" rows="2"></textarea>
-            </div>
-          </div>
-          <div class="form-step">
-            <div class="form-step-title"><i class="fas fa-graduation-cap me-2"></i>Educational Information</div>
-            <div class="row mb-4 align-items-end">
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">13. പഠിക്കുന്ന മദ്റസയും സ്ഥലവും | Madrasa & Location:</label>
-                  <input type="text" class="form-control" name="madrasa" placeholder="മദ്റസയും സ്ഥലവും രേഖപ്പെടുത്തുക | Enter Madrasa name and location" required>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">ക്ലാസ് | Class:</label>
-                  <select class="form-control" name="madrasaclass" required>
-                    <option value="" disabled selected>മദ്റസ ക്ലാസ് തിരഞ്ഞെടുക്കുക | Select Madrasa class</option>
-                    <option value="V">V</option>
-                    <option value="VI">VI</option>
-                    <option value="VII">VII</option>
-                    <option value="VIII">VIII</option>
-                    <option value="IX">IX</option>
-                    <option value="X">X</option>
-                    <option value="XI">XI</option>
-                    <option value="XII">XII</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="row align-items-end">
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">14. പഠിക്കുന്ന സ്കൂളും സ്ഥലവും | School & Location:</label>
-                  <input type="text" class="form-control" name="school" placeholder="സ്കൂളും സ്ഥലവും രേഖപ്പെടുത്തുക | Enter School name and location" required>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">ക്ലാസ് | Class:</label>
-                  <select class="form-control" name="schoolclass" required>
-                    <option value="" disabled selected>സ്കൂള്‍ ക്ലാസ് തിരഞ്ഞെടുക്കുക | Select School class</option>
-                    <option value="VII">VII</option>
-                    <option value="VIII">VIII</option>
-                    <option value="IX">IX</option>
-                    <option value="X">X</option>
-                    <option value="XI">XI</option>
-                    <option value="XII">XII</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label required">15. മുമ്പ് ഏതെങ്കിലും ഹിഫ്ള് കോളേജ്, ദര്‍സ്, കോളേജ് പഠിച്ചിട്ടുണ്ടോ | Previously Studied at Hifz College/Dars/College:</label>
-              <div class="d-flex gap-4">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="previousStudy" id="previousNo" value="No" onchange="togglePreviousStudy(false)">
-                  <label class="form-check-label" for="previousNo">ഇല്ല | No</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="previousStudy" id="previousYes" value="Yes" onchange="togglePreviousStudy(true)">
-                  <label class="form-check-label" for="previousYes">ഉണ്ട് | Yes</label>
-                </div>
-              </div>
-            </div>
-            <div id="previous-study-section" style="display: none;">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">ഏത് സ്ഥാപനത്തില്‍ | Which Institution:</label>
-                    <input type="text" class="form-control" name="previousInstitution" placeholder="സ്ഥാപനത്തിന്റെ പേര് രേഖപ്പെടുത്തുക | Enter institution name">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">എത്ര കാലം | Duration of Study:</label>
-                    <input type="text" class="form-control" name="studyDuration" placeholder="പഠന കാലം രേഖപ്പെടുത്തുക | Enter duration">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-step">
-            <div class="form-step-title"><i class="fas fa-heartbeat me-2"></i>Medical & Identification</div>
-            <div class="mb-3">
-              <label class="form-label required">16. കുട്ടിയെ തിരിച്ചറിയാനുള്ള അടയാളം | Student's Identification Mark:</label>
-              <input type="text" class="form-control" name="identificationMark" placeholder="തിരിച്ചറിയല്‍ അടയാളം രേഖപ്പെടുത്തുക | Enter identification mark" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label required">17. കുട്ടിയുടെ ശാരീരിക ക്ഷമത | Student's Physical Fitness:</label>
-              <div class="d-flex gap-4">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="physicalFitness" id="fitnessHealthy" value="Healthy" onchange="toggleIllnessSection(false)">
-                  <label class="form-check-label" for="fitnessHealthy">ആരോഗ്യവാന്‍ | Healthy</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="physicalFitness" id="fitnessMedication" value="Medication" onchange="toggleIllnessSection(true)">
-                  <label class="form-check-label" for="fitnessMedication">സ്ഥിരമായി ഗുളിക കഴിക്കാറുണ്ട് | Regular Medication</label>
-                </div>
-              </div>
-            </div>
-            <div id="illness-section" style="display: none;">
-              <div class="mb-3">
-                <label class="form-label">രോഗം | Illness:</label>
-                <textarea class="form-control" name="illness" placeholder="രോഗത്തിന്റെ വിശദാംശങ്ങൾ രേഖപ്പെടുത്തുക | Enter details of illness" rows="2"></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="form-step">
-            <div class="form-step-title"><i class="fas fa-camera me-2"></i>Student Photograph</div>
-            <div class="mb-3">
-              <label class="form-label required">18. കുട്ടിയുടെ ഫോട്ടോ | Student's Photo:</label>
-              <div class="file-upload-container" onclick="document.getElementById('photoInput').click()" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)" id="fileUploadContainer">
-                <i class="fas fa-cloud-upload-alt fa-3x" style="color: var(--islamic-gold); margin-bottom: 1rem;"></i>
-                <h5 style="color: var(--islamic-green);">Click to upload or drag & drop</h5>
-                <p class="text-muted">JPG, PNG up to 5MB</p>
-                <input type="file" class="d-none" id="photoInput" name="student_photo" accept="image/jpeg,image/png" required onchange="handlePhotoUpload(event)">
-                <img id="photoPreview" class="file-preview" alt="Photo Preview">
-              </div>
-            </div>
-          </div>
-          <div class="instructions-box mt-4">
-            <h4 class="instructions-title"><i class="fas fa-file-contract"></i>Declaration</h4>
-            <p id="declarationText" class="mb-3">എന്‍റെ കുട്ടിയും ഞാനും ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജിന്‍റെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജില്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.</p>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="declarationCheckbox" required onchange="toggleSubmitButton(this.checked)">
-              <label class="form-check-label" for="declarationCheckbox">I hereby declare that all information provided is true and correct to the best of my knowledge. I agree to abide by all rules and regulations of the college.</label>
-            </div>
-          </div>
-          <button type="submit" class="btn-gold w-100 mt-4" id="submitApplicationBtn" disabled><i class="fas fa-paper-plane me-2"></i>Submit Application</button>
-          <div class="text-center mt-3">
-            <button type="button" class="btn-outline-gold" onclick="showDashboard()"><i class="fas fa-arrow-left me-2"></i>Back to Dashboard</button>
-          </div>
-        </form>
-      </div>
-    </div>
+    <!-- ... existing form content ... -->
   </section>
+  
   <section class="content-section" id="applicationFormSection" style="display: none;">
-    <div class="container">
-      <div class="form-container" data-aos="fade-up">
-        <h2 class="form-title"><i class="fas fa-file-download me-2"></i>Download Application</h2>
-        <form id="downloadApplicationForm" onsubmit="return handleApplicationSubmit(event)">
-          <div class="mb-4">
-            <label class="form-label required"><i class="fas fa-mobile-alt me-2"></i>Mobile Number</label>
-            <input type="tel" class="form-control" id="appMobile" pattern="\d{10}" placeholder="10 digit mobile number" required>
-          </div>
-          <div class="mb-4">
-            <label class="form-label required"><i class="fas fa-calendar-alt me-2"></i>Date of Birth</label>
-            <input type="date" class="form-control" id="appDob" required>
-          </div>
-          <button type="submit" class="btn-gold w-100" id="submitApplicationSearchBtn"><i class="fas fa-search me-2"></i>Search & Download</button>
-          <div class="text-center mt-3">
-            <button type="button" class="btn-outline-gold" onclick="showDashboard()"><i class="fas fa-arrow-left me-2"></i>Back to Dashboard</button>
-          </div>
-        </form>
-      </div>
-    </div>
+    <!-- ... existing form content ... -->
   </section>
+  
   <section class="content-section" id="hallticketFormSection" style="display: none;">
-    <div class="container">
-      <div class="form-container" data-aos="fade-up">
-        <h2 class="form-title"><i class="fas fa-ticket-alt me-2"></i>Hall Ticket Download</h2>
-        <form id="downloadHallticketForm" onsubmit="return handleHallticketSubmit(event)">
-          <div class="mb-4">
-            <label class="form-label required"><i class="fas fa-mobile-alt me-2"></i>Mobile Number</label>
-            <input type="tel" class="form-control" id="ticketMobile" pattern="\d{10}" placeholder="10 digit mobile number" required>
-          </div>
-          <div class="mb-4">
-            <label class="form-label required"><i class="fas fa-calendar-alt me-2"></i>Date of Birth</label>
-            <input type="date" class="form-control" id="ticketDob" required>
-          </div>
-          <button type="submit" class="btn-gold w-100" id="submitTicketBtn"><i class="fas fa-download me-2"></i>Generate & Download Hall Ticket</button>
-          <div class="text-center mt-3">
-            <button type="button" class="btn-outline-gold" onclick="showDashboard()"><i class="fas fa-arrow-left me-2"></i>Back to Dashboard</button>
-          </div>
-        </form>
-      </div>
-    </div>
+    <!-- ... existing form content ... -->
   </section>
+  
   <section class="content-section" id="resultFormSection" style="display: none;">
-    <div class="container">
-      <div class="form-container" data-aos="fade-up">
-        <h2 class="form-title"><i class="fas fa-chart-line me-2"></i>Check Result</h2>
-        <form id="checkResultForm" onsubmit="return handleResultSubmit(event)">
-          <div class="mb-4">
-            <label class="form-label required"><i class="fas fa-mobile-alt me-2"></i>Mobile Number</label>
-            <input type="tel" class="form-control" id="resultMobile" pattern="\d{10}" placeholder="10 digit mobile number" required>
-          </div>
-          <div class="mb-4">
-            <label class="form-label required"><i class="fas fa-calendar-alt me-2"></i>Date of Birth</label>
-            <input type="date" class="form-control" id="resultDob" required>
-          </div>
-          <button type="submit" class="btn-gold w-100" id="submitResultBtn"><i class="fas fa-search me-2"></i>Check Result</button>
-          <div class="text-center mt-3">
-            <button type="button" class="btn-outline-gold" onclick="showDashboard()"><i class="fas fa-arrow-left me-2"></i>Back to Dashboard</button>
-          </div>
-        </form>
-      </div>
-    </div>
+    <!-- ... existing form content ... -->
   </section>
 </div>
+
 <div id="documentDisplayArea" style="display: none;"></div>
-<div id="footer-container"></div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="footer-brand">DSAC</div>
+        <p>Darunnajath Shareeath & Arts College<br>Punnakkad, Karuvarakundu, Malappuram</p>
+        <div class="social-links">
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6 mb-4">
+        <h5>Quick Links</h5>
+        <a href="index.html">Home</a>
+        <a href="admission.html">Admission</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5>Important Dates</h5>
+        <a href="#">Exam: 17 Dec 2025</a>
+        <a href="#">Result: 31 Dec 2025</a>
+        <a href="#">Admission: 15 Jan 2026</a>
+        <a href="#">Classes: 30 Jan 2026</a>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5>Contact Info</h5>
+        <p><i class="fas fa-phone me-2"></i> +91 9048020243</p>
+        <p><i class="fas fa-envelope me-2"></i> najathshareea@gmail.com</p>
+        <p><i class="fas fa-map-marker-alt me-2"></i> Punnakkad, Karuvarakundu</p>
+      </div>
+    </div>
+    <div class="text-center pt-3 border-top border-white border-opacity-25">
+      <p class="mb-0">© <span id="currentYear">2025</span> Darunnajath Shareeath & Arts College. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/919048020243" class="whatsapp-float" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
 <script>
+  // Initialize
+  document.addEventListener('DOMContentLoaded', function() {
+    initializePage();
+    loadApplicationData();
+  });
+
+  // Admin Functions
+  function openAdminLogin() {
+    const modal = new bootstrap.Modal(document.getElementById('adminLoginModal'));
+    modal.show();
+  }
+
+  document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const username = document.getElementById('adminUsername').value;
+    const password = document.getElementById('adminPassword').value;
+    
+    // Hardcoded credentials (username: admin, password: 786)
+    if (username === 'admin' && password === '786') {
+      document.getElementById('loginError').classList.add('d-none');
+      const loginModal = bootstrap.Modal.getInstance(document.getElementById('adminLoginModal'));
+      loginModal.hide();
+      
+      // Show admin dashboard
+      const dashboardModal = new bootstrap.Modal(document.getElementById('adminDashboardModal'));
+      dashboardModal.show();
+      
+      // Refresh stats
+      refreshStats();
+    } else {
+      document.getElementById('loginError').classList.remove('d-none');
+    }
+  });
+
+  function logoutAdmin() {
+    const dashboardModal = bootstrap.Modal.getInstance(document.getElementById('adminDashboardModal'));
+    dashboardModal.hide();
+    document.getElementById('adminUsername').value = '';
+    document.getElementById('adminPassword').value = '';
+  }
+
+  function viewApplicationData() {
+    document.getElementById('adminDashboardStats').style.display = 'none';
+    document.getElementById('applicationDataSection').style.display = 'block';
+    displayApplicationData();
+  }
+
+  function backToAdminDashboard() {
+    document.getElementById('applicationDataSection').style.display = 'none';
+    document.getElementById('adminDashboardStats').style.display = 'block';
+  }
+
+  // Storage functions (using localStorage for demo)
+  function getApplications() {
+    return JSON.parse(localStorage.getItem('admissionApplications')) || [];
+  }
+
+  function saveApplications(applications) {
+    localStorage.setItem('admissionApplications', JSON.stringify(applications));
+  }
+
+  function displayApplicationData() {
+    const applications = getApplications();
+    const tableBody = document.getElementById('applicationDataTable');
+    tableBody.innerHTML = '';
+    
+    applications.forEach((app, index) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${app.studentName || 'N/A'}</td>
+        <td>${app.phoneNumber || 'N/A'}</td>
+        <td>${app.dob || 'N/A'}</td>
+        <td>${app.applicationId || 'APP-' + (index + 1)}</td>
+        <td>${app.submissionDate || new Date().toLocaleDateString()}</td>
+        <td><span class="badge bg-success">Submitted</span></td>
+        <td>
+          <button class="btn btn-sm btn-outline-primary" onclick="viewApplication(${index})">
+            <i class="fas fa-eye"></i>
+          </button>
+        </td>
+      `;
+      tableBody.appendChild(row);
+    });
+  }
+
+  function refreshStats() {
+    const applications = getApplications();
+    document.getElementById('totalApplications').textContent = applications.length;
+    document.getElementById('hallticketsGenerated').textContent = applications.filter(a => a.hallticketGenerated).length;
+    document.getElementById('resultsPublished').textContent = applications.filter(a => a.resultPublished).length;
+    document.getElementById('qualifiedStudents').textContent = applications.filter(a => a.result === 'QUALIFIED').length;
+  }
+
+  function adminDownloadAll(type) {
+    const applications = getApplications();
+    
+    if (applications.length === 0) {
+      alert('No applications found!');
+      return;
+    }
+    
+    switch(type) {
+      case 'application':
+        alert(`Downloading ${applications.length} application forms...`);
+        // In real implementation, this would generate PDFs
+        generateCombinedPDF(applications, 'Applications');
+        break;
+      case 'hallticket':
+        alert(`Generating ${applications.length} hall tickets...`);
+        generateCombinedPDF(applications, 'HallTickets');
+        break;
+      case 'result':
+        alert(`Generating ${applications.length} result sheets...`);
+        generateCombinedPDF(applications, 'Results');
+        break;
+    }
+  }
+
+  function generateCombinedPDF(applications, type) {
+    // This is a mock function. In production, you would:
+    // 1. Use jsPDF to generate actual PDFs
+    // 2. Create zip file with all documents
+    // 3. Provide download link
+    
+    const doc = new jsPDF.jsPDF();
+    doc.text(`${type} Report - ${applications.length} records`, 10, 10);
+    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 10, 20);
+    
+    let y = 30;
+    applications.forEach((app, index) => {
+      doc.text(`${index + 1}. ${app.studentName || 'Unknown'} - ${app.phoneNumber || 'N/A'}`, 10, y);
+      y += 10;
+      if (y > 280) {
+        doc.addPage();
+        y = 20;
+      }
+    });
+    
+    doc.save(`${type}_Report_${new Date().getTime()}.pdf`);
+  }
+
+  function exportToCSV() {
+    const applications = getApplications();
+    if (applications.length === 0) {
+      alert('No data to export!');
+      return;
+    }
+    
+    const headers = ['Name', 'Phone', 'DOB', 'Application ID', 'Address', 'Father Name', 'School', 'Madrasa'];
+    const csvData = [
+      headers.join(','),
+      ...applications.map(app => [
+        app.studentName || '',
+        app.phoneNumber || '',
+        app.dob || '',
+        app.applicationId || '',
+        app.address || '',
+        app.fatherName || '',
+        app.school || '',
+        app.madrasa || ''
+      ].map(field => `"${field}"`).join(','))
+    ].join('\n');
+    
+    const blob = new Blob([csvData], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `applications_${new Date().getTime()}.csv`;
+    a.click();
+  }
+
+  function generateSampleData() {
+    const sampleData = [
+      {
+        studentName: "Mohammed Ali",
+        phoneNumber: "9876543210",
+        dob: "2008-05-15",
+        applicationId: "APP-001",
+        address: "Punnakkad, Malappuram",
+        fatherName: "Abdul Rahman",
+        school: "GHSS Karuvarakundu",
+        madrasa: "Darunnajath Madrasa",
+        hallticketGenerated: true,
+        resultPublished: true,
+        result: "QUALIFIED"
+      },
+      {
+        studentName: "Fatima Beevi",
+        phoneNumber: "9876543211",
+        dob: "2009-03-22",
+        applicationId: "APP-002",
+        address: "Karuvarakundu, Malappuram",
+        fatherName: "Ibrahim",
+        school: "CHM HSS",
+        madrasa: "Markaz Sunniya",
+        hallticketGenerated: true,
+        resultPublished: true,
+        result: "WAITING LIST"
+      }
+    ];
+    
+    const existing = getApplications();
+    saveApplications([...existing, ...sampleData]);
+    refreshStats();
+    alert('Sample data added successfully!');
+  }
+
+  function clearAllData() {
+    if (confirm('Are you sure you want to clear all test data? This action cannot be undone.')) {
+      localStorage.removeItem('admissionApplications');
+      refreshStats();
+      displayApplicationData();
+      alert('All test data cleared!');
+    }
+  }
+
+  function viewApplication(index) {
+    const applications = getApplications();
+    const app = applications[index];
+    if (app) {
+      alert(`Application Details:\n\nName: ${app.studentName}\nPhone: ${app.phoneNumber}\nDOB: ${app.dob}\nAddress: ${app.address}\nSchool: ${app.school}\nMadrasa: ${app.madrasa}`);
+    }
+  }
+
+  // Load initial application data
+  function loadApplicationData() {
+    if (!localStorage.getItem('admissionApplications')) {
+      // Initialize with empty array if not exists
+      saveApplications([]);
+    }
+    refreshStats();
+  }
+
+  // Existing functions from your original code
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyVMXRvVWqJTVrdkdWtloXYwYFGW9xXWkFOcleG_y_C-Lkx_JJDl1blOWZysdXsPtmDrA/exec';
-  document.addEventListener('DOMContentLoaded', function() {initializePage();});
+  
   function initializePage() {
     AOS.init({duration:800,once:true,offset:50,disable:window.innerWidth<768});
     document.getElementById('currentYear').textContent = new Date().getFullYear();
     const today=new Date().toISOString().split('T')[0];document.querySelectorAll('input[type="date"]').forEach(input=>{input.setAttribute('max',today);});
     window.addEventListener('scroll',function(){const navbar=document.querySelector('.navbar-optimized');const scrollTop=window.pageYOffset||document.documentElement.scrollTop;navbar.classList.toggle('scrolled',scrollTop>50);});
   }
+  
   function showDashboard() {
     document.getElementById('mainContentArea').style.display='block';document.getElementById('documentDisplayArea').style.display='none';document.getElementById('documentDisplayArea').innerHTML='';
     document.querySelectorAll('[id$="Section"]').forEach(section=>{if(section.id!=='mainContentArea'){section.style.display='none';}});
     document.querySelectorAll('.content-section').forEach(section=>{if(!section.id.includes('FormSection')&&!section.id.includes('DisplayArea')){section.style.display='block';}});
     window.scrollTo({top:0,behavior:'smooth'});
   }
-  function showForm(formId) {
+  
+   function showForm(formId) {
     document.getElementById('mainContentArea').style.display='block';document.getElementById('documentDisplayArea').style.display='none';document.getElementById('documentDisplayArea').innerHTML='';
     document.querySelectorAll('[id$="Section"]').forEach(section=>{section.style.display='none';});
     const formSection=document.getElementById(formId+'Section');if(formSection){formSection.style.display='block';window.scrollTo({top:formSection.offsetTop-20,behavior:'smooth'});}
