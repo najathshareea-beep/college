@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DSAC | Admission</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- jsPDF + autoTable for bulk PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+  <style>
+    :root {--islamic-green:#0a5c36; --islamic-gold:#c19a3f; --islamic-cream:#f8f3e6; --islamic-light:#e9f5e9; --dark-green:#064e3b; --transition:all 0.3s ease;}
+    body {font-family:'Poppins',sans-serif; background-color:var(--islamic-cream); color:#333; scroll-behavior:smooth; overflow-x:hidden; padding-top:80px;}
+        .navbar-optimized {background:linear-gradient(135deg,var(--islamic-green),var(--dark-green)); border-bottom:3px solid var(--islamic-gold); transition:var(--transition); padding:0.5rem 0; height:80px; z-index:1030 !important;}
+    .navbar-toggler {border-color:rgba(255,255,255,0.5);}
+    .navbar-toggler:focus {box-shadow:0 0 0 2px var(--islamic-gold);}
+    .navbar-toggler-icon {background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");}
+    .navbar-optimized.scrolled {background:rgba(10,92,54,0.98); box-shadow:0 5px 20px rgba(0,0,0,0.1); height:70px;}
+    .navbar-brand-compact img {border-radius:8px; transition:transform 0.3s ease; width:60px; height:60px; object-fit:contain; filter:brightness(0) invert(1); border:none; box-shadow:0 0 0 2px var(--islamic-gold); padding:0;}
+    .navbar-optimized.scrolled .navbar-brand-compact img {width:50px; height:50px;}
+    .navbar-brand-compact:hover img {transform:scale(1.05);}
+    .brand-text {font-size:1.2rem; line-height:1.2;}
+    .brand-subtext {font-size:0.8rem; opacity:0.9;}
+    .nav-link-optimized {color:#fff !important; font-weight:500; transition:var(--transition); padding-left:0.4rem; padding-right:0.4rem; border-radius:5px; margin:0 2px; white-space:nowrap;}
+    .nav-item-optimized {margin:0 2px;}
+    .nav-link-optimized:hover {color:var(--islamic-gold) !important; background:rgba(255,255,255,0.1);}
+    .dropdown-menu-optimized {background:var(--islamic-green); border:1px solid var(--islamic-gold); border-radius:8px; padding:0.5rem 0;}
+    .dropdown-item-optimized {color:white; padding:0.5rem 1rem; transition:var(--transition);}
+    .dropdown-item-optimized:hover {background:var(--islamic-gold); color:var(--islamic-green);}
+    .page-header {background:linear-gradient(135deg,var(--islamic-green),var(--dark-green)); color:white; height:30vh; min-height:220px; display:flex; align-items:center; justify-content:center; text-align:center; margin-bottom:3rem; border-bottom:5px solid var(--islamic-gold); position:relative; overflow:hidden;}
+    .page-header::before {content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:radial-gradient(circle at 20% 30%,rgba(193,154,63,0.1) 0%,transparent 50%),radial-gradient(circle at 80% 70%,rgba(10,92,54,0.1) 0%,transparent 50%);}
+    .page-header-content {position:relative; z-index:2;}
+    .page-title {font-family:'Scheherazade New',serif; font-size:3.5rem; font-weight:700; margin-bottom:1rem; color:var(--islamic-gold); text-shadow:0 2px 4px rgba(0,0,0,0.3);}
+    .page-subtitle {font-size:1.4rem; opacity:0.95; max-width:800px; margin:0 auto; color:var(--islamic-cream);}
+    .content-section {padding:4rem 0; background:var(--islamic-cream);}
+    .section-header {text-align:center; margin-bottom:3rem; position:relative; padding:2rem 0;}
+    .section-title {color:var(--islamic-green); font-weight:700; display:inline-block; padding:0 1rem; background:var(--islamic-cream); position:relative; z-index:2; margin-bottom:0.5rem; font-size:2.5rem;}
+    .section-header::before {content:''; position:absolute; top:50%; left:0; right:0; height:3px; background:linear-gradient(90deg,transparent,var(--islamic-gold),transparent); z-index:1;}
+    .section-subtitle {color:#666; font-size:1.1rem; max-width:700px; margin:0 auto;}
+    .btn-gold {background:linear-gradient(135deg,var(--islamic-gold),#d4af37); border:none; color:var(--islamic-green); font-weight:600; border-radius:8px; box-shadow:0 4px 15px rgba(193,154,63,0.3); transition:var(--transition); padding:0.75rem 1.5rem;}
+    .btn-gold:hover {background:linear-gradient(135deg,#d4af37,var(--islamic-gold)); box-shadow:0 6px 20px rgba(193,154,63,0.4); transform:translateY(-2px); color:var(--islamic-green);}
+    .btn-outline-gold {border:2px solid var(--islamic-gold); color:var(--islamic-gold); background:transparent; border-radius:8px; padding:0.75rem 1.5rem; font-weight:600; transition:var(--transition);}
+    .btn-outline-gold:hover {background:var(--islamic-gold); color:var(--islamic-green);}
+    .portal-card {background:white; border-radius:15px; padding:2rem; box-shadow:0 10px 30px rgba(0,0,0,0.08); border:2px solid transparent; transition:var(--transition); height:100%;}
+    .portal-card:hover {transform:translateY(-5px); border-color:var(--islamic-gold); box-shadow:0 15px 35px rgba(0,0,0,0.15);}
+    .portal-icon {width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,var(--islamic-green),var(--dark-green)); display:flex; align-items:center; justify-content:center; color:var(--islamic-gold); font-size:2rem; margin:0 auto 1.5rem; box-shadow:0 5px 15px rgba(10,92,54,0.2); transition:var(--transition);}
+    .portal-card:hover .portal-icon {transform:scale(1.1) rotate(5deg); background:linear-gradient(135deg,var(--dark-green),var(--islamic-green));}
+    .portal-title {color:var(--islamic-green); font-weight:700; margin-bottom:1rem; font-size:1.4rem; text-align:center;}
+    .portal-description {color:#666; text-align:center; margin-bottom:1.5rem; line-height:1.6;}
+    .form-container {background:white; border-radius:15px; padding:2.5rem; box-shadow:0 10px 30px rgba(0,0,0,0.08); border:2px solid var(--islamic-gold); margin-bottom:2rem;}
+    .form-title {color:var(--islamic-green); font-weight:700; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:2px solid var(--islamic-gold); font-size:1.8rem; text-align:center;}
+    .form-label {color:var(--islamic-green); font-weight:600; margin-bottom:0.5rem; display:block;}
+    .form-label.required::after {content:" *"; color:#dc3545; font-weight:bold; margin-left:2px;}
+    .form-control {border:2px solid #e0e0e0; border-radius:8px; padding:0.75rem 1rem; transition:var(--transition); font-size:1rem;}
+    .form-control:focus {border-color:var(--islamic-gold); box-shadow:0 0 0 0.25rem rgba(193,154,63,0.25); outline:none;}
+    .form-step {background:rgba(248,243,230,0.5); border-radius:10px; padding:1.5rem; margin-bottom:1.5rem; border-left:4px solid var(--islamic-gold);}
+    .form-step-title {color:var(--islamic-green); font-weight:600; margin-bottom:1rem; font-size:1.2rem; display:flex; align-items:center; gap:10px;}
+    .form-step-title i {color:var(--islamic-gold);}
+    .file-upload-container {border:2px dashed var(--islamic-gold); border-radius:10px; padding:2rem; text-align:center; cursor:pointer; transition:var(--transition); background:rgba(248,243,230,0.3);}
+    .file-upload-container:hover {background:rgba(248,243,230,0.5); border-color:var(--dark-green);}
+    .file-preview {max-width:200px; max-height:200px; border-radius:8px; margin-top:1rem; border:2px solid var(--islamic-gold); display:none;}
+    .instructions-box {background:linear-gradient(135deg,rgba(10,92,54,0.05),rgba(193,154,63,0.05)); border-radius:15px; padding:1.5rem; border:2px solid var(--islamic-gold); margin:2rem 0;}
+    .instructions-title {color:var(--islamic-green); font-weight:700; margin-bottom:1rem; display:flex; align-items:center; gap:10px;}
+    .instructions-list {padding-left:1.5rem; margin-bottom:0;}
+    .instructions-list li {margin-bottom:0.5rem; color:#555; line-height:1.6;}
+    .timeline {position:relative; padding:2rem 0; margin:2rem 0;}
+    .timeline::before {content:''; position:absolute; left:0; right:0; top:50%; height:4px; background:linear-gradient(90deg,var(--islamic-green),var(--islamic-gold)); transform:translateY(-50%); z-index:1; border-radius:2px;}
+    .timeline-item {position:relative; margin-bottom:0; display:flex; justify-content:center; z-index:2;}
+    .timeline-content-box {background:white; border-radius:12px; box-shadow:0 8px 25px rgba(0,0,0,0.1); padding:1.5rem; width:22%; max-width:300px; border:2px solid transparent; transition:var(--transition); position:relative; z-index:2; margin:0 10px;}
+    .timeline-content-box:hover {transform:translateY(-10px); border-color:var(--islamic-gold); box-shadow:0 15px 35px rgba(0,0,0,0.15);}
+    .timeline-content-box::before {content:''; position:absolute; top:100%; left:50%; width:20px; height:20px; border-radius:50%; background:white; border:3px solid var(--islamic-gold); box-shadow:0 0 0 3px var(--islamic-green); z-index:3; transition:var(--transition); transform:translate(-50%,-50%);}
+    .timeline-content-box:hover::before {transform:translate(-50%,-50%) scale(1.2); background:var(--islamic-gold);}
+    .timeline-date {color:var(--islamic-green); font-weight:700; font-size:1.1rem; padding:8px 15px; background:linear-gradient(135deg,rgba(10,92,54,0.1),rgba(193,154,63,0.1)); border-radius:20px; display:inline-block; margin-bottom:1rem; border:1px solid rgba(10,92,54,0.2);}
+    .timeline-content-box:hover .timeline-date {background:linear-gradient(135deg,var(--islamic-green),var(--dark-green)); color:white; border-color:var(--islamic-gold);}
+    .timeline-icon {width:50px; height:50px; border-radius:50%; background:linear-gradient(135deg,var(--islamic-green),var(--dark-green)); display:flex; align-items:center; justify-content:center; color:white; font-size:1.25rem; margin-bottom:1rem; box-shadow:0 4px 10px rgba(10,92,54,0.2);}
+    .timeline-title {color:var(--islamic-green); font-size:1.3rem; font-weight:600; margin-bottom:0.75rem;}
+    .document-container {width:21cm; min-height:29.7cm; background:white; box-shadow:0 10px 30px rgba(0,0,0,0.1); border-radius:12px; overflow:hidden; margin:0 auto; position:relative;}
+    .document-watermark {position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-45deg); font-size:60px; color:rgba(10,92,54,0.03); font-weight:bold; z-index:0; white-space:nowrap; pointer-events:none;}
+    .document-header {background:linear-gradient(135deg,var(--islamic-green),var(--dark-green)); color:white; padding:20px; text-align:left; position:relative; display:flex; align-items:flex-start; justify-content:flex-start; gap:20px; border-bottom:5px solid var(--islamic-gold);}
+    .document-logo {width:120px; height:120px; border-radius:50%; border:3px solid white; box-shadow:0 4px 10px rgba(0,0,0,0.2); background:white; padding:3px; flex-shrink:0;}
+    .document-college-info {flex:1; display:flex; flex-direction:column; justify-content:center; text-align:left;}
+    .document-arabic {font-family:'Scheherazade New',serif; font-size:14px; font-weight:600; margin-bottom:2px; text-align:left;}
+    .document-college-name {font-size:16px; font-weight:700; margin-bottom:2px; text-align:left; color:white;}
+    .document-address {font-size:10px; margin-bottom:2px; text-align:left; color:rgba(255,255,255,0.9);}
+    .document-title {font-size:18px; font-weight:700; margin-top:8px; text-align:left; color:white; border-top:1px solid rgba(255,255,255,0.3); padding-top:8px;}
+    .document-content {padding:25px; position:relative; text-align:left; z-index:1;}
+    .document-footer {text-align:center; padding:10px; background:linear-gradient(135deg,#f8f9fa 0%,#e9ecef 100%); border-top:1px solid #dee2e6; margin-top:20px;}
+    .info-grid {display:grid; grid-template-columns:repeat(2,1fr); gap:8px;}
+    .info-item {display:flex; padding:5px 0; border-bottom:1px dashed #dee2e6; text-align:left;}
+    .info-label {font-weight:600; color:#495057; width:120px; font-size:11px; line-height:1.2; text-align:left;}
+    .info-value {color:#212529; font-size:11px; flex:1; line-height:1.2; text-align:left;}
+    .document-section-title {font-size:14px; font-weight:600; color:var(--islamic-green); margin:15px 0 8px; padding-bottom:3px; border-bottom:1px solid #e9ecef; text-align:left;}
+    .document-declaration {background:linear-gradient(135deg,#f8f9fa 0%,#e9ecef 100%); border-radius:8px; padding:15px; margin-top:20px; border:1px solid #dee2e6;}
+    .document-signature-section {text-align:right; margin-top:20px; padding-top:10px; border-top:1px solid #ced4da;}
+    .document-signature-line {display:inline-block; width:250px; border-bottom:1px solid #212529; margin-bottom:3px;}
+    .student-info-box {background:#f8f9fa; border-radius:8px; padding:15px; margin-bottom:15px; border:1px solid #dee2e6;}
+    .exam-details-box {background:white; border:2px solid var(--islamic-green); border-radius:8px; padding:15px; margin:15px 0; display:flex; flex-direction:column;}
+    .exam-title {font-size:16px; font-weight:700; color:var(--islamic-green); text-align:center; margin-bottom:12px;}
+    .exam-info-grid {display:grid; grid-template-columns:repeat(2,1fr); gap:10px; flex:1;}
+    .exam-item {padding:8px; background:#f8f9fa; border-radius:6px; border:1px solid #dee2e6; display:flex; flex-direction:column; justify-content:center;}
+    .exam-label {font-weight:600; color:#495057; font-size:10px; margin-bottom:3px;}
+    .exam-value {font-size:14px; font-weight:700; color:var(--islamic-green);}
+    .exam-wrapper {display:grid; grid-template-columns:1fr auto; gap:15px; align-items:start;}
+    .signing-table {width:100%; border-collapse:collapse; margin:15px 0; border:2px solid var(--islamic-green); border-radius:6px; overflow:hidden;}
+    .signing-table th {background:var(--islamic-green); color:white; padding:8px; font-weight:600; font-size:12px; text-align:center;}
+    .signing-table td {padding:15px; text-align:center; border:1px solid #dee2e6; font-weight:500; color:#495057; height:60px; font-size:11px;}
+    .document-instructions {background:linear-gradient(135deg,#fff3cd 0%,#ffeaa7 100%); border-radius:8px; padding:15px; margin-top:15px; border:1px solid #ffc107;}
+    .document-instructions-title {font-size:16px; font-weight:700; color:#856404; margin-bottom:8px; text-align:center;}
+    .document-instructions-list {padding-left:20px; font-size:11px;}
+    .document-instructions-list li {margin-bottom:5px; color:#856404;}
+    .result-section-box {background:white; border:2px solid var(--islamic-green); border-radius:8px; padding:15px; margin:15px 0; text-align:center;}
+    .result-status {font-size:24px; font-weight:700; color:var(--islamic-green); margin-bottom:10px;}
+    .result-rank {font-size:16px; color:#6c757d; margin-bottom:10px;}
+    .admission-info-box {background:#e8f4ff; border-radius:6px; padding:12px; margin-top:15px; text-align:left;}
+    .admission-title {font-size:14px; font-weight:600; color:var(--islamic-green); margin-bottom:8px; text-align:center;}
+    .admission-row {margin-bottom:6px; display:flex; align-items:flex-start;}
+    .admission-label {font-weight:600; color:#495057; min-width:140px; font-size:11px; padding:2px 0;}
+    .admission-value {color:#212529; font-size:11px; flex:1; padding:2px 0;}
+    .note-section {background:#fff3cd; border-radius:6px; padding:12px; margin-top:12px; border-left:4px solid #ffc107;}
+    .note-title {font-size:12px; font-weight:600; color:#856404; margin-bottom:6px;}
+    .note-content {font-size:11px; color:#856404; line-height:1.4;}
+    @media print {body{padding:0 !important;background:white !important;margin:0 !important;} .document-container{width:21cm !important;min-height:29.7cm !important;box-shadow:none !important;border-radius:0 !important;margin:0 !important;page-break-after:always !important;} .no-print{display:none !important;} .navbar-optimized,.footer,.whatsapp-float,.page-header,.pattern-bg,.islamic-ornament,.content-section:not(.document-section),#mainContentArea{display:none !important;} #documentDisplayArea{display:block !important;width:100% !important;height:auto !important;position:static !important;} .document-container{break-inside:avoid !important;} @page{size:A4;margin:0.5cm;}}
+    .footer {background:linear-gradient(135deg,var(--dark-green),var(--islamic-green)); border-top:3px solid var(--islamic-gold); padding:3rem 0 1.5rem; color:white;}
+    .footer-brand {font-size:1.8rem; font-weight:700; color:var(--islamic-gold); margin-bottom:1rem;}
+    .social-links {display:flex; gap:12px; margin-top:1rem;}
+    .social-icon {width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; text-decoration:none; transition:var(--transition); background:rgba(255,255,255,0.1); font-size:1.1rem;}
+    .social-icon:hover {transform:translateY(-5px); background:var(--islamic-gold); color:var(--islamic-green);}
+    .footer-links h5 {color:var(--islamic-gold); margin-bottom:1.2rem; font-size:1.1rem; font-weight:600;}
+    .footer-links a {display:block; color:rgba(255,255,255,0.85); text-decoration:none; margin-bottom:0.6rem; transition:var(--transition); font-size:0.95rem;}
+    .footer-links a:hover {color:var(--islamic-gold); padding-left:5px;}
+    .whatsapp-float {position:fixed; bottom:25px; right:15px; width:60px; height:60px; background:linear-gradient(135deg,#25D366,#128C7E); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.6rem; box-shadow:0 10px 25px rgba(37,211,102,0.3); z-index:1000; animation:float 3s ease-in-out infinite; transition:var(--transition); text-decoration:none;}
+    .whatsapp-float:hover {transform:scale(1.1) rotate(10deg); box-shadow:0 15px 30px rgba(37,211,102,0.4);}
+    @keyframes float {0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);}}
+    .islamic-ornament {position:fixed; color:var(--islamic-gold); opacity:0.08; font-size:1.8rem; z-index:-1; pointer-events:none;}
+    .ornament-1 {top:20%; left:5%; animation:float 6s ease-in-out infinite;}
+    .ornament-2 {top:60%; right:5%; animation:float 8s ease-in-out infinite reverse;}
+    .ornament-3 {bottom:20%; left:10%; animation:float 7s ease-in-out infinite;}
+    @media (max-width:768px) {body{padding-top:70px !important;} .navbar-optimized{height:70px;padding:0.3rem 0;} .page-header{height:26vh;min-height:180px;} .page-title{font-size:2.2rem;} .page-subtitle{font-size:1.1rem;} .content-section{padding:2.5rem 0;} .section-title{font-size:1.8rem;} .navbar-collapse{background:var(--dark-green);padding:1rem;border-radius:0 0 10px 10px;border:1px solid var(--islamic-gold);margin-top:0px;max-height:70vh;overflow-y:auto;} .form-container{padding:1.5rem;} .portal-card{padding:1.5rem;} .document-container{width:100%;box-shadow:none;border-radius:0;} .timeline::before{left:20px;right:auto;top:0;bottom:0;width:4px;height:auto;background:linear-gradient(180deg,var(--islamic-green),var(--islamic-gold));transform:none;} .timeline-item{justify-content:flex-start;margin-bottom:2.5rem;} .timeline-content-box{width:calc(100% - 60px);margin-left:40px;margin-right:0;} .timeline-content-box::before{top:50%;left:-35px;transform:translateY(-50%);} .timeline-content-box:hover::before{transform:translateY(-50%) scale(1.2);}}
+    @media (max-width:576px) {.page-title{font-size:1.8rem;} .section-title{font-size:1.5rem;} .portal-icon{width:60px;height:60px;font-size:1.5rem;}}
+    @media (min-width: 992px) {
+      .dropdown-submenu {  position: relative;  }
+      .dropdown-submenu:hover > .collapse {    display: block !important;  }
+      .dropdown-submenu .collapse {    position: absolute;    top: 0;    left: 100%;    z-index: 1000;    min-width: 12rem;    padding: 0.5rem 0;    margin: 0;    font-size: 1rem;    background-color: var(--islamic-green);    border: 1px solid var(--islamic-gold);    border-radius: 0 0.5rem 0.5rem 0.5rem;  }
+      .dropdown-submenu > a:after {    content: "›";    float: right;    margin-right: -0.5rem;    font-size: 1.2rem;  }
+    }
+    @media (max-width: 991px) {
+      .dropdown-submenu .collapse {    position: static;    width: auto;    border: none;    box-shadow: none;    background: rgba(0,0,0,0.1);
+    margin-left: 1.2rem;  }
+    }
+
+    #adminDataTable { font-size: 0.85rem; max-height: 500px; overflow-y: auto; }
+    #adminDataTable th, #adminDataTable td { white-space: nowrap; }
+  </style>
+</head>
+<body>
+<!-- Islamic Ornaments -->
+<div class="islamic-ornament ornament-1">✸</div>
+<div class="islamic-ornament ornament-2">✸</div>
+<div class="islamic-ornament ornament-3">✸</div>
+
+<!-- Your original page content: ornaments, navbar, header, instructions, portals, forms, etc. -->
+
+<!-- ==================== ADMIN LOGIN MODAL ==================== -->
+<div class="modal fade" id="adminLoginModal" tabindex="-1" aria-labelledby="adminLoginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-3" style="border-color: var(--islamic-gold);">
+      <div class="modal-header" style="background: var(--islamic-green); color: white;">
+        <h5 class="modal-title" id="adminLoginModalLabel">Admin Access</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="adminLoginForm">
+          <div class="mb-3">
+            <label class="form-label fw-bold">Username</label>
+            <input type="text" class="form-control" id="adminUsername" placeholder="admin" required autocomplete="off">
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">Password</label>
+            <input type="password" class="form-control" id="adminPassword" required autocomplete="off">
+          </div>
+          <button type="submit" class="btn-gold w-100 mt-3"><i class="fas fa-sign-in-alt me-2"></i> Log In</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== ADMIN PANEL ==================== -->
+<section class="content-section" id="adminPanelSection" style="display:none; background: white;">
+  <div class="container">
+    <div class="form-container" data-aos="fade-up">
+      <h2 class="form-title text-center mb-4">
+        <i class="fas fa-user-shield me-2"></i> Admin Control Panel
+      </h2>
+
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-5 col-lg-3">
+          <button class="btn-gold w-100 py-3" onclick="bulkDownload('applications')">
+            <i class="fas fa-file-alt fa-2x mb-2 d-block"></i>
+            Download All Applications
+          </button>
+        </div>
+        <div class="col-md-5 col-lg-3">
+          <button class="btn-gold w-100 py-3" onclick="bulkDownload('halltickets')">
+            <i class="fas fa-ticket-alt fa-2x mb-2 d-block"></i>
+            Download All Hall Tickets
+          </button>
+        </div>
+        <div class="col-md-5 col-lg-3">
+          <button class="btn-gold w-100 py-3" onclick="bulkDownload('results')">
+            <i class="fas fa-chart-line fa-2x mb-2 d-block"></i>
+            Download All Results
+          </button>
+        </div>
+        <div class="col-md-5 col-lg-3">
+          <button class="btn-gold w-100 py-3" onclick="showApplicationData()">
+            <i class="fas fa-database fa-2x mb-2 d-block"></i>
+            View Application Data
+          </button>
+        </div>
+      </div>
+
+      <div class="text-center mt-5">
+        <button class="btn-outline-gold px-5 py-2" onclick="logoutAdmin()">
+          <i class="fas fa-sign-out-alt me-2"></i> Logout
+        </button>
+      </div>
+    </div>
+
+    <div id="adminDataDisplay" class="mt-5"></div>
+  </div>
+</section>
+
+<!-- Your existing documentDisplayArea, footer, etc. -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+// Your original SCRIPT_URL
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyVMXRvVWqJTVrdkdWtloXYwYFGW9xXWkFOcleG_y_C-Lkx_JJDl1blOWZysdXsPtmDrA/exec';
+
+// ==================== ADMIN LOGIN LOGIC ====================
+document.getElementById('adminLoginForm')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const username = document.getElementById('adminUsername').value.trim();
+  const password = document.getElementById('adminPassword').value.trim();
+
+  if (username === 'admin' && password === '786') {
+    bootstrap.Modal.getOrCreateInstance(document.getElementById('adminLoginModal')).hide();
+    document.getElementById('mainContentArea').style.display = 'none';
+    document.getElementById('adminPanelSection').style.display = 'block';
+    document.getElementById('adminDataDisplay').innerHTML = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    alert('Wrong username or password');
+  }
+});
+
+function logoutAdmin() {
+  document.getElementById('adminPanelSection').style.display = 'none';
+  document.getElementById('mainContentArea').style.display = 'block';
+  document.getElementById('adminDataDisplay').innerHTML = '';
+}
+
+// ==================== BULK DOWNLOAD (PDF) ====================
+async function bulkDownload(type) {
+  let queryType = '';
+  if (type === 'applications') queryType = 'all_applications';
+  else if (type === 'halltickets') queryType = 'all_halltickets';
+  else if (type === 'results')    queryType = 'all_results';
+  else return;
+
+  try {
+    const resp = await fetch(`${SCRIPT_URL}?type=${queryType}`);
+    const result = await resp.json();
+
+    if (result.status !== 'success' || !result.data?.length) {
+      alert('No records found or error occurred.');
+      return;
+    }
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation: 'landscape' });
+
+    doc.setFontSize(18);
+    doc.text(`All ${type.charAt(0).toUpperCase() + type.slice(1)} - ${new Date().toLocaleDateString()}`, 14, 20);
+
+    // Use first row to get headers
+    const headers = Object.keys(result.data[0]);
+    const rows = result.data.map(obj => headers.map(key => obj[key] ?? ''));
+
+    doc.autoTable({
+      head: [headers],
+      body: rows,
+      startY: 30,
+      theme: 'grid',
+      styles: { fontSize: 8, cellPadding: 2, overflow: 'linebreak' },
+      headStyles: { fillColor: [10, 92, 54], textColor: [255,255,255] },
+      alternateRowStyles: { fillColor: [248, 243, 230] }
+    });
+
+    doc.save(`All_${type}_${new Date().toISOString().slice(0,10)}.pdf`);
+  } catch (err) {
+    console.error(err);
+    alert('Error while fetching or generating PDF');
+  }
+}
+
+// ==================== SHOW APPLICATION DATA TABLE ====================
+async function showApplicationData() {
+  const displayArea = document.getElementById('adminDataDisplay');
+  displayArea.innerHTML = '<div class="text-center my-5"><div class="spinner-border text-success" role="status"></div><p class="mt-3">Loading data...</p></div>';
+
+  try {
+    const resp = await fetch(`${SCRIPT_URL}?type=all_applications`); // or use ?type=application_data
+    const result = await resp.json();
+
+    if (result.status !== 'success' || !result.data?.length) {
+      displayArea.innerHTML = '<div class="alert alert-warning">No data found or error occurred.</div>';
+      return;
+    }
+
+    let html = `
+      <h3 class="text-center mb-4">All Application Data (Columns B to AA)</h3>
+      <div class="table-responsive" id="adminDataTable">
+        <table class="table table-bordered table-striped table-hover">
+          <thead class="table-dark">
+            <tr>`;
+
+    // Headers from first row (adjust if your script returns fixed headers)
+    const headers = Object.keys(result.data[0]);
+    headers.forEach(h => {
+      html += `<th>${h}</th>`;
+    });
+
+    html += `
+            </tr>
+          </thead>
+          <tbody>`;
+
+    result.data.forEach(row => {
+      html += '<tr>';
+      headers.forEach(key => {
+        html += `<td>${row[key] ?? ''}</td>`;
+      });
+      html += '</tr>';
+    });
+
+    html += '</tbody></table></div>';
+
+    displayArea.innerHTML = html;
+  } catch (err) {
+    displayArea.innerHTML = '<div class="alert alert-danger">Failed to load application data.</div>';
+    console.error(err);
+  }
+}
+
+// Your original functions: showForm, handleNewApplicationSubmit, generateApplicationHtml, etc.
+// ... paste all your existing JavaScript code here ...
+
+AOS.init();
+</script>
+
+<!-- Your navbar.html and footer.html loading code remains the same -->
+
+</body>
+</html>
