@@ -778,27 +778,29 @@ async function generateAllHallticketsPDF() {
     const result = await resp.json();
 
     if (result.status !== 'success' || !result.data?.length) {
-      displayArea.innerHTML = '<div class="alert alert-warning">No records in Data sheet.</div>';
+      displayArea.innerHTML = '<div class="alert alert-warning">No records found in Data sheet.</div>';
       return;
     }
 
-    console.log("Payment/HALLTICKET keys:", Object.keys(result.data[0]).filter(k => k.toLowerCase().includes('hall') || k.toLowerCase().includes('ticket') || k.toLowerCase().includes('pay')));
+    // Debug: log the actual value of HALLTICKET column for first few rows
+    console.log("=== HALLTICKET column check (first 5 rows) ===");
+    result.data.slice(0, 5).forEach((row, idx) => {
+      console.log(`Row ${idx + 1}: HALLTICKET = "${row['HALLTICKET'] || '(missing)'}", Reg.No = "${row['Reg. No'] || 'N/A'}"`);
+    });
 
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({format: 'a4', unit: 'mm'});
+    const doc = new jsPDF({ format: 'a4', unit: 'mm' });
     let pageCount = 0;
 
     for (let i = 0; i < result.data.length; i++) {
       const row = result.data[i];
 
-      // Check HALLTICKET column (your header is "HALLTICKET")
-      let hallTicketStatus = row['HALLTICKET'] || '';
-      if (!hallTicketStatus && Object.keys(row).length > 33) {
-        hallTicketStatus = row[Object.keys(row)[33]] || ''; // fallback index 33
-      }
-      const isEligible = String(hallTicketStatus).trim().toUpperCase() === 'YES';
+      // Exact match for your header "HALLTICKET"
+      let status = row['HALLTICKET'] || '';
+      // Also accept variations (trim + uppercase)
+      status = String(status).trim().toUpperCase();
 
-      if (!isEligible) continue;
+      if (status !== 'YES') continue;  // only YES is eligible
 
       pageCount++;
 
@@ -823,7 +825,12 @@ async function generateAllHallticketsPDF() {
       });
       document.body.appendChild(tempDiv);
 
-      const canvas = await html2canvas(tempDiv.querySelector('.document-container'), { scale: 2, useCORS: true });
+      const canvas = await html2canvas(tempDiv.querySelector('.document-container'), {
+        scale: 2,
+        useCORS: true,
+        logging: false
+      });
+
       const imgData = canvas.toDataURL('image/png');
       const imgProps = doc.getImageProperties(imgData);
       const pdfWidth = doc.internal.pageSize.getWidth();
@@ -831,20 +838,21 @@ async function generateAllHallticketsPDF() {
 
       if (pageCount > 1) doc.addPage();
       doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+
       document.body.removeChild(tempDiv);
     }
 
     if (pageCount === 0) {
-      displayArea.innerHTML = '<div class="alert alert-warning">No applicants with HALLTICKET = YES found.</div>';
+      displayArea.innerHTML = '<div class="alert alert-warning">No rows with HALLTICKET = YES found.</div>';
       return;
     }
 
-    displayArea.innerHTML = `<div class="alert alert-success">${pageCount} Hall Ticket(s) PDF generated! Downloading...</div>`;
+    displayArea.innerHTML = `<div class="alert alert-success">${pageCount} hall ticket(s) generated! Downloading...</div>`;
     doc.save(`All_Hall_Tickets_${new Date().toISOString().slice(0,10)}.pdf`);
 
   } catch (err) {
-    console.error('Hall Tickets error:', err);
-    displayArea.innerHTML = '<div class="alert alert-danger">Error generating hall tickets PDF.</div>';
+    console.error('Hall ticket generation error:', err);
+    displayArea.innerHTML = '<div class="alert alert-danger">Error while creating hall tickets PDF.</div>';
   }
 }
 // ────────────────────────────────────────────────────────────────
