@@ -99,8 +99,8 @@
     .info-item {display:flex; padding:5px 0; border-bottom:1px dashed #dee2e6; text-align:left;}
     .info-label {font-weight:600; color:#495057; width:120px; font-size:11px; line-height:1.2; text-align:left;}
     .info-value {color:#212529; font-size:11px; flex:1; line-height:1.2; text-align:left;}
-    .document-section-title {font-size:14px; font-weight:600; color:var(--islamic-green); margin:15px 0 8px; padding-bottom:3px; border-bottom:1px solid #e9ecef; text-align:left;}
-    .document-declaration {background:linear-gradient(135deg,#f8f9fa 0%,#e9ecef 100%); border-radius:8px; padding:15px; margin-top:20px; border:1px solid #dee2e6;}
+    .document-section-title {font-size:14px; font-weight:600; color:var(--islamic-green); margin:8px 0 3px; padding-bottom:2px; border-bottom:1px solid #e9ecef; text-align:left;}
+    .document-declaration {background:linear-gradient(135deg,#f8f9fa 0%,#e9ecef 100%); border-radius:8px; padding:10px; margin-top:10px; border:1px solid #dee2e6;}
     .document-signature-section {text-align:right; margin-top:20px; padding-top:10px; border-top:1px solid #ced4da;}
     .document-signature-line {display:inline-block; width:250px; border-bottom:1px solid #212529; margin-bottom:3px;}
     .student-info-box {background:#f8f9fa; border-radius:8px; padding:15px; margin-bottom:15px; border:1px solid #dee2e6;}
@@ -676,20 +676,23 @@ function logoutAdmin() {
 }
 
 // ────────────────────────────────────────────────────────────────
-//   1. ALL APPLICATIONS → Styled multi-page PDF with correct field mapping
+//  DOWNLOAD ALL APPLICATIONS – now with your exact headers
 // ────────────────────────────────────────────────────────────────
 async function generateAllApplicationsPDF() {
   const displayArea = document.getElementById('adminDataDisplay');
-  displayArea.innerHTML = '<div class="text-center my-5"><div class="spinner-border text-success"></div><p class="mt-3">Preparing all application forms... (may take time)</p></div>';
+  displayArea.innerHTML = '<div class="text-center my-5"><div class="spinner-border text-success"></div><p class="mt-3">Preparing all application forms... Please wait</p></div>';
 
   try {
     const resp = await fetch(`${SCRIPT_URL}?type=all_applications`);
     const result = await resp.json();
 
     if (result.status !== 'success' || !result.data?.length) {
-      displayArea.innerHTML = '<div class="alert alert-warning">No applications found.</div>';
+      displayArea.innerHTML = '<div class="alert alert-warning">No applications found in sheet.</div>';
       return;
     }
+
+    // Debug: show real headers once
+    console.log("Real sheet headers:", Object.keys(result.data[0]));
 
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({format: 'a4', unit: 'mm'});
@@ -697,42 +700,43 @@ async function generateAllApplicationsPDF() {
     for (let i = 0; i < result.data.length; i++) {
       const row = result.data[i];
 
-      // Map Google Sheet columns to studentData keys
-      // Adjust indices/names based on your actual sheet headers (column letters)
+      // Safe value getter: try exact header first, then fallback
+      const get = (header) => row[header] ?? row[header.trim()] ?? '';
+
       const studentData = {
-        submissionDate: row['Timestamp'] || row['Submission Date'] || row['Date'] || formatDate(row[0]) || new Date().toLocaleDateString(),
-        applicationId: row['Application ID'] || row['ID'] || row[30] || 'N/A',
-        studentName: row["Student's Name"] || row['Name'] || row[1] || 'N/A',
-        houseName: row['House Name'] || row[2] || 'N/A',
-        dob: row['Date of Birth'] || row['DOB'] || getLocalYMD(row[3]) || 'N/A',
-        aadhaarNumber: row['Aadhaar Number'] || row[10] || 'N/A',
-        address: row['Address'] || row[5] || 'N/A',
-        phoneNumber: row['Phone Number'] || row['Mobile'] || row[6] || 'N/A',
-        whatsappNumber: row['WhatsApp Number'] || row[7] || row['Phone Number'] || 'N/A',
-        fatherName: row["Father's Name"] || row[11] || 'N/A',
-        fatherOccupation: row["Father's Occupation"] || row[12] || 'N/A',
-        guardianName: row["Guardian's Name"] || row[4] || 'N/A',
-        relationshipWithGuardian: row['Relationship with Guardian'] || row[13] || 'N/A',
-        guardianReason: row['Reason if Guardian is not Father'] || row[14] || '',
-        madrasa: row['Madrasa & Location'] || row[8] || 'N/A',
-        madrasaclass: row['Madrasa Class'] || row[15] || 'N/A',
-        school: row['School & Location'] || row[9] || 'N/A',
-        schoolclass: row['School Class'] || row[16] || 'N/A',
-        previousStudy: row['Previous Study'] || row[17] || 'No',
-        previousInstitution: row['Previous Institution'] || row[18] || '',
-        studyDuration: row['Duration of Study'] || row[19] || '',
-        identificationMark: row['Identification Mark'] || row[23] || 'N/A',
-        physicalFitness: row['Physical Fitness'] || row[24] || 'N/A',
-        illness: row['Illness'] || row[25] || '',
-        photoUrl: row['Photo URL'] || row['Photo'] || row[26] || ''
+        submissionDate: formatDate(get('Timestamp')) || new Date().toLocaleDateString('en-GB'),
+        applicationId: get('ID') || get('Reg. No') || 'N/A',
+        studentName: get('Name') || 'N/A',
+        houseName: get('House') || 'N/A',
+        dob: get('DOB') || 'N/A',
+        aadhaarNumber: get('Aadhar') || 'N/A',
+        address: get('Address') || 'N/A',
+        phoneNumber: get('MOB') || 'N/A',
+        whatsappNumber: get('WHATSAPP') || get('MOB') || 'N/A',
+        fatherName: get('Father') || 'N/A',
+        fatherOccupation: get('Father job') || 'N/A',
+        guardianName: get('Guardian') || 'N/A',
+        relationshipWithGuardian: get('Relation to guardian') || 'N/A',
+        guardianReason: get('if not father cause') || '',
+        madrasa: get('Madrasa') || 'N/A',
+        madrasaclass: get('Madrassa class') || 'N/A',
+        school: get('School') || 'N/A',
+        schoolclass: get('School class') || 'N/A',
+        previousStudy: get('Old institution') || 'No',
+        previousInstitution: get('Name of insti') || '',
+        studyDuration: get('Period') || '',
+        identificationMark: get('Identification mark') || 'N/A',
+        physicalFitness: get('Physical Fitness: yes or no') || 'N/A',
+        illness: get('ill name') || '',
+        photoUrl: get('Photo') || ''
       };
 
       const tempDiv = document.createElement('div');
       tempDiv.style.position = 'absolute';
       tempDiv.style.left = '-9999px';
       tempDiv.innerHTML = generateApplicationHtml({
-        collegeInfo: { /* fallback if needed */ },
-        studentData: studentData
+        collegeInfo: {},
+        studentData
       });
       document.body.appendChild(tempDiv);
 
@@ -753,50 +757,61 @@ async function generateAllApplicationsPDF() {
       document.body.removeChild(tempDiv);
     }
 
-    displayArea.innerHTML = '<div class="alert alert-success">All Applications PDF generated! Downloading...</div>';
+    displayArea.innerHTML = '<div class="alert alert-success">Applications PDF ready! Downloading...</div>';
     doc.save(`All_Applications_${new Date().toISOString().slice(0,10)}.pdf`);
 
   } catch (err) {
-    console.error(err);
-    displayArea.innerHTML = '<div class="alert alert-danger">Error generating applications PDF.</div>';
+    console.error('Applications PDF error:', err);
+    displayArea.innerHTML = '<div class="alert alert-danger">Error generating PDF.</div>';
   }
 }
 
 // ────────────────────────────────────────────────────────────────
-//   2. ALL HALL TICKETS → Styled multi-page PDF (only paid)
+//  DOWNLOAD ALL HALL TICKETS – fixed payment check on "HALLTICKET"
 // ────────────────────────────────────────────────────────────────
 async function generateAllHallticketsPDF() {
   const displayArea = document.getElementById('adminDataDisplay');
-  displayArea.innerHTML = '<div class="text-center my-5"><div class="spinner-border text-success"></div><p class="mt-3">Preparing hall tickets... (only paid applicants)</p></div>';
+  displayArea.innerHTML = '<div class="text-center my-5"><div class="spinner-border text-success"></div><p class="mt-3">Preparing hall tickets... (only HALLTICKET = YES)</p></div>';
 
   try {
     const resp = await fetch(`${SCRIPT_URL}?type=all_halltickets`);
     const result = await resp.json();
 
     if (result.status !== 'success' || !result.data?.length) {
-      displayArea.innerHTML = '<div class="alert alert-warning">No eligible hall tickets found (check payment status).</div>';
+      displayArea.innerHTML = '<div class="alert alert-warning">No records in Data sheet.</div>';
       return;
     }
 
+    console.log("Payment/HALLTICKET keys:", Object.keys(result.data[0]).filter(k => k.toLowerCase().includes('hall') || k.toLowerCase().includes('ticket') || k.toLowerCase().includes('pay')));
+
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({format: 'a4', unit: 'mm'});
+    let pageCount = 0;
 
     for (let i = 0; i < result.data.length; i++) {
       const row = result.data[i];
 
-      // Flexible payment status check
-      const payment = String(row['Payment Status'] || row['Payment'] || row['Paid'] || row[33] || '').trim().toUpperCase();
-      if (!['YES', 'PAID', 'Y'].includes(payment)) continue; // skip if not paid
+      // Check HALLTICKET column (your header is "HALLTICKET")
+      let hallTicketStatus = row['HALLTICKET'] || '';
+      if (!hallTicketStatus && Object.keys(row).length > 33) {
+        hallTicketStatus = row[Object.keys(row)[33]] || ''; // fallback index 33
+      }
+      const isEligible = String(hallTicketStatus).trim().toUpperCase() === 'YES';
+
+      if (!isEligible) continue;
+
+      pageCount++;
+
+      const get = (header) => row[header] ?? '';
 
       const studentData = {
-        // same mapping as above
-        registerNo: row['Register No'] || row['Application ID'] || row[32] || row['ID'] || 'N/A',
-        studentName: row["Student's Name"] || row['Name'] || row[1] || 'N/A',
-        dob: row['Date of Birth'] || row['DOB'] || getLocalYMD(row[3]) || 'N/A',
-        houseName: row['House Name'] || row[2] || 'N/A',
-        address: row['Address'] || row[5] || 'N/A',
-        phoneNumber: row['Phone Number'] || row['Mobile'] || row[6] || 'N/A',
-        photoUrl: row['Photo URL'] || row[26] || ''
+        registerNo: get('Reg. No') || get('ID') || 'N/A',
+        studentName: get('Name') || 'N/A',
+        dob: get('DOB') || 'N/A',
+        houseName: get('House') || 'N/A',
+        address: get('Address') || 'N/A',
+        phoneNumber: get('MOB') || 'N/A',
+        photoUrl: get('Photo') || ''
       };
 
       const tempDiv = document.createElement('div');
@@ -804,37 +819,31 @@ async function generateAllHallticketsPDF() {
       tempDiv.style.left = '-9999px';
       tempDiv.innerHTML = generateHallticketHtml({
         collegeInfo: {},
-        studentData: studentData
+        studentData
       });
       document.body.appendChild(tempDiv);
 
-      const canvas = await html2canvas(tempDiv.querySelector('.document-container'), {
-        scale: 2,
-        useCORS: true,
-        logging: false
-      });
-
+      const canvas = await html2canvas(tempDiv.querySelector('.document-container'), { scale: 2, useCORS: true });
       const imgData = canvas.toDataURL('image/png');
       const imgProps = doc.getImageProperties(imgData);
       const pdfWidth = doc.internal.pageSize.getWidth();
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-      if (i > 0) doc.addPage();
+      if (pageCount > 1) doc.addPage();
       doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-
       document.body.removeChild(tempDiv);
     }
 
-    if (doc.getNumberOfPages() === 0) {
-      displayArea.innerHTML = '<div class="alert alert-warning">No paid hall tickets found.</div>';
+    if (pageCount === 0) {
+      displayArea.innerHTML = '<div class="alert alert-warning">No applicants with HALLTICKET = YES found.</div>';
       return;
     }
 
-    displayArea.innerHTML = '<div class="alert alert-success">Hall Tickets PDF generated! Downloading...</div>';
+    displayArea.innerHTML = `<div class="alert alert-success">${pageCount} Hall Ticket(s) PDF generated! Downloading...</div>`;
     doc.save(`All_Hall_Tickets_${new Date().toISOString().slice(0,10)}.pdf`);
 
   } catch (err) {
-    console.error(err);
+    console.error('Hall Tickets error:', err);
     displayArea.innerHTML = '<div class="alert alert-danger">Error generating hall tickets PDF.</div>';
   }
 }
@@ -941,6 +950,11 @@ function showForm(formId) {
   const date = new Date(dateInput);
   return date.toLocaleDateString('en-GB'); // DD-MM-YYYY
 }
+  function formatDate(ts) {
+  if (!ts) return new Date().toLocaleDateString('en-GB');
+  const d = new Date(ts);
+  return `${d.getDate().toString().padStart(2,'0')}-${(d.getMonth()+1).toString().padStart(2,'0')}-${d.getFullYear()}`;
+}
 
 function getLocalYMD(dateInput) {
   if (!dateInput) return '';
@@ -958,7 +972,7 @@ function getLocalYMD(dateInput) {
     const reader=new FileReader();reader.onload=function(e){const preview=document.getElementById('photoPreview');preview.src=e.target.result;preview.style.display='block';};reader.readAsDataURL(file);}
   function readFileAsBase64(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(file);});}
   function generateApplicationHtml(data){const{collegeInfo,studentData}=data;const hasValidPhoto=studentData.photoUrl&&(studentData.photoUrl.includes('drive.google.com')||studentData.photoUrl.startsWith('data:image')||studentData.photoUrl.startsWith('http'));
-    return `<div class="document-container"><div class="document-watermark">APPLICATION FORM</div><div class="document-header"><img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo"><div class="document-college-info"><div class="document-arabic">كلية دار النجاة للشريعة والآداب</div><div class="document-college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div><div class="document-address">Punnakkad, Karuvarakundu, Malappuram District</div><div class="document-address">Under DARUNNAJATH ISLAMIC CENTRE</div><div class="document-address">Affiliated to JAMIA NOORIYYA ARABIYYA, PATTIKKAD</div><div class="document-title">Admission Application Form</div></div></div><div class="document-content">${hasValidPhoto?`<div style="position:absolute;top:40px;right:40px;text-align:center;z-index:1;"><div style="width:150px;height:180px;border:2px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa;display:flex;align-items:center;justify-content:center;"><img src="${escapeHtml(studentData.photoUrl)}" style="max-width:100%;max-height:100%;object-fit:contain;" alt="Student Photo"></div><div style="font-size:12px;color:#6c757d;margin-top:5px;font-weight:500;">Student Photograph</div></div>`:''}<div class="document-section-title">1. Personal Information</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${['Application Date','Application ID',"1. Student's Name","2. House Name","3. Date of Birth","4. Aadhaar Number","5. Address","6. Phone Number","7. WhatsApp Number"].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.submissionDate||new Date().toLocaleDateString(),studentData.applicationId||'N/A',studentData.studentName||studentData.name||'N/A',studentData.houseName||'N/A',studentData.dob||'N/A',studentData.aadhaarNumber||'N/A',studentData.address||'N/A',studentData.phoneNumber||studentData.mobile||'N/A',studentData.whatsappNumber||'N/A'][i])}</span></div>`).join('')}</div><div class="document-section-title">2. Parent/Guardian Information</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${["8. Father's Name","9. Father's Occupation","10. Guardian's Name","11. Relationship with Guardian"].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.fatherName||'N/A',studentData.fatherOccupation||'N/A',studentData.guardianName||'N/A',studentData.relationshipWithGuardian||'N/A'][i])}</span></div>`).join('')}${studentData.guardianReason?`<div class="info-item"><span class="info-label">12. Reason if Guardian is not Father:</span><span class="info-value">${escapeHtml(studentData.guardianReason)}</span></div>`:''}</div><div class="document-section-title">3. Educational Information</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${["13. Madrasa & Location","Madrasa Class","14. School & Location","School Class","15. Previous Study"].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.madrasa||'N/A',studentData.madrasaclass||'N/A',studentData.school||'N/A',studentData.schoolclass||'N/A',studentData.previousStudy||'No'][i])}</span></div>`).join('')}</div>${studentData.previousStudy==='Yes'?`<div class="document-section-title">Previous Study Details</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${studentData.previousInstitution?`<div class="info-item"><span class="info-label">Previous Institution:</span><span class="info-value">${escapeHtml(studentData.previousInstitution||'N/A')}</span></div>`:''}${studentData.studyDuration?`<div class="info-item"><span class="info-label">Duration of Study:</span><span class="info-value">${escapeHtml(studentData.studyDuration||'N/A')}</span></div>`:''}</div>`:''}<div class="document-section-title">4. Medical & Identification</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${["16. Identification Mark","17. Physical Fitness"].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.identificationMark||'N/A',studentData.physicalFitness||'N/A'][i])}</span></div>`).join('')}${studentData.illness?`<div class="info-item"><span class="info-label">Illness:</span><span class="info-value">${escapeHtml(studentData.illness)}</span></div>`:''}</div><div class="document-section-title">5. Student Photograph</div><div style="margin-right: ${hasValidPhoto?'160px':'0'}; margin-bottom: 15px;">${hasValidPhoto?`<div style="font-size: 11px; color: #6c757d; margin-bottom: 5px;">Student's photo has been uploaded and attached.</div>`:`<div style="font-size: 11px; color: #dc3545; margin-bottom: 5px;">No photo uploaded.</div>`}</div><div class="document-declaration"><h3 class="document-section-title">Declaration</h3><p style="text-align: justify; line-height: 1.4; margin-bottom: 10px; font-size: 11px;"><strong>${escapeHtml(studentData.studentName||studentData.name||'')}</strong> S/o <strong>${escapeHtml(studentData.guardianName||'')}</strong>, എന്ന എന്‍റെ കുട്ടിയും ഞാനും ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജിന്‍റെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജില്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.</p><div class="document-signature-section"><div><div class="document-signature-line"></div><div style="font-size:10px;">Parent/Guardian's Name & Signature</div></div><div style="margin-top:10px;text-align:left;"><p style="font-size:9px;color:#6c757d;">Date: ______________________________<br><br>Place: _____________________________</p></div></div></div></div><div class="document-footer"><p style="color:#495057;font-size:10px;margin:0;"><strong>College Contact:</strong> 9048020243 | <strong>Email:</strong> najathshareea@gmail.com</p></div></div><div class="no-print" style="text-align:center;margin-top:20px;padding:20px;"><button onclick="window.print()" class="btn-gold me-2"><i class="fas fa-print me-2"></i> Print Application Form</button><button onclick="showDashboard()" class="btn-outline-gold"><i class="fas fa-arrow-left me-2"></i> Back to Dashboard</button></div>`;}
+    return `<div class="document-container"><div class="document-watermark">APPLICATION FORM</div><div class="document-header"><img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo"><div class="document-college-info"><div class="document-arabic">كلية دار النجاة للشريعة والآداب</div><div class="document-college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div><div class="document-address">Punnakkad, Karuvarakundu, Malappuram District</div><div class="document-address">Under DARUNNAJATH ISLAMIC CENTRE</div><div class="document-address">Affiliated to JAMIA NOORIYYA ARABIYYA, PATTIKKAD</div><div class="document-title">Admission Application Form</div></div></div><div class="document-content">${hasValidPhoto?`<div style="position:absolute;top:40px;right:40px;text-align:center;z-index:1;"><div style="width:150px;height:180px;border:2px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa;display:flex;align-items:center;justify-content:center;"><img src="${escapeHtml(studentData.photoUrl)}" style="max-width:100%;max-height:100%;object-fit:contain;" alt="Student Photo"></div><div style="font-size:12px;color:#6c757d;margin-top:5px;font-weight:500;">Student Photograph</div></div>`:''}<div class="document-section-title">1. Personal Information</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${['Application Date','Application ID',"1. Student's Name","2. House Name","3. Date of Birth","4. Aadhaar Number","5. Address","6. Phone Number","7. WhatsApp Number"].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.submissionDate||new Date().toLocaleDateString(),studentData.applicationId||'N/A',studentData.studentName||studentData.name||'N/A',studentData.houseName||'N/A',studentData.dob||'N/A',studentData.aadhaarNumber||'N/A',studentData.address||'N/A',studentData.phoneNumber||studentData.mobile||'N/A',studentData.whatsappNumber||'N/A'][i])}</span></div>`).join('')}</div><div class="document-section-title">2. Parent/Guardian Information</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${["8. Father's Name","9. Father's Occupation","10. Guardian's Name","11. Relationship with Guardian"].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.fatherName||'N/A',studentData.fatherOccupation||'N/A',studentData.guardianName||'N/A',studentData.relationshipWithGuardian||'N/A'][i])}</span></div>`).join('')}${studentData.guardianReason?`<div class="info-item"><span class="info-label">12. Reason if Guardian is not Father:</span><span class="info-value">${escapeHtml(studentData.guardianReason)}</span></div>`:''}</div><div class="document-section-title">3. Educational Information</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${["13. Madrasa & Location","Madrasa Class","14. School & Location","School Class","15. Previous Study"].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.madrasa||'N/A',studentData.madrasaclass||'N/A',studentData.school||'N/A',studentData.schoolclass||'N/A',studentData.previousStudy||'No'][i])}</span></div>`).join('')}</div>${studentData.previousStudy==='Yes'?`<div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${studentData.previousInstitution?`<div class="info-item"><span class="info-label">Previous Institution:</span><span class="info-value">${escapeHtml(studentData.previousInstitution||'N/A')}</span></div>`:''}${studentData.studyDuration?`<div class="info-item"><span class="info-label">Duration of Study:</span><span class="info-value">${escapeHtml(studentData.studyDuration||'N/A')}</span></div>`:''}</div>`:''}<div class="document-section-title">4. Medical & Identification</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${["16. Identification Mark","17. Physical Fitness"].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.identificationMark||'N/A',studentData.physicalFitness||'N/A'][i])}</span></div>`).join('')}${studentData.illness?`<div class="info-item"><span class="info-label">Illness:</span><span class="info-value">${escapeHtml(studentData.illness)}</span></div>`:''}</div><div class="document-declaration"><h3 class="document-section-title">Declaration</h3><p style="text-align: justify; line-height: 1.4; margin-bottom: 10px; font-size: 11px;"><strong>${escapeHtml(studentData.studentName||studentData.name||'')}</strong> S/o <strong>${escapeHtml(studentData.guardianName||'')}</strong>, എന്ന എന്‍റെ കുട്ടിയും ഞാനും ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജിന്‍റെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജില്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.</p><div class="document-signature-section"><div><div class="document-signature-line"></div><div style="font-size:10px;">Parent/Guardian's Name & Signature</div></div><div style="margin-top:10px;text-align:left;"><p style="font-size:9px;color:#6c757d;">Date: ______________________________<br><br>Place: _____________________________</p></div></div></div></div><div class="document-footer"><p style="color:#495057;font-size:10px;margin:0;"><strong>College Contact:</strong> 9048020243 | <strong>Email:</strong> najathshareea@gmail.com</p></div></div><div class="no-print" style="text-align:center;margin-top:20px;padding:20px;"><button onclick="window.print()" class="btn-gold me-2"><i class="fas fa-print me-2"></i> Print Application Form</button><button onclick="showDashboard()" class="btn-outline-gold"><i class="fas fa-arrow-left me-2"></i> Back to Dashboard</button></div>`;}
   function generateHallticketHtml(data){const{collegeInfo,studentData}=data;const hasValidPhoto=studentData.photoUrl&&(studentData.photoUrl.includes('drive.google.com')||studentData.photoUrl.startsWith('data:image')||studentData.photoUrl.startsWith('http'));
     const qrText=`Name: ${studentData.studentName||studentData.name||''}, Register No: ${studentData.registerNo||studentData.applicationId||''}, DoB: ${studentData.dob||''}, Exam Date: 17/12/2025, Venue: College Seminar Hall`;const qrCodeUrl=`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrText)}`;
     return `<div class="document-container"><div class="document-watermark">HALL TICKET</div><div class="document-header"><img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo"><div class="document-college-info"><div class="document-arabic">كلية دار النجاة للشريعة والآداب</div><div class="document-college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div><div class="document-address">Punnakkad, Karuvarakundu, Malappuram District</div><div class="document-address">Under DARUNNAJATH ISLAMIC CENTRE</div><div class="document-address">Affiliated to JAMIA NOORIYYA ARABIYYA, PATTIKKAD</div><div class="document-title">Entrance Exam Hall Ticket</div></div></div><div class="document-content">${hasValidPhoto?`<div style="position:absolute;top:20px;right:20px;text-align:center;z-index:1;"><div style="width:140px;height:170px;border:2px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa;display:flex;align-items:center;justify-content:center;"><img src="${escapeHtml(studentData.photoUrl)}" style="max-width:100%;max-height:100%;object-fit:contain;" alt="Student Photo"></div><div style="font-size:11px;color:#6c757d;margin-top:5px;font-weight:500;">Student Photo</div></div>`:''}<div class="student-info-box" style="margin-right: ${hasValidPhoto?'150px':'0'};"><div class="info-grid">${['Register Number','Student Name','Date of Birth','House Name','Address','Phone Number'].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.registerNo||studentData.applicationId||'N/A',studentData.studentName||studentData.name||'N/A',studentData.dob||'N/A',studentData.houseName||'N/A',studentData.address||'N/A',studentData.phoneNumber||studentData.mobile||'N/A'][i])}</span></div>`).join('')}</div></div><div class="exam-wrapper"><div class="exam-details-box"><div class="exam-title">Examination Details</div><div class="exam-info-grid">${['Exam Date','Reporting Time','Exam Duration','Venue'].map((label,i)=>`<div class="exam-item"><div class="exam-label">${label}</div><div class="exam-value">${['17 December 2025','09:30 AM','10:00 AM - 12:30 PM','College Seminar Hall'][i]}</div></div>`).join('')}</div></div><div style="position:absolute;top:210px;right:20px;text-align:center;z-index:1;"><div style="width:140px;height:140px;border:2px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa;display:flex;align-items:center;justify-content:center;padding:10px;"><img src="${qrCodeUrl}" style="max-width:100%;max-height:100%;" alt="QR Code"></div><div style="font-size:11px;color:#6c757d;margin-top:5px;font-weight:500;">QR Code Verification</div></div></div><table class="signing-table"><thead><tr><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead><tbody><tr><td><div style="font-size:10px;color:#6c757d;">Examiner Signature</div></td><td><div style="font-size:10px;color:#6c757d;">Examiner Signature</div></td><td><div style="font-size:10px;color:#6c757d;">Examiner Signature</div></td><td><div style="font-size:10px;color:#6c757d;">Examiner Signature</div></td></tr></tbody></table><div class="document-instructions"><div class="document-instructions-title">Important Instructions</div><ul class="document-instructions-list"><li>Bring this hall ticket to the exam center</li><li>Carry any original ID proof (Aadhaar card)</li><li>Report at the exam center 30 minutes before exam time</li><li>No electronic devices allowed inside exam hall</li><li>Only blue/black ballpoint pens are allowed</li><li>Follow all instructions given by invigilators</li></ul></div></div><div class="document-footer"><p style="color:#495057;font-size:10px;margin:0;"><strong>College Contact:</strong> 9048020243 | <strong>Email:</strong> najathshareea@gmail.com</p></div></div><div class="no-print" style="text-align:center;margin-top:20px;padding:20px;"><button onclick="window.print()" class="btn-gold me-2"><i class="fas fa-print me-2"></i> Print Hall Ticket</button><button onclick="showDashboard()" class="btn-outline-gold"><i class="fas fa-arrow-left me-2"></i> Back to Dashboard</button></div>`;}
