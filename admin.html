@@ -195,13 +195,13 @@
       <div class="container">
         <div class="admin-nav-container">
           <a href="admin.html" class="admin-nav-tab nav-tab-active">
-            <i class="fas fa-user-shield"></i> Admin
-          </a>
-          <a href="test.html" class="admin-nav-tab">
-            <i class="fas fa-file-alt"></i> Test
+            Entrance Exam
           </a>
           <a href="Social.html" class="admin-nav-tab">
-            <i class="fas fa-share-alt"></i> Social media
+            Social media
+          </a>
+          <a href="test.html" class="admin-nav-tab">
+            Test
           </a>
         </div>
       </div>
@@ -209,14 +209,14 @@
 
     <div class="form-container mt-4" data-aos="fade-up">
       <h2 class="form-title text-center mb-4">
-        <i class="fas fa-user-shield me-2"></i> Admin Control Panel
+        Entance Exam Portal
       </h2>
       <div class="row g-4 justify-content-center">
         <div class="col-md-5 col-lg-3">
           <div class="admin-card">
             <div class="p-4 text-center">
               <i class="fas fa-file-alt fa-3x mb-3" style="color: var(--islamic-green);"></i>
-              <h4 class="mb-3">Download All Applications</h4>
+              <h4 class="mb-3">Download Applications</h4>
               <button class="btn-gold w-100" onclick="generateAllApplicationsPDF()">
                 <i class="fas fa-download me-2"></i> Download
               </button>
@@ -227,7 +227,7 @@
           <div class="admin-card">
             <div class="p-4 text-center">
               <i class="fas fa-ticket-alt fa-3x mb-3" style="color: var(--islamic-green);"></i>
-              <h4 class="mb-3">Download All Hall Tickets</h4>
+              <h4 class="mb-3">Download Hall Tickets</h4>
               <button class="btn-gold w-100" onclick="generateAllHallticketsPDF()">
                 <i class="fas fa-download me-2"></i> Download
               </button>
@@ -238,7 +238,7 @@
           <div class="admin-card">
             <div class="p-4 text-center">
               <i class="fas fa-chart-line fa-3x mb-3" style="color: var(--islamic-green);"></i>
-              <h4 class="mb-3">View All Results</h4>
+              <h4 class="mb-3">View Results</h4>
               <button class="btn-gold w-100" onclick="showResultsData()">
                 <i class="fas fa-eye me-2"></i> View
               </button>
@@ -249,7 +249,7 @@
           <div class="admin-card">
             <div class="p-4 text-center">
               <i class="fas fa-database fa-3x mb-3" style="color: var(--islamic-green);"></i>
-              <h4 class="mb-3">View Application Data</h4>
+              <h4 class="mb-3">View Applications</h4>
               <button class="btn-gold w-100" onclick="showApplicationData()">
                 <i class="fas fa-table me-2"></i> View
               </button>
@@ -389,7 +389,7 @@ async function generateAllApplicationsPDF() {
       document.body.removeChild(tempDiv);
     }
 
-    displayArea.innerHTML = '<div class="alert alert-success">Applications PDF ready! Downloading...</div>';
+    displayArea.innerHTML = '<div class="alert alert-success">Applications PDF ready! </div>';
     doc.save(`All_Applications_${new Date().toISOString().slice(0,10)}.pdf`);
 
   } catch (err) {
@@ -505,7 +505,7 @@ async function showResultsData() {
     }
 
     let html = `
-      <h3 class="text-center mb-4">All Results Data</h3>
+      <h3 class="text-center mb-4">Results</h3>
       <div class="table-responsive" id="adminDataTable">
         <table class="table table-bordered table-striped table-hover">
           <thead class="table-dark">
@@ -546,7 +546,7 @@ async function showApplicationData() {
     }
 
     let html = `
-      <h3 class="text-center mb-4">All Application Data (Columns B to AA)</h3>
+      <h3 class="text-center mb-4">Applications</h3>
       <div class="table-responsive" id="adminDataTable">
         <table class="table table-bordered table-striped table-hover">
           <thead class="table-dark">
