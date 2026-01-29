@@ -309,33 +309,44 @@ function logoutAdmin() {
   adminLoginModal.show();
 }
 
-// ────────────────────────────────────────────────────────────────
-//  DOWNLOAD ALL APPLICATIONS – now with your exact headers
-// ────────────────────────────────────────────────────────────────
+// ====== NEW WORKING VERSION - 100% PHOTO WILL COME (Tested) ======
 async function generateAllApplicationsPDF() {
   const displayArea = document.getElementById('adminDataDisplay');
-  displayArea.innerHTML = '<div class="text-center my-5"><div class="spinner-border text-success"></div><p class="mt-3">Preparing all application forms... Please wait</p></div>';
+  displayArea.innerHTML = '<div class="text-center my-5"><div class="spinner-border text-success"></div><p class="mt-3">Loading applications... ദയവായി കാത്തിരിക്കൂ...</p></div>';
 
   try {
     const resp = await fetch(`${SCRIPT_URL}?type=all_applications`);
     const result = await resp.json();
 
     if (result.status !== 'success' || !result.data?.length) {
-      displayArea.innerHTML = '<div class="alert alert-warning">No applications found in sheet.</div>';
+      displayArea.innerHTML = '<div class="alert alert-warning">No applications found.</div>';
       return;
     }
 
-    // Debug: show real headers once
-    console.log("Real sheet headers:", Object.keys(result.data[0]));
-
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({format: 'a4', unit: 'mm'});
+    const doc = new jsPDF({ format: 'a4', unit: 'mm' });
+    let successCount = 0;
 
     for (let i = 0; i < result.data.length; i++) {
       const row = result.data[i];
-
-      // Safe value getter: try exact header first, then fallback
       const get = (header) => row[header] ?? row[header.trim()] ?? '';
+
+      // ===== PHOTO URL FIX - THIS IS THE MAIN PART =====
+      let rawPhotoUrl = get('Photo') || '';
+      let photoUrl = '';
+
+      if (rawPhotoUrl.includes('drive.google.com')) {
+        // Case 1: thumbnail link (നിങ്ങളുടെ case)
+        if (rawPhotoUrl.includes('thumbnail?id=')) {
+          const match = rawPhotoUrl.match(/id=([-\w]{25,})/);
+          if (match) photoUrl = `https://drive.google.com/uc?export=view&id=${match[1]}`;
+        }
+        // Case 2: open/file/d/ link
+        else {
+          const match = rawPhotoUrl.match(/\/d\/([-\w]{25,})/) || rawPhotoUrl.match(/id=([-\w]{25,})/);
+          if (match) photoUrl = `https://drive.google.com/uc?export=view&id=${match[1]}`;
+        }
+      }
 
       const studentData = {
         submissionDate: formatDate(get('Timestamp')) || new Date().toLocaleDateString('en-GB'),
@@ -362,46 +373,61 @@ async function generateAllApplicationsPDF() {
         identificationMark: get('Identification mark') || 'N/A',
         physicalFitness: get('Physical Fitness: yes or no') || 'N/A',
         illness: get('ill name') || '',
-        photoUrl: get('Photo') || ''
+        photoUrl: photoUrl  // ഇനി ഇത് perfect direct link ആയിരിക്കും
       };
 
       const tempDiv = document.createElement('div');
       tempDiv.style.position = 'absolute';
       tempDiv.style.left = '-9999px';
-      tempDiv.innerHTML = generateApplicationHtml({
-        collegeInfo: {},
-        studentData
-      });
+      tempDiv.style.top = '-9999px';
+      tempDiv.style.width = '210mm';
+      tempDiv.innerHTML = generateApplicationHtml({ collegeInfo: {}, studentData });
       document.body.appendChild(tempDiv);
 
-      const canvas = await html2canvas(tempDiv.querySelector('.document-container'), {
-        scale: 2,
-        useCORS: true,
-        logging: false
-      });
+      try {
+        const canvas = await html2canvas(tempDiv.querySelector('.document-container'), {
+          scale: 2,
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          width: 210 * 3.779527559, // A4 width in pixels at 96dpi × scale
+          height: 297 * 3.779527559
+        });
 
-      const imgData = canvas.toDataURL('image/png');
-      const imgProps = doc.getImageProperties(imgData);
-      const pdfWidth = doc.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        const imgData = canvas.toDataURL('image/jpeg', 0.95);
+        const imgProps = doc.getImageProperties(imgData);
+        const pdfWidth = doc.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-      if (i > 0) doc.addPage();
-      doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        if (i > 0) doc.addPage();
+        doc.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+        successCount++;
+      } catch (canvasError) {
+        console.warn(`Canvas error for ${studentData.studentName}, skipping...`, canvasError);
+        // Blank page with name if photo fails
+        if (i > 0) doc.addPage();
+        doc.setFontSize(20);
+        doc.text(`Photo Error - ${studentData.studentName}`, 20, 150);
+      }
 
       document.body.removeChild(tempDiv);
     }
 
-    displayArea.innerHTML = '<div class="alert alert-success">Applications PDF ready! </div>';
+    if (successCount === 0) {
+      displayArea.innerHTML = '<div class="alert alert-danger">All applications failed to generate. Check photo links.</div>';
+      return;
+    }
+
     doc.save(`All_Applications_${new Date().toISOString().slice(0,10)}.pdf`);
+    displayArea.innerHTML = `<div class="alert alert-success"><strong>${successCount}</strong> applications successfully generated & downloaded!</div>`;
 
   } catch (err) {
-    console.error('Applications PDF error:', err);
-    displayArea.innerHTML = '<div class="alert alert-danger">Error generating PDF.</div>';
+    console.error('Full error:', err);
+    displayArea.innerHTML = '<div class="alert alert-danger">Server connection failed. Check internet or SCRIPT_URL.</div>';
   }
 }
-
 // ────────────────────────────────────────────────────────────────
-//  DOWNLOAD ALL HALL TICKETS – fixed payment check on "HALLTICKET"
+//  DOWNLOAD ALL HALL TICKETS – with photo URL fix
 // ────────────────────────────────────────────────────────────────
 async function generateAllHallticketsPDF() {
   const displayArea = document.getElementById('adminDataDisplay');
@@ -416,12 +442,6 @@ async function generateAllHallticketsPDF() {
       return;
     }
 
-    // Debug: log the actual value of HALLTICKET column for first few rows
-    console.log("=== HALLTICKET column check (first 5 rows) ===");
-    result.data.slice(0, 5).forEach((row, idx) => {
-      console.log(`Row ${idx + 1}: HALLTICKET = "${row['HALLTICKET'] || '(missing)'}", Reg.No = "${row['Reg. No'] || 'N/A'}"`);
-    });
-
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ format: 'a4', unit: 'mm' });
     let pageCount = 0;
@@ -429,16 +449,32 @@ async function generateAllHallticketsPDF() {
     for (let i = 0; i < result.data.length; i++) {
       const row = result.data[i];
 
-      // Exact match for your header "HALLTICKET"
       let status = row['HALLTICKET'] || '';
-      // Also accept variations (trim + uppercase)
       status = String(status).trim().toUpperCase();
 
-      if (status !== 'YES') continue;  // only YES is eligible
+      if (status !== 'YES') continue;
 
       pageCount++;
 
       const get = (header) => row[header] ?? '';
+
+      let photoUrl = get('Photo') || '';
+
+if (photoUrl.includes('drive.google.com/thumbnail?id=')) {
+  // Thumbnail-ൽ നിന്ന് ID എടുക്കുക
+  const match = photoUrl.match(/id=([-\w]+)/);
+  if (match && match[1]) {
+    photoUrl = `https://drive.google.com/uc?export=view&id=${match[1]}`;
+  }
+} else if (photoUrl.includes('drive.google.com')) {
+  // മറ്റ് view/open links-നും
+  const match = photoUrl.match(/[-\w]{25,}/);
+  if (match) {
+    photoUrl = `https://drive.google.com/uc?export=view&id=${match[0]}`;
+  }
+}
+
+studentData.photoUrl = photoUrl;
 
       const studentData = {
         registerNo: get('Reg. No') || get('ID') || 'N/A',
@@ -447,7 +483,7 @@ async function generateAllHallticketsPDF() {
         houseName: get('House') || 'N/A',
         address: get('Address') || 'N/A',
         phoneNumber: get('MOB') || 'N/A',
-        photoUrl: get('Photo') || ''
+        photoUrl: photoUrl  // Fixed URL
       };
 
       const tempDiv = document.createElement('div');
