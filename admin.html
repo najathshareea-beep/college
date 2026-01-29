@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DSAC | Admission</title>
+  <title>DSAC | Admin Portal</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -51,39 +51,8 @@
     .btn-gold:hover {background:linear-gradient(135deg,#d4af37,var(--islamic-gold)); box-shadow:0 6px 20px rgba(193,154,63,0.4); transform:translateY(-2px); color:var(--islamic-green);}
     .btn-outline-gold {border:2px solid var(--islamic-gold); color:var(--islamic-gold); background:transparent; border-radius:8px; padding:0.75rem 1.5rem; font-weight:600; transition:var(--transition);}
     .btn-outline-gold:hover {background:var(--islamic-gold); color:var(--islamic-green);}
-    .portal-card {background:white; border-radius:15px; padding:2rem; box-shadow:0 10px 30px rgba(0,0,0,0.08); border:2px solid transparent; transition:var(--transition); height:100%;}
-    .portal-card:hover {transform:translateY(-5px); border-color:var(--islamic-gold); box-shadow:0 15px 35px rgba(0,0,0,0.15);}
-    .portal-icon {width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,var(--islamic-green),var(--dark-green)); display:flex; align-items:center; justify-content:center; color:var(--islamic-gold); font-size:2rem; margin:0 auto 1.5rem; box-shadow:0 5px 15px rgba(10,92,54,0.2); transition:var(--transition);}
-    .portal-card:hover .portal-icon {transform:scale(1.1) rotate(5deg); background:linear-gradient(135deg,var(--dark-green),var(--islamic-green));}
-    .portal-title {color:var(--islamic-green); font-weight:700; margin-bottom:1rem; font-size:1.4rem; text-align:center;}
-    .portal-description {color:#666; text-align:center; margin-bottom:1.5rem; line-height:1.6;}
     .form-container {background:white; border-radius:15px; padding:2.5rem; box-shadow:0 10px 30px rgba(0,0,0,0.08); border:2px solid var(--islamic-gold); margin-bottom:2rem;}
     .form-title {color:var(--islamic-green); font-weight:700; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:2px solid var(--islamic-gold); font-size:1.8rem; text-align:center;}
-    .form-label {color:var(--islamic-green); font-weight:600; margin-bottom:0.5rem; display:block;}
-    .form-label.required::after {content:" *"; color:#dc3545; font-weight:bold; margin-left:2px;}
-    .form-control {border:2px solid #e0e0e0; border-radius:8px; padding:0.75rem 1rem; transition:var(--transition); font-size:1rem;}
-    .form-control:focus {border-color:var(--islamic-gold); box-shadow:0 0 0 0.25rem rgba(193,154,63,0.25); outline:none;}
-    .form-step {background:rgba(248,243,230,0.5); border-radius:10px; padding:1.5rem; margin-bottom:1.5rem; border-left:4px solid var(--islamic-gold);}
-    .form-step-title {color:var(--islamic-green); font-weight:600; margin-bottom:1rem; font-size:1.2rem; display:flex; align-items:center; gap:10px;}
-    .form-step-title i {color:var(--islamic-gold);}
-    .file-upload-container {border:2px dashed var(--islamic-gold); border-radius:10px; padding:2rem; text-align:center; cursor:pointer; transition:var(--transition); background:rgba(248,243,230,0.3);}
-    .file-upload-container:hover {background:rgba(248,243,230,0.5); border-color:var(--dark-green);}
-    .file-preview {max-width:200px; max-height:200px; border-radius:8px; margin-top:1rem; border:2px solid var(--islamic-gold); display:none;}
-    .instructions-box {background:linear-gradient(135deg,rgba(10,92,54,0.05),rgba(193,154,63,0.05)); border-radius:15px; padding:1.5rem; border:2px solid var(--islamic-gold); margin:2rem 0;}
-    .instructions-title {color:var(--islamic-green); font-weight:700; margin-bottom:1rem; display:flex; align-items:center; gap:10px;}
-    .instructions-list {padding-left:1.5rem; margin-bottom:0;}
-    .instructions-list li {margin-bottom:0.5rem; color:#555; line-height:1.6;}
-    .timeline {position:relative; padding:2rem 0; margin:2rem 0;}
-    .timeline::before {content:''; position:absolute; left:0; right:0; top:50%; height:4px; background:linear-gradient(90deg,var(--islamic-green),var(--islamic-gold)); transform:translateY(-50%); z-index:1; border-radius:2px;}
-    .timeline-item {position:relative; margin-bottom:0; display:flex; justify-content:center; z-index:2;}
-    .timeline-content-box {background:white; border-radius:12px; box-shadow:0 8px 25px rgba(0,0,0,0.1); padding:1.5rem; width:22%; max-width:300px; border:2px solid transparent; transition:var(--transition); position:relative; z-index:2; margin:0 10px;}
-    .timeline-content-box:hover {transform:translateY(-10px); border-color:var(--islamic-gold); box-shadow:0 15px 35px rgba(0,0,0,0.15);}
-    .timeline-content-box::before {content:''; position:absolute; top:100%; left:50%; width:20px; height:20px; border-radius:50%; background:white; border:3px solid var(--islamic-gold); box-shadow:0 0 0 3px var(--islamic-green); z-index:3; transition:var(--transition); transform:translate(-50%,-50%);}
-    .timeline-content-box:hover::before {transform:translate(-50%,-50%) scale(1.2); background:var(--islamic-gold);}
-    .timeline-date {color:var(--islamic-green); font-weight:700; font-size:1.1rem; padding:8px 15px; background:linear-gradient(135deg,rgba(10,92,54,0.1),rgba(193,154,63,0.1)); border-radius:20px; display:inline-block; margin-bottom:1rem; border:1px solid rgba(10,92,54,0.2);}
-    .timeline-content-box:hover .timeline-date {background:linear-gradient(135deg,var(--islamic-green),var(--dark-green)); color:white; border-color:var(--islamic-gold);}
-    .timeline-icon {width:50px; height:50px; border-radius:50%; background:linear-gradient(135deg,var(--islamic-green),var(--dark-green)); display:flex; align-items:center; justify-content:center; color:white; font-size:1.25rem; margin-bottom:1rem; box-shadow:0 4px 10px rgba(10,92,54,0.2);}
-    .timeline-title {color:var(--islamic-green); font-size:1.3rem; font-weight:600; margin-bottom:0.75rem;}
     .document-container {width:21cm; min-height:29.7cm; background:white; box-shadow:0 10px 30px rgba(0,0,0,0.1); border-radius:12px; overflow:hidden; margin:0 auto; position:relative;}
     .document-watermark {position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-45deg); font-size:60px; color:rgba(10,92,54,0.03); font-weight:bold; z-index:0; white-space:nowrap; pointer-events:none;}
     .document-header {background:linear-gradient(135deg,var(--islamic-green),var(--dark-green)); color:white; padding:20px; text-align:left; position:relative; display:flex; align-items:flex-start; justify-content:flex-start; gap:20px; border-bottom:5px solid var(--islamic-gold);}
@@ -144,8 +113,8 @@
     .ornament-1 {top:20%; left:5%; animation:float 6s ease-in-out infinite;}
     .ornament-2 {top:60%; right:5%; animation:float 8s ease-in-out infinite reverse;}
     .ornament-3 {bottom:20%; left:10%; animation:float 7s ease-in-out infinite;}
-    @media (max-width:768px) {body{padding-top:70px !important;} .navbar-optimized{height:70px;padding:0.3rem 0;} .page-header{height:26vh;min-height:180px;} .page-title{font-size:2.2rem;} .page-subtitle{font-size:1.1rem;} .content-section{padding:2.5rem 0;} .section-title{font-size:1.8rem;} .navbar-collapse{background:var(--dark-green);padding:1rem;border-radius:0 0 10px 10px;border:1px solid var(--islamic-gold);margin-top:0px;max-height:70vh;overflow-y:auto;} .form-container{padding:1.5rem;} .portal-card{padding:1.5rem;} .document-container{width:100%;box-shadow:none;border-radius:0;} .timeline::before{left:20px;right:auto;top:0;bottom:0;width:4px;height:auto;background:linear-gradient(180deg,var(--islamic-green),var(--islamic-gold));transform:none;} .timeline-item{justify-content:flex-start;margin-bottom:2.5rem;} .timeline-content-box{width:calc(100% - 60px);margin-left:40px;margin-right:0;} .timeline-content-box::before{top:50%;left:-35px;transform:translateY(-50%);} .timeline-content-box:hover::before{transform:translateY(-50%) scale(1.2);}}
-    @media (max-width:576px) {.page-title{font-size:1.8rem;} .section-title{font-size:1.5rem;} .portal-icon{width:60px;height:60px;font-size:1.5rem;}}
+    @media (max-width:768px) {body{padding-top:70px !important;} .navbar-optimized{height:70px;padding:0.3rem 0;} .page-header{height:26vh;min-height:180px;} .page-title{font-size:2.2rem;} .page-subtitle{font-size:1.1rem;} .content-section{padding:2.5rem 0;} .section-title{font-size:1.8rem;} .navbar-collapse{background:var(--dark-green);padding:1rem;border-radius:0 0 10px 10px;border:1px solid var(--islamic-gold);margin-top:0px;max-height:70vh;overflow-y:auto;} .form-container{padding:1.5rem;} .document-container{width:100%;box-shadow:none;border-radius:0;}}
+    @media (max-width:576px) {.page-title{font-size:1.8rem;} .section-title{font-size:1.5rem;}}
     @media (min-width: 992px) {
       .dropdown-submenu {  position: relative;  }
       .dropdown-submenu:hover > .collapse {    display: block !important;  }
@@ -170,408 +139,10 @@
 <div class="page-header">
   <div class="container">
     <div class="page-header-content">
-      <h1 class="page-title">Admission Portal</h1>
+      <h1 class="page-title">Admin Portal</h1>
     </div>
   </div>
 </div>
-<div class="instructions-box m-5" data-aos="fade-up">
-  <h3 class="instructions-title"><i class="fas fa-info-circle"></i>Important Instructions</h3>
-  <ul class="instructions-list">
-    <li>Registered <strong>mobile number </strong>and <strong>date of birth </strong>are <strong>mandatory </strong>for all services.</li>
-    <li>Mobile number must be 10 digits (Indian format)</li>
-    <li>For new applications, all fields marked with * are mandatory</li>
-    <li>Entrance examination date: <strong>17/12/2025 WED 10 AM</strong></li>
-    <li>For any queries, contact: +91 9048020243</li>
-  </ul>
-</div>
-<div id="mainContentArea">
-  <section class="content-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Admission Timeline</h2>
-      </div>
-      <div class="timeline">
-        <div class="d-flex flex-column flex-lg-row justify-content-center align-items-lg-center">
-          <div class="timeline-item" data-aos="fade-up">
-            <div class="timeline-content-box">
-              <div class="timeline-date">17 December 2025, 10:00 AM</div>
-              <h3 class="timeline-title"><i class="fas fa-file-signature"></i>Entrance Examination</h3>
-            </div>
-          </div>
-          <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
-            <div class="timeline-content-box">
-              <div class="timeline-date">31 December 2025</div>
-              <h3 class="timeline-title"><i class="fas fa-chart-line"></i>Result Announcement</h3>
-            </div>
-          </div>
-          <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
-            <div class="timeline-content-box">
-              <div class="timeline-date">15 January 2026</div>
-              <h3 class="timeline-title"><i class="fas fa-user-graduate"></i>Admission Starts</h3>
-            </div>
-          </div>
-          <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
-            <div class="timeline-content-box">
-              <div class="timeline-date">30 January 2026</div>
-              <h3 class="timeline-title"><i class="fas fa-book-open"></i>Classes Commence</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="content-section" style="background: white;">
-    <div class="container">
-      <div class="row g-4">
-        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-          <div class="portal-card text-center">
-            <div class="portal-icon"><i class="fas fa-file-alt"></i></div>
-            <h3 class="portal-title">New Application</h3>
-            <p class="portal-description">Submit new application</p><br><br><br>
-            <button class="btn-gold w-100" onclick="showForm('applyNowForm')"><i class="fas fa-pen me-2"></i>Apply Now</button>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-          <div class="portal-card text-center">
-            <div class="portal-icon"><i class="fas fa-file-download"></i></div>
-            <h3 class="portal-title">Download Application</h3>
-            <p class="portal-description">Download your submitted application form</p>
-            <button class="btn-gold w-100" onclick="showForm('applicationForm')"><i class="fas fa-download me-2"></i>Download</button>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-          <div class="portal-card text-center">
-            <div class="portal-icon"><i class="fas fa-ticket-alt"></i></div>
-            <h3 class="portal-title">Hall Ticket</h3>
-            <p class="portal-description">Download your entrance exam hall ticket</p><br>
-            <button class="btn-gold w-100" onclick="showForm('hallticketForm')"><i class="fas fa-ticket-alt me-2"></i>Get Hall Ticket</button>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
-          <div class="portal-card text-center">
-            <div class="portal-icon"><i class="fas fa-chart-line"></i></div>
-            <h3 class="portal-title">Check Result</h3>
-            <p class="portal-description">Check your entrance examination result</p><br><br>
-            <button class="btn-gold w-100" onclick="showForm('resultForm')"><i class="fas fa-search me-2"></i>Check Result</button>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
-  <div class="portal-card text-center">
-    <div class="portal-icon"><i class="fas fa-user-shield"></i></div>
-    <h3 class="portal-title">Admin Panel</h3>
-    <p class="portal-description">Bulk download & data view</p>
-    <button class="btn-gold w-100" data-bs-toggle="modal" data-bs-target="#adminLoginModal">
-      <i class="fas fa-lock me-2"></i> Admin Login
-    </button>
-  </div>
-</div>
-      </div>
-      <div class="text-center mt-5" data-aos="fade-up">
-        <a href="index.html" class="btn-outline-gold btn-lg px-5"><i class="fas fa-home me-2"></i>Back to Home</a>
-      </div>
-    </div>
-  </section>
-  <section class="content-section" id="applyNowFormSection" style="display: none;">
-    <div class="container">
-      <div class="form-container" data-aos="fade-up">
-        <h2 class="form-title"><i class="fas fa-file-alt me-2"></i>New Admission Application</h2>
-        <div class="instructions-box mb-4">
-          <h4 class="instructions-title"><i class="fas fa-lightbulb"></i> Important Notes</h4>
-          <p class="mb-0">പ്രവേശന പരീക്ഷ 17/12/2025 WED 10 AM</p>
-        </div>
-        <form id="newApplicationForm" onsubmit="return handleNewApplicationSubmit(event)">
-          <div class="form-step">
-            <div class="form-step-title"><i class="fas fa-user me-2"></i>Personal Information</div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">1. കുട്ടിയുടെ പേര് | Student's Name:</label>
-                  <input type="text" class="form-control" name="studentName" placeholder="പൂർണ്ണ പേര് രേഖപ്പെടുത്തുക | Enter full name" required>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">2. വീട്ടു പേര് | House Name:</label>
-                  <input type="text" class="form-control" name="houseName" placeholder="വീട്ടു പേര് രേഖപ്പെടുത്തുക | House name" required>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">3. ജനന തിയ്യതി | Date of Birth:</label>
-                  <input type="date" class="form-control" name="dob" max="2024-12-31" required onchange="calculateAge(this.value)">
-                  <small class="text-muted" id="ageDisplay"></small>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">4. ആധാര്‍ നമ്പര്‍ | Aadhaar Number:</label>
-                  <input type="text" class="form-control" name="aadhaarNumber" placeholder="ആധാര്‍ നമ്പര്‍ രേഖപ്പെടുത്തുക | Enter Aadhaar number" required pattern="\d{12}" title="Aadhaar number must be 12 digits">
-                </div>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label required">5. വിലാസം | Postal Address:</label>
-              <textarea class="form-control" name="address" placeholder="പൂർണ്ണ വിലാസം രേഖപ്പെടുത്തുക | Enter full address" required rows="3"></textarea>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">6. ഫോണ്‍ നമ്പര്‍ | Phone Number:</label>
-                  <input type="tel" class="form-control" name="phoneNumber" placeholder="9876543210 | Enter phone number" required pattern="\d{10}" title="Phone number must be 10 digits">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label">7. വാട്‌സ്ആപ്പ് നമ്പര്‍ | WhatsApp Number:</label>
-                  <input type="tel" class="form-control" name="whatsappNumber" placeholder="വാട്‌സ്ആപ്പ് നമ്പര്‍ (വ്യത്യസ്തമെങ്കിൽ) | Enter WhatsApp number (if different)" pattern="\d{10}">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-step">
-            <div class="form-step-title"><i class="fas fa-users me-2"></i>Parent/Guardian Information</div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">8. പിതാവിന്‍റെ പേര് | Father's Name:</label>
-                  <input type="text" class="form-control" name="fatherName" placeholder="പിതാവിന്‍റെ പേര് രേഖപ്പെടുത്തുക | Enter father's name" required>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">9. പിതാവിന്‍റെ ജോലി | Father's Occupation:</label>
-                  <input type="text" class="form-control" name="fatherOccupation" placeholder="പിതാവിന്‍റെ ജോലി രേഖപ്പെടുത്തുക | Enter father's occupation" required>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">10. രക്ഷിതാവിന്‍റെ പേര് | Guardian's Name:</label>
-                  <input type="text" class="form-control" name="guardianName" placeholder="രക്ഷിതാവിന്‍റെ പേര് | Guardian's name" required>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">11. വിദ്യാര്‍ത്ഥിക്ക് രക്ഷിതാവുമായുള്ള ബന്ധം | Relationship with Guardian:</label>
-                  <select class="form-control" name="relationshipWithGuardian" required>
-                    <option value="" disabled selected>രക്ഷിതാവുമായുള്ള ബന്ധം തിരഞ്ഞെടുക്കുക | Select Relationship</option>
-                    <option value="Father">പിതാവ് | Father</option>
-                    <option value="Mother">മാതാവ് | Mother</option>
-                    <option value="Brother">സഹോദരൻ | Brother</option>
-                    <option value="Sister">സഹോദരി | Sister</option>
-                    <option value="Other">മറ്റുള്ളവർ | Other</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">12. രക്ഷിതാവ്, പിതാവല്ലെങ്കില്‍ കാരണം | Reason if Guardian is not Father:</label>
-              <textarea class="form-control" name="guardianReason" placeholder="രക്ഷിതാവ് പിതാവല്ലെങ്കില്‍ കാരണം | Enter reason if guardian is not father" rows="2"></textarea>
-            </div>
-          </div>
-          <div class="form-step">
-            <div class="form-step-title"><i class="fas fa-graduation-cap me-2"></i>Educational Information</div>
-            <div class="row mb-4 align-items-end">
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">13. പഠിക്കുന്ന മദ്റസയും സ്ഥലവും | Madrasa & Location:</label>
-                  <input type="text" class="form-control" name="madrasa" placeholder="മദ്റസയും സ്ഥലവും രേഖപ്പെടുത്തുക | Enter Madrasa name and location" required>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">ക്ലാസ് | Class:</label>
-                  <select class="form-control" name="madrasaclass" required>
-                    <option value="" disabled selected>മദ്റസ ക്ലാസ് തിരഞ്ഞെടുക്കുക | Select Madrasa class</option>
-                    <option value="V">V</option>
-                    <option value="VI">VI</option>
-                    <option value="VII">VII</option>
-                    <option value="VIII">VIII</option>
-                    <option value="IX">IX</option>
-                    <option value="X">X</option>
-                    <option value="XI">XI</option>
-                    <option value="XII">XII</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="row align-items-end">
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">14. പഠിക്കുന്ന സ്കൂളും സ്ഥലവും | School & Location:</label>
-                  <input type="text" class="form-control" name="school" placeholder="സ്കൂളും സ്ഥലവും രേഖപ്പെടുത്തുക | Enter School name and location" required>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label class="form-label required">ക്ലാസ് | Class:</label>
-                  <select class="form-control" name="schoolclass" required>
-                    <option value="" disabled selected>സ്കൂള്‍ ക്ലാസ് തിരഞ്ഞെടുക്കുക | Select School class</option>
-                    <option value="VII">VII</option>
-                    <option value="VIII">VIII</option>
-                    <option value="IX">IX</option>
-                    <option value="X">X</option>
-                    <option value="XI">XI</option>
-                    <option value="XII">XII</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label required">15. മുമ്പ് ഏതെങ്കിലും ഹിഫ്ള് കോളേജ്, ദര്‍സ്, കോളേജ് പഠിച്ചിട്ടുണ്ടോ | Previously Studied at Hifz College/Dars/College:</label>
-              <div class="d-flex gap-4">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="previousStudy" id="previousNo" value="No" onchange="togglePreviousStudy(false)">
-                  <label class="form-check-label" for="previousNo">ഇല്ല | No</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="previousStudy" id="previousYes" value="Yes" onchange="togglePreviousStudy(true)">
-                  <label class="form-check-label" for="previousYes">ഉണ്ട് | Yes</label>
-                </div>
-              </div>
-            </div>
-            <div id="previous-study-section" style="display: none;">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">ഏത് സ്ഥാപനത്തില്‍ | Which Institution:</label>
-                    <input type="text" class="form-control" name="previousInstitution" placeholder="സ്ഥാപനത്തിന്റെ പേര് രേഖപ്പെടുത്തുക | Enter institution name">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">എത്ര കാലം | Duration of Study:</label>
-                    <input type="text" class="form-control" name="studyDuration" placeholder="പഠന കാലം രേഖപ്പെടുത്തുക | Enter duration">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-step">
-            <div class="form-step-title"><i class="fas fa-heartbeat me-2"></i>Medical & Identification</div>
-            <div class="mb-3">
-              <label class="form-label required">16. കുട്ടിയെ തിരിച്ചറിയാനുള്ള അടയാളം | Student's Identification Mark:</label>
-              <input type="text" class="form-control" name="identificationMark" placeholder="തിരിച്ചറിയല്‍ അടയാളം രേഖപ്പെടുത്തുക | Enter identification mark" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label required">17. കുട്ടിയുടെ ശാരീരിക ക്ഷമത | Student's Physical Fitness:</label>
-              <div class="d-flex gap-4">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="physicalFitness" id="fitnessHealthy" value="Healthy" onchange="toggleIllnessSection(false)">
-                  <label class="form-check-label" for="fitnessHealthy">ആരോഗ്യവാന്‍ | Healthy</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="physicalFitness" id="fitnessMedication" value="Medication" onchange="toggleIllnessSection(true)">
-                  <label class="form-check-label" for="fitnessMedication">സ്ഥിരമായി ഗുളിക കഴിക്കാറുണ്ട് | Regular Medication</label>
-                </div>
-              </div>
-            </div>
-            <div id="illness-section" style="display: none;">
-              <div class="mb-3">
-                <label class="form-label">രോഗം | Illness:</label>
-                <textarea class="form-control" name="illness" placeholder="രോഗത്തിന്റെ വിശദാംശങ്ങൾ രേഖപ്പെടുത്തുക | Enter details of illness" rows="2"></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="form-step">
-            <div class="form-step-title"><i class="fas fa-camera me-2"></i>Student Photograph</div>
-            <div class="mb-3">
-              <label class="form-label required">18. കുട്ടിയുടെ ഫോട്ടോ | Student's Photo:</label>
-              <div class="file-upload-container" onclick="document.getElementById('photoInput').click()" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)" id="fileUploadContainer">
-                <i class="fas fa-cloud-upload-alt fa-3x" style="color: var(--islamic-gold); margin-bottom: 1rem;"></i>
-                <h5 style="color: var(--islamic-green);">Click to upload or drag & drop</h5>
-                <p class="text-muted">JPG, PNG up to 5MB</p>
-                <input type="file" class="d-none" id="photoInput" name="student_photo" accept="image/jpeg,image/png" required onchange="handlePhotoUpload(event)">
-                <img id="photoPreview" class="file-preview" alt="Photo Preview">
-              </div>
-            </div>
-          </div>
-          <div class="instructions-box mt-4">
-            <h4 class="instructions-title"><i class="fas fa-file-contract"></i>Declaration</h4>
-            <p id="declarationText" class="mb-3">എന്‍റെ കുട്ടിയും ഞാനും ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജിന്‍റെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജില്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.</p>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="declarationCheckbox" required onchange="toggleSubmitButton(this.checked)">
-              <label class="form-check-label" for="declarationCheckbox">I hereby declare that all information provided is true and correct to the best of my knowledge. I agree to abide by all rules and regulations of the college.</label>
-            </div>
-          </div>
-          <button type="submit" class="btn-gold w-100 mt-4" id="submitApplicationBtn" disabled><i class="fas fa-paper-plane me-2"></i>Submit Application</button>
-          <div class="text-center mt-3">
-            <button type="button" class="btn-outline-gold" onclick="showDashboard()"><i class="fas fa-arrow-left me-2"></i>Back to Dashboard</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
-  <section class="content-section" id="applicationFormSection" style="display: none;">
-    <div class="container">
-      <div class="form-container" data-aos="fade-up">
-        <h2 class="form-title"><i class="fas fa-file-download me-2"></i>Download Application</h2>
-        <form id="downloadApplicationForm" onsubmit="return handleApplicationSubmit(event)">
-          <div class="mb-4">
-            <label class="form-label required"><i class="fas fa-mobile-alt me-2"></i>Mobile Number</label>
-            <input type="tel" class="form-control" id="appMobile" pattern="\d{10}" placeholder="10 digit mobile number" required>
-          </div>
-          <div class="mb-4">
-            <label class="form-label required"><i class="fas fa-calendar-alt me-2"></i>Date of Birth</label>
-            <input type="date" class="form-control" id="appDob" required>
-          </div>
-          <button type="submit" class="btn-gold w-100" id="submitApplicationSearchBtn"><i class="fas fa-search me-2"></i>Search & Download</button>
-          <div class="text-center mt-3">
-            <button type="button" class="btn-outline-gold" onclick="showDashboard()"><i class="fas fa-arrow-left me-2"></i>Back to Dashboard</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
-  <section class="content-section" id="hallticketFormSection" style="display: none;">
-    <div class="container">
-      <div class="form-container" data-aos="fade-up">
-        <h2 class="form-title"><i class="fas fa-ticket-alt me-2"></i>Hall Ticket Download</h2>
-        <form id="downloadHallticketForm" onsubmit="return handleHallticketSubmit(event)">
-          <div class="mb-4">
-            <label class="form-label required"><i class="fas fa-mobile-alt me-2"></i>Mobile Number</label>
-            <input type="tel" class="form-control" id="ticketMobile" pattern="\d{10}" placeholder="10 digit mobile number" required>
-          </div>
-          <div class="mb-4">
-            <label class="form-label required"><i class="fas fa-calendar-alt me-2"></i>Date of Birth</label>
-            <input type="date" class="form-control" id="ticketDob" required>
-          </div>
-          <button type="submit" class="btn-gold w-100" id="submitTicketBtn"><i class="fas fa-download me-2"></i>Generate & Download Hall Ticket</button>
-          <div class="text-center mt-3">
-            <button type="button" class="btn-outline-gold" onclick="showDashboard()"><i class="fas fa-arrow-left me-2"></i>Back to Dashboard</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
-  <section class="content-section" id="resultFormSection" style="display: none;">
-    <div class="container">
-      <div class="form-container" data-aos="fade-up">
-        <h2 class="form-title"><i class="fas fa-chart-line me-2"></i>Check Result</h2>
-        <form id="checkResultForm" onsubmit="return handleResultSubmit(event)">
-          <div class="mb-4">
-            <label class="form-label required"><i class="fas fa-mobile-alt me-2"></i>Mobile Number</label>
-            <input type="tel" class="form-control" id="resultMobile" pattern="\d{10}" placeholder="10 digit mobile number" required>
-          </div>
-          <div class="mb-4">
-            <label class="form-label required"><i class="fas fa-calendar-alt me-2"></i>Date of Birth</label>
-            <input type="date" class="form-control" id="resultDob" required>
-          </div>
-          <button type="submit" class="btn-gold w-100" id="submitResultBtn"><i class="fas fa-search me-2"></i>Check Result</button>
-          <div class="text-center mt-3">
-            <button type="button" class="btn-outline-gold" onclick="showDashboard()"><i class="fas fa-arrow-left me-2"></i>Back to Dashboard</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
-</div>
-
-
-<!-- Your original page content: ornaments, navbar, header, instructions, portals, forms, etc. -->
 
 <!-- ==================== ADMIN LOGIN MODAL ==================== -->
 <div class="modal fade" id="adminLoginModal" tabindex="-1" aria-labelledby="adminLoginModalLabel" aria-hidden="true">
@@ -642,7 +213,6 @@
   </div>
 </section>
   
-<div id="documentDisplayArea" style="display: none;"></div>
 <div id="footer-container"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -650,6 +220,13 @@
 <script>
 // Your original SCRIPT_URL
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxtu1wQnYzpdb93B_N3MVbJrl28c26lfHsW5xCrWh6UgwlxePnkFOmwqOyoUjRF_GNmvg/exec';
+
+// ==================== AUTO SHOW LOGIN MODAL ON PAGE LOAD ====================
+document.addEventListener('DOMContentLoaded', function() {
+  // Show login modal automatically when page loads
+  const adminLoginModal = new bootstrap.Modal(document.getElementById('adminLoginModal'));
+  adminLoginModal.show();
+});
 
 // ==================== ADMIN LOGIN LOGIC ====================
 document.getElementById('adminLoginForm')?.addEventListener('submit', function(e) {
@@ -659,7 +236,6 @@ document.getElementById('adminLoginForm')?.addEventListener('submit', function(e
 
   if (username === 'admin' && password === '786') {
     bootstrap.Modal.getOrCreateInstance(document.getElementById('adminLoginModal')).hide();
-    document.getElementById('mainContentArea').style.display = 'none';
     document.getElementById('adminPanelSection').style.display = 'block';
     document.getElementById('adminDataDisplay').innerHTML = '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -670,8 +246,10 @@ document.getElementById('adminLoginForm')?.addEventListener('submit', function(e
 
 function logoutAdmin() {
   document.getElementById('adminPanelSection').style.display = 'none';
-  document.getElementById('mainContentArea').style.display = 'block';
   document.getElementById('adminDataDisplay').innerHTML = '';
+  // Show login modal again
+  const adminLoginModal = new bootstrap.Modal(document.getElementById('adminLoginModal'));
+  adminLoginModal.show();
 }
 
 // ────────────────────────────────────────────────────────────────
@@ -854,6 +432,7 @@ async function generateAllHallticketsPDF() {
     displayArea.innerHTML = '<div class="alert alert-danger">Error while creating hall tickets PDF.</div>';
   }
 }
+
 // ────────────────────────────────────────────────────────────────
 //   3. VIEW ALL RESULTS (table like application data)
 // ────────────────────────────────────────────────────────────────
@@ -896,6 +475,7 @@ async function showResultsData() {
     console.error(err);
   }
 }
+
 // ==================== SHOW APPLICATION DATA TABLE ====================
 async function showApplicationData() {
   const displayArea = document.getElementById('adminDataDisplay');
@@ -944,20 +524,14 @@ async function showApplicationData() {
     console.error(err);
   }
 }
-function showForm(formId) {
-    document.getElementById('mainContentArea').style.display='block';document.getElementById('documentDisplayArea').style.display='none';document.getElementById('documentDisplayArea').innerHTML='';
-    document.querySelectorAll('[id$="Section"]').forEach(section=>{section.style.display='none';});
-    const formSection=document.getElementById(formId+'Section');if(formSection){formSection.style.display='block';window.scrollTo({top:formSection.offsetTop-20,behavior:'smooth'});}
-  }
-  function calculateAge(dobString) {
-    if(!dobString)return;const birthDate=new Date(dobString);const today=new Date();let years=today.getFullYear()-birthDate.getFullYear();let months=today.getMonth()-birthDate.getMonth();let days=today.getDate()-birthDate.getDate();if(days<0){months--;days+=new Date(today.getFullYear(),today.getMonth(),0).getDate();}if(months<0){years--;months+=12;}document.getElementById('ageDisplay').textContent=`Age: ${years} years ${months} months ${days} days`;
-  }
-  function formatDate(dateInput) {
+
+function formatDate(dateInput) {
   if (!dateInput) return new Date().toLocaleDateString();
   const date = new Date(dateInput);
   return date.toLocaleDateString('en-GB'); // DD-MM-YYYY
 }
-  function formatDate(ts) {
+
+function formatDate(ts) {
   if (!ts) return new Date().toLocaleDateString('en-GB');
   const d = new Date(ts);
   return `${d.getDate().toString().padStart(2,'0')}-${(d.getMonth()+1).toString().padStart(2,'0')}-${d.getFullYear()}`;
@@ -968,43 +542,205 @@ function getLocalYMD(dateInput) {
   const date = new Date(dateInput);
   return date.toISOString().split('T')[0]; // YYYY-MM-DD
 }
-  function togglePreviousStudy(show){document.getElementById('previous-study-section').style.display=show?'block':'none';}
-  function toggleIllnessSection(show){document.getElementById('illness-section').style.display=show?'block':'none';}
-  function toggleSubmitButton(enabled){document.getElementById('submitApplicationBtn').disabled=!enabled;}
-  function handleDragOver(e){e.preventDefault();e.stopPropagation();document.getElementById('fileUploadContainer').classList.add('dragover');}
-  function handleDragLeave(e){e.preventDefault();e.stopPropagation();document.getElementById('fileUploadContainer').classList.remove('dragover');}
-  function handleDrop(e){e.preventDefault();e.stopPropagation();document.getElementById('fileUploadContainer').classList.remove('dragover');const files=e.dataTransfer.files;if(files.length>0){handleFile(files[0]);}}
-  function handlePhotoUpload(e){const file=e.target.files[0];if(file){handleFile(file);}}
-  function handleFile(file){if(!file.type.startsWith('image/')){return;}if(file.size>5*1024*1024){return;}
-    const reader=new FileReader();reader.onload=function(e){const preview=document.getElementById('photoPreview');preview.src=e.target.result;preview.style.display='block';};reader.readAsDataURL(file);}
-  function readFileAsBase64(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(file);});}
-  function generateApplicationHtml(data){const{collegeInfo,studentData}=data;const hasValidPhoto=studentData.photoUrl&&(studentData.photoUrl.includes('drive.google.com')||studentData.photoUrl.startsWith('data:image')||studentData.photoUrl.startsWith('http'));
-    return `<div class="document-container"><div class="document-watermark">APPLICATION FORM</div><div class="document-header"><img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo"><div class="document-college-info"><div class="document-arabic">كلية دار النجاة للشريعة والآداب</div><div class="document-college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div><div class="document-address">Punnakkad, Karuvarakundu, Malappuram District</div><div class="document-address">Under DARUNNAJATH ISLAMIC CENTRE</div><div class="document-address">Affiliated to JAMIA NOORIYYA ARABIYYA, PATTIKKAD</div><div class="document-title">Admission Application Form</div></div></div><div class="document-content">${hasValidPhoto?`<div style="position:absolute;top:40px;right:40px;text-align:center;z-index:1;"><div style="width:150px;height:180px;border:2px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa;display:flex;align-items:center;justify-content:center;"><img src="${escapeHtml(studentData.photoUrl)}" style="max-width:100%;max-height:100%;object-fit:contain;" alt="Student Photo"></div><div style="font-size:12px;color:#6c757d;margin-top:5px;font-weight:500;">Student Photograph</div></div>`:''}<div class="document-section-title">1. Personal Information</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${['Application Date','Application ID',"1. Student's Name","2. House Name","3. Date of Birth","4. Aadhaar Number","5. Address","6. Phone Number","7. WhatsApp Number"].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.submissionDate||new Date().toLocaleDateString(),studentData.applicationId||'N/A',studentData.studentName||studentData.name||'N/A',studentData.houseName||'N/A',studentData.dob||'N/A',studentData.aadhaarNumber||'N/A',studentData.address||'N/A',studentData.phoneNumber||studentData.mobile||'N/A',studentData.whatsappNumber||'N/A'][i])}</span></div>`).join('')}</div><div class="document-section-title">2. Parent/Guardian Information</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${["8. Father's Name","9. Father's Occupation","10. Guardian's Name","11. Relationship with Guardian"].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.fatherName||'N/A',studentData.fatherOccupation||'N/A',studentData.guardianName||'N/A',studentData.relationshipWithGuardian||'N/A'][i])}</span></div>`).join('')}${studentData.guardianReason?`<div class="info-item"><span class="info-label">12. Reason if Guardian is not Father:</span><span class="info-value">${escapeHtml(studentData.guardianReason)}</span></div>`:''}</div><div class="document-section-title">3. Educational Information</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${["13. Madrasa & Location","Madrasa Class","14. School & Location","School Class","15. Previous Study"].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.madrasa||'N/A',studentData.madrasaclass||'N/A',studentData.school||'N/A',studentData.schoolclass||'N/A',studentData.previousStudy||'No'][i])}</span></div>`).join('')}</div>${studentData.previousStudy==='Yes'?`<div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${studentData.previousInstitution?`<div class="info-item"><span class="info-label">Previous Institution:</span><span class="info-value">${escapeHtml(studentData.previousInstitution||'N/A')}</span></div>`:''}${studentData.studyDuration?`<div class="info-item"><span class="info-label">Duration of Study:</span><span class="info-value">${escapeHtml(studentData.studyDuration||'N/A')}</span></div>`:''}</div>`:''}<div class="document-section-title">4. Medical & Identification</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${["16. Identification Mark","17. Physical Fitness"].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.identificationMark||'N/A',studentData.physicalFitness||'N/A'][i])}</span></div>`).join('')}${studentData.illness?`<div class="info-item"><span class="info-label">Illness:</span><span class="info-value">${escapeHtml(studentData.illness)}</span></div>`:''}</div><div class="document-declaration"><h3 class="document-section-title">Declaration</h3><p style="text-align: justify; line-height: 1.4; margin-bottom: 10px; font-size: 11px;"><strong>${escapeHtml(studentData.studentName||studentData.name||'')}</strong> S/o <strong>${escapeHtml(studentData.guardianName||'')}</strong>, എന്ന എന്‍റെ കുട്ടിയും ഞാനും ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജിന്‍റെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജില്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.</p><div class="document-signature-line"></div><div style="font-size:10px;">Parent/Guardian's Name & Signature</div></div><div style="margin-top:10px;text-align:left;"><p style="font-size:9px;color:#6c757d;">Date: ______________________________<br><br>Place: _____________________________</p></div></div></div></div><div class="document-footer"><p style="color:#495057;font-size:10px;margin:0;"><strong>College Contact:</strong> 9048020243 | <strong>Email:</strong> najathshareea@gmail.com</p></div></div><div class="no-print" style="text-align:center;margin-top:20px;padding:20px;"><button onclick="window.print()" class="btn-gold me-2"><i class="fas fa-print me-2"></i> Print Application Form</button><button onclick="showDashboard()" class="btn-outline-gold"><i class="fas fa-arrow-left me-2"></i> Back to Dashboard</button></div>`;}
-  function generateHallticketHtml(data){const{collegeInfo,studentData}=data;const hasValidPhoto=studentData.photoUrl&&(studentData.photoUrl.includes('drive.google.com')||studentData.photoUrl.startsWith('data:image')||studentData.photoUrl.startsWith('http'));
-    const qrText=`Name: ${studentData.studentName||studentData.name||''}, Register No: ${studentData.registerNo||studentData.applicationId||''}, DoB: ${studentData.dob||''}, Exam Date: 17/12/2025, Venue: College Seminar Hall`;const qrCodeUrl=`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrText)}`;
-    return `<div class="document-container"><div class="document-watermark">HALL TICKET</div><div class="document-header"><img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo"><div class="document-college-info"><div class="document-arabic">كلية دار النجاة للشريعة والآداب</div><div class="document-college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div><div class="document-address">Punnakkad, Karuvarakundu, Malappuram District</div><div class="document-address">Under DARUNNAJATH ISLAMIC CENTRE</div><div class="document-address">Affiliated to JAMIA NOORIYYA ARABIYYA, PATTIKKAD</div><div class="document-title">Entrance Exam Hall Ticket</div></div></div><div class="document-content">${hasValidPhoto?`<div style="position:absolute;top:20px;right:20px;text-align:center;z-index:1;"><div style="width:140px;height:170px;border:2px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa;display:flex;align-items:center;justify-content:center;"><img src="${escapeHtml(studentData.photoUrl)}" style="max-width:100%;max-height:100%;object-fit:contain;" alt="Student Photo"></div><div style="font-size:11px;color:#6c757d;margin-top:5px;font-weight:500;">Student Photo</div></div>`:''}<div class="student-info-box" style="margin-right: ${hasValidPhoto?'150px':'0'};"><div class="info-grid">${['Register Number','Student Name','Date of Birth','House Name','Address','Phone Number'].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.registerNo||studentData.applicationId||'N/A',studentData.studentName||studentData.name||'N/A',studentData.dob||'N/A',studentData.houseName||'N/A',studentData.address||'N/A',studentData.phoneNumber||studentData.mobile||'N/A'][i])}</span></div>`).join('')}</div></div><div class="exam-wrapper"><div class="exam-details-box"><div class="exam-title">Examination Details</div><div class="exam-info-grid">${['Exam Date','Reporting Time','Exam Duration','Venue'].map((label,i)=>`<div class="exam-item"><div class="exam-label">${label}</div><div class="exam-value">${['17 December 2025','09:30 AM','10:00 AM - 12:30 PM','College Seminar Hall'][i]}</div></div>`).join('')}</div></div><div style="position:absolute;top:210px;right:20px;text-align:center;z-index:1;"><div style="width:140px;height:140px;border:2px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa;display:flex;align-items:center;justify-content:center;padding:10px;"><img src="${qrCodeUrl}" style="max-width:100%;max-height:100%;" alt="QR Code"></div><div style="font-size:11px;color:#6c757d;margin-top:5px;font-weight:500;">QR Code Verification</div></div></div><table class="signing-table"><thead><tr><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead><tbody><tr><td><div style="font-size:10px;color:#6c757d;">Examiner Signature</div></td><td><div style="font-size:10px;color:#6c757d;">Examiner Signature</div></td><td><div style="font-size:10px;color:#6c757d;">Examiner Signature</div></td><td><div style="font-size:10px;color:#6c757d;">Examiner Signature</div></td></tr></tbody></table><div class="document-instructions"><div class="document-instructions-title">Important Instructions</div><ul class="document-instructions-list"><li>Bring this hall ticket to the exam center</li><li>Carry any original ID proof (Aadhaar card)</li><li>Report at the exam center 30 minutes before exam time</li><li>No electronic devices allowed inside exam hall</li><li>Only blue/black ballpoint pens are allowed</li><li>Follow all instructions given by invigilators</li></ul></div></div><div class="document-footer"><p style="color:#495057;font-size:10px;margin:0;"><strong>College Contact:</strong> 9048020243 | <strong>Email:</strong> najathshareea@gmail.com</p></div></div><div class="no-print" style="text-align:center;margin-top:20px;padding:20px;"><button onclick="window.print()" class="btn-gold me-2"><i class="fas fa-print me-2"></i> Print Hall Ticket</button><button onclick="showDashboard()" class="btn-outline-gold"><i class="fas fa-arrow-left me-2"></i> Back to Dashboard</button></div>`;}
-  function generateResultHtml(data){const{collegeInfo,studentData}=data;let statusText="NOT QUALIFIED",statusColor="#dc3545";if(studentData.result==="QUALIFIED"){statusText="QUALIFIED";statusColor="#28a745";}else if(studentData.result==="WAITING LIST"){statusText="WAITING LIST";statusColor="#007bff";}const isQualified=studentData.result==="QUALIFIED";const isWaitingList=studentData.result==="WAITING LIST";const isQualifiedOrWaiting=isQualified||isWaitingList;
-    return `<div class="document-container"><div class="document-watermark">${statusText}</div><div class="document-header"><img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo"><div class="document-college-info"><div class="document-arabic">كلية دار النجاة للشريعة والآداب</div><div class="document-college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div><div class="document-address">Punnakkad, Karuvarakundu, Malappuram District</div><div class="document-address">Under DARUNNAJATH ISLAMIC CENTRE</div><div class="document-address">Affiliated to JAMIA NOORIYYA ARABIYYA, PATTIKKAD</div><div class="document-title">Entrance Exam Result</div></div></div><div class="document-content"><div class="student-info-box"><div class="info-grid">${['Student Name','Mobile Number','Date of Birth','Result Status'].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.name||studentData.studentName||'N/A',studentData.mobile||studentData.phoneNumber||'N/A',studentData.dob||'N/A',statusText][i])}</span></div>`).join('')}</div></div><div class="result-section-box" style="border-color: ${statusColor};"><div class="result-status" style="color: ${statusColor};">${statusText}</div>${isQualifiedOrWaiting?`<div class="result-rank">Rank: ${escapeHtml(studentData.rank||'N/A')}</div>`:''}${isQualified?`<div class="admission-info-box"><div class="admission-title">Admission Details</div><div class="admission-row"><span class="admission-label">Admission Starts:</span><span class="admission-value">15 January 2026</span></div><div class="admission-row"><span class="admission-label">Class Starts:</span><span class="admission-value">30 January 2026</span></div></div>`:''}<div class="note-section" style="text-align:left;background:#fff3cd;border-left:4px solid #ffc107;margin-top:15px;"><div class="note-title">Important Note</div><div class="note-content">Selected candidates must complete admission formalities within the specified dates. Bring all original documents for verification. For any queries, contact college office.</div></div></div></div><div class="document-footer"><p style="color:#495057;font-size:10px;margin:0;"><strong>College Contact:</strong> 9048020243 | <strong>Email:</strong> najathshareea@gmail.com</p></div></div><div class="no-print" style="text-align:center;margin-top:20px;padding:20px;"><button onclick="window.print()" class="btn-gold me-2"><i class="fas fa-print me-2"></i> Print Result</button><button onclick="showDashboard()" class="btn-outline-gold"><i class="fas fa-arrow-left me-2"></i> Back to Dashboard</button></div>`;}
-  function displayDocument(htmlContent){document.getElementById('mainContentArea').style.display='none';document.getElementById('documentDisplayArea').style.display='block';document.getElementById('documentDisplayArea').innerHTML=htmlContent;window.scrollTo({top:0,behavior:'smooth'});}
-  async function handleApplicationSubmit(e){e.preventDefault();const mobile=document.getElementById('appMobile').value.trim();const dob=document.getElementById('appDob').value;
-    try{const response=await fetch(`${SCRIPT_URL}?type=application&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);const data=await response.json();if(data.status==='success'){const html=generateApplicationHtml(data);displayDocument(html);}else{}}catch(error){console.error('Error:',error);}}
-  async function handleHallticketSubmit(e){e.preventDefault();const mobile=document.getElementById('ticketMobile').value.trim();const dob=document.getElementById('ticketDob').value;
-    try{const response=await fetch(`${SCRIPT_URL}?type=hallticket&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);const data=await response.json();if(data.status==='success'){const html=generateHallticketHtml(data);displayDocument(html);}else{}}catch(error){console.error('Error:',error);}}
-  async function handleResultSubmit(e){e.preventDefault();const mobile=document.getElementById('resultMobile').value.trim();const dob=document.getElementById('resultDob').value;
-    try{const response=await fetch(`${SCRIPT_URL}?type=result&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);const data=await response.json();if(data.status==='success'){const html=generateResultHtml(data);displayDocument(html);}else{}}catch(error){console.error('Error:',error);}}
-  async function handleNewApplicationSubmit(e){e.preventDefault();const form=e.target;const formData=new FormData(form);const data=Object.fromEntries(formData.entries());const photoFile=document.getElementById('photoInput').files[0];if(photoFile){try{const photoData=await readFileAsBase64(photoFile);data.photo=JSON.stringify({name:photoFile.name,mimeType:photoFile.type,data:photoData.split(',')[1]});}catch(error){return;}}
-    const submitData=new URLSearchParams();for(const[key,value]of Object.entries(data)){if(value!==undefined&&value!==null){submitData.append(key,value);}}
-    try{const response=await fetch(SCRIPT_URL,{method:'POST',body:submitData,headers:{'Content-Type':'application/x-www-form-urlencoded'}});const result=await response.json();if(result.status==='success'){form.reset();document.getElementById('photoPreview').style.display='none';toggleSubmitButton(false);setTimeout(()=>{const mockData={collegeInfo:{logo:'https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png',contact:'كلية دار النجاة للشريعة والآداب',collegeName:'DARUNNAJATH SHAREEATH & ARTS COLLEGE',underOrg:'Under DARUNNAJATH ISLAMIC CENTRE',affiliation:'Affiliated to JAMIA NOORIYYA ARABIYYA, PATTIKKAD',address:'Punnakkad, Karuvarakundu, Malappuram District'},studentData:{...data,submissionDate:new Date().toLocaleDateString(),applicationId:result.data.applicationId||'APP-'+Date.now(),photoUrl:photoFile?URL.createObjectURL(photoFile):null}};const html=generateApplicationHtml(mockData);displayDocument(html);},1500);}else{}}catch(error){console.error('Submission error:',error);}}
-  function escapeHtml(text){if(!text)return'';const map={'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'};return String(text).replace(/[&<>"']/g,function(m){return map[m];});}
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.submenu-toggle').forEach(function (toggle) {
-      toggle.addEventListener('click', function (e) {
-        e.stopPropagation();
-        e.preventDefault();
-      });
-    });
-  });
 
+function readFileAsBase64(file){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=()=>resolve(reader.result);
+    reader.onerror=reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function generateApplicationHtml(data){
+  const{collegeInfo,studentData}=data;
+  const hasValidPhoto=studentData.photoUrl&&(studentData.photoUrl.includes('drive.google.com')||studentData.photoUrl.startsWith('data:image')||studentData.photoUrl.startsWith('http'));
+  return `<div class="document-container">
+    <div class="document-watermark">APPLICATION FORM</div>
+    <div class="document-header">
+      <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo">
+      <div class="document-college-info">
+        <div class="document-arabic">كلية دار النجاة للشريعة والآداب</div>
+        <div class="document-college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div>
+        <div class="document-address">Punnakkad, Karuvarakundu, Malappuram District</div>
+        <div class="document-address">Under DARUNNAJATH ISLAMIC CENTRE</div>
+        <div class="document-address">Affiliated to JAMIA NOORIYYA ARABIYYA, PATTIKKAD</div>
+        <div class="document-title">Admission Application Form</div>
+      </div>
+    </div>
+    <div class="document-content">
+      ${hasValidPhoto?`<div style="position:absolute;top:40px;right:40px;text-align:center;z-index:1;">
+        <div style="width:150px;height:180px;border:2px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa;display:flex;align-items:center;justify-content:center;">
+          <img src="${escapeHtml(studentData.photoUrl)}" style="max-width:100%;max-height:100%;object-fit:contain;" alt="Student Photo">
+        </div>
+        <div style="font-size:12px;color:#6c757d;margin-top:5px;font-weight:500;">Student Photograph</div>
+      </div>`:''}
+      <div class="document-section-title">1. Personal Information</div>
+      <div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">
+        ${['Application Date','Application ID',"1. Student's Name","2. House Name","3. Date of Birth","4. Aadhaar Number","5. Address","6. Phone Number","7. WhatsApp Number"]
+          .map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([
+            studentData.submissionDate||new Date().toLocaleDateString(),
+            studentData.applicationId||'N/A',
+            studentData.studentName||studentData.name||'N/A',
+            studentData.houseName||'N/A',
+            studentData.dob||'N/A',
+            studentData.aadhaarNumber||'N/A',
+            studentData.address||'N/A',
+            studentData.phoneNumber||studentData.mobile||'N/A',
+            studentData.whatsappNumber||'N/A'
+          ][i])}</span></div>`).join('')}
+      </div>
+      <div class="document-section-title">2. Parent/Guardian Information</div>
+      <div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">
+        ${["8. Father's Name","9. Father's Occupation","10. Guardian's Name","11. Relationship with Guardian"]
+          .map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([
+            studentData.fatherName||'N/A',
+            studentData.fatherOccupation||'N/A',
+            studentData.guardianName||'N/A',
+            studentData.relationshipWithGuardian||'N/A'
+          ][i])}</span></div>`).join('')}
+        ${studentData.guardianReason?`<div class="info-item"><span class="info-label">12. Reason if Guardian is not Father:</span><span class="info-value">${escapeHtml(studentData.guardianReason)}</span></div>`:''}
+      </div>
+      <div class="document-section-title">3. Educational Information</div>
+      <div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">
+        ${["13. Madrasa & Location","Madrasa Class","14. School & Location","School Class","15. Previous Study"]
+          .map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([
+            studentData.madrasa||'N/A',
+            studentData.madrasaclass||'N/A',
+            studentData.school||'N/A',
+            studentData.schoolclass||'N/A',
+            studentData.previousStudy||'No'
+          ][i])}</span></div>`).join('')}
+      </div>
+      ${studentData.previousStudy==='Yes'?`<div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">
+        ${studentData.previousInstitution?`<div class="info-item"><span class="info-label">Previous Institution:</span><span class="info-value">${escapeHtml(studentData.previousInstitution||'N/A')}</span></div>`:''}
+        ${studentData.studyDuration?`<div class="info-item"><span class="info-label">Duration of Study:</span><span class="info-value">${escapeHtml(studentData.studyDuration||'N/A')}</span></div>`:''}
+      </div>`:''}
+      <div class="document-section-title">4. Medical & Identification</div>
+      <div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">
+        ${["16. Identification Mark","17. Physical Fitness"]
+          .map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([
+            studentData.identificationMark||'N/A',
+            studentData.physicalFitness||'N/A'
+          ][i])}</span></div>`).join('')}
+        ${studentData.illness?`<div class="info-item"><span class="info-label">Illness:</span><span class="info-value">${escapeHtml(studentData.illness)}</span></div>`:''}
+      </div>
+      <div class="document-declaration">
+        <h3 class="document-section-title">Declaration</h3>
+        <p style="text-align: justify; line-height: 1.4; margin-bottom: 10px; font-size: 11px;">
+          <strong>${escapeHtml(studentData.studentName||studentData.name||'')}</strong> S/o <strong>${escapeHtml(studentData.guardianName||'')}</strong>, എന്ന എന്‍റെ കുട്ടിയും ഞാനും ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജിന്‍റെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജില്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.
+        </p>
+        <div class="document-signature-line"></div>
+        <div style="font-size:10px;">Parent/Guardian's Name & Signature</div>
+      </div>
+      <div style="margin-top:10px;text-align:left;">
+        <p style="font-size:9px;color:#6c757d;">
+          Date: ______________________________<br><br>
+          Place: _____________________________
+        </p>
+      </div>
+    </div>
+    <div class="document-footer">
+      <p style="color:#495057;font-size:10px;margin:0;">
+        <strong>College Contact:</strong> 9048020243 | <strong>Email:</strong> najathshareea@gmail.com
+      </p>
+    </div>
+  </div>`;
+}
+
+function generateHallticketHtml(data){
+  const{collegeInfo,studentData}=data;
+  const hasValidPhoto=studentData.photoUrl&&(studentData.photoUrl.includes('drive.google.com')||studentData.photoUrl.startsWith('data:image')||studentData.photoUrl.startsWith('http'));
+  const qrText=`Name: ${studentData.studentName||studentData.name||''}, Register No: ${studentData.registerNo||studentData.applicationId||''}, DoB: ${studentData.dob||''}, Exam Date: 17/12/2025, Venue: College Seminar Hall`;
+  const qrCodeUrl=`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrText)}`;
+  
+  return `<div class="document-container">
+    <div class="document-watermark">HALL TICKET</div>
+    <div class="document-header">
+      <img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo">
+      <div class="document-college-info">
+        <div class="document-arabic">كلية دار النجاة للشريعة والآداب</div>
+        <div class="document-college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div>
+        <div class="document-address">Punnakkad, Karuvarakundu, Malappuram District</div>
+        <div class="document-address">Under DARUNNAJATH ISLAMIC CENTRE</div>
+        <div class="document-address">Affiliated to JAMIA NOORIYYA ARABIYYA, PATTIKKAD</div>
+        <div class="document-title">Entrance Exam Hall Ticket</div>
+      </div>
+    </div>
+    <div class="document-content">
+      ${hasValidPhoto?`<div style="position:absolute;top:20px;right:20px;text-align:center;z-index:1;">
+        <div style="width:140px;height:170px;border:2px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa;display:flex;align-items:center;justify-content:center;">
+          <img src="${escapeHtml(studentData.photoUrl)}" style="max-width:100%;max-height:100%;object-fit:contain;" alt="Student Photo">
+        </div>
+        <div style="font-size:11px;color:#6c757d;margin-top:5px;font-weight:500;">Student Photo</div>
+      </div>`:''}
+      <div class="student-info-box" style="margin-right: ${hasValidPhoto?'150px':'0'};">
+        <div class="info-grid">
+          ${['Register Number','Student Name','Date of Birth','House Name','Address','Phone Number']
+            .map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([
+              studentData.registerNo||studentData.applicationId||'N/A',
+              studentData.studentName||studentData.name||'N/A',
+              studentData.dob||'N/A',
+              studentData.houseName||'N/A',
+              studentData.address||'N/A',
+              studentData.phoneNumber||studentData.mobile||'N/A'
+            ][i])}</span></div>`).join('')}
+        </div>
+      </div>
+      <div class="exam-wrapper">
+        <div class="exam-details-box">
+          <div class="exam-title">Examination Details</div>
+          <div class="exam-info-grid">
+            ${['Exam Date','Reporting Time','Exam Duration','Venue']
+              .map((label,i)=>`<div class="exam-item">
+                <div class="exam-label">${label}</div>
+                <div class="exam-value">${['17 December 2025','09:30 AM','10:00 AM - 12:30 PM','College Seminar Hall'][i]}</div>
+              </div>`).join('')}
+          </div>
+        </div>
+        <div style="position:absolute;top:210px;right:20px;text-align:center;z-index:1;">
+          <div style="width:140px;height:140px;border:2px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa;display:flex;align-items:center;justify-content:center;padding:10px;">
+            <img src="${qrCodeUrl}" style="max-width:100%;max-height:100%;" alt="QR Code">
+          </div>
+          <div style="font-size:11px;color:#6c757d;margin-top:5px;font-weight:500;">QR Code Verification</div>
+        </div>
+      </div>
+      <table class="signing-table">
+        <thead><tr><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><div style="font-size:10px;color:#6c757d;">Examiner Signature</div></td>
+            <td><div style="font-size:10px;color:#6c757d;">Examiner Signature</div></td>
+            <td><div style="font-size:10px;color:#6c757d;">Examiner Signature</div></td>
+            <td><div style="font-size:10px;color:#6c757d;">Examiner Signature</div></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="document-instructions">
+        <div class="document-instructions-title">Important Instructions</div>
+        <ul class="document-instructions-list">
+          <li>Bring this hall ticket to the exam center</li>
+          <li>Carry any original ID proof (Aadhaar card)</li>
+          <li>Report at the exam center 30 minutes before exam time</li>
+          <li>No electronic devices allowed inside exam hall</li>
+          <li>Only blue/black ballpoint pens are allowed</li>
+          <li>Follow all instructions given by invigilators</li>
+        </ul>
+      </div>
+    </div>
+    <div class="document-footer">
+      <p style="color:#495057;font-size:10px;margin:0;">
+        <strong>College Contact:</strong> 9048020243 | <strong>Email:</strong> najathshareea@gmail.com
+      </p>
+    </div>
+  </div>`;
+}
+
+function escapeHtml(text){
+  if(!text)return'';
+  const map={'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'};
+  return String(text).replace(/[&<>"']/g,function(m){return map[m];});
+}
 
 AOS.init();
 </script>
@@ -1034,4 +770,3 @@ AOS.init();
 
 </body>
 </html>
-
