@@ -113,6 +113,23 @@
     .ornament-1 {top:20%; left:5%; animation:float 6s ease-in-out infinite;}
     .ornament-2 {top:60%; right:5%; animation:float 8s ease-in-out infinite reverse;}
     .ornament-3 {bottom:20%; left:10%; animation:float 7s ease-in-out infinite;}
+    
+    /* Admin Nav Styles */
+    .admin-nav {
+      background: white; border-bottom: 2px solid var(--islamic-gold); position: relative; z-index: 1000; margin-bottom: 2rem;
+    }
+    .admin-nav-container {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; padding: 0.5rem 0;
+    }
+    .admin-nav-tab {
+      padding: 0.75rem 1.5rem; border: none; background: transparent; color: #666; font-weight: 500; border-radius: 8px; transition: var(--transition); display: flex; align-items: center; gap: 8px;
+    }
+    .admin-nav-tab:hover {background: rgba(10, 92, 54, 0.1); color: var(--islamic-green);}
+    .admin-card {
+      background: white; border-radius: 15px; overflow: hidden; transition: var(--transition); border: 2px solid transparent; box-shadow: 0 5px 15px rgba(0,0,0,0.08); height: 100%; position: relative;
+    }
+    .admin-card:hover {transform: translateY(-8px); border-color: var(--islamic-gold); box-shadow: 0 15px 30px rgba(0,0,0,0.15);}
+    
     @media (max-width:768px) {body{padding-top:70px !important;} .navbar-optimized{height:70px;padding:0.3rem 0;} .page-header{height:26vh;min-height:180px;} .page-title{font-size:2.2rem;} .page-subtitle{font-size:1.1rem;} .content-section{padding:2.5rem 0;} .section-title{font-size:1.8rem;} .navbar-collapse{background:var(--dark-green);padding:1rem;border-radius:0 0 10px 10px;border:1px solid var(--islamic-gold);margin-top:0px;max-height:70vh;overflow-y:auto;} .form-container{padding:1.5rem;} .document-container{width:100%;box-shadow:none;border-radius:0;}}
     @media (max-width:576px) {.page-title{font-size:1.8rem;} .section-title{font-size:1.5rem;}}
     @media (min-width: 992px) {
@@ -172,34 +189,78 @@
 <!-- ==================== ADMIN PANEL ==================== -->
 <section class="content-section" id="adminPanelSection" style="display:none; background: white;">
   <div class="container">
-    <div class="form-container" data-aos="fade-up">
+    
+    <!-- Admin Navigation -->
+    <div class="admin-nav" data-aos="fade-down">
+      <div class="container">
+        <div class="admin-nav-container">
+          <a href="admin.html" class="admin-nav-tab nav-tab-active">
+            <i class="fas fa-user-shield"></i> Admin
+          </a>
+          <a href="test.html" class="admin-nav-tab">
+            <i class="fas fa-file-alt"></i> Test
+          </a>
+          <a href="Social.html" class="admin-nav-tab">
+            <i class="fas fa-share-alt"></i> Social media
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center gap-3 flex-wrap mt-4" data-aos="fade-up" data-aos-delay="400">
+      <a href="admission.html" class="btn-gold btn-lg">Admission</a>
+      <a href="#about" class="btn-outline-gold btn-lg">Learn More</a>
+      <a href="result.html" class="btn-outline-gold btn-lg">Exam Results</a>
+    </div>
+
+    <div class="form-container mt-4" data-aos="fade-up">
       <h2 class="form-title text-center mb-4">
         <i class="fas fa-user-shield me-2"></i> Admin Control Panel
       </h2>
       <div class="row g-4 justify-content-center">
         <div class="col-md-5 col-lg-3">
-          <button class="btn-gold w-100 py-3" onclick="generateAllApplicationsPDF()">
-            <i class="fas fa-file-alt fa-2x mb-2 d-block"></i>
-            Download All Applications
-          </button>
+          <div class="admin-card">
+            <div class="p-4 text-center">
+              <i class="fas fa-file-alt fa-3x mb-3" style="color: var(--islamic-green);"></i>
+              <h4 class="mb-3">Download All Applications</h4>
+              <button class="btn-gold w-100" onclick="generateAllApplicationsPDF()">
+                <i class="fas fa-download me-2"></i> Download
+              </button>
+            </div>
+          </div>
         </div>
         <div class="col-md-5 col-lg-3">
-          <button class="btn-gold w-100 py-3" onclick="generateAllHallticketsPDF()">
-            <i class="fas fa-ticket-alt fa-2x mb-2 d-block"></i>
-            Download All Hall Tickets
-          </button>
+          <div class="admin-card">
+            <div class="p-4 text-center">
+              <i class="fas fa-ticket-alt fa-3x mb-3" style="color: var(--islamic-green);"></i>
+              <h4 class="mb-3">Download All Hall Tickets</h4>
+              <button class="btn-gold w-100" onclick="generateAllHallticketsPDF()">
+                <i class="fas fa-download me-2"></i> Download
+              </button>
+            </div>
+          </div>
         </div>
         <div class="col-md-5 col-lg-3">
-          <button class="btn-gold w-100 py-3" onclick="showResultsData()">
-            <i class="fas fa-chart-line fa-2x mb-2 d-block"></i>
-            View All Results
-          </button>
+          <div class="admin-card">
+            <div class="p-4 text-center">
+              <i class="fas fa-chart-line fa-3x mb-3" style="color: var(--islamic-green);"></i>
+              <h4 class="mb-3">View All Results</h4>
+              <button class="btn-gold w-100" onclick="showResultsData()">
+                <i class="fas fa-eye me-2"></i> View
+              </button>
+            </div>
+          </div>
         </div>
         <div class="col-md-5 col-lg-3">
-          <button class="btn-gold w-100 py-3" onclick="showApplicationData()">
-            <i class="fas fa-database fa-2x mb-2 d-block"></i>
-            View Application Data
-          </button>
+          <div class="admin-card">
+            <div class="p-4 text-center">
+              <i class="fas fa-database fa-3x mb-3" style="color: var(--islamic-green);"></i>
+              <h4 class="mb-3">View Application Data</h4>
+              <button class="btn-gold w-100" onclick="showApplicationData()">
+                <i class="fas fa-table me-2"></i> View
+              </button>
+            </div>
+          </div>
         </div>
       </div>
       <div class="text-center mt-5">
