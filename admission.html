@@ -560,7 +560,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz5NxWJWl_FHQcVDR0oZCjRgD43cXoxwkXkdu8JqlgjgKo41EzBWYeCob0DHUV-wk11qA/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxQV7IU7N8PfoECQwaCWCf3eOkqp4LD9d9AF7jktEVKRStQodQJf_pnf7AeBVQm1iPWBw/exec';
   document.addEventListener('DOMContentLoaded', function() {initializePage();});
   function initializePage() {
     AOS.init({duration:800,once:true,offset:50,disable:window.innerWidth<768});
@@ -592,14 +592,75 @@
   function handleFile(file){if(!file.type.startsWith('image/')){return;}if(file.size>5*1024*1024){return;}
     const reader=new FileReader();reader.onload=function(e){const preview=document.getElementById('photoPreview');preview.src=e.target.result;preview.style.display='block';};reader.readAsDataURL(file);}
   function readFileAsBase64(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(file);});}
-  function generateApplicationHtml(data) {
-  const { collegeInfo, studentData } = data;
-  const hasValidPhoto = studentData.photoUrl && (
-    studentData.photoUrl.includes('drive.google.com') ||
-    studentData.photoUrl.startsWith('data:image') ||
-    studentData.photoUrl.startsWith('http')
-  );
+  function ensurePhotoAccess(url) {
+  if (!url) return '';
+  
+  // If it's already a direct view link, use it
+  if (url.includes('drive.google.com/uc?export=view')) {
+    return url;
+  }
+  
+  // Convert thumbnail links to direct view links
+  if (url.includes('drive.google.com/thumbnail?id=')) {
+    const match = url.match(/id=([-\w]{25,})/);
+    if (match && match[1]) {
+      return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+    }
+  }
+  
+  // Convert file view links to direct view
+  if (url.includes('/file/d/')) {
+    const match = url.match(/\/d\/([-\w]{25,})/);
+    if (match && match[1]) {
+      return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+    }
+  }
+  
+  // If it has a Google Drive ID, use it
+  const match = url.match(/([-\w]{25,})/);
+  if (match && match[1] && url.includes('drive.google.com')) {
+    return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+  }
+  
+  return url;
+}
 
+// Update the generateApplicationHtml function - FIX THE PHOTO DISPLAY
+function generateApplicationHtml(data) {
+  const { collegeInfo, studentData } = data;
+  
+  // DEBUG: Log what we're getting
+  console.log("DEBUG generateApplicationHtml - studentData:", studentData);
+  console.log("DEBUG - photoUrl:", studentData.photoUrl);
+  
+  // Fix photo URL - ensure it's a direct view link
+  let photoUrl = studentData.photoUrl || '';
+  
+  // If it's a thumbnail link, convert it
+  if (photoUrl.includes('thumbnail?id=')) {
+    const match = photoUrl.match(/id=([-\w]{25,})/);
+    if (match && match[1]) {
+      photoUrl = `https://drive.google.com/uc?export=view&id=${match[1]}`;
+    }
+  }
+  
+  // If it's a file view link, convert it
+  if (photoUrl.includes('/file/d/')) {
+    const match = photoUrl.match(/\/d\/([-\w]{25,})/);
+    if (match && match[1]) {
+      photoUrl = `https://drive.google.com/uc?export=view&id=${match[1]}`;
+    }
+  }
+  
+  // Test if the URL is accessible
+  const hasValidPhoto = photoUrl && (
+    photoUrl.includes('drive.google.com') ||
+    photoUrl.startsWith('data:image') ||
+    photoUrl.startsWith('http')
+  );
+  
+  console.log("DEBUG - hasValidPhoto:", hasValidPhoto, "photoUrl:", photoUrl);
+  
   return `
 <div class="document-container">
   <div class="document-watermark">APPLICATION FORM</div>
@@ -614,58 +675,140 @@
       <div class="document-title">Admission Application Form</div>
     </div>
   </div>
-
   <div class="document-content">
     ${hasValidPhoto ? `
       <div style="position:absolute;top:40px;right:40px;text-align:center;z-index:1;">
         <div style="width:150px;height:180px;border:2px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa;display:flex;align-items:center;justify-content:center;">
-          <img src="${escapeHtml(studentData.photoUrl)}" style="max-width:100%;max-height:100%;object-fit:contain;" alt="Student Photo">
+          <img src="${escapeHtml(photoUrl)}" 
+               style="max-width:100%;max-height:100%;object-fit:cover;" 
+               alt="Student Photo"
+               onload="console.log('Photo loaded successfully:', this.src)"
+               onerror="console.error('Photo failed to load:', this.src); this.style.display='none'; this.parentElement.innerHTML='<div style=\\'color:#6c757d;font-size:14px;padding:20px;text-align:center;\\'><i class=\\'fas fa-user\\' style=\\'font-size:24px;margin-bottom:10px;display:block;\\'></i>Photo not available</div>';">
         </div>
         <div style="font-size:12px;color:#6c757d;margin-top:5px;font-weight:500;">Student Photograph</div>
       </div>
+    ` : `
+      <div style="position:absolute;top:40px;right:40px;text-align:center;z-index:1;">
+        <div style="width:150px;height:180px;border:2px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa;display:flex;align-items:center;justify-content:center;">
+          <div style="color:#6c757d;font-size:14px;padding:20px;text-align:center;">
+            <i class="fas fa-user" style="font-size:24px;margin-bottom:10px;display:block;"></i>
+            No photo uploaded
+          </div>
+        </div>
+        <div style="font-size:12px;color:#6c757d;margin-top:5px;font-weight:500;">Student Photograph</div>
+      </div>
+    `}
+    
+    <div class="document-section-title">1. Personal Information</div>
+    <div class="info-grid1" style="margin-right: 160px;">
+      ${[
+        {label: 'Application Date', value: studentData.submissionDate || new Date().toLocaleDateString()},
+        {label: 'Application ID', value: studentData.applicationId || 'N/A'},
+        {label: "1. Student's Name", value: studentData.studentName || studentData.name || 'N/A'},
+        {label: "2. House Name", value: studentData.houseName || 'N/A'},
+        {label: "3. Date of Birth", value: studentData.dob || 'N/A'},
+        {label: "4. Aadhaar Number", value: studentData.aadhaarNumber || 'N/A'},
+        {label: "5. Address", value: studentData.address || 'N/A'},
+        {label: "6. Phone Number", value: studentData.phoneNumber || studentData.mobile || 'N/A'},
+        {label: "7. WhatsApp Number", value: studentData.whatsappNumber || 'N/A'}
+      ].map(item => `
+        <div class="info-item">
+          <span class="info-label">${item.label}:</span>
+          <span class="info-value">${escapeHtml(item.value)}</span>
+        </div>
+      `).join('')}
+    </div>
+    
+    <div class="document-section-title">2. Parent/Guardian Information</div>
+    <div class="info-grid" style="margin-right: 160px;">
+      ${[
+        {label: "8. Father's Name", value: studentData.fatherName || 'N/A'},
+        {label: "9. Father's Occupation", value: studentData.fatherOccupation || 'N/A'},
+        {label: "10. Guardian's Name", value: studentData.guardianName || 'N/A'},
+        {label: "11. Relationship with Guardian", value: studentData.relationshipWithGuardian || 'N/A'},
+        studentData.guardianReason ? {label: "12. Reason if Guardian is not Father:", value: studentData.guardianReason} : null
+      ].filter(Boolean).map(item => `
+        <div class="info-item">
+          <span class="info-label">${item.label}:</span>
+          <span class="info-value">${escapeHtml(item.value)}</span>
+        </div>
+      `).join('')}
+    </div>
+    
+    <div class="document-section-title">3. Educational Information</div>
+    <div class="info-grid" style="margin-right: 160px;">
+      ${[
+        {label: "13. Madrasa & Location", value: studentData.madrasa || 'N/A'},
+        {label: "Madrasa Class", value: studentData.madrasaclass || 'N/A'},
+        {label: "14. School & Location", value: studentData.school || 'N/A'},
+        {label: "School Class", value: studentData.schoolclass || 'N/A'},
+        {label: "15. Previous Study", value: studentData.previousStudy || 'No'}
+      ].map(item => `
+        <div class="info-item">
+          <span class="info-label">${item.label}:</span>
+          <span class="info-value">${escapeHtml(item.value)}</span>
+        </div>
+      `).join('')}
+    </div>
+    
+    ${studentData.previousStudy === 'Yes' ? `
+    <div class="info-grid" style="margin-right: 160px;">
+      ${studentData.previousInstitution ? `
+        <div class="info-item">
+          <span class="info-label">Previous Institution:</span>
+          <span class="info-value">${escapeHtml(studentData.previousInstitution || 'N/A')}</span>
+        </div>
+      ` : ''}
+      ${studentData.studyDuration ? `
+        <div class="info-item">
+          <span class="info-label">Duration of Study:</span>
+          <span class="info-value">${escapeHtml(studentData.studyDuration || 'N/A')}</span>
+        </div>
+      ` : ''}
+    </div>
     ` : ''}
-
-    <div class="document-section-title">1. Personal Information</div><div class="info-grid1" style="margin-right: ${hasValidPhoto?'160px':'0'};">${['Application Date','Application ID',"1. Student's Name","2. House Name","3. Date of Birth","4. Aadhaar Number","5. Address","6. Phone Number","7. WhatsApp Number"].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.submissionDate||new Date().toLocaleDateString(),studentData.applicationId||'N/A',studentData.studentName||studentData.name||'N/A',studentData.houseName||'N/A',studentData.dob||'N/A',studentData.aadhaarNumber||'N/A',studentData.address||'N/A',studentData.phoneNumber||studentData.mobile||'N/A',studentData.whatsappNumber||'N/A'][i])}</span></div>`).join('')}</div><div class="document-section-title">2. Parent/Guardian Information</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${["8. Father's Name","9. Father's Occupation","10. Guardian's Name","11. Relationship with Guardian"].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.fatherName||'N/A',studentData.fatherOccupation||'N/A',studentData.guardianName||'N/A',studentData.relationshipWithGuardian||'N/A'][i])}</span></div>`).join('')}${studentData.guardianReason?`<div class="info-item"><span class="info-label">12. Reason if Guardian is not Father:</span><span class="info-value">${escapeHtml(studentData.guardianReason)}</span></div>`:''}</div><div class="document-section-title">3. Educational Information</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${["13. Madrasa & Location","Madrasa Class","14. School & Location","School Class","15. Previous Study"].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span>
-    <span class="info-value">${escapeHtml([studentData.madrasa||'N/A',studentData.madrasaclass||'N/A',studentData.school||'N/A',studentData.schoolclass||'N/A',studentData.previousStudy||'No'][i])}</span></div>`).join('')}</div>${studentData.previousStudy==='Yes'?`<div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${studentData.previousInstitution?`<div class="info-item"><span class="info-label">Previous Institution:</span><span class="info-value">${escapeHtml(studentData.previousInstitution||'N/A')}</span></div>`:''}${studentData.studyDuration?`<div class="info-item"><span class="info-label">Duration of Study:</span><span class="info-value">${escapeHtml(studentData.studyDuration||'N/A')}</span></div>`:''}</div>`:''}<div class="document-section-title">4. Medical & Identification</div><div class="info-grid" style="margin-right: ${hasValidPhoto?'160px':'0'};">${["16. Identification Mark","17. Physical Fitness"].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.identificationMark||'N/A',studentData.physicalFitness||'N/A'][i])}</span></div>`).join('')}${studentData.illness?`<div class="info-item"><span class="info-label">Illness:</span><span class="info-value">${escapeHtml(studentData.illness)}</span></div>`:''}</div>
-
+    
+    <div class="document-section-title">4. Medical & Identification</div>
+    <div class="info-grid" style="margin-right: 160px;">
+      ${[
+        {label: "16. Identification Mark", value: studentData.identificationMark || 'N/A'},
+        {label: "17. Physical Fitness", value: studentData.physicalFitness || 'N/A'},
+        studentData.illness ? {label: "Illness", value: studentData.illness} : null
+      ].filter(Boolean).map(item => `
+        <div class="info-item">
+          <span class="info-label">${item.label}:</span>
+          <span class="info-value">${escapeHtml(item.value)}</span>
+        </div>
+      `).join('')}
+    </div>
+    
     <div class="document-declaration">
       <h3 class="document-section-title">Declaration</h3>
       <p style="text-align: justify; line-height: 1.4; margin-bottom: 18px; font-size: 11px;">
-        <strong>${escapeHtml(studentData.studentName || studentData.name || '')}</strong> S/o 
-        <strong>${escapeHtml(studentData.guardianName || '')}</strong>, 
+        <strong>${escapeHtml(studentData.studentName || studentData.name || '')}</strong> S/o
+        <strong>${escapeHtml(studentData.guardianName || '')}</strong>,
         എന്ന എന്‍റെ കുട്ടിയും ഞാനും ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജിന്‍റെ എല്ലാ നിയമങ്ങളും നിര്‍ദ്ദേശങ്ങളും പാലിക്കാന്‍ സന്നദ്ധരാണെന്ന് സാക്ഷ്യപ്പെടുത്തുന്നതോടൊപ്പം എന്‍റെ ഈ കുട്ടിയെ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജില്‍ ചേര്‍ക്കുവാന്‍ അപേക്ഷിക്കുന്നു.
       </p>
-
-            <div class="document-signature-section" style="margin-top: 30px; font-size: 11px; display: flex; justify-content: space-between; align-items: flex-start; gap: 30px;">
-
-        <!-- Left side: Date & Place – no underline -->
+      
+      <div class="document-signature-section" style="margin-top: 30px; font-size: 11px; display: flex; justify-content: space-between; align-items: flex-start; gap: 30px;">
         <div style="flex: 0 0 auto;">
-          <div style="margin-bottom: 14px;">
-            Date: ______________________________
-          </div>
-          <div>
-            Place: _____________________________
-          </div>
+          <div style="margin-bottom: 14px;">Date: ______________________________</div>
+          <div>Place: _____________________________</div>
         </div>
-
-        <!-- Right side: Signature -->
         <div style="text-align: right; flex: 1;">
           <div class="document-signature-line" style="width: 260px; margin-left: auto; margin-bottom: 6px;"></div>
           <div style="font-size: 11px; font-weight: 500;">Parent/Guardian's Name & Signature</div>
         </div>
-
       </div>
     </div>
   </div>
-
-
-    <div class="document-footer">
-      <p style="color:#495057;font-size:10px;margin:0;">
-        <strong>College Contact:</strong> 9048020243 | <strong>Email:</strong> najathshareea@gmail.com
-      </p>
-    </div>
-    </div>
-
+  
+  <div class="document-footer">
+    <p style="color:#495057;font-size:10px;margin:0;">
+      <strong>College Contact:</strong> 9048020243 | <strong>Email:</strong> najathshareea@gmail.com
+    </p>
+  </div>
+</div>
 
 <div class="no-print" style="text-align:center;margin-top:20px;padding:20px;">
   <button onclick="window.print()" class="btn-gold me-2">
@@ -685,8 +828,32 @@
   function generateResultHtml(data){const{collegeInfo,studentData}=data;let statusText="NOT QUALIFIED",statusColor="#dc3545";if(studentData.result==="QUALIFIED"){statusText="QUALIFIED";statusColor="#28a745";}else if(studentData.result==="WAITING LIST"){statusText="WAITING LIST";statusColor="#007bff";}const isQualified=studentData.result==="QUALIFIED";const isWaitingList=studentData.result==="WAITING LIST";const isQualifiedOrWaiting=isQualified||isWaitingList;
     return `<div class="document-container"><div class="document-watermark">${statusText}</div><div class="document-header"><img src="https://i.postimg.cc/rmS5jXXX/COLLEGE-LOGO.png" alt="College Logo" class="document-logo"><div class="document-college-info"><div class="document-arabic">كلية دار النجاة للشريعة والآداب</div><div class="document-college-name">DARUNNAJATH SHAREEATH & ARTS COLLEGE</div><div class="document-address">Punnakkad, Karuvarakundu, Malappuram District</div><div class="document-address">Under DARUNNAJATH ISLAMIC CENTRE</div><div class="document-address">Affiliated to JAMIA NOORIYYA ARABIYYA, PATTIKKAD</div><div class="document-title">Entrance Exam Result</div></div></div><div class="document-content"><div class="student-info-box"><div class="info-grid">${['Student Name','Mobile Number','Date of Birth','Result Status'].map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([studentData.name||studentData.studentName||'N/A',studentData.mobile||studentData.phoneNumber||'N/A',studentData.dob||'N/A',statusText][i])}</span></div>`).join('')}</div></div><div class="result-section-box" style="border-color: ${statusColor};"><div class="result-status" style="color: ${statusColor};">${statusText}</div>${isQualifiedOrWaiting?`<div class="result-rank">Rank: ${escapeHtml(studentData.rank||'N/A')}</div>`:''}${isQualified?`<div class="admission-info-box"><div class="admission-title">Admission Details</div><div class="admission-row"><span class="admission-label">Admission Starts:</span><span class="admission-value">15 January 2026</span></div><div class="admission-row"><span class="admission-label">Class Starts:</span><span class="admission-value">30 January 2026</span></div></div>`:''}<div class="note-section" style="text-align:left;background:#fff3cd;border-left:4px solid #ffc107;margin-top:15px;"><div class="note-title">Important Note</div><div class="note-content">Selected candidates must complete admission formalities within the specified dates. Bring all original documents for verification. For any queries, contact college office.</div></div></div></div><div class="document-footer"><p style="color:#495057;font-size:10px;margin:0;"><strong>College Contact:</strong> 9048020243 | <strong>Email:</strong> najathshareea@gmail.com</p></div></div><div class="no-print" style="text-align:center;margin-top:20px;padding:20px;"><button onclick="window.print()" class="btn-gold me-2"><i class="fas fa-print me-2"></i> Print Result</button><button onclick="showDashboard()" class="btn-outline-gold"><i class="fas fa-arrow-left me-2"></i> Back to Dashboard</button></div>`;}
   function displayDocument(htmlContent){document.getElementById('mainContentArea').style.display='none';document.getElementById('documentDisplayArea').style.display='block';document.getElementById('documentDisplayArea').innerHTML=htmlContent;window.scrollTo({top:0,behavior:'smooth'});}
-  async function handleApplicationSubmit(e){e.preventDefault();const mobile=document.getElementById('appMobile').value.trim();const dob=document.getElementById('appDob').value;
-    try{const response=await fetch(`${SCRIPT_URL}?type=application&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);const data=await response.json();if(data.status==='success'){const html=generateApplicationHtml(data);displayDocument(html);}else{}}catch(error){console.error('Error:',error);}}
+  async function handleApplicationSubmit(e){
+  e.preventDefault();
+  const mobile=document.getElementById('appMobile').value.trim();
+  const dob=document.getElementById('appDob').value;
+  
+  try{
+    const response=await fetch(`${SCRIPT_URL}?type=application&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);
+    const data=await response.json();
+    
+    console.log("DEBUG - API Response:", data); // ADD THIS LINE
+    
+    if(data.status==='success'){
+      // Debug the photo URL
+      console.log("DEBUG - Photo URL from API:", data.studentData.photoUrl);
+      console.log("DEBUG - Student Data:", data.studentData);
+      
+      const html=generateApplicationHtml(data);
+      displayDocument(html);
+    }else{
+      alert(data.message || "No record found");
+    }
+  }catch(error){
+    console.error('Error:',error);
+    alert('Network error. Please try again.');
+  }
+}
   async function handleHallticketSubmit(e){e.preventDefault();const mobile=document.getElementById('ticketMobile').value.trim();const dob=document.getElementById('ticketDob').value;
     try{const response=await fetch(`${SCRIPT_URL}?type=hallticket&mobile=${encodeURIComponent(mobile)}&dob=${encodeURIComponent(dob)}`);const data=await response.json();if(data.status==='success'){const html=generateHallticketHtml(data);displayDocument(html);}else{}}catch(error){console.error('Error:',error);}}
   async function handleResultSubmit(e){e.preventDefault();const mobile=document.getElementById('resultMobile').value.trim();const dob=document.getElementById('resultDob').value;
