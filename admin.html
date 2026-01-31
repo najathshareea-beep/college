@@ -71,7 +71,7 @@
     .info-value {color:#212529; font-size:11px; flex:1; line-height:1.2; text-align:left;}
     .document-section-title {font-size:14px; font-weight:600; color:var(--islamic-green); margin:8px 0 3px; padding-bottom:2px; border-bottom:1px solid #e9ecef; text-align:left;}
     .document-declaration {background:linear-gradient(135deg,#f8f9fa 0%,#e9ecef 100%); border-radius:8px; padding:10px; margin-top:10px; border:1px solid #dee2e6;}
-    .document-signature-section {text-align:right; margin-top:20px; padding-top:10px; border-top:none; solid #ced4da;}
+    .document-signature-section {text-align:right; margin-top:20px; padding-top:10px; solid #ced4da;}
     .document-signature-line {display:inline-block; width:250px; border-bottom:1px solid #212529; margin-bottom:3px;}
     .student-info-box {background:#f8f9fa; border-radius:8px; padding:15px; margin-bottom:15px; border:1px solid #dee2e6;}
     .exam-details-box {background:white; border:2px solid var(--islamic-green); border-radius:8px; padding:15px; margin:15px 0; max-width: 600px; display:flex; flex-direction:column;}
@@ -933,14 +933,10 @@ function generateHallticketHtml(data){
       </div>`:''}
       <div class="student-info-box" style="margin-right: ${hasValidPhoto?'150px':'0'};">
         <div class="info-grid">
-          ${['Register Number','Student Name','Date of Birth','House Name','Address','Phone Number']
+        
+          ${['Register Number','Student Name','Date of Birth','Age','Phone Number','House Name','Address','Previous Study']
             .map((label,i)=>`<div class="info-item"><span class="info-label">${label}:</span><span class="info-value">${escapeHtml([
-              studentData.registerNo||studentData.applicationId||'N/A',
-              studentData.studentName||studentData.name||'N/A',
-              studentData.dob||'N/A',
-              studentData.houseName||'N/A',
-              studentData.address||'N/A',
-              studentData.phoneNumber||studentData.mobile||'N/A'
+              studentData.registerNo||studentData.applicationId||'N/A',studentData.studentName||studentData.name||'N/A',studentData.dob||'N/A',studentData.age||'N/A',studentData.phoneNumber||studentData.mobile||'N/A',studentData.houseName||'N/A',studentData.address||'N/A',studentData.previousStudy||'N/A'
             ][i])}</span></div>`).join('')}
         </div>
       </div>
