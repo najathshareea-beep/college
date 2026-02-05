@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DSAC | Gallery</title>
+  <title>AMCT | Gallery</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -87,7 +87,6 @@
     }
     .btn-outline-gold:hover {background: var(--islamic-gold); color: var(--islamic-green);}
     
-    /* Improved Gallery Layout */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -139,9 +138,6 @@
       opacity: 1;
     }
 
-    /* Removed gallery-caption and gallery-category styles since we don't need them */
-
-    /* Span items for better layout */
     .gallery-item:nth-child(3n) {
       grid-row: span 2;
     }
@@ -155,7 +151,6 @@
       grid-column: span 2;
     }
 
-    /* Enhanced Lightbox Modal - Clean version without captions */
     .gallery-modal {
       display: none;
       position: fixed;
@@ -195,7 +190,6 @@
       border-radius: 4px;
     }
 
-    /* Modal Controls */
     .modal-controls {
       position: absolute;
       top: 50%;
@@ -271,7 +265,6 @@
       backdrop-filter: blur(5px);
     }
 
-    /* Modal Zoom Controls */
     .modal-zoom-controls {
       position: absolute;
       bottom: 1rem;
@@ -303,7 +296,6 @@
       color: var(--islamic-green);
     }
 
-    /* Loading Animation */
     .image-loader {
       position: absolute;
       top: 50%;
@@ -322,7 +314,6 @@
       to { transform: translate(-50%, -50%) rotate(360deg); }
     }
 
-    /* Filter Buttons */
     .filter-buttons {
       display: flex;
       flex-wrap: wrap;
@@ -476,7 +467,7 @@
   <div class="container">
     <div class="page-header-content">
       <h1 class="page-title">Photo Gallery</h1>
-      <p class="page-subtitle">Beautiful moments and memories from Darunnajath Shareeath & Arts College</p>
+      <p class="page-subtitle">Beautiful moments and memories from Al Hafiz Mammu Mulla College of Thahfeezul Quran</p>
     </div>
   </div>
 </div>
@@ -689,7 +680,6 @@
   </div>
 </section>
 
-<!-- Gallery Modal - Clean version without captions -->
 <div class="gallery-modal" id="galleryModal">
   <div class="modal-close" id="modalClose">&times;</div>
   <div class="modal-content">
@@ -744,7 +734,6 @@
     let filteredItems = Array.from(galleryItems);
     let scale = 1;
 
-    // Filter functionality
     filterButtons.forEach(button => {
       button.addEventListener('click', function() {
         const filter = this.getAttribute('data-filter');
@@ -777,16 +766,13 @@
       });
     });
 
-    // Open modal on image click
     galleryItems.forEach((item, index) => {
       item.addEventListener('click', () => {
-        // Get filtered items for current filter
         const currentFilteredItems = Array.from(galleryItems).filter(item => {
           const category = item.getAttribute('data-category');
           return currentFilter === 'all' || category === currentFilter;
         });
         
-        // Find index in filtered items
         currentIndex = currentFilteredItems.indexOf(item);
         openModal(currentFilteredItems);
       });
@@ -806,11 +792,9 @@
       const currentItem = filteredItems[currentIndex];
       const img = currentItem.querySelector('img');
       
-      // Show loader
       modalImage.style.opacity = '0';
       imageLoader.style.display = 'block';
       
-      // Preload image
       const tempImage = new Image();
       tempImage.src = img.src;
       tempImage.onload = () => {
@@ -818,7 +802,6 @@
         modalImage.alt = img.alt;
         modalCounter.textContent = `${currentIndex + 1} / ${filteredItems.length}`;
         
-        // Hide loader and show image
         setTimeout(() => {
           imageLoader.style.display = 'none';
           modalImage.style.opacity = '1';
@@ -858,7 +841,6 @@
       modalImage.style.transition = 'transform 0.3s ease';
     }
 
-    // Event Listeners
     nextBtn.addEventListener('click', nextImage);
     prevBtn.addEventListener('click', prevImage);
     modalClose.addEventListener('click', () => {
@@ -870,7 +852,6 @@
     zoomOutBtn.addEventListener('click', zoomOut);
     resetZoomBtn.addEventListener('click', resetZoom);
 
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
       if (modal.style.display === 'flex') {
         switch(e.key) {
@@ -897,7 +878,6 @@
       }
     });
 
-    // Swipe support for mobile
     let touchStartX = 0;
     let touchEndX = 0;
 
@@ -916,14 +896,13 @@
       
       if (Math.abs(diff) > swipeThreshold) {
         if (diff > 0) {
-          nextImage(); // Swipe left
+          nextImage(); 
         } else {
-          prevImage(); // Swipe right
+          prevImage(); 
         }
       }
     }
 
-    // Double click to zoom
     modalImage.addEventListener('dblclick', (e) => {
       if (scale === 1) {
         zoomIn();
@@ -932,7 +911,6 @@
       }
     });
 
-    // Prevent modal close when clicking on image
     modalImage.addEventListener('click', (e) => {
       e.stopPropagation();
     });
