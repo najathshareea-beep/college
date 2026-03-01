@@ -272,20 +272,20 @@
 <div id="navbar-container"></div>
 <script>
   const CONFIG = {
-    EXAM_DATE_ISO: '2026-02-15',
-    EXAM_DATE_DDMMYYYY: '15-02-2026',
-    EXAM_DAY_MALAYALAM: 'ഞായർ',
-    EXAM_TIME: '07:30 AM',
-    EXAM_REPORTING_TIME: '07:30 AM',
-    EXAM_DURATION: '08:00 AM - 12:30 PM',
+    EXAM_DATE_ISO: '2026-04-30',
+    EXAM_DATE_DDMMYYYY: '30-04-2026',
+    EXAM_DAY_MALAYALAM: 'വ്യാഴം',
+    EXAM_TIME: '10:00 AM',
+    EXAM_REPORTING_TIME: '09:30 AM',
+    EXAM_DURATION: '10:00 AM - 12:30 PM',
     EXAM_VENUE: 'College Seminar hall',
-    APPLICATION_DEADLINE_DDMMYYYY: '12-02-2026',
-    MIN_AGE_YEARS: 5,
-    MAX_AGE_YEARS: 10,
-    RESULT_PUBLISH_DATE_ISO: '2026-02-17',
-    RESULT_PUBLISH_DATE_DDMMYYYY: '17-02-2026',
-    RESULT_PUBLISH_DAY_MALAYALAM: 'ചൊവ്വ',
-    RESULT_PUBLISH_TIME: 'വൈകുന്നേരം 4 മണി',
+    APPLICATION_DEADLINE_DDMMYYYY: '29-04-2026',
+    MIN_AGE_YEARS: 11,
+    MAX_AGE_YEARS: 17,
+    RESULT_PUBLISH_DATE_ISO: '2026-05-02',
+    RESULT_PUBLISH_DATE_DDMMYYYY: '02-05-2026',
+    RESULT_PUBLISH_DAY_MALAYALAM: 'ശനി',
+    RESULT_PUBLISH_TIME: '10:00 AM',
     ADMISSION_STARTS: 'പിന്നീട് അറിയിക്കും',
     CLASS_STARTS: 'പിന്നീട് അറിയിക്കും',
     COLLEGE_PHONE: '9048020243',
@@ -316,19 +316,19 @@
   <div class="ticker-wrapper">
     <div class="ticker-item">
       <span class="ticker-badge">⚠ IMPORTANT</span>
-      Admission started! Contact now.
+      Admission started! Contact now. 9048020243
     </div>
     <div class="ticker-item">
       <span class="ticker-badge">📢 NEWS</span>
-       യോഗ്യത: പത്ത് വയസ് കവിയാത്ത ആണ്‍ കുട്ടി
+       യോഗ്യത: സ്കൂള്‍ ഏഴാം ക്ലാസ് പൂർത്തിയായ ആണ്‍ കുട്ടി (സെക്കണ്ടറി), SSLC തുടർ പഠന യോഗ്യത നേടിയ ആണ്‍ കുട്ടി (ഹയർ സെക്കണ്ടറി)
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-badge">📢 NEWS</span>
+      സെലക്ഷന്‍ പരീക്ഷ 30-04-2026 വ്യാഴം (സെക്കണ്ടറി), 13-05-2026 ബുധന്‍ (ഹയർ സെക്കണ്ടറി)
     </div>
     <div class="ticker-item">
       <span class="ticker-badge">📢 NEWS</span>
       പ്രവേശന പരീക്ഷാദിനത്തില്‍ ആധാര്‍ കോപ്പി, അപേക്ഷാ ഫീ 300 രൂപ എന്നിവ സ്ഥാപനത്തില്‍ സമർപ്പിക്കുക.
-    </div>
-    <div class="ticker-item">
-      <span class="ticker-badge">📢 NEWS</span>
-      രണ്ടാംഘട്ട സെലക്ഷന്‍ പരീക്ഷ റമളാന്‍ രണ്ടാമത്തെ പത്തില്‍, തിയ്യതി പിന്നീട് പ്രഖ്യാപിക്കും. താല്‍പര്യമുള്ളവർ സ്ഥാപനവുമായി ബന്ധപ്പെടുക.
     </div>
     <div class="ticker-item">
       <span class="ticker-badge">✨ UPDATED</span>
@@ -751,8 +751,8 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('tickerExamDate').innerHTML = `${CONFIG.EXAM_DATE_DDMMYYYY} ${CONFIG.EXAM_DAY_MALAYALAM} ഹിഫ്‍ള് സെലക്ഷന്‍ പരീക്ഷ, ${CONFIG.APPLICATION_DEADLINE_DDMMYYYY} ന് മുമ്പ് അപേക്ഷ സമർപ്പിക്കുക`;
-    document.getElementById('tickerResultDate').innerHTML = `${CONFIG.RESULT_PUBLISH_DATE_DDMMYYYY} ${CONFIG.RESULT_PUBLISH_DAY_MALAYALAM} ${CONFIG.RESULT_PUBLISH_TIME} ഹിഫ്‍ള് സെലക്ഷന്‍ പരീക്ഷ റിസള്‍ട്ട് പബ്ലിഷ് ചെയ്യും`;
+    document.getElementById('tickerExamDate').innerHTML = `${CONFIG.EXAM_DATE_DDMMYYYY} ${CONFIG.EXAM_DAY_MALAYALAM} സെലക്ഷന്‍ പരീക്ഷ, ${CONFIG.APPLICATION_DEADLINE_DDMMYYYY} ന് മുമ്പ് അപേക്ഷ സമർപ്പിക്കുക`;
+    document.getElementById('tickerResultDate').innerHTML = `${CONFIG.RESULT_PUBLISH_DATE_DDMMYYYY} ${CONFIG.RESULT_PUBLISH_DAY_MALAYALAM} ${CONFIG.RESULT_PUBLISH_TIME} സെലക്ഷന്‍ പരീക്ഷ റിസള്‍ട്ട് പബ്ലിഷ് ചെയ്യും`;
     document.getElementById('examNote').innerHTML = `പ്രവേശന പരീക്ഷ ${CONFIG.EXAM_DATE_DDMMYYYY} ${CONFIG.EXAM_DAY_MALAYALAM} ${CONFIG.EXAM_TIME}`;
     
     initializePage();
