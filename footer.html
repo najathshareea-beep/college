@@ -83,12 +83,38 @@
   <i class="fab fa-whatsapp"></i>
 </a>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const currentYear = new Date().getFullYear();
+function setCurrentYearWithRetry(maxRetries = 5) {
+  let retries = 0;
+  
+  function trySetYear() {
     const yearElement = document.getElementById('currentYear');
     if (yearElement) {
-      yearElement.textContent = currentYear;
+      yearElement.textContent = new Date().getFullYear();
+      console.log('Year set successfully');
+      return true;
     }
-  });
-</script>
+    
+    if (retries < maxRetries) {
+      retries++;
+      console.log(`Retry ${retries}/${maxRetries} to set year...`);
+      setTimeout(trySetYear, 200); 
+    }
+    return false;
+  }
+  
+  trySetYear();
+}
+
+fetch('footer.html')
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById('footer-container').innerHTML = data;
+    setCurrentYearWithRetry();
+  })
+  .catch(error => console.error('Footer load error:', error));
+
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(() => {
+    setCurrentYearWithRetry();
+  }, 500);
+});
