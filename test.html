@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Darunnajath Shareeath & Arts College, Karuvarakundu</title>
+  <meta name="description" content="Darunnajath Shareeath & Arts College, Karuvarakundu – Under Darunnajath Islamic Centre. Affiliated with Jamia Nooriya Arabiyya, Pattikkad.">
+  <link rel="canonical" href="https://darunnajathshareeath.online/">
+  <link rel="icon" type="image/png" href="https://darunnajathshareeath.online/favicon.png">
+  
+  <!-- Open Graph Tags -->
+  <meta property="og:site_name" content="Darunnajath Shareeath & Arts College">
+  <meta property="og:title" content="Darunnajath Shareeath & Arts College, Karuvarakundu">
+  <meta property="og:description" content="Official website of Darunnajath Shareeath & Arts College, Karuvarakundu.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://darunnajathshareeath.online/">
+  <meta property="og:image" content="https://darunnajathshareeath.online/favicon.png">
+  
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Darunnajath Shareeath & Arts College, Karuvarakundu">
+  <meta name="twitter:description" content="Darunnajath Shareeath & Arts College, Karuvarakundu">
+  <meta name="twitter:image" content="https://darunnajathshareeath.online/favicon.png">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Darunnajath Shareeath & Arts College",
+    "alternateName": "Darunnajath Shareeath College",
+    "url": "https://darunnajathshareeath.online/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Darunnajath Shareeath & Arts College",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Karuvarakundu",
+      "addressRegion": "Kerala",
+      "addressCountry": "IN"
+    },
+    "url": "https://darunnajathshareeath.online/",
+    "logo": "https://darunnajathshareeath.online/favicon.png"
+  }
+  </script>
+
+  <!-- Stylesheets -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Amiri:wght@400;700&family=Anek+Malayalam:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-green: #0d5c3f;
+      --secondary-green: #157a55;
+      --deep-green: #052e1f;
+      --gold-primary: #d4a636;
+      --gold-light: #f0d890;
+      --gold-dark: #a67c00;
+      --cream-bg: #faf9f6;
+      --cream-card: #ffffff;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --border-subtle: rgba(212, 166, 54, 0.15);
+      --shadow-soft: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
+      --shadow-elevated: 0 20px 50px -15px rgba(0, 0, 0, 0.1);
+      --radius-lg: 12px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--cream-bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-top: 130px;
+      overflow-x: hidden;
+    }
+
+    /* Typography Utilities */
+    .font-display { font-family: 'Cormorant Garamond', serif; }
+    .font-arabic { font-family: 'Amiri', serif; }
+    .font-malayalam { font-family: 'Anek Malayalam', sans-serif; }
+
+    /* Background Pattern */
+    .bg-pattern {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+      opacity: 0.03;
+      background-image: radial-gradient(var(--primary-green) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+
+    /* Navbar */
+    .navbar-optimized {
+      background: linear-gradient(to right, var(--deep-green), var(--primary-green));
+      height: 80px;
+      border-bottom: 3px solid var(--gold-primary);
+      transition: all 0.3s ease;
+      z-index: 1030;
+    }
+    .navbar-optimized.scrolled {
+      height: 65px;
+      background: rgba(5, 46, 31, 0.98);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .navbar-brand img {
+      height: 55px;
+      filter: brightness(0) invert(1);
+      border: 2px solid var(--gold-primary);
+      border-radius: 50%;
+      padding: 3px;
+      transition: transform 0.3s;
+    }
+    .navbar-optimized.scrolled .navbar-brand img { height: 45px; }
+    .navbar-brand:hover img { transform: scale(1.05); }
+
+    .nav-link {
+      font-weight: 500;
+      color: #fff !important;
+      position: relative;
+      margin: 0 0.5rem;
+      transition: color 0.3s;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--gold-primary);
+      transition: width 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link:hover { color: var(--gold-light) !important; }
+
+    /* Ticker */
+    .ticker-wrap {
+      position: fixed;
+      top: 80px;
+      left: 0; right: 0;
+      background: var(--deep-green);
+      border-bottom: 1px solid rgba(212, 166, 54, 0.3);
+      height: 42px;
+      overflow: hidden;
+      z-index: 1020;
+      display: flex;
+      align-items: center;
+    }
+    .ticker {
+      display: flex;
+      animation: ticker 60s linear infinite;
+      white-space: nowrap;
+    }
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      padding: 0 3rem;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+    .ticker-item .badge {
+      background: var(--gold-primary);
+      color: var(--deep-green);
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-right: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* Hero */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(rgba(5, 46, 31, 0.85), rgba(5, 46, 31, 0.9)), url('https://i.ibb.co/rf3Sp41S/COLLEGE-2.png') center/cover no-repeat fixed;
+      position: relative;
+      text-align: center;
+      color: #fff;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 900px; padding: 2rem; }
+    .hero-arabic {
+      font-family: 'Amiri', serif;
+      font-size: 2.2rem;
+      color: var(--gold-light);
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+      color: #fff;
+    }
+    .hero-subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 2.5rem; line-height: 1.8; }
+    
+    .btn-custom-gold {
+      background: var(--gold-primary);
+      color: var(--deep-green);
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: 2px solid transparent;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    .btn-custom-gold:hover {
+      background: transparent;
+      color: var(--gold-light);
+      border-color: var(--gold-light);
+      transform: translateY(-2px);
+    }
+    .btn-custom-outline {
+      background: transparent;
+      color: #fff;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 500;
+      border: 2px solid rgba(255,255,255,0.5);
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    .btn-custom-outline:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: #fff;
+      color: #fff;
+    }
+
+    /* Section Styling */
+    .section-padding { padding: 6rem 0; }
+    .section-header { margin-bottom: 4rem; text-align: center; }
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary-green);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--deep-green);
+      position: relative;
+      display: inline-block;
+      padding-bottom: 1rem;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 60px; height: 3px;
+      background: var(--gold-primary);
+    }
+
+    /* Vision & Mission */
+    .vm-section { background: #fff; }
+    .vm-card {
+      background: var(--cream-bg);
+      border: 1px solid var(--border-subtle);
+      padding: 2.5rem;
+      border-radius: var(--radius-lg);
+      height: 100%;
+      text-align: center;
+      transition: all 0.3s ease;
+      border-top: 4px solid transparent;
+    }
+    .vm-card:hover {
+      border-top-color: var(--gold-primary);
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-elevated);
+    }
+    .vm-icon {
+      width: 70px; height: 70px;
+      background: rgba(13, 92, 63, 0.05);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: var(--primary-green);
+      font-size: 1.8rem;
+    }
+    .vm-title { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--deep-green); margin-bottom: 1rem; }
+    .vm-text { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+
+    /* Principal Section */
+    .principal-section {
+      background: linear-gradient(135deg, var(--deep-green), var(--primary-green));
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .principal-section::before {
+      content: '';
+      position: absolute;
+      top: -50%; right: -20%;
+      width: 60%; height: 200%;
+      background: radial-gradient(circle, rgba(212, 166, 54, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .principal-content { position: relative; z-index: 2; }
+    .principal-img-container {
+      position: relative;
+      display: inline-block;
+    }
+    .principal-img {
+      width: 250px; height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--gold-primary);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .principal-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--gold-light);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .principal-name { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: #fff; }
+    .principal-designation { color: var(--gold-primary); font-weight: 500; }
+    .principal-msg { font-size: 1rem; line-height: 1.8; color: rgba(255,255,255,0.85); }
+
+    /* About Section */
+    .about-section { background: var(--cream-bg); }
+    .about-img-wrapper {
+      position: relative;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+    }
+    .about-img-wrapper img {
+      width: 100%;
+      max-height: 500px;
+      object-fit: cover;
+      display: block;
+    }
+    .malayalam-content {
+      font-family: 'Anek Malayalam', sans-serif;
+      font-size: 1rem;
+      line-height: 2;
+      color: var(--text-main);
+      text-align: justify;
+    }
+    .malayalam-content::first-letter {
+      font-size: 3.5rem;
+      float: left;
+      line-height: 1;
+      margin-right: 10px;
+      color: var(--primary-green);
+      font-weight: 700;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* Milestones */
+    .milestone-list-container {
+      background: #fff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .milestone-header {
+      background: var(--primary-green);
+      color: #fff;
+      padding: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+    }
+    .milestone-header i { color: var(--gold-primary); margin-right: 10px; }
+    .milestone-item {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--cream-bg);
+      display: flex;
+      align-items: flex-start;
+      transition: background 0.2s;
+    }
+    .milestone-item:hover { background: var(--cream-bg); }
+    .milestone-item:last-child { border-bottom: none; }
+    .milestone-date {
+      min-width: 110px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--primary-green);
+      padding-right: 1rem;
+      border-right: 2px solid var(--border-subtle);
+      margin-right: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    .milestone-text { font-size: 0.95rem; color: var(--text-muted); }
+
+    /* Highlights & Notifications */
+    .card-clean {
+      background: #fff;
+      border: none;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      transition: all 0.3s ease;
+      overflow: hidden;
+      height: 100%;
+    }
+    .card-clean:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-elevated);
+    }
+    .notification-item {
+      background: #fff;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      border-radius: var(--radius-lg);
+      border-left: 4px solid var(--gold-primary);
+      box-shadow: var(--shadow-soft);
+      transition: all 0.3s;
+    }
+    .notification-item:hover {
+      transform: translateX(5px);
+      box-shadow: var(--shadow-elevated);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--deep-green);
+      color: rgba(255,255,255,0.7);
+      padding: 4rem 0 2rem;
+      border-top: 4px solid var(--gold-primary);
+    }
+    .footer-title { color: var(--gold-light); font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 1.5rem; }
+    .footer-link { color: rgba(255,255,255,0.7); display: block; margin-bottom: 0.8rem; transition: all 0.2s; text-decoration: none; }
+    .footer-link:hover { color: #fff; padding-left: 5px; }
+    
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px; right: 20px;
+      width: 60px; height: 60px;
+      background: #25D366;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      z-index: 999;
+      transition: all 0.3s;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); color: #fff; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body { padding-top: 110px; }
+      .navbar-optimized { height: 70px; }
+      .ticker-wrap { top: 70px; height: 38px; }
+      .hero-title { font-size: 2.5rem; }
+      .hero-arabic { font-size: 1.5rem; }
+      .section-title { font-size: 2.2rem; }
+      .principal-img { width: 180px; height: 180px; }
+      .malayalam-content::first-letter { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-pattern"></div>
+
+  <!-- Navbar -->
+  <div id="navbar-container"></div>
+
+  <!-- Ticker -->
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <div class="ticker-item"><span class="badge">Important</span> Admission booking started! Contact now.</div>
+      <div class="ticker-item"><span class="badge">News</span> ഫൈനല്‍ ഇയർ വാര്‍ഷിക പരീക്ഷ 2026 ഫെബ്രുവരി 11-15 തിയ്യതികളില്‍. മറ്റു ക്ലാസുകള്‍ മെയ് 16-24 തിയ്യതികളില്‍.</div>
+      <div class="ticker-item"><span class="badge">Event</span> സമസ്ത നൂറാം വാര്‍ഷികം 2026 ഫെബ്രുവരി 4-8 തിയ്യതികളില്‍ കാസര്‍ഗോഡ് കുണിയയില്‍.</div>
+      <div class="ticker-item"><span class="badge">Updated</span> 21-01-2026 ദാറുന്നജാത്ത് വെബ്‌സൈറ്റ് ലോഞ്ച് ചെയ്തു.</div>
+      <!-- Duplicate for seamless loop -->
+      <div class="ticker-item"><span class="badge">Important</span> Admission booking started! Contact now.</div>
+      <div class="ticker-item"><span class="badge">News</span> ഫൈനല്‍ ഇയർ വാര്‍ഷിക പരീക്ഷ 2026 ഫെബ്രുവരി 11-15 തിയ്യതികളില്‍. മറ്റു ക്ലാസുകള്‍ മെയ് 16-24 തിയ്യതികളില്‍.</div>
+      <div class="ticker-item"><span class="badge">Event</span> സമസ്ത നൂറാം വാര്‍ഷികം 2026 ഫെബ്രുവരി 4-8 തിയ്യതികളില്‍ കാസര്‍ഗോഡ് കുണിയയില്‍.</div>
+      <div class="ticker-item"><span class="badge">Updated</span> 21-01-2026 ദാറുന്നജാത്ത് വെബ്‌സൈറ്റ് ലോഞ്ച് ചെയ്തു.</div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content" data-aos="fade-up">
+      <div class="hero-arabic">﴿ وَيَا قَوْمِ مَا لِي أَدْعُوكُمْ إِلَى النَّجَاةِ ۞ ﴾</div>
+      <h1 class="hero-title">Darunnajath Shareeath & Arts College</h1>
+      <p class="hero-subtitle">
+        PUNNAKKAD, KARUVARAKUNDU | Under DARUNNAJATH ISLAMIC CENTRE<br>
+        Affiliated With JAMIA NOORIYYA ARABIYYA, PATTIKKAD
+      </p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="admission.html" class="btn-custom-gold">Admission</a>
+        <a href="#about" class="btn-custom-outline">Learn More</a>
+        <a href="result.html" class="btn-custom-outline">Results</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision & Mission -->
+  <section class="section-padding vm-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-label">Foundation</span>
+        <h2 class="section-title">Vision & Mission</h2>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="vm-card">
+            <div class="vm-icon"><i class="fas fa-eye"></i></div>
+            <h3 class="vm-title">Vision</h3>
+            <p class="vm-text">To become a leading institution that nurtures scholars grounded in Islamic values while excelling in contemporary education, producing individuals who contribute positively to society.</p>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="vm-card">
+            <div class="vm-icon"><i class="fas fa-compass"></i></div>
+            <h3 class="vm-title">Mission</h3>
+            <p class="vm-text">To provide comprehensive education that integrates authentic Islamic knowledge with modern academic excellence, fostering critical thinking, moral integrity, and social responsibility.</p>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="vm-card">
+            <div class="vm-icon"><i class="fas fa-gem"></i></div>
+            <h3 class="vm-title">Core Values</h3>
+            <p class="vm-text">Faith-driven learning, academic excellence, moral integrity, community service, cultural harmony, and holistic development of mind, body, and spirit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Principal Message -->
+  <section class="section-padding principal-section">
+    <div class="container principal-content">
+      <div class="row align-items-center">
+        <div class="col-lg-4 text-center mb-4 mb-lg-0" data-aos="fade-right">
+          <div class="principal-img-container">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="Principal" class="principal-img">
+          </div>
+          <h4 class="principal-name mt-4">Principal Name</h4>
+          <p class="principal-designation">Principal, Darunnajath College</p>
+        </div>
+        <div class="col-lg-8" data-aos="fade-left">
+          <span class="section-label" style="color: var(--gold-light);">Leadership</span>
+          <h2 class="section-title text-white" style="text-align: left; margin-bottom: 1.5rem;">Principal's Message</h2>
+          <p class="principal-quote">"Knowledge is light, and ignorance is darkness."</p>
+          <p class="principal-msg">
+            Assalamu Alaikum Wa Rahmatullahi Wa Barakatuhu. It is my privilege to welcome you to Darunnajath Shareeath & Arts College, an institution where tradition meets modernity. Our commitment is to provide an education that nurtures the soul while sharpening the intellect.
+            <br><br>
+            We strive to develop well-rounded individuals who are not only academically proficient but also morally grounded. Our unique curriculum bridges the gap between spiritual wisdom and worldly knowledge, preparing students for the challenges of tomorrow while staying rooted in their faith.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section-padding about-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-label">About Us</span>
+        <h2 class="section-title">Our Legacy</h2>
+      </div>
+      <div class="row g-5">
+        <div class="col-lg-7" data-aos="fade-right">
+          <p class="malayalam-content">
+            ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജ് വിശ്വാസവും വിജ്ഞാനവും ഒന്നിച്ചു വളരുന്ന വിദ്യാലയം. പട്ടിക്കാട് ജാമിഅ നൂരിയ്യ അറബികോളേജിന്റെ അംഗീകൃത എ പ്ലസ് ജൂനിയർ സ്ഥാപനമായ ദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജ്, സമസ്ത കേരള ജംഇയ്യത്തുൽ ഉലമയുടെ മാർഗ്ഗനിർദ്ദേശാനുസരണം പ്രവർത്തിക്കുന്നു.
+            <br><br>
+            പ്രശസ്ത പണ്ഡിതനും വിദ്യാഭ്യാസ പ്രവർത്തകനും സമസ്ത നേതാവുമായിരുന്ന കെ.ടി. മാനു മുസ്‌ലിയാർ സ്ഥാപിച്ച ഈ സ്ഥാപനം, ഏഴാം ക്ലാസ് മുതൽ തന്നെ ഒരേ ക്യാമ്പസിൽ, ഇസ്‌ലാമികവും ലൗകികവുമായ വിദ്യകളെ സമന്വയിപ്പിച്ച് നൽകുന്ന അപൂർവ്വ സൗകര്യമാണ് ഒരുക്കിയിട്ടുള്ളത്.
+            <br><br>
+            വിദ്യാർത്ഥികൾക്ക് ഒരേ സമയം ഉന്നത നിലവാരമുള്ള പൊതുവിദ്യാഭ്യാസം, (എസ്.എസ്.എൽ.സി., പ്ലസ് ടു, ബിരുദം, പി.ജി. വരെ) ആധികാരികമായ ആറുവർഷ നജവി ബിരുദം, സിലബസ്സ് അടിസ്ഥാനത്തിൽ കംപ്യൂട്ടർ പരിശീലനം, ഹാഫിളുകൾക്ക് ദൗറ എന്നിവ നല്‍കുന്നു. മികച്ച അധ്യാപക വൃന്ദവും ആധുനിക ഹോസ്റ്റൽ സൗകര്യങ്ങളും ശാന്തമായ പഠനാന്തരീക്ഷവും ഈ ക്യാമ്പസിന്റെ പ്രത്യേകതയാണ്.
+          </p>
+        </div>
+        <div class="col-lg-5" data-aos="fade-left">
+          <div class="about-img-wrapper mb-4">
+            <img src="https://i.ibb.co/rf3Sp41S/COLLEGE-2.png" alt="College Campus" class="img-fluid">
+          </div>
+          
+          <div class="milestone-list-container">
+            <div class="milestone-header">
+              <i class="fas fa-trophy"></i> Key Milestones
+            </div>
+            <div class="milestone-item">
+              <div class="milestone-date">2026</div>
+              <div class="milestone-text">SAJDA Best Union Runner-up</div>
+            </div>
+            <div class="milestone-item">
+              <div class="milestone-date">2023</div>
+              <div class="milestone-text">First Graduation: 56 Najvi Scholars</div>
+            </div>
+            <div class="milestone-item">
+              <div class="milestone-date">2020</div>
+              <div class="milestone-text">Fiqh Department 1st Rank</div>
+            </div>
+            <div class="milestone-item">
+              <div class="milestone-date">2010</div>
+              <div class="milestone-text">Jamia Nooriyya Affiliation</div>
+            </div>
+            <div class="milestone-item">
+              <div class="milestone-date">2007</div>
+              <div class="milestone-text">Founded by K.T. Manu Musliyar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section class="section-padding" style="background: #fff;">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-label">Events</span>
+        <h2 class="section-title">College Highlights</h2>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-clean">
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/EMgzRUdoiWk" title="First Convocation" allowfullscreen></iframe>
+            </div>
+            <div class="p-4">
+              <h5 class="font-display text-dark mb-2">First Convocation Ceremony</h5>
+              <p class="text-muted small mb-0">The historic first convocation of our college.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-clean">
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/uGe4yT6RU70" title="Golden Jubilee" allowfullscreen></iframe>
+            </div>
+            <div class="p-4">
+              <h5 class="font-display text-dark mb-2">Golden Jubilee Conference</h5>
+              <p class="text-muted small mb-0">50 Years of Legacy & Light.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="card-clean">
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/vNfz0ExArPg" title="Anniversary" allowfullscreen></iframe>
+            </div>
+            <div class="p-4">
+              <h5 class="font-display text-dark mb-2">49th Anniversary Celebration</h5>
+              <p class="text-muted small mb-0">Commemorating years of excellence.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Notifications -->
+  <section id="notifications" class="section-padding">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-label">Updates</span>
+        <h2 class="section-title">Notifications</h2>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <a href="admission.html" class="notification-item d-block" data-aos="fade-up">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h5 class="mb-1 text-dark">Admission Booking Open 2026-27</h5>
+                <small class="text-muted">Apply now for Secondary and Higher secondary</small>
+              </div>
+              <span class="badge bg-success">New</span>
+            </div>
+          </a>
+          <a href="result.html" class="notification-item d-block" data-aos="fade-up" data-aos-delay="100">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h5 class="mb-1 text-dark">Results Published</h5>
+                <small class="text-muted">2025-26 First semester result published</small>
+              </div>
+              <span class="badge bg-primary">View</span>
+            </div>
+          </a>
+          <div class="notification-item" data-aos="fade-up" data-aos-delay="200">
+            <h5 class="mb-1 text-dark">Parent Meeting</h5>
+            <small class="text-muted">Jan 11, 2026 at 10:00 AM @MEA Engineering College, Pattikkad</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <!-- WhatsApp -->
+  <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init({ duration: 800, once: true, offset: 50 });
+
+    // Navbar Scroll Effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar-optimized');
+      const ticker = document.querySelector('.ticker-wrap');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Load External Components
+    fetch('navbar.html').then(res => res.text()).then(data => document.getElementById('navbar-container').innerHTML = data);
+    fetch('footer.html').then(res => res.text()).then(data => document.getElementById('footer-container').innerHTML = data);
+  </script>
+</body>
+</html>
