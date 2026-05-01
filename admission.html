@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DSAC | Admission</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
@@ -13,7 +13,7 @@
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <style>
     :root {--islamic-green:#0a5c36; --islamic-gold:#c19a3f; --islamic-cream:#f8f3e6; --islamic-light:#e9f5e9; --dark-green:#064e3b; --transition:all 0.3s ease;}
-    body {font-family:'Poppins',sans-serif; background-color:var(--islamic-cream); color:#333; scroll-behavior:smooth; overflow-x:hidden; padding-top:130px; margin:0;}
+    body {font-family:'Poppins',sans-serif; background-color:var(--islamic-cream); color:#333; scroll-behavior:smooth; overflow-x:hidden; padding-top:130px;}
     a {text-decoration:none;}
     .arabic-font {font-family:'Scheherazade New',serif;}
     .malayalam-font {font-family:'Anek Malayalam',sans-serif;}
@@ -98,29 +98,9 @@
     .document-title {font-size:18px; font-weight:700; margin-top:8px; text-align:left; color:white; border-top:1px solid rgba(255,255,255,0.3); padding-top:8px;}
     .document-content {padding:25px; position:relative; text-align:left; z-index:1;}
     .document-footer {text-align:center; padding:10px; background:linear-gradient(135deg,#f8f9fa 0%,#e9ecef 100%); border-top:1px solid #dee2e6; margin-top:20px;}
-    
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-    }
-    .info-grid1 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-    }
-    @media (max-width: 991.98px) {
-      .info-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (max-width: 575.98px) {
-      .info-grid, .info-grid1 {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .info-item {display:flex; padding:5px 0; border-bottom:1px dashed #dee2e6; text-align:left; flex-wrap: wrap;}
+    .info-grid {display:grid; grid-template-columns: 235px 235px 235px; gap:8px;}
+    .info-grid1 {display:grid; grid-template-columns:repeat(2,1fr); gap:8px;}
+    .info-item {display:flex; padding:5px 0; border-bottom:1px dashed #dee2e6; text-align:left;}
     .info-label {font-weight:600; color:#495057; width:120px; font-size:11px; line-height:1.2; text-align:left;}
     .info-value {color:#212529; font-size:11px; flex:1; line-height:1.2; text-align:left;}
     .document-section-title {font-size:14px; font-weight:600; color:var(--islamic-green); margin:8px 0 3px; padding-bottom:3px; border-bottom:1px solid #e9ecef; text-align:left;}
@@ -1695,7 +1675,7 @@
           <i class="fas fa-arrow-right me-2"></i> Continue
         </button>
       </div>
-
+      
     </div>
   </div>
 </div>
