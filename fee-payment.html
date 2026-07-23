@@ -12,7 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js">
     </script>
     <style>
-        /* ===== RESET & BASE ===== */
+
         * {
             margin: 0;
             padding: 0;
@@ -83,8 +83,6 @@
                 transform: scale(1.2);
             }
         }
-
-        /* ===== SPLASH OVERLAY ===== */
         #splashOverlay {
             position: fixed;
             inset: 0;
@@ -242,7 +240,6 @@
             z-index: 2;
         }
 
-        /* ===== CONTAINER ===== */
         .container {
             max-width: 580px;
             width: 100%;
@@ -270,7 +267,6 @@
             box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
-        /* ===== HEADER ===== */
         .header {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
             padding: 36px 20px 30px;
@@ -341,7 +337,6 @@
             text-transform: uppercase;
         }
 
-        /* ===== CONTENT ===== */
         .content {
             padding: 32px 24px 28px;
             background: transparent;
@@ -364,10 +359,6 @@
             color: #818cf8;
             font-size: 0.9rem;
         }
-
-        /* ============================================================
-                   FUN RING – NO ROTATION, just pulse & glow
-                   ============================================================ */
         .ring-wrapper {
             position: relative;
             width: 100%;
@@ -532,7 +523,6 @@
             }
         }
 
-        /* ===== BUTTONS & OTHERS ===== */
         .check-btn {
             width: 100%;
             padding: 16px;
@@ -862,7 +852,6 @@
             transform: translateX(-50%) translateY(0);
         }
 
-        /* ===== ADMIN OVERLAY ===== */
         .admin-overlay {
             position: fixed;
             top: 0;
@@ -1388,7 +1377,6 @@
             margin: 0 auto 10px;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 480px) {
             .content {
                 padding: 20px 16px;
@@ -1498,7 +1486,6 @@
 </head>
 <body>
 
-    <!-- ===== SPLASH OVERLAY – Fee System 3.0 ===== -->
     <div id="splashOverlay">
         <div class="splash-bg-glow"></div>
         <div class="splash-ring"></div>
@@ -1515,10 +1502,8 @@
         <div class="splash-version">v3.0.0</div>
     </div>
 
-    <!-- ===== STARS ===== -->
     <div class="stars-bg" id="starContainer"></div>
 
-    <!-- ===== MAIN CONTAINER ===== -->
     <div class="container" id="mainContainer">
         <div class="header" id="headerDoubleTap">
             <h1>Darunnajath Shareeath & Arts College</h1>
@@ -1530,7 +1515,6 @@
             <div class="input-group">
                 <div class="input-label"><i class="fas fa-mobile-alt"></i> രജിസ്റ്റർ ചെയ്ത മൊബൈൽ നമ്പർ</div>
 
-                <!-- ===== FUN RING – no rotation, just pulse ===== -->
                 <div class="ring-wrapper">
                     <span class="sparkle-dot"></span>
                     <span class="sparkle-dot"></span>
@@ -1562,10 +1546,8 @@
         </div>
     </div>
 
-    <!-- ===== TOAST ===== -->
     <div id="toastMsg" class="toast-message"></div>
 
-    <!-- ===== ADMIN OVERLAY ===== -->
     <div class="admin-overlay" id="adminOverlay">
         <div class="admin-modal">
             <button class="close-admin" id="closeAdminBtn" onclick="closeAdminPanel()">&times;</button>
@@ -1624,7 +1606,6 @@
                     <div class="admin-table-wrap" id="adminStudentsTableWrap"><div class="admin-loader"><div class="spinner-sm"></div><span>Loading...</span></div></div>
                 </div>
 
-                <!-- ===== FEES TAB ===== -->
                 <div id="tabFees" class="admin-tab-content">
                     <div class="admin-toolbar">
                         <div class="left">
@@ -1667,7 +1648,6 @@
         </div>
     </div>
 
-    <!-- ===== ADD/EDIT STUDENT FORM ===== -->
     <div class="admin-overlay" id="studentFormOverlay">
         <div class="admin-modal" style="max-width:500px;">
             <button class="close-admin" onclick="closeStudentForm()">&times;</button>
@@ -1693,7 +1673,6 @@
         </div>
     </div>
 
-    <!-- ===== SET MONTHS ELAPSED MODAL ===== -->
     <div class="admin-overlay" id="monthsElapsedModal">
         <div class="admin-modal" style="max-width:480px;">
             <button class="close-admin" onclick="closeModal('monthsElapsedModal')">&times;</button>
@@ -1712,27 +1691,17 @@
         </div>
     </div>
 
-    <!-- ============================== JAVASCRIPT ============================== -->
     <script>
-        // ============================================================
-        // SPLASH SCREEN – 2 seconds then hide
-        // ============================================================
         (function() {
             const splash = document.getElementById('splashOverlay');
-            // Force 2 seconds minimum
             setTimeout(function() {
                 splash.classList.add('hidden');
-                // Remove from DOM after transition to free resources
                 setTimeout(function() {
                     splash.style.display = 'none';
                 }, 800);
             }, 2000);
         })();
-
-        // ============================================================
-        // CONFIGURATION
-        // ============================================================
-        const API_URL = "https://script.google.com/macros/s/AKfycbzIq1LRpcZM-3s4HymZR8uFeAMEmPqJSF2JW5ILlALVJ7p7WEuTvgkPP2VOcxiTyhCQ/exec"; // REPLACE
+        const API_URL = "https://script.google.com/macros/s/AKfycbzIq1LRpcZM-3s4HymZR8uFeAMEmPqJSF2JW5ILlALVJ7p7WEuTvgkPP2VOcxiTyhCQ/exec"; 
         const ADMIN_PASSWORD = "2026";
         const MONTHLY_FEE = 200;
         const SUPPORT_EMAIL = "najathshareea@gmail.com";
@@ -1745,10 +1714,6 @@
         let allRecords = [];
         let isAdminLoggedIn = false;
         let currentScript = null;
-
-        // ============================================================
-        // STARS, TOAST, HELPERS
-        // ============================================================
         function generateStars() {
             const container = document.getElementById('starContainer');
             if (!container) return;
@@ -1831,9 +1796,6 @@
             return year + "-" + month;
         }
 
-        // ============================================================
-        // JSONP REQUEST
-        // ============================================================
         function jsonpRequest(params, callback) {
             const cbName = "jsonp_" + Date.now() + "_" + Math.random().toString(36).substr(2, 6);
             window[cbName] = function(data) {
@@ -1851,10 +1813,6 @@
                 }
             }, 15000);
         }
-
-        // ============================================================
-        // PUBLIC FEE CHECK
-        // ============================================================
         function generateWhatsAppMessage(data) {
             let msg =
                 `നമസ്കാരം ${data.parentName || "സഹോദരൻ"},\n\nദാറുന്നജാത്ത് ശരീഅത്ത് & ആർട്സ് കോളേജ് ഫീ വിവരം:\n📱 മൊബൈൽ: ${data.mobile}\n✅ അവസാനം അടച്ച മാസം: ${data.lastPaidMonth || "---"}\n📆 അവസാനം അടച്ച തീയതി: ${data.lastPaidDateFormatted || "---"}\n📆 ബാക്കി മാസങ്ങൾ: ${data.pendingMonths || 0}\n💰 ആകെ ബാക്കി തുക: ₹${data.totalPending?.toLocaleString() || 0}\n\nദയവായി നിങ്ങളുടെ ബാക്കി തുക അടക്കുക. UPI: ${UPI_ID}\n\nവിശദ വിവരങ്ങൾക്ക് ${SUPPORT_PHONE} എന്ന നമ്പറിൽ ബന്ധപ്പെടുക.`;
@@ -1994,9 +1952,6 @@
             document.head.appendChild(script);
         }
 
-        // ============================================================
-        // ADMIN LOGIN / LOGOUT
-        // ============================================================
         function adminLogin() {
             const password = document.getElementById("adminPassword").value.trim();
             const errorEl = document.getElementById("adminLoginError");
@@ -2029,9 +1984,6 @@
             }
         }
 
-        // ============================================================
-        // ADMIN PANEL OPEN/CLOSE
-        // ============================================================
         function openAdminPanel() {
             document.getElementById("adminOverlay").classList.add("active");
             if (isAdminLoggedIn) {
@@ -2081,9 +2033,6 @@
             if (e.target === this) closeModal("monthsElapsedModal");
         });
 
-        // ============================================================
-        // ADMIN DASHBOARD
-        // ============================================================
         function loadAdminDashboard() {
             jsonpRequest("action=getDashboardData", function(response) {
                 if (response && !response.error) {
@@ -2097,7 +2046,6 @@
                     document.getElementById("adminLastUpdated").textContent = "Last updated: " + new Date().toLocaleString(
                         'en-IN');
 
-                    // Load settings
                     jsonpRequest("action=getSettings", function(settingsResp) {
                         if (settingsResp && !settingsResp.error) {
                             document.getElementById("setMonthlyFee").value = settingsResp.monthlyFee || 200;
@@ -2118,9 +2066,6 @@
             });
         }
 
-        // ============================================================
-        // RENDER FUNCTIONS (English months for admin)
-        // ============================================================
         function renderAdminStudents() {
             const wrap = document.getElementById("adminStudentsTableWrap");
             const search = document.getElementById("adminSearch").value.toLowerCase().trim();
@@ -2163,7 +2108,7 @@
                             <td><strong>${escapeHtml(r.parentName)}</strong></td>
                             <td>${escapeHtml(r.studentName || '')}</td>
                             <td>${escapeHtml(r.mobile)}</td>
-                            <td>${escapeHtml(r.lastPaidMonth)}</td> <!-- English -->
+                            <td>${escapeHtml(r.lastPaidMonth)}</td> 
                             <td>₹${pending.toLocaleString()}</td>
                             <td>${statusLabel}</td>
                             <td style="text-align:center;">
@@ -2233,9 +2178,6 @@
             wrap.innerHTML = html;
         }
 
-        // ============================================================
-        // SWITCH ADMIN TAB
-        // ============================================================
         function switchAdminTab(tabId) {
             document.querySelectorAll(".admin-tabs .tab").forEach(t => t.classList.remove("active"));
             document.querySelector(`.admin-tabs .tab[data-tab="${tabId}"]`)?.classList.add("active");
@@ -2260,9 +2202,6 @@
             });
         }
 
-        // ============================================================
-        // PDF GENERATION (English months)
-        // ============================================================
         function generatePDF(type) {
             let filter;
             let data;
@@ -2390,9 +2329,6 @@
             showToast("✅ PDF downloaded successfully!", false);
         }
 
-        // ============================================================
-        // ADMIN CRUD FUNCTIONS
-        // ============================================================
         function openAddStudentForm() {
             document.getElementById("studentFormTitle").innerHTML = '<i class="fas fa-user-plus"></i> Add Student';
             document.getElementById("studentSubmitBtn").innerHTML = '<i class="fas fa-save"></i> Save';
@@ -2507,9 +2443,6 @@
             });
         }
 
-        // ============================================================
-        // SET MONTHS ELAPSED
-        // ============================================================
         function openMonthsElapsedModal() {
             jsonpRequest("action=getSettings", function(response) {
                 if (response && !response.error) {
@@ -2546,9 +2479,6 @@
             document.getElementById(id).classList.remove("active");
         }
 
-        // ============================================================
-        // SAVE SETTINGS
-        // ============================================================
         function saveSettings(e) {
             e.preventDefault();
             const monthlyFee = document.getElementById("setMonthlyFee").value;
@@ -2575,9 +2505,6 @@
             });
         }
 
-        // ============================================================
-        // KEYBOARD SHORTCUTS & INIT
-        // ============================================================
         document.addEventListener("keydown", function(e) {
             if (e.key === "Escape") {
                 if (document.getElementById("adminOverlay").classList.contains("active")) closeAdminPanel();
