@@ -433,7 +433,6 @@
   const errorText = document.getElementById('errorText');
   const toppersContainer = document.getElementById('toppersContainer');
   AOS.init({duration: 800, once: true, offset: 50, disable: window.innerWidth < 768});
-  document.getElementById('currentYear').textContent = new Date().getFullYear();
   window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar-optimized');
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
