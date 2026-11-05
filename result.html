@@ -22,389 +22,176 @@
     a {text-decoration: none;}
     .arabic-font {font-family: 'Scheherazade New', serif;}
     .malayalam-font {font-family: 'Anek Malayalam', sans-serif;}
-    .pattern-bg {
-      background-image: radial-gradient(circle at 25% 25%, rgba(10, 92, 54, 0.03) 2px, transparent 2px), radial-gradient(circle at 75% 75%, rgba(193, 154, 63, 0.03) 2px, transparent 2px); background-size: 50px 50px; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-    }
-    .navbar-optimized {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-bottom: 3px solid var(--islamic-gold); transition: var(--transition); padding: 0.5rem 0; height: 80px; z-index: 1030 !important;
-    }
+    
+    /* Navbar & Header Styles */
+    .navbar-optimized { background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-bottom: 3px solid var(--islamic-gold); transition: var(--transition); padding: 0.5rem 0; height: 80px; z-index: 1030 !important; }
     .navbar-toggler {border-color: rgba(255, 255, 255, 0.5);}
     .navbar-toggler:focus {box-shadow: 0 0 0 2px var(--islamic-gold);}
-    .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-    }
-    .navbar-optimized.scrolled {
-      background: rgba(10, 92, 54, 0.98); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); height: 70px;
-    }
-    .navbar-brand-compact img {
-      border-radius: 8px; transition: transform 0.3s ease; width: 60px; height: 60px; object-fit: contain; filter: brightness(0) invert(1); border: none; box-shadow: 0 0 0 2px var(--islamic-gold); padding: 0;
-    }
+    .navbar-optimized.scrolled { background: rgba(10, 92, 54, 0.98); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); height: 70px; }
+    .navbar-brand-compact img { border-radius: 8px; transition: transform 0.3s ease; width: 60px; height: 60px; object-fit: contain; filter: brightness(0) invert(1); border: none; box-shadow: 0 0 0 2px var(--islamic-gold); padding: 0; }
     .navbar-optimized.scrolled .navbar-brand-compact img {width: 50px; height: 50px;}
-    .navbar-brand-compact:hover img {transform: scale(1.05);}
-    .brand-text {font-size: 1.2rem; line-height: 1.2;}
-    .brand-subtext {font-size: 0.8rem; opacity: 0.9;}
-    .nav-link-optimized {
-      color: #fff !important; font-weight: 500; transition: var(--transition); padding-left: 0.4rem; padding-right: 0.4rem; border-radius: 5px; margin: 0 2px; white-space: nowrap;
-    }
-    .nav-item-optimized {margin: 0 2px;}
+    .nav-link-optimized { color: #fff !important; font-weight: 500; transition: var(--transition); padding-left: 0.4rem; padding-right: 0.4rem; border-radius: 5px; margin: 0 2px; white-space: nowrap; }
     .nav-link-optimized:hover {color: var(--islamic-gold) !important; background: rgba(255, 255, 255, 0.1);}
-    .dropdown-menu-optimized {
-      background: var(--islamic-green); border: 1px solid var(--islamic-gold); border-radius: 8px; padding: 0.5rem 0;
-    }
-    .dropdown-item-optimized {
-      color: white; padding: 0.5rem 1rem; transition: var(--transition);
-    }
+    .dropdown-menu-optimized { background: var(--islamic-green); border: 1px solid var(--islamic-gold); border-radius: 8px; padding: 0.5rem 0; }
+    .dropdown-item-optimized { color: white; padding: 0.5rem 1rem; transition: var(--transition); }
     .dropdown-item-optimized:hover {background: var(--islamic-gold); color: var(--islamic-green);}
-    .page-header {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); color: white; height: 30vh; min-height: 220px; display: flex; align-items: center; justify-content: center; text-align: center; margin-bottom: 3rem; border-bottom: 5px solid var(--islamic-gold); position: relative; overflow: hidden;
-    }
-    .page-header::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
-    }
+    
+    .page-header { background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); color: white; height: 30vh; min-height: 220px; display: flex; align-items: center; justify-content: center; text-align: center; margin-bottom: 3rem; border-bottom: 5px solid var(--islamic-gold); position: relative; overflow: hidden; }
+    .page-header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%); }
     .page-header-content {position: relative; z-index: 2;}
-    .page-title {
-      font-family: 'Scheherazade New', serif; font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--islamic-gold); text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    }
-    .page-subtitle {
-      font-size: 1.4rem; opacity: 0.95; max-width: 800px; margin: 0 auto; color: var(--islamic-cream);
-    }
+    .page-title { font-family: 'Scheherazade New', serif; font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--islamic-gold); text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); }
+    .page-subtitle { font-size: 1.4rem; opacity: 0.95; max-width: 800px; margin: 0 auto; color: var(--islamic-cream); }
+    
+    /* UI Elements */
     .content-section {padding: 4rem 0; background: var(--islamic-cream);}
-    .section-header {
-      text-align: center; margin-bottom: 3rem; position: relative; padding: 2rem 0;
-    }
-    .section-title {
-      color: var(--islamic-green); font-weight: 700; display: inline-block; padding: 0 1rem; background: var(--islamic-cream); position: relative; z-index: 2; margin-bottom: 0.5rem; font-size: 2.5rem;
-    }
-    .section-header::before {
-      content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent); z-index: 1;
-    }
+    .section-header { text-align: center; margin-bottom: 3rem; position: relative; padding: 2rem 0; }
+    .section-title { color: var(--islamic-green); font-weight: 700; display: inline-block; padding: 0 1rem; background: var(--islamic-cream); position: relative; z-index: 2; margin-bottom: 0.5rem; font-size: 2.5rem; }
+    .section-header::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent); z-index: 1; }
     .section-subtitle {color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;}
-    .btn-gold {
-      background: linear-gradient(135deg, var(--islamic-gold), #d4af37); border: none; color: var(--islamic-green); font-weight: 600; border-radius: 8px; box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3); transition: var(--transition); padding: 0.75rem 1.5rem;
-    }
-    .btn-gold:hover {
-      background: linear-gradient(135deg, #d4af37, var(--islamic-gold)); box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4); transform: translateY(-2px); color: var(--islamic-green);
-    }
-    .btn-outline-gold {
-      border: 2px solid var(--islamic-gold); color: var(--islamic-gold); background: transparent; border-radius: 8px; padding: 0.75rem 1.5rem; font-weight: 600; transition: var(--transition);
-    }
+    
+    .btn-gold { background: linear-gradient(135deg, var(--islamic-gold), #d4af37); border: none; color: var(--islamic-green); font-weight: 600; border-radius: 8px; box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3); transition: var(--transition); padding: 0.75rem 1.5rem; }
+    .btn-gold:hover { background: linear-gradient(135deg, #d4af37, var(--islamic-gold)); box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4); transform: translateY(-2px); color: var(--islamic-green); }
+    .btn-outline-gold { border: 2px solid var(--islamic-gold); color: var(--islamic-gold); background: transparent; border-radius: 8px; padding: 0.75rem 1.5rem; font-weight: 600; transition: var(--transition); }
     .btn-outline-gold:hover {background: var(--islamic-gold); color: var(--islamic-green);}
-    .result-selection-box {
-      background: white; border-radius: 15px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid var(--islamic-gold); position: relative;
-    }
-    .result-selection-box::before {
-      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, var(--islamic-green), var(--islamic-gold)); border-radius: 15px 15px 0 0;
-    }
-    .result-btn-container {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;
-    }
-    .result-btn {
-      background: white; border-radius: 12px; padding: 1.5rem; transition: var(--transition); border: 2px solid rgba(10, 92, 54, 0.1); text-align: center; text-decoration: none; color: #333;
-    }
+    
+    .result-selection-box { background: white; border-radius: 15px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid var(--islamic-gold); position: relative; }
+    .result-selection-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, var(--islamic-green), var(--islamic-gold)); border-radius: 15px 15px 0 0; }
+    .result-btn-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+    .result-btn { background: white; border-radius: 12px; padding: 1.5rem; transition: var(--transition); border: 2px solid rgba(10, 92, 54, 0.1); text-align: center; text-decoration: none; color: #333; }
     .result-btn:hover {transform: translateY(-5px); border-color: var(--islamic-gold); box-shadow: 0 10px 25px rgba(0,0,0,0.15);}
     .result-btn i {font-size: 2rem; color: var(--islamic-green); margin-bottom: 1rem;}
     .result-btn span {font-weight: 600; font-size: 1.1rem; color: var(--islamic-green); display: block; margin-bottom: 0.5rem;}
     .result-btn small {color: #666; font-size: 0.9rem;}
-    .result-form-container {
-      background: white; border-radius: 15px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid var(--islamic-gold); display: none;
-    }
-    .form-control {
-      border: 2px solid rgba(10, 92, 54, 0.2); border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.95rem; transition: var(--transition); margin-bottom: 1.2rem;
-    }
+    
+    .result-form-container { background: white; border-radius: 15px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid var(--islamic-gold); display: none; }
+    .form-control { border: 2px solid rgba(10, 92, 54, 0.2); border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.95rem; transition: var(--transition); margin-bottom: 1.2rem; }
     .form-control:focus {border-color: var(--islamic-gold); box-shadow: 0 0 0 3px rgba(193, 154, 63, 0.1);}
-    .loading-container {
-      background: white; border-radius: 15px; padding: 3rem; text-align: center; margin-bottom: 2rem; display: none;
-    }
-    .spinner {
-      width: 50px; height: 50px; border: 4px solid rgba(10, 92, 54, 0.1); border-top: 4px solid var(--islamic-gold); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1.5rem;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .error-container {
-      background: white; border-radius: 15px; padding: 2.5rem; text-align: center; margin-bottom: 2rem; display: none; border-left: 4px solid #dc3545;
-    }
+    
+    .loading-container { background: white; border-radius: 15px; padding: 3rem; text-align: center; margin-bottom: 2rem; display: none; }
+    .spinner { width: 50px; height: 50px; border: 4px solid rgba(10, 92, 54, 0.1); border-top: 4px solid var(--islamic-gold); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1.5rem; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    
+    .error-container { background: white; border-radius: 15px; padding: 2.5rem; text-align: center; margin-bottom: 2rem; display: none; border-left: 4px solid #dc3545; }
     .error-icon {font-size: 3rem; color: #dc3545; margin-bottom: 1rem;}
+    
+    /* ====== NEW PROFESSIONAL MARKSHEET DESIGN ====== */
     .result-card {
-      background: white; border-radius: 15px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid var(--islamic-gold); display: none;
+      background: white; border-radius: 15px; padding: 3rem; margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid var(--islamic-gold); display: none;
+      position: relative; overflow: hidden;
     }
-    .result-header {
-      text-align: center; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 2px solid var(--islamic-gold);
+    
+    /* Watermark effect */
+    .result-card::before {
+      content: 'DSAC'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-30deg);
+      font-size: 12rem; font-weight: 900; color: rgba(10, 92, 54, 0.03); z-index: 0; pointer-events: none;
+      font-family: 'Poppins', sans-serif; white-space: nowrap;
     }
-    .result-header h2 {color: var(--islamic-green); font-weight: 700; font-size: 1.8rem; margin-bottom: 0.5rem;}
-    .student-info {
-      background: rgba(10, 92, 54, 0.05); border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem;
-    }
-    .info-row {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 0.5rem;
-    }
-    .info-label {font-weight: 600; color: var(--islamic-green); font-size: 0.9rem;}
-    .info-value {color: #555; font-size: 0.95rem;}
-    .performance-summary {
-      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; color: white;
-    }
-    .summary-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;}
-    .summary-card {background: rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 1rem; text-align: center;}
-    .summary-value {font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;}
-    .summary-label {font-size: 0.85rem; opacity: 0.9;}
-    .subjects-table {width: 100%; border-collapse: collapse; margin-bottom: 2rem;}
-    .subjects-table th {
-      background: var(--islamic-green); color: white; padding: 1rem; text-align: center; font-weight: 600; font-size: 0.9rem;
-    }
-    .subjects-table td {padding: 0.8rem; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.1);}
-    .subjects-table tr:nth-child(even) {background: rgba(10, 92, 54, 0.02);}
-    .grade-pass {color: var(--islamic-green); font-weight: 600;}
-    .grade-fail {color: #dc3545; font-weight: 600;}
-    .status-pass {color: var(--islamic-green); font-weight: 600;}
-    .status-fail {color: #dc3545; font-weight: 600;}
-    .final-result {
-      text-align: center; padding: 2rem; border-radius: 10px; margin-top: 2rem; background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); color: white;
-    }
-    .result-badge {
-      display: inline-block; background: white; color: var(--islamic-green); padding: 0.5rem 2rem; border-radius: 30px; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem;
-    }
-    .toppers-section {
-      background: white; border-radius: 15px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid var(--islamic-gold);
-    }
-    .toppers-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;}
-    .topper-card {
-      background: rgba(10, 92, 54, 0.03); border-radius: 10px; padding: 1.5rem; text-align: center; transition: var(--transition); border: 2px solid transparent;
-    }
-    .topper-card:hover {border-color: var(--islamic-gold); transform: translateY(-3px);}
-    .topper-medal {font-size: 2rem; color: var(--islamic-gold); margin-bottom: 1rem;}
-    .class-label {color: var(--islamic-green); font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem;}
-    .topper-name {color: var(--islamic-green); font-weight: 600; margin-bottom: 1rem; font-size: 1.1rem;}
-    .percentage-badge {
-      display: inline-block; background: linear-gradient(135deg, var(--islamic-gold), #ffd24d); color: var(--islamic-green); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 700; font-size: 1rem;
-    }
-    .footer {
-      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green)); border-top: 3px solid var(--islamic-gold); padding: 3rem 0 1.5rem; color: white;
-    }
-    .footer-brand {font-size: 1.8rem; font-weight: 700; color: var(--islamic-gold); margin-bottom: 1rem;}
-    .social-links {display: flex; gap: 12px; margin-top: 1rem;}
-    .social-icon {
-      width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: var(--transition); background: rgba(255, 255, 255, 0.1); font-size: 1.1rem;
-    }
-    .social-icon:hover {transform: translateY(-5px); background: var(--islamic-gold); color: var(--islamic-green);}
-    .footer-links h5 {color: var(--islamic-gold); margin-bottom: 1.2rem; font-size: 1.1rem; font-weight: 600;}
-    .footer-links a {
-      display: block; color: rgba(255, 255, 255, 0.85); text-decoration: none; margin-bottom: 0.6rem; transition: var(--transition); font-size: 0.95rem;
-    }
-    .footer-links a:hover {color: var(--islamic-gold); padding-left: 5px;}
-    .whatsapp-float {
-      position: fixed; bottom: 25px; right: 15px; width: 60px; height: 60px; background: linear-gradient(135deg, #25D366, #128C7E); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); z-index: 1000; animation: float 3s ease-in-out infinite; transition: var(--transition); text-decoration: none;
-    }
-    .whatsapp-float:hover {transform: scale(1.1) rotate(10deg); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);}
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-    .islamic-ornament {
-      position: fixed; color: var(--islamic-gold); opacity: 0.08; font-size: 1.8rem; z-index: -1; pointer-events: none;
-    }
-    .ornament-1 {top: 20%; left: 5%; animation: float 6s ease-in-out infinite;}
-    .ornament-2 {top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse;}
-    .ornament-3 {bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite;}
+
+    .result-card-content { position: relative; z-index: 1; }
+
+    .result-header { text-align: center; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 3px double var(--islamic-gold); }
+    .result-header h2 { color: var(--islamic-green); font-weight: 800; font-size: 2rem; margin-bottom: 0.2rem; text-transform: uppercase; letter-spacing: 1px; }
+    .result-header h4 { color: var(--islamic-gold); font-weight: 600; font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .result-header p { color: #666; font-size: 1rem; font-weight: 500; margin: 0; }
+    
+    .student-info { background: rgba(10, 92, 54, 0.03); border-radius: 10px; padding: 1.5rem 2rem; margin-bottom: 2rem; border-left: 4px solid var(--islamic-green); }
+    .info-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 1rem; }
+    .info-row:last-child { margin-bottom: 0; }
+    .info-label { font-weight: 600; color: var(--islamic-green); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.2rem; }
+    .info-value { color: #333; font-size: 1.1rem; font-weight: 600; }
+    
+    .subjects-table-container { overflow-x: auto; border-radius: 10px; border: 1px solid #e0e0e0; }
+    .subjects-table { width: 100%; border-collapse: collapse; margin-bottom: 0; background: white; }
+    .subjects-table th { background: var(--islamic-green); color: white; padding: 1rem; text-align: center; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; border-right: 1px solid rgba(255,255,255,0.1); }
+    .subjects-table th:last-child { border-right: none; }
+    .subjects-table td { padding: 1rem; text-align: center; border-bottom: 1px solid #eee; font-weight: 500; color: #444; }
+    .subjects-table tr:nth-child(even) { background: rgba(10, 92, 54, 0.02); }
+    .subjects-table tr:last-child td { border-bottom: none; }
+    .subjects-table tr:hover td { background: rgba(193, 154, 63, 0.05); }
+    
+    .grade-pass { color: #198754; font-weight: 700; background: rgba(25, 135, 84, 0.1); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem;}
+    .grade-fail { color: #dc3545; font-weight: 700; background: rgba(220, 53, 69, 0.1); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem;}
+    .status-pass { color: #198754; font-weight: 700; }
+    .status-fail { color: #dc3545; font-weight: 700; }
+    
+    .performance-summary { background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-radius: 12px; padding: 2rem; margin-bottom: 2.5rem; color: white; box-shadow: 0 5px 15px rgba(10, 92, 54, 0.3); }
+    .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1.5rem; }
+    .summary-card { background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 1.2rem; text-align: center; border: 1px solid rgba(255,255,255,0.15); }
+    .summary-value { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.2rem; color: var(--islamic-gold); }
+    .summary-label { font-size: 0.8rem; font-weight: 500; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px; }
+    .summary-card small { display: block; font-size: 0.7rem; opacity: 0.7; margin-top: 0.3rem; }
+    
+    .final-result { text-align: center; padding: 2.5rem; border-radius: 12px; background: white; border: 2px dashed var(--islamic-gold); position: relative; }
+    .result-badge { display: inline-block; background: var(--islamic-green); color: white; padding: 0.8rem 2.5rem; border-radius: 50px; font-weight: 800; font-size: 1.4rem; margin-bottom: 1rem; letter-spacing: 1px; box-shadow: 0 5px 15px rgba(10, 92, 54, 0.2); }
+    .final-result p { color: #555; font-size: 1rem; font-weight: 500; margin-bottom: 2rem; }
+    
+    .toppers-section { background: white; border-radius: 15px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid var(--islamic-gold); }
+    .toppers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .topper-card { background: rgba(10, 92, 54, 0.03); border-radius: 10px; padding: 1.5rem; text-align: center; transition: var(--transition); border: 2px solid transparent; }
+    .topper-card:hover { border-color: var(--islamic-gold); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+    .topper-medal { font-size: 2rem; color: var(--islamic-gold); margin-bottom: 1rem; }
+    .class-label { color: var(--islamic-green); font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem; }
+    .topper-name { color: #333; font-weight: 700; margin-bottom: 1rem; font-size: 1.1rem; }
+    .percentage-badge { display: inline-block; background: linear-gradient(135deg, var(--islamic-gold), #ffd24d); color: var(--islamic-green); padding: 0.4rem 1.2rem; border-radius: 20px; font-weight: 800; font-size: 1rem; box-shadow: 0 3px 10px rgba(193, 154, 63, 0.2); }
+
+    /* ====== PRINT STYLES ====== */
     @media print {
-  .navbar-optimized,
-  .footer,
-  .whatsapp-float,
-  .islamic-ornament,
-  .page-header,
-  .result-selection-box,
-  .result-form-container,
-  .loading-container,
-  .error-container,
-  #resultSelectionBox,
-  #toppersContainer,
-  .content-section > .container > .text-center:last-child {
-    display: none !important;
-  }
+      .navbar-optimized, .footer, .whatsapp-float, .islamic-ornament, .page-header,
+      .result-selection-box, .result-form-container, .loading-container, .error-container,
+      #resultSelectionBox, #toppersContainer, .content-section > .container > .text-center:last-child {
+        display: none !important;
+      }
+      html, body {
+        margin: 0 !important; padding: 0 !important; background: white !important;
+        color: black !important; font-size: 11pt; line-height: 1.4; height: auto !important; overflow: hidden !important;
+      }
+      .container { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+      
+      .result-card {
+        display: block !important; box-shadow: none !important; border: 2px solid #000 !important;
+        border-radius: 0 !important; padding: 15mm !important; margin: 0 !important;
+        width: 100% !important; max-width: 210mm !important; height: auto !important; position: relative;
+        page-break-inside: avoid !important; page-break-after: avoid !important;
+      }
+      .result-card::before { display: none; } /* Remove watermark on print */
+      
+      .result-header { text-align: center; padding: 4mm 0; border-bottom: 3px double #000 !important; margin-bottom: 8mm; }
+      .result-header h2 { font-size: 18pt !important; color: #000 !important; margin-bottom: 1mm; }
+      .result-header h4 { font-size: 14pt !important; color: #000 !important; margin-bottom: 2mm; }
+      .result-header p { font-size: 11pt; color: #333 !important; margin: 1mm 0; }
+      
+      .student-info { background: none !important; border: 1px solid #000; padding: 5mm; margin-bottom: 8mm; }
+      .info-row { display: flex; justify-content: space-between; flex-wrap: wrap; }
+      .info-label { color: #000 !important; font-size: 10pt; }
+      .info-value { color: #000 !important; font-size: 11pt; font-weight: bold; }
+      
+      .subjects-table-container { border: 1px solid #000; border-radius: 0; }
+      .subjects-table th { background: #f0f0f0 !important; color: #000 !important; border: 1px solid #000; padding: 3mm 2mm; font-size: 10pt; }
+      .subjects-table td { border: 1px solid #000; padding: 3mm 2mm; color: #000 !important; }
+      .subjects-table tr:nth-child(even) { background: #f9f9f9 !important; }
+      
+      .performance-summary { background: none !important; color: #000 !important; border: 1px solid #000; padding: 5mm; margin-bottom: 8mm; box-shadow: none !important; }
+      .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; }
+      .summary-card { background: none !important; border: 1px solid #ccc; padding: 3mm; }
+      .summary-value { color: #000 !important; font-size: 14pt; }
+      .summary-label { color: #333 !important; font-size: 9pt; }
+      
+      .final-result { border: 2px solid #000; padding: 5mm; margin-top: 8mm; }
+      .result-badge { background: white !important; color: #000 !important; border: 2px solid #000; padding: 2mm 10mm; font-size: 14pt; box-shadow: none !important; }
+      .final-result p { color: #000 !important; font-size: 11pt; margin: 3mm 0; }
+      
+      .grade-pass, .grade-fail, .status-pass, .status-fail { color: #000 !important; background: none !important; border: none !important; padding: 0 !important;}
+      .btn-gold, .btn-outline-gold, .d-flex { display: none !important; }
+      
+      @page { size: A4 portrait; margin: 10mm; }
+      
+      .result-card::after {
+        content: "Generated on: " attr(data-print-date) " | Darunnajath Shareeath & Arts College";
+        display: block; text-align: center; margin-top: 10mm; padding-top: 3mm; border-top: 1px solid #000; font-size: 9pt; color: #333;
+      }
+    }
 
-  html, body {
-    margin: 0 !important;
-    padding: 0 !important;
-    background: white !important;
-    color: black !important;
-    font-size: 11pt;
-    line-height: 1.4;
-    height: auto !important;
-    overflow: hidden !important;
-  }
-
-  .container {
-    max-width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  .result-card {
-    display: block !important;
-    box-shadow: none !important;
-    border: 2px solid #000 !important;
-    border-radius: 0 !important;
-    padding: 12mm !important;
-    margin: 0 !important;
-    width: 100% !important;
-    max-width: 210mm !important;
-    height: auto !important;
-    min-height: auto !important;
-    position: relative;
-    page-break-inside: avoid !important;
-    page-break-after: avoid !important;   
-    page-break-before: avoid !important;
-  }
-
-  .result-header {
-    text-align: center;
-    padding: 4mm 0;
-    border-bottom: 3px double #000 !important;
-    margin-bottom: 8mm;
-  }
-  .result-header h2 {
-    font-size: 16pt !important;
-    color: #000 !important;
-    margin-bottom: 2mm;
-  }
-  .result-header p {
-    font-size: 10pt;
-    color: #333 !important;
-    margin: 1mm 0;
-  }
-
-  .student-info {
-    background: none !important;
-    border: 1px solid #ccc;
-    padding: 5mm;
-    margin-bottom: 8mm;
-  }
-  .info-row {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 4mm;
-  }
-  .info-label {
-    color: #000 !important;
-    font-weight: 600;
-    font-size: 9pt;
-  }
-  .info-value {
-    color: #000 !important;
-    font-size: 10pt;
-  }
-
-  .subjects-section h4 {
-    text-align: center;
-    margin-bottom: 4mm;
-    font-size: 12pt;
-    color: #000 !important;
-  }
-
-  .subjects-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 8mm;
-    font-size: 9pt;
-  }
-  .subjects-table th {
-    background: #f0f0f0 !important;
-    color: #000 !important;
-    border: 1px solid #000;
-    padding: 2mm;
-    font-weight: 600;
-  }
-  .subjects-table td {
-    border: 1px solid #ccc;
-    padding: 2mm;
-  }
-  .subjects-table tr:nth-child(even) {
-    background: #f9f9f9 !important;
-  }
-
-  .performance-summary {
-    background: #f5f5f5 !important;
-    color: #000 !important;
-    border: 1px solid #ccc;
-    padding: 5mm;
-    margin-bottom: 8mm;
-  }
-  .performance-summary h4 {
-    color: #000 !important;
-    text-align: center;
-    font-size: 12pt;
-    margin-bottom: 3mm;
-  }
-  .summary-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 3mm;
-  }
-  .summary-card {
-    background: white !important;
-    border: 1px solid #ccc;
-    padding: 3mm;
-  }
-  .summary-value {
-    color: #000 !important;
-    font-size: 12pt;
-    margin-bottom: 1mm;
-  }
-  .summary-label {
-    color: #666 !important;
-    font-size: 8pt;
-  }
-  .summary-card small {
-    display: block;
-    font-size: 7pt;
-    color: #888;
-    margin-top: 1mm;
-  }
-
-  .final-result {
-    background: #f5f5f5 !important;
-    color: #000 !important;
-    border: 1px solid #000;
-    margin-top: 6mm;
-    padding: 5mm;
-  }
-  .result-badge {
-    background: white !important;
-    color: #000 !important;
-    border: 2px solid #000;
-    padding: 2mm 10mm;
-    font-size: 11pt;
-  }
-  .final-result p {
-    color: #000 !important;
-    margin: 3mm 0;
-    font-size: 10pt;
-  }
-
-  .grade-pass, .grade-fail, .status-pass, .status-fail {
-    color: #000 !important;
-    font-weight: 600;
-  }
-
-  .btn-gold, .btn-outline-gold, .d-flex {
-    display: none !important;
-  }
-
-  @page {
-    size: A4 portrait;
-    margin: 10mm;
-  }
-
-  .result-card::after {
-    content: "Printed on: " attr(data-print-date) " | DSAC Result Portal";
-    display: block;
-    text-align: center;
-    margin-top: 6mm;
-    padding-top: 2mm;
-    border-top: 1px solid #ccc;
-    font-size: 8pt;
-    color: #666;
-  }
-}
     @media (max-width: 768px) {
       body {padding-top: 70px !important;}
       .navbar-optimized {height: 70px; padding: 0.3rem 0;}
@@ -413,13 +200,11 @@
       .page-subtitle {font-size: 1.1rem;}
       .content-section {padding: 2.5rem 0;}
       .section-title {font-size: 1.8rem;}
-      .navbar-collapse {
-        background: var(--dark-green); padding: 1rem; border-radius: 0 0 10px 10px; border: 1px solid var(--islamic-gold); margin-top: 0px; max-height: 70vh; overflow-y: auto;
-      }
       .result-btn-container {grid-template-columns: 1fr;}
       .result-selection-box, .result-form-container, .result-card, .toppers-section {padding: 1.5rem; margin: 0 1rem 1.5rem;}
       .summary-grid {grid-template-columns: repeat(2, 1fr);}
       .toppers-grid {grid-template-columns: 1fr;}
+      .result-header h2 { font-size: 1.5rem; }
     }
     @media (max-width: 576px) {
       .page-title {font-size: 1.8rem;}
@@ -427,24 +212,13 @@
       .summary-grid {grid-template-columns: 1fr;}
       .info-row {grid-template-columns: 1fr;}
     }
-    @media (min-width: 992px) {
-      .dropdown-submenu {  position: relative;  }
-      .dropdown-submenu:hover > .collapse {    display: block !important;  }
-      .dropdown-submenu .collapse {    position: absolute;    top: 0;    left: 100%;    z-index: 1000;    min-width: 12rem;    padding: 0.5rem 0;    margin: 0;    font-size: 1rem;    background-color: var(--islamic-green);    border: 1px solid var(--islamic-gold);    border-radius: 0 0.5rem 0.5rem 0.5rem;  }
-      .dropdown-submenu > a:after {    content: "›";    float: right;    margin-right: -0.5rem;    font-size: 1.2rem;  }
-    }
-    @media (max-width: 991px) {
-      .dropdown-submenu .collapse {    position: static;    width: auto;    border: none;    box-shadow: none;    background: rgba(0,0,0,0.1);
-    margin-left: 1.2rem;  }
-    }
-
   </style>
 </head>
 <body>
-<div class="islamic-ornament ornament-1">✸</div>
-<div class="islamic-ornament ornament-2">✸</div>
-<div class="islamic-ornament ornament-3">✸</div>
+<div class="islamic-ornament ornament-1" style="position:fixed; color:var(--islamic-gold); opacity:0.08; font-size:1.8rem; z-index:-1; top:20%; left:5%;">✸</div>
+<div class="islamic-ornament ornament-2" style="position:fixed; color:var(--islamic-gold); opacity:0.08; font-size:1.8rem; z-index:-1; top:60%; right:5%;">✸</div>
 <div id="navbar-container"></div>
+
 <div class="page-header">
   <div class="container">
     <div class="page-header-content">
@@ -453,8 +227,11 @@
     </div>
   </div>
 </div>
+
 <section class="content-section">
   <div class="container">
+    
+    <!-- Result Selection Box -->
     <div class="result-selection-box" id="resultSelectionBox" data-aos="fade-up">
       <div class="result-btn-container">
         <a href="javascript:void(0);" class="result-btn" id="ExamBtn" onclick="showForm()">
@@ -479,6 +256,8 @@
         </a>
       </div>
     </div>
+
+    <!-- Form Container -->
     <div class="result-form-container" id="formContainer">
       <div class="section-header">
         <h2 class="section-title">Examination Result</h2>
@@ -486,11 +265,11 @@
       </div>
       <form id="resultForm">
         <div class="mb-3">
-          <label class="form-label">UID Number</label>
+          <label class="form-label fw-bold text-success">UID Number</label>
           <input type="text" class="form-control" id="roll" name="roll" placeholder="Enter your UID number" required>
         </div>
         <div class="mb-3">
-          <label class="form-label">Date of Birth</label>
+          <label class="form-label fw-bold text-success">Date of Birth</label>
           <input type="date" class="form-control" id="dob" name="dob" required>
         </div>
         <button type="submit" class="btn-gold w-100 py-3">
@@ -503,6 +282,8 @@
         </button>
       </div>
     </div>
+
+    <!-- Loading -->
     <div class="loading-container" id="loadingContainer">
       <div class="spinner"></div>
       <h3 style="color: var(--islamic-green); margin-bottom: 10px;">
@@ -510,6 +291,8 @@
       </h3>
       <p style="color: #666;">Please wait while we fetch your result details...</p>
     </div>
+
+    <!-- Error -->
     <div class="error-container" id="errorContainer">
       <div class="error-icon"><i class="fas fa-exclamation-triangle"></i></div>
       <h3 style="color: #dc3545; margin-bottom: 15px;" id="errorTitle">Error Loading Result</h3>
@@ -520,7 +303,11 @@
         </button>
       </div>
     </div>
+
+    <!-- Result Card -->
     <div class="result-card" id="resultContainer"></div>
+
+    <!-- Toppers Section -->
     <div class="toppers-section" id="toppersContainer" data-aos="fade-up">
       <div class="section-header">
         <h2 class="section-title">Class Toppers 2026-27</h2>
@@ -557,7 +344,6 @@
           <h3 class="topper-name">MUHAMMED SWALIH CP</h3>
           <div class="percentage-badge">58.24%</div>
         </div>
-
         <div class="topper-card">
           <div class="topper-medal"><i class="fas fa-crown"></i></div>
           <div class="class-label">Class 9 Topper</div>
@@ -572,6 +358,7 @@
         </div>
       </div>
     </div>
+
     <div class="text-center mt-5" data-aos="fade-up">
       <a href="index.html" class="btn-outline-gold btn-lg px-5">
         <i class="fas fa-home me-2"></i>Back to Home
@@ -579,11 +366,15 @@
     </div>
   </div>
 </section>
+
 <div id="footer-container"></div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
+  // നിങ്ങളുടെ Apps Script URL ഇവിടെ തന്നെയുണ്ട്
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxHW6Xdk7KI11Na9mAp_szDMQbysgXPn3GI-CuyGfa2UMKmdqhffz5kHpGzvFN2wKTX/exec';
+  
   const resultSelectionBox = document.getElementById('resultSelectionBox');
   const formContainer = document.getElementById('formContainer');
   const loadingContainer = document.getElementById('loadingContainer');
@@ -593,12 +384,18 @@
   const errorTitle = document.getElementById('errorTitle');
   const errorText = document.getElementById('errorText');
   const toppersContainer = document.getElementById('toppersContainer');
+  
   AOS.init({duration: 800, once: true, offset: 50, disable: window.innerWidth < 768});
+
+  // Navbar Scroll Effect
   window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar-optimized');
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    navbar.classList.toggle('scrolled', scrollTop > 50);
+    if(navbar) {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      navbar.classList.toggle('scrolled', scrollTop > 50);
+    }
   });
+
   function showResultSelection() {
     resultSelectionBox.style.display = 'block';
     formContainer.style.display = 'none';
@@ -608,6 +405,7 @@
     toppersContainer.style.display = 'block';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
   function showForm() {
     resultSelectionBox.style.display = 'none';
     formContainer.style.display = 'block';
@@ -615,17 +413,17 @@
     errorContainer.style.display = 'none';
     loadingContainer.style.display = 'none';
     toppersContainer.style.display = 'none';
-    const today = new Date();
-    const tenYearsAgo = new Date(today.getFullYear() - 10, today.getMonth(), today.getDate());
-    document.getElementById('dob').valueAsDate = tenYearsAgo;
-    document.getElementById('roll').focus();
     formContainer.scrollIntoView({ behavior: 'smooth' });
   }
-  resultForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const formData = new FormData(resultForm);
-    const roll = formData.get('roll').trim();
-    const dob = formData.get('dob');
+
+  // URL പാരാമീറ്ററുകൾ വായിക്കാനുള്ള ഫങ്ക്ഷൻ
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  // API-യിൽ നിന്ന് റിസൾട്ട് എടുക്കുന്ന ഫങ്ക്ഷൻ
+  async function fetchResult(roll, dob) {
     if (!roll || !dob) {
       showError('Missing Information', 'Please fill in all fields.');
       return;
@@ -644,12 +442,24 @@
       showError('Connection Error', 'Unable to connect to server. Please check your internet connection.');
       console.error('Fetch error:', error);
     }
+  }
+
+  // ഫോം സബ്മിറ്റ് ചെയ്യുമ്പോൾ
+  resultForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(resultForm);
+    const roll = formData.get('roll').trim();
+    const dob = formData.get('dob');
+    fetchResult(roll, dob);
   });
+
   function showLoading() {
     formContainer.style.display = 'none';
     resultContainer.style.display = 'none';
+    errorContainer.style.display = 'none';
     loadingContainer.style.display = 'block';
   }
+
   function showError(title, message) {
     errorTitle.textContent = title;
     errorText.textContent = message;
@@ -659,18 +469,21 @@
     errorContainer.style.display = 'block';
     toppersContainer.style.display = 'none';
   }
+
   function printResult() {
-    resultContainer.setAttribute('data-print-date', new Date().toLocaleDateString('en-IN', {
-      day: '2-digit',
-      month: 'long',
-      year: 'numeric'
-    }));
+    const dateStr = new Date().toLocaleDateString('en-IN', {
+      day: '2-digit', month: 'long', year: 'numeric'
+    });
+    resultContainer.setAttribute('data-print-date', dateStr);
     window.print();
   }
+
+  // റിസൾട്ട് ഡിസ്പ്ലേ ചെയ്യുന്ന ഫങ്ക്ഷൻ (പ്രൊഫഷണൽ ഡിസൈൻ)
   function displayResult(data) {
     const student = data.student;
     const subjects = data.subjects || [];
     const overallStatus = data.overallStatus;
+    
     let subjectRows = '';
     subjects.forEach((subject, index) => {
       const gradeClass = subject.status === 'Pass' ? 'grade-pass' : 'grade-fail';
@@ -678,140 +491,155 @@
       subjectRows += `
         <tr>
           <td>${index + 1}</td>
-          <td>${subject.name}</td>
+          <td class="text-start fw-bold">${subject.name}</td>
           <td>${subject.maxScore}</td>
-          <td>${subject.obtainedScore}</td>
-          <td class="${gradeClass}">${subject.grade}</td>
+          <td class="fw-bold text-dark">${subject.obtainedScore}</td>
+          <td><span class="${gradeClass}">${subject.grade}</span></td>
           <td class="${statusClass}">${subject.status}</td>
         </tr>
       `;
     });
+
     const resultHTML = `
-      <div class="result-header">
-        <h2>DARUNNAJATH SHAREEATH & ARTS COLLEGE</h2>
-        <h2>KARUVARAKUNDU</h2>
-        <p>GRADE CARD</p>
-        <p>First Semester Examination 2026-27</p>
-      </div>
-      <div class="student-info">
-        <div class="info-row">
-          <div>
-            <div class="info-label">Student Name:</div>
-            <div class="info-value">${student.name}</div>
+      <div class="result-card-content">
+        <div class="result-header">
+          <h2>DARUNNAJATH SHAREEATH & ARTS COLLEGE</h2>
+          <h4>KARUVARAKUNDU</h4>
+          <p>FIRST SEMESTER EXAMINATION 2026-27</p>
+          <p class="fw-bold text-success mt-2" style="letter-spacing:1px;">STATEMENT OF MARKS</p>
+        </div>
+
+        <div class="student-info">
+          <div class="info-row">
+            <div>
+              <div class="info-label">Student Name</div>
+              <div class="info-value text-uppercase">${student.name}</div>
+            </div>
+            <div>
+              <div class="info-label">UID Number</div>
+              <div class="info-value">${student.rollNumber}</div>
+            </div>
           </div>
-          <div>
-            <div class="info-label">UID:</div>
-            <div class="info-value">${student.rollNumber}</div>
+          <div class="info-row">
+            <div>
+              <div class="info-label">Class / Batch</div>
+              <div class="info-value">${student.className}</div>
+            </div>
+            <div>
+              <div class="info-label">Date of Birth</div>
+              <div class="info-value">${student.dateOfBirth}</div>
+            </div>
           </div>
         </div>
-        <div class="info-row">
-          <div>
-            <div class="info-label">Class:</div>
-            <div class="info-value">${student.className}</div>
-          </div>
-          <div>
-            <div class="info-label">Date of Birth:</div>
-            <div class="info-value">${student.dateOfBirth}</div>
+
+        <div class="subjects-table-container mb-4">
+          <table class="subjects-table">
+            <thead>
+              <tr>
+                <th width="8%">Sl.No</th>
+                <th width="32%">Subject</th>
+                <th width="15%">Max Marks</th>
+                <th width="15%">Obtained</th>
+                <th width="15%">Grade</th>
+                <th width="15%">Result</th>
+              </tr>
+            </thead>
+            <tbody>${subjectRows}</tbody>
+          </table>
+        </div>
+
+        <div class="performance-summary">
+          <h5 class="text-center mb-4 text-uppercase" style="letter-spacing:1px; font-weight: 700;">Performance Summary</h5>
+          <div class="summary-grid">
+            <div class="summary-card">
+              <div class="summary-value">${student.totalScore}</div>
+              <div class="summary-label">Total Marks</div>
+              <small>Max: ${student.totalMaxScore}</small>
+            </div>
+            <div class="summary-card">
+              <div class="summary-value">${student.percentage}<span style="font-size:1rem">%</span></div>
+              <div class="summary-label">Percentage</div>
+            </div>
+            <div class="summary-card">
+              <div class="summary-value">${student.overallGrade}</div>
+              <div class="summary-label">Overall Grade</div>
+            </div>
+            <div class="summary-card">
+              <div class="summary-value">${student.rank}</div>
+              <div class="summary-label">Rank</div>
+            </div>
+            <div class="summary-card">
+              <div class="summary-value">${student.presents || 0}</div>
+              <div class="summary-label">Presents</div>
+              <small>Max: ${student.totalMaxPresents}</small>
+            </div>
+            ${student.grace ? `
+            <div class="summary-card">
+              <div class="summary-value">${student.grace}</div>
+              <div class="summary-label">Grace Mark</div>
+            </div>` : ''}
           </div>
         </div>
-      </div>
-      <div class="subjects-section">
-        <h4 class="text-center mb-3">Subject-wise Marks</h4>
-        <table class="subjects-table">
-          <thead>
-            <tr>
-              <th>Sl.No</th>
-              <th>Subject</th>
-              <th>Max Marks</th>
-              <th>Marks Obtained</th>
-              <th>Grade</th>
-              <th>Result</th>
-            </tr>
-          </thead>
-          <tbody>${subjectRows}</tbody>
-        </table>
-      </div>
-      <div class="performance-summary">
-        <h4 class="text-center mb-3">Performance Summary</h4>
-        <div class="summary-grid">
-          <div class="summary-card">
-            <div class="summary-label">Total Marks</div>
-            <div class="summary-value">${student.totalScore}</div>
-            <small>Max: ${student.totalMaxScore}</small>
-          </div>
-          <div class="summary-card">
-            <div class="summary-label">Percentage</div>
-            <div class="summary-value">${student.percentage}%</div>
-          </div>
-          <div class="summary-card">
-            <div class="summary-label">Overall Grade</div>
-            <div class="summary-value">${student.overallGrade}</div>
-          </div>
-          <div class="summary-card">
-            <div class="summary-label">Rank</div>
-            <div class="summary-value">${student.rank}</div>
-          </div>
-          <div class="summary-card">
-            <div class="summary-label">Presents</div>
-            <div class="summary-value">${student.presents || 0}</div>
-            <small>Max: ${student.totalMaxPresents}</small>
-          </div>
-          <div class="summary-card">
-            <div class="summary-label">Grace Mark</div>
-            <div class="summary-value">${student.grace}</div>
+
+        <div class="final-result">
+          <div class="result-badge">RESULT: ${overallStatus}</div>
+          <p>
+            ${overallStatus === 'PASSED' 
+              ? `The candidate has <strong>PASSED</strong> all subjects.` 
+              : `The candidate has <strong>FAILED</strong> in: <br><span class="text-danger fw-bold">${data.failedSubjects ? data.failedSubjects.join(', ') : 'some subjects'}</span>.`
+            }
+          </p>
+          <div class="d-flex gap-3 justify-content-center flex-wrap mt-4">
+            <button class="btn-outline-gold px-4" onclick="showForm()">
+              <i class="fas fa-arrow-left me-2"></i>Check Another Result
+            </button>
+            <button class="btn-gold px-4" onclick="printResult()">
+              <i class="fas fa-print me-2"></i>Print Result
+            </button>
           </div>
         </div>
-      </div>
-      <div class="final-result">
-        <div class="result-badge">RESULT: ${overallStatus}</div>
-        <p class="mb-3">
-          ${overallStatus === 'PASSED' 
-            ? `The candidate has PASSED in all subjects.` 
-            : `The candidate has FAILED in: ${data.failedSubjects ? data.failedSubjects.join(', ') : 'some subjects'}.`
-          }
-        </p>
-        <div class="d-flex gap-3 justify-content-center flex-wrap">
-          <button class="btn-outline-gold" onclick="showForm()" aria-label="Check another result">
-            <i class="fas fa-arrow-left me-2"></i>Check Another Result
-          </button>
-          <button class="btn-gold" onclick="printResult()" aria-label="Print Result">
-            <i class="fas fa-print me-2"></i>Print Result
-          </button>
+        
+        <div class="mt-4 text-center text-muted" style="font-size: 0.85rem;">
+          <i class="fas fa-check-circle text-success me-1"></i> Date of Issue: ${data.generatedOn || new Date().toLocaleDateString('en-GB')}
         </div>
-      </div>
-      <div class="mt-4 text-center text-muted">
-        <small>Date of Issue: ${data.generatedOn || new Date().toLocaleDateString()}</small>
       </div>
     `;
+
     resultContainer.innerHTML = resultHTML;
-    resultContainer.setAttribute('data-print-date', new Date().toLocaleDateString('en-IN', {
-      day: '2-digit',
-      month: 'long',
-      year: 'numeric'
-    }));
     formContainer.style.display = 'none';
     loadingContainer.style.display = 'none';
     errorContainer.style.display = 'none';
-    resultContainer.style.display = 'block';
     toppersContainer.style.display = 'none';
-    resultContainer.scrollIntoView({ behavior: 'smooth' });
+    resultContainer.style.display = 'block';
+    
+    // സ്ക്രോൾ ചെയ്ത് റിസൾട്ട് കാണിക്കുക
+    resultContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
+
+  // പേജ് ലോഡ് ചെയ്യുമ്പോൾ
   window.addEventListener('DOMContentLoaded', function() {
-    showResultSelection();
+    const urlRoll = getQueryParam('roll');
+    const urlDob = getQueryParam('dob');
+
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity 0.3s ease';
+
+    if (urlRoll && urlDob) {
+      // URL-ൽ roll, dob ഉണ്ടെങ്കിൽ ഓട്ടോമാറ്റിക് ആയി റിസൾട്ട് എടുക്കുക
+      document.getElementById('roll').value = urlRoll;
+      document.getElementById('dob').value = urlDob;
+      fetchResult(urlRoll, urlDob);
+    } else {
+      // അല്ലെങ്കിൽ സാധാരണ പോലെ ഹോം പേജ് കാണിക്കുക
+      showResultSelection();
+    }
+
     setTimeout(() => {document.body.style.opacity = '1';}, 50);
   });
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.submenu-toggle').forEach(function (toggle) {
-      toggle.addEventListener('click', function (e) {
-        e.stopPropagation();
-        e.preventDefault();
-      });
-    });
-  });
+
 </script>
 <script>
+  // Load Navbar & Footer
   fetch('navbar.html')
     .then(response => response.text())
     .then(data => {
@@ -821,11 +649,14 @@
           e.stopPropagation();
           e.preventDefault();
           const target = document.querySelector(toggle.getAttribute('data-bs-target'));
-          const bsCollapse = new bootstrap.Collapse(target, { toggle: true });
+          if(target) {
+            const bsCollapse = new bootstrap.Collapse(target, { toggle: true });
+          }
         });
       });
     })
     .catch(error => console.error('Navbar load error:', error));
+    
   fetch('footer.html')
     .then(response => response.text())
     .then(data => {
