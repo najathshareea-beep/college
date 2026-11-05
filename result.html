@@ -207,43 +207,204 @@
     .ornament-2 {top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse;}
     .ornament-3 {bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite;}
     @media print {
-      .navbar-optimized, .footer, .whatsapp-float, .islamic-ornament, .content-section > .container > .text-center:last-child, .result-card .final-result .d-flex, .toppers-section, .page-header, .result-selection-box, .result-form-container, .loading-container, .error-container, #resultSelectionBox {display: none !important;}
-      body {background: white !important; color: black !important; padding: 0 !important; margin: 0 !important; font-size: 11pt; line-height: 1.4;}
-      .container {max-width: 100% !important; padding: 0 !important; margin: 0 !important;}
-      .result-card {
-        display: block !important; box-shadow: none !important; border: 2px solid #000 !important; border-radius: 0 !important; padding: 15mm !important; margin: 0 !important; width: 210mm !important; min-height: 297mm !important; position: relative; page-break-inside: avoid; page-break-after: always;
-      }
-      .result-header {text-align: center; padding: 5mm 0; border-bottom: 3px double #000 !important; margin-bottom: 10mm;}
-      .result-header h2 {font-size: 16pt !important; color: #000 !important; margin-bottom: 2mm;}
-      .result-header p {font-size: 10pt; color: #333 !important; margin: 1mm 0;}
-      .student-info {background: none !important; border: 1px solid #ccc; padding: 5mm; margin-bottom: 10mm;}
-      .info-row {grid-template-columns: repeat(2, 1fr); gap: 5mm;}
-      .info-label {color: #000 !important; font-weight: 600; font-size: 9pt;}
-      .info-value {color: #000 !important; font-size: 10pt;}
-      .subjects-section h4 {text-align: center; margin-bottom: 5mm; font-size: 12pt; color: #000 !important;}
-      .subjects-table {width: 100%; border-collapse: collapse; margin-bottom: 10mm; font-size: 9pt;}
-      .subjects-table th {background: #f0f0f0 !important; color: #000 !important; border: 1px solid #000; padding: 2mm; font-weight: 600;}
-      .subjects-table td {border: 1px solid #ccc; padding: 2mm;}
-      .subjects-table tr:nth-child(even) {background: #f9f9f9 !important;}
-      .performance-summary {background: #f5f5f5 !important; color: #000 !important; border: 1px solid #ccc; padding: 5mm; margin-bottom: 10mm;}
-      .performance-summary h4 {color: #000 !important; text-align: center; font-size: 12pt; margin-bottom: 3mm;}
-      .summary-grid {display: grid; grid-template-columns: repeat(5, 1fr); gap: 3mm;}
-      .summary-card {background: white !important; border: 1px solid #ccc; padding: 3mm;}
-      .summary-value {color: #000 !important; font-size: 12pt; margin-bottom: 1mm;}
-      .summary-label {color: #666 !important; font-size: 8pt;}
-      .summary-card small {display: block; font-size: 7pt; color: #888; margin-top: 1mm;}
-      .final-result {background: #f5f5f5 !important; color: #000 !important; border: 1px solid #000; margin-top: 10mm; padding: 5mm;}
-      .result-badge {background: white !important; color: #000 !important; border: 2px solid #000; padding: 2mm 10mm; font-size: 11pt;}
-      .final-result p {color: #000 !important; margin: 3mm 0; font-size: 10pt;}
-      .grade-pass, .grade-fail, .status-pass, .status-fail {color: #000 !important; font-weight: 600;}
-      @page {size: A4 portrait; margin: 15mm;}
-      .result-card {break-inside: avoid;}
-      .btn-gold, .btn-outline-gold {display: none !important;}
-      .result-card::after {
-        content: "Printed on: " attr(data-print-date) " | DSAC Result Portal";
-        display: block; text-align: center; margin-top: 10mm; padding-top: 2mm; border-top: 1px solid #ccc; font-size: 8pt; color: #666; position: absolute; bottom: 10mm; left: 15mm; right: 15mm;
-      }
-    }
+  .navbar-optimized,
+  .footer,
+  .whatsapp-float,
+  .islamic-ornament,
+  .page-header,
+  .result-selection-box,
+  .result-form-container,
+  .loading-container,
+  .error-container,
+  #resultSelectionBox,
+  #toppersContainer,
+  .content-section > .container > .text-center:last-child {
+    display: none !important;
+  }
+
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    color: black !important;
+    font-size: 11pt;
+    line-height: 1.4;
+    height: auto !important;
+    overflow: hidden !important;
+  }
+
+  .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .result-card {
+    display: block !important;
+    box-shadow: none !important;
+    border: 2px solid #000 !important;
+    border-radius: 0 !important;
+    padding: 12mm !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 210mm !important;
+    height: auto !important;
+    min-height: auto !important;
+    position: relative;
+    page-break-inside: avoid !important;
+    page-break-after: avoid !important;   
+    page-break-before: avoid !important;
+  }
+
+  .result-header {
+    text-align: center;
+    padding: 4mm 0;
+    border-bottom: 3px double #000 !important;
+    margin-bottom: 8mm;
+  }
+  .result-header h2 {
+    font-size: 16pt !important;
+    color: #000 !important;
+    margin-bottom: 2mm;
+  }
+  .result-header p {
+    font-size: 10pt;
+    color: #333 !important;
+    margin: 1mm 0;
+  }
+
+  .student-info {
+    background: none !important;
+    border: 1px solid #ccc;
+    padding: 5mm;
+    margin-bottom: 8mm;
+  }
+  .info-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4mm;
+  }
+  .info-label {
+    color: #000 !important;
+    font-weight: 600;
+    font-size: 9pt;
+  }
+  .info-value {
+    color: #000 !important;
+    font-size: 10pt;
+  }
+
+  .subjects-section h4 {
+    text-align: center;
+    margin-bottom: 4mm;
+    font-size: 12pt;
+    color: #000 !important;
+  }
+
+  .subjects-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 8mm;
+    font-size: 9pt;
+  }
+  .subjects-table th {
+    background: #f0f0f0 !important;
+    color: #000 !important;
+    border: 1px solid #000;
+    padding: 2mm;
+    font-weight: 600;
+  }
+  .subjects-table td {
+    border: 1px solid #ccc;
+    padding: 2mm;
+  }
+  .subjects-table tr:nth-child(even) {
+    background: #f9f9f9 !important;
+  }
+
+  .performance-summary {
+    background: #f5f5f5 !important;
+    color: #000 !important;
+    border: 1px solid #ccc;
+    padding: 5mm;
+    margin-bottom: 8mm;
+  }
+  .performance-summary h4 {
+    color: #000 !important;
+    text-align: center;
+    font-size: 12pt;
+    margin-bottom: 3mm;
+  }
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 3mm;
+  }
+  .summary-card {
+    background: white !important;
+    border: 1px solid #ccc;
+    padding: 3mm;
+  }
+  .summary-value {
+    color: #000 !important;
+    font-size: 12pt;
+    margin-bottom: 1mm;
+  }
+  .summary-label {
+    color: #666 !important;
+    font-size: 8pt;
+  }
+  .summary-card small {
+    display: block;
+    font-size: 7pt;
+    color: #888;
+    margin-top: 1mm;
+  }
+
+  .final-result {
+    background: #f5f5f5 !important;
+    color: #000 !important;
+    border: 1px solid #000;
+    margin-top: 6mm;
+    padding: 5mm;
+  }
+  .result-badge {
+    background: white !important;
+    color: #000 !important;
+    border: 2px solid #000;
+    padding: 2mm 10mm;
+    font-size: 11pt;
+  }
+  .final-result p {
+    color: #000 !important;
+    margin: 3mm 0;
+    font-size: 10pt;
+  }
+
+  .grade-pass, .grade-fail, .status-pass, .status-fail {
+    color: #000 !important;
+    font-weight: 600;
+  }
+
+  .btn-gold, .btn-outline-gold, .d-flex {
+    display: none !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+
+  .result-card::after {
+    content: "Printed on: " attr(data-print-date) " | DSAC Result Portal";
+    display: block;
+    text-align: center;
+    margin-top: 6mm;
+    padding-top: 2mm;
+    border-top: 1px solid #ccc;
+    font-size: 8pt;
+    color: #666;
+  }
+}
     @media (max-width: 768px) {
       body {padding-top: 70px !important;}
       .navbar-optimized {height: 70px; padding: 0.3rem 0;}
