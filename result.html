@@ -76,7 +76,7 @@
     
     /* ====== PROFESSIONAL MARKSHEET DESIGN ====== */
     .result-card {
-      background: white; border-radius: 15px; padding: 3rem; margin-bottom: 2rem;
+      background: white; border-radius: 15px; padding: 2rem; margin-bottom: 2rem;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid var(--islamic-gold); display: none;
       position: relative; overflow: hidden;
     }
@@ -89,41 +89,40 @@
 
     .result-card-content { position: relative; z-index: 1; }
 
-    .result-header { text-align: center; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 3px double var(--islamic-gold); }
-    .result-header h2 { color: var(--islamic-green); font-weight: 800; font-size: 2rem; margin-bottom: 0.2rem; text-transform: uppercase; letter-spacing: 1px; }
-    .result-header h4 { color: var(--islamic-gold); font-weight: 600; font-size: 1.2rem; margin-bottom: 0.5rem; }
-    .result-header p { color: #666; font-size: 1rem; font-weight: 500; margin: 0; }
+    .result-header { text-align: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px double var(--islamic-gold); }
+    .result-header h2 { color: var(--islamic-green); font-weight: 800; font-size: 1.8rem; margin-bottom: 0.1rem; text-transform: uppercase; letter-spacing: 1px; }
+    .result-header h4 { color: var(--islamic-gold); font-weight: 600; font-size: 1.1rem; margin-bottom: 0.2rem; }
+    .result-header p { color: #666; font-size: 0.95rem; font-weight: 500; margin: 0; }
     
-    .student-info { background: rgba(10, 92, 54, 0.03); border-radius: 10px; padding: 1.5rem 2rem; margin-bottom: 2rem; border-left: 4px solid var(--islamic-green); }
-    .info-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 1rem; }
+    .student-info { background: rgba(10, 92, 54, 0.03); border-radius: 10px; padding: 1rem 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid var(--islamic-green); }
+    .info-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 0.5rem; }
     .info-row:last-child { margin-bottom: 0; }
-    .info-label { font-weight: 600; color: var(--islamic-green); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.2rem; }
-    .info-value { color: #333; font-size: 1.1rem; font-weight: 600; }
+    .info-label { font-weight: 600; color: var(--islamic-green); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.1rem; }
+    .info-value { color: #333; font-size: 1.05rem; font-weight: 600; }
     
-    .subjects-table-container { overflow-x: auto; border-radius: 10px; border: 1px solid #e0e0e0; }
+    .subjects-table-container { overflow-x: auto; border-radius: 10px; border: 1px solid #e0e0e0; margin-bottom: 1.5rem; }
     .subjects-table { width: 100%; border-collapse: collapse; margin-bottom: 0; background: white; }
-    .subjects-table th { background: var(--islamic-green); color: white; padding: 1rem; text-align: center; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; border-right: 1px solid rgba(255,255,255,0.1); }
+    .subjects-table th { background: var(--islamic-green); color: white; padding: 0.75rem; text-align: center; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; border-right: 1px solid rgba(255,255,255,0.1); }
     .subjects-table th:last-child { border-right: none; }
-    .subjects-table td { padding: 1rem; text-align: center; border-bottom: 1px solid #eee; font-weight: 500; color: #444; }
+    .subjects-table td { padding: 0.75rem; text-align: center; border-bottom: 1px solid #eee; font-weight: 500; color: #444; font-size: 0.95rem; }
     .subjects-table tr:nth-child(even) { background: rgba(10, 92, 54, 0.02); }
     .subjects-table tr:last-child td { border-bottom: none; }
-    .subjects-table tr:hover td { background: rgba(193, 154, 63, 0.05); }
     
-    .grade-pass { color: #198754; font-weight: 700; background: rgba(25, 135, 84, 0.1); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem;}
-    .grade-fail { color: #dc3545; font-weight: 700; background: rgba(220, 53, 69, 0.1); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem;}
+    .grade-pass { color: #198754; font-weight: 700; background: rgba(25, 135, 84, 0.1); padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.8rem;}
+    .grade-fail { color: #dc3545; font-weight: 700; background: rgba(220, 53, 69, 0.1); padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.8rem;}
     .status-pass { color: #198754; font-weight: 700; }
     .status-fail { color: #dc3545; font-weight: 700; }
     
-    .performance-summary { background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-radius: 12px; padding: 2rem; margin-bottom: 2.5rem; color: white; box-shadow: 0 5px 15px rgba(10, 92, 54, 0.3); }
-    .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1.5rem; }
-    .summary-card { background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 1.2rem; text-align: center; border: 1px solid rgba(255,255,255,0.15); }
-    .summary-value { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.2rem; color: var(--islamic-gold); }
-    .summary-label { font-size: 0.8rem; font-weight: 500; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px; }
-    .summary-card small { display: block; font-size: 0.7rem; opacity: 0.7; margin-top: 0.3rem; }
+    .performance-summary { background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; color: white; box-shadow: 0 5px 15px rgba(10, 92, 54, 0.3); }
+    .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; }
+    .summary-card { background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 1rem; text-align: center; border: 1px solid rgba(255,255,255,0.15); }
+    .summary-value { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.2rem; color: var(--islamic-gold); }
+    .summary-label { font-size: 0.75rem; font-weight: 500; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px; }
+    .summary-card small { display: block; font-size: 0.65rem; opacity: 0.7; margin-top: 0.2rem; }
     
-    .final-result { text-align: center; padding: 2.5rem; border-radius: 12px; background: white; border: 2px dashed var(--islamic-gold); position: relative; }
-    .result-badge { display: inline-block; background: var(--islamic-green); color: white; padding: 0.8rem 2.5rem; border-radius: 50px; font-weight: 800; font-size: 1.4rem; margin-bottom: 1rem; letter-spacing: 1px; box-shadow: 0 5px 15px rgba(10, 92, 54, 0.2); }
-    .final-result p { color: #555; font-size: 1rem; font-weight: 500; margin-bottom: 2rem; }
+    .final-result { text-align: center; padding: 1.5rem; border-radius: 12px; background: white; border: 2px dashed var(--islamic-gold); position: relative; }
+    .result-badge { display: inline-block; background: var(--islamic-green); color: white; padding: 0.6rem 2rem; border-radius: 50px; font-weight: 800; font-size: 1.2rem; margin-bottom: 0.8rem; letter-spacing: 1px; box-shadow: 0 5px 15px rgba(10, 92, 54, 0.2); }
+    .final-result p { color: #555; font-size: 0.95rem; font-weight: 500; margin-bottom: 0; }
     
     .toppers-section { background: white; border-radius: 15px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid var(--islamic-gold); }
     .toppers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
@@ -162,20 +161,23 @@
     .ornament-2 {top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse;}
     .ornament-3 {bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite;}
 
-    /* ====== PRINT STYLES (PERFECT A4 FIT) ====== */
+    /* ====== PRINT STYLES (REMOVING BLANK SPACES) ====== */
     @media print {
+      /* പ്രിന്റിംഗിന് ആവശ്യമില്ലാത്ത എല്ലാ ഭാഗങ്ങളും ഒഴിവാക്കുക */
       .navbar-optimized, .footer, .whatsapp-float, .islamic-ornament, .page-header,
       .result-selection-box, .result-form-container, .loading-container, .error-container,
       #resultSelectionBox, #toppersContainer, .content-section > .container > .text-center:last-child,
       .d-flex, .btn-gold, .btn-outline-gold {
         display: none !important;
       }
-      
+
+      /* ബ്രൗസർ മാർജിൻ പൂജ്യമാക്കി, കോഡിൽ നിന്ന് മാർജിൻ നൽകും */
       @page {
         size: A4 portrait;
-        margin: 0mm; /* ബ്രൗസർ മാർജിൻ പൂജ്യമാക്കി, കോഡിൽ നിന്ന് നൽകും */
+        margin: 0; 
       }
       
+      /* മുകളിലെ വെളുത്ത ഭാഗം ഒഴിവാക്കാൻ */
       html, body {
         margin: 0 !important; 
         padding: 0 !important; 
@@ -192,16 +194,17 @@
         margin: 0 !important; 
       }
       
+      /* റിസൾട്ട് കാർഡ് കൃത്യമായി A4 വലിപ്പത്തിൽ ഒതുക്കാൻ */
       .result-card {
         display: block !important; 
         box-shadow: none !important; 
         border: none !important;
         border-radius: 0 !important; 
-        padding: 10mm 12mm !important; /* A4 വലിപ്പത്തിനനുസരിച്ച് പാഡിംഗ് ക്രമീകരിച്ചു */
+        padding: 10mm 12mm !important; /* പേജിന് ചുറ്റുമുള്ള പാഡിംഗ് */
         margin: 0 !important;
         width: 100% !important; 
         max-width: 210mm !important; 
-        height: 296mm !important; /* A4 ഉയരം കൃത്യമാക്കി */
+        height: 296mm !important; 
         page-break-inside: avoid !important; 
         page-break-after: avoid !important; 
         page-break-before: avoid !important; 
@@ -211,46 +214,46 @@
       
       /* ഹെഡർ സ്പേസിംഗ് കുറച്ചു */
       .result-header { 
-        padding: 2mm 0; 
-        margin-bottom: 4mm; 
+        padding: 0 0 2mm 0; 
+        margin-bottom: 3mm; 
       }
       .result-header h2 { font-size: 15pt !important; margin-bottom: 1mm; }
       .result-header h4 { font-size: 12pt !important; margin-bottom: 1mm; }
-      .result-header p { font-size: 9pt; margin: 0.5mm 0; }
+      .result-header p { font-size: 9pt; margin: 0; }
       
       /* വിദ്യാർത്ഥി വിവരങ്ങൾ */
       .student-info { 
-        padding: 3mm; 
-        margin-bottom: 4mm; 
+        padding: 2mm 3mm; 
+        margin-bottom: 3mm; 
       }
       .info-label { font-size: 8pt; }
       .info-value { font-size: 9pt; }
       
       /* മാർക്ക് ടേബിൾ - സ്പേസിംഗ് കുറച്ചു */
-      .subjects-table-container { margin-bottom: 4mm; }
-      .subjects-table th { padding: 1.5mm 1mm; font-size: 8.5pt; }
-      .subjects-table td { padding: 1.5mm 1mm; font-size: 8.5pt; }
+      .subjects-table-container { margin-bottom: 3mm; }
+      .subjects-table th { padding: 1mm; font-size: 8.5pt; }
+      .subjects-table td { padding: 1mm; font-size: 8.5pt; }
       
-      /* സമ്മറി - സ്പേസിംഗ് കുറച്ചു */
+      /* സമ്മറി */
       .performance-summary { 
-        padding: 3mm; 
-        margin-bottom: 4mm; 
+        padding: 2mm; 
+        margin-bottom: 3mm; 
       }
-      .summary-grid { gap: 2mm; }
-      .summary-card { padding: 1.5mm; }
+      .summary-grid { gap: 1.5mm; }
+      .summary-card { padding: 1mm; }
       .summary-value { font-size: 11pt; }
       .summary-label { font-size: 7pt; }
-      .summary-card small { font-size: 6.5pt; }
+      .summary-card small { font-size: 6pt; }
       
       /* ഫൈനൽ റിസൾട്ട് */
       .final-result { 
-        padding: 3mm; 
+        padding: 2mm; 
         margin-top: 2mm; 
       }
       .result-badge { 
-        padding: 1.5mm 8mm; 
-        font-size: 12pt; 
-        margin-bottom: 2mm; 
+        padding: 1mm 6mm; 
+        font-size: 11pt; 
+        margin-bottom: 1mm; 
       }
       .final-result p { font-size: 9pt; margin-bottom: 0; }
       
@@ -258,18 +261,18 @@
         color: #000 !important; background: none !important; border: none !important; padding: 0 !important;
       }
       
-      /* അടിഭാഗം - കൃത്യമായി താഴേക്ക് വരാൻ */
+      /* അടിഭാഗം - പേജിന്റെ ഏറ്റവും താഴെ */
       .result-card::after {
         content: "Generated on: " attr(data-print-date) " | Darunnajath Shareeath & Arts College";
         display: block; 
         text-align: center; 
-        margin-top: 4mm; 
-        padding-top: 2mm; 
+        margin-top: 3mm; 
+        padding-top: 1mm; 
         border-top: 1px solid #ccc; 
         font-size: 7.5pt; 
         color: #555;
         position: absolute;
-        bottom: 10mm;
+        bottom: 8mm;
         left: 12mm;
         right: 12mm;
       }
@@ -626,7 +629,7 @@
         </div>
 
         <div class="performance-summary">
-          <h5 class="text-center mb-4 text-uppercase" style="letter-spacing:1px; font-weight: 700;">Performance Summary</h5>
+          <h5 class="text-center mb-3 text-uppercase" style="letter-spacing:1px; font-weight: 700;">Performance Summary</h5>
           <div class="summary-grid">
             <div class="summary-card">
               <div class="summary-value">${student.totalScore}</div>
@@ -634,7 +637,7 @@
               <small>Max: ${student.totalMaxScore}</small>
             </div>
             <div class="summary-card">
-              <div class="summary-value">${student.percentage}<span style="font-size:1rem">%</span></div>
+              <div class="summary-value">${student.percentage}<span style="font-size:0.8rem">%</span></div>
               <div class="summary-label">Percentage</div>
             </div>
             <div class="summary-card">
@@ -666,17 +669,17 @@
               : `The candidate has <strong>FAILED</strong> in: <br><span class="text-danger fw-bold">${data.failedSubjects ? data.failedSubjects.join(', ') : 'some subjects'}</span>.`
             }
           </p>
-          <div class="d-flex gap-3 justify-content-center flex-wrap mt-4">
-            <button class="btn-outline-gold px-4" onclick="showForm()">
+          <div class="d-flex gap-3 justify-content-center flex-wrap mt-3">
+            <button class="btn-outline-gold px-3" onclick="showForm()">
               <i class="fas fa-arrow-left me-2"></i>Check Another Result
             </button>
-            <button class="btn-gold px-4" onclick="printResult()">
+            <button class="btn-gold px-3" onclick="printResult()">
               <i class="fas fa-print me-2"></i>Print Result
             </button>
           </div>
         </div>
         
-        <div class="mt-4 text-center text-muted" style="font-size: 0.85rem;">
+        <div class="mt-3 text-center text-muted" style="font-size: 0.85rem;">
           <i class="fas fa-check-circle text-success me-1"></i> Date of Issue: ${data.generatedOn || new Date().toLocaleDateString('en-GB')}
         </div>
       </div>
