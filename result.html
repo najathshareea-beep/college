@@ -12,6 +12,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- html2pdf library for PDF download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <style>
     :root {
       --islamic-green: #0a5c36; --islamic-gold: #c19a3f; --islamic-cream: #f8f3e6; --islamic-light: #e9f5e9; --dark-green: #064e3b; --light-gold: #ffd24d; --transition: all 0.3s ease;
@@ -159,11 +161,57 @@
     .ornament-2 {top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse;}
     .ornament-3 {bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite;}
 
+    /* Mobile friendly enhancements */
+    @media (max-width: 992px) {
+      .result-card { padding: 2rem; }
+      .result-header h2 { font-size: 1.8rem; }
+    }
+    @media (max-width: 768px) {
+      body {padding-top: 70px !important;}
+      .navbar-optimized {height: 70px; padding: 0.3rem 0;}
+      .page-header {height: 26vh; min-height: 180px;}
+      .page-title {font-size: 2.2rem;}
+      .page-subtitle {font-size: 1.1rem;}
+      .content-section {padding: 2.5rem 0;}
+      .section-title {font-size: 1.8rem;}
+      .result-btn-container {grid-template-columns: 1fr;}
+      .result-selection-box, .result-form-container, .result-card, .toppers-section {padding: 1.5rem; margin: 0 1rem 1.5rem;}
+      .summary-grid {grid-template-columns: repeat(2, 1fr);}
+      .toppers-grid {grid-template-columns: 1fr;}
+      .result-header h2 { font-size: 1.5rem; }
+      .result-header h4 { font-size: 1.2rem; }
+      .info-row { grid-template-columns: 1fr; gap: 0.8rem; }
+      .student-info { padding: 1rem; }
+      .subjects-table th, .subjects-table td { padding: 0.6rem 0.4rem; font-size: 0.8rem; }
+      .summary-card { padding: 0.9rem; }
+      .summary-value { font-size: 1.4rem; }
+      .summary-label { font-size: 0.65rem; }
+      .result-badge { font-size: 1.1rem; padding: 0.6rem 1.8rem; }
+      .final-result { padding: 1.5rem; }
+      .final-result .d-flex { flex-direction: column; align-items: stretch; gap: 0.8rem; }
+      .final-result .d-flex button { width: 100%; }
+      .result-card { padding: 1.2rem; }
+      .result-card::before { font-size: 6rem; }
+    }
+    @media (max-width: 576px) {
+      .page-title {font-size: 1.8rem;}
+      .section-title {font-size: 1.5rem;}
+      .summary-grid {grid-template-columns: 1fr; }
+      .info-row {grid-template-columns: 1fr;}
+      .result-header h2 { font-size: 1.25rem; }
+      .result-header h4 { font-size: 1rem; }
+      .result-header p { font-size: 0.8rem; }
+      .subjects-table th, .subjects-table td { padding: 0.4rem 0.2rem; font-size: 0.7rem; }
+      .student-info .info-value { font-size: 0.95rem; }
+      .final-result p { font-size: 0.9rem; }
+      .result-badge { font-size: 1rem; padding: 0.5rem 1.2rem; }
+    }
+
     @media print {
       .navbar-optimized, .footer, .whatsapp-float, .islamic-ornament, .page-header,
       .result-selection-box, .result-form-container, .loading-container, .error-container,
       #resultSelectionBox, #toppersContainer, .content-section > .container > .text-center:last-child,
-      .d-flex, .btn-gold, .btn-outline-gold {
+      .d-flex, .btn-gold, .btn-outline-gold, .no-print, .download-pdf-btn {
         display: none !important;
       }
       
@@ -263,27 +311,6 @@
         left: 12mm;
         right: 12mm;
       }
-    }
-
-    @media (max-width: 768px) {
-      body {padding-top: 70px !important;}
-      .navbar-optimized {height: 70px; padding: 0.3rem 0;}
-      .page-header {height: 26vh; min-height: 180px;}
-      .page-title {font-size: 2.2rem;}
-      .page-subtitle {font-size: 1.1rem;}
-      .content-section {padding: 2.5rem 0;}
-      .section-title {font-size: 1.8rem;}
-      .result-btn-container {grid-template-columns: 1fr;}
-      .result-selection-box, .result-form-container, .result-card, .toppers-section {padding: 1.5rem; margin: 0 1rem 1.5rem;}
-      .summary-grid {grid-template-columns: repeat(2, 1fr);}
-      .toppers-grid {grid-template-columns: 1fr;}
-      .result-header h2 { font-size: 1.5rem; }
-    }
-    @media (max-width: 576px) {
-      .page-title {font-size: 1.8rem;}
-      .section-title {font-size: 1.5rem;}
-      .summary-grid {grid-template-columns: 1fr;}
-      .info-row {grid-template-columns: 1fr;}
     }
   </style>
 </head>
@@ -539,6 +566,68 @@
     window.print();
   }
 
+  // Download PDF functionality
+  function downloadPDF() {
+    const element = document.getElementById('resultContainer');
+    if (!element) return;
+
+    const dateStr = new Date().toLocaleDateString('en-IN', {
+      day: '2-digit', month: 'long', year: 'numeric'
+    });
+    element.setAttribute('data-print-date', dateStr);
+
+    // Temporarily hide buttons and toppers for clean PDF
+    const actionButtons = element.querySelectorAll('.d-flex');
+    const toppersSection = document.getElementById('toppersContainer');
+    const whatsappBtn = document.querySelector('.whatsapp-float');
+    if (toppersSection) toppersSection.style.display = 'none';
+    if (whatsappBtn) whatsappBtn.style.display = 'none';
+    actionButtons.forEach(btn => btn.style.display = 'none');
+
+    // Optional: hide date of issue line
+    const issueLine = element.querySelector('.mt-4.text-center.text-muted');
+    if (issueLine) issueLine.style.display = 'none';
+
+    // Configure html2pdf options
+    const opt = {
+      margin: [10, 10, 10, 10], // top, right, bottom, left in mm
+      filename: `Result_${dateStr.replace(/\s+/g, '_')}.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        letterRendering: true,
+        logging: false,
+        windowWidth: 1000,
+        scrollY: 0,
+        scrollX: 0
+      },
+      jsPDF: {
+        unit: 'mm',
+        format: 'a4',
+        orientation: 'portrait'
+      },
+      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+    };
+
+    // Generate PDF
+    html2pdf().set(opt).from(element).save().then(() => {
+      // Restore display
+      if (toppersSection) toppersSection.style.display = 'block';
+      if (whatsappBtn) whatsappBtn.style.display = 'flex';
+      actionButtons.forEach(btn => btn.style.display = 'flex');
+      if (issueLine) issueLine.style.display = 'block';
+    }).catch(err => {
+      console.error('PDF generation error:', err);
+      alert('Could not generate PDF. Please try printing instead.');
+      // Restore display on error
+      if (toppersSection) toppersSection.style.display = 'block';
+      if (whatsappBtn) whatsappBtn.style.display = 'flex';
+      actionButtons.forEach(btn => btn.style.display = 'flex');
+      if (issueLine) issueLine.style.display = 'block';
+    });
+  }
+
   function displayResult(data) {
     const student = data.student;
     const subjects = data.subjects || [];
@@ -655,6 +744,9 @@
             </button>
             <button class="btn-gold px-4" onclick="printResult()">
               <i class="fas fa-print me-2"></i>Print Result
+            </button>
+            <button class="btn-gold px-4 download-pdf-btn" onclick="downloadPDF()">
+              <i class="fas fa-file-pdf me-2"></i>Download PDF
             </button>
           </div>
         </div>
