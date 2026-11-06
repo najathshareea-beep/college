@@ -12,7 +12,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <style>
     :root {
       --islamic-green: #0a5c36; --islamic-gold: #c19a3f; --islamic-cream: #f8f3e6; --islamic-light: #e9f5e9; --dark-green: #064e3b; --light-gold: #ffd24d; --transition: all 0.3s ease;
@@ -160,56 +159,11 @@
     .ornament-2 {top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse;}
     .ornament-3 {bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite;}
 
-    @media (max-width: 992px) {
-      .result-card { padding: 2rem; }
-      .result-header h2 { font-size: 1.8rem; }
-    }
-    @media (max-width: 768px) {
-      body {padding-top: 70px !important;}
-      .navbar-optimized {height: 70px; padding: 0.3rem 0;}
-      .page-header {height: 26vh; min-height: 180px;}
-      .page-title {font-size: 2.2rem;}
-      .page-subtitle {font-size: 1.1rem;}
-      .content-section {padding: 2.5rem 0;}
-      .section-title {font-size: 1.8rem;}
-      .result-btn-container {grid-template-columns: 1fr;}
-      .result-selection-box, .result-form-container, .result-card, .toppers-section {padding: 1.5rem; margin: 0 1rem 1.5rem;}
-      .summary-grid {grid-template-columns: repeat(2, 1fr);}
-      .toppers-grid {grid-template-columns: 1fr;}
-      .result-header h2 { font-size: 1.5rem; }
-      .result-header h4 { font-size: 1.2rem; }
-      .info-row { grid-template-columns: 1fr; gap: 0.8rem; }
-      .student-info { padding: 1rem; }
-      .subjects-table th, .subjects-table td { padding: 0.6rem 0.4rem; font-size: 0.8rem; }
-      .summary-card { padding: 0.9rem; }
-      .summary-value { font-size: 1.4rem; }
-      .summary-label { font-size: 0.65rem; }
-      .result-badge { font-size: 1.1rem; padding: 0.6rem 1.8rem; }
-      .final-result { padding: 1.5rem; }
-      .final-result .d-flex { flex-direction: column; align-items: stretch; gap: 0.8rem; }
-      .final-result .d-flex button { width: 100%; }
-      .result-card { padding: 1.2rem; }
-      .result-card::before { font-size: 6rem; }
-    }
-    @media (max-width: 576px) {
-      .page-title {font-size: 1.8rem;}
-      .section-title {font-size: 1.5rem;}
-      .summary-grid {grid-template-columns: 1fr; }
-      .info-row {grid-template-columns: 1fr;}
-      .result-header h2 { font-size: 1.25rem; }
-      .result-header h4 { font-size: 1rem; }
-      .result-header p { font-size: 0.8rem; }
-      .subjects-table th, .subjects-table td { padding: 0.4rem 0.2rem; font-size: 0.7rem; }
-      .student-info .info-value { font-size: 0.95rem; }
-      .final-result p { font-size: 0.9rem; }
-      .result-badge { font-size: 1rem; padding: 0.5rem 1.2rem; }
-    }
-
     @media print {
       .navbar-optimized, .footer, .whatsapp-float, .islamic-ornament, .page-header,
       .result-selection-box, .result-form-container, .loading-container, .error-container,
       #resultSelectionBox, #toppersContainer, .content-section > .container > .text-center:last-child,
-      .d-flex, .btn-gold, .btn-outline-gold, .no-print, .download-pdf-btn {
+      .d-flex, .btn-gold, .btn-outline-gold {
         display: none !important;
       }
       
@@ -309,6 +263,27 @@
         left: 12mm;
         right: 12mm;
       }
+    }
+
+    @media (max-width: 768px) {
+      body {padding-top: 70px !important;}
+      .navbar-optimized {height: 70px; padding: 0.3rem 0;}
+      .page-header {height: 26vh; min-height: 180px;}
+      .page-title {font-size: 2.2rem;}
+      .page-subtitle {font-size: 1.1rem;}
+      .content-section {padding: 2.5rem 0;}
+      .section-title {font-size: 1.8rem;}
+      .result-btn-container {grid-template-columns: 1fr;}
+      .result-selection-box, .result-form-container, .result-card, .toppers-section {padding: 1.5rem; margin: 0 1rem 1.5rem;}
+      .summary-grid {grid-template-columns: repeat(2, 1fr);}
+      .toppers-grid {grid-template-columns: 1fr;}
+      .result-header h2 { font-size: 1.5rem; }
+    }
+    @media (max-width: 576px) {
+      .page-title {font-size: 1.8rem;}
+      .section-title {font-size: 1.5rem;}
+      .summary-grid {grid-template-columns: 1fr;}
+      .info-row {grid-template-columns: 1fr;}
     }
   </style>
 </head>
@@ -564,159 +539,6 @@
     window.print();
   }
 
-  function downloadPDF() {
-    const resultEl = document.getElementById('resultContainer');
-    if (!resultEl) return;
-
-    const dateStr = new Date().toLocaleDateString('en-IN', {
-      day: '2-digit', month: 'long', year: 'numeric'
-    });
-
-    const iframe = document.createElement('iframe');
-    iframe.style.position = 'absolute';
-    iframe.style.width = '0';
-    iframe.style.height = '0';
-    iframe.style.border = 'none';
-    iframe.style.left = '-9999px';
-    document.body.appendChild(iframe);
-
-    const doc = iframe.contentWindow.document;
-
-    const styles = Array.from(document.querySelectorAll('link[rel="stylesheet"], style'));
-    let styleHTML = '';
-    styles.forEach(styleNode => {
-      if (styleNode.tagName === 'LINK') {
-        styleHTML += `<link rel="stylesheet" href="${styleNode.href}">`;
-      } else {
-        styleHTML += `<style>${styleNode.innerHTML}</style>`;
-      }
-    });
-
-    const printOverride = `
-      <style>
-        body {
-          background: white !important;
-          padding: 0 !important;
-          margin: 0 !important;
-          -webkit-print-color-adjust: exact;
-        }
-        .result-card {
-          display: block !important;
-          box-shadow: none !important;
-          border: none !important;
-          border-radius: 0 !important;
-          padding: 10mm 12mm !important;
-          margin: 0 auto !important;
-          width: 100% !important;
-          max-width: 210mm !important;
-          page-break-inside: avoid !important;
-        }
-        .result-card::before { display: none !important; }
-        .result-header { padding: 2mm 0 !important; margin-bottom: 4mm !important; }
-        .result-header h2 { font-size: 15pt !important; margin-bottom: 1mm !important; }
-        .result-header h4 { font-size: 12pt !important; margin-bottom: 1mm !important; }
-        .result-header p { font-size: 9pt !important; margin: 0.5mm 0 !important; }
-        .student-info { padding: 3mm !important; margin-bottom: 4mm !important; }
-        .info-label { font-size: 8pt !important; }
-        .info-value { font-size: 9pt !important; }
-        .subjects-table-container { margin-bottom: 4mm !important; }
-        .subjects-table th { padding: 1.5mm 1mm !important; font-size: 8.5pt !important; }
-        .subjects-table td { padding: 1.5mm 1mm !important; font-size: 8.5pt !important; }
-        .performance-summary { padding: 3mm !important; margin-bottom: 4mm !important; }
-        .summary-grid { gap: 2mm !important; }
-        .summary-card { padding: 1.5mm !important; }
-        .summary-value { font-size: 11pt !important; }
-        .summary-label { font-size: 7pt !important; }
-        .summary-card small { font-size: 6.5pt !important; }
-        .final-result { padding: 3mm !important; margin-top: 2mm !important; }
-        .result-badge { padding: 1.5mm 8mm !important; font-size: 12pt !important; margin-bottom: 2mm !important; }
-        .final-result p { font-size: 9pt !important; margin-bottom: 0 !important; }
-        .grade-pass, .grade-fail, .status-pass, .status-fail {
-          color: #000 !important; background: none !important; border: none !important; padding: 0 !important;
-        }
-        .d-flex, .btn-gold, .btn-outline-gold, .download-pdf-btn, .no-print { display: none !important; }
-        #toppersContainer, .toppers-section { display: none !important; }
-        .whatsapp-float, .islamic-ornament, .navbar-optimized, .footer, .page-header,
-        .result-selection-box, .result-form-container, .loading-container, .error-container,
-        #resultSelectionBox { display: none !important; }
-        .result-card::after {
-          content: "Generated on: ${dateStr} | Darunnajath Shareeath & Arts College";
-          display: block !important;
-          text-align: center !important;
-          margin-top: 4mm !important;
-          padding-top: 2mm !important;
-          border-top: 1px solid #ccc !important;
-          font-size: 7.5pt !important;
-          color: #555 !important;
-          position: absolute !important;
-          bottom: 10mm !important;
-          left: 12mm !important;
-          right: 12mm !important;
-        }
-        .result-card { position: relative !important; }
-        @page { size: A4 portrait; margin: 0mm; }
-      </style>
-    `;
-
-    doc.open();
-    doc.write(`
-      <!doctype html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-          <title>Result PDF</title>
-          ${styleHTML}
-          ${printOverride}
-        </head>
-        <body>
-          ${resultEl.outerHTML}
-        </body>
-      </html>
-    `);
-    doc.close();
-
-    iframe.onload = function() {
-      setTimeout(() => {
-        html2pdf()
-          .set({
-            margin: 0,
-            filename: `Result_${dateStr.replace(/\s+/g, '_')}.pdf`,
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: {
-              scale: 2,
-              useCORS: true,
-              letterRendering: true,
-              logging: false,
-              windowWidth: 900,
-              scrollY: 0,
-              scrollX: 0
-            },
-            jsPDF: {
-              unit: 'mm',
-              format: 'a4',
-              orientation: 'portrait'
-            },
-            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-          })
-          .from(iframe.contentWindow.document.body)
-          .save()
-          .then(() => {
-            document.body.removeChild(iframe);
-          })
-          .catch(err => {
-            console.error('PDF generation error:', err);
-            alert('Could not generate PDF. Please try printing instead.');
-            if (document.body.contains(iframe)) document.body.removeChild(iframe);
-          });
-      }, 600);
-    };
-
-    if (doc.readyState === 'complete') {
-      iframe.onload();
-    }
-  }
-
   function displayResult(data) {
     const student = data.student;
     const subjects = data.subjects || [];
@@ -833,9 +655,6 @@
             </button>
             <button class="btn-gold px-4" onclick="printResult()">
               <i class="fas fa-print me-2"></i>Print Result
-            </button>
-            <button class="btn-gold px-4 download-pdf-btn" onclick="downloadPDF()">
-              <i class="fas fa-file-pdf me-2"></i>Download PDF
             </button>
           </div>
         </div>
