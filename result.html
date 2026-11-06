@@ -12,7 +12,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <!-- html2pdf library for PDF download -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <style>
     :root {
@@ -161,7 +160,6 @@
     .ornament-2 {top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse;}
     .ornament-3 {bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite;}
 
-    /* Mobile friendly enhancements */
     @media (max-width: 992px) {
       .result-card { padding: 2rem; }
       .result-header h2 { font-size: 1.8rem; }
@@ -566,7 +564,6 @@
     window.print();
   }
 
-  // Download PDF – uses an isolated print-like container with print CSS applied
   function downloadPDF() {
     const resultEl = document.getElementById('resultContainer');
     if (!resultEl) return;
@@ -575,7 +572,6 @@
       day: '2-digit', month: 'long', year: 'numeric'
     });
 
-    // Create a hidden iframe to apply print styles without affecting the main page
     const iframe = document.createElement('iframe');
     iframe.style.position = 'absolute';
     iframe.style.width = '0';
@@ -586,7 +582,6 @@
 
     const doc = iframe.contentWindow.document;
 
-    // Copy all styles from the parent page (both link and inline)
     const styles = Array.from(document.querySelectorAll('link[rel="stylesheet"], style'));
     let styleHTML = '';
     styles.forEach(styleNode => {
@@ -597,10 +592,8 @@
       }
     });
 
-    // Add a style block forcing print layout rules inside the iframe
     const printOverride = `
       <style>
-        /* Force print layout for PDF */
         body {
           background: white !important;
           padding: 0 !important;
@@ -641,13 +634,11 @@
         .grade-pass, .grade-fail, .status-pass, .status-fail {
           color: #000 !important; background: none !important; border: none !important; padding: 0 !important;
         }
-        /* Hide action buttons and toppers */
         .d-flex, .btn-gold, .btn-outline-gold, .download-pdf-btn, .no-print { display: none !important; }
         #toppersContainer, .toppers-section { display: none !important; }
         .whatsapp-float, .islamic-ornament, .navbar-optimized, .footer, .page-header,
         .result-selection-box, .result-form-container, .loading-container, .error-container,
         #resultSelectionBox { display: none !important; }
-        /* Add print footer */
         .result-card::after {
           content: "Generated on: ${dateStr} | Darunnajath Shareeath & Arts College";
           display: block !important;
@@ -685,7 +676,6 @@
     `);
     doc.close();
 
-    // Wait for fonts and styles to load inside iframe
     iframe.onload = function() {
       setTimeout(() => {
         html2pdf()
@@ -722,7 +712,6 @@
       }, 600);
     };
 
-    // Trigger load event if already loaded
     if (doc.readyState === 'complete') {
       iframe.onload();
     }
