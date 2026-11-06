@@ -11,8 +11,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href="https:unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <script src="https:cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- html2pdf library for PDF download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <style>
     :root {
       --islamic-green: #0a5c36; --islamic-gold: #c19a3f; --islamic-cream: #f8f3e6; --islamic-light: #e9f5e9; --dark-green: #064e3b; --light-gold: #ffd24d; --transition: all 0.3s ease;
@@ -160,6 +161,7 @@
     .ornament-2 {top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse;}
     .ornament-3 {bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite;}
 
+    /* Mobile friendly enhancements */
     @media (max-width: 992px) {
       .result-card { padding: 2rem; }
       .result-header h2 { font-size: 1.8rem; }
@@ -564,66 +566,166 @@
     window.print();
   }
 
-  // Download PDF functionality
+  // Download PDF – uses an isolated print-like container with print CSS applied
   function downloadPDF() {
-    const element = document.getElementById('resultContainer');
-    if (!element) return;
+    const resultEl = document.getElementById('resultContainer');
+    if (!resultEl) return;
 
     const dateStr = new Date().toLocaleDateString('en-IN', {
       day: '2-digit', month: 'long', year: 'numeric'
     });
-    element.setAttribute('data-print-date', dateStr);
 
-    // Temporarily hide buttons and toppers for clean PDF
-    const actionButtons = element.querySelectorAll('.d-flex');
-    const toppersSection = document.getElementById('toppersContainer');
-    const whatsappBtn = document.querySelector('.whatsapp-float');
-    if (toppersSection) toppersSection.style.display = 'none';
-    if (whatsappBtn) whatsappBtn.style.display = 'none';
-    actionButtons.forEach(btn => btn.style.display = 'none');
+    // Create a hidden iframe to apply print styles without affecting the main page
+    const iframe = document.createElement('iframe');
+    iframe.style.position = 'absolute';
+    iframe.style.width = '0';
+    iframe.style.height = '0';
+    iframe.style.border = 'none';
+    iframe.style.left = '-9999px';
+    document.body.appendChild(iframe);
 
-    // Optional: hide date of issue line
-    const issueLine = element.querySelector('.mt-4.text-center.text-muted');
-    if (issueLine) issueLine.style.display = 'none';
+    const doc = iframe.contentWindow.document;
 
-    // Configure html2pdf options
-    const opt = {
-      margin: [10, 10, 10, 10], // top, right, bottom, left in mm
-      filename: `Result_${dateStr.replace(/\s+/g, '_')}.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: {
-        scale: 2,
-        useCORS: true,
-        letterRendering: true,
-        logging: false,
-        windowWidth: 1000,
-        scrollY: 0,
-        scrollX: 0
-      },
-      jsPDF: {
-        unit: 'mm',
-        format: 'a4',
-        orientation: 'portrait'
-      },
-      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+    // Copy all styles from the parent page (both link and inline)
+    const styles = Array.from(document.querySelectorAll('link[rel="stylesheet"], style'));
+    let styleHTML = '';
+    styles.forEach(styleNode => {
+      if (styleNode.tagName === 'LINK') {
+        styleHTML += `<link rel="stylesheet" href="${styleNode.href}">`;
+      } else {
+        styleHTML += `<style>${styleNode.innerHTML}</style>`;
+      }
+    });
+
+    // Add a style block forcing print layout rules inside the iframe
+    const printOverride = `
+      <style>
+        /* Force print layout for PDF */
+        body {
+          background: white !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          -webkit-print-color-adjust: exact;
+        }
+        .result-card {
+          display: block !important;
+          box-shadow: none !important;
+          border: none !important;
+          border-radius: 0 !important;
+          padding: 10mm 12mm !important;
+          margin: 0 auto !important;
+          width: 100% !important;
+          max-width: 210mm !important;
+          page-break-inside: avoid !important;
+        }
+        .result-card::before { display: none !important; }
+        .result-header { padding: 2mm 0 !important; margin-bottom: 4mm !important; }
+        .result-header h2 { font-size: 15pt !important; margin-bottom: 1mm !important; }
+        .result-header h4 { font-size: 12pt !important; margin-bottom: 1mm !important; }
+        .result-header p { font-size: 9pt !important; margin: 0.5mm 0 !important; }
+        .student-info { padding: 3mm !important; margin-bottom: 4mm !important; }
+        .info-label { font-size: 8pt !important; }
+        .info-value { font-size: 9pt !important; }
+        .subjects-table-container { margin-bottom: 4mm !important; }
+        .subjects-table th { padding: 1.5mm 1mm !important; font-size: 8.5pt !important; }
+        .subjects-table td { padding: 1.5mm 1mm !important; font-size: 8.5pt !important; }
+        .performance-summary { padding: 3mm !important; margin-bottom: 4mm !important; }
+        .summary-grid { gap: 2mm !important; }
+        .summary-card { padding: 1.5mm !important; }
+        .summary-value { font-size: 11pt !important; }
+        .summary-label { font-size: 7pt !important; }
+        .summary-card small { font-size: 6.5pt !important; }
+        .final-result { padding: 3mm !important; margin-top: 2mm !important; }
+        .result-badge { padding: 1.5mm 8mm !important; font-size: 12pt !important; margin-bottom: 2mm !important; }
+        .final-result p { font-size: 9pt !important; margin-bottom: 0 !important; }
+        .grade-pass, .grade-fail, .status-pass, .status-fail {
+          color: #000 !important; background: none !important; border: none !important; padding: 0 !important;
+        }
+        /* Hide action buttons and toppers */
+        .d-flex, .btn-gold, .btn-outline-gold, .download-pdf-btn, .no-print { display: none !important; }
+        #toppersContainer, .toppers-section { display: none !important; }
+        .whatsapp-float, .islamic-ornament, .navbar-optimized, .footer, .page-header,
+        .result-selection-box, .result-form-container, .loading-container, .error-container,
+        #resultSelectionBox { display: none !important; }
+        /* Add print footer */
+        .result-card::after {
+          content: "Generated on: ${dateStr} | Darunnajath Shareeath & Arts College";
+          display: block !important;
+          text-align: center !important;
+          margin-top: 4mm !important;
+          padding-top: 2mm !important;
+          border-top: 1px solid #ccc !important;
+          font-size: 7.5pt !important;
+          color: #555 !important;
+          position: absolute !important;
+          bottom: 10mm !important;
+          left: 12mm !important;
+          right: 12mm !important;
+        }
+        .result-card { position: relative !important; }
+        @page { size: A4 portrait; margin: 0mm; }
+      </style>
+    `;
+
+    doc.open();
+    doc.write(`
+      <!doctype html>
+      <html>
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title>Result PDF</title>
+          ${styleHTML}
+          ${printOverride}
+        </head>
+        <body>
+          ${resultEl.outerHTML}
+        </body>
+      </html>
+    `);
+    doc.close();
+
+    // Wait for fonts and styles to load inside iframe
+    iframe.onload = function() {
+      setTimeout(() => {
+        html2pdf()
+          .set({
+            margin: 0,
+            filename: `Result_${dateStr.replace(/\s+/g, '_')}.pdf`,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: {
+              scale: 2,
+              useCORS: true,
+              letterRendering: true,
+              logging: false,
+              windowWidth: 900,
+              scrollY: 0,
+              scrollX: 0
+            },
+            jsPDF: {
+              unit: 'mm',
+              format: 'a4',
+              orientation: 'portrait'
+            },
+            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+          })
+          .from(iframe.contentWindow.document.body)
+          .save()
+          .then(() => {
+            document.body.removeChild(iframe);
+          })
+          .catch(err => {
+            console.error('PDF generation error:', err);
+            alert('Could not generate PDF. Please try printing instead.');
+            if (document.body.contains(iframe)) document.body.removeChild(iframe);
+          });
+      }, 600);
     };
 
-    // Generate PDF
-    html2pdf().set(opt).from(element).save().then(() => {
-      // Restore display
-      if (toppersSection) toppersSection.style.display = 'block';
-      if (whatsappBtn) whatsappBtn.style.display = 'flex';
-      actionButtons.forEach(btn => btn.style.display = 'flex');
-      if (issueLine) issueLine.style.display = 'block';
-    }).catch(err => {
-      console.error('PDF generation error:', err);
-      alert('Could not generate PDF. Please try printing instead.');
-      // Restore display on error
-      if (toppersSection) toppersSection.style.display = 'block';
-      if (whatsappBtn) whatsappBtn.style.display = 'flex';
-      actionButtons.forEach(btn => btn.style.display = 'flex');
-      if (issueLine) issueLine.style.display = 'block';
-    });
+    // Trigger load event if already loaded
+    if (doc.readyState === 'complete') {
+      iframe.onload();
+    }
   }
 
   function displayResult(data) {
