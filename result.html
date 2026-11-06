@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>DSAC | Results</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
@@ -12,251 +12,838 @@
   <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
     :root {
-      --islamic-green: #0a5c36; --islamic-gold: #c19a3f; --islamic-cream: #f8f3e6; --islamic-light: #e9f5e9; --dark-green: #064e3b; --light-gold: #ffd24d; --transition: all 0.3s ease;
+      --islamic-green: #0a5c36;
+      --islamic-gold: #c19a3f;
+      --islamic-cream: #f8f3e6;
+      --islamic-light: #e9f5e9;
+      --dark-green: #064e3b;
+      --light-gold: #ffd24d;
+      --transition: all 0.3s ease;
     }
     body {
-      font-family: 'Poppins', sans-serif; background-color: var(--islamic-cream); color: #333; scroll-behavior: smooth; overflow-x: hidden; padding-top: 80px;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--islamic-cream);
+      color: #333;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      padding-top: 80px;
     }
-    a {text-decoration: none;}
-    .arabic-font {font-family: 'Scheherazade New', serif;}
-    .malayalam-font {font-family: 'Anek Malayalam', sans-serif;}
-    
-    .navbar-optimized { background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-bottom: 3px solid var(--islamic-gold); transition: var(--transition); padding: 0.5rem 0; height: 80px; z-index: 1030 !important; }
-    .navbar-toggler {border-color: rgba(255, 255, 255, 0.5);}
-    .navbar-toggler:focus {box-shadow: 0 0 0 2px var(--islamic-gold);}
-    .navbar-optimized.scrolled { background: rgba(10, 92, 54, 0.98); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); height: 70px; }
-    .navbar-brand-compact img { border-radius: 8px; transition: transform 0.3s ease; width: 60px; height: 60px; object-fit: contain; filter: brightness(0) invert(1); border: none; box-shadow: 0 0 0 2px var(--islamic-gold); padding: 0; }
-    .navbar-optimized.scrolled .navbar-brand-compact img {width: 50px; height: 50px;}
-    .nav-link-optimized { color: #fff !important; font-weight: 500; transition: var(--transition); padding-left: 0.4rem; padding-right: 0.4rem; border-radius: 5px; margin: 0 2px; white-space: nowrap; }
-    .nav-link-optimized:hover {color: var(--islamic-gold) !important; background: rgba(255, 255, 255, 0.1);}
-    .dropdown-menu-optimized { background: var(--islamic-green); border: 1px solid var(--islamic-gold); border-radius: 8px; padding: 0.5rem 0; }
-    .dropdown-item-optimized { color: white; padding: 0.5rem 1rem; transition: var(--transition); }
-    .dropdown-item-optimized:hover {background: var(--islamic-gold); color: var(--islamic-green);}
-    
-    .page-header { background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); color: white; height: 30vh; min-height: 220px; display: flex; align-items: center; justify-content: center; text-align: center; margin-bottom: 3rem; border-bottom: 5px solid var(--islamic-gold); position: relative; overflow: hidden; }
-    .page-header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%); }
-    .page-header-content {position: relative; z-index: 2;}
-    .page-title { font-family: 'Scheherazade New', serif; font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--islamic-gold); text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); }
-    .page-subtitle { font-size: 1.4rem; opacity: 0.95; max-width: 800px; margin: 0 auto; color: var(--islamic-cream); }
-    
-    .content-section {padding: 4rem 0; background: var(--islamic-cream);}
-    .section-header { text-align: center; margin-bottom: 3rem; position: relative; padding: 2rem 0; }
-    .section-title { color: var(--islamic-green); font-weight: 700; display: inline-block; padding: 0 1rem; background: var(--islamic-cream); position: relative; z-index: 2; margin-bottom: 0.5rem; font-size: 2.5rem; }
-    .section-header::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent); z-index: 1; }
-    .section-subtitle {color: #666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;}
-    
-    .btn-gold { background: linear-gradient(135deg, var(--islamic-gold), #d4af37); border: none; color: var(--islamic-green); font-weight: 600; border-radius: 8px; box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3); transition: var(--transition); padding: 0.75rem 1.5rem; }
-    .btn-gold:hover { background: linear-gradient(135deg, #d4af37, var(--islamic-gold)); box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4); transform: translateY(-2px); color: var(--islamic-green); }
-    .btn-outline-gold { border: 2px solid var(--islamic-gold); color: var(--islamic-gold); background: transparent; border-radius: 8px; padding: 0.75rem 1.5rem; font-weight: 600; transition: var(--transition); }
-    .btn-outline-gold:hover {background: var(--islamic-gold); color: var(--islamic-green);}
-    
-    .result-selection-box { background: white; border-radius: 15px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid var(--islamic-gold); position: relative; }
-    .result-selection-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, var(--islamic-green), var(--islamic-gold)); border-radius: 15px 15px 0 0; }
-    .result-btn-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
-    .result-btn { background: white; border-radius: 12px; padding: 1.5rem; transition: var(--transition); border: 2px solid rgba(10, 92, 54, 0.1); text-align: center; text-decoration: none; color: #333; }
-    .result-btn:hover {transform: translateY(-5px); border-color: var(--islamic-gold); box-shadow: 0 10px 25px rgba(0,0,0,0.15);}
-    .result-btn i {font-size: 2rem; color: var(--islamic-green); margin-bottom: 1rem;}
-    .result-btn span {font-weight: 600; font-size: 1.1rem; color: var(--islamic-green); display: block; margin-bottom: 0.5rem;}
-    .result-btn small {color: #666; font-size: 0.9rem;}
-    
-    .result-form-container { background: white; border-radius: 15px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid var(--islamic-gold); display: none; }
-    .form-control { border: 2px solid rgba(10, 92, 54, 0.2); border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.95rem; transition: var(--transition); margin-bottom: 1.2rem; }
-    .form-control:focus {border-color: var(--islamic-gold); box-shadow: 0 0 0 3px rgba(193, 154, 63, 0.1);}
-    
-    .loading-container { background: white; border-radius: 15px; padding: 3rem; text-align: center; margin-bottom: 2rem; display: none; }
-    .spinner { width: 50px; height: 50px; border: 4px solid rgba(10, 92, 54, 0.1); border-top: 4px solid var(--islamic-gold); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1.5rem; }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    
-    .error-container { background: white; border-radius: 15px; padding: 2.5rem; text-align: center; margin-bottom: 2rem; display: none; border-left: 4px solid #dc3545; }
-    .error-icon {font-size: 3rem; color: #dc3545; margin-bottom: 1rem;}
-    
-    .result-card {
-      background: white; border-radius: 15px; padding: 3rem; margin-bottom: 2rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid var(--islamic-gold); display: none;
-      position: relative; overflow: hidden;
+    a { text-decoration: none; }
+    .arabic-font { font-family: 'Scheherazade New', serif; }
+    .malayalam-font { font-family: 'Anek Malayalam', sans-serif; }
+
+    .navbar-optimized {
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
+      border-bottom: 3px solid var(--islamic-gold);
+      transition: var(--transition);
+      padding: 0.5rem 0;
+      height: 80px;
+      z-index: 1030 !important;
     }
-    
-    .result-card::before {
-      content: 'DSAC'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-30deg);
-      font-size: 12rem; font-weight: 900; color: rgba(10, 92, 54, 0.03); z-index: 0; pointer-events: none;
-      font-family: 'Poppins', sans-serif; white-space: nowrap;
+    .navbar-toggler { border-color: rgba(255, 255, 255, 0.5); }
+    .navbar-toggler:focus { box-shadow: 0 0 0 2px var(--islamic-gold); }
+    .navbar-optimized.scrolled {
+      background: rgba(10, 92, 54, 0.98);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      height: 70px;
+    }
+    .navbar-brand-compact img {
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      border: none;
+      box-shadow: 0 0 0 2px var(--islamic-gold);
+      padding: 0;
+    }
+    .navbar-optimized.scrolled .navbar-brand-compact img { width: 50px; height: 50px; }
+    .nav-link-optimized {
+      color: #fff !important;
+      font-weight: 500;
+      transition: var(--transition);
+      padding-left: 0.4rem;
+      padding-right: 0.4rem;
+      border-radius: 5px;
+      margin: 0 2px;
+      white-space: nowrap;
+    }
+    .nav-link-optimized:hover {
+      color: var(--islamic-gold) !important;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .dropdown-menu-optimized {
+      background: var(--islamic-green);
+      border: 1px solid var(--islamic-gold);
+      border-radius: 8px;
+      padding: 0.5rem 0;
+    }
+    .dropdown-item-optimized {
+      color: white;
+      padding: 0.5rem 1rem;
+      transition: var(--transition);
+    }
+    .dropdown-item-optimized:hover {
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
     }
 
+    .page-header {
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
+      color: white;
+      height: 30vh;
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-bottom: 3rem;
+      border-bottom: 5px solid var(--islamic-gold);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(193, 154, 63, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(10, 92, 54, 0.1) 0%, transparent 50%);
+    }
+    .page-header-content { position: relative; z-index: 2; }
+    .page-title {
+      font-family: 'Scheherazade New', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--islamic-gold);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    .page-subtitle {
+      font-size: 1.4rem;
+      opacity: 0.95;
+      max-width: 800px;
+      margin: 0 auto;
+      color: var(--islamic-cream);
+    }
+
+    .content-section { padding: 4rem 0; background: var(--islamic-cream); }
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+      padding: 2rem 0;
+    }
+    .section-title {
+      color: var(--islamic-green);
+      font-weight: 700;
+      display: inline-block;
+      padding: 0 1rem;
+      background: var(--islamic-cream);
+      position: relative;
+      z-index: 2;
+      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+    }
+    .section-header::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent);
+      z-index: 1;
+    }
+    .section-subtitle {
+      color: #666;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--islamic-gold), #d4af37);
+      border: none;
+      color: var(--islamic-green);
+      font-weight: 600;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(193, 154, 63, 0.3);
+      transition: var(--transition);
+      padding: 0.75rem 1.5rem;
+    }
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #d4af37, var(--islamic-gold));
+      box-shadow: 0 6px 20px rgba(193, 154, 63, 0.4);
+      transform: translateY(-2px);
+      color: var(--islamic-green);
+    }
+    .btn-outline-gold {
+      border: 2px solid var(--islamic-gold);
+      color: var(--islamic-gold);
+      background: transparent;
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    .btn-outline-gold:hover {
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
+    }
+
+    .result-selection-box {
+      background: white;
+      border-radius: 15px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border: 2px solid var(--islamic-gold);
+      position: relative;
+    }
+    .result-selection-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--islamic-green), var(--islamic-gold));
+      border-radius: 15px 15px 0 0;
+    }
+    .result-btn-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .result-btn {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: var(--transition);
+      border: 2px solid rgba(10, 92, 54, 0.1);
+      text-align: center;
+      text-decoration: none;
+      color: #333;
+    }
+    .result-btn:hover {
+      transform: translateY(-5px);
+      border-color: var(--islamic-gold);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .result-btn i {
+      font-size: 2rem;
+      color: var(--islamic-green);
+      margin-bottom: 1rem;
+    }
+    .result-btn span {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--islamic-green);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .result-btn small {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .result-form-container {
+      background: white;
+      border-radius: 15px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border: 2px solid var(--islamic-gold);
+      display: none;
+    }
+    .form-control {
+      border: 2px solid rgba(10, 92, 54, 0.2);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      margin-bottom: 1.2rem;
+    }
+    .form-control:focus {
+      border-color: var(--islamic-gold);
+      box-shadow: 0 0 0 3px rgba(193, 154, 63, 0.1);
+    }
+
+    .loading-container {
+      background: white;
+      border-radius: 15px;
+      padding: 3rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      display: none;
+    }
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(10, 92, 54, 0.1);
+      border-top: 4px solid var(--islamic-gold);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1.5rem;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .error-container {
+      background: white;
+      border-radius: 15px;
+      padding: 2.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      display: none;
+      border-left: 4px solid #dc3545;
+    }
+    .error-icon {
+      font-size: 3rem;
+      color: #dc3545;
+      margin-bottom: 1rem;
+    }
+
+    .result-card {
+      background: white;
+      border-radius: 15px;
+      padding: 3rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border: 2px solid var(--islamic-gold);
+      display: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .result-card::before {
+      content: 'DSAC';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-30deg);
+      font-size: 12rem;
+      font-weight: 900;
+      color: rgba(10, 92, 54, 0.03);
+      z-index: 0;
+      pointer-events: none;
+      font-family: 'Poppins', sans-serif;
+      white-space: nowrap;
+    }
     .result-card-content { position: relative; z-index: 1; }
 
-    .result-header { text-align: center; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 3px double var(--islamic-gold); }
-    .result-header h2 { color: var(--islamic-green); font-weight: 800; font-size: 2rem; margin-bottom: 0.2rem; text-transform: uppercase; letter-spacing: 1px; }
-    .result-header h4 { color: var(--islamic-gold); font-weight: 600; font-size: 1.6rem; margin-bottom: 0.5rem; }
-    .result-header p { color: #666; font-size: 1rem; font-weight: 500; margin: 0; }
-    
-    .student-info { background: rgba(10, 92, 54, 0.03); border-radius: 10px; padding: 1.5rem 2rem; margin-bottom: 2rem; border-left: 4px solid var(--islamic-green); }
-    .info-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 1rem; }
+    .result-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 3px double var(--islamic-gold);
+    }
+    .result-header h2 {
+      color: var(--islamic-green);
+      font-weight: 800;
+      font-size: 2rem;
+      margin-bottom: 0.2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .result-header h4 {
+      color: var(--islamic-gold);
+      font-weight: 600;
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+    .result-header p {
+      color: #666;
+      font-size: 1rem;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .student-info {
+      background: rgba(10, 92, 54, 0.03);
+      border-radius: 10px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      border-left: 4px solid var(--islamic-green);
+    }
+    .info-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
     .info-row:last-child { margin-bottom: 0; }
-    .info-label { font-weight: 600; color: var(--islamic-green); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.2rem; }
-    .info-value { color: #333; font-size: 1.1rem; font-weight: 600; }
-    
-    .subjects-table-container { overflow-x: auto; border-radius: 10px; border: 1px solid #e0e0e0; }
-    .subjects-table { width: 100%; border-collapse: collapse; margin-bottom: 0; background: white; }
-    .subjects-table th { background: var(--islamic-green); color: white; padding: 1rem; text-align: center; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; border-right: 1px solid rgba(255,255,255,0.1); }
+    .info-label {
+      font-weight: 600;
+      color: var(--islamic-green);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.2rem;
+    }
+    .info-value {
+      color: #333;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .subjects-table-container {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 10px;
+      border: 1px solid #e0e0e0;
+    }
+    .subjects-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 0;
+      background: white;
+      min-width: 600px;
+    }
+    .subjects-table th {
+      background: var(--islamic-green);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
     .subjects-table th:last-child { border-right: none; }
-    .subjects-table td { padding: 1rem; text-align: center; border-bottom: 1px solid #eee; font-weight: 500; color: #444; }
+    .subjects-table td {
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+      font-weight: 500;
+      color: #444;
+    }
     .subjects-table tr:nth-child(even) { background: rgba(10, 92, 54, 0.02); }
     .subjects-table tr:last-child td { border-bottom: none; }
     .subjects-table tr:hover td { background: rgba(193, 154, 63, 0.05); }
-    
-    .grade-pass { color: #198754; font-weight: 700; background: rgba(25, 135, 84, 0.1); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem;}
-    .grade-fail { color: #dc3545; font-weight: 700; background: rgba(220, 53, 69, 0.1); padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.85rem;}
+
+    .grade-pass {
+      color: #198754;
+      font-weight: 700;
+      background: rgba(25, 135, 84, 0.1);
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+    .grade-fail {
+      color: #dc3545;
+      font-weight: 700;
+      background: rgba(220, 53, 69, 0.1);
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
     .status-pass { color: #198754; font-weight: 700; }
     .status-fail { color: #dc3545; font-weight: 700; }
-    
-    .performance-summary { background: linear-gradient(135deg, var(--islamic-green), var(--dark-green)); border-radius: 12px; padding: 2rem; margin-bottom: 2.5rem; color: white; box-shadow: 0 5px 15px rgba(10, 92, 54, 0.3); }
-    .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1.5rem; }
-    .summary-card { background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 1.2rem; text-align: center; border: 1px solid rgba(255,255,255,0.15); }
-    .summary-value { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.2rem; color: var(--islamic-gold); }
-    .summary-label { font-size: 0.8rem; font-weight: 500; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px; }
-    .summary-card small { display: block; font-size: 0.7rem; opacity: 0.7; margin-top: 0.3rem; }
-    
-    .final-result { text-align: center; padding: 2.5rem; border-radius: 12px; background: white; border: 2px dashed var(--islamic-gold); position: relative; }
-    .result-badge { display: inline-block; background: var(--islamic-green); color: white; padding: 0.8rem 2.5rem; border-radius: 50px; font-weight: 800; font-size: 1.4rem; margin-bottom: 1rem; letter-spacing: 1px; box-shadow: 0 5px 15px rgba(10, 92, 54, 0.2); }
-    .final-result p { color: #555; font-size: 1rem; font-weight: 500; margin-bottom: 2rem; }
-    
-    .toppers-section { background: white; border-radius: 15px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid var(--islamic-gold); }
-    .toppers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-    .topper-card { background: rgba(10, 92, 54, 0.03); border-radius: 10px; padding: 1.5rem; text-align: center; transition: var(--transition); border: 2px solid transparent; }
-    .topper-card:hover { border-color: var(--islamic-gold); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-    .topper-medal { font-size: 2rem; color: var(--islamic-gold); margin-bottom: 1rem; }
-    .class-label { color: var(--islamic-green); font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem; }
-    .topper-name { color: #333; font-weight: 700; margin-bottom: 1rem; font-size: 1.1rem; }
-    .percentage-badge { display: inline-block; background: linear-gradient(135deg, var(--islamic-gold), #ffd24d); color: var(--islamic-green); padding: 0.4rem 1.2rem; border-radius: 20px; font-weight: 800; font-size: 1rem; box-shadow: 0 3px 10px rgba(193, 154, 63, 0.2); }
+
+    .performance-summary {
+      background: linear-gradient(135deg, var(--islamic-green), var(--dark-green));
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+      color: white;
+      box-shadow: 0 5px 15px rgba(10, 92, 54, 0.3);
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1.5rem;
+    }
+    .summary-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 1.2rem;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .summary-value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 0.2rem;
+      color: var(--islamic-gold);
+    }
+    .summary-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      opacity: 0.9;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .summary-card small {
+      display: block;
+      font-size: 0.7rem;
+      opacity: 0.7;
+      margin-top: 0.3rem;
+    }
+
+    .final-result {
+      text-align: center;
+      padding: 2.5rem;
+      border-radius: 12px;
+      background: white;
+      border: 2px dashed var(--islamic-gold);
+      position: relative;
+    }
+    .result-badge {
+      display: inline-block;
+      background: var(--islamic-green);
+      color: white;
+      padding: 0.8rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+      box-shadow: 0 5px 15px rgba(10, 92, 54, 0.2);
+    }
+    .final-result p {
+      color: #555;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .toppers-section {
+      background: white;
+      border-radius: 15px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border: 2px solid var(--islamic-gold);
+    }
+    .toppers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .topper-card {
+      background: rgba(10, 92, 54, 0.03);
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+    .topper-card:hover {
+      border-color: var(--islamic-gold);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    .topper-medal {
+      font-size: 2rem;
+      color: var(--islamic-gold);
+      margin-bottom: 1rem;
+    }
+    .class-label {
+      color: var(--islamic-green);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .topper-name {
+      color: #333;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    .percentage-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--islamic-gold), #ffd24d);
+      color: var(--islamic-green);
+      padding: 0.4rem 1.2rem;
+      border-radius: 20px;
+      font-weight: 800;
+      font-size: 1rem;
+      box-shadow: 0 3px 10px rgba(193, 154, 63, 0.2);
+    }
+
     .footer {
-      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green)); border-top: 3px solid var(--islamic-gold); padding: 3rem 0 1.5rem; color: white;
+      background: linear-gradient(135deg, var(--dark-green), var(--islamic-green));
+      border-top: 3px solid var(--islamic-gold);
+      padding: 3rem 0 1.5rem;
+      color: white;
     }
-    .footer-brand {font-size: 1.8rem; font-weight: 700; color: var(--islamic-gold); margin-bottom: 1rem;}
-    .social-links {display: flex; gap: 12px; margin-top: 1rem;}
+    .footer-brand {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--islamic-gold);
+      margin-bottom: 1rem;
+    }
+    .social-links { display: flex; gap: 12px; margin-top: 1rem; }
     .social-icon {
-      width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: var(--transition); background: rgba(255, 255, 255, 0.1); font-size: 1.1rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: var(--transition);
+      background: rgba(255, 255, 255, 0.1);
+      font-size: 1.1rem;
     }
-    .social-icon:hover {transform: translateY(-5px); background: var(--islamic-gold); color: var(--islamic-green);}
-    .footer-links h5 {color: var(--islamic-gold); margin-bottom: 1.2rem; font-size: 1.1rem; font-weight: 600;}
+    .social-icon:hover {
+      transform: translateY(-5px);
+      background: var(--islamic-gold);
+      color: var(--islamic-green);
+    }
+    .footer-links h5 {
+      color: var(--islamic-gold);
+      margin-bottom: 1.2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
     .footer-links a {
-      display: block; color: rgba(255, 255, 255, 0.85); text-decoration: none; margin-bottom: 0.6rem; transition: var(--transition); font-size: 0.95rem;
+      display: block;
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      margin-bottom: 0.6rem;
+      transition: var(--transition);
+      font-size: 0.95rem;
     }
-    .footer-links a:hover {color: var(--islamic-gold); padding-left: 5px;}
+    .footer-links a:hover {
+      color: var(--islamic-gold);
+      padding-left: 5px;
+    }
     .whatsapp-float {
-      position: fixed; bottom: 25px; right: 15px; width: 60px; height: 60px; background: linear-gradient(135deg, #25D366, #128C7E); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); z-index: 1000; animation: float 3s ease-in-out infinite; transition: var(--transition); text-decoration: none;
+      position: fixed;
+      bottom: 25px;
+      right: 15px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+      z-index: 1000;
+      animation: float 3s ease-in-out infinite;
+      transition: var(--transition);
+      text-decoration: none;
     }
-    .whatsapp-float:hover {transform: scale(1.1) rotate(10deg); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);}
+    .whatsapp-float:hover {
+      transform: scale(1.1) rotate(10deg);
+      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+    }
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
     }
     .islamic-ornament {
-      position: fixed; color: var(--islamic-gold); opacity: 0.08; font-size: 1.8rem; z-index: -1; pointer-events: none;
+      position: fixed;
+      color: var(--islamic-gold);
+      opacity: 0.08;
+      font-size: 1.8rem;
+      z-index: -1;
+      pointer-events: none;
     }
-    .ornament-1 {top: 20%; left: 5%; animation: float 6s ease-in-out infinite;}
-    .ornament-2 {top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse;}
-    .ornament-3 {bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite;}
+    .ornament-1 { top: 20%; left: 5%; animation: float 6s ease-in-out infinite; }
+    .ornament-2 { top: 60%; right: 5%; animation: float 8s ease-in-out infinite reverse; }
+    .ornament-3 { bottom: 20%; left: 10%; animation: float 7s ease-in-out infinite; }
 
+    /* ========== MOBILE FRIENDLY STYLES ========== */
+    @media (max-width: 992px) {
+      .page-title { font-size: 2.8rem; }
+      .result-header h2 { font-size: 1.7rem; }
+      .result-header h4 { font-size: 1.3rem; }
+    }
+
+    @media (max-width: 768px) {
+      body { padding-top: 70px !important; }
+      .navbar-optimized { height: 70px; padding: 0.3rem 0; }
+      .page-header {
+        height: 24vh;
+        min-height: 160px;
+        margin-bottom: 1.5rem;
+      }
+      .page-title { font-size: 2rem; }
+      .page-subtitle { font-size: 1rem; padding: 0 10px; }
+      .content-section { padding: 1.5rem 0; }
+      .section-title { font-size: 1.6rem; }
+      .section-subtitle { font-size: 0.95rem; }
+      .result-btn-container { grid-template-columns: 1fr; gap: 1rem; }
+      .result-selection-box,
+      .result-form-container,
+      .result-card,
+      .toppers-section,
+      .loading-container,
+      .error-container {
+        padding: 1.25rem;
+        margin: 0 0.5rem 1.25rem;
+        border-radius: 12px;
+      }
+      .result-header { margin-bottom: 1.5rem; padding-bottom: 1rem; }
+      .result-header h2 { font-size: 1.35rem; letter-spacing: 0.5px; }
+      .result-header h4 { font-size: 1.15rem; }
+      .result-header p { font-size: 0.9rem; }
+      .student-info { padding: 1rem 1.2rem; }
+      .info-row { grid-template-columns: 1fr; gap: 0.8rem; }
+      .info-value { font-size: 1rem; }
+      .summary-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+      .summary-card { padding: 0.9rem; }
+      .summary-value { font-size: 1.4rem; }
+      .summary-label { font-size: 0.7rem; }
+      .toppers-grid { grid-template-columns: 1fr; }
+      .final-result { padding: 1.5rem 1rem; }
+      .result-badge {
+        font-size: 1.15rem;
+        padding: 0.6rem 1.5rem;
+      }
+      .action-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+      }
+      .action-buttons .btn-gold,
+      .action-buttons .btn-outline-gold {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        font-size: 0.95rem;
+      }
+      .subjects-table th,
+      .subjects-table td {
+        padding: 0.7rem 0.5rem;
+        font-size: 0.8rem;
+      }
+      .btn-gold, .btn-outline-gold {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .page-title { font-size: 1.7rem; }
+      .section-title { font-size: 1.4rem; }
+      .summary-grid { grid-template-columns: 1fr 1fr; }
+      .result-header h2 { font-size: 1.2rem; }
+      .result-header h4 { font-size: 1rem; }
+      .result-badge { font-size: 1.05rem; padding: 0.5rem 1.2rem; }
+      .whatsapp-float {
+        width: 52px;
+        height: 52px;
+        font-size: 1.4rem;
+        bottom: 18px;
+        right: 12px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .summary-grid { grid-template-columns: 1fr; }
+      .page-title { font-size: 1.5rem; }
+    }
+
+    /* ========== PRINT STYLES ========== */
     @media print {
       .navbar-optimized, .footer, .whatsapp-float, .islamic-ornament, .page-header,
       .result-selection-box, .result-form-container, .loading-container, .error-container,
       #resultSelectionBox, #toppersContainer, .content-section > .container > .text-center:last-child,
-      .d-flex, .btn-gold, .btn-outline-gold {
+      .action-buttons, .btn-gold, .btn-outline-gold {
         display: none !important;
       }
-      
       @page {
         size: A4 portrait;
-        margin: 0mm; 
+        margin: 0mm;
       }
-      
       html, body {
-        margin: 0 !important; 
-        padding: 0 !important; 
+        margin: 0 !important;
+        padding: 0 !important;
         background: white !important;
-        color: black !important; 
+        color: black !important;
         height: 100%;
-        overflow: hidden; 
+        overflow: hidden;
         -webkit-print-color-adjust: exact;
       }
-      
-      .container { 
-        max-width: 100% !important; 
-        padding: 0 !important; 
-        margin: 0 !important; 
-      }
-      
-      .result-card {
-        display: block !important; 
-        box-shadow: none !important; 
-        border: none !important;
-        border-radius: 0 !important; 
-        padding: 10mm 12mm !important; 
+      .container {
+        max-width: 100% !important;
+        padding: 0 !important;
         margin: 0 !important;
-        width: 100% !important; 
-        max-width: 210mm !important; 
-        height: 296mm !important; 
-        page-break-inside: avoid !important; 
-        page-break-after: avoid !important; 
-        page-break-before: avoid !important; 
       }
-      
+      .result-card {
+        display: block !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 10mm 12mm !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 210mm !important;
+        height: 296mm !important;
+        page-break-inside: avoid !important;
+        page-break-after: avoid !important;
+        page-break-before: avoid !important;
+      }
       .result-card::before { display: none; }
-      
-      .result-header { 
-        padding: 2mm 0; 
-        margin-bottom: 4mm; 
+      .result-header {
+        padding: 2mm 0;
+        margin-bottom: 4mm;
       }
       .result-header h2 { font-size: 15pt !important; margin-bottom: 1mm; }
       .result-header h4 { font-size: 12pt !important; margin-bottom: 1mm; }
       .result-header p { font-size: 9pt; margin: 0.5mm 0; }
-
-      .student-info { 
-        padding: 3mm; 
-        margin-bottom: 4mm; 
+      .student-info {
+        padding: 3mm;
+        margin-bottom: 4mm;
       }
       .info-label { font-size: 8pt; }
       .info-value { font-size: 9pt; }
-
       .subjects-table-container { margin-bottom: 4mm; }
       .subjects-table th { padding: 1.5mm 1mm; font-size: 8.5pt; }
       .subjects-table td { padding: 1.5mm 1mm; font-size: 8.5pt; }
-
-      .performance-summary { 
-        padding: 3mm; 
-        margin-bottom: 4mm; 
+      .performance-summary {
+        padding: 3mm;
+        margin-bottom: 4mm;
       }
       .summary-grid { gap: 2mm; }
       .summary-card { padding: 1.5mm; }
       .summary-value { font-size: 11pt; }
       .summary-label { font-size: 7pt; }
       .summary-card small { font-size: 6.5pt; }
-
-      .final-result { 
-        padding: 3mm; 
-        margin-top: 2mm; 
+      .final-result {
+        padding: 3mm;
+        margin-top: 2mm;
       }
-      .result-badge { 
-        padding: 1.5mm 8mm; 
-        font-size: 12pt; 
-        margin-bottom: 2mm; 
+      .result-badge {
+        padding: 1.5mm 8mm;
+        font-size: 12pt;
+        margin-bottom: 2mm;
       }
       .final-result p { font-size: 9pt; margin-bottom: 0; }
-      
-      .grade-pass, .grade-fail, .status-pass, .status-fail { 
-        color: #000 !important; background: none !important; border: none !important; padding: 0 !important;
+      .grade-pass, .grade-fail, .status-pass, .status-fail {
+        color: #000 !important;
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
       }
-
       .result-card::after {
         content: "Generated on: " attr(data-print-date) " | Darunnajath Shareeath & Arts College";
-        display: block; 
-        text-align: center; 
-        margin-top: 4mm; 
-        padding-top: 2mm; 
-        border-top: 1px solid #ccc; 
-        font-size: 7.5pt; 
+        display: block;
+        text-align: center;
+        margin-top: 4mm;
+        padding-top: 2mm;
+        border-top: 1px solid #ccc;
+        font-size: 7.5pt;
         color: #555;
         position: absolute;
         bottom: 10mm;
@@ -264,459 +851,474 @@
         right: 12mm;
       }
     }
-
-    @media (max-width: 768px) {
-      body {padding-top: 70px !important;}
-      .navbar-optimized {height: 70px; padding: 0.3rem 0;}
-      .page-header {height: 26vh; min-height: 180px;}
-      .page-title {font-size: 2.2rem;}
-      .page-subtitle {font-size: 1.1rem;}
-      .content-section {padding: 2.5rem 0;}
-      .section-title {font-size: 1.8rem;}
-      .result-btn-container {grid-template-columns: 1fr;}
-      .result-selection-box, .result-form-container, .result-card, .toppers-section {padding: 1.5rem; margin: 0 1rem 1.5rem;}
-      .summary-grid {grid-template-columns: repeat(2, 1fr);}
-      .toppers-grid {grid-template-columns: 1fr;}
-      .result-header h2 { font-size: 1.5rem; }
-    }
-    @media (max-width: 576px) {
-      .page-title {font-size: 1.8rem;}
-      .section-title {font-size: 1.5rem;}
-      .summary-grid {grid-template-columns: 1fr;}
-      .info-row {grid-template-columns: 1fr;}
-    }
   </style>
 </head>
 <body>
-<div class="islamic-ornament ornament-1" style="position:fixed; color:var(--islamic-gold); opacity:0.08; font-size:1.8rem; z-index:-1; top:20%; left:5%;">✸</div>
-<div class="islamic-ornament ornament-2" style="position:fixed; color:var(--islamic-gold); opacity:0.08; font-size:1.8rem; z-index:-1; top:60%; right:5%;">✸</div>
-<div id="navbar-container"></div>
+  <div class="islamic-ornament ornament-1" style="position:fixed; color:var(--islamic-gold); opacity:0.08; font-size:1.8rem; z-index:-1; top:20%; left:5%;">✸</div>
+  <div class="islamic-ornament ornament-2" style="position:fixed; color:var(--islamic-gold); opacity:0.08; font-size:1.8rem; z-index:-1; top:60%; right:5%;">✸</div>
+  <div id="navbar-container"></div>
 
-<div class="page-header">
-  <div class="container">
-    <div class="page-header-content">
-      <h1 class="page-title">Result Portal</h1>
-      <p class="page-subtitle">Check your examination results and academic performance</p>
+  <div class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <h1 class="page-title">Result Portal</h1>
+        <p class="page-subtitle">Check your examination results and academic performance</p>
+      </div>
     </div>
   </div>
-</div>
 
-<section class="content-section">
-  <div class="container">
+  <section class="content-section">
+    <div class="container">
 
-    <div class="result-selection-box" id="resultSelectionBox" data-aos="fade-up">
-      <div class="result-btn-container">
-        <a href="javascript:void(0);" class="result-btn" id="ExamBtn" onclick="showForm()">
-          <i class="fa-solid fa-book-open-reader"></i>
-          <span>College Examination</span>
-          <small>First Semester Results 2026-27</small>
+      <div class="result-selection-box" id="resultSelectionBox" data-aos="fade-up">
+        <div class="result-btn-container">
+          <a href="javascript:void(0);" class="result-btn" id="ExamBtn" onclick="showForm()">
+            <i class="fa-solid fa-book-open-reader"></i>
+            <span>College Examination</span>
+            <small>First Semester Results 2026-27</small>
+          </a>
+          <a href="https://jamiajuniorcolleges.com/student/" class="result-btn" id="jamiaBtn" target="_blank">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>Jamia Junior Colleges</span>
+            <small>Public Examination Results</small>
+          </a>
+          <a href="toppers.html" class="result-btn" id="posterBtn">
+            <i class="fa-solid fa-trophy"></i>
+            <span>Toppers Poster</span>
+            <small>View academic achievers</small>
+          </a>
+        </div>
+        <div class="text-center mt-4">
+          <a href="index.html" class="btn-outline-gold">
+            <i class="fas fa-arrow-left me-2"></i>Back to Home
+          </a>
+        </div>
+      </div>
+
+      <div class="result-form-container" id="formContainer">
+        <div class="section-header">
+          <h2 class="section-title">Examination Result</h2>
+          <p class="section-subtitle">Enter your details to view your result</p>
+        </div>
+        <form id="resultForm">
+          <div class="mb-3">
+            <label class="form-label fw-bold text-success">UID Number</label>
+            <input type="text" class="form-control" id="roll" name="roll" placeholder="Enter your UID number" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold text-success">Date of Birth</label>
+            <input type="date" class="form-control" id="dob" name="dob" required>
+          </div>
+          <button type="submit" class="btn-gold w-100 py-3">
+            <i class="fas fa-search me-2"></i>Get Result
+          </button>
+        </form>
+        <div class="text-center mt-4">
+          <button class="btn-outline-gold" onclick="showResultSelection()">
+            <i class="fas fa-arrow-left me-2"></i>Back to Exam Selection
+          </button>
+        </div>
+      </div>
+
+      <div class="loading-container" id="loadingContainer">
+        <div class="spinner"></div>
+        <h3 style="color: var(--islamic-green); margin-bottom: 10px;">
+          <i class="fas fa-cog fa-spin me-2"></i>Processing Your Result
+        </h3>
+        <p style="color: #666;">Please wait while we fetch your result details...</p>
+      </div>
+
+      <div class="error-container" id="errorContainer">
+        <div class="error-icon"><i class="fas fa-exclamation-triangle"></i></div>
+        <h3 style="color: #dc3545; margin-bottom: 15px;" id="errorTitle">Error Loading Result</h3>
+        <p style="color: #666; margin-bottom: 25px;" id="errorText">An error occurred while fetching your result.</p>
+        <div class="text-center">
+          <button class="btn-outline-gold" onclick="showForm()">
+            <i class="fas fa-arrow-left me-2"></i>Try Again
+          </button>
+        </div>
+      </div>
+
+      <div class="result-card" id="resultContainer"></div>
+
+      <div class="toppers-section" id="toppersContainer" data-aos="fade-up">
+        <div class="section-header">
+          <h2 class="section-title">Class Toppers 2026-27</h2>
+          <p class="section-subtitle">First Semester Examination • Celebrating Academic Excellence</p>
+        </div>
+        <div class="toppers-grid">
+          <div class="topper-card">
+            <div class="topper-medal"><i class="fas fa-crown"></i></div>
+            <div class="class-label">Class 2 Topper</div>
+            <h3 class="topper-name">MUHAMMED THAHNAN P</h3>
+            <div class="percentage-badge">63.17%</div>
+          </div>
+          <div class="topper-card">
+            <div class="topper-medal"><i class="fas fa-crown"></i></div>
+            <div class="class-label">Class 3 Topper</div>
+            <h3 class="topper-name">MUHAMMED SALIH K</h3>
+            <div class="percentage-badge">49.31%</div>
+          </div>
+          <div class="topper-card">
+            <div class="topper-medal"><i class="fas fa-crown"></i></div>
+            <div class="class-label">Class 4 Topper</div>
+            <h3 class="topper-name">ANSHIF P</h3>
+            <div class="percentage-badge">63.50%</div>
+          </div>
+          <div class="topper-card">
+            <div class="topper-medal"><i class="fas fa-crown"></i></div>
+            <div class="class-label">Class 5 Topper</div>
+            <h3 class="topper-name">MOHAMMED ROSHAN K</h3>
+            <div class="percentage-badge">46.11%</div>
+          </div>
+          <div class="topper-card">
+            <div class="topper-medal"><i class="fas fa-crown"></i></div>
+            <div class="class-label">Class 6 Topper</div>
+            <h3 class="topper-name">MUHAMMED SWALIH CP</h3>
+            <div class="percentage-badge">58.24%</div>
+          </div>
+          <div class="topper-card">
+            <div class="topper-medal"><i class="fas fa-crown"></i></div>
+            <div class="class-label">Class 9 Topper</div>
+            <h3 class="topper-name">MUHAMMED AFTHAB</h3>
+            <div class="percentage-badge">80.00%</div>
+          </div>
+          <div class="topper-card">
+            <div class="topper-medal"><i class="fas fa-crown"></i></div>
+            <div class="class-label">Class 8 Topper</div>
+            <h3 class="topper-name">HADI MUBARAK C</h3>
+            <div class="percentage-badge">80.20%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-5" data-aos="fade-up">
+        <a href="index.html" class="btn-outline-gold btn-lg px-5">
+          <i class="fas fa-home me-2"></i>Back to Home
         </a>
-        <a href="https://jamiajuniorcolleges.com/student/" class="result-btn" id="jamiaBtn" target="_blank">
-          <i class="fa-solid fa-graduation-cap"></i>
-          <span>Jamia Junior Colleges</span>
-          <small>Public Examination Results</small>
-        </a>
-        <a href="toppers.html" class="result-btn" id="posterBtn">
-          <i class="fa-solid fa-trophy"></i>
-          <span>Toppers Poster</span>
-          <small>View academic achievers</small>
-        </a>
-      </div>
-      <div class="text-center mt-4">
-        <a href="index.html" class="btn-outline-gold">
-          <i class="fas fa-arrow-left me-2"></i>Back to Home
-        </a>
       </div>
     </div>
+  </section>
 
-    <div class="result-form-container" id="formContainer">
-      <div class="section-header">
-        <h2 class="section-title">Examination Result</h2>
-        <p class="section-subtitle">Enter your details to view your result</p>
-      </div>
-      <form id="resultForm">
-        <div class="mb-3">
-          <label class="form-label fw-bold text-success">UID Number</label>
-          <input type="text" class="form-control" id="roll" name="roll" placeholder="Enter your UID number" required>
-        </div>
-        <div class="mb-3">
-          <label class="form-label fw-bold text-success">Date of Birth</label>
-          <input type="date" class="form-control" id="dob" name="dob" required>
-        </div>
-        <button type="submit" class="btn-gold w-100 py-3">
-          <i class="fas fa-search me-2"></i>Get Result
-        </button>
-      </form>
-      <div class="text-center mt-4">
-        <button class="btn-outline-gold" onclick="showResultSelection()">
-          <i class="fas fa-arrow-left me-2"></i>Back to Exam Selection
-        </button>
-      </div>
-    </div>
+  <div id="footer-container"></div>
 
-    <div class="loading-container" id="loadingContainer">
-      <div class="spinner"></div>
-      <h3 style="color: var(--islamic-green); margin-bottom: 10px;">
-        <i class="fas fa-cog fa-spin me-2"></i>Processing Your Result
-      </h3>
-      <p style="color: #666;">Please wait while we fetch your result details...</p>
-    </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzhHny4FbwPDtGbOa09orQLT9YKDR_6LNqlSlSe2Ua1MEQTCEk1rZO47Q5ZB11jWyiJ/exec';
 
-    <div class="error-container" id="errorContainer">
-      <div class="error-icon"><i class="fas fa-exclamation-triangle"></i></div>
-      <h3 style="color: #dc3545; margin-bottom: 15px;" id="errorTitle">Error Loading Result</h3>
-      <p style="color: #666; margin-bottom: 25px;" id="errorText">An error occurred while fetching your result.</p>
-      <div class="text-center">
-        <button class="btn-outline-gold" onclick="showForm()">
-          <i class="fas fa-arrow-left me-2"></i>Try Again
-        </button>
-      </div>
-    </div>
+    const resultSelectionBox = document.getElementById('resultSelectionBox');
+    const formContainer = document.getElementById('formContainer');
+    const loadingContainer = document.getElementById('loadingContainer');
+    const errorContainer = document.getElementById('errorContainer');
+    const resultContainer = document.getElementById('resultContainer');
+    const resultForm = document.getElementById('resultForm');
+    const errorTitle = document.getElementById('errorTitle');
+    const errorText = document.getElementById('errorText');
+    const toppersContainer = document.getElementById('toppersContainer');
 
-    <div class="result-card" id="resultContainer"></div>
-    <div class="toppers-section" id="toppersContainer" data-aos="fade-up">
-      <div class="section-header">
-        <h2 class="section-title">Class Toppers 2026-27</h2>
-        <p class="section-subtitle">First Semester Examination • Celebrating Academic Excellence</p>
-      </div>
-      <div class="toppers-grid">
-        <div class="topper-card">
-          <div class="topper-medal"><i class="fas fa-crown"></i></div>
-          <div class="class-label">Class 2 Topper</div>
-          <h3 class="topper-name">MUHAMMED THAHNAN P</h3>
-          <div class="percentage-badge">63.17%</div>
-        </div>
-        <div class="topper-card">
-          <div class="topper-medal"><i class="fas fa-crown"></i></div>
-          <div class="class-label">Class 3 Topper</div>
-          <h3 class="topper-name">MUHAMMED SALIH K</h3>
-          <div class="percentage-badge">49.31%</div>
-        </div>
-        <div class="topper-card">
-          <div class="topper-medal"><i class="fas fa-crown"></i></div>
-          <div class="class-label">Class 4 Topper</div>
-          <h3 class="topper-name">ANSHIF P</h3>
-          <div class="percentage-badge">63.50%</div>
-        </div>
-        <div class="topper-card">
-          <div class="topper-medal"><i class="fas fa-crown"></i></div>
-          <div class="class-label">Class 5 Topper</div>
-          <h3 class="topper-name">MOHAMMED ROSHAN K</h3>
-          <div class="percentage-badge">46.11%</div>
-        </div>
-        <div class="topper-card">
-          <div class="topper-medal"><i class="fas fa-crown"></i></div>
-          <div class="class-label">Class 6 Topper</div>
-          <h3 class="topper-name">MUHAMMED SWALIH CP</h3>
-          <div class="percentage-badge">58.24%</div>
-        </div>
-        <div class="topper-card">
-          <div class="topper-medal"><i class="fas fa-crown"></i></div>
-          <div class="class-label">Class 9 Topper</div>
-          <h3 class="topper-name">MUHAMMED AFTHAB</h3>
-          <div class="percentage-badge">80.00%</div>
-        </div>
-        <div class="topper-card">
-          <div class="topper-medal"><i class="fas fa-crown"></i></div>
-          <div class="class-label">Class 8 Topper</div>
-          <h3 class="topper-name">HADI MUBARAK C</h3>
-          <div class="percentage-badge">80.20%</div>
-        </div>
-      </div>
-    </div>
+    AOS.init({ duration: 800, once: true, offset: 50, disable: window.innerWidth < 768 });
 
-    <div class="text-center mt-5" data-aos="fade-up">
-      <a href="index.html" class="btn-outline-gold btn-lg px-5">
-        <i class="fas fa-home me-2"></i>Back to Home
-      </a>
-    </div>
-  </div>
-</section>
-
-<div id="footer-container"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzhHny4FbwPDtGbOa09orQLT9YKDR_6LNqlSlSe2Ua1MEQTCEk1rZO47Q5ZB11jWyiJ/exec';
-  
-  const resultSelectionBox = document.getElementById('resultSelectionBox');
-  const formContainer = document.getElementById('formContainer');
-  const loadingContainer = document.getElementById('loadingContainer');
-  const errorContainer = document.getElementById('errorContainer');
-  const resultContainer = document.getElementById('resultContainer');
-  const resultForm = document.getElementById('resultForm');
-  const errorTitle = document.getElementById('errorTitle');
-  const errorText = document.getElementById('errorText');
-  const toppersContainer = document.getElementById('toppersContainer');
-  
-  AOS.init({duration: 800, once: true, offset: 50, disable: window.innerWidth < 768});
-
-  window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar-optimized');
-    if(navbar) {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      navbar.classList.toggle('scrolled', scrollTop > 50);
-    }
-  });
-
-  function showResultSelection() {
-    resultSelectionBox.style.display = 'block';
-    formContainer.style.display = 'none';
-    resultContainer.style.display = 'none';
-    errorContainer.style.display = 'none';
-    loadingContainer.style.display = 'none';
-    toppersContainer.style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function showForm() {
-    resultSelectionBox.style.display = 'none';
-    formContainer.style.display = 'block';
-    resultContainer.style.display = 'none';
-    errorContainer.style.display = 'none';
-    loadingContainer.style.display = 'none';
-    toppersContainer.style.display = 'none';
-    formContainer.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  function getQueryParam(param) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
-  }
-
-  async function fetchResult(roll, dob) {
-    if (!roll || !dob) {
-      showError('Missing Information', 'Please fill in all fields.');
-      return;
-    }
-    showLoading();
-    try {
-      const url = `${SCRIPT_URL}?roll=${encodeURIComponent(roll)}&dob=${encodeURIComponent(dob)}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      if (data.result === 'success') {
-        displayResult(data);
-      } else {
-        showError('Result Not Found', data.message || 'Please check your details and try again.');
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar-optimized');
+      if (navbar) {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        navbar.classList.toggle('scrolled', scrollTop > 50);
       }
-    } catch (error) {
-      showError('Connection Error', 'Unable to connect to server. Please check your internet connection.');
-      console.error('Fetch error:', error);
-    }
-  }
-
-  resultForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const formData = new FormData(resultForm);
-    const roll = formData.get('roll').trim();
-    const dob = formData.get('dob');
-    fetchResult(roll, dob);
-  });
-
-  function showLoading() {
-    formContainer.style.display = 'none';
-    resultContainer.style.display = 'none';
-    errorContainer.style.display = 'none';
-    loadingContainer.style.display = 'block';
-  }
-
-  function showError(title, message) {
-    errorTitle.textContent = title;
-    errorText.textContent = message;
-    formContainer.style.display = 'none';
-    resultContainer.style.display = 'none';
-    loadingContainer.style.display = 'none';
-    errorContainer.style.display = 'block';
-    toppersContainer.style.display = 'none';
-  }
-
-  function printResult() {
-    const dateStr = new Date().toLocaleDateString('en-IN', {
-      day: '2-digit', month: 'long', year: 'numeric'
-    });
-    resultContainer.setAttribute('data-print-date', dateStr);
-    window.print();
-  }
-
-  function displayResult(data) {
-    const student = data.student;
-    const subjects = data.subjects || [];
-    const overallStatus = data.overallStatus;
-    
-    let subjectRows = '';
-    subjects.forEach((subject, index) => {
-      const gradeClass = subject.status === 'Pass' ? 'grade-pass' : 'grade-fail';
-      const statusClass = subject.status === 'Pass' ? 'status-pass' : 'status-fail';
-      subjectRows += `
-        <tr>
-          <td>${index + 1}</td>
-          <td class="text-start fw-bold">${subject.name}</td>
-          <td>${subject.maxScore}</td>
-          <td class="fw-bold text-dark">${subject.obtainedScore}</td>
-          <td><span class="${gradeClass}">${subject.grade}</span></td>
-          <td class="${statusClass}">${subject.status}</td>
-        </tr>
-      `;
     });
 
-    const resultHTML = `
-      <div class="result-card-content">
-        <div class="result-header">
-          <h2>DARUNNAJATH SHAREEATH & ARTS COLLEGE</h2>
-          <h4>KARUVARAKUNDU</h4>
-          <p>FIRST SEMESTER EXAMINATION 2026-27</p>
-          <p class="fw-bold text-success mt-2" style="letter-spacing:1px;">STATEMENT OF MARKS</p>
-        </div>
-
-        <div class="student-info">
-          <div class="info-row">
-            <div>
-              <div class="info-label">Student Name</div>
-              <div class="info-value text-uppercase">${student.name}</div>
-            </div>
-            <div>
-              <div class="info-label">UID Number</div>
-              <div class="info-value">${student.rollNumber}</div>
-            </div>
-          </div>
-          <div class="info-row">
-            <div>
-              <div class="info-label">Class / Batch</div>
-              <div class="info-value">${student.className}</div>
-            </div>
-            <div>
-              <div class="info-label">Date of Birth</div>
-              <div class="info-value">${student.dateOfBirth}</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="subjects-table-container mb-4">
-          <table class="subjects-table">
-            <thead>
-              <tr>
-                <th width="8%">Sl.No</th>
-                <th width="32%">Subject</th>
-                <th width="15%">Max Marks</th>
-                <th width="15%">Obtained</th>
-                <th width="15%">Grade</th>
-                <th width="15%">Result</th>
-              </tr>
-            </thead>
-            <tbody>${subjectRows}</tbody>
-          </table>
-        </div>
-
-        <div class="performance-summary">
-          <h5 class="text-center mb-4 text-uppercase" style="letter-spacing:1px; font-weight: 700;">Performance Summary</h5>
-          <div class="summary-grid">
-            <div class="summary-card">
-              <div class="summary-value">${student.totalScore}</div>
-              <div class="summary-label">Total Marks</div>
-              <small>Max: ${student.totalMaxScore}</small>
-            </div>
-            <div class="summary-card">
-              <div class="summary-value">${student.percentage}<span style="font-size:1rem">%</span></div>
-              <div class="summary-label">Percentage</div>
-            </div>
-            <div class="summary-card">
-              <div class="summary-value">${student.overallGrade}</div>
-              <div class="summary-label">Overall Grade</div>
-            </div>
-            <div class="summary-card">
-              <div class="summary-value">${student.rank}</div>
-              <div class="summary-label">Rank</div>
-            </div>
-            <div class="summary-card">
-              <div class="summary-value">${student.presents || 0}</div>
-              <div class="summary-label">Presents</div>
-              <small>Max: ${student.totalMaxPresents}</small>
-            </div>
-            ${student.grace ? `
-            <div class="summary-card">
-              <div class="summary-value">${student.grace}</div>
-              <div class="summary-label">Grace Mark</div>
-            </div>` : ''}
-          </div>
-        </div>
-
-        <div class="final-result">
-          <div class="result-badge">RESULT: ${overallStatus}</div>
-          <p>
-            ${overallStatus === 'PASSED' 
-              ? `The candidate has <strong>PASSED</strong> all subjects.` 
-              : `The candidate has <strong>FAILED</strong> in: <br><span class="text-danger fw-bold">${data.failedSubjects ? data.failedSubjects.join(', ') : 'some subjects'}</span>.`
-            }
-          </p>
-          <div class="d-flex gap-3 justify-content-center flex-wrap mt-4">
-            <button class="btn-outline-gold px-4" onclick="showForm()">
-              <i class="fas fa-arrow-left me-2"></i>Check Another Result
-            </button>
-            <button class="btn-gold px-4" onclick="printResult()">
-              <i class="fas fa-print me-2"></i>Print Result
-            </button>
-          </div>
-        </div>
-        
-        <div class="mt-4 text-center text-muted" style="font-size: 0.85rem;">
-          <i class="fas fa-check-circle text-success me-1"></i> Date of Issue: ${data.generatedOn || new Date().toLocaleDateString('en-GB')}
-        </div>
-      </div>
-    `;
-
-    resultContainer.innerHTML = resultHTML;
-    formContainer.style.display = 'none';
-    loadingContainer.style.display = 'none';
-    errorContainer.style.display = 'none';
-    toppersContainer.style.display = 'none';
-    resultContainer.style.display = 'block';
-    
-    resultContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  window.addEventListener('DOMContentLoaded', function() {
-    const urlRoll = getQueryParam('roll');
-    const urlDob = getQueryParam('dob');
-
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.3s ease';
-
-    if (urlRoll && urlDob) {
-      document.getElementById('roll').value = urlRoll;
-      document.getElementById('dob').value = urlDob;
-      fetchResult(urlRoll, urlDob);
-    } else {
-      showResultSelection();
+    function showResultSelection() {
+      resultSelectionBox.style.display = 'block';
+      formContainer.style.display = 'none';
+      resultContainer.style.display = 'none';
+      errorContainer.style.display = 'none';
+      loadingContainer.style.display = 'none';
+      toppersContainer.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    setTimeout(() => {document.body.style.opacity = '1';}, 50);
-  });
-</script>
-<script>
-  fetch('navbar.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('navbar-container').innerHTML = data;
-      document.querySelectorAll('.submenu-toggle').forEach(function (toggle) {
-        toggle.addEventListener('click', function (e) {
-          e.stopPropagation();
-          e.preventDefault();
-          const target = document.querySelector(toggle.getAttribute('data-bs-target'));
-          if(target) {
-            const bsCollapse = new bootstrap.Collapse(target, { toggle: true });
-          }
-        });
+    function showForm() {
+      resultSelectionBox.style.display = 'none';
+      formContainer.style.display = 'block';
+      resultContainer.style.display = 'none';
+      errorContainer.style.display = 'none';
+      loadingContainer.style.display = 'none';
+      toppersContainer.style.display = 'none';
+      formContainer.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    async function fetchResult(roll, dob) {
+      if (!roll || !dob) {
+        showError('Missing Information', 'Please fill in all fields.');
+        return;
+      }
+      showLoading();
+      try {
+        const url = `${SCRIPT_URL}?roll=${encodeURIComponent(roll)}&dob=${encodeURIComponent(dob)}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        if (data.result === 'success') {
+          displayResult(data);
+        } else {
+          showError('Result Not Found', data.message || 'Please check your details and try again.');
+        }
+      } catch (error) {
+        showError('Connection Error', 'Unable to connect to server. Please check your internet connection.');
+        console.error('Fetch error:', error);
+      }
+    }
+
+    resultForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(resultForm);
+      const roll = formData.get('roll').trim();
+      const dob = formData.get('dob');
+      fetchResult(roll, dob);
+    });
+
+    function showLoading() {
+      formContainer.style.display = 'none';
+      resultContainer.style.display = 'none';
+      errorContainer.style.display = 'none';
+      loadingContainer.style.display = 'block';
+    }
+
+    function showError(title, message) {
+      errorTitle.textContent = title;
+      errorText.textContent = message;
+      formContainer.style.display = 'none';
+      resultContainer.style.display = 'none';
+      loadingContainer.style.display = 'none';
+      errorContainer.style.display = 'block';
+      toppersContainer.style.display = 'none';
+    }
+
+    function printResult() {
+      const dateStr = new Date().toLocaleDateString('en-IN', {
+        day: '2-digit', month: 'long', year: 'numeric'
       });
-    })
-    .catch(error => console.error('Navbar load error:', error));
-    
-  fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('footer-container').innerHTML = data;
-    })
-    .catch(error => console.error('Footer load error:', error));
-</script> 
+      resultContainer.setAttribute('data-print-date', dateStr);
+      window.print();
+    }
+
+    // ========== DOWNLOAD PDF FUNCTION ==========
+    function downloadPDF() {
+      const element = document.getElementById('resultContainer');
+      if (!element) return;
+
+      // Hide action buttons temporarily for clean PDF
+      const actionBtns = element.querySelector('.action-buttons');
+      if (actionBtns) actionBtns.style.display = 'none';
+
+      const studentName = element.querySelector('.info-value')?.textContent?.trim() || 'Result';
+      const fileName = `DSAC_Result_${studentName.replace(/\s+/g, '_')}.pdf`;
+
+      const opt = {
+        margin:       [8, 8, 8, 8],
+        filename:     fileName,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true, logging: false },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opt).from(element).save().then(() => {
+        // Show buttons again after PDF is generated
+        if (actionBtns) actionBtns.style.display = 'flex';
+      }).catch(err => {
+        console.error('PDF Error:', err);
+        if (actionBtns) actionBtns.style.display = 'flex';
+        alert('PDF ഡൗൺലോഡ് ചെയ്യാൻ കഴിഞ്ഞില്ല. ദയവായി വീണ്ടും ശ്രമിക്കുക.');
+      });
+    }
+
+    function displayResult(data) {
+      const student = data.student;
+      const subjects = data.subjects || [];
+      const overallStatus = data.overallStatus;
+
+      let subjectRows = '';
+      subjects.forEach((subject, index) => {
+        const gradeClass = subject.status === 'Pass' ? 'grade-pass' : 'grade-fail';
+        const statusClass = subject.status === 'Pass' ? 'status-pass' : 'status-fail';
+        subjectRows += `
+          <tr>
+            <td>${index + 1}</td>
+            <td class="text-start fw-bold">${subject.name}</td>
+            <td>${subject.maxScore}</td>
+            <td class="fw-bold text-dark">${subject.obtainedScore}</td>
+            <td><span class="${gradeClass}">${subject.grade}</span></td>
+            <td class="${statusClass}">${subject.status}</td>
+          </tr>
+        `;
+      });
+
+      const resultHTML = `
+        <div class="result-card-content">
+          <div class="result-header">
+            <h2>DARUNNAJATH SHAREEATH & ARTS COLLEGE</h2>
+            <h4>KARUVARAKUNDU</h4>
+            <p>FIRST SEMESTER EXAMINATION 2026-27</p>
+            <p class="fw-bold text-success mt-2" style="letter-spacing:1px;">STATEMENT OF MARKS</p>
+          </div>
+
+          <div class="student-info">
+            <div class="info-row">
+              <div>
+                <div class="info-label">Student Name</div>
+                <div class="info-value text-uppercase">${student.name}</div>
+              </div>
+              <div>
+                <div class="info-label">UID Number</div>
+                <div class="info-value">${student.rollNumber}</div>
+              </div>
+            </div>
+            <div class="info-row">
+              <div>
+                <div class="info-label">Class / Batch</div>
+                <div class="info-value">${student.className}</div>
+              </div>
+              <div>
+                <div class="info-label">Date of Birth</div>
+                <div class="info-value">${student.dateOfBirth}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subjects-table-container mb-4">
+            <table class="subjects-table">
+              <thead>
+                <tr>
+                  <th width="8%">Sl.No</th>
+                  <th width="32%">Subject</th>
+                  <th width="15%">Max Marks</th>
+                  <th width="15%">Obtained</th>
+                  <th width="15%">Grade</th>
+                  <th width="15%">Result</th>
+                </tr>
+              </thead>
+              <tbody>${subjectRows}</tbody>
+            </table>
+          </div>
+
+          <div class="performance-summary">
+            <h5 class="text-center mb-4 text-uppercase" style="letter-spacing:1px; font-weight: 700;">Performance Summary</h5>
+            <div class="summary-grid">
+              <div class="summary-card">
+                <div class="summary-value">${student.totalScore}</div>
+                <div class="summary-label">Total Marks</div>
+                <small>Max: ${student.totalMaxScore}</small>
+              </div>
+              <div class="summary-card">
+                <div class="summary-value">${student.percentage}<span style="font-size:1rem">%</span></div>
+                <div class="summary-label">Percentage</div>
+              </div>
+              <div class="summary-card">
+                <div class="summary-value">${student.overallGrade}</div>
+                <div class="summary-label">Overall Grade</div>
+              </div>
+              <div class="summary-card">
+                <div class="summary-value">${student.rank}</div>
+                <div class="summary-label">Rank</div>
+              </div>
+              <div class="summary-card">
+                <div class="summary-value">${student.presents || 0}</div>
+                <div class="summary-label">Presents</div>
+                <small>Max: ${student.totalMaxPresents}</small>
+              </div>
+              ${student.grace ? `
+              <div class="summary-card">
+                <div class="summary-value">${student.grace}</div>
+                <div class="summary-label">Grace Mark</div>
+              </div>` : ''}
+            </div>
+          </div>
+
+          <div class="final-result">
+            <div class="result-badge">RESULT: ${overallStatus}</div>
+            <p>
+              ${overallStatus === 'PASSED'
+                ? `The candidate has <strong>PASSED</strong> all subjects.`
+                : `The candidate has <strong>FAILED</strong> in: <br><span class="text-danger fw-bold">${data.failedSubjects ? data.failedSubjects.join(', ') : 'some subjects'}</span>.`
+              }
+            </p>
+
+            <!-- ACTION BUTTONS - Print + Download PDF -->
+            <div class="action-buttons">
+              <button class="btn-outline-gold px-4" onclick="showForm()">
+                <i class="fas fa-arrow-left me-2"></i>Check Another Result
+              </button>
+              <button class="btn-gold px-4" onclick="printResult()">
+                <i class="fas fa-print me-2"></i>Print Result
+              </button>
+              <button class="btn-gold px-4" onclick="downloadPDF()">
+                <i class="fas fa-file-pdf me-2"></i>Download PDF
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-4 text-center text-muted" style="font-size: 0.85rem;">
+            <i class="fas fa-check-circle text-success me-1"></i> Date of Issue: ${data.generatedOn || new Date().toLocaleDateString('en-GB')}
+          </div>
+        </div>
+      `;
+
+      resultContainer.innerHTML = resultHTML;
+      formContainer.style.display = 'none';
+      loadingContainer.style.display = 'none';
+      errorContainer.style.display = 'none';
+      toppersContainer.style.display = 'none';
+      resultContainer.style.display = 'block';
+
+      resultContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    window.addEventListener('DOMContentLoaded', function() {
+      const urlRoll = getQueryParam('roll');
+      const urlDob = getQueryParam('dob');
+
+      document.body.style.opacity = '0';
+      document.body.style.transition = 'opacity 0.3s ease';
+
+      if (urlRoll && urlDob) {
+        document.getElementById('roll').value = urlRoll;
+        document.getElementById('dob').value = urlDob;
+        fetchResult(urlRoll, urlDob);
+      } else {
+        showResultSelection();
+      }
+
+      setTimeout(() => { document.body.style.opacity = '1'; }, 50);
+    });
+  </script>
+  <script>
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar-container').innerHTML = data;
+        document.querySelectorAll('.submenu-toggle').forEach(function (toggle) {
+          toggle.addEventListener('click', function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            const target = document.querySelector(toggle.getAttribute('data-bs-target'));
+            if (target) {
+              const bsCollapse = new bootstrap.Collapse(target, { toggle: true });
+            }
+          });
+        });
+      })
+      .catch(error => console.error('Navbar load error:', error));
+
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer-container').innerHTML = data;
+      })
+      .catch(error => console.error('Footer load error:', error));
+  </script>
 </body>
 </html>
