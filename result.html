@@ -168,7 +168,6 @@
   .result-card::after {  content: "Generated on: " attr(data-print-date) " | Darunnajath Shareeath & Arts College";  display: block; text-align: center; margin-top: 4mm; padding-top: 2mm; border-top: 1px solid #ccc; font-size: 7.5pt; color: #555;  position: absolute;  bottom: 10mm;  left: 12mm;  right: 12mm;  }
   }
 
-  /* ===== MOBILE FRIENDLY ADJUSTMENTS ===== */
   @media (max-width: 768px) {  
     body {padding-top: 70px !important;}
     .navbar-optimized {height: 70px; padding: 0.3rem 0;}
@@ -184,102 +183,35 @@
     .summary-grid {grid-template-columns: repeat(2, 1fr);}
     .toppers-grid {grid-template-columns: 1fr;}
     .result-header h2 { font-size: 1.5rem; }
-
-    /* --- Student info: stack rows vertically --- */
-    .student-info {
-      padding: 1.2rem 1rem !important;
-      margin-left: 0 !important;
-      margin-right: 0 !important;
-    }
-    .info-row {
-      grid-template-columns: 1fr !important;
-      gap: 0.8rem !important;
-      margin-bottom: 0.8rem !important;
-    }
-    .info-label {
-      font-size: 0.75rem !important;
-      margin-bottom: 0.1rem !important;
-    }
-    .info-value {
-      font-size: 1rem !important;
-      word-break: break-word;
-    }
-
-    /* --- Result table: compact & scrollable --- */
-    .subjects-table-container {
-      border-radius: 8px;
-      margin-left: 0 !important;
-      margin-right: 0 !important;
-      -webkit-overflow-scrolling: touch;
-    }
+    .student-info {padding: 1.2rem 1rem !important; margin-left: 0 !important;  margin-right: 0 !important;  }
+    .info-row {  grid-template-columns: 1fr !important;  gap: 0.8rem !important; margin-bottom: 0.8rem !important;    }
+    .info-label { font-size: 0.6rem !important; margin-bottom: 0.1rem !important;    }
+    .info-value { font-size: 1rem !important; word-break: break-word;    }
+    .subjects-table-container { border-radius: 8px; margin-left: 0 !important; margin-right: 0 !important;
+ -webkit-overflow-scrolling: touch;    }
     .subjects-table th,
-    .subjects-table td {
-      padding: 0.5rem 0.3rem !important;
-      font-size: 0.75rem !important;
-      white-space: nowrap;
+    .subjects-table td { padding: 0.5rem 0.3rem !important; font-size: 0.75rem !important; white-space: nowrap;
     }
-    .subjects-table th {
-      font-size: 0.7rem !important;
-      letter-spacing: 0;
-      padding: 0.6rem 0.2rem !important;
+    .subjects-table th { font-size: 0.7rem !important; letter-spacing: 0; padding: 0.6rem 0.2rem !important;
     }
     .subjects-table td:first-child,
-    .subjects-table th:first-child {
-      padding-left: 0.3rem !important;
-      padding-right: 0.2rem !important;
+    .subjects-table th:first-child { padding-left: 0.3rem !important; padding-right: 0.2rem !important;    }
+    .subjects-table td:nth-child(2) { white-space: normal; text-align: left; min-width: 110px; font-size: 0.8rem !important;
     }
-    .subjects-table td:nth-child(2) {
-      white-space: normal;
-      text-align: left;
-      min-width: 110px;
-      font-size: 0.8rem !important;
-    }
-    .grade-pass, .grade-fail {
-      padding: 0.15rem 0.5rem;
-      font-size: 0.75rem;
-    }
+    .grade-pass, .grade-fail { padding: 0.15rem 0.5rem; font-size: 0.75rem;    }
 
-    /* --- Performance summary: 2 columns, smaller cards --- */
-    .performance-summary {
-      padding: 1.2rem 0.8rem !important;
-      margin-left: 0 !important;
-      margin-right: 0 !important;
-    }
-    .summary-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
-      gap: 0.8rem !important;
-    }
-    .summary-card {
-      padding: 0.8rem 0.4rem !important;
-    }
-    .summary-value {
-      font-size: 1.4rem !important;
-    }
-    .summary-label {
-      font-size: 0.7rem !important;
-      letter-spacing: 0.5px;
-    }
-    .summary-card small {
-      font-size: 0.6rem !important;
-    }
+    .performance-summary { padding: 1.2rem 0.8rem !important; margin-left: 0 !important; margin-right: 0 !important;    }
+    .summary-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.8rem !important;    }
+    .summary-card { padding: 0.8rem 0.4rem !important;    }
+    .summary-value { font-size: 1.4rem !important;    }
+    .summary-label { font-size: 0.7rem !important; letter-spacing: 0.5px;    }
+    .summary-card small { font-size: 0.6rem !important;    }
 
-    /* final result tweaks */
-    .final-result {
-      padding: 1.5rem 1rem !important;
-    }
-    .result-badge {
-      font-size: 1.1rem !important;
-      padding: 0.6rem 1.8rem !important;
-    }
-    .final-result p {
-      font-size: 0.9rem !important;
-    }
+    .final-result { padding: 1.5rem 1rem !important;    }
+    .result-badge { font-size: 1.1rem !important; padding: 0.6rem 1.8rem !important;    }
+    .final-result p { font-size: 0.9rem !important;    }
 
-    /* result card padding */
-    .result-card {
-      padding: 1.5rem 1rem !important;
-      margin: 0 0.5rem 1.5rem !important;
-    }
+    .result-card { padding: 1.5rem 1rem !important; margin: 0 0.5rem 1.5rem !important;    }
     .result-header h2 { font-size: 1.3rem !important; }
     .result-header h4 { font-size: 1.1rem !important; }
     .result-header p { font-size: 0.85rem !important; }
