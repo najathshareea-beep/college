@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -90,7 +90,7 @@
   .info-row:last-child { margin-bottom: 0; }
   .info-label { font-weight: 600; color: var(--islamic-green); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.2rem; }
   .info-value { color: #333; font-size: 1.1rem; font-weight: 600; }
-  .subjects-table-container { overflow-x: auto; border-radius: 10px; border: 1px solid #e0e0e0; }
+  .subjects-table-container { overflow-x: auto; border-radius: 10px; border: 1px solid #e0e0e0; -webkit-overflow-scrolling: touch; }
   .subjects-table { width: 100%; border-collapse: collapse; margin-bottom: 0; background: white; }
   .subjects-table th { background: var(--islamic-green); color: white; padding: 1rem; text-align: center; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; border-right: 1px solid rgba(255,255,255,0.1); }
   .subjects-table th:last-child { border-right: none; }
@@ -182,12 +182,58 @@
   .summary-grid {grid-template-columns: repeat(2, 1fr);}
   .toppers-grid {grid-template-columns: 1fr;}
   .result-header h2 { font-size: 1.5rem; }
+  
+  /* Mobile-friendly table: reduce padding, font-size, allow wrapping */
+  .subjects-table th, 
+  .subjects-table td {
+    padding: 0.5rem 0.3rem;
+    font-size: 0.75rem;
   }
+  .subjects-table th {
+    white-space: nowrap; /* keep headers short */
+  }
+  .subjects-table td {
+    word-break: break-word;
+  }
+  /* Hide 'Max Marks' column on very small screens to save space? 
+     But we keep all as requested, just make more compact */
+  .subjects-table td:nth-child(3),  /* Max Marks */
+  .subjects-table th:nth-child(3) {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.2rem;
+  }
+  .subjects-table td:nth-child(2) { /* Subject name */
+    text-align: left;
+    font-weight: 600;
+  }
+  .result-badge { font-size: 1.1rem; padding: 0.6rem 1.8rem; }
+  .info-value { font-size: 0.95rem; }
+  .summary-value { font-size: 1.4rem; }
+  }
+
   @media (max-width: 576px) {
   .page-title {font-size: 1.8rem;}
   .section-title {font-size: 1.5rem;}
   .summary-grid {grid-template-columns: 1fr;}
   .info-row {grid-template-columns: 1fr;}
+  
+  /* Further table compaction */
+  .subjects-table th, 
+  .subjects-table td {
+    padding: 0.4rem 0.2rem;
+    font-size: 0.7rem;
+  }
+  .subjects-table td:nth-child(2) { /* Subject name */
+    font-size: 0.7rem;
+    word-break: break-word;
+  }
+  .grade-pass, .grade-fail {
+    padding: 0.1rem 0.4rem;
+    font-size: 0.65rem;
+  }
+  .result-card {
+    padding: 1.2rem 0.8rem !important;
+  }
   }
   </style>
 </head>
